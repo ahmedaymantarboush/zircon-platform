@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreign('role_num')->references('number')->on('roles')->cascadeOnDelete();
 
             $table->foreignId('grade_id')->after('role_num')->constrained()->cascadeOnDelete();
+            $table->foreignId('governorate_id')->after('grade_id')->constrained()->cascadeOnDelete();
         });
     }
 
