@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'phone_number',
         'parent_phone_number',
-        'image',
+        // 'image',
         'email_verified_at',
         'password',
         'balance',
