@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MonthItem;
-use App\Http\Requests\StoreMonthItemRequest;
-use App\Http\Requests\UpdateMonthItemRequest;
+use App\Models\Subject;
+use App\Http\Requests\StoreSubjectRequest;
+use App\Http\Requests\UpdateSubjectRequest;
 
-class MonthItemController extends Controller
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class MonthItemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMonthItemRequest  $request
+     * @param  \App\Http\Requests\StoreSubjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMonthItemRequest $request)
+    public function store(StoreSubjectRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class MonthItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MonthItem  $monthItem
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function show(MonthItem $monthItem)
+    public function show(Subject $subject)
     {
         //
     }
@@ -53,10 +53,10 @@ class MonthItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MonthItem  $monthItem
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function edit(MonthItem $monthItem)
+    public function edit(Subject $subject)
     {
         //
     }
@@ -64,11 +64,11 @@ class MonthItemController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateMonthItemRequest  $request
-     * @param  \App\Models\MonthItem  $monthItem
+     * @param  \App\Http\Requests\UpdateSubjectRequest  $request
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMonthItemRequest $request, MonthItem $monthItem)
+    public function update(UpdateSubjectRequest $request, Subject $subject)
     {
         //
     }
@@ -76,10 +76,10 @@ class MonthItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MonthItem  $monthItem
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MonthItem $monthItem)
+    public function destroy(Subject $subject)
     {
         //
     }
