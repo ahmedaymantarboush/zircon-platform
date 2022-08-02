@@ -59,7 +59,7 @@ class AuthController extends Controller
             'governorate.required' => "المحافظة مطلوبة",
             'governorate.string' => "المحافظة يجب ان يكون حروف",
             'governorate.exists' => "الرجاء اختيار محافظة صحيحة",
-        ]);
+        ]); 
         if ($validator->fails()){
             return apiResponse(false,_('هناك خطأ في صحة البيانات'),$validator->errors(),400);
         }
