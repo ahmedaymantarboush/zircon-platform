@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MonthRequest;
+use App\Http\Requests\StoreMonthRequest;
 use App\Http\Requests\UpdateMonthRequest;
 use App\Http\Resources\MonthCollection;
 use App\Http\Resources\MonthResource;
@@ -14,6 +14,10 @@ use Illuminate\Http\Request;
 
 class MonthController extends Controller
 {
+    // public function __construct()
+    // {
+    //     // $this->middleware('auth:sanctum')->except(['index', 'lastMonths','show']);
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -49,8 +53,13 @@ class MonthController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    protected function lectureData(Request $request, $fileName = 'poster', $oldFile = null)
+    private function lectureData(Request $request, $fileName = 'poster', $oldFile = null)
     {
+        $user = apiUser();
+        if (!$user):
+            return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
+        endif;
+
         $data = $request->all();
         $data['description'] = removeCustomTags($data['description'], ['iframe', 'link', 'script']);
         $poster = '';
@@ -74,25 +83,27 @@ class MonthController extends Controller
             'published' => array_key_exists('published', $data),
             'promotinal_video_url' => $data['promotinal_video_url'],
             'poster' => $poster,
-            'meta_keywords' => $data['mete_keywords'] . auth('sanctum')->user()->name . ',' . $data['title'] . ',' . $data['semester'] . ',' . Subject::find($data['subject']) . ',' . Subject::find($data['grade']),
+            'meta_keywords' => $data['mete_keywords'] . apiUser()->name . ',' . $data['title'] . ',' . $data['semester'] . ',' . Subject::find($data['subject']) . ',' . Subject::find($data['grade']),
             'meta_description' => $data['meta_description'] ? $data['meta_description'] : $data['short_description'],
             'slug' => $data['slug'],
             'price' => array_key_exists('free', $data) ? 0 : abs($data['price']),
-            'final_price' =>  array_key_exists('free', $data) ? 0 : (array_key_exists('has_discount', $data) ? abs($data['new_price']) : abs($data['price'])),
+            'final_price' =>  array_key_exists('free', $data) ? 0 : (array_key_exists('has_discount', $data) ? abs($data['final_price']) : abs($data['price'])),
             'discount_expiry_date' => $data['discount_expiry_date'] ? $data['discount_expiry_date'] : now(),
-            'subject_id' => $data['subject'],
             'grade_id' => $data['grade'],
         ];
     }
 
-    public function store(MonthRequest $request)
+    public function store(StoreMonthRequest $request)
     {
+        $user = apiUser();
+        if (!$user):
+            return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
+        endif;
         $data = $request->all();
         if ($data['price'] >= $data['final_price'] || $data['free']) :
-            $user = auth('sanctum')->user();
             if ($user->role->name == 'Admin' || $user->role->name == 'Super Admin' || $user->role->name == 'Teacher') :
                 $month = $user->createdMonths()->create($this->lectureData($request));
-                foreach ($data['part'] as $part) :
+                foreach ($data['parts'] as $part) :
                     $parts = [];
                     if (!empty($part)) :
                         $parts[] = MonthPart::firstOrCreate([
@@ -106,7 +117,7 @@ class MonthController extends Controller
                     return apiResponse(false, _('لم يتم اضافة الأجزاء الدراسية للشهر لذلك لم يكتمل انشاء الشهر'), [], 401);
                 endif;
             else :
-                return apiResponse(false, _('غير مصرح لهذا المسخدم بانشاء شهر جديد'), [], 400);
+                return apiResponse(false, _('غير مصرح لهذا المسخدم بانشاء شهر جديد'), [], 403);
             endif;
         else :
             return apiResponse(false, _('السعر بعد الخصم أكبر من السعر الأساسي'), [], 400);
@@ -128,7 +139,7 @@ class MonthController extends Controller
     {
         $month = Month::where('slug', $slug)->first();
         if ($month) :
-            return apiResponse(true, _('تم العثور على الشهر بنجاح'), new MonthResource($month));
+            return apiResponse(true, _('تم العثور على الشهر بنجاح'), ['owner'=>apiUser()->ownedMonths->contains($month),'month'=>new MonthResource($month)]);
         else :
             return apiResponse(false, _('لم يتم العثور على الشهر'), [], 400);
         endif;
@@ -143,29 +154,40 @@ class MonthController extends Controller
      */
     public function update(UpdateMonthRequest $request, $slug)
     {
+        $user = apiUser();
+        if (!$user):
+            return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
+        endif;
         $data = $request->all();
-        $month = auth('sanctum')->user()->createdMonths()->where('slug', $slug)->first();
-        if (!$month):
+        $month = apiUser()->createdMonths()->where('slug', $slug)->first();
+        if (!$month) :
             return apiResponse(false, _('هذا الشهر غير موجود'), [], 400);
         endif;
-        if ($data['price'] >= $data['new_price'] || $data['free']) :
-            $month->update($this->lectureData($request, 'poster', $month));
-            foreach (MonthPart::where(['lecture_id' => $month->id])->get() as $part) :
-                if (!in_array($part->part_id, $data['part'])) :
-                    $part->delete();
+        if ($request->slug != $month->slug && count(Month::where('slug',$request->slug)->get())):
+            return apiResponse(false, _('هذا الslug متاح في محاضرة أخرى الرجاء إعادة اختيار slug مناسب'), ["slug"=>['هذا الslug متاح في محاضرة أخرى الرجاء إعادة اختيار slug مناسب']], 422);
+        endif;
+        if ($data['price'] >= $data['final_price'] || $data['free']) :
+            if ($user->role->name == 'Admin' || $user->role->name == 'Super Admin' || $user->role->name == 'Teacher') :
+                $month->update($this->lectureData($request, 'poster', $month));
+                foreach (MonthPart::where(['month_id' => $month->id])->get() as $part) :
+                    if (!in_array($part->part_id, $data['parts'])) :
+                        $part->delete();
+                    endif;
+                endforeach;
+                $parts = [];
+                foreach ($data['parts'] as $part) :
+                    if (!empty($part)) :
+                        $parts[] = MonthPart::firstOrCreate([
+                            'month_id' => $month->id,
+                            'part_id' => $part
+                        ]);
+                    endif;
+                endforeach;
+                if (!$parts) :
+                    return apiResponse(false, _('لم يتم تعديل الأجزاء الدراسية بشكل صحيح'), [], 400);
                 endif;
-            endforeach;
-            $parts = [];
-            foreach ($data['part'] as $part) :
-                if (!empty($part)) :
-                    $parts[] = MonthPart::firstOrCreate([
-                        'lecture_id' => $month->id,
-                        'part_id' => $part
-                    ]);
-                endif;
-            endforeach;
-            if (!$parts) :
-                return apiResponse(false, _('لم يتم تعديل الأجزاء الدراسية بشكل صحيح'), [], 400);
+            else:
+                return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل هذا الشهر'), [], 403);
             endif;
         else :
             return apiResponse(false, _('السعر بعد الخصم أكبر من السعر الأساسي'), [], 400);
@@ -182,13 +204,18 @@ class MonthController extends Controller
      */
     public function destroy($slug)
     {
-        $month = auth('sanctum')->user()->createdMonths()->where('slug', $slug)->first();
-        if (!$month):
-            return apiResponse(false, _('هذا الشهر غير موجود'), [], 400);
+        $user = apiUser();
+        if (!$user):
+            return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
         endif;
-        if ($month->delete()):
+
+        $month = apiUser()->createdMonths()->where('slug', $slug)->first();
+        if (!$month) :
+            return apiResponse(false, _('هذا الشهر غير موجود'), [], 403);
+        endif;
+        if ($month->delete()) :
             return apiResponse(true, _('تم حذف الشهر بنجاح'), []);
-        else:
+        else :
             return apiResponse(false, _('حدث خطأ ما ولم يتم حذف الشهر'), [], 500);
         endif;
     }

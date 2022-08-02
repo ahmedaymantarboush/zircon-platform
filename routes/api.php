@@ -34,9 +34,12 @@ Route::post('/logout',[AuthController::class ,'logout']);
 //       HOME ROUTES
 Route::get('/centers',[CenterController::class ,'index']);
 Route::get('/testimonials',[TestimonialController::class ,'index']);
-Route::get('/months',[MonthController::class ,'lastMonths']);
+Route::get('/months/last',[MonthController::class ,'lastMonths']);
 Route::get('/contentsCount',function(){
     $lessonsCount = count(Lesson::where('published',1)->get());
     $questionsCount = count(Question::all());
     return apiResponse(true,_('عدد الدروس والأسئلة'),['lessonsCount'=>$lessonsCount,'questionsCount'=>$questionsCount]);
 });
+
+//       MONTH ROUTES
+Route::apiResource('months',MonthController::class);

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MonthRequest extends FormRequest
+class StoreMonthRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,11 @@ class MonthRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $user = apiUser();
+        if (!$user):
+            return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
+        endif;
+        return ($user->role->name == 'Admin' || $user->role->name == 'Super Admin' || $user->role->name == 'Teacher');
     }
 
     /**
@@ -35,12 +39,12 @@ class MonthRequest extends FormRequest
             'meta_description'          =>   ['nullable','string'],
             'slug'                      =>   ['required','string','unique:months,slug'],
             'free'                      =>   ['nullable'],
-            'price'                     =>   ['required_unless:free:on','numeric'],
+            'price'                     =>   ['required_unless:free,on'],
             'has_discount'              =>   ['nullable'],
-            'final_price'               =>   ['required_if:has_discount:on','numeric'],
-            'discount_expiry_date'      =>   ['required_if:has_discount:on','date'],
+            'final_price'               =>   ['required_if:has_discount,on'],
+            'discount_expiry_date'      =>   ['required_if:has_discount,on'],
             'subject'                   =>   ['nullable','exists:subjects,id'],
-            'grade'                     =>   ['required','exists:grade,id'],
+            'grade'                     =>   ['required','exists:grades,id'],
             'parts'                     =>   ['required'],
         ];
     }
@@ -63,7 +67,7 @@ class MonthRequest extends FormRequest
             'description.required' => 'وصف المحاضرة مطلوب',
             'description.string' => 'يجب أن يكون الوصف عبارة عن نص',
 
-            'promotinal_video_url.rquired' => 'الفيديو الترويجي مطلوب',
+            'promotinal_video_url.required' => 'الفيديو الترويجي مطلوب',
             'promotinal_video_url.string' => 'يجب أن يكون الفيديو الترويجي عبارة عن نص',
             'promotinal_video_url.url' => 'الرجاء إدخال رابط صحيح',
 
@@ -84,8 +88,8 @@ class MonthRequest extends FormRequest
             'price.required_unless' => 'السعر مطلوب',
             'price.numeric' => 'يجب أن يكون السعر عبارة عن رقم',
 
-            'required_if.required_if' => 'السعر بعد الخصم مطلوب',
-            'required_if.numeric' => 'يجب أن يكون السعر بعد الخصم عبارة عن رقم',
+            'final_price.required_if' => 'السعر بعد الخصم مطلوب',
+            'final_price.numeric' => 'يجب أن يكون السعر بعد الخصم عبارة عن رقم',
 
             'discount_expiry_date.required_if' => 'تاريخ انتهاء الخصم مطلوب',
             'discount_expiry_date.date' => 'يجب أن يكون تاريخ انتهاء الخصم عبارة عن تاريخ',
@@ -98,5 +102,18 @@ class MonthRequest extends FormRequest
 
             'parts.required' => 'الجزئية الدراسية مطلوبة',
         ];
+    }
+
+    public function validateResolved()
+    {
+        $this->prepareForValidation();
+        if (! $this->passesAuthorization()) {
+            $this->failedAuthorization();
+        }
+        $validator = $this->getValidatorInstance();
+        if ($validator->fails()) {
+            return apiResponse(false,_('هناك خطأ في صحة البيانات'),$validator->errors(),400);
+        }
+        $this->passedValidation();
     }
 }

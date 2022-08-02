@@ -75,3 +75,6 @@ function getVideoInfo($video_id){
     curl_close($ch);
     return $result;
 }
+function apiUser(){
+    return auth('sanctum')->user();
+}

@@ -50,11 +50,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function role(){
+        return $this->belongsTo(Role::class,'role_num','number');
+    }
+
     public function exams(){
         return $this->hasMany(Exam::class);
     }
 
     public function createdMonths(){
         return $this->hasMany(Month::class);
+    }
+
+    public function ownedMonths(){
+        return $this->belongsToMany(Month::class);
     }
 }
