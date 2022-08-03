@@ -43,4 +43,5 @@ Route::get('/contentsCount',function(){
 });
 
 //       MONTH ROUTES
-Route::apiResource('months',MonthController::class);
+Route::apiResource('months',MonthController::class)->except('index');
+Route::apiResource('months',[MonthController::class,'index'])->only('index');
