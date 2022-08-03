@@ -85,11 +85,11 @@
 
                 </button>
                 <div class="left ">
-                    <div class="search">
+                    <form class="search">
                         <input type="search" name="navSearch">
                         <span><i class="fa-solid fa-magnifying-glass"></i></span>
 
-                    </div>
+                    </form>
                     <div class="register">
                         <div class="signup">
                             <a href="#" class="regItem">
@@ -128,7 +128,7 @@
     <header class="">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 headerRightSide">
                     <div class="teacherContent ">
                         <h1 class="bigHeading gs_reveal gs_reveal_fromRight ">
                             <span class="customeSquareLine t-name">أ. محمد البري</span>
@@ -155,7 +155,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 headerLeftSide">
                     <div class="teacherAbout">
                         <div class="headerImage gs_reveal gs_reveal_fromLeft">
                             <img class="ontop" src="{{URL::asset('imgs/elbirry.png')}}" alt="">
@@ -263,7 +263,7 @@
     </header>
 
     <div class="paper">
-        <img src="{{URL::asset('imgs/paper.png')}}" alt="">
+        <!-- <img src="{{URL::asset('imgs/paper.png')}}" alt=""> -->
     </div>
     <section class="levels">
         <div class="container">
@@ -302,7 +302,7 @@
         </div>
     </section>
     <div class="paper2">
-        <img src="{{URL::asset('imgs/paper2.png')}}" alt="">
+        <!-- <img src="{{URL::asset('imgs/paper2.png')}}" alt=""> -->
     </div>
     <section class="latestMonths">
         <div class="container">
@@ -438,52 +438,52 @@
           M0 67
           C 273,183
             822,-40
-            1920.00,106
-
-          V 359
-          H 0
+            1920.00,106 
+          
+          V 359 
+          H 0 
           V 67
           Z">
                     <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="15s" attributeType="XML"
                         values="
-            M0 77
+            M0 77 
             C 473,283
               822,-40
-              1920,116
+              1920,116 
+            
+            V 359 
+            H 0 
+            V 67 
+            Z; 
 
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
+            M0 77 
             C 473,-40
               1222,283
-              1920,136
+              1920,136 
+            
+            V 359 
+            H 0 
+            V 67 
+            Z; 
 
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
+            M0 77 
             C 973,260
               1722,-53
-              1920,120
+              1920,120 
+            
+            V 359 
+            H 0 
+            V 67 
+            Z; 
 
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
+            M0 77 
             C 473,283
               822,-40
-              1920,116
-
-            V 359
-            H 0
-            V 67
+              1920,116 
+            
+            V 359 
+            H 0 
+            V 67 
             Z
             ">
                     </animate>
@@ -499,59 +499,59 @@
           M0 67
           C 273,183
             822,-40
-            1920.00,106
-
-          V 359
-          H 0
+            1920.00,106 
+          
+          V 359 
+          H 0 
           V 67
           Z">
                     <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="10s" attributeType="XML"
                         values="
-            M0 77
+            M0 77 
             C 473,283
               822,-40
-              1920,116
+              1920,116 
+            
+            V 359 
+            H 0 
+            V 67 
+            Z; 
 
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
+            M0 77 
             C 473,-40
               1222,283
-              1920,136
+              1920,136 
+            
+            V 359 
+            H 0 
+            V 67 
+            Z; 
 
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
+            M0 77 
             C 973,260
               1722,-53
-              1920,120
+              1920,120 
+            
+            V 359 
+            H 0 
+            V 67 
+            Z; 
 
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
+            M0 77 
             C 473,283
               822,-40
-              1920,116
-
-            V 359
-            H 0
-            V 67
+              1920,116 
+            
+            V 359 
+            H 0 
+            V 67 
             Z
             ">
                     </animate>
                 </path>
             </svg>
         </div>
-        <div class="waves wave2">
+        <div class="waves wave3">
             <svg width="100%" height="330px" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
 
@@ -560,52 +560,52 @@
           M0 67
           C 273,183
             822,-40
-            1920.00,106
-
-          V 359
-          H 0
+            1920.00,106 
+          
+          V 359 
+          H 0 
           V 67
           Z">
                     <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="6s" attributeType="XML"
                         values="
-            M0 77
+            M0 77 
             C 473,283
               822,-40
-              1920,116
+              1920,116 
+            
+            V 359 
+            H 0 
+            V 67 
+            Z; 
 
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
+            M0 77 
             C 473,-40
               1222,283
-              1920,136
+              1920,136 
+            
+            V 359 
+            H 0 
+            V 67 
+            Z; 
 
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
+            M0 77 
             C 973,260
               1722,-53
-              1920,120
+              1920,120 
+            
+            V 359 
+            H 0 
+            V 67 
+            Z; 
 
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
+            M0 77 
             C 473,283
               822,-40
-              1920,116
-
-            V 359
-            H 0
-            V 67
+              1920,116 
+            
+            V 359 
+            H 0 
+            V 67 
             Z
             ">
                     </animate>

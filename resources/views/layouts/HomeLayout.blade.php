@@ -130,8 +130,7 @@
 
 
                 </linearGradient>
-                <path fill="rgba(130,222,221)"
-                    d="
+                <path fill="rgba(130,222,221)" d="
           M0 67
           C 273,183
             822,-40
@@ -141,8 +140,7 @@
           H 0
           V 67
           Z">
-                    <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="15s"
-                        attributeType="XML"
+                    <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="15s" attributeType="XML"
                         values="
             M0 77
             C 473,283
@@ -193,8 +191,7 @@
                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
 
                 </linearGradient>
-                <path fill="rgba(130,222,221,.6)"
-                    d="
+                <path fill="rgba(130,222,221,.6)" d="
           M0 67
           C 273,183
             822,-40
@@ -204,8 +201,7 @@
           H 0
           V 67
           Z">
-                    <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="10s"
-                        attributeType="XML"
+                    <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="10s" attributeType="XML"
                         values="
             M0 77
             C 473,283
@@ -256,8 +252,7 @@
                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
 
                 </linearGradient>
-                <path fill="rgba(130,222,221,.4)"
-                    d="
+                <path fill="rgba(130,222,221,.4)" d="
           M0 67
           C 273,183
             822,-40
@@ -267,8 +262,7 @@
           H 0
           V 67
           Z">
-                    <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="6s"
-                        attributeType="XML"
+                    <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="6s" attributeType="XML"
                         values="
             M0 77
             C 473,283

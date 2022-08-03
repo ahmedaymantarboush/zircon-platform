@@ -57,8 +57,9 @@ body {
     font-size: 14px;
     text-transform: capitalize;
     color: var(--font-dark);
-
+    background: var(--second-bg);
     overflow-x: hidden;
+    transition: 0.4s all ease;
     margin: 0 auto;
 }
 
@@ -172,37 +173,33 @@ a:hover {
 *********** start navbar ********************
 *******************************************/
 nav {
-    background: var(--main-bg);
-    padding: 1rem 3rem;
+    background: var(--second-bg);
+    padding: 1.5rem 3rem;
     position: fixed;
     width: 100%;
-    transition: 0.4s all ease;
+    box-shadow: var(--shadow);
+    transition: 0.3s all ease;
     z-index: 999999;
 }
-nav.activeNav {
-    background-color: var(--second-bg);
-    padding: 2rem 3rem;
-    box-shadow: var(--shadow);
-}
+
 .navProgress {
     position: absolute;
     bottom: 0;
     transition: 0.4s all ease;
     height: 4px;
-    opacity: 0;
+    border-radius: 3rem;
     width: 100%;
     right: 0;
     background-color: #d1d5db;
 }
-nav.activeNav .navProgress {
-    opacity: 1;
-}
+
 .navProgress .navProgChild {
     height: 100%;
     background-color: var(--d-blue-color);
     position: absolute;
     bottom: 0;
     width: 0;
+    border-radius: 3rem;
 }
 nav .customeContainer {
     display: flex;
@@ -221,7 +218,7 @@ nav .customeContainer {
 .logoBrand {
     font-size: 2.4rem;
     margin: 0 0.8rem 0 1.5rem;
-    color: #1d212c;
+    color: var(--font-dark);
     font-weight: bold;
 }
 /*** light and dark svg ***/
@@ -231,13 +228,16 @@ nav .customeContainer {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    z-index: 1;
     opacity: 0;
     transition: 0.3s all ease;
 }
-.sun.activeSvg {
+.sun {
     z-index: 2;
     opacity: 1;
+}
+.dark .sun {
+    opacity: 0;
+    z-index: 1;
 }
 .sun svg {
     color: #feca57;
@@ -245,11 +245,11 @@ nav .customeContainer {
     transition: 0.3s all ease;
     transform: rotate(90deg);
 }
-.sun.activeSvg svg {
+.dark .sun svg {
     transform: rotate(0deg);
 }
 
-.moon.activeSvg {
+.dark .moon {
     opacity: 1;
     z-index: 2;
 }
@@ -258,7 +258,7 @@ nav .customeContainer {
     transform: rotate(180deg);
     transition: 0.3s all ease;
 }
-.moon.activeSvg svg {
+.dark .moon svg {
     transition: 0.3s all ease;
     transform: rotate(45deg);
 }
@@ -280,6 +280,8 @@ nav .customeContainer {
     padding: 0.5rem 3rem 0.5rem 1.5rem;
     border-radius: 3rem;
     border: 1px solid #707070;
+    transition: 0.3s all ease;
+    background: var(--second-bg);
     color: #707070;
 }
 .search input:focus {
@@ -399,6 +401,7 @@ header {
     background-color: var(--main-bg);
     padding: 11rem 0 3rem;
     overflow: hidden;
+    transition: 0.3s all ease;
 }
 header .row {
     align-items: center;
@@ -451,7 +454,7 @@ header .row {
     margin-top: 2rem;
 }
 .headerGrdeSwiper .swiper-slide span {
-    transition: 0.7s all ease;
+    transition: 0.3s all ease;
     opacity: 0;
     transform: translateY(15px);
     display: block;
@@ -459,7 +462,7 @@ header .row {
 .headerGrdeSwiper .swiper-slide-active span {
     opacity: 1;
     transform: translateY(-10px);
-    transition-delay: 0.3s;
+    transition-delay: 0.1s;
 }
 
 .headerGrade {
@@ -583,12 +586,14 @@ header .row {
     position: absolute;
     top: 5%;
     right: 0%;
-    background: #fff;
+    background: var(--second-bg);
     box-shadow: var(--shadow);
     padding: 2rem;
     border-radius: 1.5rem;
+    backdrop-filter: saturate(180%) blur(10px) brightness(1.5);
     font-size: 1.4rem;
     z-index: 9;
+
     font-weight: 600;
 }
 .headerContents .contentsHeading {
@@ -626,7 +631,7 @@ header .row {
     top: 45%;
     left: 0%;
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.6);
     padding: 2rem 2rem;
     border-radius: 1.5rem;
     backdrop-filter: saturate(180%) blur(10px) brightness(1.3);
@@ -666,7 +671,7 @@ header .row {
 /******* header location *********/
 .headerLocation {
     position: absolute;
-    background: #fff;
+    background: var(--second-bg);
     padding: 1rem 3rem 1rem 2rem;
     border-radius: 1.5rem;
     box-shadow: var(--shadow);
@@ -713,7 +718,7 @@ header .row {
 *****************************************/
 
 .levels {
-    margin-top: -12%;
+    margin-top: -14%;
     overflow: hidden;
     padding: 5rem 0 7rem 0;
 }
@@ -739,10 +744,20 @@ header .row {
 .l-content h4 span {
     font-weight: 700;
 }
-
+.paper {
+    /* background: url(../imgs/paper.png);
+    height: 300px;
+    background-position: center;
+    background-size: cover; */
+}
 .paper2 {
     margin-bottom: -10%;
+    /* height: 50vh;
+    background: url(../imgs/paper2.png);
+    background-position: center;
+    background-size: cover; */
 }
+
 /* .f {
     padding: 4rem;
 }
@@ -769,12 +784,14 @@ header .row {
 .monthsHeading h2 {
     font-size: 3.6rem;
     font-weight: 600;
+    transition: 0.4s all ease;
 }
 .monthsText {
     font-size: 1.8rem;
     color: var(--font-light);
     margin-top: 1.5rem;
     width: 50%;
+    transition: 0.4s all ease;
 }
 .latestMonths .row {
     padding-top: 5rem;
@@ -967,4 +984,65 @@ div.waves {
         left: 0px;
         top: 0px;
     }
+}
+
+/******************************************
+********************************************
+*********************************************
+*********************************************
+****** start dark ****************************
+****************************************
+********************************************
+*********************************************
+**********************************************/
+
+.dark:root {
+    --main-bg: #2d3946;
+    --second-bg: #556373;
+    --font-dark: #fff;
+    --font-light: #ebebeb;
+}
+
+/***** start nav ******/
+.dark nav {
+    background: #272d3d;
+}
+.dark .navProgress {
+    background: #373e47;
+}
+.dark .navProgChild {
+    background: var(--green-color);
+}
+/***** start header ******/
+.dark .customeSquareLine::after {
+    background-color: #4a5c70;
+}
+.dark .headerContents {
+    background: rgba(85, 99, 115, 0.8);
+}
+.dark .headerTestimonial {
+    background: rgba(85, 99, 115, 0.8);
+}
+
+.dark .headingQuestionsParent {
+    color: #75b0ff;
+}
+.dark .headingSubject {
+    color: #fff;
+}
+/***** start months ******/
+.dark .latestCard {
+    background: #405368;
+}
+
+/**** footer ******/
+
+.dark footer .wave1 path {
+    fill: rgba(64, 83, 104);
+}
+.dark footer .wave2 path {
+    fill: rgba(64, 83, 104, 0.6);
+}
+.dark footer .wave3 path {
+    fill: rgba(64, 83, 104, 0.4);
 }

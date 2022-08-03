@@ -1,3 +1,13 @@
+// let toggleBtn = function (firstEle, secondEle, classActive) {
+//     firstEle.addEventListener("click", function () {
+//         firstEle.classList.toggle(classActive);
+//         secondEle.classList.toggle(classActive);
+//     });
+//     secondEle.addEventListener("click", function () {
+//         secondEle.classList.toggle(classActive);
+//         firstEle.classList.toggle(classActive);
+//     });
+// };
 ////////////////////////
 // main functions /////
 //////////////////////
@@ -69,46 +79,62 @@ document.addEventListener("DOMContentLoaded", function () {
 /////////////////////////////////////
 ///// start navbar /////////////////
 ///////////////////////////////////
+// [01- dark and light ]
+let funChangeImagesDark = function () {
+    let paperImg1 = document.querySelector(".paper img");
 
-// [01- dark and light svg]
+    let paperImg2 = document.querySelector(".paper2 img");
+    if (document.documentElement.classList.contains("dark")) {
+        paperImg1.setAttribute("src", "../imgs/paperdark.png");
+        paperImg2.setAttribute("src", "../imgs/paper2_dark.png");
+    } else {
+        paperImg1.setAttribute("src", "../imgs/paper.png");
+        paperImg2.setAttribute("src", "../imgs/paper2.png");
+    }
+};
+
+let addStyleToLocaleStorage = function () {
+    if (localStorage.getItem("style") === null) {
+        localStorage.setItem("style", "dark");
+    } else {
+        localStorage.removeItem("style");
+    }
+};
+
+let addDarkClassToHtml = function () {
+    if (localStorage.getItem("style") === null) {
+        document.documentElement.classList.remove("dark");
+    } else {
+        document.documentElement.classList.add(localStorage.getItem("style"));
+    }
+};
+let updateUI = function () {
+    addStyleToLocaleStorage();
+    addDarkClassToHtml();
+    funChangeImagesDark();
+};
+addDarkClassToHtml();
+funChangeImagesDark();
 let sun = document.querySelector(".sun");
 let moon = document.querySelector(".moon");
-
-let toggleBtn = function (firstEle, secondEle, classActive) {
-    firstEle.addEventListener("click", function () {
-        firstEle.classList.toggle(classActive);
-        secondEle.classList.toggle(classActive);
-    });
-    secondEle.addEventListener("click", function () {
-        secondEle.classList.toggle(classActive);
-        firstEle.classList.toggle(classActive);
-    });
-};
-toggleBtn(sun, moon, "activeSvg");
-
+sun.addEventListener("click", updateUI);
+moon.addEventListener("click", updateUI);
 // [02 - toggle menu]
 let toggleBarBtn = document.querySelector(".toggleBarBtn");
 let bigLeft = document.querySelector(".bigLeft");
-let left = document.querySelector(".left");
 
 toggleBarBtn.addEventListener("click", function () {
-    toggleElement(bigLeft, "activeNavMenuBtn");
-    toggleElement(left, "activeNavMenu");
+    toggleElement(bigLeft, "activeNavMenu");
 });
-//[02- sticky nav]
 
+//[03- progress nav]
 let navBar = document.querySelector(".myNav");
 let progNav = document.querySelector(".navProgChild");
 let navProgFunction = function () {
     let { scrollTop, scrollHeight } = document.documentElement;
     let myWidth = (scrollTop / (scrollHeight - window.innerHeight)) * 100;
-    console.log(myWidth);
+
     progNav.style.width = `${myWidth}%`;
-    if (this.window.scrollY > 5) {
-        navBar.classList.add("activeNav");
-    } else {
-        navBar.classList.remove("activeNav");
-    }
 };
 navProgFunction();
 window.addEventListener("scroll", navProgFunction);
@@ -140,6 +166,7 @@ $(document).ready(function () {
     anim(el2, 1570);
     anim(el3, 1200);
 });
+
 // [02- level]
 var swiper = new Swiper(".headerGrdeSwiper", {
     slidesPerView: 1,
