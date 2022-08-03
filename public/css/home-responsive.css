@@ -151,6 +151,9 @@
     .headerImage {
         width: 70%;
     }
+    .headerAtom {
+        left: 5%;
+    }
     .headerLocation {
         max-width: 30rem;
     }
@@ -258,6 +261,9 @@
     }
 }
 @media (max-width: 400px) {
+    .headerAtom {
+        left: -7%;
+    }
     /** start nav **/
     .left {
         width: 75%;
