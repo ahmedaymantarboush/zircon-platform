@@ -50,6 +50,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Governorate::factory(50)->create();
+        \App\Models\Governorate::factory()->create([
+            'name' => 'القاهرة',
+        ]);
+        \App\Models\Governorate::factory()->create([
+            'name' => 'الشرقية',
+        ]);
 
         \App\Models\User::factory(50)->create();
 
