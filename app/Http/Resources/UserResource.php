@@ -21,7 +21,6 @@ class UserResource extends JsonResource
 
     public function only($params){
         $this->parameters = $params;
-
         return $this;
     }
     /**
@@ -39,7 +38,7 @@ class UserResource extends JsonResource
             'parentPhoneNumber'=>$this->parent_phone_number,
             // 'image',
             'balance'=>$this->balance,
-            'role'=>$this->role,
+            'role'=>$this->role->title,
             'grade'=>$this->grade->name,
             'governorate'=>$this->governorate->name,
         ],$this->parameters);

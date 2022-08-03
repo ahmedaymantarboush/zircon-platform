@@ -3,9 +3,40 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Arr;
 
 class CenterResource extends JsonResource
 {
+
+    private $parameters = [
+        'title',
+        'semester',
+        'shortDescription',
+        'description',
+        'lessonsCounr',
+        'published',
+        'promotinalVideoUrl',
+        'poster',
+        'metaKeywords',
+        'metaDescription',
+        'slug',
+        'price',
+        'finalPrice',
+        'discountExpiryDate',
+        'duration',
+        'totalQuestionsCount',
+        'subject',
+        'gradeId',
+        'grade',
+        'owner',
+        'sections'
+    ];
+    public static function only($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->parameters = $Params;
+        return $instance;
+    }
     /**
      * Transform the resource into an array.
      *
@@ -14,6 +45,11 @@ class CenterResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $data = [
+            'name' => $this->name,
+            'image' => $this->image,
+            'governorate' => $this->governorate->name,
+        ];
+        return Arr::only($data,$this->parameters);
     }
 }

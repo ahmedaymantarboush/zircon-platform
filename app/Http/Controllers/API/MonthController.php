@@ -28,7 +28,16 @@ class MonthController extends Controller
     {
         $months = Month::where('published', true)->orderBy('id', 'desc')->paginate(10);
         if ($months) {
-            return apiResponse(true, _('هناك شهور موجودة'), new MonthCollection($months));
+            return apiResponse(true, _('هناك شهور موجودة'), MonthCollection::only($months, [
+                'title',
+                'shortDescription',
+                'duration',
+                'totalQuestionsCount',
+                'price',
+                'finalPrice',
+                'discountExpiryDate',
+                'poster',
+            ]));
         } else {
             return apiResponse(false, _('لا يوجد شهور'), [], 401);
         }
@@ -36,14 +45,17 @@ class MonthController extends Controller
 
     public function lastMonths()
     {
+        // $month = ["title": "Test Month 1","lessonsCounr": 0,"poster": "","slug": "test-month-3","price": 0,"finalPrice": 0,"discountExpiryDate": "2022-08-03","gradeId": 1,"grade": "الصف الأول الثانوي"]
+        $grade3 = Month::with('owner')->where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 3])->get();
         $months = [
-            1 => Month::with('owner')->where(['grade_id' => 1, 'published' => true])->orderBy('id', 'desc')->first(),
-            2 => Month::with('owner')->where(['grade_id' => 2, 'published' => true])->orderBy('id', 'desc')->first(),
-            3 => Month::with('owner')->where(['grade_id' => 3, 'published' => true])->orderBy('id', 'desc')->first(),
+            1 => Month::with('owner')->where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 1])->first(),
+            2 => Month::with('owner')->where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 2])->first(),
+            3 => $grade3[0],
+            4 => count($grade3) > 1 ? $grade3[1] : null,
         ];
         foreach ($months as $key => $month) {
             if ($month) {
-                $months[$key] = new MonthResource($month,['title','semester','shortDescription','description','published','promotinalVideoUrl','poster','metaKeywords','metaDescription','slug','price','finalPrice','discountExpiryDate','duration','totalQuestionsCount','subject','gradeId','grade','owner']);
+                $months[$key] = MonthResource::only($month, ['title', 'poster', 'lessonsCounr', 'slug', 'price', 'finalPrice', 'discountExpiryDate', 'gradeId', 'grade']);
             } else {
                 $months[$key] = null;
             }
@@ -61,10 +73,10 @@ class MonthController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private function lectureData(Request $request, $fileName = 'poster', $oldFile = null)
+    private function monthData(Request $request, $fileName = 'poster', $oldFile = null)
     {
         $user = apiUser();
-        if (!$user):
+        if (!$user) :
             return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
         endif;
 
@@ -91,7 +103,7 @@ class MonthController extends Controller
             'published' => array_key_exists('published', $data),
             'promotinal_video_url' => $data['promotinal_video_url'],
             'poster' => $poster,
-            'meta_keywords' => $data['mete_keywords'] . apiUser()->name . ',' . $data['title'] . ',' . $data['semester'] . ',' . Subject::find($data['subject'])->name . ',' . Grade::find($data['grade'])->name,
+            'meta_keywords' => $data['mete_keywords'] . apiUser()->name . ',' . $data['title'] . ',' . $data['semester'] . ',' . Subject::find(env('DEFAULT_SUBJECT_ID'))->name . ',' . Grade::find($data['grade'])->name,
             'meta_description' => $data['meta_description'] ? $data['meta_description'] : $data['short_description'],
             'slug' => $data['slug'],
             'price' => array_key_exists('free', $data) ? 0 : abs($data['price']),
@@ -104,13 +116,13 @@ class MonthController extends Controller
     public function store(StoreMonthRequest $request)
     {
         $user = apiUser();
-        if (!$user):
+        if (!$user) :
             return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
         endif;
         $data = $request->all();
         if ($data['price'] >= $data['final_price'] || $data['free']) :
             if ($user->role->name == 'Admin' || $user->role->name == 'Super Admin' || $user->role->name == 'Teacher') :
-                $month = $user->createdMonths()->create($this->lectureData($request));
+                $month = $user->createdMonths()->create($this->monthData($request));
                 foreach ($data['parts'] as $part) :
                     $parts = [];
                     if (!empty($part)) :
@@ -147,7 +159,14 @@ class MonthController extends Controller
     {
         $month = Month::where('slug', $slug)->first();
         if ($month) :
-            return apiResponse(true, _('تم العثور على الشهر بنجاح'), ['owner'=>apiUser()->ownedMonths->contains($month),'month'=>new MonthResource($month)]);
+            $data = [
+                'month' => new MonthResource($month),
+                'owner' => false,
+            ];
+            if (apiUser()) :
+                $data['owner'] = apiUser()->ownedMonths->contains($month);
+            endif;
+            return apiResponse(true, _('تم العثور على الشهر بنجاح'), $data);
         else :
             return apiResponse(false, _('لم يتم العثور على الشهر'), [], 400);
         endif;
@@ -163,7 +182,7 @@ class MonthController extends Controller
     public function update(UpdateMonthRequest $request, $slug)
     {
         $user = apiUser();
-        if (!$user):
+        if (!$user) :
             return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
         endif;
         $data = $request->all();
@@ -171,12 +190,12 @@ class MonthController extends Controller
         if (!$month) :
             return apiResponse(false, _('هذا الشهر غير موجود'), [], 400);
         endif;
-        if ($request->slug != $month->slug && count(Month::where('slug',$request->slug)->get())):
-            return apiResponse(false, _('هذا الslug متاح في محاضرة أخرى الرجاء إعادة اختيار slug مناسب'), ["slug"=>['هذا الslug متاح في محاضرة أخرى الرجاء إعادة اختيار slug مناسب']], 422);
+        if ($request->slug != $month->slug && count(Month::where('slug', $request->slug)->get())) :
+            return apiResponse(false, _('هذا الslug متاح في محاضرة أخرى الرجاء إعادة اختيار slug مناسب'), ["slug" => ['هذا الslug متاح في محاضرة أخرى الرجاء إعادة اختيار slug مناسب']], 422);
         endif;
         if ($data['price'] >= $data['final_price'] || $data['free']) :
             if ($user->role->name == 'Admin' || $user->role->name == 'Super Admin' || $user->role->name == 'Teacher') :
-                $month->update($this->lectureData($request, 'poster', $month));
+                $month->update($this->monthData($request, 'poster', $month));
                 foreach (MonthPart::where(['month_id' => $month->id])->get() as $part) :
                     if (!in_array($part->part_id, $data['parts'])) :
                         $part->delete();
@@ -194,7 +213,7 @@ class MonthController extends Controller
                 if (!$parts) :
                     return apiResponse(false, _('لم يتم تعديل الأجزاء الدراسية بشكل صحيح'), [], 400);
                 endif;
-            else:
+            else :
                 return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل هذا الشهر'), [], 403);
             endif;
         else :
@@ -213,7 +232,7 @@ class MonthController extends Controller
     public function destroy($slug)
     {
         $user = apiUser();
-        if (!$user):
+        if (!$user) :
             return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
         endif;
 

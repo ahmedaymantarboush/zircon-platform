@@ -6,6 +6,34 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class CenterCollection extends ResourceCollection
 {
+    private $parameters = [
+        'title',
+        'semester',
+        'shortDescription',
+        'description',
+        'lessonsCounr',
+        'published',
+        'promotinalVideoUrl',
+        'poster',
+        'metaKeywords',
+        'metaDescription',
+        'slug',
+        'price',
+        'finalPrice',
+        'discountExpiryDate',
+        'duration',
+        'totalQuestionsCount',
+        'subject',
+        'gradeId',
+        'grade',
+        'owner',
+    ];
+    public static function only($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->parameters = $Params;
+        return $instance;
+    }
     /**
      * Transform the resource collection into an array.
      *
@@ -14,6 +42,6 @@ class CenterCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return CenterResource::collection($this->collection,$this->parameters);
     }
 }

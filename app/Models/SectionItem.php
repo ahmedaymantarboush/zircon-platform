@@ -8,4 +8,38 @@ use Illuminate\Database\Eloquent\Model;
 class SectionItem extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'order',
+        'section_id',
+        'lesson_id',
+        'exam_id',
+    ];
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+
+    public function item()
+    {
+        if ($this->lesson_id):
+            return $this->belongsTo(Lesson::class);
+        else:
+            return $this->belongsTo(Exam::class);
+        endif;
+    }
+
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class);
+    }
+
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class);
+    }
+
 }

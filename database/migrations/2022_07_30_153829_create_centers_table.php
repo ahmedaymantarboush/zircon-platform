@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('centers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image');
             $table->foreignId('governorate_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

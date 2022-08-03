@@ -16,8 +16,24 @@ class MonthFactory extends Factory
      */
     public function definition()
     {
+
+        $price = $this->faker->numberBetween(0, 100);
         return [
-            //
+            'title' => $this->faker->title(),
+            'semester' => "الفصل الدراسي الأول",
+            'short_description' => $this->faker->words(12, true),
+            'description' => $this->faker->words(100, true),
+            'published' => $this->faker->numberBetween(0, 1),
+            'promotinal_video_url' => $this->faker->url(),
+            'poster' => $this->faker->imageUrl(),
+            'meta_keywords' => implode(',',$this->faker->words(10)),
+            'meta_description' => $this->faker->words(50, true),
+            'slug' => $this->faker->slug(),
+            'price' => $price,
+            'final_price' =>  $this->faker->numberBetween(0, $price),
+            'discount_expiry_date' => $this->faker->dateTimeBetween('-1 year', '1 year'),
+            'grade_id' => $this->faker->numberBetween(1, 3),
+            'user_id' => $this->faker->numberBetween(1, 50),
         ];
     }
 }

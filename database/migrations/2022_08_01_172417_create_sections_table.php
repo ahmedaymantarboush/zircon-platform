@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
+            $table->string('name',50);
+            $table->foreignId('month_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('month_sections', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50)->unique();
-            $table->string('title',50);
-            $table->unsignedInteger('number')->unique();
-            $table->softDeletes();
+            $table->foreignId('month_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('month_sections');
     }
 };

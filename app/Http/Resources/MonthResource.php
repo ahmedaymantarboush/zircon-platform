@@ -13,6 +13,7 @@ class MonthResource extends JsonResource
         'semester',
         'shortDescription',
         'description',
+        'lessonsCounr',
         'published',
         'promotinalVideoUrl',
         'poster',
@@ -28,11 +29,13 @@ class MonthResource extends JsonResource
         'gradeId',
         'grade',
         'owner',
+        'sections'
     ];
-    public function __construct($resource,$onlyParams)
+    public static function only($resource, $Params)
     {
-        parent::__construct($resource);
-        $this->parameters = $onlyParams;
+        $instance = new Self($resource);
+        $instance->parameters = $Params;
+        return $instance;
     }
     /**
      * Transform the resource into an array.
@@ -42,12 +45,12 @@ class MonthResource extends JsonResource
      */
     public function toArray($request)
     {
-        $owner = $this->whenLoaded('owner')->name;
         $data = [
             'title'=>$this->title,
             'semester'=>$this->semester,
             'shortDescription'=>$this->short_description,
             'description'=>$this->description,
+            'lessonsCounr'=>count($this->lessons),
             'published'=>$this->published,
             'promotinalVideoUrl'=>$this->promotinal_video_url,
             'poster'=>$this->poster,
@@ -62,7 +65,8 @@ class MonthResource extends JsonResource
             'subject'=>$this->subject->name,
             'gradeId'=>$this->grade_id,
             'grade'=>$this->grade->name,
-            'owner'=>$owner,
+            'owner'=>$this->owner->name,
+            'sections'=>$this->sections
         ];
         return Arr::only($data,$this->parameters);
     }

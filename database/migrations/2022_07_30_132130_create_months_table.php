@@ -13,23 +13,28 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lessons', function (Blueprint $table) {
+        Schema::create('months', function (Blueprint $table) {
             $table->id();
-            $table->string('title',50);
-            $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
-            $table->string('url');
+            $table->string('title');
             $table->enum('semester',['الفصل الدراسي الأول','الفصل الدراسي الثاني']);
-            $table->string('short_description',100);
+            $table->string('short_description',150);
             $table->text('description');
             $table->boolean('published')->default(0);
             // $table->boolean('show_in_main')->default(0);
+            $table->string('promotinal_video_url')->nullable();
             $table->string('poster')->nullable();
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('slug',100)->unique();
-
-            $table->foreignId('month_id')->constrained()->cascadeOnDelete();
-
+            $table->boolean('free')->default(0);
+            $table->float('price');
+            $table->float('final_price');
+            $table->date('discount_expiry_date')->nullable();
+            $table->string('duration')->default('0 ساعة');
+            $table->integer('total_questions_count')->default(0);
+            $table->foreignId('subject_id')->default(env('DEFAULT_SUBJECT_ID'))->constrained()->cascadeOnDelete();
+            $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -42,6 +47,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lessons');
+        Schema::dropIfExists('months');
     }
 };
