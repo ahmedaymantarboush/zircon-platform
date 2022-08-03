@@ -18,14 +18,13 @@ return new class extends Migration
             $table->string('title',50);
             $table->string('url',100)->unique();
             $table->string('duration',50);
-            $table->enum('type',['video','pdf','audio']);
+            $table->enum('lesson_type',['video','pdf','audio']);
             $table->enum('semester',['الفصل الدراسي الأول','الفصل الدراسي الثاني']);
             $table->text('description');
-            $table->foreignId('exam_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->boolean('depends_on_exam')->default(0);
             $table->float('min_percentage')->default(0);
-            $table->foreignId('part_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('lecture_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
+
             $table->timestamps();
         });
     }

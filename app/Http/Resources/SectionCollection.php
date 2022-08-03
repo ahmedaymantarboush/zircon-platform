@@ -4,16 +4,11 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class LessonCollection extends ResourceCollection
+class SectionCollection extends ResourceCollection
 {
     private $parameters = [
         'title',
-        'url',
-        'duration',
-        'type',
-        'semester',
-        'description',
-        'part',
+        'items',
     ];
     public static function only($resource, $Params)
     {
@@ -29,6 +24,6 @@ class LessonCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return LessonResource::collection($this->collection,$this->parameters);
+        return SectionResource::collection($this->collection,$this->parameters);
     }
 }

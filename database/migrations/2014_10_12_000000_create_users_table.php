@@ -23,6 +23,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->float('balance')->default(0);
+            $table->string('platform')->default(config('app.name'));
+            $table->string('code',50)->unique();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

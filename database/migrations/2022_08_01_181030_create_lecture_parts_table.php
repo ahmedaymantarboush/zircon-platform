@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sections', function (Blueprint $table) {
+        Schema::create('lecture_parts', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50);
+            $table->foreignId('part_id')->constrained()->cascadeOnDelete();
             $table->foreignId('lecture_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('lecture_parts');
     }
 };

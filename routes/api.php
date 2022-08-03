@@ -33,8 +33,8 @@ Route::post('/logout',[AuthController::class ,'logout']);
 
 
 //       HOME ROUTES
-Route::get('/centers',[CenterController::class ,'index']);
-Route::get('/testimonials',[TestimonialController::class ,'index']);
+Route::get('/centers',[CenterController::class ,'centers']);
+Route::get('/topTestimonials',[TestimonialController::class ,'topTestimonials']);
 Route::get('/months/last',[MonthController::class ,'lastMonths']);
 Route::get('/contentsCount',function(){
     $lessonsCount = count(Lesson::where('published',1)->get());

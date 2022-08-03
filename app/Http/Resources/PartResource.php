@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class LessonCollection extends ResourceCollection
+class PartResource extends JsonResource
 {
     private $parameters = [
         'title',
@@ -13,7 +13,10 @@ class LessonCollection extends ResourceCollection
         'type',
         'semester',
         'description',
-        'part',
+        'examId',
+        'minPercentage',
+        'partId',
+        'lectureId',
     ];
     public static function only($resource, $Params)
     {
@@ -22,13 +25,13 @@ class LessonCollection extends ResourceCollection
         return $instance;
     }
     /**
-     * Transform the resource collection into an array.
+     * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
     {
-        return LessonResource::collection($this->collection,$this->parameters);
+        return parent::toArray($request);
     }
 }

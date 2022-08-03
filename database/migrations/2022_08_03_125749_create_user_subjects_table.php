@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_subjects', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('subject_id')->default(env('DEFAULT_SUBJECT_ID'))->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

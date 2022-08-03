@@ -28,6 +28,8 @@ class UserFactory extends Factory
             'role_num' => $this->faker->numberBetween(1, 4),
             'grade_id' => $this->faker->numberBetween(1, 3),
             'governorate_id' => $this->faker->numberBetween(1, 10),
+            'code' => Str::random(50),
+            'center_id' => $this->faker->numberBetween(1, 6),
         ];
     }
 

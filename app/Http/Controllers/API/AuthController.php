@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\Center;
 use App\Models\Governorate;
 use App\Models\Grade;
 use App\Models\User;
@@ -24,6 +25,7 @@ class AuthController extends Controller
             'phone_number' => ['required', 'string', 'unique:users,phone_number','max:13','min:11'],
             'parent_phone_number' => ['required', 'string','max:13','min:11'],
             'governorate' => ['required','string','exists:governorates,name'],
+            'center'=>['nullable','string','exists:centers,name'],
 
         ],[
             'name.required' => "الاسم مطلوب",
@@ -59,7 +61,10 @@ class AuthController extends Controller
             'governorate.required' => "المحافظة مطلوبة",
             'governorate.string' => "المحافظة يجب ان يكون حروف",
             'governorate.exists' => "الرجاء اختيار محافظة صحيحة",
-        ]); 
+
+            'center.string' => "المركز يجب ان يكون حروف",
+            'center.exists' => "الرجاء اختيار مركز صحيح",
+        ]);
         if ($validator->fails()){
             return apiResponse(false,_('هناك خطأ في صحة البيانات'),$validator->errors(),400);
         }
@@ -73,6 +78,10 @@ class AuthController extends Controller
             'password'=> Hash::make($request->password),
             'grade_id'=> Grade::where('name',$request->grade)->first()->id,
             'governorate_id'=> Governorate::where('name',$request->governorate)->first()->id,
+            'code'=> Str::random(50),
+            'center_id'=>Center::where('name',$request->center)->first()->id,
+            'role_num'=> 4,
+            'balance'=> 0,
         ]);
 
         if (!$user){

@@ -16,6 +16,16 @@ class TestimonialController extends Controller
      */
     public function index()
     {
+        $testimonials = Testimonial::orderBy('degree','desc')->get();
+        if ($testimonials){
+            return apiResponse(true,_('تم العثور على آراء الطلبة'),new TestimonialCollection($testimonials));
+        }else{
+            return apiResponse(false,_('لا يوجد آراء للطلبة'),new TestimonialCollection($testimonials),401);
+        }
+    }
+
+    public function topTestimonials()
+    {
         $testimonials = Testimonial::orderBy('degree','desc')->take(4)->get();
         if ($testimonials){
             return apiResponse(true,_('تم العثور على آراء الطلبة'),new TestimonialCollection($testimonials));

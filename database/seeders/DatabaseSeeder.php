@@ -57,35 +57,40 @@ class DatabaseSeeder extends Seeder
             'name' => 'الشرقية',
         ]);
 
-        \App\Models\User::factory(50)->create();
-
-        \App\Models\Month::factory(50)->create();
-
+        \App\Models\Center::factory()->create([
+            'name' => 'مجموعات خاصة',
+            'image' => fake()->imageUrl(),
+            'governorate_id' => fake()->numberBetween(1, 50),
+        ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الأول',
-            'image'=>fake()->imageUrl(),
-            'governorate_id'=>fake()->numberBetween(1,50),
+            'image' => fake()->imageUrl(),
+            'governorate_id' => fake()->numberBetween(1, 50),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثاني',
-            'image'=>fake()->imageUrl(),
-            'governorate_id'=>fake()->numberBetween(1,50),
+            'image' => fake()->imageUrl(),
+            'governorate_id' => fake()->numberBetween(1, 50),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثالث',
-            'image'=>fake()->imageUrl(),
-            'governorate_id'=>fake()->numberBetween(1,50),
+            'image' => fake()->imageUrl(),
+            'governorate_id' => fake()->numberBetween(1, 50),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الرابع',
-            'image'=>fake()->imageUrl(),
-            'governorate_id'=>fake()->numberBetween(1,50),
+            'image' => fake()->imageUrl(),
+            'governorate_id' => fake()->numberBetween(1, 50),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الخامس',
-            'image'=>fake()->imageUrl(),
-            'governorate_id'=>fake()->numberBetween(1,50),
+            'image' => fake()->imageUrl(),
+            'governorate_id' => fake()->numberBetween(1, 50),
         ]);
+
+        \App\Models\User::factory(50)->create();
+
+        \App\Models\Lecture::factory(50)->create();
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

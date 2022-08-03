@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('video')->nullable();
             $table->enum('type',['MCQ','Written']);
-            $table->string('answer');
+            $table->string('answer')->nullable();
             $table->string('choices');
             $table->integer('level');
             $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('part_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

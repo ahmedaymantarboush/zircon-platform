@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Center;
 use App\Models\Governorate;
 use App\Models\Grade;
 use App\Providers\RouteServiceProvider;
@@ -51,7 +52,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data,[
+        return Validator::make($request->all(),[
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -59,6 +60,7 @@ class RegisterController extends Controller
             'phone_number' => ['required', 'string', 'unique:users,phone_number','max:13','min:11'],
             'parent_phone_number' => ['required', 'string','max:13','min:11'],
             'governorate' => ['required','string','exists:governorates,name'],
+            'center'=>['nullable','string','exists:centers,name'],
 
         ],[
             'name.required' => "الاسم مطلوب",
@@ -94,6 +96,9 @@ class RegisterController extends Controller
             'governorate.required' => "المحافظة مطلوبة",
             'governorate.string' => "المحافظة يجب ان يكون حروف",
             'governorate.exists' => "الرجاء اختيار محافظة صحيحة",
+
+            'center.string' => "المركز يجب ان يكون حروف",
+            'center.exists' => "الرجاء اختيار مركز صحيح",
         ]);
     }
 
@@ -114,6 +119,10 @@ class RegisterController extends Controller
             'password'=> Hash::make($data['password']),
             'grade_id'=> Grade::where('name',$data['grade'])->first()->id,
             'governorate_id'=> Governorate::where('name',$data['governorate'])->first()->id,
+            'code'=> Str::random(50),
+            'center_id'=> Center::where('name',$data['center'])->first()->id,
+            'role_num'=> 4,
+            'balance'=> 0,
         ]);
     }
 }
