@@ -7,6 +7,7 @@ use App\Http\Requests\StoreMonthRequest;
 use App\Http\Requests\UpdateMonthRequest;
 use App\Http\Resources\MonthCollection;
 use App\Http\Resources\MonthResource;
+use App\Models\Grade;
 use App\Models\Month;
 use App\Models\MonthPart;
 use App\Models\Subject;
@@ -36,12 +37,19 @@ class MonthController extends Controller
     public function lastMonths()
     {
         $months = [
-            1 => Month::where(['grade_id' => 1, 'published' => true])->orderBy('id', 'desc')->first(),
-            2 => Month::where(['grade_id' => 2, 'published' => true])->orderBy('id', 'desc')->first(),
-            3 => Month::where(['grade_id' => 3, 'published' => true])->orderBy('id', 'desc')->first(),
+            1 => Month::with('owner')->where(['grade_id' => 1, 'published' => true])->orderBy('id', 'desc')->first(),
+            2 => Month::with('owner')->where(['grade_id' => 2, 'published' => true])->orderBy('id', 'desc')->first(),
+            3 => Month::with('owner')->where(['grade_id' => 3, 'published' => true])->orderBy('id', 'desc')->first(),
         ];
+        foreach ($months as $key => $month) {
+            if ($month) {
+                $months[$key] = new MonthResource($month,['title','semester','shortDescription','description','published','promotinalVideoUrl','poster','metaKeywords','metaDescription','slug','price','finalPrice','discountExpiryDate','duration','totalQuestionsCount','subject','gradeId','grade','owner']);
+            } else {
+                $months[$key] = null;
+            }
+        }
         if ($months) {
-            return apiResponse(true, _('هناك شهور موجودة'), new MonthCollection($months));
+            return apiResponse(true, _('هناك شهور موجودة'), $months);
         } else {
             return apiResponse(false, _('لا يوجد شهور'), [], 401);
         }
@@ -83,7 +91,7 @@ class MonthController extends Controller
             'published' => array_key_exists('published', $data),
             'promotinal_video_url' => $data['promotinal_video_url'],
             'poster' => $poster,
-            'meta_keywords' => $data['mete_keywords'] . apiUser()->name . ',' . $data['title'] . ',' . $data['semester'] . ',' . Subject::find($data['subject']) . ',' . Subject::find($data['grade']),
+            'meta_keywords' => $data['mete_keywords'] . apiUser()->name . ',' . $data['title'] . ',' . $data['semester'] . ',' . Subject::find($data['subject'])->name . ',' . Grade::find($data['grade'])->name,
             'meta_description' => $data['meta_description'] ? $data['meta_description'] : $data['short_description'],
             'slug' => $data['slug'],
             'price' => array_key_exists('free', $data) ? 0 : abs($data['price']),

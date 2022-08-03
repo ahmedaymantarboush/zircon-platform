@@ -4,13 +4,14 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +24,6 @@ class User extends Authenticatable
         'phone_number',
         'parent_phone_number',
         // 'image',
-        'email_verified_at',
         'password',
         'balance',
         'role_num',
@@ -64,5 +64,17 @@ class User extends Authenticatable
 
     public function ownedMonths(){
         return $this->belongsToMany(Month::class);
+    }
+
+    public function governorate(){
+        return $this->belongsTo(Governorate::class);
+    }
+
+    public function grade(){
+        return $this->belongsTo(Grade::class);
+    }
+
+    public function subjects(){
+        return $this->belongsToMany(Subject::class);
     }
 }

@@ -30,6 +30,24 @@ class Month extends Model
         'subject_id',
         'grade_id',
         'user_id',
-];
+    ];
 
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class,'subject_id','id');
+    }
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+
+    public function owners(){
+        return $this->belongsToMany(User::class, 'month_users', 'month_id', 'user_id');
+    }
 }
