@@ -1,0 +1,55 @@
+@media (max-width: 1360px) {
+    .loginCard {
+        width: 70vw;
+    }
+}
+@media (max-width: 1200px) {
+    .loginCard {
+        width: 70vw;
+    }
+    .imageContent p {
+        font-size: 2.4rem;
+    }
+    .content .inputItem input {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 1150px) {
+    .backgroundRow {
+        font-size: 55px;
+    }
+    .loginCard {
+        width: 75vw;
+    }
+}
+@media (max-width: 992px) {
+    .image {
+        display: none;
+    }
+    .content {
+        width: 100%;
+    }
+    .loginCard {
+        width: 55vw;
+    }
+    .imageContent p {
+        font-size: 2rem;
+    }
+    .imageContent {
+        font-size: 1.8rem;
+    }
+}
+@media (max-width: 690px) {
+    .loginCard {
+        width: 75vw;
+    }
+}
+@media (max-width: 500px) {
+    .loginCard {
+        width: 90vw;
+    }
+    .content {
+        padding: 5rem 2rem;
+    }
+}

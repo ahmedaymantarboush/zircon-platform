@@ -1,0 +1,395 @@
+/*************[start global system]******************/
+/*
+--- 01 TYPOGRAPHY SYSTEM
+
+- Font sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Font weights
+Default: 400
+Medium: 500
+Semi-bold: 600
+Bold: 700
+
+
+--- 07 WHITESPACE
+
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+:root {
+    --d-red-color: #fa5f5c;
+    --d-blue-color: #6d8dfe;
+    --d-yellow-color: #fcd34d;
+    --l-red-color: #ff7675;
+    --l-blue-color: #71bdfc;
+    --green-color: #82dedd;
+    --main-bg: #e7f6fd;
+    --second-bg: #fff;
+    --font-dark: #1d212c;
+    --font-light: #959595;
+    --shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+    list-style: none;
+    word-wrap: break-word;
+
+    text-transform: capitalize;
+
+    font-family: "cairo";
+}
+
+html {
+    /* font-size: 10px; */
+    /* 10px / 16px = 0.625 = 62.5% */
+    /* Percentage of user's browser font-size setting */
+    font-size: 62.5%;
+}
+body {
+    line-height: 1.6;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: capitalize;
+    color: var(--font-dark);
+    background: #2d3946;
+    overflow-x: hidden;
+    transition: 0.4s all ease;
+    margin: 0 auto;
+}
+
+::-moz-selection {
+    background-color: var(--main-color);
+    color: #fff;
+    text-shadow: none;
+}
+
+::selection {
+    background-color: var(--d-yellow-color);
+
+    color: #fff;
+    text-shadow: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    color: var(--font-dark);
+}
+
+p {
+    color: var(--p-color);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+ul {
+    margin: 0;
+}
+
+span,
+a,
+a:hover {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.section-padding {
+    padding: 8rem 0;
+}
+
+.ontop {
+    position: relative;
+    z-index: 4;
+}
+
+.position-re {
+    position: relative;
+}
+
+.bg-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-fixed {
+    background-attachment: fixed;
+}
+.d-redColor {
+    color: var(--d-red-color);
+    font-weight: 600;
+}
+.d-blueColor {
+    color: var(--d-blue-color);
+    font-weight: 600;
+}
+.d-yellowColor {
+    color: var(--d-yellow-color);
+    font-weight: 600;
+}
+.l-redColor {
+    color: var(--l-red-color);
+}
+.l-blueColor {
+    color: var(--l-blue-color);
+}
+
+/******* start login icons ********/
+
+.icons {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+.backgroundRow {
+    position: relative;
+    width: 100%;
+    display: flex;
+    padding: 0px 0;
+    white-space: nowrap;
+    font-size: 65px;
+    top: -65%;
+    transform: rotate(-30deg);
+    right: -5%;
+}
+.backgroundRow i,
+.backgroundRow svg {
+    color: #37455462;
+    transition: 0.5s;
+    padding: 0 1px;
+    user-select: none;
+    cursor: pointer;
+}
+.backgroundRow i:hover,
+.backgroundRow svg:hover {
+    transition: 0s;
+    color: var(--green-color);
+    filter: drop-shadow(0 0 80px var(--green-color));
+}
+
+/********* start login page *************/
+
+.loginCard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    width: 60vw;
+}
+.customeRow {
+    display: flex;
+}
+
+.image {
+    width: 50%;
+    position: relative;
+    /* height: 100%; */
+}
+.imageContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(45, 57, 70, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+.imageContent p {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    width: 80%;
+    margin-left: auto;
+
+    margin-right: auto;
+    font-weight: bold;
+}
+
+.image img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.content {
+    background: var(--second-bg);
+    padding: 5rem 4rem;
+    width: 50%;
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+.content::-webkit-scrollbar {
+    display: none;
+}
+.content h2 {
+    font-size: 2.8rem;
+    color: var(--font-dark);
+    position: relative;
+    padding-bottom: 3rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+.content h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 10%;
+    height: 4px;
+    background: #49b6b5;
+}
+.content .box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+.content .inputItem {
+    width: 100%;
+    position: relative;
+}
+.content .inputIcon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: #49b6b5;
+}
+.content .inputItem input {
+    width: 100%;
+    padding: 1rem 4rem 1rem 1rem;
+    background: transparent;
+    border: none;
+    color: var(--font-dark);
+    border-bottom: 1px solid #b4b5b5;
+    font-size: 1.6rem;
+    text-align: right;
+    transition: 0.3s all ease;
+    direction: rtl;
+}
+.content .inputItem input:focus,
+.content .inputItem select:focus {
+    border-bottom-color: #49b6b5;
+}
+.inputItem label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 40px;
+    font-size: 1.6rem;
+    pointer-events: none;
+    transition: 0.3s all ease;
+    color: #b4b5b5;
+}
+.inputItem input:focus ~ label,
+.inputItem input:not(:placeholder-shown) ~ label {
+    font-size: 1.2rem;
+
+    right: 20px;
+    top: -5px;
+    color: #49b6b5;
+}
+.content .error {
+    margin-top: 1rem;
+    color: var(--l-red-color);
+    display: none;
+}
+.isInvalid .error {
+    display: block;
+}
+.isInvalid .inputItem input {
+    border-bottom-color: var(--l-red-color);
+}
+.content .forgotPassword {
+    color: #54a0ff;
+    text-decoration: underline;
+    text-align: left;
+    transition: 0.3s all ease;
+    display: block;
+    font-size: 1.6rem;
+    margin-right: auto;
+    width: fit-content;
+}
+.content .forgotPassword:hover {
+    color: #49b6b5;
+}
+.content .reg {
+    width: 100%;
+    background: #49b6b5;
+    padding: 0.9rem;
+    text-align: center;
+    border: none;
+    border-radius: 1rem;
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: bold;
+    transition: 0.3s all ease;
+    margin: 3rem 0 1.5rem;
+}
+.content .reg:hover {
+    transform: translateY(-10px);
+    background: var(--d-yellow-color);
+}
+.content .haveAccount {
+    text-align: center;
+}
+.content .haveAccount a {
+    color: #49b6b5;
+    transition: 0.3s all ease;
+}
+.content .haveAccount a:hover {
+    color: var(--d-yellow-color);
+}
+/******************************************
+********************************************
+*********************************************
+*********************************************
+****** start dark ****************************
+****************************************
+********************************************
+*********************************************
+**********************************************/
+
+.dark:root {
+    --main-bg: #2d3946;
+    --second-bg: #556373;
+    --font-dark: #fff;
+    --font-light: #ebebeb;
+}
+.dark .content {
+    background: #405368;
+}

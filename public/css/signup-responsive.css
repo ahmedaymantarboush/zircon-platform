@@ -1,0 +1,55 @@
+@media (max-width: 1360px) {
+    .signupCard {
+        width: 70vw;
+    }
+}
+@media (max-width: 1200px) {
+    .signupCard {
+        width: 70vw;
+    }
+    .imageContent p {
+        font-size: 2.4rem;
+    }
+    .content .inputItem input {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 1150px) {
+    .backgroundRow {
+        font-size: 55px;
+    }
+    .signupCard {
+        width: 75vw;
+    }
+}
+@media (max-width: 992px) {
+    .image {
+        display: none;
+    }
+    .content {
+        width: 100%;
+    }
+    .signupCard {
+        width: 55vw;
+    }
+    .imageContent p {
+        font-size: 2rem;
+    }
+    .imageContent {
+        font-size: 1.8rem;
+    }
+}
+@media (max-width: 690px) {
+    .signupCard {
+        width: 75vw;
+    }
+}
+@media (max-width: 500px) {
+    .signupCard {
+        width: 90vw;
+    }
+    .content {
+        padding: 5rem 2rem;
+    }
+}
