@@ -29,6 +29,8 @@ class User extends Authenticatable
         'role_num',
         'grade_id',
         'governorate_id',
+        'code',
+        'center_id',
     ];
 
     /**

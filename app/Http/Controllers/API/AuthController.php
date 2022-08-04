@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -79,7 +80,8 @@ class AuthController extends Controller
             'grade_id'=> Grade::where('name',$request->grade)->first()->id,
             'governorate_id'=> Governorate::where('name',$request->governorate)->first()->id,
             'code'=> Str::random(50),
-            'center_id'=>Center::where('name',$request->center)->first()->id,
+
+            'center_id'=> $request->center ? Center::where('name',$request->center)->first()->id : 1,
             'role_num'=> 4,
             'balance'=> 0,
         ]);
@@ -98,13 +100,14 @@ class AuthController extends Controller
     }
     public function login(Request $request){
         $validator = Validator::make($request->all(),[
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255','exists:users,email'],
             'password' => ['required', 'string', 'min:8'],
         ],[
             'email.required' => "البريد الالكتروني مطلوب",
             'email.string' => "البريد الالكتروني يجب ان يكون حروف",
             'email.email' => "البرجاء ادخال البريد الالكتروني بشكل صحيح",
             'email.max' => "أكبر عدد ممكن من الحروف هو 255 حرف",
+            'email.exists' => "هناك خطأ في البريد الالكتروني أو كلمة المرور",
 
             'password.required' => "كلمة المرور مطلوبة",
             'password.string' => "يجب أن تكون كلمة المرور عبارة عن نص",

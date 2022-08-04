@@ -49,14 +49,19 @@ class DatabaseSeeder extends Seeder
             'name' => 'الفيزياء',
         ]);
 
-        \App\Models\Governorate::factory(50)->create();
         \App\Models\Governorate::factory()->create([
             'name' => 'القاهرة',
         ]);
         \App\Models\Governorate::factory()->create([
             'name' => 'الشرقية',
         ]);
+        \App\Models\Governorate::factory(22)->create();
 
+        \App\Models\Center::factory()->create([
+            'name' => 'المنصة',
+            'image' => fake()->imageUrl(),
+            'governorate_id' => fake()->numberBetween(1, 50),
+        ]);
         \App\Models\Center::factory()->create([
             'name' => 'مجموعات خاصة',
             'image' => fake()->imageUrl(),
