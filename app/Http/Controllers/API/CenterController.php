@@ -16,7 +16,7 @@ class CenterController extends Controller
      */
     public function index()
     {
-        $centers = Center::latest()->get();
+        $centers = Center::rderBy('id','desc')->get();
         if ($centers){
             return apiResponse(true,_('تم العثور على مراكز تعليمية'),new CenterCollection($centers));
         }else{
@@ -26,7 +26,7 @@ class CenterController extends Controller
 
     public function centers()
     {
-        $centers = Center::where('id','!=',1)->latest()->get();
+        $centers = Center::where('id','!=',1)->where('id','!=',2)->orderBy('id','desc')->get();
         if ($centers){
             return apiResponse(true,_('تم العثور على مراكز تعليمية'),new CenterCollection($centers));
         }else{

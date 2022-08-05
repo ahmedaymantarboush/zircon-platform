@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Arr;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class PartResource extends JsonResource
+class RoleCollection extends ResourceCollection
 {
     private $parameters = [];
     public static function only($resource, $Params)
@@ -15,20 +14,19 @@ class PartResource extends JsonResource
         return $instance;
     }
     /**
-     * Transform the resource into an array.
+     * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
     {
-        $data = [
-            'id'=>$this->id,
-        ];
-        if (count($this->parameters) > 0) {
-            return Arr::only($data, $this->parameters);
+        if (count($this->parameters)) {
+            return $this->collection->map(function ($role) {
+                return RoleResource::only($role,$this->parameters);
+            });
         } else {
-            return $data;
+            return RoleResource::collection($this->collection);
         }
     }
 }

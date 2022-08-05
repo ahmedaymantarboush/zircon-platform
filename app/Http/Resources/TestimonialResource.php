@@ -3,9 +3,17 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Arr;
 
 class TestimonialResource extends JsonResource
 {
+    private $parameters = [];
+    public static function only($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->parameters = $Params;
+        return $instance;
+    }
     /**
      * Transform the resource into an array.
      *
@@ -14,6 +22,17 @@ class TestimonialResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $data = [
+            'id'=>$this->id,
+            'studenName'=>$this->studen_name,
+            'image'=>$this->image,
+            'degree'=>$this->degree,
+            'content'=>$this->content,
+        ];
+        if (count($this->parameters)) {
+            return Arr::only($data, $this->parameters);
+        } else {
+            return $data;
+        }
     }
 }

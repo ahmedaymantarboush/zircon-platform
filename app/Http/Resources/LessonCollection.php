@@ -6,15 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class LessonCollection extends ResourceCollection
 {
-    private $parameters = [
-        'title',
-        'url',
-        'duration',
-        'type',
-        'semester',
-        'description',
-        'part',
-    ];
+    private $parameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
@@ -29,6 +21,12 @@ class LessonCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return LessonResource::collection($this->collection,$this->parameters);
+        if (count($this->parameters)) {
+            return $this->collection->map(function ($lesson) {
+                return LessonResource::only($lesson,$this->parameters);
+            });
+        } else {
+            return LessonResource::collection($this->collection);
+        }
     }
 }

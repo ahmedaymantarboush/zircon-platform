@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Lesson;
+use App\Models\Section;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,12 @@ class SectionItemFactory extends Factory
      */
     public function definition()
     {
+        $lessonId = $this->faker->optional()->randomElement(Lesson::all()->pluck('id'));
         return [
-            //
+            'order' => $this->faker->numberBetween(1, 10),
+            'section_id' => $this->faker->randomElement(Section::all()->pluck('id')),
+            'lesson_id' => $lessonId ,
+            'exam_id' => $lessonId ? null : $this->faker->randomElement(Lesson::all()->pluck('id')),
         ];
     }
 }

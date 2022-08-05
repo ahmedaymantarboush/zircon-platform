@@ -7,10 +7,7 @@ use Illuminate\Support\Arr;
 
 class SectionResource extends JsonResource
 {
-    private $parameters = [
-        'title',
-        'items',
-    ];
+    private $parameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
@@ -26,9 +23,15 @@ class SectionResource extends JsonResource
     public function toArray($request)
     {
         $data = [
+            'id'=>$this->id,
+            'order'=>$this->order,
             'title'=>$this->title,
-            'items'=> new SectionItemCollection($this->items),
+            'items'=> SectionItemCollection::only($this->items,['id', 'type','order','item']),
         ];
-        return Arr::only($data,$this->parameters);
+        if (count($this->parameters) > 0) {
+            return Arr::only($data, $this->parameters);
+        } else {
+            return $data;
+        }
     }
 }

@@ -48,7 +48,7 @@ class Lecture extends Model
     }
 
     public function owners(){
-        return $this->belongsToMany(User::class, 'month_users', 'month_id', 'user_id');
+        return $this->belongsToMany(User::class, 'lecture_users', 'lecture_id', 'user_id');
     }
     public function lessons(){
         return $this->hasMany(Lesson::class);
@@ -56,5 +56,9 @@ class Lecture extends Model
 
     public function sections(){
         return $this->hasMany(Section::class);
+    }
+
+    public function parts(){
+        return $this->belongsToMany(Part::class,'lecture_parts','lecture_id','part_id');
     }
 }

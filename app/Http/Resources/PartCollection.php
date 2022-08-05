@@ -6,6 +6,13 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class PartCollection extends ResourceCollection
 {
+    private $parameters = [];
+    public static function only($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->parameters = $Params;
+        return $instance;
+    }
     /**
      * Transform the resource collection into an array.
      *
@@ -14,6 +21,12 @@ class PartCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        if (count($this->parameters)) {
+            return $this->collection->map(function ($part) {
+                return PartResource::only($part,$this->parameters);
+            });
+        } else {
+            return PartResource::collection($this->collection);
+        }
     }
 }

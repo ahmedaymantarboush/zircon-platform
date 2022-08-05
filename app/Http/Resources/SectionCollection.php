@@ -6,10 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class SectionCollection extends ResourceCollection
 {
-    private $parameters = [
-        'title',
-        'items',
-    ];
+    private $parameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
@@ -24,6 +21,12 @@ class SectionCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return SectionResource::collection($this->collection,$this->parameters);
+        if (count($this->parameters)) {
+            return $this->collection->map(function ($section) {
+                return SectionResource::only($section,$this->parameters);
+            });
+        } else {
+            return SectionResource::collection($this->collection);
+        }
     }
 }

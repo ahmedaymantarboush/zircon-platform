@@ -8,18 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'lecture_id',
+        'order',
+    ];
 
     public function lessons()
     {
-        return $this->belongsToMany(Lesson::class,'section_items','section_id','lesson_id');
+        return $this->belongsToMany(Lesson::class, 'section_items', 'section_id', 'lesson_id');
     }
 
     public function exams()
     {
-        return $this->belongsToMany(Exam::class,'section_items','section_id','exam_id');
+        return $this->belongsToMany(Exam::class, 'section_items', 'section_id', 'exam_id');
     }
 
-    public function items(){
+    public function items()
+    {
         return $this->hasMany(SectionItem::class);
     }
 
@@ -27,6 +33,4 @@ class Section extends Model
     {
         return $this->belongsTo(Month::class);
     }
-
-
 }

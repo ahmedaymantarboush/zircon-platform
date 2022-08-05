@@ -20,7 +20,7 @@ class TestimonialController extends Controller
         if ($testimonials){
             return apiResponse(true,_('تم العثور على آراء الطلبة'),new TestimonialCollection($testimonials));
         }else{
-            return apiResponse(false,_('لا يوجد آراء للطلبة'),new TestimonialCollection($testimonials),401);
+            return apiResponse(false,_('لا يوجد آراء للطلبة'),[],401);
         }
     }
 
@@ -30,7 +30,7 @@ class TestimonialController extends Controller
         if ($testimonials){
             return apiResponse(true,_('تم العثور على آراء الطلبة'),new TestimonialCollection($testimonials));
         }else{
-            return apiResponse(false,_('لا يوجد آراء للطلبة'),new TestimonialCollection($testimonials),401);
+            return apiResponse(false,_('لا يوجد آراء للطلبة'),[],401);
         }
     }
 

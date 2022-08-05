@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Lecture;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class LectureUserFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'lecture_id'=>$this->faker->randomElement(Lecture::all()->pluck('id')),
+            'user_id'=>$this->faker->randomElement(User::all()->pluck('id')),
         ];
     }
 }

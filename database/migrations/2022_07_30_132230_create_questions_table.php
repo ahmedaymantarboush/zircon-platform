@@ -15,15 +15,18 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('name',70);
+            $table->string('name');
             $table->string('image')->nullable();
             $table->string('video')->nullable();
+            $table->string('audio')->nullable();
             $table->enum('type',['MCQ','Written']);
-            $table->string('answer')->nullable();
-            $table->string('choices');
+            $table->text('answer')->nullable();
+            $table->text('explanation')->nullable();
+            $table->text('choices')->nullable();
             $table->integer('level');
             $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
             $table->foreignId('part_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->default(1)->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

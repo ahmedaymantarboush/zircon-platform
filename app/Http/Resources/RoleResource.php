@@ -3,14 +3,12 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Arr;
 
 class RoleResource extends JsonResource
 {
 
-    private $parameters = [
-        'name',
-        'number'
-    ];
+    private $parameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
@@ -25,9 +23,15 @@ class RoleResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $data = [
+            'id'=>$this->id,
             'number' =>$this->number,
             'name' => $this->display_name,
         ];
+        if (count($this->parameters) > 0) {
+            return Arr::only($data, $this->parameters);
+        } else {
+            return $data;
+        }
     }
 }

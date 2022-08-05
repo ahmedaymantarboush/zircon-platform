@@ -17,7 +17,8 @@ class ExamQuestionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'exam_id' => $this->faker->randomElement(\App\Models\Exam::all()->pluck('id')),
+            'question_id' => $this->faker->randomElement(\App\Models\Question::all()->pluck('id')),
         ];
     }
 }

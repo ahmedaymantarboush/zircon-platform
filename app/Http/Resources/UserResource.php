@@ -7,21 +7,12 @@ use Illuminate\Support\Arr;
 
 class UserResource extends JsonResource
 {
-    private $parameters = [
-        'name',
-        'email',
-        'phone_number',
-        'parent_phone_number',
-        // 'image',
-        'balance',
-        'role',
-        'grade',
-        'governorate',
-    ];
-
-    public function only($params){
-        $this->parameters = $params;
-        return $this;
+    private $parameters = [];
+    public static function only($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->parameters = $Params;
+        return $instance;
     }
     /**
      * Transform the resource into an array.
@@ -31,16 +22,22 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return Arr::only([
+        $data = [
+            'id'=>$this->id,
             'name'=>$this->name,
             'email'=>$this->email,
             'phoneNumber'=>$this->phone_number,
             'parentPhoneNumber'=>$this->parent_phone_number,
-            // 'image',
             'balance'=>$this->balance,
             'role'=>$this->role->title,
             'grade'=>$this->grade->name,
             'governorate'=>$this->governorate->name,
-        ],$this->parameters);
+            'lectures'=>new LectureCollection($this->lectures),
+        ];
+        if (count($this->parameters) > 0) {
+            return Arr::only($data, $this->parameters);
+        } else {
+            return $data;
+        }
     }
 }

@@ -8,10 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Exam extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'title',
+        'user_id',
+        'part_id',
+        'lecture_id',
+        'dynamic_questions',
+    ];
 
     public function questions()
     {
-        return $this->hasMany(Question::class);
+        return $this->belongsToMany(Question::class, 'exam_questions');
     }
 }

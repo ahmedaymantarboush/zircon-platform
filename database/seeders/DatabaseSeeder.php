@@ -60,45 +60,61 @@ class DatabaseSeeder extends Seeder
         \App\Models\Center::factory()->create([
             'name' => 'المنصة',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'مجموعات خاصة',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الأول',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثاني',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثالث',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الرابع',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الخامس',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
 
-        \App\Models\User::factory(50)->create();
+        \App\Models\User::factory(500)->create();
 
         \App\Models\Lecture::factory(50)->create();
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
+        \App\Models\Part::factory(500)->create();
+
+        \App\Models\Exam::factory(500)->create();
+
+        \App\Models\Question::factory(1500)->create();
+
+        \App\Models\ExamQuestion::factory(3000)->create();
+
+        \App\Models\Lesson::factory(500)->create();
+
+        \App\Models\LecturePart::factory(1000)->create();
+
+        \App\Models\Section::factory(1000)->create();
+
+        \App\Models\SectionItem::factory(5000)->create();
+
+        \App\Models\Testimonial::factory(50)->create();
+
+        \App\Models\LectureUser::factory(250)->create();
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 
-class PartResource extends JsonResource
+class QuestionResource extends JsonResource
 {
     private $parameters = [];
     public static function only($resource, $Params)
@@ -24,6 +24,20 @@ class PartResource extends JsonResource
     {
         $data = [
             'id'=>$this->id,
+            'name'=>$this->name,
+            'image'=>$this->image,
+            'video'=>$this->video,
+            'audio'=>$this->audio,
+            'type'=>$this->type,
+            'type'=>$this->type,
+            'answer'=>$this->answer,
+            'explanation'=>$this->explanation,
+            'choices'=>$this->choices,
+            'level'=>$this->level,
+            'gradeId'=> $this->grade->id,
+            'grade'=> $this->grade->name,
+            'part'=>new PartResource($this->part),
+            'owner'=>new UserResource($this->owner),
         ];
         if (count($this->parameters) > 0) {
             return Arr::only($data, $this->parameters);

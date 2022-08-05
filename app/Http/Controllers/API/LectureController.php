@@ -26,18 +26,9 @@ class LectureController extends Controller
      */
     public function index($gradeId)
     {
-        $lectures = Lecture::where(['published'=> true,'grade_id'=>$gradeId])->orderBy('id', 'desc')->paginate(10);
+        $lectures = Lecture::where(['published' => true, 'grade_id' => $gradeId])->orderBy('id', 'desc')->paginate(10);
         if ($lectures) {
-            return apiResponse(true, _('هناك شهور موجودة'), LectureCollection::only($lectures, [
-                'title',
-                'shortDescription',
-                'duration',
-                'totalQuestionsCount',
-                'price',
-                'finalPrice',
-                'discountExpiryDate',
-                'poster',
-            ]));
+            return apiResponse(true, _('هناك شهور موجودة'), LectureCollection::only($lectures, []));
         } else {
             return apiResponse(false, _('لا يوجد شهور'), [], 401);
         }
@@ -55,7 +46,7 @@ class LectureController extends Controller
         ];
         foreach ($lectures as $key => $lecture) {
             if ($lecture) {
-                $lectures[$key] = LectureResource::only($lecture, ['title', 'poster', 'lessonsCounr', 'slug', 'price', 'finalPrice', 'discountExpiryDate', 'gradeId', 'grade']);
+                $lectures[$key] = LectureResource::only($lecture, ['title', 'poster', 'lessonsCount', 'slug', 'price', 'finalPrice', 'discountExpiryDate', 'gradeId', 'grade','ownersCount']);
             } else {
                 $lectures[$key] = null;
             }
