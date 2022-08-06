@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Lecture;
+use App\Models\Part;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +19,14 @@ class ExamFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            //
+            'title'=>fake()->name(),
+            'dynamic'=>fake()->randomElement([true, false]),
+            'description'=>fake()->text(),
+            'user_id'=>fake()->randomElement(User::all()->pluck('id')),
+            'part_id'=>fake()->randomElement(Part::all()->pluck('id')),
+            'lecture_id'=>fake()->randomElement(Lecture::all()->pluck('id')),
         ];
     }
 }

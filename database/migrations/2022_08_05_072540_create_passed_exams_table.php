@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lecture_sections', function (Blueprint $table) {
+        Schema::create('passed_exams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('lecture_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('exam_id')->constrained()->cascadeOnDelete();
+            $table->float('percentage')->default(0);
+            $table->string('remaining_time');
+            $table->boolean('finished')->default(false);
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lecture_sections');
+        Schema::dropIfExists('passed_exams');
     }
 };

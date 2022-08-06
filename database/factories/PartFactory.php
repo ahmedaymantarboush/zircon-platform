@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class PartFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>fake()->name(),
+            'description'=>fake()->paragraph(),
+            'user_id'=>$this->faker->randomElement(User::all()->pluck('id')),
         ];
     }
 }

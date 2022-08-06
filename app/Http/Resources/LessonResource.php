@@ -7,15 +7,7 @@ use Illuminate\Support\Arr;
 
 class LessonResource extends JsonResource
 {
-    private $parameters = [
-        'title',
-        'url',
-        'duration',
-        'type',
-        'semester',
-        'description',
-        'part',
-    ];
+    private $parameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
@@ -30,21 +22,23 @@ class LessonResource extends JsonResource
      */
     public function toArray($request)
     {
-        if ($this->exam):
-            $parameters[] = 'exam';
-            $parameters[] = 'minPercentage';
-        endif;
         $data = [
+            'id'=>$this->id,
             'title'=>$this->title,
             'url'=>$this->url,
             'duration'=>$this->duration,
             'type'=>$this->type,
             'semester'=>$this->semester,
             'description'=>$this->description,
-            'exam'=>new ExamResource($this->exam),
+            'exam'=>$this->exam ? ExamResource::only($this->exam,['id' ,'title' ,'publisher' ,'part' ,'lecture' ,'questions']) : null,
             'minPercentage'=>$this->min_percentage,
-            'part'=>new PartResource($this->part),
-            'lecture'=>new LectureResource($this->lecture),
+            'part'=>$this->part ? new PartResource($this->part) : null,
+            'lecture'=>$this->lecture ? new LectureResource($this->lecture) : null,
         ];
-        return Arr::only($data,$this->parameters);    }
+        if (count($this->parameters) > 0) {
+            return Arr::only($data, $this->parameters);
+        } else {
+            return $data;
+        }
+    }
 }

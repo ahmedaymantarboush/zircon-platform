@@ -23,4 +23,19 @@ class Lesson extends Model
         'part_id',
         'month_id',
     ];
+
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class);
+    }
+
+    public function part()
+    {
+        return $this->belongsTo(Part::class);
+    }
+
+    public function lecture()
+    {
+        return $this->belongsTo(Lecture::class);
+    }
 }

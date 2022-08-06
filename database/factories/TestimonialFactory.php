@@ -17,7 +17,10 @@ class TestimonialFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'studen_name'=>fake()->name(),
+            'image'=>fake()->imageUrl(),
+            'degree'=>fake()->numberBetween(330,410),
+            'content'=>fake()->text(100),
         ];
     }
 }

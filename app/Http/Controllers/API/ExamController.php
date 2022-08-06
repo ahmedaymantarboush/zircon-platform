@@ -46,7 +46,7 @@ class ExamController extends Controller
     {
         $exam = EXam::find($id);
         if ($exam){
-            return apiResponse(true,_('الامتحان الذي طلبته موجود'),new ExamResource($exam));
+            return apiResponse(true,_('الامتحان الذي طلبته موجود'),ExamResource::only($exam,['opened','title','questions']));
         }else{
             return apiResponse(false,_('الامتحان الذي طلبته غير موجود'),[],401);
         }

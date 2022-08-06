@@ -16,10 +16,13 @@ return new class extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->string('title',50);
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->boolean('dynamic')->default(false);
+            $table->text('description');
+            $table->foreignId('user_id')->default(1)->constrained()->cascadeOnDelete();
             $table->foreignId('part_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('subject_id')->default(env('DEFAULT_SUBJECT_ID'))->constrained()->cascadeOnDelete();
             $table->foreignId('lecture_id')->constrained()->cascadeOnDelete();
-            $table->text('dynamic_questions')->nullable();
+            $table->string('time')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

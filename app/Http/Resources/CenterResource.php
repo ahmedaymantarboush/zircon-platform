@@ -7,30 +7,7 @@ use Illuminate\Support\Arr;
 
 class CenterResource extends JsonResource
 {
-
-    private $parameters = [
-        'title',
-        'semester',
-        'shortDescription',
-        'description',
-        'lessonsCounr',
-        'published',
-        'promotinalVideoUrl',
-        'poster',
-        'metaKeywords',
-        'metaDescription',
-        'slug',
-        'price',
-        'finalPrice',
-        'discountExpiryDate',
-        'duration',
-        'totalQuestionsCount',
-        'subject',
-        'gradeId',
-        'grade',
-        'owner',
-        'sections'
-    ];
+    private $parameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
@@ -46,10 +23,15 @@ class CenterResource extends JsonResource
     public function toArray($request)
     {
         $data = [
+            'id'=>$this->id,
             'name' => $this->name,
             'image' => $this->image,
             'governorate' => $this->governorate->name,
         ];
-        return Arr::only($data,$this->parameters);
+        if (count($this->parameters) > 0) {
+            return Arr::only($data, $this->parameters);
+        } else {
+            return $data;
+        }
     }
 }

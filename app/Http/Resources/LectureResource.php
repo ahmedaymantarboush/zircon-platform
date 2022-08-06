@@ -8,29 +8,7 @@ use Illuminate\Support\Arr;
 class LectureResource extends JsonResource
 {
 
-    private $parameters = [
-        'title',
-        'semester',
-        'shortDescription',
-        'description',
-        'lessonsCount',
-        'published',
-        'promotinalVideoUrl',
-        'poster',
-        'metaKeywords',
-        'metaDescription',
-        'slug',
-        'price',
-        'finalPrice',
-        'discountExpiryDate',
-        'duration',
-        'totalQuestionsCount',
-        'subject',
-        'gradeId',
-        'grade',
-        'owner',
-        'sections'
-    ];
+    private $parameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
@@ -46,6 +24,7 @@ class LectureResource extends JsonResource
     public function toArray($request)
     {
         $data = [
+            'id'=>$this->id,
             'title'=>$this->title,
             'semester'=>$this->semester,
             'shortDescription'=>$this->short_description,
@@ -65,9 +44,16 @@ class LectureResource extends JsonResource
             'subject'=>$this->subject->name,
             'gradeId'=>$this->grade_id,
             'grade'=>$this->grade->name,
-            'owner'=>$this->owner->name,
-            'sections'=>$this->sections
+            'owner'=>$this->owner ? new UserResource($this->owner,['id','name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
+            'owners'=>$this->owners ? new UserCollection($this->owners,['id','name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
+            'ownersCount'=>count($this->owners),
+            'sections'=>$this->sections ? new SectionCollection($this->sections()->orderBy('order')->get()) : null,
+            'parts'=>$this->parts ? new PartCollection($this->parts) : null,
         ];
-        return Arr::only($data,$this->parameters);
+        if (count($this->parameters) > 0) {
+            return Arr::only($data, $this->parameters);
+        } else {
+            return $data;
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Lecture;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class SectionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'order' => $this->faker->numberBetween(1, 10),
+            'description' => $this->faker->paragraph,
+            'duration' => $this->faker->numberBetween(1, 10),
+            'lecture_id' => $this->faker->randomElement(Lecture::all()->pluck('id')),
         ];
     }
 }

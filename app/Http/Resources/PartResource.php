@@ -3,21 +3,11 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Arr;
 
 class PartResource extends JsonResource
 {
-    private $parameters = [
-        'title',
-        'url',
-        'duration',
-        'type',
-        'semester',
-        'description',
-        'examId',
-        'minPercentage',
-        'partId',
-        'lectureId',
-    ];
+    private $parameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
@@ -32,6 +22,16 @@ class PartResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $data = [
+            'id'=>$this->id,
+            'name'=>$this->name,
+            'description'=>$this->description,
+            'user'=>$this->user ? UserResource::only($this->user,['id','name','email','image','phone','address','governorate','role']) : null,
+        ];
+        if (count($this->parameters) > 0) {
+            return Arr::only($data, $this->parameters);
+        } else {
+            return $data;
+        }
     }
 }

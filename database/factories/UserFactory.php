@@ -25,11 +25,11 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'phone_number' => '0'.rand(1000000000,1299999999),
             'parent_phone_number' => '0'.rand(1000000000,1299999999),
-            'role_num' => $this->faker->numberBetween(1, 4),
-            'grade_id' => $this->faker->numberBetween(1, 3),
-            'governorate_id' => $this->faker->numberBetween(1, 10),
+            'role_num' => $this->faker->randomElement(\App\Models\Role::all()->pluck('number')),
+            'grade_id' => $this->faker->randomElement(\App\Models\Grade::all()->pluck('id')),
+            'governorate_id' => $this->faker->randomElement(\App\Models\Governorate::all()->pluck('id')),
             'code' => Str::random(50),
-            'center_id' => $this->faker->numberBetween(1, 6),
+            'center_id' => $this->faker->randomElement(\App\Models\Center::all()->pluck('id')),
         ];
     }
 

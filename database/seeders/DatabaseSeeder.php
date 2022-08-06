@@ -49,51 +49,76 @@ class DatabaseSeeder extends Seeder
             'name' => 'الفيزياء',
         ]);
 
-        \App\Models\Governorate::factory(50)->create();
         \App\Models\Governorate::factory()->create([
             'name' => 'القاهرة',
         ]);
         \App\Models\Governorate::factory()->create([
             'name' => 'الشرقية',
         ]);
+        \App\Models\Governorate::factory(22)->create();
 
+        \App\Models\Center::factory()->create([
+            'name' => 'المنصة',
+            'image' => fake()->imageUrl(),
+            'governorate_id' => fake()->numberBetween(1, 24),
+        ]);
         \App\Models\Center::factory()->create([
             'name' => 'مجموعات خاصة',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الأول',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثاني',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثالث',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الرابع',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الخامس',
             'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 50),
+            'governorate_id' => fake()->numberBetween(1, 24),
         ]);
 
         \App\Models\User::factory(50)->create();
 
         \App\Models\Lecture::factory(50)->create();
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
+        \App\Models\Part::factory(50)->create();
+
+        \App\Models\Exam::factory(50)->create();
+
+        \App\Models\Question::factory(150)->create();
+
+        \App\Models\Choice::factory(150)->create();
+
+        \App\Models\ExamQuestion::factory(300)->create();
+
+        \App\Models\Lesson::factory(50)->create();
+
+        \App\Models\LecturePart::factory(100)->create();
+
+        \App\Models\Section::factory(100)->create();
+
+        \App\Models\SectionItem::factory(50)->create();
+
+        \App\Models\Testimonial::factory(50)->create();
+
+        \App\Models\LectureUser::factory(25)->create();
+
+        \App\Models\DynamicExam::factory(500)->create();
     }
 }

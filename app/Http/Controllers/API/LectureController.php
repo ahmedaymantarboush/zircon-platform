@@ -26,20 +26,11 @@ class LectureController extends Controller
      */
     public function index($gradeId)
     {
-        $lectures = Lecture::where(['published'=> true,'grade_id'=>$gradeId])->orderBy('id', 'desc')->paginate(10);
+        $lectures = Lecture::where(['published' => true, 'grade_id' => $gradeId])->orderBy('id', 'desc')->paginate(10);
         if ($lectures) {
-            return apiResponse(true, _('هناك شهور موجودة'), LectureCollection::only($lectures, [
-                'title',
-                'shortDescription',
-                'duration',
-                'totalQuestionsCount',
-                'price',
-                'finalPrice',
-                'discountExpiryDate',
-                'poster',
-            ]));
+            return apiResponse(true, _('هناك محاضرات موجودة'), LectureCollection::only($lectures, ['title','shortDescription','poster','duration','totalQuestionsCount','slug','price','finalPrice','discountExpiryDate']));
         } else {
-            return apiResponse(false, _('لا يوجد شهور'), [], 401);
+            return apiResponse(false, _('لا يوجد محاضرات'), [], 401);
         }
     }
 
@@ -55,15 +46,15 @@ class LectureController extends Controller
         ];
         foreach ($lectures as $key => $lecture) {
             if ($lecture) {
-                $lectures[$key] = LectureResource::only($lecture, ['title', 'poster', 'lessonsCounr', 'slug', 'price', 'finalPrice', 'discountExpiryDate', 'gradeId', 'grade']);
+                $lectures[$key] = LectureResource::only($lecture, ['title', 'poster', 'lessonsCount', 'slug', 'price', 'finalPrice', 'discountExpiryDate', 'gradeId', 'grade','ownersCount']);
             } else {
                 $lectures[$key] = null;
             }
         }
         if ($lectures) {
-            return apiResponse(true, _('هناك شهور موجودة'), $lectures);
+            return apiResponse(true, _('هناك محاضرات موجودة'), $lectures);
         } else {
-            return apiResponse(false, _('لا يوجد شهور'), [], 401);
+            return apiResponse(false, _('لا يوجد محاضرات'), [], 401);
         }
     }
     /**
@@ -77,7 +68,7 @@ class LectureController extends Controller
     {
         $user = apiUser();
         if (!$user) :
-            return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
 
         $data = $request->all();
@@ -117,7 +108,7 @@ class LectureController extends Controller
     {
         $user = apiUser();
         if (!$user) :
-            return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
         $data = $request->all();
         if ($data['price'] >= $data['final_price'] || $data['free']) :
@@ -134,18 +125,18 @@ class LectureController extends Controller
                 endforeach;
                 if (!$parts) :
                     $lecture->forceDelete();
-                    return apiResponse(false, _('لم يتم اضافة الأجزاء الدراسية للشهر لذلك لم يكتمل انشاء الشهر'), [], 401);
+                    return apiResponse(false, _('لم يتم اضافة الأجزاء الدراسية للمحاضرة لذلك لم يكتمل انشاء المحاضرة'), [], 401);
                 endif;
             else :
-                return apiResponse(false, _('غير مصرح لهذا المسخدم بانشاء شهر جديد'), [], 403);
+                return apiResponse(false, _('غير مصرح لهذا المسخدم بانشاء محاضرة جديدة'), [], 403);
             endif;
         else :
             return apiResponse(false, _('السعر بعد الخصم أكبر من السعر الأساسي'), [], 400);
         endif;
         if ($lecture) :
-            return apiResponse(true, _('تم انشاء الشهر بنجاح'), new LectureResource($lecture));
+            return apiResponse(true, _('تم انشاء المحاضرة بنجاح'), new LectureResource($lecture));
         else :
-            return apiResponse(false, _('حدث خطأ اثناء انشاء الشهر'), [], 500);
+            return apiResponse(false, _('حدث خطأ اثناء انشاء المحاضرة'), [], 500);
         endif;
     }
 
@@ -166,9 +157,9 @@ class LectureController extends Controller
             if (apiUser()) :
                 $data['owner'] = apiUser()->ownedLectures->contains($lecture);
             endif;
-            return apiResponse(true, _('تم العثور على الشهر بنجاح'), $data);
+            return apiResponse(true, _('تم العثور على المحاضرة بنجاح'), $data);
         else :
-            return apiResponse(false, _('لم يتم العثور على الشهر'), [], 400);
+            return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 400);
         endif;
     }
 
@@ -183,12 +174,12 @@ class LectureController extends Controller
     {
         $user = apiUser();
         if (!$user) :
-            return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
         $data = $request->all();
         $lecture = apiUser()->createdLectures()->where('slug', $slug)->first();
         if (!$lecture) :
-            return apiResponse(false, _('هذا الشهر غير موجود'), [], 400);
+            return apiResponse(false, _('هذه المحاضرة غير موجودة'), [], 400);
         endif;
         if ($request->slug != $lecture->slug && count(Lecture::where('slug', $request->slug)->get())) :
             return apiResponse(false, _('هذا الslug متاح في محاضرة أخرى الرجاء إعادة اختيار slug مناسب'), ["slug" => ['هذا الslug متاح في محاضرة أخرى الرجاء إعادة اختيار slug مناسب']], 422);
@@ -214,13 +205,13 @@ class LectureController extends Controller
                     return apiResponse(false, _('لم يتم تعديل الأجزاء الدراسية بشكل صحيح'), [], 400);
                 endif;
             else :
-                return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل هذا الشهر'), [], 403);
+                return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل هذا المحاضرة'), [], 403);
             endif;
         else :
             return apiResponse(false, _('السعر بعد الخصم أكبر من السعر الأساسي'), [], 400);
         endif;
 
-        return apiResponse(true, _('تم تعديل الشهر بنجاح'), new LectureResource($lecture));
+        return apiResponse(true, _('تم تعديل المحاضرة بنجاح'), new LectureResource($lecture));
     }
 
     /**
@@ -233,17 +224,17 @@ class LectureController extends Controller
     {
         $user = apiUser();
         if (!$user) :
-            return apiResponse(false, _('الرجاء قم بتسجيل الدخول'), [], 401);
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
 
         $lecture = apiUser()->createdLectures()->where('slug', $slug)->first();
         if (!$lecture) :
-            return apiResponse(false, _('هذا الشهر غير موجود'), [], 403);
+            return apiResponse(false, _('هذه المحاضرة غير موجوده'), [], 403);
         endif;
         if ($lecture->delete()) :
-            return apiResponse(true, _('تم حذف الشهر بنجاح'), []);
+            return apiResponse(true, _('تم حذف المحاضرة بنجاح'), []);
         else :
-            return apiResponse(false, _('حدث خطأ ما ولم يتم حذف الشهر'), [], 500);
+            return apiResponse(false, _('حدث خطأ ما ولم يتم حذف المحاضرة'), [], 500);
         endif;
     }
 }

@@ -6,6 +6,13 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class TestimonialCollection extends ResourceCollection
 {
+    private $parameters = [];
+    public static function only($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->parameters = $Params;
+        return $instance;
+    }
     /**
      * Transform the resource collection into an array.
      *
@@ -14,6 +21,12 @@ class TestimonialCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        if (count($this->parameters)) {
+            return $this->collection->map(function ($item) {
+                return TestimonialResource::only($item, $this->parameters);
+            });
+        } else {
+            return TestimonialResource::collection($this->collection);
+        }
     }
 }

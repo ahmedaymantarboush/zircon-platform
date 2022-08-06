@@ -29,6 +29,8 @@ class User extends Authenticatable
         'role_num',
         'grade_id',
         'governorate_id',
+        'code',
+        'center_id',
     ];
 
     /**
@@ -76,5 +78,13 @@ class User extends Authenticatable
 
     public function subjects(){
         return $this->belongsToMany(Subject::class);
+    }
+
+    public function answerdQuestions(){
+        return $this->hasMany(AnswerdQuestion::class);
+    }
+
+    public function passedExams(){
+        return $this->hasMany(PassedExam::class);
     }
 }

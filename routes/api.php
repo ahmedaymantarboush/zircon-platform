@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CenterController;
-use App\Http\Controllers\API\MonthController;
+use App\Http\Controllers\API\ExamController;
+use App\Http\Controllers\API\LessonController;
+use App\Http\Controllers\API\LectureController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Resources\UserResource;
 use App\Models\Lesson;
@@ -33,15 +35,21 @@ Route::post('/logout',[AuthController::class ,'logout']);
 
 
 //       HOME ROUTES
-Route::get('/centers',[CenterController::class ,'centers']);
+Route::get('/centersData',[CenterController::class ,'centers']);
 Route::get('/topTestimonials',[TestimonialController::class ,'topTestimonials']);
-Route::get('/months/last',[MonthController::class ,'lastMonths']);
+Route::get('/months/last',[LectureController::class ,'lastLectures']);
 Route::get('/contentsCount',function(){
-    $lessonsCount = count(Lesson::where('published',1)->get());
+    $lessonsCount = count(Lesson::all());
     $questionsCount = count(Question::all());
     return apiResponse(true,_('عدد الدروس والأسئلة'),['lessonsCount'=>$lessonsCount,'questionsCount'=>$questionsCount]);
 });
 
 //       MONTH ROUTES
-Route::apiResource('months',MonthController::class)->except('index');
-// Route::apiResource('months/grade{gradeId}',[MonthController::class,'index']);
+Route::apiResource('months',LectureController::class)->except('index');
+Route::get('grades/grade{gradeId}',[LectureController::class,'index']);
+
+//       LESSON ROUTES
+Route::apiResource('lessons',LessonController::class);
+
+//       EXAM ROUTES
+Route::apiResource('exams',ExamController::class);

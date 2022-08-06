@@ -32,8 +32,8 @@ class LectureFactory extends Factory
             'price' => $price,
             'final_price' =>  $this->faker->numberBetween(0, $price),
             'discount_expiry_date' => $this->faker->dateTimeBetween('-1 year', '1 year'),
-            'grade_id' => $this->faker->numberBetween(1, 3),
-            'user_id' => $this->faker->numberBetween(1, 50),
+            'grade_id' => $this->faker->randomElement(\App\Models\Grade::all()->pluck('id')),
+            'user_id' => $this->faker->randomElement(\App\Models\User::all()->pluck('id')),
         ];
     }
 }
