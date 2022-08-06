@@ -26,12 +26,13 @@ class LectureController extends Controller
      */
     public function index($gradeId)
     {
-        $lectures = Lecture::where(['published' => true, 'grade_id' => $gradeId])->orderBy('id', 'desc')->paginate(10);
-        if ($lectures) {
-            return apiResponse(true, _('هناك محاضرات موجودة'), LectureCollection::only($lectures, ['title','shortDescription','poster','duration','totalQuestionsCount','slug','price','finalPrice','discountExpiryDate']));
-        } else {
+        $id = $gradeId - 9;
+        $lectures = Lecture::where(['published' => true, 'grade_id' => $id])->orderBy('id','desc')->get();
+        if (count($lectures)):
+            return apiResponse(true, _('هناك محاضرات موجودة'), LectureCollection::only($lectures, ['title','shortDescription','poster','time','totalQuestionsCount','slug','price','finalPrice','discountExpiryDate']));
+        else :
             return apiResponse(false, _('لا يوجد محاضرات'), [], 401);
-        }
+        endif;
     }
 
     public function lastLectures()

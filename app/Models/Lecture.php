@@ -25,7 +25,7 @@ class Lecture extends Model
         'price',
         'final_price',
         'discount_expiry_date',
-        'duration',
+        'time',
         'total_questions_count',
         'subject_id',
         'grade_id',

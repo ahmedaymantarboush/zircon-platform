@@ -20,4 +20,5 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('grades/grade{id}', [App\Http\Controllers\LectureController::class,'index'])->name('months.index');
+Route::resource('months', App\Http\Controllers\LectureController::class)->except(['index','update','store']);
