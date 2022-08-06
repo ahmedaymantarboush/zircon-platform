@@ -17,17 +17,17 @@
 
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="{{ URL::asset('css/all.min.css') }}">
+    <link rel="stylesheet" href="{{URL::asset('css/all.min.css')}}">
 
 
     <!--swiper-->
 
     <!--bootstrap-->
-    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-rtl.min.css') }}">
+    <link rel="stylesheet" href="{{URL::asset('css/bootstrap-rtl.min.css')}}">
 
     <!-- css file -->
-    <link rel="stylesheet" href="{{ URL::asset('css/login.css') }} " class="rel">
-    <link rel="stylesheet" href="{{ URL::asset('css/login-responsive.css') }} " class="rel">
+    <link rel="stylesheet" href="{{URL::asset('css/login.css')}} " class="rel">
+    <link rel="stylesheet" href="{{URL::asset('css/login-responsive.css')}} " class="rel">
 
 </head>
 
@@ -52,31 +52,26 @@
                 <div class="content">
                     <h2>تسجيل الدخول</h2>
 
-                    <form action="/login" method="post">
-                        @csrf
-                        <div class="box @error('email') isInvalid @enderror">
+                    <form action="">
+                        <div class="box ">
                             <div class="inputItem">
                                 <span class='inputIcon'><i class="fa-solid fa-envelope"></i></span>
-                                <input type="text" name='email' placeholder='&nbsp;'>
+                                <input type="text" placeholder='&nbsp;'>
                                 <label for="">البريد الالكتروني</label>
                             </div>
-                            @error('email')
-                                <div class="error">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <div class="error">
+                                حدث خطأ في التسجيل
+                            </div>
                         </div>
-                        <div class="box  @error('password') isInvalid @enderror">
+                        <div class="box ">
                             <div class="inputItem">
                                 <span class='inputIcon'><i class="fa-solid fa-lock"></i></span>
-                                <input type="password" name='password' placeholder='&nbsp;'>
+                                <input type="password" placeholder='&nbsp;'>
                                 <label for="">كلمة المرور</label>
                             </div>
-                            @error('password')
-                                <div class="error">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <div class="error">
+                                حدث خطأ في التسجيل
+                            </div>
                         </div>
                         <a href="#" class='forgotPassword'>هل نسيت كلمة المرور ؟</a>
                         <input type="submit" value='تسجيل' class='reg'>
@@ -797,18 +792,18 @@
 
 
     <!--font awesome-->
-    <script src="{{ URL::asset('js/all.min.js') }}"></script>
+    <script src="{{URL::asset('js/all.min.js')}}"></script>
 
 
     <!--jquery js-->
-    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
+    <script src="{{URL::asset('js/jquery.min.js')}}"></script>
 
     <!--bootstrap js-->
-    <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{URL::asset('js/bootstrap.bundle.min.js')}}"></script>
 
 
     <!-- main js file -->
-    <script src="{{ URL::asset('js/login.js') }}"></script>
+    <script src="{{URL::asset('js/login.js')}}"></script>
 </body>
 
 </html>
