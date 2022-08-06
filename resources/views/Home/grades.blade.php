@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="levelImage">
-                                        <img src="{{ asset('imgs/thumbnail_1.png') }}" alt="">
+                                        <img src="{{ $lecture->poster }}" alt="">
                                     </div>
                                 </div>
                                 <div class="col-lg-7">

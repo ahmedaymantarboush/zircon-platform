@@ -18,6 +18,7 @@ class LectureFactory extends Factory
     {
 
         $price = $this->faker->numberBetween(0, 100);
+        $grade = $this->faker->randomElement(\App\Models\Grade::all()->pluck('id'));
         return [
             'title' => $this->faker->name(),
             'semester' => "الفصل الدراسي الأول",
@@ -25,15 +26,16 @@ class LectureFactory extends Factory
             'description' => $this->faker->words(100, true),
             'published' => $this->faker->numberBetween(0, 1),
             'promotinal_video_url' => $this->faker->url(),
-            'poster' => $this->faker->imageUrl(),
-            'time'=>fake()->randomFloat().' ساعة',
+            'poster' => "http://127.0.0.1:8000/imgs/thumbnail_$grade.png",
+            'time'=>fake()->randomFloat(1,1,5).' ساعة',
+            'total_questions_count'=>rand(1000,5000),
             'meta_keywords' => implode(',',$this->faker->words(10)),
             'meta_description' => $this->faker->words(50, true),
             'slug' => $this->faker->slug(),
             'price' => $price,
             'final_price' =>  $this->faker->numberBetween(0, $price),
             'discount_expiry_date' => $this->faker->dateTimeBetween('-1 year', '1 year'),
-            'grade_id' => $this->faker->randomElement(\App\Models\Grade::all()->pluck('id')),
+            'grade_id' => $grade,
             'user_id' => $this->faker->randomElement(\App\Models\User::all()->pluck('id')),
         ];
     }
