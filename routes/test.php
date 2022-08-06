@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "test" middleware group. Now create something great!
 |
 */
-Route::get('/index', function () {
-    return view('index');
+Route::get('/levels', function () {
+    return view('levels');
 });
 
-Route::get('/signup', function () {
-    return view('signup');
+Route::get('/index', function () {
+    return view('index');
 });
 Route::get('/test', function () {
     return view('test');

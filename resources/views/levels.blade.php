@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name') }}</title>
+    <title>Document</title>
 
     <!--fonts-->
     <link
@@ -17,17 +17,21 @@
 
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="{{ URL::asset('css/all.min.css') }}">
+    <link rel="stylesheet" href="{{URL::asset('css/all.min.css')}}">
 
+
+    <!--swiper-->
 
     <!--bootstrap-->
-    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-rtl.min.css') }}">
+    <link rel="stylesheet" href="{{URL::asset('css/bootstrap-rtl.min.css')}}">
 
-    @yield('css')
+    <!-- css file -->
+    <link rel="stylesheet" href="{{URL::asset('css/levels.css')}} " class="rel">
+    <link rel="stylesheet" href="{{URL::asset('css/levels-responsive.css')}} " class="rel">
 
 </head>
 
-<body>
+<body class='grade1'>
 
     <nav class="myNav">
         <div class="navProgress">
@@ -120,8 +124,127 @@
             </div>
         </div>
     </nav>
+    <section class="header">
+        <h2 class='pageName'>اشهر الصف <span>الأول الثانوي</span></h2>
+    </section>
+    <section class='levelsBox'>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-6">
+                    <a href='#' class="levelItem grade1">
+                        <span class='typeGrade'>الصف الاول الثانوي</span>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="levelImage">
+                                    <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="levelContent">
+                                    <h3 class='levelName'>مراجعة شاملة على الباب الأول (الكهربية)</h3>
+                                    <p class='levelDescription'>مراجعة شاملة على باب الكهربية الأول للصف الاول الثانوي
+                                    </p>
+                                    <div class="levelDetails">
+                                        <div class="detailItem">
+                                            <span class='detailIcon'><i class="fa-solid fa-photo-film"></i></span>
+                                            <span class='detailContent'>2.5 ساعة من الفيديو</span>
+                                        </div>
+                                        <div class="detailItem">
+                                            <span class='detailIcon'><i
+                                                    class="fa-solid fa-clipboard-question"></i></span>
+                                            <span class='detailContent'>30 من الاسئلة</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="levelPrice">
+                                    <span class='iconPrice'><i class="fa-solid fa-tags"></i></span>
+                                    <span class='price'>50</span>
+                                    <span class='priceUnit'>ج.م</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-12 col-md-6">
+                    <a href='#' class="levelItem grade2">
+                        <span class='typeGrade'>الصف الاول الثانوي</span>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="levelImage">
+                                    <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="levelContent">
+                                    <h3 class='levelName'>مراجعة شاملة على الباب الأول (الكهربية)</h3>
+                                    <p class='levelDescription'>مراجعة شاملة على باب الكهربية الأول للصف الاول الثانوي
+                                    </p>
+                                    <div class="levelDetails">
+                                        <div class="detailItem">
+                                            <span class='detailIcon'><i class="fa-solid fa-photo-film"></i></span>
+                                            <span class='detailContent'>2.5 ساعة من الفيديو</span>
+                                        </div>
+                                        <div class="detailItem">
+                                            <span class='detailIcon'><i
+                                                    class="fa-solid fa-clipboard-question"></i></span>
+                                            <span class='detailContent'>30 من الاسئلة</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="levelPrice">
+                                    <span class='iconPrice'><i class="fa-solid fa-tags"></i></span>
+                                    <span class='price'>50</span>
+                                    <span class='priceUnit'>ج.م</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-12 col-md-6">
+                    <a href='#' class="levelItem grade3">
+                        <span class='typeGrade'>الصف الاول الثانوي</span>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="levelImage">
+                                    <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="levelContent">
+                                    <h3 class='levelName'>مراجعة شاملة على الباب الأول (الكهربية)</h3>
+                                    <p class='levelDescription'>مراجعة شاملة على باب الكهربية الأول للصف الاول الثانوي
+                                    </p>
+                                    <div class="levelDetails">
+                                        <div class="detailItem">
+                                            <span class='detailIcon'><i class="fa-solid fa-photo-film"></i></span>
+                                            <span class='detailContent'>2.5 ساعة من الفيديو</span>
+                                        </div>
+                                        <div class="detailItem">
+                                            <span class='detailIcon'><i
+                                                    class="fa-solid fa-clipboard-question"></i></span>
+                                            <span class='detailContent'>30 من الاسئلة</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="levelPrice">
+                                    <span class='iconPrice'><i class="fa-solid fa-tags"></i></span>
+                                    <span class='price'>50</span>
+                                    <span class='priceUnit'>ج.م</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
-    @yield('content')
+            </div>
+        </div>
+    </section>
     <footer class=' '>
         <div class="waves wave1">
             <svg width="100%" height="290px" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -332,22 +455,19 @@
         </div>
 
     </footer>
-
     <!--font awesome-->
-    <script src="{{ URL::asset('js/all.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script src="{{URL::asset('js/all.min.js')}}"></script>
+
 
     <!--jquery js-->
-    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
+    <script src="{{URL::asset('js/jquery.min.js')}}"></script>
 
     <!--bootstrap js-->
-    <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{URL::asset('js/bootstrap.bundle.min.js')}}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.min.js"
-        integrity="sha512-+VS2+Nl1Qit71a/lbncmVsWOZ0BmPDkopw5sXAS2W+OfeceCEd9OGTQWjgVgP5QaMV4ddqOIW9XLW7UVFzkMAw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    @yield('javascript')
+
+    <!-- main js file -->
+    <script src="{{URL::asset('js/levels.js')}}"></script>
 </body>
 
 </html>

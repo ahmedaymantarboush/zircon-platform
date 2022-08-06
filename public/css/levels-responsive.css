@@ -1,0 +1,177 @@
+@media (max-width: 991.5px) {
+    html {
+        font-size: 60%;
+    }
+    /** start nav **/
+    .left {
+        position: fixed;
+        background-color: var(--second-bg);
+        flex-direction: column;
+        padding: 2rem 2rem;
+        border-radius: 2rem;
+        top: -20rem;
+        opacity: 0;
+        left: 50%;
+        z-index: -1;
+        transform: translateX(-50%);
+        transition: 0.6s all ease;
+        box-shadow: var(--shadow);
+    }
+    .activeNavMenu .left {
+        z-index: 9999999999;
+        opacity: 1;
+        top: 50%;
+        transform: translate(-50%, -80%);
+    }
+    .left .search {
+        width: 100%;
+        margin-left: 0;
+    }
+    .register {
+        flex-direction: column;
+        text-align: center;
+    }
+    .signup {
+        margin: 3rem 0 2rem;
+    }
+    .toggleBarBtn {
+        display: block;
+        position: relative;
+        width: 30px;
+        background: none;
+        border: none;
+        height: 30px;
+    }
+    .toggleBarBtn span {
+        width: 30px;
+        height: 4px;
+        background-color: var(--font-dark);
+        border-radius: 10rem;
+        margin: 0.25rem 0;
+        left: 0;
+        transition: 0.3s all ease;
+        position: absolute;
+    }
+    .toggleBarBtn .topLine {
+        top: 0;
+    }
+    .toggleBarBtn .middleLine {
+        top: 8px;
+    }
+    .toggleBarBtn .bottomLine {
+        top: 16px;
+    }
+    .activeNavMenu .topLine {
+        width: 30px;
+        transform: rotate(-45deg);
+
+        transform-origin: right;
+    }
+    .activeNavMenu .middleLine {
+        opacity: 0;
+    }
+    .activeNavMenu .bottomLine {
+        width: 30px;
+        transform: rotate(45deg);
+        transform-origin: right;
+        top: 21.5px;
+    }
+    /** start levels **/
+    .levelItem {
+        padding: 0;
+        overflow: hidden;
+        border-radius: 2rem;
+        border: none;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        position: relative;
+    }
+    .grade1 .typeGrade {
+        background-color: var(--l-red-color);
+    }
+    .grade2 .typeGrade {
+        background-color: var(--l-blue-color);
+    }
+    .grade3 .typeGrade {
+        background-color: var(--d-yellow-color);
+    }
+    .typeGrade {
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 0.5rem 1rem;
+        letter-spacing: 1px;
+        font-size: 1.3rem;
+        color: #fff;
+        font-weight: bold;
+        z-index: 10;
+        box-shadow: 1px 5px 6px rgb(0 0 0 / 30%);
+    }
+    .levelItem img {
+        transition: 0.3s all ease;
+    }
+    .levelItem:hover img {
+        transform: scale(1.05) rotate(2deg);
+    }
+    .levelImage {
+        border-radius: 0;
+    }
+    .levelContent {
+        padding: 1.5rem;
+    }
+
+    .levelDescription {
+        width: 95%;
+    }
+    .levelDetails {
+        flex-direction: column;
+    }
+    .detailItem:not(:last-child) {
+        margin-left: 0rem;
+        margin-bottom: 0.5rem;
+    }
+    .levelPrice {
+        padding-bottom: 1.5rem;
+    }
+}
+@media (max-width: 767px) {
+    .levelsBox {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 600px) {
+    .levelsBox {
+        width: 85%;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 500px) {
+    html {
+        font-size: 58%;
+    }
+    .levelsBox {
+        width: 95%;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 400px) {
+    .levelsBox {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .levelName {
+        font-size: 1.8rem;
+    }
+    .levelDescription {
+        font-size: 1.5rem;
+    }
+}
+@media (max-width: 350px) {
+    .levelName {
+        font-size: 1.6rem;
+    }
+    .levelDescription {
+        font-size: 1.4rem;
+    }
+}
