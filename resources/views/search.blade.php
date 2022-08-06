@@ -157,7 +157,7 @@
             </div>
 
         </div>
-        <div class="row active">
+        <div class="row active bigRow">
             <div class="col-lg-3 filterParent ">
                 <span class='closeFilter'><i class="fa-solid fa-arrow-right-long"></i></span>
 
