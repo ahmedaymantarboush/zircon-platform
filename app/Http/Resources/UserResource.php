@@ -32,7 +32,7 @@ class UserResource extends JsonResource
             'role'=>$this->role->title,
             'grade'=>$this->grade->name,
             'governorate'=>$this->governorate->name,
-            'lectures'=>new LectureCollection($this->lectures),
+            'lectures'=>$this->lectures ? new LectureCollection($this->lectures) : null,
         ];
         if (count($this->parameters) > 0) {
             return Arr::only($data, $this->parameters);

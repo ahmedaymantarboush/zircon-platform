@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('answerd_questions', function (Blueprint $table) {
+        Schema::create('dynamic_exams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('question_id')->constrained()->cascadeOnDelete();
             $table->foreignId('exam_id')->constrained()->cascadeOnDelete();
-            $table->string('answer')->nullable();
-            $table->boolean('correct')->default(false);
+            $table->foreignId('part_id')->constrained()->cascadeOnDelete();
+            $table->integer('count');
+            $table->integer('level');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answerd_questions');
+        Schema::dropIfExists('dynamic_exams');
     }
 };

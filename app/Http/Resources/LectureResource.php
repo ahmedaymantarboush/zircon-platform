@@ -44,11 +44,11 @@ class LectureResource extends JsonResource
             'subject'=>$this->subject->name,
             'gradeId'=>$this->grade_id,
             'grade'=>$this->grade->name,
-            'owner'=>new UserResource($this->owner,['id','name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']),
-            'owners'=>new UserCollection($this->owners),
+            'owner'=>$this->owner ? new UserResource($this->owner,['id','name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
+            'owners'=>$this->owners ? new UserCollection($this->owners,['id','name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
             'ownersCount'=>count($this->owners),
-            'sections'=>new SectionCollection($this->sections()->orderBy('order')->get()),
-            'parts'=>new PartCollection($this->parts),
+            'sections'=>$this->sections ? new SectionCollection($this->sections()->orderBy('order')->get()) : null,
+            'parts'=>$this->parts ? new PartCollection($this->parts) : null,
         ];
         if (count($this->parameters) > 0) {
             return Arr::only($data, $this->parameters);

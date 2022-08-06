@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Resources;
-
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ExamCollection extends ResourceCollection
+class ChoiceCollection extends ResourceCollection
 {
     private $parameters = [];
     public static function only($resource, $Params)
@@ -23,10 +22,9 @@ class ExamCollection extends ResourceCollection
     {
         if (count($this->parameters)) {
             return $this->collection->map(function ($item) {
-                return ExamResource::only($item, $this->parameters);
+                return ChoiceResource::only($item, $this->parameters);
             });
-        } else {
-            return ExamResource::collection($this->collection);
+            return ChoiceResource::collection($this->collection);
         }
     }
 }

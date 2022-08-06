@@ -17,7 +17,7 @@ class LessonController extends Controller
     public function index()
     {
         $lessons = Lesson::all();
-        return apiResponse(true,_(''),LessonCollection::only($lessons,['exam']));
+        return apiResponse(true,_(''),LessonCollection::only($lessons,[]));
     }
 
     /**

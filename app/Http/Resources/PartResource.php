@@ -24,6 +24,9 @@ class PartResource extends JsonResource
     {
         $data = [
             'id'=>$this->id,
+            'name'=>$this->name,
+            'description'=>$this->description,
+            'user'=>$this->user ? UserResource::only($this->user,['id','name','email','image','phone','address','governorate','role']) : null,
         ];
         if (count($this->parameters) > 0) {
             return Arr::only($data, $this->parameters);

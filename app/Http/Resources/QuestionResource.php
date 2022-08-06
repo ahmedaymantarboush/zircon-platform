@@ -22,6 +22,7 @@ class QuestionResource extends JsonResource
      */
     public function toArray($request)
     {
+
         $data = [
             'id'=>$this->id,
             'name'=>$this->name,
@@ -29,16 +30,15 @@ class QuestionResource extends JsonResource
             'video'=>$this->video,
             'audio'=>$this->audio,
             'type'=>$this->type,
-            'type'=>$this->type,
-            'answer'=>$this->answer,
             'explanation'=>$this->explanation,
-            'choices'=>$this->choices,
+            'choices'=>$this->choices ? ChoiceCollection::only($this->choices,['name','image','video','audio']) : null,
             'level'=>$this->level,
             'gradeId'=> $this->grade->id,
             'grade'=> $this->grade->name,
-            'part'=>new PartResource($this->part),
-            'owner'=>new UserResource($this->owner),
+            'part'=>$this->part ? new PartResource($this->part) : null,
+            'publisher'=>$this->publisher ? new UserResource($this->publisher) : null,
         ];
+        // dd(($this->choices));
         if (count($this->parameters) > 0) {
             return Arr::only($data, $this->parameters);
         } else {

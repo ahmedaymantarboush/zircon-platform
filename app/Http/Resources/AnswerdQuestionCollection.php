@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ExamCollection extends ResourceCollection
+class AnswerdQuestionCollection extends ResourceCollection
 {
     private $parameters = [];
     public static function only($resource, $Params)
@@ -13,6 +13,7 @@ class ExamCollection extends ResourceCollection
         $instance->parameters = $Params;
         return $instance;
     }
+
     /**
      * Transform the resource collection into an array.
      *
@@ -23,10 +24,10 @@ class ExamCollection extends ResourceCollection
     {
         if (count($this->parameters)) {
             return $this->collection->map(function ($item) {
-                return ExamResource::only($item, $this->parameters);
+                return AnswerdQuestionResource::only($item, $this->parameters);
             });
         } else {
-            return ExamResource::collection($this->collection);
+            return AnswerdQuestionResource::collection($this->collection);
         }
     }
 }

@@ -22,8 +22,8 @@ class RoleCollection extends ResourceCollection
     public function toArray($request)
     {
         if (count($this->parameters)) {
-            return $this->collection->map(function ($role) {
-                return RoleResource::only($role,$this->parameters);
+            return $this->collection->map(function ($item) {
+                return RoleResource::only($item, $this->parameters);
             });
         } else {
             return RoleResource::collection($this->collection);

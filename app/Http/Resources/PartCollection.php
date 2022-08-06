@@ -22,8 +22,8 @@ class PartCollection extends ResourceCollection
     public function toArray($request)
     {
         if (count($this->parameters)) {
-            return $this->collection->map(function ($part) {
-                return PartResource::only($part,$this->parameters);
+            return $this->collection->map(function ($item) {
+                return PartResource::only($item, $this->parameters);
             });
         } else {
             return PartResource::collection($this->collection);

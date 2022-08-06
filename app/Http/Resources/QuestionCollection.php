@@ -22,8 +22,8 @@ class QuestionCollection extends ResourceCollection
     public function toArray($request)
     {
         if (count($this->parameters)) {
-            return $this->collection->map(function ($question) {
-                return QuestionResource::only($question,$this->parameters);
+            return $this->collection->map(function ($item) {
+                return QuestionResource::only($item, $this->parameters);
             });
         } else {
             return QuestionResource::collection($this->collection);

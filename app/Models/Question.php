@@ -33,8 +33,13 @@ class Question extends Model
         return $this->belongsTo(Part::class);
     }
 
-    public function owner()
+    public function publisher()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function choices()
+    {
+        return $this->hasMany(Choice::class);
     }
 }

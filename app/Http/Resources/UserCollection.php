@@ -22,8 +22,8 @@ class UserCollection extends ResourceCollection
     public function toArray($request)
     {
         if (count($this->parameters)) {
-            return $this->collection->map(function ($user) {
-                return UserResource::only($user,$this->parameters);
+            return $this->collection->map(function ($item) {
+                return UserResource::only($item, $this->parameters);
             });
         } else {
             return UserResource::collection($this->collection);

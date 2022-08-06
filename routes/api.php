@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CenterController;
+use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\LectureController;
 use App\Http\Controllers\API\TestimonialController;
@@ -49,3 +50,6 @@ Route::get('grades/grade{gradeId}',[LectureController::class,'index']);
 
 //       LESSON ROUTES
 Route::apiResource('lessons',LessonController::class);
+
+//       EXAM ROUTES
+Route::apiResource('exams',ExamController::class);

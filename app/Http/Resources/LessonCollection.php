@@ -22,8 +22,8 @@ class LessonCollection extends ResourceCollection
     public function toArray($request)
     {
         if (count($this->parameters)) {
-            return $this->collection->map(function ($lesson) {
-                return LessonResource::only($lesson,$this->parameters);
+            return $this->collection->map(function ($item) {
+                return LessonResource::only($item, $this->parameters);
             });
         } else {
             return LessonResource::collection($this->collection);

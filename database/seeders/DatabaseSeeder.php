@@ -93,28 +93,32 @@ class DatabaseSeeder extends Seeder
             'governorate_id' => fake()->numberBetween(1, 24),
         ]);
 
-        \App\Models\User::factory(500)->create();
+        \App\Models\User::factory(50)->create();
 
         \App\Models\Lecture::factory(50)->create();
 
-        \App\Models\Part::factory(500)->create();
+        \App\Models\Part::factory(50)->create();
 
-        \App\Models\Exam::factory(500)->create();
+        \App\Models\Exam::factory(50)->create();
 
-        \App\Models\Question::factory(1500)->create();
+        \App\Models\Question::factory(150)->create();
 
-        \App\Models\ExamQuestion::factory(3000)->create();
+        \App\Models\Choice::factory(150)->create();
 
-        \App\Models\Lesson::factory(500)->create();
+        \App\Models\ExamQuestion::factory(300)->create();
 
-        \App\Models\LecturePart::factory(1000)->create();
+        \App\Models\Lesson::factory(50)->create();
 
-        \App\Models\Section::factory(1000)->create();
+        \App\Models\LecturePart::factory(100)->create();
 
-        \App\Models\SectionItem::factory(5000)->create();
+        \App\Models\Section::factory(100)->create();
+
+        \App\Models\SectionItem::factory(50)->create();
 
         \App\Models\Testimonial::factory(50)->create();
 
-        \App\Models\LectureUser::factory(250)->create();
+        \App\Models\LectureUser::factory(25)->create();
+
+        \App\Models\DynamicExam::factory(500)->create();
     }
 }

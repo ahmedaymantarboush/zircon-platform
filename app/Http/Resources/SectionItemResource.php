@@ -37,9 +37,9 @@ class SectionItemResource extends JsonResource
             'item' => null,
         ];
         if ($type == 'lesson') :
-            $data['item'] = new LessonResource($this->lesson);
+            $data['item'] = $this->lesson ? LessonResource::only($this->lesson,['id','title','url','duration','type','semester','description','exam','minPercentage','part',]) : null;
         elseif ($type == 'exam') :
-            $data['item'] = new ExamResource($this->exam);
+            $data['item'] = $this->exam ? ExamResource::only($this->exam,['id' ,'title' ,'publisher' ,'part' ,'lecture' ,'questions']) : null;
         endif;
 
         if (count($this->parameters) > 0) {

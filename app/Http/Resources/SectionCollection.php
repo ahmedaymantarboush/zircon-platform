@@ -22,8 +22,8 @@ class SectionCollection extends ResourceCollection
     public function toArray($request)
     {
         if (count($this->parameters)) {
-            return $this->collection->map(function ($section) {
-                return SectionResource::only($section,$this->parameters);
+            return $this->collection->map(function ($item) {
+                return SectionResource::only($item, $this->parameters);
             });
         } else {
             return SectionResource::collection($this->collection);

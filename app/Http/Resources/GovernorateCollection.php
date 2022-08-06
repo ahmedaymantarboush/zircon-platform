@@ -22,8 +22,8 @@ class GovernorateCollection extends ResourceCollection
     public function toArray($request)
     {
         if (count($this->parameters)) {
-            return $this->collection->map(function ($governorate) {
-                return GovernorateResource::only($governorate,$this->parameters);
+            return $this->collection->map(function ($item) {
+                return GovernorateResource::only($item, $this->parameters);
             });
         } else {
             return GovernorateResource::collection($this->collection);

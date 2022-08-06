@@ -79,4 +79,12 @@ class User extends Authenticatable
     public function subjects(){
         return $this->belongsToMany(Subject::class);
     }
+
+    public function answerdQuestions(){
+        return $this->hasMany(AnswerdQuestion::class);
+    }
+
+    public function passedExams(){
+        return $this->hasMany(PassedExam::class);
+    }
 }

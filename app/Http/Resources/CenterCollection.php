@@ -13,6 +13,7 @@ class CenterCollection extends ResourceCollection
         $instance->parameters = $Params;
         return $instance;
     }
+
     /**
      * Transform the resource collection into an array.
      *
@@ -22,8 +23,8 @@ class CenterCollection extends ResourceCollection
     public function toArray($request)
     {
         if (count($this->parameters)) {
-            return $this->collection->map(function ($center) {
-                return CenterResource::only($center,$this->parameters);
+            return $this->collection->map(function ($item) {
+                return CenterResource::only($item, $this->parameters);
             });
         } else {
             return CenterResource::collection($this->collection);

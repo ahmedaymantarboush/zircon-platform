@@ -25,6 +25,7 @@ return new class extends Migration
             $table->float('min_percentage')->nullable();
             $table->foreignId('part_id')->constrained()->cascadeOnDelete();
             $table->foreignId('lecture_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('subject_id')->default(env('DEFAULT_SUBJECT_ID'))->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -30,10 +30,10 @@ class LessonResource extends JsonResource
             'type'=>$this->type,
             'semester'=>$this->semester,
             'description'=>$this->description,
-            'exam'=>new ExamResource($this->exam),
+            'exam'=>$this->exam ? ExamResource::only($this->exam,['id' ,'title' ,'publisher' ,'part' ,'lecture' ,'questions']) : null,
             'minPercentage'=>$this->min_percentage,
-            'part'=>new PartResource($this->part),
-            'lecture'=>new LectureResource($this->lecture),
+            'part'=>$this->part ? new PartResource($this->part) : null,
+            'lecture'=>$this->lecture ? new LectureResource($this->lecture) : null,
         ];
         if (count($this->parameters) > 0) {
             return Arr::only($data, $this->parameters);

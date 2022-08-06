@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Question;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 
@@ -23,30 +22,25 @@ class ExamResource extends JsonResource
      */
     public function toArray($request)
     {
-        $questions = [];
-        if ($this->dynamic_questions):
-            foreach (explode(';',$this->dynamic_questions) as $questionsData):
-                $questionsData = str_contains($questionsData, ',') ? explode(',',$questionsData) : false;
-                if ($questionsData):
-                    foreach (Question::where('level',intval($questionsData[1]))->inRandomOrder()->take($questionsData[0])->get() as $question):
-                        $questions[] = $question;
-                    endforeach;
-                endif;
-                shuffle($questions);
-            endforeach;
-        else:
-            $questions = $this->questions()->inRandomOrder()->get();
+        $questions = $this->examQuestions() ? $this->examQuestions()->inRandomOrder()->get() : null;
+        $opened = false;
+        if ($questions) :
+            $questions = AnswerdQuestionCollection::only($questions, ['id', 'question', 'answer']);
+            $opened = true;
+        else :
+            $questions = $questions ? QuestionCollection::only($questions, ['id', 'name', 'image', 'video', 'audio', 'type', 'choices']) : [];
         endif;
-        $questions = new QuestionCollection($questions);
-
         $data = [
-            'id'=>$this->id,
-            'title'=>$this->title,
-            'user'=>$this->user_id,
-            'part'=> new PartResource($this->part),
-            'lecture'=>new LectureResource($this->lecture),
-            'questions'=>$questions,
+            'id' => $this->id,
+            'opened' => $opened,
+            'title' => $this->title,
+            'remainingTime' => $opened && $this->openedExams()->where('user_id',apiUser()->id)->first() ? $this->openedExams()->where('user_id',apiUser()->id)->first()->remaining_time : null,
+            'publisher' => $this->publisher ? UserResource::only($this->publisher, ['id', 'name', 'email', 'phoneNumber', 'parentPhoneNumber', 'balance', 'role', 'grade', 'governorate']) : null,
+            'part' => $this->part ? new PartResource($this->part) : null,
+            'lecture' => $this->lecture ? new LectureResource($this->lecture) : null,
+            'questions' => $questions,
         ];
+
         if (count($this->parameters) > 0) {
             return Arr::only($data, $this->parameters);
         } else {

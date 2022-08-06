@@ -22,8 +22,8 @@ class TestimonialCollection extends ResourceCollection
     public function toArray($request)
     {
         if (count($this->parameters)) {
-            return $this->collection->map(function ($testimonial) {
-                return TestimonialResource::only($testimonial,$this->parameters);
+            return $this->collection->map(function ($item) {
+                return TestimonialResource::only($item, $this->parameters);
             });
         } else {
             return TestimonialResource::collection($this->collection);

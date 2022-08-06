@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class LectureCollection extends ResourceCollection
@@ -22,8 +23,8 @@ class LectureCollection extends ResourceCollection
     public function toArray($request)
     {
         if (count($this->parameters)) {
-            return $this->collection->map(function ($lecture) {
-                return LectureResource::only($lecture,$this->parameters);
+            return $this->collection->map(function ($item) {
+                return LectureResource::only($item, $this->parameters);
             });
         } else {
             return LectureResource::collection($this->collection);

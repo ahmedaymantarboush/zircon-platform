@@ -20,13 +20,12 @@ return new class extends Migration
             $table->string('video')->nullable();
             $table->string('audio')->nullable();
             $table->enum('type',['MCQ','Written']);
-            $table->text('answer')->nullable();
             $table->text('explanation')->nullable();
-            $table->text('choices')->nullable();
             $table->integer('level');
             $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
             $table->foreignId('part_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->default(1)->constrained()->cascadeOnDelete();
+            $table->foreignId('subject_id')->default(env('DEFAULT_SUBJECT_ID'))->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

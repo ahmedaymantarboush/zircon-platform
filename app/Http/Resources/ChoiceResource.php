@@ -2,10 +2,12 @@
 
 namespace App\Http\Resources;
 
+use CustomResource;
+
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 
-class SectionResource extends JsonResource
+class ChoiceResource extends JsonResource
 {
     private $parameters = [];
     public static function only($resource, $Params)
@@ -23,12 +25,14 @@ class SectionResource extends JsonResource
     public function toArray($request)
     {
         $data = [
-            'id'=>$this->id,
-            'order'=>$this->order,
-            'title'=>$this->title,
-            'items'=>count($this->items) ? SectionItemCollection::only($this->items()->orderBy('order')->get(),['id', 'type','order','item']) : null,
+            'question'=>$this->question ? QuestionResource::only($this->question,['id','name','image','video','audio','type','explanation','level','gradeId','grade','part','owner']) : null,
+            'name'=>$this->name,
+            'image'=>$this->image,
+            'video'=>$this->video,
+            'audio'=>$this->audio,
+            'correct'=>$this->correct,
         ];
-        if (count($this->parameters) > 0) {
+        if (count($this->parameters)) {
             return Arr::only($data, $this->parameters);
         } else {
             return $data;

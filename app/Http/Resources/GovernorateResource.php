@@ -24,6 +24,7 @@ class GovernorateResource extends JsonResource
     {
         $data = [
             'id'=>$this->id,
+            'name'=>$this->name,
         ];
         if (count($this->parameters) > 0) {
             return Arr::only($data, $this->parameters);
