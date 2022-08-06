@@ -41,7 +41,7 @@
                                 <div class="col-lg-2">
                                     <div class="levelPrice">
                                         <span class='iconPrice'><i class="fa-solid fa-tags"></i></span>
-                                        <span class='price'>{{now() > $lecture->discount_expiry_date ? $lecture->final_price : $lecture->price}}</span>
+                                        <span class='price'>{{getPrice($lecture)}}</span>
                                         <span class='priceUnit'>ج.م</span>
                                     </div>
                                 </div>

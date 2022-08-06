@@ -54,6 +54,26 @@ function uploadFile($request, $fileName, $oldPath = "", $folderName = "")
     return Storage::url($UploadedFile);
 }
 
+function getPrice($lecture){
+    $price = 0;
+    if(now() <= $lecture->discount_expiry_date):
+        if ($lecture->final_price >= $lecture->price):
+            $lecture->final_price = $lecture->price;
+            $lecture->discount_expiry_date = null;
+            $lecture->save();
+        endif;
+        $price = $lecture->final_price;
+    else:
+        if ($lecture->discount_expiry_date || $lecture->final_price <= $lecture->price):
+            $lecture->final_price = $lecture->price;
+            $lecture->discount_expiry_date = null;
+            $lecture->save();
+        endif;
+        $price = $lecture->price;
+    endif;
+    return $price;
+}
+
 function getVideoInfo($video_id){
 
     $ch = curl_init();

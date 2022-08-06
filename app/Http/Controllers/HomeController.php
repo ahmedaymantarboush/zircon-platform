@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lecture;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $grade3 = Lecture::with('owner')->where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 3])->get();
+        $lectures = [
+            1 => Lecture::with('owner')->where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 1])->first(),
+            2 => Lecture::with('owner')->where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 2])->first(),
+            3 => $grade3[0],
+            4 => count($grade3) > 1 ? $grade3[1] : null,
+        ];
+        return view('index',compact('lectures'));
     }
 }
