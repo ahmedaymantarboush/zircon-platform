@@ -26,6 +26,7 @@ class LectureFactory extends Factory
             'published' => $this->faker->numberBetween(0, 1),
             'promotinal_video_url' => $this->faker->url(),
             'poster' => $this->faker->imageUrl(),
+            'time'=>fake()->randomFloat().' ساعة',
             'meta_keywords' => implode(',',$this->faker->words(10)),
             'meta_description' => $this->faker->words(50, true),
             'slug' => $this->faker->slug(),

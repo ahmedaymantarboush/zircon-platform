@@ -39,7 +39,7 @@ class LectureResource extends JsonResource
             'price'=>$this->price,
             'finalPrice'=>$this->final_price,
             'discountExpiryDate'=>$this->discount_expiry_date,
-            'duration'=>$this->duration,
+            'time'=>$this->time,
             'totalQuestionsCount'=>$this->total_questions_count,
             'subject'=>$this->subject->name,
             'gradeId'=>$this->grade_id,

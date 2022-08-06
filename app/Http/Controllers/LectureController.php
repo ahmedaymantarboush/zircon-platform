@@ -13,9 +13,15 @@ class LectureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $gradeId = $id - 9;
+        $lectures = Lecture::where(['published' => true, 'grade_id' => $gradeId])->orderBy('id','desc')->get();
+        if (count($lectures)):
+            return view("home.grades",compact('lectures'));
+        else:
+            return abort(404);
+        endif;
     }
 
     /**
