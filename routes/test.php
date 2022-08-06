@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/levels', function () {
     return view('levels');
 });
+Route::get('/search', function () {
+    return view('search');
+});
 
 // Route::get('/signup', function () {
 //     return view('signup');
