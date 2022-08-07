@@ -18,7 +18,8 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $jsonRequest = $request->json();
+        $validator = Validator::make($jsonRequest->all(),[
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -71,17 +72,17 @@ class AuthController extends Controller
         }
 
         $user = User::create([
-            'name'=> $request->name,
-            'email'=> $request->email,
-            'phone_number'=> $request->phone_number,
-            'parent_phone_number'=> $request->parent_phone_number,
+            'name'=> $jsonRequest['name'],
+            'email'=> $jsonRequest['email'],
+            'phone_number'=> $jsonRequest['phone_number'],
+            'parent_phone_number'=> $jsonRequest['parent_phone_number'],
             // 'image' ,
-            'password'=> Hash::make($request->password),
-            'grade_id'=> Grade::where('name',$request->grade)->first()->id,
-            'governorate_id'=> Governorate::where('name',$request->governorate)->first()->id,
+            'password'=> Hash::make($jsonRequest['password']),
+            'grade_id'=> Grade::where('name',$jsonRequest['grade'])->first()->id,
+            'governorate_id'=> Governorate::where('name',$jsonRequest['governorate'])->first()->id,
             'code'=> Str::random(50),
 
-            'center_id'=> $request->center ? Center::where('name',$request->center)->first()->id : 1,
+            'center_id'=> $jsonRequest['center'] ? Center::where('name',$jsonRequest['center'])->first()->id : 1,
             'role_num'=> 4,
             'balance'=> 0,
         ]);
@@ -99,6 +100,7 @@ class AuthController extends Controller
         ]);
     }
     public function login(Request $request){
+        $jsonRequest = $request->json();
         $validator = Validator::make($request->all(),[
             'email' => ['required', 'string', 'email', 'max:255','exists:users,email'],
             'password' => ['required', 'string', 'min:8'],
@@ -117,10 +119,10 @@ class AuthController extends Controller
             return apiResponse(false,_('هناك خطأ في صحة البيانات'),$validator->errors(),400);
         }
 
-        if (!Auth::attempt($request->only('email','password'))){
+        if (!Auth::attempt(['email' => $jsonRequest['email'] , 'password' => $jsonRequest['password']])){
             return apiResponse(false,_('هذا المسخدم غير موجود'),[],401);
         }
-        $user = User::where(['email'=>$request->email])->first();
+        $user = User::where(['email'=>$jsonRequest['email']])->first();
         if (!$user){
             return apiResponse(false,_('هذا المسخدم غير موجود'),[],401);
         }
@@ -131,8 +133,8 @@ class AuthController extends Controller
             '_token_type'=>'Bearer'
         ]);
     }
-    public function logout(Request $request){
-        $user = auth('sanctum')->user();
+    public function logout(){
+        $user = apiUser();
         if ($user){
             $user->tokens()->delete();
             return apiResponse(true,_('تم تسجيل الخروج بنجاح'),[]);

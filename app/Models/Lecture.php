@@ -42,7 +42,7 @@ class Lecture extends Model
         return $this->belongsTo(Grade::class);
     }
 
-    public function owner()
+    public function publisher()
     {
         return $this->belongsTo(User::class,'user_id','id');
     }

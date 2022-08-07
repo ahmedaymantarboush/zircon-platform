@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +29,7 @@
 </head>
 
 <body>
-
+    <input type="hidden" name="token" id="token" value="{{csrf_token()}}">
     <nav class="myNav">
         <div class="navProgress">
             <span class='navProgChild'></span>
@@ -81,9 +82,10 @@
                 </button>
                 <div class="left ">
                     <div class="search">
-                        <input type="search" name="navSearch">
-                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
-
+                        <form action="{{route('search')}}" method="get">
+                            <input value="{{request()->q}}" type="search" name="q">
+                            <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                        </form>
                     </div>
                     <div class="register">
                         <div class="signup">

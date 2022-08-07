@@ -24,10 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $grade3 = Lecture::with('owner')->where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 3])->get();
+        $grade3 = Lecture::where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 3])->get();
         $lectures = [
-            1 => Lecture::with('owner')->where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 1])->first(),
-            2 => Lecture::with('owner')->where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 2])->first(),
+            1 => Lecture::where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 1])->first(),
+            2 => Lecture::where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 2])->first(),
             3 => $grade3[0],
             4 => count($grade3) > 1 ? $grade3[1] : null,
         ];

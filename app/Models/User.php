@@ -60,12 +60,12 @@ class User extends Authenticatable
         return $this->hasMany(Exam::class);
     }
 
-    public function createdMonths(){
-        return $this->hasMany(Month::class);
+    public function createdLectures(){
+        return $this->hasMany(Lecture::class);
     }
 
-    public function ownedMonths(){
-        return $this->belongsToMany(Month::class);
+    public function ownedLectures(){
+        return $this->belongsToMany(Lecture::class);
     }
 
     public function governorate(){

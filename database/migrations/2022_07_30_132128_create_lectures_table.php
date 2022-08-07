@@ -26,7 +26,7 @@ return new class extends Migration
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('slug',100)->unique();
-            $table->boolean('free')->default(0);
+            // $table->boolean('free')->default(0);
             $table->float('price');
             $table->float('final_price');
             $table->date('discount_expiry_date')->nullable();

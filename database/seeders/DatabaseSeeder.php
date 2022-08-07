@@ -97,7 +97,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Lecture::factory(50)->create();
 
-        \App\Models\Part::factory(50)->create();
+        \App\Models\Part::factory(20)->create();
 
         \App\Models\Exam::factory(50)->create();
 

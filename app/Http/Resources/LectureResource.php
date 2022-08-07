@@ -37,19 +37,20 @@ class LectureResource extends JsonResource
             'metaDescription'=>$this->meta_description,
             'slug'=>$this->slug,
             'price'=>$this->price,
-            'finalPrice'=>$this->final_price,
+            'finalPrice'=>getPrice($this),
             'discountExpiryDate'=>$this->discount_expiry_date,
             'time'=>$this->time,
             'totalQuestionsCount'=>$this->total_questions_count,
             'subject'=>$this->subject->name,
             'gradeId'=>$this->grade_id,
             'grade'=>$this->grade->name,
-            'owner'=>$this->owner ? new UserResource($this->owner,['id','name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
+            'publisher'=>$this->publisher ? new UserResource($this->publisher,['id','name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
             'owners'=>$this->owners ? new UserCollection($this->owners,['id','name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
             'ownersCount'=>count($this->owners),
             'sections'=>$this->sections ? new SectionCollection($this->sections()->orderBy('order')->get()) : null,
             'parts'=>$this->parts ? new PartCollection($this->parts) : null,
         ];
+
         if (count($this->parameters) > 0) {
             return Arr::only($data, $this->parameters);
         } else {

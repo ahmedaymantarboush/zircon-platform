@@ -47,6 +47,7 @@ Route::get('/contentsCount',function(){
 //       MONTH ROUTES
 Route::apiResource('months',LectureController::class)->except('index');
 Route::get('grades/grade{gradeId}',[LectureController::class,'index']);
+Route::get('search',[LectureController::class,'search']);
 
 //       LESSON ROUTES
 Route::apiResource('lessons',LessonController::class);

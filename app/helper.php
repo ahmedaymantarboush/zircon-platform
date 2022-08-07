@@ -12,23 +12,8 @@ function apiResponse($success,$message,$data,$statusCode = 200){
 
 function removeCustomTags($content,$tags=[]){
     foreach ($tags as $tag){
-        $dom = new DOMDocument();
-        $dom->loadHTML($content);
-        $script = $dom->getElementsByTagName($tag);
-        // $remove = [];
-        // foreach($script as $item)
-        // {
-        //     $remove[] = $item;
-        // }
-        // foreach ($remove as $item)
-        // {
-        //     $item->parentNode->removeChild($item);
-        // }
-        foreach ($script as $item)
-        {
-            $item->parentNode->removeChild($item);
-        }
-        $content = $dom->saveHTML();
+        $content = str_replace('<'.$tag,'&lt;'.$tag,$content);
+        $content = str_replace('</'.$tag,'&lt;/'.$tag,$content);
     }
     return $content;
 }
