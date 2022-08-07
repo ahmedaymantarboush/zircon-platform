@@ -118,7 +118,6 @@ class AuthController extends Controller
         if ($validator->fails()){
             return apiResponse(false,_('هناك خطأ في صحة البيانات'),$validator->errors(),400);
         }
-
         if (!Auth::attempt(['email' => $jsonRequest['email'] , 'password' => $jsonRequest['password']])){
             return apiResponse(false,_('هذا المسخدم غير موجود'),[],401);
         }
