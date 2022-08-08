@@ -47,66 +47,51 @@ class Exam extends Model
     public function startExam()
     {
         $user = apiUser();
-        if ($this->dynamic) :
-            $dynamicQuestions = $this->dynamicExams;
-            foreach ($dynamicQuestions as $dynamicQuestion) :
-                if ($dynamicQuestion) :
-                    foreach (Question::where(['level' => $dynamicQuestion->level, 'part_id' => $dynamicQuestion->part->id])->inRandomOrder()->take($dynamicQuestion->count)->get() as $question) :
-                        if ($question) :
-                            $user->answerdQuestions()->create([
-                                'question_id' => $question->id,
-                                'exam_id' => $this->id,
-                                'answer' => '',
-                                'correct' => false,
-                            ]);
-                            $examEndTime = now();
-                            $examTime = explode(' ', $this->time);
-                            if ($examTime[1] == 'ثواني') :
-                                $examEndTime = now()->addSeconds($examTime[0]);
-                            elseif ($examTime[1] == 'دقائق') :
-                                $examEndTime = now()->addMinutes($examTime[0]);
-                            elseif ($examTime[1] == 'ساعات') :
-                                $examEndTime = now()->hours($examTime[0]);
+        if ($user) :
+            if ($this->dynamic) :
+                $dynamicExams = $this->dynamicExams;
+                foreach ($dynamicExams as $dynamicExam) :
+                    if ($dynamicExam) :
+                        foreach (Question::where(['level' => $dynamicExam->level, 'part_id' => $dynamicExam->part->id,'grade_id' => $user->grade->id])->inRandomOrder()->take($dynamicExam->count)->get() as $question) :
+                            if ($question) :
+                                $user->answerdQuestions()->create([
+                                    'question_id' => $question->id,
+                                    'exam_id' => $this->id,
+                                    'answer' => '',
+                                    'correct' => false,
+                                ]);
                             endif;
-                            $user->passedExams()->create([
-                                'exam_id' => $this->id,
-                                'percentage' => 0,
-                                'exam_started_at' => now(),
-                                'exam_ended_at' => $examEndTime,
-                                'finished' => false,
-                            ]);
-                        endif;
-                    endforeach;
-                endif;
-            endforeach;
-        else :
-            $questions = $this->questions;
-            foreach ($questions as $question) :
-                if ($question) :
-                    $user->answerdQuestions()->create([
-                        'question_id' => $question->id,
-                        'exam_id' => $this->id,
-                        'answer' => '',
-                        'correct' => false,
-                    ]);
-                    $examEndTime = now();
-                    $examTime = explode(' ', $this->time);
-                    if ($examTime[1] == 'ثواني') :
-                        $examEndTime = now()->addSeconds($examTime[0]);
-                    elseif ($examTime[1] == 'دقائق') :
-                        $examEndTime = now()->addMinutes($examTime[0]);
-                    elseif ($examTime[1] == 'ساعات') :
-                        $examEndTime = now()->hours($examTime[0]);
+                        endforeach;
                     endif;
-                    $user->passedExams()->create([
-                        'exam_id' => $this->id,
-                        'percentage' => 0,
-                        'exam_started_at' => now(),
-                        'exam_ended_at' => $examEndTime,
-                        'finished' => false,
-                    ]);
-                endif;
-            endforeach;
+                endforeach;
+                $user->passedExams()->create([
+                    'exam_id' => $this->id,
+                    'percentage' => 0,
+                    'exam_started_at' => now(),
+                    'exam_ended_at' => now()->addSeconds($this->time),
+                    'finished' => false,
+                ]);
+            else :
+
+                $questions = $this->questions;
+                foreach ($questions as $question) :
+                    if ($question) :
+                        $user->answerdQuestions()->create([
+                            'question_id' => $question->id,
+                            'exam_id' => $this->id,
+                            'answer' => '',
+                            'correct' => false,
+                        ]);
+                    endif;
+                endforeach;
+                $user->passedExams()->create([
+                    'exam_id' => $this->id,
+                    'percentage' => 0,
+                    'exam_started_at' => now(),
+                    'exam_ended_at' =>  now()->addSeconds($this->time),
+                    'finished' => false,
+                ]);
+            endif;
         endif;
     }
 
@@ -120,7 +105,7 @@ class Exam extends Model
         return $this->belongsTo(Lecture::class, 'lecture_id');
     }
 
-    public function passedExam()
+    public function passedExams()
     {
         return $this->hasMany(PassedExam::class, 'exam_id');
     }

@@ -15,7 +15,7 @@ class QuestionResource extends JsonResource
         return $instance;
     }
 
-    private $exceptParameters = [];
+    private $exceptParameters = ['created_at', 'updated_at'];
     public static function except($resource, $Params)
     {
         $instance = new Self($resource);
@@ -45,11 +45,17 @@ class QuestionResource extends JsonResource
             'grade'=> $this->grade->name,
             'part'=>$this->part ? new PartResource($this->part) : null,
             'publisher'=>$this->publisher ? new UserResource($this->publisher) : null,
-        ];
+
+            'createdAt'=>$this->created_at,
+            'updatedAt'=>$this->updated_at,
+         ];
         // dd(($this->choices));
         if (count($this->onlyParameters) > 0) {
             return Arr::only($data, $this->onlyParameters);
-        }else {
+
+        }elseif (count($this->exceptParameters) > 0) {
+                return Arr::except($data, $this->exceptParameters);
+        } else {
             return $data;
         }
     }

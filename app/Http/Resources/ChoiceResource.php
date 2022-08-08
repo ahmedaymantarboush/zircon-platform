@@ -17,7 +17,7 @@ class ChoiceResource extends JsonResource
         return $instance;
     }
 
-    private $exceptParameters = [];
+    private $exceptParameters = ['created_at', 'updated_at'];
     public static function except($resource, $Params)
     {
         $instance = new Self($resource);
@@ -39,11 +39,14 @@ class ChoiceResource extends JsonResource
             'video'=>$this->video,
             'audio'=>$this->audio,
             'correct'=>$this->correct,
-        ];
+
+            'createdAt'=>$this->created_at,
+            'updatedAt'=>$this->updated_at,
+         ];
         if (count($this->onlyParameters)) {
             return Arr::only($data, $this->onlyParameters);
         }elseif (count($this->exceptParameters) > 0) {
-            return Arr::only($data, $this->exceptParameters);
+            return Arr::except($data, $this->exceptParameters);
         } else {
             return $data;
         }

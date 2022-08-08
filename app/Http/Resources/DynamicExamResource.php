@@ -14,7 +14,7 @@ class DynamicExamResource extends JsonResource
         return $instance;
     }
 
-    private $exceptParameters = [];
+    private $exceptParameters = ['created_at', 'updated_at'];
     public static function except($resource, $Params)
     {
         $instance = new Self($resource);

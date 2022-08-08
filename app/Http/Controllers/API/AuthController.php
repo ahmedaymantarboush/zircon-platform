@@ -126,17 +126,20 @@ class AuthController extends Controller
         }
         $token = $user->createToken('auth_token')->plainTextToken;
         return apiResponse(true,_('تم تسجيل الدخول بنجاح'),[
-            'user' => new UserResource($user),
+            'user' => UserResource::only($user,['name','email','phoneNumber','parentPhoneNumber','balance','code','role','center','governorate','grade']),
             '_token'=>$token,
             '_token_type'=>'Bearer'
         ]);
     }
     public function logout(){
         $user = apiUser();
-        if ($user){
-            $user->tokens()->delete();
+        if (!$user):
+            return apiResponse(false,_('هذا المستخدم غير متاح'),[],401);
+        endif;
+        if ($user->tokens()->delete()):
             return apiResponse(true,_('تم تسجيل الخروج بنجاح'),[]);
-        }
-        return apiResponse(false,_('هذا المستخدم غير متاح'),[],401);
+        else:
+            return apiResponse(true,_('حدث خطأ أثناء تسجيل الخروج'),[]);
+        endif;
     }
 }

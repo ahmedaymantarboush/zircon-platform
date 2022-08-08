@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return new UserResource($request->user());
+Route::middleware('auth:sanctum')->get('/user', function () {
+    return apiResponse(true,_('تم العثور على المستخدم بنجاح'), UserResource::only(apiUser(),[]));
 });
 
 
@@ -45,12 +45,12 @@ Route::get('/contentsCount',function(){
 });
 
 //       MONTH ROUTES
-Route::apiResource('months',LectureController::class)->except('index');
-Route::get('grades/grade{gradeId}',[LectureController::class,'index']);
-Route::get('search',[LectureController::class,'search']);
+Route::apiResource('months',LectureController::class)->except('index')->name('show','api.months.show');
+Route::get('/grades/grade{gradeId}',[LectureController::class,'index']);
+Route::get('/search',[LectureController::class,'search']);
 
 //       LESSON ROUTES
-Route::apiResource('lessons',LessonController::class);
+Route::apiResource('/lessons',LessonController::class);
 
 //       EXAM ROUTES
-Route::apiResource('exams',ExamController::class);
+Route::apiResource('/exams',ExamController::class);

@@ -14,7 +14,7 @@ class Lesson extends Model
     protected $fillable = [
         'title',
         'url',
-        'duration',
+        'time',
         'type',
         'semester',
         'description',

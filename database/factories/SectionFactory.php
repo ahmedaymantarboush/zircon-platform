@@ -21,7 +21,7 @@ class SectionFactory extends Factory
             'title' => $this->faker->sentence,
             'order' => $this->faker->numberBetween(1, 10),
             'description' => $this->faker->paragraph,
-            'duration' => $this->faker->numberBetween(1, 10),
+            'time' => $this->faker->numberBetween(1, 10),
             'lecture_id' => $this->faker->randomElement(Lecture::all()->pluck('id')),
         ];
     }

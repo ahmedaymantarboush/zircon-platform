@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('part_id')->constrained()->cascadeOnDelete();
             $table->foreignId('subject_id')->default(env('DEFAULT_SUBJECT_ID'))->constrained()->cascadeOnDelete();
             $table->foreignId('lecture_id')->constrained()->cascadeOnDelete();
-            $table->string('time')->default(0);
+            $table->integer('time')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

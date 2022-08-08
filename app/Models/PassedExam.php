@@ -13,6 +13,28 @@ class PassedExam extends Model
         'user_id',
         'exam_id',
         'percentage',
-        'remaining_time',
+        'exam_started_at',
+        'exam_ended_at',
     ];
+
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class, 'exam_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function examQuestions()
+    {
+        $user = apiUser();
+        if ($user) :
+            return $this->hasMany(ExamQuestion::class)->with('question')->where('user_id', $user->id);
+        else :
+            return null;
+        endif;
+    }
+
 }

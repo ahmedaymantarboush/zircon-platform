@@ -15,7 +15,7 @@ class CenterResource extends JsonResource
         return $instance;
     }
 
-    private $exceptParameters = [];
+    private $exceptParameters = ['created_at', 'updated_at'];
     public static function except($resource, $Params)
     {
         $instance = new Self($resource);
@@ -35,11 +35,14 @@ class CenterResource extends JsonResource
             'name' => $this->name,
             'image' => $this->image,
             'governorate' => $this->governorate->name,
-        ];
+
+            'createdAt'=>$this->created_at,
+            'updatedAt'=>$this->updated_at,
+         ];
         if (count($this->onlyParameters) > 0) {
             return Arr::only($data, $this->onlyParameters);
         }elseif (count($this->exceptParameters) > 0) {
-            return Arr::only($data, $this->exceptParameters);
+            return Arr::except($data, $this->exceptParameters);
         } else {
             return $data;
         }

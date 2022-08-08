@@ -65,7 +65,7 @@ class User extends Authenticatable
     }
 
     public function ownedLectures(){
-        return $this->belongsToMany(Lecture::class,'lecture_user','user_id','lecture_id');
+        return $this->belongsToMany(Lecture::class,'lecture_users','user_id','lecture_id');
     }
 
     public function governorate(){
@@ -81,7 +81,7 @@ class User extends Authenticatable
     }
 
     public function subjects(){
-        return $this->belongsToMany(Subject::class);
+        return $this->belongsToMany(Subject::class,'user_subjects','user_id','subject_id');
     }
 
     public function answerdQuestions(){

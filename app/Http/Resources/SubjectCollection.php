@@ -29,6 +29,16 @@ class SubjectCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        if (count($this->onlyParameters)) {
+            return $this->collection->map(function ($item) {
+                return SubjectResource::only($item, $this->onlyParameters);
+            });
+        }elseif (count($this->exceptParameters)) {
+            return $this->collection->map(function ($item) {
+                return SubjectResource::except($item, $this->exceptParameters);
+            });
+        }else {
+            return SubjectResource::collection($this->collection);
+        }
     }
 }

@@ -15,7 +15,7 @@ class TestimonialResource extends JsonResource
         return $instance;
     }
 
-    private $exceptParameters = [];
+    private $exceptParameters = ['created_at', 'updated_at'];
     public static function except($resource, $Params)
     {
         $instance = new Self($resource);
@@ -36,11 +36,14 @@ class TestimonialResource extends JsonResource
             'image'=>$this->image,
             'degree'=>$this->degree,
             'content'=>$this->content,
-        ];
+
+            'createdAt'=>$this->created_at,
+            'updatedAt'=>$this->updated_at,
+         ];
         if (count($this->onlyParameters)) {
             return Arr::only($data, $this->onlyParameters);
         }elseif (count($this->exceptParameters) > 0) {
-            return Arr::only($data, $this->exceptParameters);
+            return Arr::except($data, $this->exceptParameters);
         } else {
             return $data;
         }

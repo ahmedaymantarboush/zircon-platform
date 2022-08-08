@@ -33,9 +33,9 @@ class ExamController extends Controller
     {
         $this->validator($request->all(), true)->validate();
         $exam = Exam::create([
-            'title'=>$request->title,
+            'title' => $request->title,
         ]);
-        return apiResponse(true,_('تم انشاء الامتحان بنجاح'),new ExamResource($exam));
+        return apiResponse(true, _('تم انشاء الامتحان بنجاح'), new ExamResource($exam));
     }
 
     /**
@@ -47,26 +47,25 @@ class ExamController extends Controller
     public function show($id)
     {
         $user = apiuser();
-        if (!$user):
+        if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
-        $exam = EXam::find($id);
-        $passedExam = null;
-        if ($exam):
-            $passedExam = $exam->where(['user_id',$user->id])->first();
-            if (!$passedExam):
-                $exam->startExam();
-                $passedExam = $exam->where(['user_id',$user->id])->first();
+
+        $passedExam = $user->passedExams()->where('exam_id', $id)->first();
+        if (!$passedExam) :
+            $exam = Exam::find($id);
+            if (!$exam) :
+                return apiResponse(false, _('الامتحان الذي طلبته غير موجود'), [], 401);
             endif;
-        else:
-            return apiResponse(false,_('الامتحان الذي طلبته غير موجود'),[],401);
+            $exam->startExam();
+            $passedExam = $user->passedExams()->where('exam_id', $id)->first();
         endif;
 
-        if (!$passedExam):
-            return apiResponse(false,_('عفوا حدث خطأ ما لذلك لم نتمكن من انشاء الامتحان الخاص بك'),[],500);
+        if (!$passedExam) :
+            return apiResponse(false, _('عفوا حدث خطأ ما لذلك لم نتمكن من انشاء الامتحان الخاص بك'), [], 500);
         endif;
 
-        return apiResponse(true,_('الامتحان الذي طلبته موجود'),PassedExamResource::only($passedExam,['exam','percentage','exam_started_at','exam_ended_at','finished']));
+        return apiResponse(true, _('الامتحان الذي طلبته موجود'), PassedExamResource::only($passedExam, ['exam', 'percentage', 'exam_started_at', 'exam_ended_at', 'finished']));
     }
 
     /**
@@ -79,13 +78,13 @@ class ExamController extends Controller
     public function update(UpdateExamRequest $request, $id)
     {
         $exam = auth()->user()->exams()->find($id);
-        if (!$exam){
-            return apiResponse(false,_('الامتحان الذي طلبته غير موجود'),[],401);
+        if (!$exam) {
+            return apiResponse(false, _('الامتحان الذي طلبته غير موجود'), [], 401);
         }
         if ($request->title) $exam->title = $request->title;
         $exam->save();
 
-        return apiResponse(true,_('تم تعديل الامتحان بنجاح'),new ExamResource($exam));
+        return apiResponse(true, _('تم تعديل الامتحان بنجاح'), new ExamResource($exam));
     }
 
     /**
@@ -97,10 +96,10 @@ class ExamController extends Controller
     public function destroy($id)
     {
         $exam = auth()->user()->exams()->find($id);
-        if (!$exam){
-            return apiResponse(false,_('الامتحان الذي طلبته غير موجود'),[],401);
+        if (!$exam) {
+            return apiResponse(false, _('الامتحان الذي طلبته غير موجود'), [], 401);
         }
         $exam->delete();
-        return apiResponse(true,_('تم حذف الامتحان بنجاح'),[]);
+        return apiResponse(true, _('تم حذف الامتحان بنجاح'), []);
     }
 }

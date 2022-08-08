@@ -288,14 +288,7 @@ class LectureController extends Controller
     {
         $lecture = Lecture::where('slug', $slug)->first();
         if ($lecture) :
-            $data = [
-                'lecture' => new LectureResource($lecture),
-                'owner' => false,
-            ];
-            if (apiUser()) :
-                $data['owner'] = apiUser()->ownedLectures->contains($lecture);
-            endif;
-            return apiResponse(true, _('تم العثور على المحاضرة بنجاح'), $data);
+            return apiResponse(true, _('تم العثور على المحاضرة بنجاح'), LectureResource::only($lecture,['title','shortDescription','description','publisherName','updatedAt','sections','promotinalVideoUrl','poster','price','finalPrice','discountExpiryDate','time','totalQuestionsCount']));
         else :
             return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 400);
         endif;
