@@ -7,11 +7,19 @@ use Illuminate\Support\Arr;
 
 class TestimonialResource extends JsonResource
 {
-    private $parameters = [];
+    private $onlyParameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
-        $instance->parameters = $Params;
+        $instance->onlyParameters = $Params;
+        return $instance;
+    }
+
+    private $exceptParameters = [];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
         return $instance;
     }
     /**
@@ -29,8 +37,10 @@ class TestimonialResource extends JsonResource
             'degree'=>$this->degree,
             'content'=>$this->content,
         ];
-        if (count($this->parameters)) {
-            return Arr::only($data, $this->parameters);
+        if (count($this->onlyParameters)) {
+            return Arr::only($data, $this->onlyParameters);
+        }elseif (count($this->exceptParameters) > 0) {
+            return Arr::only($data, $this->exceptParameters);
         } else {
             return $data;
         }

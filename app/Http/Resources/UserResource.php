@@ -7,11 +7,19 @@ use Illuminate\Support\Arr;
 
 class UserResource extends JsonResource
 {
-    private $parameters = [];
+    private $onlyParameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
-        $instance->parameters = $Params;
+        $instance->onlyParameters = $Params;
+        return $instance;
+    }
+
+    private $exceptParameters = [];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
         return $instance;
     }
     /**
@@ -34,15 +42,17 @@ class UserResource extends JsonResource
             'governorate'=>$this->governorate->name,
             'code'=>$this->code,
             'center'=>$this->center->name,
-            'createdLectures'=>$this->createdLectures ? new LectureCollection($this->createdLectures) : null,
-            'ownedLectures'=>$this->ownedLectures ? new LectureCollection($this->ownedLectures) : null,
-            'exams'=>$this->exams ? new ExamCollection($this->exams) : null,
-            'answerdQuestions'=>$this->answerdQuestions ? new AnswerdQuestionCollection($this->answerdQuestions) : null,
-            'subjects' => $this->subjects && $this->role->number < 4 ? new SubjectCollection($this->subjects) : null,
-            'passedExams'=>$this->passedExams ? new PassedExamCollection($this->passedExams) : null,
+            'createdLectures'=>$this->createdLectures ? LectureCollection::only($this->createdLectures,[]) : null,
+            'ownedLectures'=>$this->ownedLectures ? LectureCollection::only($this->ownedLectures,[]) : null,
+            'exams'=>$this->exams ? ExamCollection::only($this->exams,[]) : null,
+            'answerdQuestions'=>$this->answerdQuestions ? AnswerdQuestionCollection::only($this->answerdQuestions,[]) : null,
+            'subjects' => $this->subjects && $this->role->number < 4 ? SubjectCollection::only($this->subjects,[]) : null,
+            'passedExams'=>$this->passedExams ? PassedExamCollection::only($this->passedExams,[]) : null,
         ];
-        if (count($this->parameters) > 0) {
-            return Arr::only($data, $this->parameters);
+        if (count($this->onlyParameters) > 0) {
+            return Arr::only($data, $this->onlyParameters);
+        }elseif (count($this->exceptParameters) > 0) {
+            return Arr::only($data, $this->exceptParameters);
         } else {
             return $data;
         }

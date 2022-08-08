@@ -6,11 +6,19 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class QuestionCollection extends ResourceCollection
 {
-    private $parameters = [];
+    private $onlyParameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
-        $instance->parameters = $Params;
+        $instance->onlyParameters = $Params;
+        return $instance;
+    }
+
+    private $exceptParameters = [];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
         return $instance;
     }
     /**
@@ -21,11 +29,15 @@ class QuestionCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        if (count($this->parameters)) {
+        if (count($this->onlyParameters)) {
             return $this->collection->map(function ($item) {
-                return QuestionResource::only($item, $this->parameters);
+                return QuestionResource::only($item, $this->onlyParameters);
             });
-        } else {
+        }elseif (count($this->exceptParameters)) {
+            return $this->collection->map(function ($item) {
+                return QuestionResource::except($item, $this->exceptParameters);
+            });
+        }else {
             return QuestionResource::collection($this->collection);
         }
     }

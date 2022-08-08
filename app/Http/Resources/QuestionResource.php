@@ -7,11 +7,19 @@ use Illuminate\Support\Arr;
 
 class QuestionResource extends JsonResource
 {
-    private $parameters = [];
+    private $onlyParameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
-        $instance->parameters = $Params;
+        $instance->onlyParameters = $Params;
+        return $instance;
+    }
+
+    private $exceptParameters = [];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
         return $instance;
     }
     /**
@@ -39,9 +47,9 @@ class QuestionResource extends JsonResource
             'publisher'=>$this->publisher ? new UserResource($this->publisher) : null,
         ];
         // dd(($this->choices));
-        if (count($this->parameters) > 0) {
-            return Arr::only($data, $this->parameters);
-        } else {
+        if (count($this->onlyParameters) > 0) {
+            return Arr::only($data, $this->onlyParameters);
+        }else {
             return $data;
         }
     }

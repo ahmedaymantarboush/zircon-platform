@@ -6,24 +6,22 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class SectionItemCollection extends ResourceCollection
 {
-    private $parameters = [];
+    private $onlyParameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
-        $instance->parameters = $Params;
+        $instance->onlyParameters = $Params;
         return $instance;
     }
-    // public function getData($resourceClass)
-    // {
-    //     if (count($this->parameters)) {
-    //         return $this->collection->map(function ($item) {
-    //             global $resourceClass;
-    //             return $resourceClass::only($item, $this->parameters);
-    //         });
-    //     } else {
-    //         return $resourceClass::collection($this->collection);
-    //     }
-    // }
+
+    private $exceptParameters = [];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
+        return $instance;
+    }
+
     /**
      * Transform the resource collection into an array.
      *
@@ -32,11 +30,15 @@ class SectionItemCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        if (count($this->parameters)) {
+        if (count($this->onlyParameters)) {
             return $this->collection->map(function ($item) {
-                return SectionItemResource::only($item, $this->parameters);
+                return SectionItemResource::only($item, $this->onlyParameters);
             });
-        } else {
+        }elseif (count($this->exceptParameters)) {
+            return $this->collection->map(function ($item) {
+                return SectionItemResource::except($item, $this->exceptParameters);
+            });
+        }else {
             return SectionItemResource::collection($this->collection);
         }
     }

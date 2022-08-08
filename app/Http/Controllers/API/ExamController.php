@@ -47,6 +47,9 @@ class ExamController extends Controller
     public function show($id)
     {
         $user = apiuser();
+        if (!$user):
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
         $exam = EXam::find($id);
         $passedExam = null;
         if ($exam):

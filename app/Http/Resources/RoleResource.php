@@ -8,11 +8,19 @@ use Illuminate\Support\Arr;
 class RoleResource extends JsonResource
 {
 
-    private $parameters = [];
+    private $onlyParameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
-        $instance->parameters = $Params;
+        $instance->onlyParameters = $Params;
+        return $instance;
+    }
+
+    private $exceptParameters = [];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
         return $instance;
     }
     /**
@@ -28,8 +36,10 @@ class RoleResource extends JsonResource
             'number' =>$this->number,
             'name' => $this->display_name,
         ];
-        if (count($this->parameters) > 0) {
-            return Arr::only($data, $this->parameters);
+        if (count($this->onlyParameters) > 0) {
+            return Arr::only($data, $this->onlyParameters);
+        }elseif (count($this->exceptParameters) > 0) {
+            return Arr::only($data, $this->exceptParameters);
         } else {
             return $data;
         }

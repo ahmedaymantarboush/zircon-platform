@@ -6,6 +6,21 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class DynamicExamResource extends JsonResource
 {
+    private $onlyParameters = [];
+    public static function only($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->onlyParameters = $Params;
+        return $instance;
+    }
+
+    private $exceptParameters = [];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
+        return $instance;
+    }
     /**
      * Transform the resource into an array.
      *
