@@ -73,11 +73,11 @@
 
                             <h3 class="contentsHeading">المحتويات</h3>
                             <div class="headingLessonsParent">
-                                <span class="numOfLesson contentNum">230</span>
+                                <span class="numOfLesson contentNum">{{count(\App\Models\Lesson::all())}}</span>
                                 <span>درس مشروح</span>
                             </div>
                             <div class="headingQuestionsParent">
-                                <span class="numOfQuestion contentNum">156</span>
+                                <span class="numOfQuestion contentNum">{{count(\App\Models\Question::all())}}</span>
                                 <span>سؤال و تدريب</span>
                             </div>
                         </div>
@@ -121,15 +121,17 @@
                             </span>
                             <div class="swiper headerLocationSwiper">
                                 <div class="swiper-wrapper">
-                                    <a class="h-l-item swiper-slide" href='#'>
-                                        <div class="h-l-content">
-                                            <h3 class="h-l-heading">سنتر المجرة - الشرقية</h3>
-                                        </div>
-                                        <div class="h-l-image">
-                                            <img src="{{ URL::asset('imgs/center1.png') }}" alt="">
-                                        </div>
-                                    </a>
-                                    <a class="h-l-item swiper-slide" href='#'>
+                                    @foreach (\App\Models\Center::where('id','>',2)->orderBy('id','desc')->get() as $grade)
+                                        <a class="h-l-item swiper-slide" href='#'>
+                                            <div class="h-l-content">
+                                                <h3 class="h-l-heading">سنتر المجرة - الشرقية</h3>
+                                            </div>
+                                            <div class="h-l-image">
+                                                <img src="{{ URL::asset('imgs/center1.png') }}" alt="">
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                    {{-- <a class="h-l-item swiper-slide" href='#'>
                                         <div class="h-l-content">
                                             <h3 class="h-l-heading">سنتر المجرة - الشرقية</h3>
                                         </div>
@@ -137,7 +139,7 @@
                                             <img src="{{ URL::asset('imgs/center1.png') }}" alt="">
                                         </div>
 
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </div>
                         </div>
@@ -153,7 +155,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem gs_reveal gs_reveal_fromRight" href="#">
+                    <a class="levelItem gs_reveal gs_reveal_fromRight" href="{{route('months.index',10)}}">
                         <div class="l-image  ">
                             <img src="{{ URL::asset('imgs/physics1.png') }}" class='' alt="">
                         </div>
@@ -163,7 +165,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem gs_reveal gs_reveal_fromUp" href="#">
+                    <a class="levelItem gs_reveal gs_reveal_fromUp" href="{{route('months.index',13)}}">
                         <div class="l-image ">
                             <img src="{{ URL::asset('imgs/physics2.png') }}" class='' alt="">
                         </div>
@@ -173,7 +175,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem gs_reveal gs_reveal_fromLeft" href="#">
+                    <a class="levelItem gs_reveal gs_reveal_fromLeft" href="{{route('months.index',12)}}">
                         <div class="l-image ">
                             <img src="{{ URL::asset('imgs/physics3.png') }}" class='' alt="">
                         </div>
@@ -197,7 +199,7 @@
             <div class="row text-center" style='overflow:hidden'>
                 @foreach ($lectures as $lecture)
                     <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromRight">
-                        <a class="latestCard grade{{$lecture->grade->id}}" href='{{route('months.show',$lecture->id)}}'>
+                        <a class="latestCard grade{{$lecture->grade->id}}" href='{{route('months.show',$lecture->slug)}}'>
                             <div class="cardGrade">
                                 {{$lecture->grade->name}}
                             </div>

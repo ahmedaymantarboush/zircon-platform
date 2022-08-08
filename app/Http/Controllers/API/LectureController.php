@@ -198,18 +198,17 @@ class LectureController extends Controller
 
     private function lectureData(Request $request, $fileName = 'poster', $oldFile = null)
     {
-        $jsonRequest = $request->json();
+        $data = json_decode($request->data,true);
 
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
 
-        $data = $jsonRequest->all();
         $data['description'] = removeCustomTags($data['description'], ['iframe', 'link', 'script']);
         $poster = '';
-        if (array_key_exists('poster', $data)) {
-            $poster = uploadFile($request, $fileName, $oldFile ? $oldFile : '');
+        if (array_key_exists('poster', $request->all())) {
+            $poster = uploadFile($request, $fileName,$data['title'] ,$oldFile ? $oldFile : '');
             if ($poster) {
                 if ($oldFile) {
                     $oldFile->poster = $poster;
@@ -219,38 +218,41 @@ class LectureController extends Controller
                 return apiResponse(false, _('حدث خطأ أثناء رفع الصورة'), [], 400);
             }
         }
-
         return [
             'title' => $data['title'],
             'semester' => $data['semester'],
-            'short_description' => $data['short_description'],
+            'short_description' => $data['shortDescription'],
             'description' => $data['description'],
-            'published' => array_key_exists('published', $data),
-            'promotinal_video_url' => $data['promotinal_video_url'],
+            'published' => $data['published'] ,
+            'promotinal_video_url' => $data['promotinalVideoUrl'],
             'poster' => $poster,
-            'meta_keywords' => $data['mete_keywords'] . apiUser()->name . ',' . $data['title'] . ',' . $data['semester'] . ',' . Subject::find(env('DEFAULT_SUBJECT_ID'))->name . ',' . Grade::find($data['grade'])->name,
-            'meta_description' => $data['meta_description'] ? $data['meta_description'] : $data['short_description'],
+            'meta_keywords' => $data['meteKeywords'] . apiUser()->name . ',' . $data['title'] . ',' . $data['semester'] . ',' . Subject::find(env('DEFAULT_SUBJECT_ID'))->name . ',' . Grade::find($data['grade'])->name,
+            'meta_description' => $data['metaDescription'] ? $data['metaDescription'] : $data['shortDescription'],
             'slug' => $data['slug'],
-            'price' => array_key_exists('free', $data) ? 0 : abs($data['price']),
-            'final_price' =>  array_key_exists('free', $data) ? 0 : (array_key_exists('has_discount', $data) ? abs($data['final_price']) : abs($data['price'])),
-            'discount_expiry_date' => $data['discount_expiry_date'] ? $data['discount_expiry_date'] : now(),
+            'price' => $data['free'] ? 0 : abs($data['price']),
+            'final_price' =>  $data['free'] ? 0 : ( $data['hasDiscount'] ? ( abs($data['finalPrice']) > abs($data['price']) ? abs($data['finalPrice']) : abs($data['price'] ) ) : abs($data['price']) ),
+            'discount_expiry_date' => $data['discountExpiryDate'] > now() ? $data['discountExpiryDate'] : null,
             'grade_id' => $data['grade'],
+            'time' => '0 ساعة',
+            'total_questions_count' => 0,
+            'subject' => Subject::find(env('DEFAULT_SUBJECT_ID'))->name,
+            'user_id' => apiUser()->id,
         ];
     }
 
     public function store(StoreLectureRequest $request)
     {
-        $jsonRequest = $request->json();
+        $data = json_decode($request->data,true);
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
-        $data = $jsonRequest->all();
-        if ($data['price'] >= $data['final_price'] || $data['free']) :
+
+        if (floatval($data['price']) > floatval($data['finalPrice']) || $data['free']) :
             if ($user->role->name == 'Admin' || $user->role->name == 'Super Admin' || $user->role->name == 'Teacher') :
                 $lecture = $user->createdLectures()->create($this->lectureData($request));
+                $parts = [];
                 foreach ($data['parts'] as $part) :
-                    $parts = [];
                     if (!empty($part)) :
                         $parts[] = LecturePart::firstOrCreate([
                             'lecture_id' => $lecture->id,
@@ -258,7 +260,7 @@ class LectureController extends Controller
                         ]);
                     endif;
                 endforeach;
-                if (!$parts) :
+                if (count($parts) == 0) :
                     $lecture->forceDelete();
                     return apiResponse(false, _('لم يتم اضافة الأجزاء الدراسية للمحاضرة لذلك لم يكتمل انشاء المحاضرة'), [], 401);
                 endif;
@@ -266,7 +268,8 @@ class LectureController extends Controller
                 return apiResponse(false, _('غير مصرح لهذا المسخدم بانشاء محاضرة جديدة'), [], 403);
             endif;
         else :
-            return apiResponse(false, _('السعر بعد الخصم أكبر من السعر الأساسي'), [], 400);
+            $status = (floatval($data['finalPrice']) > floatval($data['price'])) ? 'أكبر من' : 'يساوي';
+            return apiResponse(false, _("السعر بعد الخصم $status السعر الأساسي"), [], 400);
         endif;
         if ($lecture) :
             return apiResponse(true, _('تم انشاء المحاضرة بنجاح'), new LectureResource($lecture));

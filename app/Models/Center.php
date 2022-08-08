@@ -9,7 +9,7 @@ class Center extends Model
 {
     use HasFactory;
 
-    public function governorate(){
+    public function govenrnorate(){
         return $this->belongsTo(Governorate::class);
     }
 }

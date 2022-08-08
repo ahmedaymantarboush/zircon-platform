@@ -20,13 +20,11 @@ return new class extends Migration
             $table->string('short_description',150);
             $table->text('description');
             $table->boolean('published')->default(0);
-            // $table->boolean('show_in_main')->default(0);
             $table->string('promotinal_video_url')->nullable();
             $table->string('poster')->nullable();
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('slug',100)->unique();
-            // $table->boolean('free')->default(0);
             $table->float('price');
             $table->float('final_price');
             $table->date('discount_expiry_date')->nullable();

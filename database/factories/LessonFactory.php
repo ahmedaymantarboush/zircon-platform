@@ -27,6 +27,7 @@ class LessonFactory extends Factory
             'type'=>fake()->randomElement(['video','pdf','audio']),
             'semester'=>fake()->randomElement(['الفصل الدراسي الأول','الفصل الدراسي الثاني']),
             'description'=>fake()->text(),
+            'subject_id'=>1,
             'exam_id'=>$examId,
             'min_percentage'=>$examId ? fake()->randomFloat(2,0,10) : null,
             'part_id'=>fake()->randomElement(Part::all()->pluck('id')),

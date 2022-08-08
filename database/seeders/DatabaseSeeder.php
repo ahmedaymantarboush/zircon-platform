@@ -59,38 +59,38 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Center::factory()->create([
             'name' => 'المنصة',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'image' => asset('imgs/center1.png'),
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'مجموعات خاصة',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'image' => asset('imgs/center1.png'),
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الأول',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'image' => asset('imgs/center1.png'),
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثاني',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'image' => asset('imgs/center1.png'),
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثالث',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'image' => asset('imgs/center1.png'),
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الرابع',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'image' => asset('imgs/center1.png'),
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الخامس',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'image' => asset('imgs/center1.png'),
+            'governorate_id' => 2,
         ]);
 
         \App\Models\User::factory(50)->create();

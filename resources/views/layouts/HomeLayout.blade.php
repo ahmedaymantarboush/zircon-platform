@@ -30,6 +30,7 @@
 
 <body>
     <input type="hidden" name="token" id="token" value="{{csrf_token()}}">
+
     <nav class="myNav">
         <div class="navProgress">
             <span class='navProgChild'></span>
@@ -82,7 +83,7 @@
                 </button>
                 <div class="left ">
                     <div class="search">
-                        <form action="{{route('search')}}" method="get">
+                        <form action="{{url('search')}}" method="get">
                             <input value="{{request()->q}}" type="search" name="q">
                             <span><i class="fa-solid fa-magnifying-glass"></i></span>
                         </form>

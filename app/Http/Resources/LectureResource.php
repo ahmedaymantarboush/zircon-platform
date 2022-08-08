@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Subject;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 
@@ -41,7 +42,7 @@ class LectureResource extends JsonResource
             'discountExpiryDate'=>$this->discount_expiry_date,
             'time'=>$this->time,
             'totalQuestionsCount'=>$this->total_questions_count,
-            'subject'=>$this->subject->name,
+            'subject'=>$this->subject ? $this->subject->name : Subject::find(env('DEFAULT_SUBJECT_ID')),
             'gradeId'=>$this->grade_id,
             'grade'=>$this->grade->name,
             'publisher'=>$this->publisher ? new UserResource($this->publisher,['id','name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreExamRequest;
 use App\Http\Requests\UpdateExamRequest;
 use App\Http\Resources\ExamResource;
+use App\Http\Resources\PassedExamResource;
 use App\Models\Exam;
+use App\Models\PassedExam;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -44,12 +46,24 @@ class ExamController extends Controller
      */
     public function show($id)
     {
+        $user = apiuser();
         $exam = EXam::find($id);
-        if ($exam){
-            return apiResponse(true,_('الامتحان الذي طلبته موجود'),ExamResource::only($exam,['opened','title','questions']));
-        }else{
+        $passedExam = null;
+        if ($exam):
+            $passedExam = $exam->where(['user_id',$user->id])->first();
+            if (!$passedExam):
+                $exam->startExam();
+                $passedExam = $exam->where(['user_id',$user->id])->first();
+            endif;
+        else:
             return apiResponse(false,_('الامتحان الذي طلبته غير موجود'),[],401);
-        }
+        endif;
+
+        if (!$passedExam):
+            return apiResponse(false,_('عفوا حدث خطأ ما لذلك لم نتمكن من انشاء الامتحان الخاص بك'),[],500);
+        endif;
+
+        return apiResponse(true,_('الامتحان الذي طلبته موجود'),PassedExamResource::only($passedExam,['exam','percentage','exam_started_at','exam_ended_at','finished']));
     }
 
     /**

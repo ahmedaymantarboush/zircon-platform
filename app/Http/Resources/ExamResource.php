@@ -23,22 +23,19 @@ class ExamResource extends JsonResource
     public function toArray($request)
     {
         $questions = $this->examQuestions() ? $this->examQuestions()->inRandomOrder()->get() : null;
-        $opened = false;
-        if ($questions) :
-            $questions = AnswerdQuestionCollection::only($questions, ['id', 'question', 'answer']);
-            $opened = true;
-        else :
-            $questions = $questions ? QuestionCollection::only($questions, ['id', 'name', 'image', 'video', 'audio', 'type', 'choices']) : [];
-        endif;
+        $questions = $questions ? AnswerdQuestionCollection::only($questions, ['id', 'question', 'answer']) : [];
+
         $data = [
             'id' => $this->id,
-            'opened' => $opened,
             'title' => $this->title,
-            'remainingTime' => $opened && $this->openedExams()->where('user_id',apiUser()->id)->first() ? $this->openedExams()->where('user_id',apiUser()->id)->first()->remaining_time : null,
+            'time' => $this->time,
+            'dynamic' => $this->dynamic,
             'publisher' => $this->publisher ? UserResource::only($this->publisher, ['id', 'name', 'email', 'phoneNumber', 'parentPhoneNumber', 'balance', 'role', 'grade', 'governorate']) : null,
-            'part' => $this->part ? new PartResource($this->part) : null,
-            'lecture' => $this->lecture ? new LectureResource($this->lecture) : null,
+            'part' => $this->part ? PartResource::only($this->part, ['name','description']) : null,
+            'lecture' => $this->lecture ? LectureResource::only($this->lecture, []) : null,
+            'dynamicExams' => $this->dynamicExams ? DynamicExamCollection::only($this->dynamicExams, ['id', 'question', 'answer']) : null,
             'questions' => $questions,
+            'passedExam' => $this->passedExam ? PassedExamResource::only($this->passedExam, []) : null,
         ];
 
         if (count($this->parameters) > 0) {

@@ -18,14 +18,14 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $jsonRequest = $request->json();
-        $validator = Validator::make($jsonRequest->all(),[
+        $jsonRequest = json_decode($request->data,true);
+        $validator = Validator::make($jsonRequest,[
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'grade' => ['required', 'string', 'exists:grades,name'],
-            'phone_number' => ['required', 'string', 'unique:users,phone_number','max:13','min:11'],
-            'parent_phone_number' => ['required', 'string','max:13','min:11'],
+            'phoneNumber' => ['required', 'string', 'unique:users,phone_number','max:13','min:11'],
+            'parentPhoneNumber' => ['required', 'string','max:13','min:11'],
             'governorate' => ['required','string','exists:governorates,name'],
             'center'=>['nullable','string','exists:centers,name'],
 
@@ -49,16 +49,16 @@ class AuthController extends Controller
             'grade.string' => "المرحلة التعليمية يجب ان يكون حروف",
             'grade.exists' => "الرجاء اختيار مرحلة دراسية صحيحة",
 
-            'phone_number.required' => "رقم الهاتف مطلوب",
-            'phone_number.unique' => "رقم الهاتف موجود بالفعل",
-            'phone_number.max' => "يجب أن لا يزيد عدد الأرقام عن 13 رقم",
-            'phone_number.min' => "يجب أن لا يقل عدد الأرقام عن 11 رقم",
-            'phone_number.starts_with' => "يجب أن يبدأ رقم الهاتف بـ0 أو +20",
+            'phoneNumber.required' => "رقم الهاتف مطلوب",
+            'phoneNumber.unique' => "رقم الهاتف موجود بالفعل",
+            'phoneNumber.max' => "يجب أن لا يزيد عدد الأرقام عن 13 رقم",
+            'phoneNumber.min' => "يجب أن لا يقل عدد الأرقام عن 11 رقم",
+            'phoneNumber.starts_with' => "يجب أن يبدأ رقم الهاتف بـ0 أو +20",
 
-            'parent_phone_number.required' => "رقم هاتف ولي الأمر مطلوب",
-            'parent_phone_number.max' => "يجب أن لا يزيد عدد الأرقام عن 13 رقم",
-            'parent_phone_number.min' => "يجب أن لا يقل عدد الأرقام عن 11 رقم",
-            'parent_phone_number.starts_with' => "يجب أن يبدأ رقم الهاتف بـ0 أو +20",
+            'parentPhoneNumber.required' => "رقم هاتف ولي الأمر مطلوب",
+            'parentPhoneNumber.max' => "يجب أن لا يزيد عدد الأرقام عن 13 رقم",
+            'parentPhoneNumber.min' => "يجب أن لا يقل عدد الأرقام عن 11 رقم",
+            'parentPhoneNumber.starts_with' => "يجب أن يبدأ رقم الهاتف بـ0 أو +20",
 
             'governorate.required' => "المحافظة مطلوبة",
             'governorate.string' => "المحافظة يجب ان يكون حروف",
@@ -74,9 +74,8 @@ class AuthController extends Controller
         $user = User::create([
             'name'=> $jsonRequest['name'],
             'email'=> $jsonRequest['email'],
-            'phone_number'=> $jsonRequest['phone_number'],
-            'parent_phone_number'=> $jsonRequest['parent_phone_number'],
-            // 'image' ,
+            'phone_number'=> $jsonRequest['phoneNumber'],
+            'parent_phone_number'=> $jsonRequest['parentPhoneNumber'],
             'password'=> Hash::make($jsonRequest['password']),
             'grade_id'=> Grade::where('name',$jsonRequest['grade'])->first()->id,
             'governorate_id'=> Governorate::where('name',$jsonRequest['governorate'])->first()->id,
@@ -100,8 +99,8 @@ class AuthController extends Controller
         ]);
     }
     public function login(Request $request){
-        $jsonRequest = $request->json();
-        $validator = Validator::make($request->all(),[
+        $jsonRequest = json_decode($request->data,true);
+        $validator = Validator::make($jsonRequest,[
             'email' => ['required', 'string', 'email', 'max:255','exists:users,email'],
             'password' => ['required', 'string', 'min:8'],
         ],[

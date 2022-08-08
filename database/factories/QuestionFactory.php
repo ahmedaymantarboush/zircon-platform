@@ -26,6 +26,7 @@ class QuestionFactory extends Factory
             'level' => $this->faker->numberBetween(1,10),
             'grade_id' => $this->faker->randomElement(\App\Models\Grade::all()->pluck('id')),
             'part_id' => $this->faker->randomElement(\App\Models\Part::all()->pluck('id')),
+            'subject_id'=>1,
             'user_id' => $this->faker->randomElement(\App\Models\User::all()->pluck('id')),
         ];
     }
