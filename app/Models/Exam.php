@@ -44,9 +44,9 @@ class Exam extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function startExam()
+    public function startExam($userId = null)
     {
-        $user = apiUser();
+        $user = User::find($userId) ?? apiUser();
         if ($user) :
             if ($this->dynamic) :
                 $dynamicExams = $this->dynamicExams;

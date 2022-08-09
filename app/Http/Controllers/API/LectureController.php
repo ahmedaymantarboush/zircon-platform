@@ -7,6 +7,8 @@ use App\Http\Requests\StoreLectureRequest;
 use App\Http\Requests\UpdateLectureRequest;
 use App\Http\Resources\LectureCollection;
 use App\Http\Resources\LectureResource;
+use App\Models\BalanceCard;
+use App\Models\Coupon;
 use App\Models\Grade;
 use App\Models\Lecture;
 use App\Models\LecturePart;
@@ -36,10 +38,11 @@ class LectureController extends Controller
 
     public function search(Request $request)
     {
-        $jsonRequest = $request->json();
+        dd($request->data);
+        $jsonRequest = json_decode($request->data,true);
 
-        $search = $jsonRequest->get('q');
-        $filters = $jsonRequest->get('filters');
+        $search = $jsonRequest['q'];
+        $filters = $jsonRequest['filters'];
 
         $grades   = Grade::where('name', 'like', "%$search%")->get();
         $parts    = Part::where('name', 'like', "%$search%")->get();
@@ -124,7 +127,7 @@ class LectureController extends Controller
                     endif;
                 });
             endif;
-            
+
             if ($lectures->count()) :
                 $paginatedLectures = clone $lectures;
                 $paginatedLectures = $paginatedLectures->paginate(6);
@@ -168,6 +171,150 @@ class LectureController extends Controller
         endif;
     }
 
+    public function canBuy(Request $request)
+    {
+        $jsonRequest = $request->json();
+        $slug = $jsonRequest['lecture'];
+
+        $couponCode = $jsonRequest['coupon'];
+        $coupon = Coupon::where('code', $couponCode)->first();
+        $couponValue = 0;
+        if ($coupon->used_at) :
+            return apiResponse(false, _("هذا الكوبون مستخدم بالفعل"), [], 401);
+        elseif ($coupon->expiry_date < now()) :
+            return apiResponse(false, _("هذا الكوبون منتهي الصلاحية"), [], 401);
+        elseif ($coupon) :
+            $couponValue = $coupon->value;
+        endif;
+
+        $lecture = Lecture::where('slug', $slug)->first();
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
+        endif;
+        if (!$lecture) :
+            return apiResponse(false, _('المحاضرة المطلوبة غير موجودة'), [], 404);
+        endif;
+
+        if (($user->balance + $couponValue) < getPrice($lecture)) :
+            return apiResponse(false, _("الرصيد الحالي ($user->balance ج.م) لا يكفي لاتمام عملية الشراء"), [], 401);
+        elseif ($user->balance < getPrice($lecture)) :
+            return apiResponse(true, _('الرصيد كافي لاتمام عملية الشراء'), [
+                "price" => getPrice($lecture),
+                "balance" => $user->balance,
+                "couponCode" => $couponCode,
+                "couponValue" => $couponValue,
+            ], 200);
+        endif;
+    }
+
+    public function checkCoupon(Request $request)
+    {
+        $jsonRequest = $request->json();
+
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
+        endif;
+
+        $couponCode = $jsonRequest['code'];
+        $coupon = Coupon::where('code', $couponCode)->first();
+        $couponValue = 0;
+        if ($coupon->used_at) :
+            return apiResponse(false, _("هذا الكوبون مستخدم بالفعل"), [], 401);
+        elseif ($coupon) :
+            $couponValue = $coupon->value;
+        endif;
+
+        $slug = $jsonRequest['lecture'];
+        $lecture = Lecture::where('slug', $slug)->first();
+        if (!$lecture) :
+            return apiResponse(false, _('المحاضرة المطلوبة غير موجودة'), [], 404);
+        endif;
+        $price = getPrice($lecture);
+
+        $balance = $user->balance + $couponValue;
+        if ($balance < $price) :
+            return apiResponse(false, _("الرصيد الحالي ($balance ج.م) لا يكفي لاتمام عملية الشراء"), [], 401);
+
+        elseif ($balance >= $price) :
+
+            return apiResponse(true, _("تمت عملية الشراء بنجاح"), [
+                "price" => $price,
+                "balance" => $user->balance,
+                "couponCode" => $couponCode,
+                "couponValue" => $couponValue,
+            ], 200);
+        endif;
+    }
+
+    public function buy(Request $request)
+    {
+        $jsonRequest = $request->json();
+
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
+        endif;
+
+        $couponCode = $jsonRequest['code'];
+        $coupon = Coupon::where('code', $couponCode)->first();
+        $couponValue = 0;
+        if ($coupon) :
+            $couponValue = $coupon->value;
+        endif;
+
+        $slug = $jsonRequest['lecture'];
+        $lecture = Lecture::where('slug', $slug)->first();
+        if (!$lecture) :
+            return apiResponse(false, _('المحاضرة المطلوبة غير موجودة'), [], 404);
+        endif;
+        $price = getPrice($lecture);
+
+        $balance = $user->balance + $couponValue;
+        if ($balance < $price) :
+            return apiResponse(false, _("الرصيد الحالي ($balance ج.م) لا يكفي لاتمام عملية الشراء"), [], 401);
+
+        elseif ($balance >= $price) :
+
+            $user->balance = $balance - $price;
+            if ($coupon) :
+                $coupon->user_id = $user->id;
+                $coupon->used_at = now();
+                if ($coupon->save()) :
+                    if ($user->save()) :
+                        if ($user->ownedLectures()->create(['lecture_id' => $lecture->id])) :
+                            return apiResponse(true, _("تمت عملية الشراء بنجاح"), [
+                                "price" => $price,
+                                "balance" => $user->balance,
+                                "couponCode" => $couponCode,
+                                "couponValue" => $couponValue,
+                            ], 200);
+                        endif;
+                    endif;
+                endif;
+            else :
+                if ($user->save()) :
+                    if ($user->ownedLectures()->create(['lecture_id' => $lecture->id])) :
+                        return apiResponse(true, _("تمت عملية الشراء بنجاح"), [
+                            "price" => $price,
+                            "balance" => $user->balance,
+                            "couponCode" => $couponCode,
+                            "couponValue" => $couponValue,
+                        ], 200);
+                    endif;
+                endif;
+            endif;
+        endif;
+
+        return apiResponse(false, _("حدث خطأ أثناء الشراء يرجى المحاولة مرة أخرى"), [
+            "price" => $price,
+            "balance" => $user->balance,
+            "couponCode" => $couponCode,
+            "couponValue" => $couponValue,
+        ], 500);
+    }
+
     public function lastLectures()
     {
         $grade3 = Lecture::with('publisher')->where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 3])->get();
@@ -199,7 +346,7 @@ class LectureController extends Controller
 
     private function lectureData(Request $request, $fileName = 'poster', $oldFile = null)
     {
-        $data = json_decode($request->data,true);
+        $data = json_decode($request->data, true);
 
         $user = apiUser();
         if (!$user) :
@@ -209,7 +356,7 @@ class LectureController extends Controller
         $data['description'] = removeCustomTags($data['description'], ['iframe', 'link', 'script']);
         $poster = '';
         if (array_key_exists('poster', $request->all())) {
-            $poster = uploadFile($request, $fileName,$data['title'] ,$oldFile ? $oldFile : '');
+            $poster = uploadFile($request, $fileName, $data['title'], $oldFile ? $oldFile : '');
             if ($poster) {
                 if ($oldFile) {
                     $oldFile->poster = $poster;
@@ -224,14 +371,14 @@ class LectureController extends Controller
             'semester' => $data['semester'],
             'short_description' => $data['shortDescription'],
             'description' => $data['description'],
-            'published' => $data['published'] ,
+            'published' => $data['published'],
             'promotinal_video_url' => $data['promotinalVideoUrl'],
             'poster' => $poster,
             'meta_keywords' => $data['meteKeywords'] . apiUser()->name . ',' . $data['title'] . ',' . $data['semester'] . ',' . Subject::find(env('DEFAULT_SUBJECT_ID'))->name . ',' . Grade::find($data['grade'])->name,
             'meta_description' => $data['metaDescription'] ? $data['metaDescription'] : $data['shortDescription'],
             'slug' => $data['slug'],
             'price' => $data['free'] ? 0 : abs($data['price']),
-            'final_price' =>  $data['free'] ? 0 : ( $data['hasDiscount'] ? ( abs($data['finalPrice']) > abs($data['price']) ? abs($data['finalPrice']) : abs($data['price'] ) ) : abs($data['price']) ),
+            'final_price' =>  $data['free'] ? 0 : ($data['hasDiscount'] ? (abs($data['finalPrice']) > abs($data['price']) ? abs($data['finalPrice']) : abs($data['price'])) : abs($data['price'])),
             'discount_expiry_date' => $data['discountExpiryDate'] > now() ? $data['discountExpiryDate'] : null,
             'grade_id' => $data['grade'],
             'time' => '0 ساعة',
@@ -243,7 +390,7 @@ class LectureController extends Controller
 
     public function store(StoreLectureRequest $request)
     {
-        $data = json_decode($request->data,true);
+        $data = json_decode($request->data, true);
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
@@ -289,7 +436,7 @@ class LectureController extends Controller
     {
         $lecture = Lecture::where('slug', $slug)->first();
         if ($lecture) :
-            return apiResponse(true, _('تم العثور على المحاضرة بنجاح'), LectureResource::only($lecture,['title','shortDescription','description','publisherName','updatedAt','sections','promotinalVideoUrl','poster','price','finalPrice','discountExpiryDate','time','totalQuestionsCount']));
+            return apiResponse(true, _('تم العثور على المحاضرة بنجاح'), LectureResource::only($lecture, ['title', 'shortDescription', 'description', 'publisherName', 'updatedAt', 'sections', 'promotinalVideoUrl', 'poster', 'price', 'finalPrice', 'discountExpiryDate', 'time', 'totalQuestionsCount']));
         else :
             return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 400);
         endif;

@@ -127,5 +127,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\LectureUser::factory(25)->create();
 
         \App\Models\DynamicExam::factory(500)->create();
+
+        \App\Models\BalanceCard::factory(100)->create();
     }
 }

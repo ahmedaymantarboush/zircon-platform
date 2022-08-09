@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
-            $table->string('name',16);
+            $table->string('code',16);
             $table->float('value');
-            $table->date('discount_expiry_date')->nullable();
+            $table->date('expiry_date')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->dateTime('used_at')->nullable();
             $table->timestamps();
         });
     }

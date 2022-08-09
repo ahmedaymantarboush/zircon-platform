@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\BalanceCardController;
 use App\Http\Controllers\API\CenterController;
 use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\LectureController;
 use App\Http\Controllers\API\TestimonialController;
+use App\Http\Controllers\API\UserController;
 use App\Http\Resources\UserResource;
 use App\Models\Lesson;
 use App\Models\Question;
@@ -54,3 +56,10 @@ Route::apiResource('/lessons',LessonController::class);
 
 //       EXAM ROUTES
 Route::apiResource('/exams',ExamController::class);
+
+//       USER ROUTES
+Route::post('recharge',[BalanceCardController::class,'recharge']);
+
+//       USER ROUTES
+Route::post('checkCoupon',[CouponController::class,'checkCoupon']);
+

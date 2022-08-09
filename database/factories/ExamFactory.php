@@ -26,7 +26,6 @@ class ExamFactory extends Factory
             'description'=>fake()->text(),
             'time'=>fake()->numberBetween(60,600),
             'user_id'=>fake()->randomElement(User::all()->pluck('id')),
-            'part_id'=>fake()->randomElement(Part::all()->pluck('id')),
             'subject_id'=>1,
             'lecture_id'=>fake()->randomElement(Lecture::all()->pluck('id')),
         ];
