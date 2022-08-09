@@ -22,7 +22,7 @@ class LectureController extends Controller
     {
         $gradeId = $id - 9;
         $lectures = Lecture::where(['published' => true, 'grade_id' => $gradeId])->orderBy('id', 'desc')->get();
-        if (count($lectures)) :
+        if (Grade::find($gradeId)) :
             return view("home.grades", compact('lectures'));
         else :
             return abort(404);
@@ -32,86 +32,14 @@ class LectureController extends Controller
     public function search()
     {
         $search = request()->q;
-        $filters = request()->filters;
-        $subjects  = [];
-        $grades    = [];
-        $parts     = [];
-        $users     = [];
-        $lectures  = Lecture::where(['published' => true]);
-        // if ($filters) :
 
-
-        //     if ($filters) :
-        //         $gradesFilter = $filters->grades;
-        //         $subjectsFilter = $filters->subjects;
-        //         $partsFilter = $filters->parts;
-        //         $usersFilter = $filters->users;
-
-        //         if (count($gradesFilter)) :
-        //             foreach ($gradesFilter as $gradeId) :
-        //                 $grades = Grade::where('name', 'like', "%$search%")->Where(function ($query) use ($gradeId) {
-        //                     $query->orWhere('id', $gradeId);
-        //                 })->get();
-        //             endforeach;
-        //         endif;
-        //         if (count($subjectsFilter)) :
-        //             foreach ($subjectsFilter as $subjectId) :
-        //                 $subjecs = Subject::where('name', 'like', "%$search%")->Where(function ($query) use ($subjectId) {
-        //                     $query->orWhere('id', $subjectId);
-        //                 })->get();
-        //             endforeach;
-        //         endif;
-        //         if (count($partsFilter)) :
-        //             foreach ($partsFilter as $partId) :
-        //                 $parts = Part::where('name', 'like', "%$search%")->Where(function ($query) use ($partId) {
-        //                     $query->orWhere('id', $partId);
-        //                 })->get();
-        //             endforeach;
-        //         endif;
-        //         if (count($usersFilter)) :
-        //             foreach ($usersFilter as $userId) :
-        //                 $users = User::where('name', 'like', "%$search%")->Where(function ($query) use ($userId) {
-        //                     $query->orWhere('id', $userId);
-        //                 })->get();
-        //             endforeach;
-        //         endif;
-        //     endif;
-
-        //     // foreach ([] as $filter) :
-        //     //     if (str_starts_with($filter, 'subject')) :
-        //     //         $subjectId = (int) substr($filter, 8);
-        //     //         $subjects = Subject::where('name', 'like', "%$search%")->Where(function ($query) use ($subjectId) {
-        //     //             $query->orWhere('id', $subjectId);
-        //     //         })->get();
-        //     //     elseif (str_starts_with($filter, 'grade')) :
-        //     //         $gradeId = (int) substr($filter, 5);
-        //     //         $grades = Grade::where('name', 'like', "%$search%")->Where(function ($query) use ($gradeId) {
-        //     //             $query->orWhere('id', $gradeId);
-        //     //         })->get();
-        //     //     elseif (str_starts_with($filter, 'part')) :
-        //     //         $partId = (int) substr($filter, 4);
-        //     //         $parts = Part::where('name', 'like', "%$search%")->Where(function ($query) use ($partId) {
-        //     //             $query->orWhere('id', $partId);
-        //     //         })->get();
-        //     //     elseif (str_starts_with($filter, 'user')) :
-        //     //         $partId = (int) substr($filter, 4);
-        //     //         $parts = Part::where('name', 'like', "%$search%")->Where(function ($query) use ($partId) {
-        //     //             $query->orWhere('id', $partId);
-        //     //         })->get();
-        //     //     elseif ($filter == 'free') :
-        //     //         $lectures->orWhere('final_price', 0);
-        //     //     elseif ($filter == 'hasDiscount') :
-        //     //         $lectures->orWhere('discount_expiry_date', '!=', null);
-        //     //     elseif ($filter == 'paid') :
-        //     //         $lectures->orWhere('final_price', '!=', 0);
-        //     //     endif;
-        //     // endforeach;
-        // endif;
-        $grades   = count($grades) ? $grades : Grade::where('name', 'like', "%$search%")->get();
-        $parts    = count($parts) ? $parts : Part::where('name', 'like', "%$search%")->get();
-        $subjects = count($subjects) ? $subjects : Subject::where('name', 'like', "%$search%")->get();
+        $grades   = Grade::where('name', 'like', "%$search%")->get();
+        $parts    = Part::where('name', 'like', "%$search%")->get();
+        $subjects = Subject::where('name', 'like', "%$search%")->get();
         $users    = User::where('name', 'like', "%$search%")->get();
         $lessons  = Lesson::where('title', 'like', "%$search%")->get();
+        $lectures  = $search ? Lecture::where(['published' => true]) : null;
+
         if ($search) :
             $lectures = $lectures->where(function ($q) use ($search, $users, $parts, $grades, $lessons, $subjects) {
                 $q->where('title', 'LIKE', "%$search%")
@@ -142,9 +70,55 @@ class LectureController extends Controller
                         });
                     });
             });
-        else :
-            $lectures = Null;
+
+        // if ($filters) :
+        //     $gradesFilter = in_array('grades',$filters) ? ;
+
+        //     if (array_key_exists('price', $filters)) :
+        //         $free = array_key_exists('free', $filters['price']) ? $filters['price']['free'] : false;
+        //         $hasDiscount = array_key_exists('hasDiscount', $filters['price']) ? $filters['price']['hasDiscount'] : false;
+        //         $Paid = array_key_exists('paid', $filters['price']) ? $filters['price']['paid'] : false;
+        //     else :
+        //         $free = false;
+        //         $hasDiscount = false;
+        //         $Paid = false;
+        //     endif;
+        //     $subjectsFilter = in_array('subjects',$filters);
+        //     $partsFilter = in_array('parts',$filters);
+        //     $usersFilter = in_array('users',$filters);
+
+        //     if (count($gradesFilter)) :
+        //         $lectures->whereIn('grade_id', $gradesFilter);
+        //     endif;
+
+        //     if (count($subjectsFilter)) :
+        //         $lectures->whereIn('subject_id', $subjectsFilter);
+        //     endif;
+
+        //     if (count($partsFilter)) :
+        //         $lectures->whereHas('parts', function ($query) use ($partsFilter) {
+        //             $query->whereIn('part_id', $partsFilter);
+        //         });
+        //     endif;
+
+        //     if (count($usersFilter)) :
+        //         $lectures->whereIn('user_id', $usersFilter);
+        //     endif;
+
+        //     $lectures->where(function ($q) use ($free, $hasDiscount, $Paid) {
+        //         if ($free) :
+        //             $q->orWhere('price', 0);
+        //         endif;
+        //         if ($hasDiscount) :
+        //             $q->orWhere('discount_expiry_date', '>', now());
+        //         endif;
+        //         if ($Paid) :
+        //             $q->orWhere('price', '>', 0);
+        //         endif;
+        //     });
+        // endif;
         endif;
+
         return view("home.search", compact('lectures'));
     }
 

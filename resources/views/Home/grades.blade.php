@@ -6,7 +6,14 @@
 @endsection
 @section('content')
     <section class="header grade{{$lectures[0]->grade->id}}">
-        <h2 class='pageName'>اشهر الصف <span>الأول الثانوي</span></h2>
+        @php
+            $grades = [
+                '1' => "الأول الثانوي",
+                '2' => "الثاني الثانوي",
+                '3' => "الثالث الثانوي",
+            ]
+        @endphp
+        <h2 class='pageName'>شهور الصف <span>{{$grades[$lectures[0]->grade->id]}}</span></h2>
     </section>
     <section class='levelsBox'>
         <div class="container">

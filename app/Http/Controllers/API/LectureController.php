@@ -124,6 +124,7 @@ class LectureController extends Controller
                     endif;
                 });
             endif;
+            
             if ($lectures->count()) :
                 $paginatedLectures = clone $lectures;
                 $paginatedLectures = $paginatedLectures->paginate(6);

@@ -73,45 +73,32 @@
 
                             <h3 class="contentsHeading">المحتويات</h3>
                             <div class="headingLessonsParent">
-                                <span class="numOfLesson contentNum">{{count(\App\Models\Lesson::all())}}</span>
+                                <span class="numOfLesson contentNum">{{ count(\App\Models\Lesson::all()) }}</span>
                                 <span>درس مشروح</span>
                             </div>
                             <div class="headingQuestionsParent">
-                                <span class="numOfQuestion contentNum">{{count(\App\Models\Question::all())}}</span>
+                                <span class="numOfQuestion contentNum">{{ count(\App\Models\Question::all()) }}</span>
                                 <span>سؤال و تدريب</span>
                             </div>
                         </div>
                         <div class="headerTestimonial gs_reveal gs_reveal_fromRight">
                             <div class="swiper headerTestimonialSwiper">
                                 <div class="swiper-wrapper">
-                                    <div class="h-t-item swiper-slide">
-                                        <div class="h-t-content">
-                                            <h3 class="h-t-heading">
-                                                أحمد طربوش <span class="h-t-grade">405</span> ~
-                                            </h3>
-                                            <p class="h-t-text">احب اشكر استاذي محمد من كل قلبي على الدعم و المجهود
-                                                الكبير اللي
-                                                عمله
-                                                معانا</p>
+                                    @foreach (\App\Models\Testimonial::orderBy('degree', 'desc')->take(4)->get() as $testimonial)
+                                        <div class="h-t-item swiper-slide">
+                                            <div class="h-t-content">
+                                                <h3 class="h-t-heading">
+                                                    {{ $testimonial->student_name }} <span
+                                                        class="h-t-grade">{{ $testimonial->degree }}</span> ~
+                                                </h3>
+                                                <p class="h-t-text">{{ $testimonial->content }}</p>
+                                            </div>
+                                            <div class="h-t-image">
+                                                <img src="{{ $testimonial->image }}" alt="">
+                                            </div>
                                         </div>
-                                        <div class="h-t-image">
-                                            <img src="{{ URL::asset('imgs/h-t-img.jpeg') }}" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="h-t-item swiper-slide">
-                                        <div class="h-t-content">
-                                            <h3 class="h-t-heading">
-                                                علي علاء <span class="h-t-grade">405</span> ~
-                                            </h3>
-                                            <p class="h-t-text">احب اشكر استاذي محمد من كل قلبي على الدعم و المجهود
-                                                الكبير اللي
-                                                عمله
-                                                معانا</p>
-                                        </div>
-                                        <div class="h-t-image">
-                                            <img src="{{ URL::asset('imgs/h-t-img.jpeg') }}" alt="">
-                                        </div>
-                                    </div>
+                                    @endforeach
+
                                 </div>
                             </div>
                         </div>
@@ -121,25 +108,18 @@
                             </span>
                             <div class="swiper headerLocationSwiper">
                                 <div class="swiper-wrapper">
-                                    @foreach (\App\Models\Center::where('id','>',2)->orderBy('id','desc')->get() as $grade)
-                                        <a class="h-l-item swiper-slide" href='#'>
+                                    @foreach (\App\Models\Center::where('id', '>', 2)->orderBy('id', 'desc')->get() as $center)
+                                        {{-- {{ $center->name }} --}}
+                                        <a class="h-l-item swiper-slide" href='{{ $center->url }}'>
                                             <div class="h-l-content">
-                                                <h3 class="h-l-heading">سنتر المجرة - الشرقية</h3>
+                                                <h3 class="h-l-heading">{{ $center->name }} -
+                                                    {{ $center->govenrnorate->name }}</h3>
                                             </div>
                                             <div class="h-l-image">
-                                                <img src="{{ URL::asset('imgs/center1.png') }}" alt="">
+                                                <img src="{{ $center->image }}" alt="">
                                             </div>
                                         </a>
                                     @endforeach
-                                    {{-- <a class="h-l-item swiper-slide" href='#'>
-                                        <div class="h-l-content">
-                                            <h3 class="h-l-heading">سنتر المجرة - الشرقية</h3>
-                                        </div>
-                                        <div class="h-l-image">
-                                            <img src="{{ URL::asset('imgs/center1.png') }}" alt="">
-                                        </div>
-
-                                    </a> --}}
                                 </div>
                             </div>
                         </div>
@@ -155,7 +135,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem gs_reveal gs_reveal_fromRight" href="{{route('months.index',10)}}">
+                    <a class="levelItem gs_reveal gs_reveal_fromRight" href="{{ route('months.index', 10) }}">
                         <div class="l-image  ">
                             <img src="{{ URL::asset('imgs/physics1.png') }}" class='' alt="">
                         </div>
@@ -165,7 +145,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem gs_reveal gs_reveal_fromUp" href="{{route('months.index',13)}}">
+                    <a class="levelItem gs_reveal gs_reveal_fromUp" href="{{ route('months.index', 11) }}">
                         <div class="l-image ">
                             <img src="{{ URL::asset('imgs/physics2.png') }}" class='' alt="">
                         </div>
@@ -175,7 +155,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem gs_reveal gs_reveal_fromLeft" href="{{route('months.index',12)}}">
+                    <a class="levelItem gs_reveal gs_reveal_fromLeft" href="{{ route('months.index', 12) }}">
                         <div class="l-image ">
                             <img src="{{ URL::asset('imgs/physics3.png') }}" class='' alt="">
                         </div>
@@ -199,9 +179,10 @@
             <div class="row text-center" style='overflow:hidden'>
                 @foreach ($lectures as $lecture)
                     <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromRight">
-                        <a class="latestCard grade{{$lecture->grade->id}}" href='{{route('months.show',$lecture->slug)}}'>
+                        <a class="latestCard grade{{ $lecture->grade->id }}"
+                            href='{{ route('months.show', $lecture->slug) }}'>
                             <div class="cardGrade">
-                                {{$lecture->grade->name}}
+                                {{ $lecture->grade->name }}
                             </div>
                             <div class="image">
                                 <img src="{{ $lecture->poster }}" alt="">
@@ -209,17 +190,17 @@
                             <div class="content">
                                 <div class="lessonsCount">
                                     <span class='cardIcon'><i class="fa-solid fa-book"></i></span>
-                                    <span class='cardLessonsCount'>{{count($lecture->lessons)}} درس</span>
+                                    <span class='cardLessonsCount'>{{ count($lecture->lessons) }} درس</span>
                                 </div>
-                                <h3 class="monthName">{{$lecture->title}}</h3>
+                                <h3 class="monthName">{{ $lecture->title }}</h3>
                                 <div class="details">
                                     <div class="detailItem">
-                                        <span class='cardPrice'>{{getPrice($lecture)}}</span>
+                                        <span class='cardPrice'>{{ getPrice($lecture) }}</span>
                                         <span>ج.م</span>
                                     </div>
                                     <div class="detailItem users">
                                         <span><i class="fa-solid fa-user"></i></span>
-                                        <span>{{count($lecture->owners)}}</span>
+                                        <span>{{ count($lecture->owners) }}</span>
                                     </div>
                                 </div>
                             </div>

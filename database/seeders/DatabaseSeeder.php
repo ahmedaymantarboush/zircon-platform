@@ -59,37 +59,44 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Center::factory()->create([
             'name' => 'المنصة',
-            'image' => asset('imgs/center1.png'),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
             'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'مجموعات خاصة',
-            'image' => asset('imgs/center1.png'),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
             'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الأول',
-            'image' => asset('imgs/center1.png'),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
             'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثاني',
-            'image' => asset('imgs/center1.png'),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
             'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثالث',
-            'image' => asset('imgs/center1.png'),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
             'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الرابع',
-            'image' => asset('imgs/center1.png'),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
             'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الخامس',
-            'image' => asset('imgs/center1.png'),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
             'governorate_id' => 2,
         ]);
 

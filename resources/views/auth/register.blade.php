@@ -127,9 +127,18 @@
                     </div>
                 @enderror
             </div>
-            <a href="{{ route('password.request') }}" class='forgotPassword'>هل نسيت كلمة المرور ؟</a>
             <input type="submit" value='تسجيل' class='reg'>
-            <p class='haveAccount'>هل لديك حساب بالفعل؟ <a href="{{ route('register') }}">تسجيل الدخول</a></p>
+            <p class='haveAccount'>هل لديك حساب بالفعل؟ <a href="{{ route('login') }}">تسجيل الدخول</a></p>
         </form>
+    </div>
+    <div class="image">
+        <img src="{{ URL::asset('imgs/elbirryLogin.png') }}" alt="">
+        <div class="imageContent">
+            <p>سجل حسابك دلوقتي و خليك
+
+                مع البري</p>
+
+            <span class='teacherName'>أ. محمد البري</span>
+        </div>
     </div>
 @endsection

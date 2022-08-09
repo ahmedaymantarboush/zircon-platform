@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
+            $table->string('url');
             $table->foreignId('governorate_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
