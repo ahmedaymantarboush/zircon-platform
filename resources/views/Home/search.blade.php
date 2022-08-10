@@ -57,7 +57,7 @@
                                                     @php
                                                         $id = $grade->id + 9;
                                                     @endphp
-                                                    <input type="checkbox" @checked(request()->input("grade$id"))
+                                                    <input type="checkbox" value="{{$grade->id}}" @checked(request()->input("grade$id"))
                                                         name="grade{{ $id }}" />
                                                     <label for="">
                                                         {{ $grade->name }}
@@ -151,7 +151,7 @@
                                                         $partQ->where('part_id', $part->id);
                                                     })->get()))
                                                 <li class="filter-item">
-                                                    <input type="checkbox" @checked(request()->input("part$part->id"))
+                                                    <input type="checkbox" value="{{$part}}" @checked(request()->input("part$part->id"))
                                                         name="part{{ $part->id }}" />
                                                     <label for="">
                                                         {{ $part->name }}
