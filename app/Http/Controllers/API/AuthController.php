@@ -53,7 +53,7 @@ class AuthController extends Controller
             'phoneNumber.unique' => "رقم الهاتف موجود بالفعل",
             'phoneNumber.max' => "يجب أن لا يزيد عدد الأرقام عن 13 رقم",
             'phoneNumber.min' => "يجب أن لا يقل عدد الأرقام عن 11 رقم",
-            'phoneNumber.starts_with' => "يجب أن يبدأ رقم الهاتف بـ0 أو +20",
+            'phoneNumber.starts_with' => "يجب أن يبدأ رقم الهاتف بـ0",
 
             'parentPhoneNumber.required' => "رقم هاتف ولي الأمر مطلوب",
             'parentPhoneNumber.max' => "يجب أن لا يزيد عدد الأرقام عن 13 رقم",
@@ -87,13 +87,12 @@ class AuthController extends Controller
         ]);
 
         if (!$user){
-            return apiResponse(false,_('حدث خطأ فالسيرفر ولم يتم انشاء المستخدم يرجىة المحالوة مرة أخرى'),[],500);
+            return apiResponse(false,_('حدث خطأ ولم يتم انشاء المستخدم يرجىة المحالوة مرة أخرى'),[],500);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return apiResponse(true,_('تم انشاء المسخدم بنجاح'),[
-            'user' => new UserResource($user),
             '_token'=>$token,
             '_token_type'=>'Bearer'
         ]);
@@ -126,7 +125,6 @@ class AuthController extends Controller
         }
         $token = $user->createToken('auth_token')->plainTextToken;
         return apiResponse(true,_('تم تسجيل الدخول بنجاح'),[
-            'user' => UserResource::only($user,['name','email','phoneNumber','parentPhoneNumber','balance','code','role','center','governorate','grade']),
             '_token'=>$token,
             '_token_type'=>'Bearer'
         ]);
@@ -139,7 +137,7 @@ class AuthController extends Controller
         if ($user->tokens()->delete()):
             return apiResponse(true,_('تم تسجيل الخروج بنجاح'),[]);
         else:
-            return apiResponse(true,_('حدث خطأ أثناء تسجيل الخروج'),[]);
+            return apiResponse(false,_('حدث خطأ أثناء تسجيل الخروج'),[],500);
         endif;
     }
 }

@@ -159,10 +159,10 @@ class LectureController extends Controller
                 endif;
                 return apiResponse(true, _('تم العثور على محاضرات'), $data);
             else :
-                return apiResponse(false, _('لا يوجد نتائج'), [], 401);
+                return apiResponse(false, _('لا يوجد نتائج'), [], 404);
             endif;
         else :
-            return apiResponse(false, _('لا يوجد جملة بحث'), [], 401);
+            return apiResponse(false, _('لا يوجد جملة بحث'), [], 404);
         endif;
     }
 
@@ -247,7 +247,7 @@ class LectureController extends Controller
         if ($lectures) {
             return apiResponse(true, _('هناك محاضرات موجودة'), $lectures);
         } else {
-            return apiResponse(false, _('لا يوجد محاضرات'), [], 401);
+            return apiResponse(false, _('لا يوجد محاضرات'), [], 404);
         }
     }
     /**

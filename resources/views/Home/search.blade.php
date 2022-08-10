@@ -223,6 +223,7 @@
             @include('components.Home.pagination', ['paginator' => $lectures->paginate(6)])
         </div>
     @else
+        
     @endif
 @endsection
 @section('javascript')
