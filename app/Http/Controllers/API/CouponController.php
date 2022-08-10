@@ -41,44 +41,45 @@ class CouponController extends Controller
     }
 
 
-    public function checkCoupon(Request $request)
+    public function useCoupon(Request $request)
     {
-        $jsonRequest = $request->json();
+
+        $jsonRequest = json_decode($request->data, true);
+        $code = $jsonRequest['code'];
 
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
         endif;
 
-        $couponCode = $jsonRequest['code'];
-        $coupon = Coupon::where('code', $couponCode)->first();
-        $couponValue = 0;
-        if ($coupon->used_at) :
+        $coupon = Coupon::where('code', $code)->first();
+
+        if (!$coupon) :
+            return apiResponse(false, _("الكود الذي أدخلته غير صحيح رصيدك الحالي $user->balance ج.م"), [], 404);
+        elseif ($coupon->used_at) :
             return apiResponse(false, _("هذا الكوبون مستخدم بالفعل"), [], 401);
-        elseif ($coupon) :
-            $couponValue = $coupon->value;
+        elseif ($coupon->expiry_date < now()) :
+            return apiResponse(false, _("هذا الكوبون منتهي الصلاحية"), [], 401);
         endif;
 
-        $slug = $jsonRequest['lecture'];
-        $lecture = Lecture::where('slug', $slug)->first();
-        if (!$lecture) :
-            return apiResponse(false, _('المحاضرة المطلوبة غير موجودة'), [], 404);
+        $user->balance += $coupon->value;
+        $coupon->user_id = $user->id;
+        $coupon->used_at = now();
+        if ($user->save()) :
+            if ($coupon->save()) :
+                return apiResponse(true, _("تم شحن الرصيد بنجاح رصيدك الحالي $user->balance ج.م"), [
+                    'code' => $coupon->code,
+                    'value' => $coupon->value,
+                    'balance' => $user->balance
+                ], 200);
+            endif;
         endif;
-        $price = getPrice($lecture);
 
-        $balance = $user->balance + $couponValue;
-        if ($balance < $price) :
-            return apiResponse(false, _("الرصيد الحالي ($balance ج.م) لا يكفي لاتمام عملية الشراء"), [], 401);
-
-        elseif ($balance >= $price) :
-
-            return apiResponse(true, _("تمت عملية الشراء بنجاح"), [
-                "price" => $price,
-                "balance" => $user->balance,
-                "couponCode" => $couponCode,
-                "couponValue" => $couponValue,
-            ], 200);
-        endif;
+        return apiResponse(true, _("حدث خطأ أثناء شحن الكوبون"), [
+            'code' => $coupon->code,
+            'value' => $coupon->value,
+            'balance' => $user->balance
+        ], 200);
     }
 
     /**

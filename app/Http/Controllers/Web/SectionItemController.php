@@ -1,33 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Models\SectionItem;
 use App\Http\Requests\StoreSectionItemRequest;
-use App\Http\Requests\UpdateSectionItemRequest;
+use App\Http\Controllers\Controller;
 
 class SectionItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -36,51 +16,37 @@ class SectionItemController extends Controller
      */
     public function store(StoreSectionItemRequest $request)
     {
-        //
+        $data = $request->all();
+        SectionItem::create([
+            'title' => $data['examTitle'],
+            'type' => 'exam',
+            'exam_id' => $data['item'],
+            'order' => count(SectionItem::where('section_id',$data['section'])->get()) + 1,
+            'section_id' => $data['section'],
+        ]);
+
+        return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\SectionItem  $sectionItem
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SectionItem $sectionItem)
+    public function sortItems()
     {
-        //
+        $data = request()->all();
+        foreach ($data as $key => $val){
+            if (str_starts_with($key,"order")){
+                SectionItem::findOrFail( intval( substr($key,5) ) )->update(['order' => $val]);
+            }
+        }
+        return redirect()->back();
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\SectionItem  $sectionItem
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SectionItem $sectionItem)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateSectionItemRequest  $request
-     * @param  \App\Models\SectionItem  $sectionItem
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateSectionItemRequest $request, SectionItem $sectionItem)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\SectionItem  $sectionItem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SectionItem $sectionItem)
+    public function destroy($id)
     {
-        //
+        SectionItem::findOrFail($id)->delete();
+        return redirect()->back();
     }
 }

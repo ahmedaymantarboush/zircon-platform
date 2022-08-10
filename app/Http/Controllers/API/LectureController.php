@@ -7,7 +7,6 @@ use App\Http\Requests\StoreLectureRequest;
 use App\Http\Requests\UpdateLectureRequest;
 use App\Http\Resources\LectureCollection;
 use App\Http\Resources\LectureResource;
-use App\Models\Coupon;
 use App\Models\Grade;
 use App\Models\Lecture;
 use App\Models\LecturePart;
@@ -172,17 +171,6 @@ class LectureController extends Controller
         $jsonRequest = $request->json();
         $slug = $jsonRequest['lecture'];
 
-        $couponCode = $jsonRequest['coupon'];
-        $coupon = Coupon::where('code', $couponCode)->first();
-        $couponValue = 0;
-        if ($coupon->used_at) :
-            return apiResponse(false, _("هذا الكوبون مستخدم بالفعل"), [], 401);
-        elseif ($coupon->expiry_date < now()) :
-            return apiResponse(false, _("هذا الكوبون منتهي الصلاحية"), [], 401);
-        elseif ($coupon) :
-            $couponValue = $coupon->value;
-        endif;
-
         $lecture = Lecture::where('slug', $slug)->first();
         $user = apiUser();
         if (!$user) :
@@ -192,54 +180,12 @@ class LectureController extends Controller
             return apiResponse(false, _('المحاضرة المطلوبة غير موجودة'), [], 404);
         endif;
 
-        if (($user->balance + $couponValue) < getPrice($lecture)) :
+        if ($user->balance < getPrice($lecture)) :
             return apiResponse(false, _("الرصيد الحالي ($user->balance ج.م) لا يكفي لاتمام عملية الشراء"), [], 401);
         elseif ($user->balance < getPrice($lecture)) :
             return apiResponse(true, _('الرصيد كافي لاتمام عملية الشراء'), [
                 "price" => getPrice($lecture),
                 "balance" => $user->balance,
-                "couponCode" => $couponCode,
-                "couponValue" => $couponValue,
-            ], 200);
-        endif;
-    }
-
-    public function checkCoupon(Request $request)
-    {
-        $jsonRequest = $request->json();
-
-        $user = apiUser();
-        if (!$user) :
-            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
-        endif;
-
-        $couponCode = $jsonRequest['code'];
-        $coupon = Coupon::where('code', $couponCode)->first();
-        $couponValue = 0;
-        if ($coupon->used_at) :
-            return apiResponse(false, _("هذا الكوبون مستخدم بالفعل"), [], 401);
-        elseif ($coupon) :
-            $couponValue = $coupon->value;
-        endif;
-
-        $slug = $jsonRequest['lecture'];
-        $lecture = Lecture::where('slug', $slug)->first();
-        if (!$lecture) :
-            return apiResponse(false, _('المحاضرة المطلوبة غير موجودة'), [], 404);
-        endif;
-        $price = getPrice($lecture);
-
-        $balance = $user->balance + $couponValue;
-        if ($balance < $price) :
-            return apiResponse(false, _("الرصيد الحالي ($balance ج.م) لا يكفي لاتمام عملية الشراء"), [], 401);
-
-        elseif ($balance >= $price) :
-
-            return apiResponse(true, _("تمت عملية الشراء بنجاح"), [
-                "price" => $price,
-                "balance" => $user->balance,
-                "couponCode" => $couponCode,
-                "couponValue" => $couponValue,
             ], 200);
         endif;
     }
@@ -253,13 +199,6 @@ class LectureController extends Controller
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
         endif;
 
-        $couponCode = $jsonRequest['code'];
-        $coupon = Coupon::where('code', $couponCode)->first();
-        $couponValue = 0;
-        if ($coupon) :
-            $couponValue = $coupon->value;
-        endif;
-
         $slug = $jsonRequest['lecture'];
         $lecture = Lecture::where('slug', $slug)->first();
         if (!$lecture) :
@@ -267,47 +206,25 @@ class LectureController extends Controller
         endif;
         $price = getPrice($lecture);
 
-        $balance = $user->balance + $couponValue;
+        $balance = $user->balance;
         if ($balance < $price) :
             return apiResponse(false, _("الرصيد الحالي ($balance ج.م) لا يكفي لاتمام عملية الشراء"), [], 401);
 
         elseif ($balance >= $price) :
 
             $user->balance = $balance - $price;
-            if ($coupon) :
-                $coupon->user_id = $user->id;
-                $coupon->used_at = now();
-                if ($coupon->save()) :
-                    if ($user->save()) :
-                        if ($user->ownedLectures()->create(['lecture_id' => $lecture->id])) :
-                            return apiResponse(true, _("تمت عملية الشراء بنجاح"), [
-                                "price" => $price,
-                                "balance" => $user->balance,
-                                "couponCode" => $couponCode,
-                                "couponValue" => $couponValue,
-                            ], 200);
-                        endif;
-                    endif;
-                endif;
-            else :
-                if ($user->save()) :
-                    if ($user->ownedLectures()->create(['lecture_id' => $lecture->id])) :
-                        return apiResponse(true, _("تمت عملية الشراء بنجاح"), [
-                            "price" => $price,
-                            "balance" => $user->balance,
-                            "couponCode" => $couponCode,
-                            "couponValue" => $couponValue,
-                        ], 200);
-                    endif;
+            if ($user->save()) :
+                if ($user->ownedLectures()->create(['lecture_id' => $lecture->id])) :
+                    return apiResponse(true, _("تمت عملية الشراء بنجاح"), [
+                        "price" => $price,
+                        "balance" => $user->balance,
+                    ], 200);
                 endif;
             endif;
         endif;
-
         return apiResponse(false, _("حدث خطأ أثناء الشراء يرجى المحاولة مرة أخرى"), [
             "price" => $price,
             "balance" => $user->balance,
-            "couponCode" => $couponCode,
-            "couponValue" => $couponValue,
         ], 500);
     }
 
@@ -379,7 +296,7 @@ class LectureController extends Controller
             'grade_id' => $data['grade'],
             'time' => '0 ساعة',
             'total_questions_count' => 0,
-            'subject' => Subject::find(env('DEFAULT_SUBJECT_ID'))->name,
+            'subject_id' => Subject::find(env('DEFAULT_SUBJECT_ID'))->name,
             'user_id' => apiUser()->id,
         ];
     }

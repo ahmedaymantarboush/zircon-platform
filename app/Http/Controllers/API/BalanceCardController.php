@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\BalanceCard;
 use Illuminate\Http\Request;
 
 class BalanceCardController extends Controller
@@ -48,13 +49,21 @@ class BalanceCardController extends Controller
         elseif ($balanceCard->expiry_date < now()) :
             return apiResponse(false, _("هذا الكارت منتهي الصلاحية"), [], 401);
         endif;
-
         $user->balance += $balanceCard->value;
         $balanceCard->user_id = $user->id;
         $balanceCard->used_at = now();
-        $user->save();
-        $balanceCard->save();
-        return apiResponse(true, _("تم شحن الرصيد بنجاح رصيدك الحالي $user->balance ج.م"), [
+
+        if ($user->save()) :
+            if ($balanceCard->save()) :
+                return apiResponse(true, _("تم شحن الرصيد بنجاح رصيدك الحالي $user->balance ج.م"), [
+                    'code' => $balanceCard->code,
+                    'value' => $balanceCard->value,
+                    'balance' => $user->balance
+                ], 200);
+            endif;
+        endif;
+
+        return apiResponse(true, _("حدث خطأ أثناء شحن الكارت"), [
             'code' => $balanceCard->code,
             'value' => $balanceCard->value,
             'balance' => $user->balance

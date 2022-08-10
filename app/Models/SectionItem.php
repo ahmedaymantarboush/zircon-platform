@@ -25,9 +25,9 @@ class SectionItem extends Model
     public function item()
     {
         if ($this->lesson_id):
-            return $this->belongsTo(Lesson::class);
+            return $this->belongsTo(Lesson::class, 'lesson_id');
         else:
-            return $this->belongsTo(Exam::class);
+            return $this->belongsTo(Exam::class, 'exam_id');
         endif;
     }
 

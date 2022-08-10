@@ -30,16 +30,14 @@ function uploadFile($request, $uploadedFileName, $newFileName, $oldPath = "", $f
     } else {
         $path = explode('@', apiUser()->email)[0] . '_' . auth('sanctum')->id();
     }
-    $savePath = $path . '/' . ($newFileName ? $newFileName . '.' . $file->getClientOriginalExtention() : $file->getClientOriginalName());
-    $UploadedFile = Storage::disk('public')->put($path, file_get_contents($file));
-    dd($UploadedFile);
+    $savePath = $path . '/' . ($newFileName ? $newFileName . '.' . $file->getClientOriginalExtension() : $file->getClientOriginalName());
+    $UploadedFile = Storage::disk('public')->put($savePath, file_get_contents($file));
     if ($UploadedFile && $oldPath) {
         if (Storage::disk('public')->exists($oldPath)) {
             Storage::disk('public')->delete($oldPath);
         }
     }
-
-    return Storage::url($UploadedFile);
+    return 'http://'.$request->getHttpHost().'/storage/'.$savePath;//Storage::url($UploadedFile);
 }
 
 function getPrice($lecture)

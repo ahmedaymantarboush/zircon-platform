@@ -20,6 +20,7 @@ class LessonFactory extends Factory
     public function definition()
     {
         $examId = $this->faker->optional()->randomElement(Exam::all()->pluck('id'));
+        $lectureId = $this->faker->randomElement(Lecture::all()->pluck('id'));
         return [
             'title'=>fake()->name(),
             'url'=>fake()->url().fake()->url(),
@@ -31,7 +32,8 @@ class LessonFactory extends Factory
             'exam_id'=>$examId,
             'min_percentage'=>$examId ? fake()->randomFloat(2,0,10) : null,
             'part_id'=>fake()->randomElement(Part::all()->pluck('id')),
-            'lecture_id'=>$this->faker->randomElement(Lecture::all()->pluck('id')),
+            'lecture_id'=>$lectureId,
+            'grade_id'=> Lecture::find($lectureId)->grade->id,
         ];
     }
 }

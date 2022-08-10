@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreSectionRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreSectionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,7 +25,16 @@ class StoreSectionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'sectionTitle' => ['required','string','max:50'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'sectionTitle.required' => 'اسم القسم مطلوب',
+            'sectionTitle.string' => 'يجب أن يكون الاسم عبارة عن نص',
+            'sectionTitle.max' => 'أكبر عدد من الحروف هو 50 حرف',
         ];
     }
 }

@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Models\Lesson;
 use App\Http\Requests\StoreLessonRequest;
 use App\Http\Requests\UpdateLessonRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Section;
+use App\Models\SectionItem;
 
 class LessonController extends Controller
 {
@@ -36,7 +39,39 @@ class LessonController extends Controller
      */
     public function store(StoreLessonRequest $request)
     {
-        //
+        $data = $request->all();
+
+        $section = Section::findOrFail($data['section']);
+        $lecture = $section->lecture;
+
+        $lesson = new Lesson();
+        $lesson->title = $data['lessonTitle'];
+        $lesson->url = $data['url'];
+        $lesson->time = '20 دقيقة';
+        $lesson->grade_id=  $lecture->grade->id;
+        $lesson->type = 'video';
+        $lesson->semester = $lecture->semester;
+        $lesson->subject_id= $lecture->subject->id;
+        $lesson->lecture_id = $lecture->id;
+        $lesson->part_id = $data['lessonPart'];
+        $lesson->description = $data['description'];
+
+        if (array_key_exists('dependsOnExam', $data)){
+            $lesson->exam_id = $data['exam'];
+            $lesson->min_percentage =  $data['percentage'];
+        }
+
+        $lesson->save();
+        if ($lesson){
+            SectionItem::create([
+                'title' => $lesson->title,
+                'type' => 'lesson',
+                'lesson_id' => $lesson->id,
+                'order' => count($section->items) + 1,
+                'section_id' => $section->id,
+            ]);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -81,6 +116,7 @@ class LessonController extends Controller
      */
     public function destroy(Lesson $lesson)
     {
-        //
+        Lesson::findOrFail($id)->delete();
+        return redirect()->back();
     }
 }

@@ -22,6 +22,7 @@ class Lesson extends Model
         'min_percentage',
         'part_id',
         'month_id',
+        'grade_id'
     ];
 
     public function exam()

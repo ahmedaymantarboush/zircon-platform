@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Models\Section;
 use App\Http\Requests\StoreSectionRequest;
 use App\Http\Requests\UpdateSectionRequest;
+use App\Http\Controllers\Controller;
 
 class SectionController extends Controller
 {
@@ -36,7 +37,25 @@ class SectionController extends Controller
      */
     public function store(StoreSectionRequest $request)
     {
-        //
+        $data = $request->all();
+        $lectute_id = \App\Models\Lecture::where('slug',$data['lec'])->first()->id;
+        Section::create([
+            'lecture_id' => $lectute_id,
+            'order' => count(Section::where('lecture_id', $lectute_id)->get()) + 1,//$request->input('order'),
+            'title' => $data['sectionTitle'],
+        ]);
+        return redirect()->back();
+    }
+
+    public function sortSections()
+    {
+        $data = request()->all();
+        foreach ($data as $key => $val){
+            if (str_starts_with($key,"order")){
+                Section::findOrFail( intval( substr($key,5) ) )->update(['order' => $val]);
+            }
+        }
+        return redirect()->back();
     }
 
     /**
@@ -68,9 +87,15 @@ class SectionController extends Controller
      * @param  \App\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSectionRequest $request, Section $section)
+    public function update(UpdateSectionRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $section = Section::find($id);
+        $section->update([
+            // 'order' => array_key_exists('order',$data) ? $data['order'] : $section->order,
+            'title' => array_key_exists('new_sectionTitle',$data) ? $data['new_sectionTitle'] : $section->title,
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -79,8 +104,9 @@ class SectionController extends Controller
      * @param  \App\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Section $section)
+    public function destroy($id)
     {
-        //
+        Section::findOrFail($id)->delete();
+        return redirect()->back();
     }
 }

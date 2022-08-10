@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('total_questions_count')->default(0);
             $table->integer('order');
             $table->foreignId('lecture_id')->constrained()->cascadeOnDelete();
+            $table->softDeletes('deleted_at', 0);
             $table->timestamps();
         });
     }

@@ -30,7 +30,7 @@
 
 <body>
     <input type="hidden" name="token" id="token" value="{{csrf_token()}}">
-
+    @yield('beforeNav')
     @include('components.Home.nav')
 
     @yield('content')

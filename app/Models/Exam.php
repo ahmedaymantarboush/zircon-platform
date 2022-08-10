@@ -11,9 +11,10 @@ class Exam extends Model
     protected $fillable = [
         'title',
         'user_id',
-        'part_id',
         'lecture_id',
         'dynamic',
+        'grade_id',
+        'subject_id'
     ];
 
     public function dynamicExams()

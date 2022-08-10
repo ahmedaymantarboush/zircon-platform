@@ -4,14 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Section extends Model
 {
-    use HasFactory;
+    use HasFactory,
+        SoftDeletes;
     protected $fillable = [
         'title',
         'lecture_id',
         'order',
+        'time',
+        'total_questions_count',
+        'description',
     ];
 
     public function lessons()
@@ -32,5 +37,10 @@ class Section extends Model
     public function month()
     {
         return $this->belongsTo(Month::class);
+    }
+
+    public function lecture()
+    {
+        return $this->belongsTo(Lecture::class);
     }
 }

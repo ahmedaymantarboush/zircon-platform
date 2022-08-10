@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BalanceCardController;
 use App\Http\Controllers\API\CenterController;
+use App\Http\Controllers\API\CouponController;
 use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\LectureController;
@@ -51,7 +52,7 @@ Route::get('/grades/grade{gradeId}',[LectureController::class,'index']);
 Route::post('/search',[LectureController::class,'search']);
 
 //       LESSON ROUTES
-Route::apiResource('/lessons',LessonController::class);
+Route::apiResource('/lessons',LessonController::class)->names(['store'=>'api.lessons.store','update'=>'api.lessons.update','destroy'=>'api.lessons.destroy']);
 
 //       EXAM ROUTES
 Route::apiResource('/exams',ExamController::class);
