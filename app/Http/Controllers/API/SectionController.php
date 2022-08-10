@@ -93,6 +93,11 @@ class SectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $section = Section::find($id);
+        if (!$section) :
+            return apiResponse(false, _('هذا السكشن غير موجود'), [], 404);
+        endif;
+        $section->delete();
+        return redirect()->back();
     }
 }
