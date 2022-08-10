@@ -7,11 +7,19 @@ use Illuminate\Support\Arr;
 
 class ExamResource extends JsonResource
 {
-    private $parameters = [];
+    private $onlyParameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
-        $instance->parameters = $Params;
+        $instance->onlyParameters = $Params;
+        return $instance;
+    }
+
+    private $exceptParameters = ['created_at', 'updated_at'];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
         return $instance;
     }
     /**
@@ -23,26 +31,30 @@ class ExamResource extends JsonResource
     public function toArray($request)
     {
         $questions = $this->examQuestions() ? $this->examQuestions()->inRandomOrder()->get() : null;
-        $opened = false;
-        if ($questions) :
-            $questions = AnswerdQuestionCollection::only($questions, ['id', 'question', 'answer']);
-            $opened = true;
-        else :
-            $questions = $questions ? QuestionCollection::only($questions, ['id', 'name', 'image', 'video', 'audio', 'type', 'choices']) : [];
-        endif;
+        $questions = $questions ? AnswerdQuestionCollection::only($questions, ['question', 'answer']) : [];
+
+
         $data = [
             'id' => $this->id,
-            'opened' => $opened,
             'title' => $this->title,
-            'remainingTime' => $opened && $this->openedExams()->where('user_id',apiUser()->id)->first() ? $this->openedExams()->where('user_id',apiUser()->id)->first()->remaining_time : null,
+            'time' => $this->time,
+            'dynamic' => $this->dynamic,
             'publisher' => $this->publisher ? UserResource::only($this->publisher, ['id', 'name', 'email', 'phoneNumber', 'parentPhoneNumber', 'balance', 'role', 'grade', 'governorate']) : null,
-            'part' => $this->part ? new PartResource($this->part) : null,
-            'lecture' => $this->lecture ? new LectureResource($this->lecture) : null,
+            'publisherName'=>$this->publisher->name,
+            'part' => $this->part ? PartResource::only($this->part, ['name','description']) : null,
+            'lecture' => $this->lecture ? LectureResource::only($this->lecture, []) : null,
+            'dynamicExams' => $this->dynamicExams ? DynamicExamCollection::only($this->dynamicExams, ['id', 'question', 'answer']) : null,
             'questions' => $questions,
-        ];
+            'passedExam' => $this->passedExam ? PassedExamResource::only($this->passedExam, []) : null,
 
-        if (count($this->parameters) > 0) {
-            return Arr::only($data, $this->parameters);
+            'createdAt'=>$this->created_at,
+            'updatedAt'=>$this->updated_at,
+         ];
+
+        if (count($this->onlyParameters) > 0) {
+            return Arr::only($data, $this->onlyParameters);
+        }elseif (count($this->exceptParameters) > 0) {
+            return Arr::except($data, $this->exceptParameters);
         } else {
             return $data;
         }

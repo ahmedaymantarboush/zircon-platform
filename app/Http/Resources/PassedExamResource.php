@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 
-class QuestionResource extends JsonResource
+class PassedExamResource extends JsonResource
 {
     private $onlyParameters = [];
     public static function only($resource, $Params)
@@ -30,31 +30,22 @@ class QuestionResource extends JsonResource
      */
     public function toArray($request)
     {
-
         $data = [
-            'id'=>$this->id,
-            'name'=>$this->name,
-            'image'=>$this->image,
-            'video'=>$this->video,
-            'audio'=>$this->audio,
-            'type'=>$this->type,
-            'explanation'=>$this->explanation,
-            'choices'=>$this->choices ? ChoiceCollection::only($this->choices,['name','image','video','audio']) : null,
-            'level'=>$this->level,
-            'gradeId'=> $this->grade->id,
-            'grade'=> $this->grade->name,
-            'part'=>$this->part ? new PartResource($this->part) : null,
-            'publisher'=>$this->publisher ? new UserResource($this->publisher) : null,
+            'user' => UserResource::only($this->user,['name','phoneNumber','parentPhoneNumber','grade','governorate','code','center']),
+            'exam'=> ExamResource::only($this->exam, ['id','title','questions']),
+            
+            'percentage' => $this->percentage,
+            'examStartedAt' => $this->exam_started_at,
+            'examEndedAt' => $this->exam_ended_at,
+            'finished' => $this->finished,
 
             'createdAt'=>$this->created_at,
             'updatedAt'=>$this->updated_at,
          ];
-        // dd(($this->choices));
         if (count($this->onlyParameters) > 0) {
             return Arr::only($data, $this->onlyParameters);
-
         }elseif (count($this->exceptParameters) > 0) {
-                return Arr::except($data, $this->exceptParameters);
+            return Arr::except($data, $this->exceptParameters);
         } else {
             return $data;
         }

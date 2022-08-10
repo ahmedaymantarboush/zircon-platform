@@ -28,6 +28,40 @@ class BalanceCardController extends Controller
         //
     }
 
+
+    public function recharge(Request $request)
+    {
+        $jsonRequest = json_decode($request->data, true);
+        $code = $jsonRequest['code'];
+
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
+        endif;
+
+        $balanceCard = BalanceCard::where('code', $code)->first();
+
+        if (!$balanceCard) :
+            return apiResponse(false, _("الكود الذي أدخلته غير صحيح رصيدك الحالي $user->balance ج.م"), [], 404);
+        elseif ($balanceCard->used_at) :
+            return apiResponse(false, _("هذا الكارت مستخدم بالفعل"), [], 401);
+        elseif ($balanceCard->expiry_date < now()) :
+            return apiResponse(false, _("هذا الكارت منتهي الصلاحية"), [], 401);
+        endif;
+
+        $user->balance += $balanceCard->value;
+        $balanceCard->user_id = $user->id;
+        $balanceCard->used_at = now();
+        $user->save();
+        $balanceCard->save();
+        return apiResponse(true, _("تم شحن الرصيد بنجاح رصيدك الحالي $user->balance ج.م"), [
+            'code' => $balanceCard->code,
+            'value' => $balanceCard->value,
+            'balance' => $user->balance
+        ], 200);
+    }
+
+
     /**
      * Display the specified resource.
      *

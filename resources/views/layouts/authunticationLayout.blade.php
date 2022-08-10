@@ -37,30 +37,7 @@
     <section class='signup'>
         <div class="signupCard">
             <div class="customeRow">
-                @if ($page == 'login')
-                    <div class="image">
-                        <img src="{{ URL::asset('imgs/elbirryLogin.png') }}" alt="">
-                        <div class="imageContent">
-                            <p>سجل دخولك دلوقتي و خليك
-                                مع البري</p>
-
-                            <span class='teacherName'>أ. محمد البري</span>
-                        </div>
-                    </div>
-                @endif
                 @yield('content')
-                @if ($page == 'signup')
-                    <div class="image">
-                        <img src="{{ URL::asset('imgs/elbirryLogin.png') }}" alt="">
-                        <div class="imageContent">
-                            <p>سجل حسابك دلوقتي و خليك
-
-                                مع البري</p>
-
-                            <span class='teacherName'>أ. محمد البري</span>
-                        </div>
-                    </div>
-                @endif
             </div>
         </div>
         <section class="icons">

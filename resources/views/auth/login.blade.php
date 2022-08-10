@@ -1,6 +1,15 @@
-@extends('layouts.authunticationLayout', 'login')
+@extends('layouts.authunticationLayout', ['page' => 'signup'])
 
 @section('content')
+    <div class="image">
+        <img src="{{ URL::asset('imgs/elbirryLogin.png') }}" alt="">
+        <div class="imageContent">
+            <p>سجل دخولك دلوقتي و خليك
+                مع البري</p>
+
+            <span class='teacherName'>أ. محمد البري</span>
+        </div>
+    </div>
     <div class="content">
         <h2>تسجيل الدخول</h2>
 
@@ -24,9 +33,10 @@
                     <input type="password" name='password' placeholder='&nbsp;'>
                     <label for="">كلمة المرور</label>
                 </div>
-                <a href="#" class='forgotPassword'>هل نسيت كلمة المرور ؟</a>
+                <a href="{{ route('password.request') }}" class='forgotPassword'>هل نسيت كلمة المرور ؟</a>
                 <input type="submit" value='تسجيل' class='reg'>
-                <p class='haveAccount'>ليس لديك حساب؟ <a href="#">تسجيل جديد</a></p>
+                <p class='haveAccount'>ليس لديك حساب؟ <a href="{{ route('register') }}">تسجيل جديد</a></p>
+            </div>
         </form>
 
     </div>

@@ -19,11 +19,13 @@ return new class extends Migration
             $table->boolean('dynamic')->default(false);
             $table->text('description');
             $table->foreignId('user_id')->default(1)->constrained()->cascadeOnDelete();
-            $table->foreignId('part_id')->constrained()->cascadeOnDelete();
             $table->foreignId('subject_id')->default(env('DEFAULT_SUBJECT_ID'))->constrained()->cascadeOnDelete();
-            $table->foreignId('lecture_id')->constrained()->cascadeOnDelete();
-            $table->string('time')->default(0);
+            $table->foreignId('lecture_id')->nullabl()->constrained()->cascadeOnDelete();
+            $table->integer('time')->default(0);
             $table->softDeletes();
+
+            $table->dateTime('starts_at')->nullable();
+            $table->dateTime('ends_at')->nullable();
             $table->timestamps();
         });
     }

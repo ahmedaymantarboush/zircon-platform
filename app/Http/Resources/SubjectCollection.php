@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class QuestionCollection extends ResourceCollection
+class SubjectCollection extends ResourceCollection
 {
     private $onlyParameters = [];
     public static function only($resource, $Params)
@@ -31,14 +31,14 @@ class QuestionCollection extends ResourceCollection
     {
         if (count($this->onlyParameters)) {
             return $this->collection->map(function ($item) {
-                return QuestionResource::only($item, $this->onlyParameters);
+                return SubjectResource::only($item, $this->onlyParameters);
             });
         }elseif (count($this->exceptParameters)) {
             return $this->collection->map(function ($item) {
-                return QuestionResource::except($item, $this->exceptParameters);
+                return SubjectResource::except($item, $this->exceptParameters);
             });
         }else {
-            return QuestionResource::collection($this->collection);
+            return SubjectResource::collection($this->collection);
         }
     }
 }

@@ -2,17 +2,26 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Subject;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 
 class LectureResource extends JsonResource
 {
 
-    private $parameters = [];
+    private $onlyParameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
-        $instance->parameters = $Params;
+        $instance->onlyParameters = $Params;
+        return $instance;
+    }
+
+    private $exceptParameters = ['created_at', 'updated_at'];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
         return $instance;
     }
     /**
@@ -23,6 +32,8 @@ class LectureResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user = apiUser();
+
         $data = [
             'id'=>$this->id,
             'title'=>$this->title,
@@ -41,18 +52,25 @@ class LectureResource extends JsonResource
             'discountExpiryDate'=>$this->discount_expiry_date,
             'time'=>$this->time,
             'totalQuestionsCount'=>$this->total_questions_count,
-            'subject'=>$this->subject->name,
+            'subject'=>$this->subject ? $this->subject->name : null,
             'gradeId'=>$this->grade_id,
             'grade'=>$this->grade->name,
-            'publisher'=>$this->publisher ? new UserResource($this->publisher,['id','name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
-            'owners'=>$this->owners ? new UserCollection($this->owners,['id','name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
+            'publisher'=>$this->publisher ? UserResource::only($this->publisher,['name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
+            'publisherName'=>$this->publisher->name,
+            'owners'=>$this->owners ? UserCollection::only($this->owners,['name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
+            'owner'=> $user ? $this->owners->contains($user) : false,
             'ownersCount'=>count($this->owners),
-            'sections'=>$this->sections ? new SectionCollection($this->sections()->orderBy('order')->get()) : null,
-            'parts'=>$this->parts ? new PartCollection($this->parts) : null,
+            'sections'=>$this->sections ? SectionCollection::except($this->sections()->orderBy('order')->get(),['id']) : null,
+            'parts'=>$this->parts ? PartCollection::except($this->parts,['id']) : null,
+
+            'createdAt'=>$this->created_at,
+            'updatedAt'=>$this->updated_at,
         ];
 
-        if (count($this->parameters) > 0) {
-            return Arr::only($data, $this->parameters);
+        if (count($this->onlyParameters) > 0) {
+            return Arr::only($data, $this->onlyParameters);
+        }elseif (count($this->exceptParameters) > 0) {
+            return Arr::except($data, $this->exceptParameters);
         } else {
             return $data;
         }

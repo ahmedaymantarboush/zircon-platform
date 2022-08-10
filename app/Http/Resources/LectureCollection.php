@@ -7,11 +7,19 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class LectureCollection extends ResourceCollection
 {
-    private $parameters = [];
+    private $onlyParameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
-        $instance->parameters = $Params;
+        $instance->onlyParameters = $Params;
+        return $instance;
+    }
+
+    private $exceptParameters = [];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
         return $instance;
     }
     /**
@@ -22,11 +30,15 @@ class LectureCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        if (count($this->parameters)) {
+        if (count($this->onlyParameters)) {
             return $this->collection->map(function ($item) {
-                return LectureResource::only($item, $this->parameters);
+                return LectureResource::only($item, $this->onlyParameters);
             });
-        } else {
+        }elseif (count($this->exceptParameters)) {
+            return $this->collection->map(function ($item) {
+                return LectureResource::except($item, $this->exceptParameters);
+            });
+        }else {
             return LectureResource::collection($this->collection);
         }
     }

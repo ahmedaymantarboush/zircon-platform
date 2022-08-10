@@ -7,11 +7,19 @@ use Illuminate\Support\Arr;
 
 class LessonResource extends JsonResource
 {
-    private $parameters = [];
+    private $onlyParameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
-        $instance->parameters = $Params;
+        $instance->onlyParameters = $Params;
+        return $instance;
+    }
+
+    private $exceptParameters = ['created_at', 'updated_at'];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
         return $instance;
     }
     /**
@@ -23,20 +31,25 @@ class LessonResource extends JsonResource
     public function toArray($request)
     {
         $data = [
-            'id'=>$this->id,
-            'title'=>$this->title,
-            'url'=>$this->url,
-            'duration'=>$this->duration,
-            'type'=>$this->type,
-            'semester'=>$this->semester,
-            'description'=>$this->description,
-            'exam'=>$this->exam ? ExamResource::only($this->exam,['id' ,'title' ,'publisher' ,'part' ,'lecture' ,'questions']) : null,
-            'minPercentage'=>$this->min_percentage,
-            'part'=>$this->part ? new PartResource($this->part) : null,
-            'lecture'=>$this->lecture ? new LectureResource($this->lecture) : null,
-        ];
-        if (count($this->parameters) > 0) {
-            return Arr::only($data, $this->parameters);
+            'id' => $this->id,
+            'title' => $this->title,
+            'url' => $this->url,
+            'time' => $this->time,
+            'type' => $this->type,
+            'semester' => $this->semester,
+            'description' => $this->description,
+            'exam' => $this->exam ? ExamResource::only($this->exam, ['id', 'title', 'publisher', 'part', 'questions']) : null,
+            'minPercentage' => $this->min_percentage,
+            'part' => $this->part ? new PartResource($this->part) : null,
+            'lecture' => $this->lecture ? new LectureResource($this->lecture) : null,
+
+            'createdAt'=>$this->created_at,
+            'updatedAt'=>$this->updated_at,
+         ];
+        if (count($this->onlyParameters) > 0) {
+            return Arr::only($data, $this->onlyParameters);
+        }elseif (count($this->exceptParameters) > 0) {
+            return Arr::except($data, $this->exceptParameters);
         } else {
             return $data;
         }

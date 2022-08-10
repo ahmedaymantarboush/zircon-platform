@@ -49,12 +49,11 @@
 
             </button>
             <div class="left ">
-                <div class="search">
-                    <input type="search" name="navSearch">
+                <form class="search" action="{{route('search')}}">
+                    <input type="search" name='q' name="navSearch">
                     <span><i class="fa-solid fa-magnifying-glass"></i></span>
-
-                </div>
-                @auth
+                </form>
+                @auth('web')
                     <div class="register">
                         <div class="login">
                             <a href="javascript:{}" onclick="window.logoutFrm.submit()" class="regItem">

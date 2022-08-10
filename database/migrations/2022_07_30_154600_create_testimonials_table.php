@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->string('studen_name');
+            $table->string('student_name');
             $table->string('image');
             $table->float('degree');
             $table->string('content');

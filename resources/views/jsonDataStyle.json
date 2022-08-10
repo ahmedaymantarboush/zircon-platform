@@ -1,0 +1,59 @@
+{
+    "register": {
+        "name": "الاسم",
+        "email": "الايميل",
+        "password": "الباسورد",
+        "password_confirmation": "التحقق من الباسورد",
+        "phoneNumber": "رقم تليفونه",
+        "parentPhoneNumber": "رقم تليفون ولي أمره",
+        "grade": "الرمحلة الدراسية",
+        "governorate": "المحافظة",
+        "center": "السنتر"
+    },
+    "login": {
+        "email": "الايميل",
+        "password": "الباسورد"
+    },
+    "createLecture": {
+        "title": "اسم المحاضرة",
+        "semester": "الفصل الدراسي",
+        "shortDescription": "الوصف القصير",
+        "description": "الوصف",
+        "published": "Boolean",
+        "promotinalVideoUrl": "اللينك",
+        "meteKeywords": "الكلمات مفصولة بكومة",
+        "metaDescription": "الوصف",
+        "slug": "slugال",
+        "free": "Boolean",
+        "price": "رقم",
+        "hasDiscount": "Boolean",
+        "finalPrice": "رقم",
+        "discountExpiryDate": "",
+        "duration": "",
+        "totalQuestionsCount": "",
+        "grade": "3",
+        "parts": []
+    },
+    "search":{
+        "q":"جملة البحث",
+        "filters" : {
+            "grades":[
+                "idال"
+            ],
+            "subjects":[
+                "idال"
+            ],
+            "parts":[
+                "idال"
+            ],
+            "users":[
+                "idال"
+            ],
+            "price":{
+                "free":true,
+                "hasDiscount":true,
+                "paid":false
+            }
+        }
+    }
+}

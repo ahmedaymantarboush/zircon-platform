@@ -8,8 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Center extends Model
 {
     use HasFactory;
-
-    public function governorate(){
-        return $this->belongsTo(Governorate::class);
+    protected $fillable = [
+        'name',
+        'url',
+        'image',
+        'governorate_id'
+    ];
+    public function govenrnorate(){
+        return $this->belongsTo(Governorate::class,'governorate_id');
     }
 }

@@ -19,9 +19,12 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/search', function () {
 //     return view('search');
 // });
+<<<<<<< HEAD
 // Route::get('/lecture', function () {
 //     return view('lecture');
 // });
+=======
+>>>>>>> dd877af2f1681ef0b845e00259d69e95c058fccd
 
 // Route::get('/signup', function () {
 //     return view('signup');
@@ -29,6 +32,12 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/login', function () {
 //     return view('login');
 // });
+<<<<<<< HEAD
 // Route::get('/test', function () {
 //     return view('test');
 // });
+=======
+Route::get('/test', function () {
+    return view('TextPage');
+});
+>>>>>>> dd877af2f1681ef0b845e00259d69e95c058fccd

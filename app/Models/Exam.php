@@ -13,12 +13,12 @@ class Exam extends Model
         'user_id',
         'part_id',
         'lecture_id',
-        'dynamic_questions',
+        'dynamic',
     ];
 
-    public function dynamicQuestion()
+    public function dynamicExams()
     {
-        return $this->hasMany(DynamicExam::class, 'exam_id','id');
+        return $this->hasMany(DynamicExam::class, 'exam_id', 'id');
     }
     public function questions()
     {
@@ -31,17 +31,28 @@ class Exam extends Model
 
     public function examQuestions()
     {
-        if ($this->dynamic) :
-            $user = apiUser();
-            if ($user) :
-                if ($user->answerdQuestions()->where('exam_id', $this->id)->count()) :
-                    return $this->hasMany(AnswerdQuestion::class)->with('question')->where('user_id', $user->id);
-                endif;
+        $user = apiUser();
+        if ($user) :
+            return $this->hasMany(AnswerdQuestion::class)->with('question')->where('user_id', $user->id);
+        else :
+            return null;
+        endif;
+    }
 
-                $dynamicQuestions = $this->dynamicQuestion;
-                foreach ($dynamicQuestions as $dynamicQuestion) :
-                    if ($dynamicQuestion) :
-                        foreach (Question::where(['level' => $dynamicQuestion->level, 'part_id' => $dynamicQuestion->part->id])->inRandomOrder()->take($dynamicQuestion->count)->get() as $question) :
+    public function publisher()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function startExam($userId = null)
+    {
+        $user = User::find($userId) ?? apiUser();
+        if ($user) :
+            if ($this->dynamic) :
+                $dynamicExams = $this->dynamicExams;
+                foreach ($dynamicExams as $dynamicExam) :
+                    if ($dynamicExam) :
+                        foreach (Question::where(['level' => $dynamicExam->level, 'part_id' => $dynamicExam->part->id,'grade_id' => $user->grade->id])->inRandomOrder()->take($dynamicExam->count)->get() as $question) :
                             if ($question) :
                                 $user->answerdQuestions()->create([
                                     'question_id' => $question->id,
@@ -49,23 +60,19 @@ class Exam extends Model
                                     'answer' => '',
                                     'correct' => false,
                                 ]);
-                                $user->passedExams()->create([
-                                    'exam_id' => $this->id,
-                                    'percentage' => 0,
-                                    'remaining_time' => '',
-                                    'finished' => false,
-                                ]);
                             endif;
                         endforeach;
                     endif;
                 endforeach;
-                return $this->hasMany(AnswerdQuestion::class)->with('question')->where('user_id', $user->id);
+                $user->passedExams()->create([
+                    'exam_id' => $this->id,
+                    'percentage' => 0,
+                    'exam_started_at' => now(),
+                    'exam_ended_at' => now()->addSeconds($this->time),
+                    'finished' => false,
+                ]);
             else :
-                return null;
-            endif;
-        else :
-            $user = apiUser();
-            if ($user) :
+
                 $questions = $this->questions;
                 foreach ($questions as $question) :
                     if ($question) :
@@ -75,29 +82,17 @@ class Exam extends Model
                             'answer' => '',
                             'correct' => false,
                         ]);
-                        $user->passedExams()->create([
-                            'exam_id' => $this->id,
-                            'percentage' => 0,
-                            'remaining_time' => '0',
-                            'finished' => false,
-                        ]);
                     endif;
                 endforeach;
-                return $this->hasMany(AnswerdQuestion::class)->with('question')->where('user_id', $user->id);
-            else :
-                return null;
+                $user->passedExams()->create([
+                    'exam_id' => $this->id,
+                    'percentage' => 0,
+                    'exam_started_at' => now(),
+                    'exam_ended_at' =>  now()->addSeconds($this->time),
+                    'finished' => false,
+                ]);
             endif;
         endif;
-    }
-
-    private function createDynamicExam()
-    {
-        $user = apiUser();
-    }
-
-    public function publisher()
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function part()
@@ -110,7 +105,7 @@ class Exam extends Model
         return $this->belongsTo(Lecture::class, 'lecture_id');
     }
 
-    public function openedExams()
+    public function passedExams()
     {
         return $this->hasMany(PassedExam::class, 'exam_id');
     }

@@ -7,11 +7,19 @@ use Illuminate\Support\Arr;
 
 class SectionItemResource extends JsonResource
 {
-    private $parameters = [];
+    private $onlyParameters = [];
     public static function only($resource, $Params)
     {
         $instance = new Self($resource);
-        $instance->parameters = $Params;
+        $instance->onlyParameters = $Params;
+        return $instance;
+    }
+
+    private $exceptParameters = ['created_at', 'updated_at'];
+    public static function except($resource, $Params)
+    {
+        $instance = new Self($resource);
+        $instance->exceptParameters = $Params;
         return $instance;
     }
     /**
@@ -32,18 +40,33 @@ class SectionItemResource extends JsonResource
         $data = [
             'id' => $this->id,
             'type' => $type,
-            'section' => in_array('section', $this->parameters) && count($this->parameters) ? new SectionCollection($this->section) : null,
+            'section' => in_array('section', $this->onlyParameters) && count($this->onlyParameters) && !in_array('section', $this->exceptParameters,) ? new SectionCollection($this->section) : null,
             'order' => $this->order,
             'item' => null,
+
+            'createdAt' => $this->created_at,
+            'updatedAt' => $this->updated_at,
         ];
         if ($type == 'lesson') :
-            $data['item'] = $this->lesson ? LessonResource::only($this->lesson,['id','title','url','duration','type','semester','description','exam','minPercentage','part',]) : null;
+            $data['item'] = $this->lesson ? LessonResource::only($this->lesson, ['title', 'url', 'duration', 'type', 'semester', 'description', 'exam', 'minPercentage', 'part',]) : null;
         elseif ($type == 'exam') :
-            $data['item'] = $this->exam ? ExamResource::only($this->exam,['id' ,'title' ,'publisher' ,'part' ,'lecture' ,'questions']) : null;
+            // $user = apiUser();
+            // $passedExam = $this->exam->passedExams()->where('user_id',$user->id)->first();
+            // if (!$passedExam):
+            //     if ($user):
+            //         $this->exam->startExam();
+            //     endif;
+            // endif;
+            // $data['item'] = $this->exam ? PassedExamResource::only($passedExam, ['exam', 'percentage', 'exam_started_at', 'exam_ended_at', 'finished']) : null;
+
+            $data['item'] = $this->exam ? ExamResource::only($this->exam, ['id','title']) : null;
+
         endif;
 
-        if (count($this->parameters) > 0) {
-            return Arr::only($data, $this->parameters);
+        if (count($this->onlyParameters) > 0) {
+            return Arr::only($data, $this->onlyParameters);
+        } elseif (count($this->exceptParameters) > 0) {
+            return Arr::except($data, $this->exceptParameters);
         } else {
             return $data;
         }

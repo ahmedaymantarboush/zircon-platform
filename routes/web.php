@@ -18,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/search', [App\Http\Controllers\LectureController::class, 'search'])->name('search');
+Route::get('search', [App\Http\Controllers\LectureController::class, 'search'])->name('search');
 
 Auth::routes();
 
 Route::get('grades/grade{id}', [App\Http\Controllers\LectureController::class,'index'])->name('months.index');
-Route::resource('months', App\Http\Controllers\LectureController::class)->except(['index','update','store']);
+Route::resource('months', App\Http\Controllers\LectureController::class)->only(['show']);
+

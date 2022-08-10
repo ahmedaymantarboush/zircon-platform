@@ -59,38 +59,45 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Center::factory()->create([
             'name' => 'المنصة',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'مجموعات خاصة',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الأول',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثاني',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثالث',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الرابع',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
+            'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الخامس',
-            'image' => fake()->imageUrl(),
-            'governorate_id' => fake()->numberBetween(1, 24),
+            'url'=>fake()->url(),
+            'image' => 'http://127.0.0.1:8000/imgs/center1.png',
+            'governorate_id' => 2,
         ]);
 
         \App\Models\User::factory(50)->create();
@@ -120,5 +127,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\LectureUser::factory(25)->create();
 
         \App\Models\DynamicExam::factory(500)->create();
+
+        \App\Models\BalanceCard::factory(100)->create();
     }
 }
