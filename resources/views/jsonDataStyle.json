@@ -33,5 +33,27 @@
         "totalQuestionsCount": "",
         "grade": "3",
         "parts": []
+    },
+    "search":{
+        "q":"جملة البحث",
+        "filters" : {
+            "grades":[
+                "idال"
+            ],
+            "subjects":[
+                "idال"
+            ],
+            "parts":[
+                "idال"
+            ],
+            "users":[
+                "idال"
+            ],
+            "price":{
+                "free":true,
+                "hasDiscount":true,
+                "paid":false
+            }
+        }
     }
 }

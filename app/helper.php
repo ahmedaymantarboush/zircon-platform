@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Storage;
+use hisorange\BrowserDetect\Facade as BrowserDetect;
 
 function apiResponse($success, $message, $data, $statusCode = 200)
 {
@@ -99,4 +100,12 @@ function getVideoUrl($video_id){
 function apiUser()
 {
     return auth('sanctum')->user();
+}
+
+// function getBrowser(){
+//     return BrowserDetect::browserName();
+// }
+
+function getIp(){
+    return request()->ip();
 }

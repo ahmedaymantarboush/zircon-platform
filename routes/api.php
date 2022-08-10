@@ -7,7 +7,6 @@ use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\LectureController;
 use App\Http\Controllers\API\TestimonialController;
-use App\Http\Controllers\API\UserController;
 use App\Http\Resources\UserResource;
 use App\Models\Lesson;
 use App\Models\Question;
@@ -49,7 +48,7 @@ Route::get('/contentsCount',function(){
 //       MONTH ROUTES
 Route::apiResource('months',LectureController::class)->except('index')->name('show','api.months.show');
 Route::get('/grades/grade{gradeId}',[LectureController::class,'index']);
-Route::get('/search',[LectureController::class,'search']);
+Route::post('/search',[LectureController::class,'search']);
 
 //       LESSON ROUTES
 Route::apiResource('/lessons',LessonController::class);

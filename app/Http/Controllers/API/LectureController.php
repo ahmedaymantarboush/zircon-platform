@@ -7,7 +7,6 @@ use App\Http\Requests\StoreLectureRequest;
 use App\Http\Requests\UpdateLectureRequest;
 use App\Http\Resources\LectureCollection;
 use App\Http\Resources\LectureResource;
-use App\Models\BalanceCard;
 use App\Models\Coupon;
 use App\Models\Grade;
 use App\Models\Lecture;
@@ -38,20 +37,18 @@ class LectureController extends Controller
 
     public function search(Request $request)
     {
-        dd($request->data);
-        $jsonRequest = json_decode($request->data,true);
+        $jsonRequest = json_decode($request->data, true);
 
-        $search = $jsonRequest['q'];
-        $filters = $jsonRequest['filters'];
-
-        $grades   = Grade::where('name', 'like', "%$search%")->get();
-        $parts    = Part::where('name', 'like', "%$search%")->get();
-        $subjects = Subject::where('name', 'like', "%$search%")->get();
-        $users    = User::where('name', 'like', "%$search%")->get();
-        $lessons  = Lesson::where('title', 'like', "%$search%")->get();
-        $lectures  = Lecture::where(['published' => true]);
+        $search = $jsonRequest['q'] ?? '';
+        $filters = $jsonRequest['filters'] ?? [];
 
         if ($search) :
+            $grades   = Grade::where('name', 'like', "%$search%")->get();
+            $parts    = Part::where('name', 'like', "%$search%")->get();
+            $subjects = Subject::where('name', 'like', "%$search%")->get();
+            $users    = User::where('name', 'like', "%$search%")->get();
+            $lessons  = Lesson::where('title', 'like', "%$search%")->get();
+            $lectures  = Lecture::where(['published' => true]);
             $lectures = $lectures->where(function ($q) use ($search, $users, $parts, $grades, $lessons, $subjects) {
                 $q->where('title', 'LIKE', "%$search%")
                     ->orWhere('semester', 'LIKE', "%$search%")
@@ -82,20 +79,19 @@ class LectureController extends Controller
                     });
             });
 
-            if ($filters) :
+            if (count($filters)) :
                 $gradesFilter = $filters['grades'];
+                $free = false;
+                $hasDiscount = false;
+                $Paid = false;
                 if (array_key_exists('price', $filters)) :
                     $free = array_key_exists('free', $filters['price']) ? $filters['price']['free'] : false;
                     $hasDiscount = array_key_exists('hasDiscount', $filters['price']) ? $filters['price']['hasDiscount'] : false;
                     $Paid = array_key_exists('paid', $filters['price']) ? $filters['price']['paid'] : false;
-                else :
-                    $free = false;
-                    $hasDiscount = false;
-                    $Paid = false;
                 endif;
-                $subjectsFilter = $filters['subjects'];
-                $partsFilter = $filters['parts'];
-                $usersFilter = $filters['users'];
+                $subjectsFilter = $filters['subjects'] ?? "";
+                $partsFilter = $filters['parts'] ?? "";
+                $usersFilter = $filters['users'] ?? "";
 
                 if (count($gradesFilter)) :
                     $lectures->whereIn('grade_id', $gradesFilter);
@@ -136,12 +132,12 @@ class LectureController extends Controller
                     'lectures' => LectureCollection::only($paginatedLectures, ['title', 'shortDescription', 'poster', 'time', 'totalQuestionsCount', 'slug', 'finalPrice', 'grade', 'gradeId']),
                     'queryString' => $search,
                     'appliedFilters' => $filters,
-                    'appliedFilters' => [
+                    'filters' => [
                         'grades' => $grades->pluck('id'),
                         'price' => [
-                            'free' => $free,
-                            'hasDiscount' => $hasDiscount,
-                            'Paid' => $Paid
+                            'free' => $free ?? false,
+                            'hasDiscount' => $hasDiscount ?? false,
+                            'Paid' => $Paid ?? false
                         ],
                         'parts' => $parts->pluck('id'),
                         'subjects' => $subjects->pluck('id'),
