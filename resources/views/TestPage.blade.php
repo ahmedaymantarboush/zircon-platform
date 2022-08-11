@@ -1,4 +1,4 @@
-@php
+{{-- @php
 
 class YouTubeDownloader
 {
@@ -82,7 +82,7 @@ class YouTubeDownloader
         }
     }
 }
-@endphp
+@endphp --}}
 {{-- @include('components.videoplayer.player', ['video' => getVideoUrl($_GET['v'])])
 <video  controls width="500">
     @foreach (getVideoUrl($_GET['v'])['video'] as $quality => $url)
@@ -157,7 +157,22 @@ if (!empty($videoLink)) {
     $error = 'Please enter a YouTube video URL';
 }
 @endphp --}}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/M9wmZ4Lcskk" title="YouTube video player"
+{{-- <iframe width="560" height="315" src="https://www.youtube.com/embed/M9wmZ4Lcskk" title="YouTube video player"
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen></iframe>
+    allowfullscreen></iframe> --}}
+{{--
+@php
+// echo "<pre>";
+// print_r();
+// echo "</pre>";
+    // $videoData = ['audio'=>[],'video'=>[]];
+    // foreach (json_decode(getVideoInfo($video_id), true)['streamingData']['adaptiveFormats'] as $format) :
+    //     if (str_starts_with($format['mimeType'], 'video/mp4')):
+    //         $videoData['video'][$format['qualityLabel']] = $format['url'];
+    //     elseif (str_starts_with($format['mimeType'], 'audio/mp4')):
+    //         $videoData['audio'][] = $format['url'];
+    //     endif;
+    // endforeach;
+@endphp --}}
+
+<video src="/tt" width="1500" height="500" frameborder="0"></video>

@@ -28,12 +28,22 @@ Route::get('/test', function () {
 
 
 Route::get('/tt', function () {
-    $headers = ['Content-Type' => 'video/mp4', 'Accept-Ranges' => 'bytes'];
-    $response = Http::accept('application/html')->withHeaders(['Content-Type' => 'video/mp4', 'Accept-Ranges' => 'bytes'])->get("https://www.youtube.com/embed/M9wmZ4Lcskk");
-    // $response = Http::accept('application/mp4')->get("https://www.youtube.com/embed/M9wmZ4Lcskk");
-    // dd($response);
+    // $headers = ['Content-Type' => 'video/mp4', 'Accept-Ranges' => 'bytes'];
+    // $response = Http::withHeaders(['Content-Type' => 'video/mp4', 'Accept-Ranges' => 'bytes'])->get(getVideoUrl('LgV1IcqX3QE')['videos']['720p']);
+    // return $response;
+    // return getVideoUrl('LgV1IcqX3QE')['videos']['720p'];
+
+    $url = getVideoUrl('M9wmZ4Lcskk')['videos']['720p'];
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_TIMEOUT, 500);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    // curl_setopt($ch, CURLOPT_TIMEOUT_MS, 5000000);
+    curl_setopt($ch, CURLOPT_POST, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    // $err = curl_error($ch);  //if you need
+    curl_close($ch);
     return $response;
-//     $request =new Request();
-// foreach ($headers as $key => $value)
-//     $request->headers->set($key, $value);
 });
