@@ -12,8 +12,6 @@ let updateUI = function () {
 };
 updateUI();
 
-
-
 let nameInp = document.querySelector("[name='name']");
 let emailInp = document.querySelector("[name='email']");
 let passwordInp = document.querySelector("[name='password']");
@@ -28,7 +26,7 @@ let gradeInp = document.querySelector("[name='grade']");
 let governorateInp = document.querySelector("[name='governorate']");
 let centerInp = document.querySelector("[name='center']");
 // Ajax function
-let sendRequest = async function (url, myData, el=null) {
+let sendRequest = async function (url, myData, el = null) {
     try {
         let postData = await fetch(url, {
             method: "POST",
@@ -39,7 +37,7 @@ let sendRequest = async function (url, myData, el=null) {
             body: myData,
         });
 
-        if (el){
+        if (el) {
             // هندل الايرور بقا على حسب الstatus code
         }
 
@@ -51,7 +49,7 @@ let sendRequest = async function (url, myData, el=null) {
 };
 // calling
 frm = document.querySelector("#form");
-frm.addEventListener('submit',async function (e) {
+frm.addEventListener("submit", async function (e) {
     e.preventDefault();
     let register = {
         name: nameInp.value,
@@ -65,10 +63,17 @@ frm.addEventListener('submit',async function (e) {
         center: centerInp.value,
     };
 
-    form = new FormData()
-    form.append('data', JSON.stringify(register))
+    let form = new FormData();
+    form.append("data", JSON.stringify(register));
 
-    response = await sendRequest("http://127.0.0.1:8000/api/register/", form, e);
+    let response = await sendRequest(
+        "http://127.0.0.1:8000/api/register/",
+        form,
+        e
+    );
+    console.log(response.data._token);
 
-    console.log(response)
+    localStorage.setItem("token", response.data._token);
+
+    console.log(response);
 });
