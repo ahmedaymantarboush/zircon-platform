@@ -16,11 +16,6 @@
         <track id="track1" label="English" kind="subtitles" src="./How To Get Started With VSCode.vtt" srclang="en">
         <track id="track2" label="Urdu" kind="subtitles" src="./test.vtt" srclang="en">
     </video>
-    <script>
-        setTimeout(() => {
-            document.querySelector('#main-video').innerHTML = '';
-        }, 100);
-    </script>
     <p class="caption_text"></p>
     <!-- <div class="thumbnail"></div> -->
 
@@ -1064,6 +1059,9 @@
         captionsBtn.parentNode.remove();
     }
 
+    setTimeout(() => {
+        document.querySelector('#main-video').innerHTML = '';
+    }, 100);
     // If you want to show your video thumbnail on progress Bar hover then comment out the following code. Make sure that you are using video from same domain where you hosted your webpage.
 
     //  Video Preview
