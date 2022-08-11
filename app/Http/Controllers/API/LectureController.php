@@ -36,6 +36,8 @@ class LectureController extends Controller
 
     public function search(Request $request)
     {
+        $unactivatedFilters = ['users', 'subjects'];
+
         $jsonRequest = json_decode($request->data, true);
 
         $search = $jsonRequest['q'] ?? '';
@@ -126,11 +128,19 @@ class LectureController extends Controller
             if ($lectures->count()) :
                 $paginatedLectures = clone $lectures;
                 $paginatedLectures = $paginatedLectures->paginate(6);
+
+                $filtersUrl = '';
+                foreach ($filters as $key => $value) {
+                    if (!in_array($key, $unactivatedFilters)) :
+                        $filtersUrl .= $key . ':' . implode(',', $value) . ';';
+                    endif;
+                }
                 $data = [
                     'lecturesCount' => count($lectures->get()),
                     'lectures' => LectureCollection::only($paginatedLectures, ['title', 'shortDescription', 'poster', 'time', 'totalQuestionsCount', 'slug', 'finalPrice', 'grade', 'gradeId']),
                     'queryString' => $search,
                     'appliedFilters' => $filters,
+                    'appliedFiltersUrl' => $filtersUrl,
                     'filters' => [
                         'grades' => $grades->pluck('id'),
                         'price' => [
@@ -143,8 +153,13 @@ class LectureController extends Controller
                         'users' => $users->pluck('id'),
                     ],
                 ];
+
+                $query = "&q=$search";
+                $query .= $filtersUrl ? "&&filters=$filtersUrl" : "";
+
                 if ($paginatedLectures->lastPage() > 1) :
                     $data['pagination'] = [
+                        "query" => $query,
                         "firsPage" => 1,
                         "firsPageUrl" => $paginatedLectures->url(1),
                         "currentPage" => $paginatedLectures->currentPage(),

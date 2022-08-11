@@ -32,12 +32,13 @@
 </head>
 
 <body>
-
+    <input type="hidden" name="token" id="csrf_token" value="{{csrf_token()}}">
 
     <section class='signup'>
         <div class="signupCard">
             <div class="customeRow">
                 @yield('content')
+
             </div>
         </div>
         <section class="icons">
