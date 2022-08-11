@@ -1,26 +1,12 @@
 <div id="video_player">
     <div class="loader"></div>
     <video preload="metadata" id="main-video">
-        {{-- @foreach ($video as $quality => $url)
-        <source src="{{$url}}" size="{{intval($quality)}}" type="video/mp4">
-        @endforeach --}}
-        {{-- <source src="{{$video['720p']}}" size="{{intval('360p')}}" type="video/mp4"> --}}
-
-
         @foreach ($videoSources as $quality => $url)
             <source src="{{ $url }}" size="{{ intval($quality) }}" type="video/mp4">
         @endforeach
-
-        {{-- <source src="{{$url_720}}" size="720" type="video/mp4">
-        <source src="{{$url_1080}}" size="1080" type="video/mp4"> --}}
         <track id="track1" label="English" kind="subtitles" src="./How To Get Started With VSCode.vtt" srclang="en">
         <track id="track2" label="Urdu" kind="subtitles" src="./test.vtt" srclang="en">
     </video>
-    <script>
-        setTimeout(() => {
-            document.querySelector('#main-video').innerHTML = '';
-        }, 100);
-    </script>
     <p class="caption_text"></p>
     <!-- <div class="thumbnail"></div> -->
 
@@ -549,12 +535,12 @@
     }
 
     @media (max-width: 430px) {
-    {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+            {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
 
         .controls .icon {
@@ -1063,7 +1049,9 @@
         captions.remove();
         captionsBtn.parentNode.remove();
     }
-
+    setTimeout(() => {
+        document.querySelector('#main-video').innerHTML = '';
+    }, 100);
     // If you want to show your video thumbnail on progress Bar hover then comment out the following code. Make sure that you are using video from same domain where you hosted your webpage.
 
     //  Video Preview
