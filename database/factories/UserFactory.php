@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'role_num' => $this->faker->randomElement(\App\Models\Role::all()->pluck('number')),
             'grade_id' => $this->faker->randomElement(\App\Models\Grade::all()->pluck('id')),
             'governorate_id' => $this->faker->randomElement(\App\Models\Governorate::all()->pluck('id')),
-            'code' => Str::random(50),
+            'code' => Str::random(16),
             'center_id' => $this->faker->randomElement(\App\Models\Center::all()->pluck('id')),
         ];
     }

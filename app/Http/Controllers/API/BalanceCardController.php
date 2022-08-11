@@ -63,11 +63,11 @@ class BalanceCardController extends Controller
             endif;
         endif;
 
-        return apiResponse(true, _("حدث خطأ أثناء شحن الكارت"), [
+        return apiResponse(false, _("حدث خطأ أثناء شحن الكارت"), [
             'code' => $balanceCard->code,
             'value' => $balanceCard->value,
             'balance' => $user->balance
-        ], 200);
+        ], 500);
     }
 
 

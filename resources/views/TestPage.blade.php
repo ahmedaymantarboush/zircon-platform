@@ -173,8 +173,7 @@ if (!empty($videoLink)) {
     //     endif;
     // endforeach;
 @endphp --}}
-{{--
-<video width="1500" controls id="vid" height="500" frameborder="0">
+{{-- <video width="1500" controls id="vid" height="500" frameborder="0">
     @foreach (getVideoUrl($_GET['v'])['videos'] as $key => $value)
         <source src="{{ $value }}">
     @endforeach
@@ -190,3 +189,10 @@ if (!empty($videoLink)) {
 {{-- @php
  dd(json_decode(getVideoInfo("Ge4xioJNTV8"),true));
 @endphp --}}
+
+@php
+
+    echo '<pre>';
+        print_r(json_decode(getVideoInfo("gRSHESmS7Ts"), true)['streamingData']);
+    echo '</pre>';
+@endphp

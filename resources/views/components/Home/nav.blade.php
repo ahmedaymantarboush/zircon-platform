@@ -53,7 +53,7 @@
                     <input type="search" name='q' name="navSearch">
                     <span><i class="fa-solid fa-magnifying-glass"></i></span>
                 </form>
-                @auth('web')
+                @auth()
                     <div class="register">
                         <div class="login">
                             <a href="javascript:{}" onclick="window.logoutFrm.submit()" class="regItem">

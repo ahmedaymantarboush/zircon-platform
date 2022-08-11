@@ -80,8 +80,8 @@ window.addEventListener("scroll", navProgFunction);
 var options = {
     series: [
         {
-            name: "series1",
-            data: [31, 40, 28, 51, 42, 109, 100, 40, 28, 51],
+            name: "نتائج الامتحانات",
+            data: exams,
         },
     ],
     chart: {
@@ -96,18 +96,7 @@ var options = {
     },
     xaxis: {
         type: "datetime",
-        categories: [
-            "2018-09-19T00:00:00.000Z",
-            "2018-09-19T01:30:00.000Z",
-            "2018-09-19T02:30:00.000Z",
-            "2018-09-19T03:30:00.000Z",
-            "2018-09-19T04:30:00.000Z",
-            "2018-09-19T05:30:00.000Z",
-            "2018-09-19T06:30:00.000Z",
-            "2018-09-19T07:30:00.000Z",
-            "2018-09-19T08:30:00.000Z",
-            "2018-09-19T09:30:00.000Z",
-        ],
+        categories: dates,
     },
     colors: ["#82DEDD"],
     tooltip: {
@@ -116,12 +105,14 @@ var options = {
         },
     },
 };
-
 var chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
 
+let totalAnswers = Number(document.querySelector('.totalAnswers').textContent.trim());
+let correctAnswers = Number(document.querySelector('.correctAnswers').textContent.trim());
+let correctAnswersPrecentage = Math.round(correctAnswers * 10000 / totalAnswers) / 100;
 var options2 = {
-    series: [63, 35],
+    series: [100 - correctAnswersPrecentage, correctAnswersPrecentage],
     chart: {
         type: "donut",
         fontFamily: "poppins",
@@ -132,7 +123,6 @@ var options2 = {
         colors: ["#54d0ff", "#82dedd"],
     },
 };
-
 var chart = new ApexCharts(document.querySelector(".donut"), options2);
 chart.render();
 /////////////
