@@ -130,7 +130,7 @@
 
 </div>
 @endsection
-@elseif(1)
+@elseif(0)
 @section('main')
     <div class="take_exam d-flex justify-content-center">
         <div class="row">
@@ -187,42 +187,48 @@
 @section('main')
     <div class="exam-parent">
 
-        <div class="exam-tab">
-            <button class="tab-item active-tab">
-                <span class="tab-num">1</span>
-                <div class="tab-icon">
-                    <span><i class="fa-solid fa-check"></i></span>
-                    <span><i class="fa-solid fa-flag"></i></span>
-                </div>
-            </button>
-            <button class="tab-item">
-                <span class="tab-num">2</span>
-                <div class="tab-icon">
-                    <span><i class="fa-solid fa-check"></i></span>
-                    <span><i class="fa-solid fa-flag"></i></span>
-                </div>
-            </button>
-            <button class="tab-item">
-                <span class="tab-num">3</span>
-                <div class="tab-icon">
-                    <span><i class="fa-solid fa-check"></i></span>
-                    <span><i class="fa-solid fa-flag"></i></span>
-                </div>
-            </button>
+        <div class="exam-tab swiper mySwiper">
+            <div class="swiper-wrapper">
+                @for($i=1;$i<=15;$i++)
+                    @if($i==1)
+                        <div class="swiper-slide">
+                            <button class="tab-item active-tab">
+                                <span class="tab-num">{{$i}}</span>
+                                <div class="tab-icon">
+                                    <span><i class="fa-solid fa-check"></i></span>
+                                    <span><i class="fa-solid fa-flag"></i></span>
+                                </div>
+                            </button>
+                        </div>
+                    @else
+                        <div class="swiper-slide">
+                            <button class="tab-item">
+                                <span class="tab-num">{{$i}}</span>
+                                <div class="tab-icon">
+                                    <span><i class="fa-solid fa-check"></i></span>
+                                    <span><i class="fa-solid fa-flag"></i></span>
+                                </div>
+                            </button>
+                        </div>
+                    @endif
+                @endfor
+            </div>
 
 
         </div>
         <div class="exam-questions">
             <div class="container">
-                <div class="question active-tab">
-                    test 1
-                </div>
-                <div class="question">
-                    test 2
-                </div>
-                <div class="question">
-                    test 3
-                </div>
+                @for($i=1;$i<=15;$i++)
+                    @if($i==1)
+                        <div class="question active-tab">
+                            test {{$i}}
+                        </div>
+                    @else
+                        <div class="question">
+                            test {{$i}}
+                        </div>
+                    @endif
+                @endfor
                 <div class="btn-control">
                     <button class="rightBtn">
                         <i class="fa-solid fa-angles-right"></i>

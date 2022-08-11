@@ -66,3 +66,31 @@ let tabs = function () {
 	});
 };
 tabs();
+
+/////////////exam swiper/////////////
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 12,
+    spaceBetween: 0,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 4,
+            spaceBetween: 0,
+        },
+        640: {
+            slidesPerView: 6,
+            spaceBetween: 0,
+        },
+        768: {
+            slidesPerView: 8,
+            spaceBetween: 0,
+        },
+        1024: {
+            slidesPerView: 12,
+            spaceBetween: 0,
+        },
+    },
+});
