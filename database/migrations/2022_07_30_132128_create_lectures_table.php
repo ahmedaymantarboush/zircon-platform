@@ -28,7 +28,7 @@ return new class extends Migration
             $table->float('price');
             $table->float('final_price');
             $table->date('discount_expiry_date')->nullable();
-            $table->string('time')->default('0 ساعة');
+            $table->integer('time')->default(0);
             $table->integer('total_questions_count')->default(0);
             $table->foreignId('subject_id')->default(env('DEFAULT_SUBJECT_ID'))->constrained()->cascadeOnDelete();
             $table->foreignId('grade_id')->constrained()->cascadeOnDelete();

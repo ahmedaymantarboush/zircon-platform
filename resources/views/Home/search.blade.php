@@ -52,17 +52,17 @@
                                 <div class="card-body">
                                     <ul class="filter-items">
                                         @foreach (\App\Models\Grade::all() as $grade)
-                                            @if ($lectures->get()->contains('grade_id', $grade->id))
+                                            @if ($pureLectures->get()->contains('grade_id', $grade->id))
                                                 <li class="filter-item">
                                                     @php
                                                         $id = $grade->id + 9;
                                                     @endphp
-                                                    <input type="checkbox" value="{{$grade->id}}" @checked(request()->input("grade$id"))
-                                                        name="grade{{ $id }}" />
+                                                    <input type="checkbox" value="{{ $grade->id }}"
+                                                        @checked(array_key_exists('grades', $appliedFilters) ? (count($appliedFilters) ? in_array($grade->id, $appliedFilters['grades']) : false ) : false) name="grade{{ $id }}" />
                                                     <label for="">
                                                         {{ $grade->name }}
                                                         @php
-                                                            $allLectures = $lectures ? clone $lectures : null;
+                                                            $allLectures = $pureLectures ? clone $pureLectures : null;
                                                         @endphp
                                                         <span
                                                             class="item-count">({{ $allLectures ? count($allLectures->where('grade_id', $grade->id)->get()) : 0 }})</span>
@@ -86,39 +86,51 @@
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
                                 <div class="card-body">
                                     <ul class="filter-items">
-                                        @if ($lectures->get()->contains('final_price', 0))
+                                        @if ($pureLectures->get()->contains('final_price', 0))
                                             <li class="filter-item">
-                                                <input type="checkbox" @checked(request()->input('free')) name="free" />
+                                                <input type="checkbox" @checked(count($appliedFilters)
+                                                        ? (array_key_exists('price', $appliedFilters)
+                                                            ? in_array('free', $appliedFilters['price'])
+                                                            : false)
+                                                        : false) name="free" />
                                                 <label for="">
                                                     مجاني
                                                     @php
-                                                        $allLectures = $lectures ? clone $lectures : null;
+                                                        $allLectures = $pureLectures ? clone $pureLectures : null;
                                                     @endphp
                                                     <span
                                                         class="item-count">({{ $allLectures ? count($allLectures->where('final_price', 0)->get()) : 0 }})</span>
                                                 </label>
                                             </li>
                                         @endif
-                                        @if ($lectures->get()->contains('discount_expiry_date', '!=', null))
+                                        @if ($pureLectures->get()->contains('discount_expiry_date', '!=', null))
                                             <li class="filter-item">
-                                                <input type="checkbox" @checked(request()->input('hasDiscount')) name="hasDiscount" />
+                                                <input type="checkbox" @checked(count($appliedFilters)
+                                                        ? (array_key_exists('price', $appliedFilters)
+                                                            ? in_array('hasDiscount', $appliedFilters['price'])
+                                                            : false)
+                                                        : false) name="hasDiscount" />
                                                 <label for="">
                                                     يحتوي على خصم
                                                     @php
-                                                        $allLectures = $lectures ? clone $lectures : null;
+                                                        $allLectures = $pureLectures ? clone $pureLectures : null;
                                                     @endphp
                                                     <span
                                                         class="item-count">({{ $allLectures ? count($allLectures->where('discount_expiry_date', '!=', null)->get()) : 0 }})</span>
                                                 </label>
                                             </li>
                                         @endif
-                                        @if ($lectures->get()->contains('final_price', '!=', 0))
+                                        @if ($pureLectures->get()->contains('final_price', '!=', 0))
                                             <li class="filter-item">
-                                                <input type="checkbox" @checked(request()->input('paid')) name="paid" />
+                                                <input type="checkbox" @checked(count($appliedFilters)
+                                                        ? (array_key_exists('price', $appliedFilters)
+                                                            ? in_array('paid', $appliedFilters['price'])
+                                                            : false)
+                                                        : false) name="paid" />
                                                 <label for="">
                                                     مدفوع
                                                     @php
-                                                        $allLectures = $lectures ? clone $lectures : null;
+                                                        $allLectures = $pureLectures ? clone $pureLectures : null;
                                                     @endphp
                                                     <span
                                                         class="item-count">({{ $allLectures ? count($allLectures->where('final_price', '!=', 0)->get()) : 0 }})</span>
@@ -144,22 +156,26 @@
                                     <ul class="filter-items">
                                         @foreach (\App\Models\Part::all() as $part)
                                             @php
-                                                $allLectures = $lectures ? clone $lectures : null;
+                                                $allLectures = $pureLectures ? clone $pureLectures : null;
                                             @endphp
                                             @if (count(
                                                 $allLectures->whereHas('parts', function ($partQ) use ($part) {
                                                         $partQ->where('part_id', $part->id);
                                                     })->get()))
                                                 <li class="filter-item">
-                                                    <input type="checkbox" value="{{$part}}" @checked(request()->input("part$part->id"))
-                                                        name="part{{ $part->id }}" />
+                                                    <input type="checkbox" value="{{ $part->id }}"
+                                                        @checked(array_key_exists('parts', $appliedFilters)
+                                                                ? (count($appliedFilters)
+                                                                    ? in_array($part->id, $appliedFilters['parts'])
+                                                                    : false)
+                                                                : false) name="part{{ $part->id }}" />
                                                     <label for="">
                                                         {{ $part->name }}
                                                         @php
-                                                            $allLectures = $lectures ? clone $lectures : null;
+                                                            $allLectures = $pureLectures ? clone $pureLectures : null;
                                                         @endphp
                                                         <span
-                                                            class="item-count">({{ $allLectures? count($allLectures->whereHas('parts', function ($partQ) use ($part) {$partQ->where('part_id', $part->id);})->get()) : 0 }})</span>
+                                                            class="item-count">({{ $allLectures? count($allLectures->whereHas('parts', function ($partQ) use ($part) {$partQ->where('part_id', $part->id);})->get()): 0 }})</span>
                                                     </label>
                                                 </li>
                                             @endif
@@ -223,7 +239,6 @@
             @include('components.Home.pagination', ['paginator' => $lectures->paginate(6)])
         </div>
     @else
-        
     @endif
 @endsection
 @section('javascript')

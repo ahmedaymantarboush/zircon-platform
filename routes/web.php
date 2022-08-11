@@ -39,3 +39,4 @@ Route::prefix('admin')->group(function () {
     Route::post('/sort-sections',[SectionController::class, 'sortSections'])->name('sections.resort');
     Route::post('/sort-items',[SectionItemController::class, 'sortItems'])->name('sectionitems.resort');
 });
+

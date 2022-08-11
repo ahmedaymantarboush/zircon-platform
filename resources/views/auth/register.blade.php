@@ -1,6 +1,7 @@
 @extends('layouts.authunticationLayout', ['page' => 'signup'])
 
 @section('content')
+<<<<<<< HEAD
 <div class="content">
     <h2>تسجيل جديد</h2>
     <form id='form' action="{{ route('register') }}" method="post">
@@ -10,6 +11,23 @@
                 <span class='inputIcon'><i class="fa-solid fa-user"></i></span>
                 <input type="text" name="name" value="{{ old('name') }}" placeholder='&nbsp;'>
                 <label for="">الاسم رباعي</label>
+=======
+    <div class="content">
+        <h2>تسجيل جديد</h2>
+        <form id="form" action="{{ route('register') }}" method="post">
+            @csrf
+            <div class="box  @error('name') isInvalid @enderror">
+                <div class="inputItem">
+                    <span class='inputIcon'><i class="fa-solid fa-user"></i></span>
+                    <input type="text" name="name" value="{{ old('name') }}" placeholder='&nbsp;'>
+                    <label for="">الاسم رباعي</label>
+                </div>
+                @error('name')
+                    <div class="error">
+                        {{ $message }}
+                    </div>
+                @enderror
+>>>>>>> a627eb4b5bd11b1f29030e1a2714c67f6b1511b8
             </div>
             @error('name')
             <div class="error">

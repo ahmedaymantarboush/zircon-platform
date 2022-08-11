@@ -92,7 +92,7 @@ class RegisterController extends Controller
             'parent_phone_number.required' => "رقم هاتف ولي الأمر مطلوب",
             'parent_phone_number.max' => "يجب أن لا يزيد عدد الأرقام عن 13 رقم",
             'parent_phone_number.min' => "يجب أن لا يقل عدد الأرقام عن 11 رقم",
-            'parent_phone_number.starts_with' => "يجب أن يبدأ رقم الهاتف بـ0 أو +20",
+            'parent_phone_number.starts_with' => "يجب أن يبدأ رقم الهاتف بـ0",
 
             'governorate.required' => "المحافظة مطلوبة",
             'governorate.string' => "المحافظة يجب ان يكون حروف",
@@ -120,7 +120,7 @@ class RegisterController extends Controller
             'password'=> Hash::make($data['password']),
             'grade_id'=> Grade::where('name',$data['grade'])->first()->id,
             'governorate_id'=> Governorate::where('name',$data['governorate'])->first()->id,
-            'code'=> Str::random(50),
+            'code'=> Str::random(25),
             'center_id'=> $data['center'] ? Center::where('name',$data['center'])->first()->id : 1,
             'role_num'=> 4,
             'balance'=> 0,

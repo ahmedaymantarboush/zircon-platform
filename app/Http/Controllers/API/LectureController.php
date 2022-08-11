@@ -36,6 +36,8 @@ class LectureController extends Controller
 
     public function search(Request $request)
     {
+        $unactivatedFilters = ['users', 'subjects'];
+
         $jsonRequest = json_decode($request->data, true);
 
         $search = $jsonRequest['q'] ?? '';
@@ -126,11 +128,19 @@ class LectureController extends Controller
             if ($lectures->count()) :
                 $paginatedLectures = clone $lectures;
                 $paginatedLectures = $paginatedLectures->paginate(6);
+
+                $filtersUrl = '';
+                foreach ($filters as $key => $value) {
+                    if (!in_array($key, $unactivatedFilters)) :
+                        $filtersUrl .= $key . ':' . implode(',', $value) . ';';
+                    endif;
+                }
                 $data = [
                     'lecturesCount' => count($lectures->get()),
                     'lectures' => LectureCollection::only($paginatedLectures, ['title', 'shortDescription', 'poster', 'time', 'totalQuestionsCount', 'slug', 'finalPrice', 'grade', 'gradeId']),
                     'queryString' => $search,
                     'appliedFilters' => $filters,
+                    'appliedFiltersUrl' => $filtersUrl,
                     'filters' => [
                         'grades' => $grades->pluck('id'),
                         'price' => [
@@ -143,8 +153,13 @@ class LectureController extends Controller
                         'users' => $users->pluck('id'),
                     ],
                 ];
+
+                $query = "&q=$search";
+                $query .= $filtersUrl ? "&&filters=$filtersUrl" : "";
+
                 if ($paginatedLectures->lastPage() > 1) :
                     $data['pagination'] = [
+                        "query" => $query,
                         "firsPage" => 1,
                         "firsPageUrl" => $paginatedLectures->url(1),
                         "currentPage" => $paginatedLectures->currentPage(),
@@ -294,7 +309,7 @@ class LectureController extends Controller
             'final_price' =>  $data['free'] ? 0 : ($data['hasDiscount'] ? (abs($data['finalPrice']) > abs($data['price']) ? abs($data['finalPrice']) : abs($data['price'])) : abs($data['price'])),
             'discount_expiry_date' => $data['discountExpiryDate'] > now() ? $data['discountExpiryDate'] : null,
             'grade_id' => $data['grade'],
-            'time' => '0 ساعة',
+            'time' => 0,
             'total_questions_count' => 0,
             'subject_id' => Subject::find(env('DEFAULT_SUBJECT_ID'))->name,
             'user_id' => apiUser()->id,

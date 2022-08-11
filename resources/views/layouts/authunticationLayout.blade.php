@@ -32,13 +32,17 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a627eb4b5bd11b1f29030e1a2714c67f6b1511b8
     <input type="hidden" name="token" id="csrf_token" value="{{csrf_token()}}">
 
     <section class='signup'>
         <div class="signupCard">
             <div class="customeRow">
                 @yield('content')
+
             </div>
         </div>
         <section class="icons">

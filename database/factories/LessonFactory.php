@@ -24,7 +24,7 @@ class LessonFactory extends Factory
         return [
             'title'=>fake()->name(),
             'url'=>fake()->url().fake()->url(),
-            'time'=>fake()->randomFloat(2,0,10) . ' ساعة',
+            'time'=>rand(500,5000),
             'type'=>fake()->randomElement(['video','pdf','audio']),
             'semester'=>fake()->randomElement(['الفصل الدراسي الأول','الفصل الدراسي الثاني']),
             'description'=>fake()->text(),
