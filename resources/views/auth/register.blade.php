@@ -3,7 +3,7 @@
 @section('content')
     <div class="content">
         <h2>تسجيل جديد</h2>
-        <form action="{{ route('register') }}" method="post">
+        <form id="form" action="{{ route('register') }}" method="post">
             @csrf
             <div class="box  @error('name') isInvalid @enderror">
                 <div class="inputItem">

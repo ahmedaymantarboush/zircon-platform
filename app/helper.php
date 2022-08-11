@@ -87,7 +87,7 @@ function getVideoUrl($video_id){
     $videoData = ['audio'=>[],'video'=>[]];
     foreach (json_decode(getVideoInfo($video_id), true)['streamingData']['adaptiveFormats'] as $format) :
         if (str_starts_with($format['mimeType'], 'video/mp4')):
-            $videoData[][$format['qualityLabel']] = $format['url'];
+            $videoData['video'][$format['qualityLabel']] = $format['url'];
         elseif (str_starts_with($format['mimeType'], 'audio/mp4')):
             $videoData['audio'][] = $format['url'];
         endif;
