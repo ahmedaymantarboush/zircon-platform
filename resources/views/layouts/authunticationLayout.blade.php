@@ -38,7 +38,6 @@
         <div class="signupCard">
             <div class="customeRow">
                 @yield('content')
-
             </div>
         </div>
         <section class="icons">
