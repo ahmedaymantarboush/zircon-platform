@@ -23,9 +23,6 @@ use Illuminate\Support\Facades\Route;
 // });
 // Route::get('/search', function () {
 //     return view('search');
-<<<<<<< HEAD
-// });
-=======
 // });
 
  Route::get('/signup', function () {
@@ -66,4 +63,3 @@ Route::get('/tt', function () {
 Route::get('/lectureview',function (){
     return view('Home.lecture_viewer');
 });
->>>>>>> a627eb4b5bd11b1f29030e1a2714c67f6b1511b8
