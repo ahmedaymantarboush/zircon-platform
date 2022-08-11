@@ -90,7 +90,7 @@ class LectureController extends Controller
             }
         }
 
-        
+
         $data = [
             'lecturesCount' => 0,
             'lectures' => null,
@@ -98,7 +98,7 @@ class LectureController extends Controller
             'appliedFilters' => [],
             'filters' => [],
         ];
-        
+
         $lectures = null;
         if ($search) :
             $grades   = Grade::where('name', 'like', "%$search%")->get();
@@ -107,7 +107,7 @@ class LectureController extends Controller
             $users    = User::where('name', 'like', "%$search%")->get();
             $lessons  = Lesson::where('title', 'like', "%$search%")->get();
             $lectures  = Lecture::where(['published' => true]);
-                        
+
             // dd($parts);
             $lectures = $lectures->where(function ($q) use ($search, $users, $parts, $grades, $lessons, $subjects) {
                 $q->where('title', 'LIKE', "%$search%")
