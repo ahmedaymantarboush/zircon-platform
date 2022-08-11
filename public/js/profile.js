@@ -110,7 +110,7 @@ chart.render();
 
 let totalAnswers = Number(document.querySelector('.totalAnswers').textContent.trim());
 let correctAnswers = Number(document.querySelector('.correctAnswers').textContent.trim());
-let correctAnswersPrecentage = correctAnswers * 100 / totalAnswers;
+let correctAnswersPrecentage = Math.round(correctAnswers * 10000 / totalAnswers) / 100;
 var options2 = {
     series: [100 - correctAnswersPrecentage, correctAnswersPrecentage],
     chart: {
