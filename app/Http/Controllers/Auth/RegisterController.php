@@ -120,7 +120,7 @@ class RegisterController extends Controller
             'password'=> Hash::make($data['password']),
             'grade_id'=> Grade::where('name',$data['grade'])->first()->id,
             'governorate_id'=> Governorate::where('name',$data['governorate'])->first()->id,
-            'code'=> Str::random(25),
+            'code'=> Str::random(16),
             'center_id'=> $data['center'] ? Center::where('name',$data['center'])->first()->id : 1,
             'role_num'=> 4,
             'balance'=> 0,

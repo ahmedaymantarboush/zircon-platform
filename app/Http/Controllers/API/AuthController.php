@@ -79,7 +79,7 @@ class AuthController extends Controller
             'password'=> Hash::make($jsonRequest['password']),
             'grade_id'=> Grade::where('name',$jsonRequest['grade'])->first()->id,
             'governorate_id'=> Governorate::where('name',$jsonRequest['governorate'])->first()->id,
-            'code'=> Str::random(25),
+            'code'=> Str::random(16),
 
             'center_id'=> $jsonRequest['center'] ? Center::where('name',$jsonRequest['center'])->first()->id : 1,
             'role_num'=> 4,
