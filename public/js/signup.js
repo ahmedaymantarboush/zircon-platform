@@ -68,9 +68,6 @@ frm.addEventListener('submit',function (e) {
     form = new FormData()
     form.append('data', JSON.stringify(register))
 
-    response = sendRequest("http://127.0.0.1:8000/api/register/", form, frm);
+    response = sendRequest("http://127.0.0.1:8000/api/register/", form, e);
 
-    if (response.status == 400){
-        console.log('error')
-    }
 });
