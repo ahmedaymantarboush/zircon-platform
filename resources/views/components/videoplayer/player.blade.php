@@ -1,21 +1,30 @@
-
 <div id="video_player">
     <div class="loader"></div>
     <video preload="metadata" id="main-video">
-        {{-- @foreach ($video as $quality => $url )
+        {{-- @foreach ($video as $quality => $url)
         <source src="{{$url}}" size="{{intval($quality)}}" type="video/mp4">
         @endforeach --}}
-        <source src="{{$video['720p']}}" size="{{intval('360p')}}" type="video/mp4">
+        {{-- <source src="{{$video['720p']}}" size="{{intval('360p')}}" type="video/mp4"> --}}
+
+
+        @foreach ($videoSources as $quality => $url)
+            <source src="{{ $url }}" size="{{ intval($quality) }}" type="video/mp4">
+        @endforeach
 
         {{-- <source src="{{$url_720}}" size="720" type="video/mp4">
         <source src="{{$url_1080}}" size="1080" type="video/mp4"> --}}
         <track id="track1" label="English" kind="subtitles" src="./How To Get Started With VSCode.vtt" srclang="en">
         <track id="track2" label="Urdu" kind="subtitles" src="./test.vtt" srclang="en">
     </video>
+    <script>
+        setTimeout(() => {
+            document.querySelector('#main-video').innerHTML = '';
+        }, 100);
+    </script>
     <p class="caption_text"></p>
     <!-- <div class="thumbnail"></div> -->
 
-    <div class="progressAreaTime" >0:00</div>
+    <div class="progressAreaTime">0:00</div>
 
     <div class="controls">
         <div class="progress-area">
@@ -27,23 +36,23 @@
 
         <div class="controls-list">
             <div class="controls-left">
-              <span class="icon">
-                <i class="material-icons fast-rewind">replay_10</i>
-              </span>
+                <span class="icon">
+                    <i class="material-icons fast-rewind">replay_10</i>
+                </span>
 
                 <span class="icon">
-                <i class="material-icons play_pause" >play_arrow</i>
-              </span>
+                    <i class="material-icons play_pause">play_arrow</i>
+                </span>
 
                 <span class="icon">
-                <i class="material-icons fast-forward">forward_10</i>
-              </span>
+                    <i class="material-icons fast-forward">forward_10</i>
+                </span>
 
                 <span class="icon">
-                <i class="material-icons volume">volume_up</i>
+                    <i class="material-icons volume">volume_up</i>
 
-                <input type="range" min="0" max="100" class="volume_range" />
-              </span>
+                    <input type="range" min="0" max="100" class="volume_range" />
+                </span>
 
                 <div class="timer">
                     <span class="current">0:00</span> /
@@ -57,16 +66,16 @@
 
 
                 <span class="icon">
-                <i class="material-icons settingsBtn">settings</i>
-              </span>
+                    <i class="material-icons settingsBtn">settings</i>
+                </span>
 
                 <span class="icon">
-                <i class="material-icons picture_in_picutre">picture_in_picture_alt</i>
-              </span>
+                    <i class="material-icons picture_in_picutre">picture_in_picture_alt</i>
+                </span>
 
                 <span class="icon">
-                <i class="material-icons fullscreen">fullscreen</i>
-              </span>
+                    <i class="material-icons fullscreen">fullscreen</i>
+                </span>
             </div>
         </div>
     </div>
@@ -77,23 +86,23 @@
                 <li data-label="speed">
                     <span> Speed </span>
                     <span class="material-symbols-outlined icon">
-                  arrow_forward_ios
-                </span>
+                        arrow_forward_ios
+                    </span>
                 </li>
                 <li data-label="quality">
                     <span> Quality </span>
                     <span class="material-symbols-outlined icon">
-                arrow_forward_ios
-              </span>
+                        arrow_forward_ios
+                    </span>
                 </li>
             </ul>
         </div>
         <div class="playback" data-label="speed" hidden>
             <span>
-              <i class="material-symbols-outlined icon back_arrow"  data-label="settingHome">
-                arrow_back
-              </i>
-              <span>Playback Speed </span>
+                <i class="material-symbols-outlined icon back_arrow" data-label="settingHome">
+                    arrow_back
+                </i>
+                <span>Playback Speed </span>
             </span>
             <ul>
                 <li data-speed="0.25">0.25</li>
@@ -115,10 +124,10 @@
         </div>
         <div data-label="quality" hidden>
             <span>
-              <i class="material-symbols-outlined icon back_arrow" data-label="settingHome">
-                arrow_back
-              </i>
-              <span>Playback Quality </span>
+                <i class="material-symbols-outlined icon back_arrow" data-label="settingHome">
+                    arrow_back
+                </i>
+                <span>Playback Quality </span>
             </span>
             <ul>
                 <li data-quality="auto" class="active">auto</li>
@@ -135,8 +144,6 @@
     </div>
 </div>
 <style>
-
-
     video::cue {
         opacity: 0;
     }
@@ -181,11 +188,12 @@
         background: #000;
         overflow: hidden;
     }
-    #video_player .loader{
+
+    #video_player .loader {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         width: 60px;
         height: 60px;
         border: 4px solid #fff;
@@ -195,15 +203,18 @@
         animation: animate 0.6s linear infinite;
         display: none;
     }
-    @keyframes animate{
-        0%{
-            transform: translate(-50%,-50%) rotate(0deg);
+
+    @keyframes animate {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
         }
-        100%{
-            transform: translate(-50%,-50%) rotate(360deg);
+
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
         }
     }
-    #video_player .thumbnail{
+
+    #video_player .thumbnail {
         position: absolute;
         bottom: 80px;
         left: calc(var(--x) + 11px);
@@ -215,6 +226,7 @@
         border-radius: 3px;
         display: none;
     }
+
     #video_player #main-video {
         position: relative;
         width: 100%;
@@ -286,7 +298,7 @@
         background: #67748E;
     }
 
-    .controls .progress-area .bufferedBar{
+    .controls .progress-area .bufferedBar {
         position: absolute;
         top: 0%;
         right: 0%;
@@ -449,7 +461,7 @@
     }
 
     #video_player #captions .caption span,
-    #video_player #settings > div > span {
+    #video_player #settings>div>span {
         font-size: 14px;
         font-weight: 300;
         padding: 15px 30px;
@@ -459,22 +471,24 @@
         align-items: center;
         white-space: nowrap;
     }
-    #video_player #settings > div .icon{
+
+    #video_player #settings>div .icon {
         font-size: 14px;
         margin: 0 5px;
         cursor: pointer;
     }
-    #video_player #settings > div ul li span{
+
+    #video_player #settings>div ul li span {
         pointer-events: none;
     }
 
     #video_player #captions .caption ul,
-    #video_player #settings > div ul {
+    #video_player #settings>div ul {
         position: relative;
     }
 
     #video_player #captions .caption ul li,
-    #video_player #settings > div ul li {
+    #video_player #settings>div ul li {
         position: relative;
         width: 100%;
         cursor: pointer;
@@ -487,12 +501,12 @@
     }
 
     #video_player #captions .caption ul li:hover,
-    #video_player #settings > div ul li:hover {
+    #video_player #settings>div ul li:hover {
         background: rgba(28, 28, 28, 0.9);
     }
 
     #video_player #captions .caption ul li.active::before,
-    #video_player #settings > div ul li.active::before {
+    #video_player #settings>div ul li.active::before {
         content: "\e876";
         font-family: "Material Icons";
         position: absolute;
@@ -535,12 +549,12 @@
     }
 
     @media (max-width: 430px) {
-    {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+            {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
 
         .controls .icon {
@@ -668,9 +682,9 @@
     progressArea.addEventListener("pointerdown", (e) => {
         progressArea.setPointerCapture(e.pointerId);
         setTimelinePosition(e);
-        progressArea.addEventListener("pointermove",setTimelinePosition);
-        progressArea.addEventListener("pointerup",()=>{
-            progressArea.removeEventListener("pointermove",setTimelinePosition);
+        progressArea.addEventListener("pointermove", setTimelinePosition);
+        progressArea.addEventListener("pointerup", () => {
+            progressArea.removeEventListener("pointermove", setTimelinePosition);
         })
     });
 
@@ -692,14 +706,16 @@
         current.innerHTML = `${currentMin} : ${currentSec}`;
     }
 
-    function drawProgress(canvas,buffered,duration) {
-        let context = canvas.getContext('2d',{antialias : false});
-        context.fillStyle="#ffffffe6";
+    function drawProgress(canvas, buffered, duration) {
+        let context = canvas.getContext('2d', {
+            antialias: false
+        });
+        context.fillStyle = "#ffffffe6";
 
         let height = canvas.height;
         let width = canvas.width;
-        if(!height || !width) throw "Canva's width or height or not set.";
-        context.clearRect(0,0,width,height);
+        if (!height || !width) throw "Canva's width or height or not set.";
+        context.clearRect(0, 0, width, height);
         for (let i = 0; i < buffered.length; i++) {
             let leadingEdge = buffered.start(i) / duration * width;
             let trailingEdge = buffered.end(i) / duration * width;
@@ -707,7 +723,7 @@
         }
     }
 
-    mainVideo.addEventListener('progress',()=>{
+    mainVideo.addEventListener('progress', () => {
         drawProgress(bufferedBar, mainVideo.buffered, mainVideo.duration);
     })
 
@@ -875,18 +891,19 @@
     const quality_ul = video_player.querySelector("#settings > [data-label='quality'] ul");
     const qualities = video_player.querySelectorAll("source[size]");
 
-    qualities.forEach(event=>{
-        let quality_html = `<li data-quality="${event.getAttribute('size')}">${event.getAttribute('size')}p</li>`;
-        quality_ul.insertAdjacentHTML('afterbegin',quality_html);
+    qualities.forEach(event => {
+        let quality_html =
+            `<li data-quality="${event.getAttribute('size')}">${event.getAttribute('size')}p</li>`;
+        quality_ul.insertAdjacentHTML('afterbegin', quality_html);
     })
 
     const quality_li = video_player.querySelectorAll("#settings > [data-label='quality'] ul > li");
-    quality_li.forEach((event)=>{
-        event.addEventListener('click',(e)=>{
+    quality_li.forEach((event) => {
+        event.addEventListener('click', (e) => {
             let quality = event.getAttribute('data-quality');
             removeActiveClasses(quality_li);
             event.classList.add('active');
-            qualities.forEach(event=>{
+            qualities.forEach(event => {
                 if (event.getAttribute('size') == quality) {
                     let video_current_duration = mainVideo.currentTime;
                     let video_source = event.getAttribute('src');
@@ -898,27 +915,27 @@
         })
     })
 
-    settingBack.forEach((event)=>{
-        event.addEventListener('click',(e)=>{
+    settingBack.forEach((event) => {
+        event.addEventListener('click', (e) => {
             let setting_label = e.target.getAttribute('data-label');
             for (let i = 0; i < settingDivs.length; i++) {
                 if (settingDivs[i].getAttribute('data-label') == setting_label) {
                     settingDivs[i].removeAttribute('hidden');
-                }else{
-                    settingDivs[i].setAttribute('hidden',"");
+                } else {
+                    settingDivs[i].setAttribute('hidden', "");
                 }
             }
         })
     })
 
-    settingHome.forEach((event)=>{
-        event.addEventListener('click',(e)=>{
+    settingHome.forEach((event) => {
+        event.addEventListener('click', (e) => {
             let setting_label = e.target.getAttribute('data-label');
             for (let i = 0; i < settingDivs.length; i++) {
                 if (settingDivs[i].getAttribute('data-label') == setting_label) {
                     settingDivs[i].removeAttribute('hidden');
-                }else{
-                    settingDivs[i].setAttribute('hidden',"");
+                } else {
+                    settingDivs[i].setAttribute('hidden', "");
                 }
             }
         })
@@ -951,6 +968,7 @@
         let videoUrl = mainVideoSources[i].src;
         blobUrl(mainVideoSources[i], videoUrl);
     }
+
     function blobUrl(video, videoUrl) {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", videoUrl);
@@ -1020,8 +1038,9 @@
                     caption_text.classList.add("active");
                 }
             }, 8000);
-        },
-        { passive: true }
+        }, {
+            passive: true
+        }
     );
 
     video_player.addEventListener(
@@ -1035,8 +1054,9 @@
             } else {
                 controls.classList.add("active");
             }
-        },
-        { passive: true }
+        }, {
+            passive: true
+        }
     );
     if (tracks.length == 0) {
         caption_labels.remove();
@@ -1206,5 +1226,4 @@
 
     //   console.log("done...");
     // });
-
 </script>

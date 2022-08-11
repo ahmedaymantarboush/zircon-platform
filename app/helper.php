@@ -94,7 +94,14 @@ function getVideoUrl($video_id){
     endforeach;
     return $videoData;
 }
-
+function getDuration($url){
+    parse_str(parse_url($url,PHP_URL_QUERY),$data);
+    $video_id=$data['v'];
+    return json_decode(getVideoInfo($video_id),true)['videoDetails']['lengthSeconds'];
+}
+function decoratedTime($time){
+    return $time >= 3600 ? gmdate("H:i:s",$time) :  gmdate("i:s",$time);
+}
 function apiUser()
 {
     return auth('sanctum')->user();

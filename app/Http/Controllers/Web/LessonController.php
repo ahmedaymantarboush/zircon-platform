@@ -43,11 +43,13 @@ class LessonController extends Controller
 
         $section = Section::findOrFail($data['section']);
         $lecture = $section->lecture;
+        $time = getDuration($data['url']);
 
         $lesson = new Lesson();
         $lesson->title = $data['lessonTitle'];
         $lesson->url = $data['url'];
-        $lesson->time = '20 دقيقة';
+        $lesson->time = $time;
+        $lecture->time += $time;
         $lesson->grade_id=  $lecture->grade->id;
         $lesson->type = 'video';
         $lesson->semester = $lecture->semester;
@@ -62,6 +64,7 @@ class LessonController extends Controller
         }
 
         $lesson->save();
+        $lecture->save();
         if ($lesson){
             SectionItem::create([
                 'title' => $lesson->title,
