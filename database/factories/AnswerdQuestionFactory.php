@@ -2,14 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Models\Choice;
 use App\Models\Exam;
+use App\Models\Question;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PassedExam>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AnswerdQuestion>
  */
-class PassedExamFactory extends Factory
+class AnswerdQuestionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,13 +20,14 @@ class PassedExamFactory extends Factory
      */
     public function definition()
     {
+        $answerId = fake()->randomElement(Choice::all()->pluck('id'));
+        $choice = Choice::find($answerId);
         return [
             "user_id" => fake()->randomElement(User::all()->pluck('id')),
+            "question_id" => fake()->randomElement(Question::all()->pluck('id')),
             "exam_id" => fake()->randomElement(Exam::all()->pluck('id')),
-            "percentage" => fake()->numberBetween(0,100),
-            "exam_started_at" => fake()->dateTimeBetween('-1 year','-1 month'),
-            "exam_ended_at" => fake()->dateTimeBetween('-1 year','-1 month'),
-            "finished" => fake()->randomElement([true,false]),
+            "answer" => $answerId,
+            "correct" => $choice->correct
         ];
     }
 }

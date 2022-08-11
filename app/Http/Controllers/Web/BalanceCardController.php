@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Models\BalanceCard;
 use App\Http\Requests\StoreBalanceCardRequest;
 use App\Http\Requests\UpdateBalanceCardRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class BalanceCardController extends Controller
 {
@@ -17,6 +19,32 @@ class BalanceCardController extends Controller
     {
         //
     }
+    public function recharge()
+    {
+        $code = request()->code;
+        $user = Auth::user();
+        if ($user) :
+            $balanceCard = BalanceCard::where('code', $code)->first();
+
+            if (!$balanceCard) :
+                return redirect()->back()->with(['msg' => "الكود الذي أدخلته غير صحيح رصيدك الحالي $user->balance ج.م", 'success' => false]);
+            elseif ($balanceCard->used_at) :
+                return redirect()->back()->with(['msg' => "هذا الكارت مستخدم بالفعل", 'success' => false]);
+            elseif ($balanceCard->expiry_date < now()) :
+                return redirect()->back()->with(['msg' => "هذا الكارت منتهي الصلاحية", 'success' => false]);
+            endif;
+            $user->balance += $balanceCard->value;
+            $balanceCard->user_id = $user->id;
+            $balanceCard->used_at = now();
+            $user->save();
+            $balanceCard->save();
+            return redirect()->back()->with(['msg' => "تم شحن الرصيد بنجاح رصيدك الحالي $user->balance ج.م", 'success' => true]);
+        else :
+            return redirect()->back()->with(['msg' => "يجب تسجيل الدخول للقيام بعملية الشحن", 'success' => false]);
+        endif;
+        return redirect()->back()->with(['msg' => "حدث خطأ أثناء شحن الكارت", 'success' => false]);
+    }
+
 
     /**
      * Show the form for creating a new resource.

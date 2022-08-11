@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Web\BalanceCardController;
 use App\Http\Controllers\Web\SectionItemController;
 use App\Http\Controllers\Web\LessonController;
 use App\Http\Controllers\Web\SectionController;
@@ -40,3 +41,11 @@ Route::prefix('admin')->group(function () {
     Route::post('/sort-items',[SectionItemController::class, 'sortItems'])->name('sectionitems.resort');
 });
 
+//  ADMIN ROUTES
+Route::get('profile',function(){
+    $user = Auth::user();
+    return view('home.profile',compact('user'));
+});
+
+//  ADMIN ROUTES
+Route::post('recharge',[BalanceCardController::class, 'recharge'])->name('balance.recharge');

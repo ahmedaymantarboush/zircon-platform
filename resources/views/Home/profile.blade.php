@@ -7,101 +7,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/profile-responsive.css') }} " class="rel">
 @endsection
 
-</head>
-
-<body class='grade1'>
-
-    <nav class="myNav nonePrint">
-        <div class="navProgress">
-            <span class='navProgChild'></span>
-        </div>
-        <div class="customeContainer">
-            <div class="right">
-                <div class=" navAtom">
-                    <img src="{{ URL::asset('imgs/logoAtom.png') }}" alt="">
-
-
-                </div>
-                <div class="logoBrand">البري</div>
-                <div class="sunMoon">
-                    <div class="sun activeSvg">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle fill="#FECA57" cx="12" cy="12" r="5" />
-                            <g stroke="currentColor">
-                                <line x1="12" y1="1" x2="12" y2="3" />
-                                <line x1="12" y1="21" x2="12" y2="23" />
-                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                                <line x1="1" y1="12" x2="3" y2="12" />
-                                <line x1="21" y1="12" x2="23" y2="12" />
-                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                            </g>
-                        </svg>
-                    </div>
-                    <div class="moon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4FB8E2"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <mask id="mask">
-                                <rect x="0" y="0" width="100%" height="100%" fill="white" />
-                                <circle cx="12" cy="4" r="9" fill="black" />
-                            </mask>
-                            <circle fill="#4FB8E2" cx="12" cy="12" r="9" mask="url(#mask)" />
-
-                        </svg>
-                    </div>
-
-                </div>
-            </div>
-            <div class='bigLeft '>
-                <button class='toggleBarBtn'>
-                    <span class='topLine'></span>
-                    <span class='middleLine'></span>
-                    <span class='bottomLine'></span>
-
-                </button>
-                <div class="left ">
-                    <div class="search">
-                        <input type="search" name="navSearch">
-                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
-
-                    </div>
-                    <div class="register">
-                        <div class="signup">
-                            <a href="{{ route('register') }}" class="regItem">
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/apple.png') }}" alt="">
-                                </span>
-                                <span class="regType">
-                                    أنشئ حساب <span class='d-redColor'>جديد</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="login">
-                            <a href="{{ route('login') }}" class="regItem">
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
-                                </span>
-                                <span class="regType">
-                                    تسجيل <span class='d-blueColor'>الدخول</span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </nav>
+@section('content')
     <section class="main">
         <div class="bg nonePrint">
             <img src="{{ URL::asset('imgs/course-1.png') }}" alt="">
@@ -115,9 +21,9 @@
                                 <span class="iconCharge">
                                     <i class="fa-solid fa-wallet"></i>
                                 </span>
-                                <span class='yourMoney'>200 ج.م</span>
-                                <button class='addChargeBtn' type='button' data-toggle="modal"
-                                    data-target="#charge" class='editBtn'>اضافة</button>
+                                <span class='yourMoney'>{{ $user->balance }} ج.م</span>
+                                <button class='addChargeBtn' type='button' data-toggle="modal" data-target="#charge"
+                                    class='editBtn'>اضافة</button>
                             </div>
                         </div>
                         <div class="col-lg-4 col-sm-6 mb-30">
@@ -126,8 +32,8 @@
                                     <i class="fa-solid fa-question"></i>
                                 </span>
                                 <div class="statContent">
-                                    <span class='num'>
-                                        13205
+                                    <span class='num totalAnswers'>
+                                        {{ count($user->answerdQuestions) }}
                                     </span>
                                     <span class='detail'>سؤال محلول</span>
                                 </div>
@@ -139,8 +45,8 @@
                                     <i class="fa-solid fa-circle-check"></i>
                                 </span>
                                 <div class="statContent">
-                                    <span class='num'>
-                                        13205
+                                    <span class='num correctAnswers'>
+                                        {{ count($user->answerdQuestions()->where('correct', true)->get()) }}
                                     </span>
                                     <span class='detail'>مرات الاجابة الصحيحة</span>
                                 </div>
@@ -170,8 +76,8 @@
                         </div>
                         <div class="profileContent">
                             <div class="personalInformation">
-                                <h3 class='profileName'>عبدالرحمن مصطفى محمود</h3>
-                                <span class='profileType'>طالب</span>
+                                <h3 class='profileName'>{{ $user->name }}</h3>
+                                <span class='profileType'>{{ $user->role->name }}</span>
                             </div>
                             <div class="paper">
                                 <img src="{{ URL::asset('imgs/paper2.png') }}" alt="">
@@ -188,31 +94,31 @@
                                 </div>
                                 <div class="item">
                                     <span class='type'>الاسم:</span>
-                                    <span class='info'>عبدالرحمن مصطفى محمود</span>
+                                    <span class='info'>{{ $user->name }}</span>
                                 </div>
                                 <div class="item">
                                     <span class='type'>المرحلة الدراسية:</span>
-                                    <span class='info'>الصف الثالث الثانوي</span>
+                                    <span class='info'>{{ $user->grade->name }}</span>
                                 </div>
                                 <div class="item">
                                     <span class='type'>الرقم:</span>
-                                    <span class='info'>01234567891</span>
+                                    <span class='info'>{{ $user->phone_number }}</span>
                                 </div>
                                 <div class="item">
                                     <span class='type'>رقم ولي الامر:</span>
-                                    <span class='info'>01234567891</span>
+                                    <span class='info'>{{ $user->parent_phone_number }}</span>
                                 </div>
                                 <div class="item">
                                     <span class='type'> المحافظة:</span>
-                                    <span class='info'>القاهرة</span>
+                                    <span class='info'>{{ $user->governorate->name }}</span>
                                 </div>
                                 <div class="item">
                                     <span class='type'>مكان الحضور:</span>
-                                    <span class='info'>المنصة</span>
+                                    <span class='info'>{{ $user->center->name }}</span>
                                 </div>
                                 <div class='barcodeBox'>
                                     <svg class="barcode" id='profileBarCode'></svg>
-                                    <span class='barcodeText'>as4df5ef12as4df5ef1212345</span>
+                                    <span class='barcodeText'>{{ $user->code }}</span>
                                 </div>
                             </div>
 
@@ -222,36 +128,39 @@
             </div>
             <div class="swiper myCourses">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a class="latestCard  grade1" href='#'>
-                            <div class="cardGrade">
-                                الصف الاول الثانوي
-                            </div>
-                            <div class="image">
-                                <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
-                            </div>
-                            <div class="content">
-                                <div class="lessonsCount">
-                                    <span class='cardIcon'><i class="fa-solid fa-book"></i></span>
-                                    <span class='cardLessonsCount'>32 درس</span>
+                    @foreach ($user->ownedLectures as $lecture)
+                        <div class="swiper-slide">
+                            <a class="latestCard  grade{{ $user->grade->id }}"
+                                href='{{ route('months.show', $lecture->slug) }}'>
+                                <div class="cardGrade">
+                                    {{ $lecture->grade->name }}
                                 </div>
-                                <h3 class="monthName">الشهر العاشر (1ث)
-                                </h3>
-                                <div class="details">
-                                    <div class="detailItem priceCourse ">
-                                        <span class='cardPrice'>50</span>
-                                        <span>ج.م</span>
+                                <div class="image">
+                                    <img src="{{ $lecture->poster }}" alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="lessonsCount">
+                                        <span class='cardIcon'><i class="fa-solid fa-book"></i></span>
+                                        <span class='cardLessonsCount'>{{ count($lecture->lessons) }}</span>
                                     </div>
-                                    <div class="detailItem users">
-                                        <span><i class="fa-solid fa-user"></i></span>
-                                        <span>29</span>
+                                    <h3 class="monthName">{{ $lecture->title }}
+                                    </h3>
+                                    <div class="details">
+                                        <div class="detailItem priceCourse ">
+                                            <span class='cardPrice'>{{ getPrice($lecture) }}</span>
+                                            <span>ج.م</span>
+                                        </div>
+                                        <div class="detailItem users">
+                                            <span><i class="fa-solid fa-user"></i></span>
+                                            <span>{{ count($lecture->owners) }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+                    @endforeach
 
-                    </div>
-                    <div class="swiper-slide">
+                    {{-- <div class="swiper-slide">
                         <a class="latestCard  grade3" href='#'>
                             <div class="cardGrade">
                                 الصف الاول الثانوي
@@ -310,7 +219,7 @@
 
                     </div>
                     <div class="swiper-slide">
-                        <a class="latestCard  grade1" href='#'>
+                        <a class="latestCard  grade{{$user->grade->id}}" href='#'>
                             <div class="cardGrade">
                                 الصف الاول الثانوي
                             </div>
@@ -366,7 +275,7 @@
                             </div>
                         </a>
 
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="swiper-button-next">
                     <span class='swiperControl'>
@@ -381,232 +290,13 @@
             </div>
         </div>
     </section>
-    <footer class=' nonePrint'>
-        <div class="waves wave1">
-            <svg width="100%" height="290px" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-
-
-
-                </linearGradient>
-                <path fill="rgba(130,222,221)"
-                    d="
-          M0 67
-          C 273,183
-            822,-40
-            1920.00,106
-
-          V 359
-          H 0
-          V 67
-          Z">
-                    <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="15s"
-                        attributeType="XML"
-                        values="
-            M0 77
-            C 473,283
-              822,-40
-              1920,116
-
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
-            C 473,-40
-              1222,283
-              1920,136
-
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
-            C 973,260
-              1722,-53
-              1920,120
-
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
-            C 473,283
-              822,-40
-              1920,116
-
-            V 359
-            H 0
-            V 67
-            Z
-            ">
-                    </animate>
-                </path>
-            </svg>
-        </div>
-        <div class="waves wave2">
-            <svg width="100%" height="310px" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-
-                </linearGradient>
-                <path fill="rgba(130,222,221,.6)"
-                    d="
-          M0 67
-          C 273,183
-            822,-40
-            1920.00,106
-
-          V 359
-          H 0
-          V 67
-          Z">
-                    <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="10s"
-                        attributeType="XML"
-                        values="
-            M0 77
-            C 473,283
-              822,-40
-              1920,116
-
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
-            C 473,-40
-              1222,283
-              1920,136
-
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
-            C 973,260
-              1722,-53
-              1920,120
-
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
-            C 473,283
-              822,-40
-              1920,116
-
-            V 359
-            H 0
-            V 67
-            Z
-            ">
-                    </animate>
-                </path>
-            </svg>
-        </div>
-        <div class="waves wave2">
-            <svg width="100%" height="330px" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-
-                </linearGradient>
-                <path fill="rgba(130,222,221,.4)"
-                    d="
-          M0 67
-          C 273,183
-            822,-40
-            1920.00,106
-
-          V 359
-          H 0
-          V 67
-          Z">
-                    <animate repeatCount="indefinite" fill="url(#grad1)" attributeName="d" dur="6s"
-                        attributeType="XML"
-                        values="
-            M0 77
-            C 473,283
-              822,-40
-              1920,116
-
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
-            C 473,-40
-              1222,283
-              1920,136
-
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
-            C 973,260
-              1722,-53
-              1920,120
-
-            V 359
-            H 0
-            V 67
-            Z;
-
-            M0 77
-            C 473,283
-              822,-40
-              1920,116
-
-            V 359
-            H 0
-            V 67
-            Z
-            ">
-                    </animate>
-                </path>
-            </svg>
-        </div>
-
-        <div class='ontop'
-            style='display: flex;
-              flex-direction: column;
-             align-items: center;'>
-            <div class="footerIcon">
-                <a class="facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a class="youtube"><i class="fa-brands fa-youtube"></i></a>
-                <a class="telegram"><i class="fa-brands fa-telegram"></i></a>
-            </div>
-            <div class="copyRight">
-                <div class='crParent'>
-                    <p class='crTeacher'>جميع الحقوق محفوظة لمستر محمد البري 2022</p>
-                    <span class='space'>|</span>
-                    <p style='direction:ltr'>
-                        Made with
-                        <span class='heart'><i class="fa-solid fa-heart"></i></span>
-                        By
-                        <a href="#">Zircon Tech</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-    </footer>
-
-
     <!-- Modals -->
-
     <!-- هنا بقا الفورم الي هيشحن فيها رصيد   -->
     <div class="modal fade chargeModal" id="charge" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form class="modal-content">
+            <form method="POST" action="{{ route('balance.recharge') }}" class="modal-content">
+                @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">شحن رصيد</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -616,23 +306,24 @@
                 <div class="modal-body">
                     <div class="chargeField">
                         <label for="">كود الشحن</label>
-                        <input type="text" placeholder='ادخل كود الشحن'>
+                        <input type="text" name="code" placeholder='ادخل كود الشحن'>
                     </div>
-                    <p class='finishChargeText'>تم الشحن بنجاح رصيدك الحالي 150 ج.م</p>
-                    <p class='wrongChargeText'>الكود الذي ادخلته غير صحيح رصيدك الحالي 100 ج.م</p>
+                    @if (request()->session()->has('success'))
+                        <p class="{{ request()->session()->get('success') ? 'finishChargeText' : 'wrongChargeText' }}">
+                            {{ request()->session()->get('msg') }}</p>
+                    @endif
+                    {{-- <p class='wrongChargeText'>الكود الذي ادخلته غير صحيح رصيدك الحالي {{ $user->balance }} ج.م</p> --}}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn myButton">شحن رصيد</button>
-                    <button type="button" class="btn secBtn" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn myButton">شحن رصيد</button>
+                    <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
                 </div>
             </form>
         </div>
     </div>
 
-
-    <!-- هنا بقا الفورم الي هيشحن فيها كوبون   -->
-    <div class="modal fade editModal" id="edit" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade editModal" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form class="modal-content">
                 <div class="modal-header">
@@ -643,77 +334,107 @@
                 </div>
                 <div class="modal-body">
                     <div class="chargeField">
-                        <div class='inputParent isInvalid'>
+                        <div class='inputParent @error('name') isInvalid @enderror'>
                             <label for="">الاسم</label>
-                            <input type="text" placeholder='ادخل الاسم'>
-                            <span class='error'>error</span>
+                            <input type="text" name="name" value="{{ old('name') ?? $user->name }}"
+                                placeholder='ادخل الاسم'>
+                            @error('name')
+                                <span class='error'>error</span>
+                            @enderror
                         </div>
-                        <div class='inputParent '>
+                        <div class='inputParent @error('grade') isInvalid @enderror'>
                             <label for="">المرحلة الدراسية</label>
-                            <select>
-                                <option value="1">الصف الأول الثانوي</option>
-                                <option value="1">الصف الأول الثانوي</option>
-                                <option value="1">الصف الأول الثانوي</option>
+                            <select name="grade" id="">
+                                <option value="">اختر المرحلة الدراسية</option>
+                                @foreach (\App\Models\Grade::all() as $grade)
+                                    <option @selected(old('grade') == $grade->name || $user->grade->name == $grade->name) value="{{ $grade->name }}">
+                                        {{ $grade->name }}</option>
+                                @endforeach
                             </select>
-                            <span class='error'>error</span>
+                            @error('grade')
+                                <span class='error'>error</span>
+                            @enderror
                         </div>
-                        <div class='inputParent '>
+                        <div class='inputParent @error('phoneNumber') isInvalid @enderror'>
                             <label for="">رقم الهاتف </label>
-                            <input type="number" placeholder='رقم الهاتف'>
-                            <span class='error'>error</span>
+                            <input type="number" name="phoneNumber"
+                                value="{{ old('phoneNumber') ?? $user->phone_number }}" placeholder='رقم الهاتف'>
+                            @error('phoneNumber')
+                                <span class='error'>error</span>
+                            @enderror
                         </div>
-                        <div class='inputParent '>
+                        <div class='inputParent @error('parentPhoneNumber') isInvalid @enderror'>
                             <label for="">رقم هاتف ولي الأمر</label>
-                            <input type="number" placeholder='رقم الهاتف'>
-                            <span class='error'>error</span>
+                            <input type="number" name="parentPhoneNumber"
+                                value="{{ old('parentPhoneNumber') ?? $user->parent_phone_number }}"
+                                placeholder='رقم الهاتف'>
+                            @error('parentPhoneNumber')
+                                <span class='error'>error</span>
+                            @enderror
                         </div>
-                        <div class='inputParent '>
+                        <div class='inputParent @error('governorate') isInvalid @enderror'>
                             <label for="">المحافظة</label>
-                            <select>
-                                <option value="1">cairo</option>
-                                <option value="1">cairo</option>
-                                <option value="1">cairo</option>
+                            <select name="governorate" id="">
+                                <option value="">اختر المحافظة</option>
+                                @foreach (\App\Models\Governorate::all() as $governorate)
+                                    <option @selected(old('governorate') == $governorate->name || $user->governorate->name == $governorate->name) value="{{ $governorate->name }}">
+                                        {{ $governorate->name }}
+                                    </option>
+                                @endforeach
                             </select>
-                            <span class='error'>error</span>
+                            @error('governorate')
+                                <span class='error'>error</span>
+                            @enderror
                         </div>
-                        <div class='inputParent '>
-                            <label for="">مكان المحاضرة</label>
-                            <select>
-                                <option value="1">الصف الأول الثانوي</option>
-                                <option value="1">الصف الأول الثانوي</option>
-                                <option value="1">الصف الأول الثانوي</option>
+                        <div class='inputParent @error('center') isInvalid @enderror'>
+                            <label for="">مكان الدراسة</label>
+                            <select name="center" id="">
+                                <option value="">اختر مكان الدراسة</option>
+                                @foreach (\App\Models\Center::all() as $center)
+                                    <option @selected(old('center') == $center->name || $user->center->name == $center->name) value="{{ $center->name }}">
+                                        {{ $center->name }}</option>
+                                @endforeach
                             </select>
-                            <span class='error'>error</span>
+                            @error('center')
+                                <span class='error'>error</span>
+                            @enderror
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn myButton">شحن الكوبون</button>
-                    <button type="button" class="btn secBtn" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn myButton">تعديل</button>
+                    <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
                 </div>
             </form>
         </div>
     </div>
+@endsection
+
+@section('javascript')
+    @if (request()->session()->get('msg'))
+        <script>
+            document.querySelector('.addChargeBtn').click();
+        </script>
+    @endif
+
+    <!-- هنا و الهوم  -->
+    <script src="{{ URL::asset('js/swiper.bundle.min.js') }}"></script>
     <!-- هنا بس  -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- barcode  -->
     <!-- هنا بس  -->
     <script src="{{ URL::asset('js/jsBarCode.all.min.js') }}"></script>
-    <!--font awesome-->
-    <script src="{{ URL::asset('js/all.min.js') }}"></script>
-
-    <!-- هنا و الهوم  -->
-    <script src="{{ URL::asset('js/swiper.bundle.min.js') }}"></script>
-    <!--jquery js-->
-    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-
-    <!--bootstrap js-->
-    <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
-
-
     <!-- main js file -->
+    @php
+    $passedExams = $user
+        ->passedExams()
+        ->orderBy('exam_ended_at')
+        ->get();
+    @endphp
+    <script>
+        exams = {{ $passedExams->pluck('percentage') }};
+        dates = @php echo $passedExams->pluck('exam_ended_at'); @endphp
+    </script>
     <script src="{{ URL::asset('js/profile.js') }}"></script>
-</body>
-
-</html>
+@endsection
