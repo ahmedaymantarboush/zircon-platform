@@ -77,7 +77,7 @@
                         <div class="profileContent">
                             <div class="personalInformation">
                                 <h3 class='profileName'>{{ $user->name }}</h3>
-                                <span class='profileType'>{{ $user->role->name }}</span>
+                                <span class='profileType'>{{ $user->role->title }}</span>
                             </div>
                             <div class="paper">
                                 <img src="{{ URL::asset('imgs/paper2.png') }}" alt="">
@@ -325,7 +325,8 @@
     <div class="modal fade editModal" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form class="modal-content">
+            <form method="POST" action="{{route('user.update')}}" class="modal-content">
+                @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">تعديل الملف الشخصي</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -339,7 +340,7 @@
                             <input type="text" name="name" value="{{ old('name') ?? $user->name }}"
                                 placeholder='ادخل الاسم'>
                             @error('name')
-                                <span class='error'>error</span>
+                                <span class='error'>{{$message}}</span>
                             @enderror
                         </div>
                         <div class='inputParent @error('grade') isInvalid @enderror'>
@@ -352,24 +353,24 @@
                                 @endforeach
                             </select>
                             @error('grade')
-                                <span class='error'>error</span>
+                                <span class='error'>{{$message}}</span>
                             @enderror
                         </div>
                         <div class='inputParent @error('phoneNumber') isInvalid @enderror'>
                             <label for="">رقم الهاتف </label>
-                            <input type="number" name="phoneNumber"
+                            <input type="text" name="phoneNumber"
                                 value="{{ old('phoneNumber') ?? $user->phone_number }}" placeholder='رقم الهاتف'>
                             @error('phoneNumber')
-                                <span class='error'>error</span>
+                                <span class='error'>{{$message}}</span>
                             @enderror
                         </div>
                         <div class='inputParent @error('parentPhoneNumber') isInvalid @enderror'>
                             <label for="">رقم هاتف ولي الأمر</label>
-                            <input type="number" name="parentPhoneNumber"
+                            <input type="text" name="parentPhoneNumber"
                                 value="{{ old('parentPhoneNumber') ?? $user->parent_phone_number }}"
                                 placeholder='رقم الهاتف'>
                             @error('parentPhoneNumber')
-                                <span class='error'>error</span>
+                                <span class='error'>{{$message}}</span>
                             @enderror
                         </div>
                         <div class='inputParent @error('governorate') isInvalid @enderror'>
@@ -383,7 +384,7 @@
                                 @endforeach
                             </select>
                             @error('governorate')
-                                <span class='error'>error</span>
+                                <span class='error'>{{$message}}</span>
                             @enderror
                         </div>
                         <div class='inputParent @error('center') isInvalid @enderror'>
@@ -396,14 +397,14 @@
                                 @endforeach
                             </select>
                             @error('center')
-                                <span class='error'>error</span>
+                                <span class='error'>{{$message}}</span>
                             @enderror
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn myButton">تعديل</button>
+                    <button type="submit" class="btn myButton">تعديل</button>
                     <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
                 </div>
             </form>
@@ -412,7 +413,12 @@
 @endsection
 
 @section('javascript')
-    @if (request()->session()->get('msg'))
+    @if (request()->session()->has('errors'))
+    <script>
+        document.querySelector('.editBtn').click();
+    </script>
+    @endif
+    @if (request()->session()->has('msg'))
         <script>
             document.querySelector('.addChargeBtn').click();
         </script>
