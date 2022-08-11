@@ -5,7 +5,8 @@
         {{-- @foreach ($video as $quality => $url )
         <source src="{{$url}}" size="{{intval($quality)}}" type="video/mp4">
         @endforeach --}}
-        <source src="{{$video['720p']}}" size="{{intval('360p')}}" type="video/mp4">
+{{--        <source src="{{$video['720p']}}" size="{{intval('360p')}}" type="video/mp4">--}}
+        <source src="{{$url_720}}" size="{{intval('360p')}}" type="video/mp4">
 
         {{-- <source src="{{$url_720}}" size="720" type="video/mp4">
         <source src="{{$url_1080}}" size="1080" type="video/mp4"> --}}
