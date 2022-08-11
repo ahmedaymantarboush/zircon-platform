@@ -1,0 +1,181 @@
+@media print {
+    .nonePrint {
+        display: none;
+    }
+
+    .profileDetails {
+        position: fixed;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        /* max-height: 100%;
+        min-width: 100% !important;
+        text-align: center;
+        border: 1px solid #000; */
+    }
+    .profileImg {
+        transform: translate(0%, -0%);
+        margin-bottom: 2rem;
+        width: 15rem;
+        position: static;
+        margin: 0 auto;
+    }
+
+    .dark .Presence,
+    .dark .Absence {
+        color: #fff;
+    }
+    .dark .someDetailsHeading {
+        color: #556373;
+    }
+    .profileName {
+        color: #1d212c;
+    }
+    /* .dark .printBtn,
+    .dark .editBtn,
+    .dark .type {
+        color: #000;
+    } */
+    .dark .type {
+        color: #556373;
+    }
+    .dark .info {
+        color: #87919d;
+    }
+    .dark .barcode rect:first-of-type {
+        fill: #fff !important;
+    }
+    .dark .barcode g {
+        fill: #000 !important;
+    }
+    /* .profileName {
+        font-size: 3rem;
+    }
+
+    .profileType {
+        font-size: 2.4rem;
+    }
+    .someDetails {
+        align-items: center;
+        width: 100%;
+
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .control {
+        margin-bottom: 3rem;
+    }
+    .someDetailsHeading {
+        font-size: 3.6rem;
+    }
+    .item {
+        font-size: 2.6rem;
+        width: 100%;
+        justify-content: center;
+    }
+    .type {
+        width: 50%;
+    }
+    .info {
+        width: 50%;
+    } */
+}
+@media (max-width: 992px) {
+    /** start nav **/
+    .left {
+        position: fixed;
+        background-color: var(--second-bg);
+        flex-direction: column;
+        padding: 2rem 2rem;
+        border-radius: 2rem;
+        top: -20rem;
+        opacity: 0;
+        left: 50%;
+        z-index: -1;
+        transform: translateX(-50%);
+        transition: 0.6s all ease;
+        box-shadow: var(--shadow);
+    }
+    .activeNavMenu .left {
+        z-index: 9999999999;
+        opacity: 1;
+        top: 50%;
+        transform: translate(-50%, -80%);
+    }
+    .left .search {
+        width: 100%;
+        margin-left: 0;
+    }
+    .register {
+        flex-direction: column;
+        text-align: center;
+    }
+    .signup {
+        margin: 3rem 0 2rem;
+    }
+    .toggleBarBtn {
+        display: block;
+        position: relative;
+        width: 30px;
+        background: none;
+        border: none;
+        height: 30px;
+    }
+    .toggleBarBtn span {
+        width: 30px;
+        height: 4px;
+        background-color: var(--font-dark);
+        border-radius: 10rem;
+        margin: 0.25rem 0;
+        left: 0;
+        transition: 0.3s all ease;
+        position: absolute;
+    }
+    .toggleBarBtn .topLine {
+        top: 0;
+    }
+    .toggleBarBtn .middleLine {
+        top: 8px;
+    }
+    .toggleBarBtn .bottomLine {
+        top: 16px;
+    }
+    .activeNavMenu .topLine {
+        width: 30px;
+        transform: rotate(-45deg);
+
+        transform-origin: right;
+    }
+    .activeNavMenu .middleLine {
+        opacity: 0;
+    }
+    .activeNavMenu .bottomLine {
+        width: 30px;
+        transform: rotate(45deg);
+        transform-origin: right;
+        top: 21.5px;
+    }
+}
+@media (max-width: 768px) {
+    .rightProfile {
+        order: 2;
+    }
+
+    .profileDetails {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 550px) {
+    .profileDetails {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 420px) {
+    .profileDetails {
+        width: 100%;
+        margin: 0 auto;
+    }
+}

@@ -312,7 +312,7 @@
             </div>
             <div class="row" style='overflow:hidden'>
                 <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromRight">
-                    <a class="latestCard  " href='#'>
+                    <a class="latestCard  grade1" href='#'>
                         <div class="cardGrade">
                             الصف الاول الثانوي
                         </div>
@@ -327,7 +327,7 @@
                             <h3 class="monthName">الشهر العاشر (1ث)
                             </h3>
                             <div class="details">
-                                <div class="detailItem d-redColor">
+                                <div class="detailItem priceCourse ">
                                     <span class='cardPrice'>50</span>
                                     <span>ج.م</span>
                                 </div>
@@ -340,63 +340,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromDown">
-                    <a class="latestCard " href='#'>
-                        <div class="cardGrade">
-                            الصف الاول الثانوي
-                        </div>
-                        <div class="image">
-                            <img src="{{URL::asset('imgs/thumbnail_2.png')}}" alt="">
-                        </div>
-                        <div class="content">
-                            <div class="lessonsCount">
-                                <span class='cardIcon'><i class="fa-solid fa-book"></i></span>
-                                <span>32 درس</span>
-                            </div>
-                            <h3 class="monthName">الشهر العاشر (1ث)
-                            </h3>
-                            <div class="details">
-                                <div class="detailItem d-blueColor">
-                                    <span class='cardPrice'>50</span>
-                                    <span>ج.م</span>
-                                </div>
-                                <div class="detailItem users">
-                                    <span><i class="fa-solid fa-user"></i></span>
-                                    <span>32</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromUp">
-                    <a class="latestCard " href='#'>
-                        <div class="cardGrade">
-                            الصف الاول الثانوي
-                        </div>
-                        <div class="image">
-                            <img src="{{URL::asset('imgs/thumbnail_3.png')}}" alt="">
-                        </div>
-                        <div class="content">
-                            <div class="lessonsCount">
-                                <span class='cardIcon'><i class="fa-solid fa-book"></i></span>
-                                <span>32 درس</span>
-                            </div>
-                            <h3 class="monthName">الشهر العاشر (1ث)
-                            </h3>
-                            <div class="details">
-                                <div class="detailItem d-blueColor">
-                                    <span class='cardPrice'>50</span>
-                                    <span>ج.م</span>
-                                </div>
-                                <div class="detailItem users">
-                                    <span><i class="fa-solid fa-user"></i></span>
-                                    <span>32</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromLeft">
-                    <a class="latestCard  " href='#'>
+                    <a class="latestCard  grade2" href='#'>
                         <div class="cardGrade">
                             الصف الاول الثانوي
                         </div>
@@ -411,7 +355,63 @@
                             <h3 class="monthName">الشهر العاشر (1ث)
                             </h3>
                             <div class="details">
-                                <div class="detailItem d-redColor">
+                                <div class="detailItem priceCourse ">
+                                    <span class='cardPrice'>50</span>
+                                    <span>ج.م</span>
+                                </div>
+                                <div class="detailItem users">
+                                    <span><i class="fa-solid fa-user"></i></span>
+                                    <span>29</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromUp">
+                    <a class="latestCard  grade3" href='#'>
+                        <div class="cardGrade">
+                            الصف الاول الثانوي
+                        </div>
+                        <div class="image">
+                            <img src="{{URL::asset('imgs/thumbnail_1.png')}}" alt="">
+                        </div>
+                        <div class="content">
+                            <div class="lessonsCount">
+                                <span class='cardIcon'><i class="fa-solid fa-book"></i></span>
+                                <span class='cardLessonsCount'>32 درس</span>
+                            </div>
+                            <h3 class="monthName">الشهر العاشر (1ث)
+                            </h3>
+                            <div class="details">
+                                <div class="detailItem priceCourse ">
+                                    <span class='cardPrice'>50</span>
+                                    <span>ج.م</span>
+                                </div>
+                                <div class="detailItem users">
+                                    <span><i class="fa-solid fa-user"></i></span>
+                                    <span>29</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromLeft">
+                    <a class="latestCard  grade1" href='#'>
+                        <div class="cardGrade">
+                            الصف الاول الثانوي
+                        </div>
+                        <div class="image">
+                            <img src="{{URL::asset('imgs/thumbnail_1.png')}}" alt="">
+                        </div>
+                        <div class="content">
+                            <div class="lessonsCount">
+                                <span class='cardIcon'><i class="fa-solid fa-book"></i></span>
+                                <span class='cardLessonsCount'>32 درس</span>
+                            </div>
+                            <h3 class="monthName">الشهر العاشر (1ث)
+                            </h3>
+                            <div class="details">
+                                <div class="detailItem priceCourse ">
                                     <span class='cardPrice'>50</span>
                                     <span>ج.م</span>
                                 </div>

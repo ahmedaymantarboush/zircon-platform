@@ -16,15 +16,15 @@ let addElement = function (ele, className) {
 ///////////////////////////////////
 // [01- dark and light ]
 let funChangeImagesDark = function () {
-    let paperImg1 = document.querySelector(".paper img");
-    let paperImg2 = document.querySelector(".paper2 img");
-    if (document.documentElement.classList.contains("dark")) {
-        paperImg1.setAttribute("src", "../imgs/paperdark.png");
-        paperImg2.setAttribute("src", "../imgs/paper2_dark.png");
-    } else {
-        paperImg1.setAttribute("src", "../imgs/paper.png");
-        paperImg2.setAttribute("src", "../imgs/paper2.png");
-    }
+    // let paperImg1 = document.querySelector(".paper img");
+    // let paperImg2 = document.querySelector(".paper2 img");
+    // if (document.documentElement.classList.contains("dark")) {
+    //     paperImg1.setAttribute("src", "../imgs/paperdark.png");
+    //     paperImg2.setAttribute("src", "../imgs/paper2_dark.png");
+    // } else {
+    //     paperImg1.setAttribute("src", "../imgs/paper.png");
+    //     paperImg2.setAttribute("src", "../imgs/paper2.png");
+    // }
 };
 
 let addStyleToLocaleStorage = function () {
