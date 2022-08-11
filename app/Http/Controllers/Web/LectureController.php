@@ -208,10 +208,10 @@ class LectureController extends Controller
                     ],
                 ];
 
-                return view("home.search2", $data);
+                return view("home.search", $data);
             endif;
         endif;
-        return view("home.search2", $data);
+        return view("home.search", $data);
     }
     /**
      * Show the form for creating a new resource.
