@@ -28,7 +28,6 @@ Auth::routes();
 Route::get('grades/grade{id}', [LectureController::class,'index'])->name('months.index');
 Route::resource('months', LectureController::class)->only(['show']);
 Route::get('search', [LectureController::class, 'search'])->name('search');
-Route::get('search2', [LectureController::class, 'search2'])->name('search2');
 
 //  ADMIN ROUTES
 

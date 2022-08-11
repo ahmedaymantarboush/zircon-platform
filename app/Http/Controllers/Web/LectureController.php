@@ -33,7 +33,7 @@ class LectureController extends Controller
     }
 
 
-    public function search2()
+    public function search()
     {
         $search = request()->q ?? '';
         $allFilters = explode(';', request()->filters) ?? "";
@@ -213,54 +213,6 @@ class LectureController extends Controller
         endif;
         return view("home.search2", $data);
     }
-
-    public function search()
-    {
-        $search = request()->q;
-
-        $grades   = Grade::where('name', 'like', "%$search%")->get();
-        $parts    = Part::where('name', 'like', "%$search%")->get();
-        $subjects = Subject::where('name', 'like', "%$search%")->get();
-        $users    = User::where('name', 'like', "%$search%")->get();
-        $lessons  = Lesson::where('title', 'like', "%$search%")->get();
-        $lectures  = $search ? Lecture::where(['published' => true]) : null;
-
-        if ($search) :
-            $lectures = $lectures->where(function ($q) use ($search, $users, $parts, $grades, $lessons, $subjects) {
-                $q->where('title', 'LIKE', "%$search%")
-                    ->orWhere('semester', 'LIKE', "%$search%")
-                    ->orWhere('short_description', 'LIKE', "%$search%")
-                    ->orWhere('description', 'LIKE', "%$search%")
-                    ->orWhere('slug', 'LIKE', "%$search%")
-                    ->orWhere('meta_keywords', 'LIKE', "%$search%")
-                    ->orWhere(function ($userQ) use ($users) {
-                        $userQ->whereHas('publisher', function ($user) use ($users) {
-                            $user->whereIn('id', $users->pluck('id'));
-                        });
-                    })->orWhere(function ($partQ) use ($parts) {
-                        $partQ->whereHas('parts', function ($part) use ($parts) {
-                            $part->whereIn('part_id', $parts->pluck('id'));
-                        });
-                    })->orWhere(function ($gradeQ) use ($grades) {
-                        $gradeQ->whereHas('grade', function ($grade) use ($grades) {
-                            $grade->whereIn('id', $grades->pluck('id'));
-                        });
-                    })->orWhere(function ($subjectQ) use ($subjects) {
-                        $subjectQ->whereHas('subject', function ($subject) use ($subjects) {
-                            $subject->whereIn('id', $subjects->pluck('id'));
-                        });
-                    })->orWhere(function ($lessonQ) use ($lessons) {
-                        $lessonQ->whereHas('lessons', function ($lesson) use ($lessons) {
-                            $lesson->whereIn('id', $lessons->pluck('id'));
-                        });
-                    });
-            });
-
-        endif;
-
-        return view("home.search", compact('lectures'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
