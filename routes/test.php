@@ -43,19 +43,18 @@ Route::get('/tt', function () {
     // return $response;
     // return getVideoUrl('LgV1IcqX3QE')['videos']['720p'];
 
-    $url = getVideoUrl('M9wmZ4Lcskk')['videos']['720p'];
+    // $url = getVideoUrl('M9wmZ4Lcskk')['videos']['360p'];
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_TIMEOUT, 500);
-    curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_TIMEOUT_MS, 5000000);
-    curl_setopt($ch, CURLOPT_POST, 0);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    // set_time_limit(0);
+    // $ch = curl_init();
+    // curl_setopt($ch, CURLOPT_TIMEOUT, 500);
+    // curl_setopt($ch, CURLOPT_URL, $url);
+    // curl_setopt($ch, CURLOPT_POST, 0);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    $response = curl_exec($ch);
-    // $err = curl_error($ch);  //if you need
-    curl_close($ch);
-    return $response;
+    // $response = curl_exec($ch);
+    // curl_close($ch);
+    // return $response;
 });
 //test route for lecture viewer
 Route::get('/lectureview',function (){

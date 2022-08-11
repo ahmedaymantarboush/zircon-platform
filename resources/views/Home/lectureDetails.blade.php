@@ -51,8 +51,8 @@
                                     <div class="card-header" id="headingOne">
                                         <button
                                             class="d-flex align-items-center justify-content-between btn btn-link collapsed"
-                                            data-toggle="collapse" data-target="#collapse{{$section->id}}" aria-expanded="false"
-                                            aria-controls="collapse{{$section->id}}">
+                                            data-toggle="collapse" data-target="#collapse{{ $section->id }}"
+                                            aria-expanded="false" aria-controls="collapse{{ $section->id }}">
                                             <div class='nameOfPart'>
                                                 {{ $section->title }}
                                             </div>
@@ -63,7 +63,7 @@
                                             </div>
                                         </button>
                                     </div>
-                                    <div id="collapse{{$section->id}}" class="collapse" aria-labelledby="headingOne">
+                                    <div id="collapse{{ $section->id }}" class="collapse" aria-labelledby="headingOne">
                                         <div class="card-body">
                                             @foreach ($section->items()->orderBy('id', 'desc')->get() as $item)
                                                 <div class="monthItem">
@@ -79,7 +79,7 @@
                                                         @if ($item->exam_id)
                                                             {{ $item->questions_count }} سؤال
                                                         @else
-                                                            {{ $item->time }} دقيقة
+                                                            {{ $item->item->time >= 3600 ? number_format($item->item->time / 3600, 2) . ' ساعة' : number_format($item->item->time / 60, 2) . ' دقيقة' }}
                                                         @endif
                                                     </span>
                                                 </div>
@@ -232,7 +232,7 @@
                                         <span class="unit">ج.م</span>
                                     </span>
                                     <span class="discount"> خصم
-                                        {{ (($price - $lecture->price) * 100) / $lecture->price }}%</span>
+                                        {{ number_format((( $lecture->price - $price ) * 100) / $lecture->price, 2) }}%</span>
                                     `
                                 @endif
                             </div>
@@ -269,29 +269,30 @@
                                     أدخل الكوبون
                                 </button>
                                 <!-- <form class="have-coupon">
-                                                            <div class="dis-coupon">
-                                                                <button class="close-coupon" type="button">
-                                                                    <i class="fa fa-close"></i>
-                                                                </button>
+                                                                    <div class="dis-coupon">
+                                                                        <button class="close-coupon" type="button">
+                                                                            <i class="fa fa-close"></i>
+                                                                        </button>
 
-                                                                <p class="coupon-text">
-                                                                    KEEPLEARNING
-                                                                </p>
-                                                                <input type="text" id="hiddenInput" hidden />
-                                                                <span class="coupon-status">منفذ</span>
-                                                                <span class="coupon-status is-invalid-coupon">
-                                                                    غير صالح
-                                                                </span>
-                                                            </div>
-                                                            <input type="submit" value="أضف" id="add-coupon" />
-                                                            <input type="text" id="coupon-input" />
-                                                        </form> -->
+                                                                        <p class="coupon-text">
+                                                                            KEEPLEARNING
+                                                                        </p>
+                                                                        <input type="text" id="hiddenInput" hidden />
+                                                                        <span class="coupon-status">منفذ</span>
+                                                                        <span class="coupon-status is-invalid-coupon">
+                                                                            غير صالح
+                                                                        </span>
+                                                                    </div>
+                                                                    <input type="submit" value="أضف" id="add-coupon" />
+                                                                    <input type="text" id="coupon-input" />
+                                                                </form> -->
                             </div>
                             <div class="course-content">
                                 <h2>محتوي المحاضرة:</h2>
                                 <div class="item">
                                     <i class="fa-solid fa-hourglass"></i>
-                                    <p><span>{{ $lecture->time }}</span> من الفيديو</p>
+                                    <p><span>{{ $lecture->time >= 3600 ? number_format($lecture->time / 3600, 2) . ' ساعة' : number_format($lecture->time / 60, 2) . ' دقيقة' }}</span>
+                                        من الفيديو</p>
                                 </div>
                                 <div class="item">
                                     <i class="fa-solid fa-clipboard-question"></i>
@@ -310,81 +311,81 @@
         </div>
     </div>
 
-
-    <!-- Modals -->
-    @if (Auth::user()->balance >= $price)
-        <!-- هنا لو رصيده يكفي وهيأكد الشراء  -->
-        <div class="modal fade sureBuyModal" id="sureBuy" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">شراء الشهر</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        هل انت متأكد انك تريد شراء الشهر؟ (رصيدك: {{ Auth::user()->balance }} ج.م)
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn myButton">شراء</button>
-                        <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
-                    </div>
-                </form>
+    @if (Auth::check())
+        <!-- Modals -->
+        @if (Auth::user()->balance >= $price)
+            <!-- هنا لو رصيده يكفي وهيأكد الشراء  -->
+            <div class="modal fade sureBuyModal" id="sureBuy" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <form class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">شراء الشهر</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            هل انت متأكد انك تريد شراء الشهر؟ (رصيدك: {{ Auth::user()->balance }} ج.م)
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn myButton">شراء</button>
+                            <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-    @else
-        <!-- هنا لو رصيده ميكفيش وعايز يشحن يضغط علي الزرار يوديه للفورم الي جاية   -->
-        <div class="modal fade notEnoughModal" id="notEnough" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">شراء الشهر</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        رصيدك الحالي ({{Auth::user()->balance}} ج.م) لا يكفي لشراء الشهر </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn myButton" data-toggle="modal" data-target="#charge"
-                            id='chargeTransferBtn'>شحن
-                            رصيد</button>
-                        <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
+        @else
+            <!-- هنا لو رصيده ميكفيش وعايز يشحن يضغط علي الزرار يوديه للفورم الي جاية   -->
+            <div class="modal fade notEnoughModal" id="notEnough" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">شراء الشهر</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            رصيدك الحالي ({{ Auth::user()->balance }} ج.م) لا يكفي لشراء الشهر </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn myButton" data-toggle="modal" data-target="#charge"
+                                id='chargeTransferBtn'>شحن
+                                رصيد</button>
+                            <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- هنا بقا الفورم الي هيشحن فيها رصيد   -->
-        <div class="modal fade chargeModal" id="charge" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">شحن رصيد</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="chargeField">
-                            <label for="">كود الشحن</label>
-                            <input type="text" placeholder='ادخل كود الشحن'>
+            <!-- هنا بقا الفورم الي هيشحن فيها رصيد   -->
+            <div class="modal fade chargeModal" id="charge" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <form class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">شحن رصيد</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-{{--
-                        <p class='finishChargeText'>تم الشحن بنجاح رصيدك الحالي 150 ج.م</p>
+                        <div class="modal-body">
+                            <div class="chargeField">
+                                <label for="">كود الشحن</label>
+                                <input type="text" placeholder='ادخل كود الشحن'>
+                            </div>
+                            {{-- <p class='finishChargeText'>تم الشحن بنجاح رصيدك الحالي 150 ج.م</p>
 
                         <p class='wrongChargeText'>الكود الذي ادخلته غير صحيح رصيدك الحالي 100 ج.م</p> --}}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn myButton">شحن رصيد</button>
-                        <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
-                    </div>
-                </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn myButton">شحن رصيد</button>
+                            <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        @endif
     @endif
     <!-- هنا بقا الفورم الي هيشحن فيها كوبون   -->
     <div class="modal fade chargeCouponModal" id="chargeCoupon" tabindex="-1" role="dialog"

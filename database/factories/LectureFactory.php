@@ -27,7 +27,7 @@ class LectureFactory extends Factory
             'published' => $this->faker->numberBetween(0, 1),
             'promotinal_video_url' => $this->faker->url(),
             'poster' => "http://127.0.0.1:8000/imgs/thumbnail_$grade.png",
-            'time'=>fake()->randomFloat(1,1,5).' ساعة',
+            'time'=>rand(5000,50000),
             'total_questions_count'=>rand(1000,5000),
             'meta_keywords' => implode(',',$this->faker->words(10)),
             'meta_description' => $this->faker->words(50, true),

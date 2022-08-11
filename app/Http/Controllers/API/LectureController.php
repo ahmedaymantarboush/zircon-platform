@@ -309,7 +309,7 @@ class LectureController extends Controller
             'final_price' =>  $data['free'] ? 0 : ($data['hasDiscount'] ? (abs($data['finalPrice']) > abs($data['price']) ? abs($data['finalPrice']) : abs($data['price'])) : abs($data['price'])),
             'discount_expiry_date' => $data['discountExpiryDate'] > now() ? $data['discountExpiryDate'] : null,
             'grade_id' => $data['grade'],
-            'time' => '0 ساعة',
+            'time' => 0,
             'total_questions_count' => 0,
             'subject_id' => Subject::find(env('DEFAULT_SUBJECT_ID'))->name,
             'user_id' => apiUser()->id,

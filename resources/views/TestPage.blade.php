@@ -160,8 +160,7 @@ if (!empty($videoLink)) {
 {{-- <iframe width="560" height="315" src="https://www.youtube.com/embed/M9wmZ4Lcskk" title="YouTube video player"
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe> --}}
-{{--
-@php
+{{-- @php
 // echo "<pre>";
 // print_r();
 // echo "</pre>";
@@ -174,5 +173,20 @@ if (!empty($videoLink)) {
     //     endif;
     // endforeach;
 @endphp --}}
+{{--
+<video width="1500" controls id="vid" height="500" frameborder="0">
+    @foreach (getVideoUrl($_GET['v'])['videos'] as $key => $value)
+        <source src="{{ $value }}">
+    @endforeach
+</video>
+<script>
+    setTimeout(() => {
+        document.querySelector('#vid').innerHTML = '';
+    }, 100);
+</script> --}}
 
-<video src="/tt" width="1500" height="500" frameborder="0"></video>
+{{-- @include('components.videoplayer.player',['videoSources'=>getVideoUrl($_GET['v'])['videos']]) --}}
+
+{{-- @php
+ dd(json_decode(getVideoInfo("Ge4xioJNTV8"),true));
+@endphp --}}

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title',50);
             $table->string('url')->unique();
-            $table->string('time',50);
+            $table->integer('time');
             $table->enum('type',['video','pdf','audio']);
             $table->enum('semester',['الفصل الدراسي الأول','الفصل الدراسي الثاني']);
             $table->text('description');
