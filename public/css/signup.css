@@ -188,6 +188,40 @@ a:hover {
     filter: drop-shadow(0 0 80px var(--green-color));
 }
 
+.errorMessageModal {
+    position: fixed;
+    top: -2%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: #ffcbcb;
+    width: fit-content;
+    padding: 1rem 2rem;
+    opacity: 0;
+    color: #ea0606;
+
+    z-index: 9999999999;
+    /* transition: 0.5s all ease; */
+    animation: show 4s linear;
+    animation-iteration-count: 1;
+}
+@keyframes show {
+    0% {
+        opacity: 0;
+        top: -2%;
+    }
+    8% {
+        opacity: 1;
+        top: 1%;
+    }
+    90% {
+        opacity: 1;
+        top: 1%;
+    }
+    100% {
+        top: -2%;
+        opacity: 0;
+    }
+}
 /********* start login page *************/
 
 .signupCard {

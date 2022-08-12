@@ -26,7 +26,25 @@ let gradeInp = document.querySelector("[name='grade']");
 let governorateInp = document.querySelector("[name='governorate']");
 let centerInp = document.querySelector("[name='center']");
 // Ajax function
-let sendRequest = async function (url, myData, el = null) {
+/// error popup function
+let removePopup = function (ele) {
+    setTimeout(function () {
+        document.body.removeChild(ele);
+    }, 4000);
+};
+let errorPopup = function (errorMessage) {
+    let html = `
+    <div class='errorMessageModal'>
+    ${errorMessage}
+    </div>
+    
+    `;
+    document.body.insertAdjacentHTML("afterbegin", html);
+    removePopup(document.querySelector(".errorMessageModal"));
+};
+/// remove popup function
+
+let regApi = async function (url, myData, el = null) {
     try {
         let postData = await fetch(url, {
             method: "POST",
@@ -37,20 +55,23 @@ let sendRequest = async function (url, myData, el = null) {
             body: myData,
         });
 
-        if (el) {
-            // هندل الايرور بقا على حسب الstatus code
-        }
-
         let responseData = await postData.json();
-        return responseData;
+        if (postData.status == 200) {
+            el.preventDefault();
+            localStorage.setItem("token", responseData.data._token);
+            window.location.href = "http://127.0.0.1:8000/";
+        }
+        if (postData.status == 500) {
+            el.preventDefault();
+            errorPopup("حدث خطأ اثناء التسجيل حاول مرة اخري");
+        }
     } catch (err) {
-        return err;
+        console.log(err.error);
     }
 };
 // calling
-frm = document.querySelector("#form");
-frm.addEventListener("submit", async function (e) {
-    e.preventDefault();
+document.querySelector("#form").addEventListener("submit", function (e) {
+    // e.preventDefault();
     let register = {
         name: nameInp.value,
         email: emailInp.value,
@@ -63,17 +84,8 @@ frm.addEventListener("submit", async function (e) {
         center: centerInp.value,
     };
 
-    let form = new FormData();
+    form = new FormData();
     form.append("data", JSON.stringify(register));
 
-    let response = await sendRequest(
-        "http://127.0.0.1:8000/api/register/",
-        form,
-        e
-    );
-    console.log(response.data._token);
-
-    localStorage.setItem("token", response.data._token);
-
-    console.log(response);
+    regApi("http://127.0.0.1:8000/api/register/", form, e);
 });

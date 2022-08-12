@@ -60,6 +60,6 @@ Route::get('/tt', function () {
     // return $response;
 });
 //test route for lecture viewer
-Route::get('/lectureview',function (){
-    return view('Home.lecture_viewer');
+Route::get('/signup',function (){
+    return view('signup');
 });
