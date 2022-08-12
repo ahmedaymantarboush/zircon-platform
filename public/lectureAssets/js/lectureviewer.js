@@ -94,3 +94,62 @@ var swiper = new Swiper(".mySwiper", {
         },
     },
 });
+/////////////////add flag//////////////
+$(document).ready(function (){
+    let allFlags
+    allFlags= document.querySelectorAll('.unflagQuestion');
+    for(let i=0;i < allFlags.length;i++){
+        let flag =allFlags[i].getAttribute('flag');
+        let num =allFlags[i].getAttribute('queNamber');
+        let tabId = '#flagIcon_'+ num;
+        let flagIcon = document.querySelector(tabId);
+        if(flag == 1){
+            allFlags[i].classList.remove("unflagQuestion");
+            allFlags[i].classList.add("flagQuestion");
+            flagIcon.classList.remove("hide_icon");
+            flagIcon.classList.add("show_icon");
+        }
+    }
+
+    $('.question_head').click(function (){
+        let flagType = $(this).find('i').attr('flag');
+        let flagnum = $(this).find('i').attr('queNamber');
+        flagnum = '#flagIcon_'+ flagnum;
+        if(flagType == 0){
+            $(this).find('i').attr('flag',1);
+            $(this).find('i').removeClass('unflagQuestion');
+            $(this).find('i').addClass('flagQuestion');
+            $(this).find('input').prop('checked',true);
+            $(this).find('input').removeClass('uncheckflag');
+            $(this).find('input').addClass('checkflag');
+            let flagIcon = document.querySelector(flagnum);
+            flagIcon.classList.remove("hide_icon");
+            flagIcon.classList.add("show_icon");
+        }else {
+            $(this).find('i').attr('flag',0);
+            $(this).find('i').removeClass('flagQuestion');
+            $(this).find('i').addClass('unflagQuestion');
+            $(this).find('input').prop('checked',false);
+            $(this).find('input').removeClass('checkflag');
+            $(this).find('input').addClass('uncheckflag');
+            let flagIcon = document.querySelector(flagnum);
+            flagIcon.classList.remove("show_icon");
+            flagIcon.classList.add("hide_icon");
+        }
+    });
+    $('.anserBox').click(function (){
+        let queNamber = $(this).attr('queNamber');
+        let ansers = document.querySelectorAll('.anserBox');
+        for(let i=0;i<ansers.length;i++){
+            if(ansers[i].getAttribute('queNamber')==queNamber){
+                ansers[i].classList.remove("selectedAnser");
+            }
+        }
+        let yesId = '#yesIcon_'+ queNamber;
+        let yesIcon = document.querySelector(yesId);
+        yesIcon.classList.remove("hide_icon");
+        yesIcon.classList.add("show_icon");
+        $(this).find('input').prop('checked',true);
+        $(this).addClass('selectedAnser');
+    });
+});

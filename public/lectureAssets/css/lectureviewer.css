@@ -7,6 +7,7 @@
     --green: #9ED616;
     --bg-red: #fcdbdb;
     --bg-green: #e8f5c7;
+    --shadow: rgba(0,0,0,0.15) 0px 2px 8px;
 }
 *{
     margin: 0;
@@ -268,4 +269,117 @@ html,body{
     color: var(--main-color2);
     font-size: 105px;
     margin-top: 100px;
+}
+.question_head{
+    background-color: #ffffff;
+    box-shadow: var(--shadow);
+    padding: 13px 17px 13px 19px;
+    max-width: 280px;
+    border-radius: 10px;
+}
+.question_head .checkflag,.question_head .uncheckflag{
+    visibility: hidden;
+}
+.question_head span{
+    color: var(--main-color2);
+    font-weight: 600;
+    font-size: 25px;
+}
+.unflagQuestion{
+    color: var(--main-color2);
+    font-size: 20px;
+    background-color: var(--bg-color);
+    padding: 12px;
+    border-radius: 10px;
+    margin-left: 5px;
+    box-shadow: var(--shadow);
+}
+.flagQuestion{
+    color: #ffffff;
+    font-size: 20px;
+    background-color: var(--main-color);
+    padding: 12px;
+    border-radius: 10px;
+    margin-left: 5px;
+    box-shadow: var(--shadow);
+}
+.hide_icon{
+    visibility: hidden;
+}
+.show_icon{
+    visibility: visible;
+}
+.all_questions{
+    float: left;
+}
+.all_questions i{
+    color: var(--main-color2);
+    font-size: 30px;
+    background-color: #ffffff;
+    box-shadow: var(--shadow);
+    padding: 20px;
+    border-radius: 10px;
+}
+.all_questions i:hover{
+    color: #ffffff;
+    background-color: var(--main-color);
+}
+.rightBtn,.leftBtn{
+    border-style: none;
+    background-color: #ffffff;
+
+}
+.rightBtn i{
+    background-color: var(--bg-color);
+    color: var(--main-color2);
+    font-size: 25px;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 8px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.leftBtn i{
+    background-color: var(--bg-color);
+    color: var(--main-color2);
+    font-size: 25px;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 8px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.question_img{
+    margin-top: 50px;
+    max-height: 250px;
+    max-width: 100%;
+}
+.question_text{
+    font-size: 25px;
+    font-weight: 600;
+    color: black;
+    margin-top: 20px;
+}
+@media only screen and (max-width: 600px) {
+    .question_text{
+        font-size: 20px;
+    }
+}
+.anserBox{
+    width: 100%;
+    border: 1px solid #dfdfdf;
+    border-radius: 10px;
+    padding: 15px 20px 15px 0;
+    margin-top: 15px;
+}
+.anserBox input{
+    margin-left: 20px;
+}
+.anserBox .anser_text{
+    font-size: 22px;
+    font-weight: 500;
+}
+.selectedAnser{
+    border: 1px solid var(--main-color);
+    background-color: #E7F6FD;
 }

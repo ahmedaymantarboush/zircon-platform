@@ -243,7 +243,7 @@
                     </div>
                 </div>
             </div>
-            <div class="swiper myCourses">
+            <div class="swiper myCourses nonePrint" >
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <a class="latestCard  grade1" href='#'>

@@ -185,32 +185,29 @@
 @endsection
 @else
 @section('main')
-    <div class="exam-parent">
 
+    <div class="exam-parent">
         <div class="exam-tab swiper mySwiper">
             <div class="swiper-wrapper">
                 @for($i=1;$i<=15;$i++)
                     @if($i==1)
-                        <div class="swiper-slide">
-                            <button class="tab-item active-tab">
-                                <span class="tab-num">{{$i}}</span>
-                                <div class="tab-icon">
-                                    <span><i class="fa-solid fa-check"></i></span>
-                                    <span><i class="fa-solid fa-flag"></i></span>
-                                </div>
-                            </button>
-                        </div>
+                        @php
+                            $active = 'active-tab';
+                        @endphp
                     @else
+                        @php
+                            $active = '';
+                        @endphp
+                    @endif
                         <div class="swiper-slide">
-                            <button class="tab-item">
-                                <span class="tab-num">{{$i}}</span>
-                                <div class="tab-icon">
-                                    <span><i class="fa-solid fa-check"></i></span>
-                                    <span><i class="fa-solid fa-flag"></i></span>
+                            <button class="tab-item {{$active}}">
+                                <span class="tab-num" >{{$i}}</span>
+                                <div class="tab-icon" >
+                                    <span><i class="fa-solid fa-check hide_icon" id="yesIcon_{{$i}}"></i></span>
+                                    <span><i class="fa-solid fa-flag hide_icon"id="flagIcon_{{$i}}"></i></span>
                                 </div>
                             </button>
                         </div>
-                    @endif
                 @endfor
             </div>
 
@@ -218,24 +215,59 @@
         </div>
         <div class="exam-questions">
             <div class="container">
-                @for($i=1;$i<=15;$i++)
-                    @if($i==1)
-                        <div class="question active-tab">
-                            test {{$i}}
+                <div class="row">
+                    @for($i=1;$i<=15;$i++)
+                        @if($i==1)
+                            @php
+                                $active = 'active-tab';
+                            @endphp
+                        @else
+                            @php
+                                $active = '';
+                            @endphp
+                        @endif
+                            <div class="question {{$active}} col-12">
+                                <div class="title_exam d-flex justify-content-between">
+                                    <div class="question_head">
+                                        <i class="fa-solid fa-font-awesome unflagQuestion" flag="0" queNamber="{{$i}}"></i>
+                                        <input type="checkbox" class="uncheckflag">
+                                        <span>السؤال رقم {{$i}}</span>
+                                    </div>
+                                    <div class="all_questions">
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                    </div>
+                                </div>
+                                @if(1)
+                                    <div class="col-12">
+                                        <img class="question_img" src="https://csva.s3.amazonaws.com/attachments/editor//62efec554915d_1659890773/Capture.PNG">
+                                    </div>
+                                @endif
+                                <div class="col-12">
+                                    <p class="question_text">
+                                        اوجد قراءة الاميتر الذي بالشكل
+                                    </p>
+                                </div>
+                                @for($j=1;$j<=4;$j++)
+                                    <div class="col-12">
+                                        <div class="anserBox d-flex justify-content-start" queNamber="{{$i}}">
+                                            <input type="radio" name="anser{{$i}}" value="anser_database_id">
+                                            <span class="anser_text">15 A</span>
+                                        </div>
+                                    </div>
+                                @endfor
+                            </div>
+                    @endfor
+
+                    <div class="col-12">
+                        <div class="btn-control d-flex justify-content-center">
+                            <button class="rightBtn">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </button>
+                            <button class="leftBtn">
+                                <i class="fa-solid fa-angles-left"></i>
+                            </button>
                         </div>
-                    @else
-                        <div class="question">
-                            test {{$i}}
-                        </div>
-                    @endif
-                @endfor
-                <div class="btn-control">
-                    <button class="rightBtn">
-                        <i class="fa-solid fa-angles-right"></i>
-                    </button>
-                    <button class="leftBtn">
-                        <i class="fa-solid fa-angles-left"></i>
-                    </button>
+                    </div>
                 </div>
             </div>
 

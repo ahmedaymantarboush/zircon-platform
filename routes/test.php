@@ -25,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('search');
 // });
 
-//  Route::get('/signup', function () {
-//      return view('signup');
-//  });
+ Route::get('/signup', function () {
+     return view('signup');
+ });
 // Route::get('/login', function () {
 //     return view('login');
 // });
@@ -35,9 +35,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('test');
 // });
 
-// Route::get('/test', function () {
-//     return view('testPage');
-// });
+Route::get('/test', function () {
+    return view('profile');
+});
 
 
 Route::get('/tt', function () {
@@ -60,6 +60,6 @@ Route::get('/tt', function () {
     // return $response;
 });
 //test route for lecture viewer
-Route::get('/signup',function (){
-    return view('signup');
+Route::get('/lectureview',function (){
+    return view('Home.lecture_viewer');
 });
