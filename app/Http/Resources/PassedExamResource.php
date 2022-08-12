@@ -32,8 +32,8 @@ class PassedExamResource extends JsonResource
     {
         $data = [
             'user' => UserResource::only($this->user,['name','phoneNumber','parentPhoneNumber','grade','governorate','code','center']),
-            'exam'=> ExamResource::only($this->exam, ['id','title','questions']),
-            
+            'exam'=> ExamResource::only($this->exam, ['title','questions']),
+
             'percentage' => $this->percentage,
             'examStartedAt' => $this->exam_started_at,
             'examEndedAt' => $this->exam_ended_at,

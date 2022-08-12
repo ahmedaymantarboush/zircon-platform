@@ -10,6 +10,7 @@ class SectionItem extends Model
     use HasFactory;
 
     protected $fillable = [
+        'title',
         'order',
         'section_id',
         'lesson_id',

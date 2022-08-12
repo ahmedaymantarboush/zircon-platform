@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\SectionItem;
 use Illuminate\Http\Request;
 
 class SectionItemController extends Controller
@@ -36,7 +37,8 @@ class SectionItemController extends Controller
      */
     public function show($id)
     {
-        //
+        $item =SectionItem::find($id);
+        if(!$item)
     }
 
     /**

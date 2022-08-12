@@ -234,7 +234,6 @@ class LectureController extends Controller
         if ($slug && $user) :
             $lecture = Lecture::where(['slug'=> $slug,'published'=>true])->first();
             if ($lecture->owners->contains($user)) :
-                dd($lecture);
                 return view('Home.lecture_viewer',compact('lecture'));
             else :
                 return abort(404);
@@ -285,7 +284,7 @@ class LectureController extends Controller
             'final_price' =>  array_key_exists('free', $data)  ? 0 : (array_key_exists('hasDiscount', $data) ? ($data['discountExpiryDate'] > now() ? (abs($data['finalPrice']) > abs($data['price']) ? abs($data['finalPrice']) : abs($data['price'])) : abs($data['price'])) : abs($data['price'])),
             'discount_expiry_date' => $data['discountExpiryDate'] > now() ? $data['discountExpiryDate'] : null,
             'grade_id' => $data['grade'],
-            'time' => '0 ساعة',
+            'time' => 0,
             'total_questions_count' => 0,
             'subject_id' => Subject::find(env('DEFAULT_SUBJECT_ID'))->id,
             'user_id' => Auth::id(),

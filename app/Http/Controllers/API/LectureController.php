@@ -370,6 +370,57 @@ class LectureController extends Controller
         endif;
     }
 
+    public function viewLecture()
+    {
+        $slug = request()->slug;
+
+        
+        if (!$slug) :
+            return apiResponse(false, _('لم يتم إرسال المحاضرة'), [], 400);
+        endif;
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $lecture = Lecture::where(['slug' => $slug, 'published' => true])->first();
+        if (!$lecture) :
+            return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 400);
+        endif;
+        if ($lecture->owners->contains($user)) :
+            $sections = [];
+            foreach ($lecture->sections()->orderBy('order')->get() as $section) :
+                $items = [];
+                foreach ($section->items as $item) :
+                    if ($item->lesson_id) :
+                        $type = 'lesson';
+                    elseif ($item->exam_id) :
+                        $type = 'exam';
+                    else :
+                        $type = 'undefined';
+                    endif;
+                    $items[] = [
+                        'id'=>$item->id,
+                        'type'=>$type,
+                        'title'=>$item->item->title,
+                    ];
+                endforeach;
+                $sections[] = [
+                    'title' => $section->title,
+                    'order' => $section->order,
+                    'items' => $items,
+                ];
+            endforeach;
+            $data = [
+                'title' => $lecture->title,
+                'sections' => $sections,
+
+            ];
+            return apiResponse(true, _('تم العثور على المحاضرة بنجاح'), $data);
+        else :
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بمشاهدة المحاضرة'), [], 403);
+        endif;
+    }
+
     /**
      * Update the specified resource in storage.
      *

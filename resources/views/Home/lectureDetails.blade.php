@@ -65,7 +65,7 @@
                                     </div>
                                     <div id="collapse{{ $section->id }}" class="collapse" aria-labelledby="headingOne">
                                         <div class="card-body">
-                                            @foreach ($section->items()->orderBy('id', 'desc')->get() as $item)
+                                            @foreach ($section->items()->orderBy('order', 'desc')->get() as $item)
                                                 <div class="monthItem">
                                                     @php
                                                         $type = $item->exam_id ? 'question' : 'play';
@@ -219,81 +219,82 @@
                             </div>
                         </div>
                         <div class="card-content">
-                                @php
-                                    $price = getPrice($lecture);
-                                @endphp
-                            @if(Auth::check() && $lecture->owners->contains(Auth::user()))
-                            <form action="{{route('lecture.view')}}" method="post">
-                                @csrf
-                                <input type="hidden" name="slug" value="{{$lecture->slug}}">
-                                <button type="submit" class="buy-now" data-toggle="modal" data-target="#notEnough">
-                                    عرض الشهر </button>
-                            </form>
+                            @php
+                                $price = getPrice($lecture);
+                            @endphp
+                            @if (Auth::check() && $lecture->owners->contains(Auth::user()))
+                                <form action="{{ route('lecture.view') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="slug" value="{{ $lecture->slug }}">
+                                    <button type="submit" class="buy-now">عرض الشهر</button>
+                                </form>
                             @else
-                            <div class="price">
-                                <span class="real-price"><span class="number">{{ $price }}</span><span
-                                        class="unit">ج.م</span>
-                                </span>
-                                @if ($lecture->discount_expiry_date)
-                                    <span class="price-before-dis ontop">
-                                        <span class="number">{{ $lecture->price }}</span>
-                                        <span class="unit">ج.م</span>
+                                <div class="price">
+                                    <span class="real-price"><span class="number">{{ $price }}</span><span
+                                            class="unit">ج.م</span>
                                     </span>
-                                    <span class="discount"> خصم
-                                        {{ number_format((( $lecture->price - $price ) * 100) / $lecture->price, 2) }}%</span>
-                                    `
-                                @endif
-                            </div>
-                            @if ($lecture->discount_expiry_date)
-                                <div class="expire-date">
-                                    <i class="fa-solid fa-stopwatch"></i>
-                                    <p>
-                                        متبقي
-                                        @if (now()->diff($lecture->discount_expiry_date)->y)
-                                            <span class="date">{{ now()->diff($lecture->discount_expiry_date)->y }} من
-                                                السنوات</span>
-                                        @endif
-                                        @if (now()->diff($lecture->discount_expiry_date)->m)
-                                            {{ now()->diff($lecture->discount_expiry_date)->y ? ' و ' : '' }}<span
-                                                class="date">{{ now()->diff($lecture->discount_expiry_date)->m }} من
-                                                الشهور</span>
-                                        @endif
-                                        @if (now()->diff($lecture->discount_expiry_date)->d)
-                                            {{ now()->diff($lecture->discount_expiry_date)->m || now()->diff($lecture->discount_expiry_date)->y ? ' و ' : '' }}<span
-                                                class="date">{{ now()->diff($lecture->discount_expiry_date)->d }} من
-                                                الأيام</span>
-                                        @endif
-                                        {{-- <span class="date">2 من الايام</span> --}}
-                                        علي الانتهاء
-                                    </p>
+                                    @if ($lecture->discount_expiry_date)
+                                        <span class="price-before-dis ontop">
+                                            <span class="number">{{ $lecture->price }}</span>
+                                            <span class="unit">ج.م</span>
+                                        </span>
+                                        <span class="discount"> خصم
+                                            {{ number_format((($lecture->price - $price) * 100) / $lecture->price, 2) }}%</span>
+                                        `
+                                    @endif
                                 </div>
-                            @endif
-                            <!-- <a href="#" class="buy-now">شراء الأن</a> -->
-                            <button type="button" class="buy-now" data-toggle="modal" data-target="#notEnough">
-                                شراء الأن </button>
-                            <div class="coupon">
-                                <button class="add-coupon" id="couponBtn" data-toggle="modal" data-target="#chargeCoupon">
-                                    أدخل الكوبون
-                                </button>
-                                <!-- <form class="have-coupon">
-                                                                    <div class="dis-coupon">
-                                                                        <button class="close-coupon" type="button">
-                                                                            <i class="fa fa-close"></i>
-                                                                        </button>
+                                @if ($lecture->discount_expiry_date)
+                                    <div class="expire-date">
+                                        <i class="fa-solid fa-stopwatch"></i>
+                                        <p>
+                                            متبقي
+                                            @if (now()->diff($lecture->discount_expiry_date)->y)
+                                                <span class="date">{{ now()->diff($lecture->discount_expiry_date)->y }}
+                                                    من
+                                                    السنوات</span>
+                                            @endif
+                                            @if (now()->diff($lecture->discount_expiry_date)->m)
+                                                {{ now()->diff($lecture->discount_expiry_date)->y ? ' و ' : '' }}<span
+                                                    class="date">{{ now()->diff($lecture->discount_expiry_date)->m }} من
+                                                    الشهور</span>
+                                            @endif
+                                            @if (now()->diff($lecture->discount_expiry_date)->d)
+                                                {{ now()->diff($lecture->discount_expiry_date)->m || now()->diff($lecture->discount_expiry_date)->y ? ' و ' : '' }}<span
+                                                    class="date">{{ now()->diff($lecture->discount_expiry_date)->d }} من
+                                                    الأيام</span>
+                                            @endif
+                                            {{-- <span class="date">2 من الايام</span> --}}
+                                            علي الانتهاء
+                                        </p>
+                                    </div>
+                                @endif
+                                <!-- <a href="#" class="buy-now">شراء الأن</a> -->
+                                <button type="button" class="buy-now" data-toggle="modal" data-target="#notEnough">
+                                    شراء الأن </button>
+                                <div class="coupon">
+                                    <button class="add-coupon" id="couponBtn" data-toggle="modal"
+                                        data-target="#chargeCoupon">
+                                        أدخل الكوبون
+                                    </button>
+                                    <!-- <form class="have-coupon">
+                                                                        <div class="dis-coupon">
+                                                                            <button class="close-coupon" type="button">
+                                                                                <i class="fa fa-close"></i>
+                                                                            </button>
 
-                                                                        <p class="coupon-text">
-                                                                            KEEPLEARNING
-                                                                        </p>
-                                                                        <input type="text" id="hiddenInput" hidden />
-                                                                        <span class="coupon-status">منفذ</span>
-                                                                        <span class="coupon-status is-invalid-coupon">
-                                                                            غير صالح
-                                                                        </span>
-                                                                    </div>
-                                                                    <input type="submit" value="أضف" id="add-coupon" />
-                                                                    <input type="text" id="coupon-input" />
-                                                                </form> -->
-                            </div>
+                                                                            <p class="coupon-text">
+                                                                                KEEPLEARNING
+                                                                            </p>
+                                                                            <input type="text" id="hiddenInput" hidden />
+                                                                            <span class="coupon-status">منفذ</span>
+                                                                            <span class="coupon-status is-invalid-coupon">
+                                                                                غير صالح
+                                                                            </span>
+                                                                        </div>
+                                                                        <input type="submit" value="أضف" id="add-coupon" />
+                                                                        <input type="text" id="coupon-input" />
+                                                                    </form> -->
+                                </div>
                             @endif
                             <div class="course-content">
                                 <h2>محتوي المحاضرة:</h2>

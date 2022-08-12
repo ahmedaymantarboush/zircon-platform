@@ -37,7 +37,7 @@ function uploadFile($request, $uploadedFileName, $newFileName, $oldPath = "", $f
             Storage::disk('public')->delete($oldPath);
         }
     }
-    return 'http://'.$request->getHttpHost().'/storage/'.$savePath;//Storage::url($UploadedFile);
+    return 'http://' . $request->getHttpHost() . '/storage/' . $savePath; //Storage::url($UploadedFile);
 }
 
 function getPrice($lecture)
@@ -83,24 +83,37 @@ function getVideoInfo($video_id)
     curl_close($ch);
     return $result;
 }
-function getVideoUrl($video_id){
+function getVideoUrl($video_id)
+{
     $videoData = [];
     foreach (json_decode(getVideoInfo($video_id), true)['streamingData']['formats'] as $format) :
-        if (str_starts_with($format['mimeType'], 'video/mp4')):
-            $videoData['videos'][$format['qualityLabel']] = $format['url'];
-        elseif (str_starts_with($format['mimeType'], 'audio')):
-            $videoData['audio'][] = $format['url'];
+        if (str_starts_with($format['mimeType'], 'video/mp4')) :
+            if ($format['url'] ?? false) :
+                $videoData['videos'][$format['qualityLabel']] = $format['url'];
+            endif;
+        elseif (str_starts_with($format['mimeType'], 'audio')) :
+            if ($format['url'] ?? false) :
+                $videoData['audio'][] = $format['url'];
+            endif;
         endif;
     endforeach;
     return $videoData;
 }
-function getDuration($url){
-    parse_str(parse_url($url,PHP_URL_QUERY),$data);
-    $video_id=$data['v'];
-    return json_decode(getVideoInfo($video_id),true)['videoDetails']['lengthSeconds'];
+function getVideoId($url)
+{
+    $video_id = explode('v=', $url)[1];
+    $video_id = explode('&', $video_id)[0];
+    return $video_id;
 }
-function decoratedTime($time){
-    return $time >= 3600 ? gmdate("H:i:s",$time) :  gmdate("i:s",$time);
+function getDuration($url)
+{
+    parse_str(parse_url($url, PHP_URL_QUERY), $data);
+    $video_id = $data['v'];
+    return json_decode(getVideoInfo($video_id), true)['videoDetails']['lengthSeconds'];
+}
+function decoratedTime($time)
+{
+    return $time >= 3600 ? gmdate("H:i:s", $time) :  gmdate("i:s", $time);
 }
 function apiUser()
 {
@@ -111,6 +124,7 @@ function apiUser()
 //     return BrowserDetect::browserName();
 // }
 
-function getIp(){
+function getIp()
+{
     return request()->ip();
 }

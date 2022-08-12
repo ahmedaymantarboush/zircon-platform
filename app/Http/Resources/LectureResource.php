@@ -60,7 +60,7 @@ class LectureResource extends JsonResource
             'owners'=>$this->owners ? UserCollection::only($this->owners,['name','email','phoneNumber','parentPhoneNumber','balance','role','grade','governorate']) : null,
             'owner'=> $user ? $this->owners->contains($user) : false,
             'ownersCount'=>count($this->owners),
-            'sections'=>$this->sections ? SectionCollection::except($this->sections()->orderBy('order')->get(),['id']) : null,
+            'sections'=>$this->sections ? SectionCollection::only($this->sections()->orderBy('order')->get(),['order','title','items']) : null,
             'parts'=>$this->parts ? PartCollection::except($this->parts,['id']) : null,
 
             'createdAt'=>$this->created_at,

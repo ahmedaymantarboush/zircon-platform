@@ -19,7 +19,6 @@ class SectionItemController extends Controller
         $data = $request->all();
         SectionItem::create([
             'title' => $data['examTitle'],
-            'type' => 'exam',
             'exam_id' => $data['item'],
             'order' => count(SectionItem::where('section_id',$data['section'])->get()) + 1,
             'section_id' => $data['section'],

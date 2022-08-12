@@ -48,18 +48,18 @@ class SectionItemResource extends JsonResource
             'updatedAt' => $this->updated_at,
         ];
         if ($type == 'lesson') :
-            $data['item'] = $this->lesson ? LessonResource::only($this->lesson, ['title', 'url', 'duration', 'type', 'semester', 'description', 'exam', 'minPercentage', 'part',]) : null;
+            $data['item'] = $this->lesson ? LessonResource::only($this->lesson, ['title', 'urls', 'time', 'type', 'description', 'exam', 'minPercentage']) : null;
         elseif ($type == 'exam') :
-            // $user = apiUser();
-            // $passedExam = $this->exam->passedExams()->where('user_id',$user->id)->first();
-            // if (!$passedExam):
-            //     if ($user):
-            //         $this->exam->startExam();
-            //     endif;
-            // endif;
-            // $data['item'] = $this->exam ? PassedExamResource::only($passedExam, ['exam', 'percentage', 'exam_started_at', 'exam_ended_at', 'finished']) : null;
+            $user = apiUser();
+            $passedExam = $this->exam->passedExams()->where('user_id',$user->id)->first();
+            if (!$passedExam):
+                if ($user):
+                    $this->exam->startExam();
+                endif;
+            endif;
+            $data['item'] = $this->exam ? PassedExamResource::only($passedExam, ['exam', 'exam_started_at', 'exam_ended_at']) : null;
 
-            $data['item'] = $this->exam ? ExamResource::only($this->exam, ['id','title']) : null;
+            // $data['item'] = $this->exam ? ExamResource::only($this->exam, ['id','title']) : null;
 
         endif;
 

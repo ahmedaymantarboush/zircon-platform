@@ -39,7 +39,7 @@ Route::post('/logout',[AuthController::class ,'logout']);
 //       HOME ROUTES
 Route::get('/centersData',[CenterController::class ,'centers']);
 Route::get('/topTestimonials',[TestimonialController::class ,'topTestimonials']);
-Route::get('/months/last',[LectureController::class ,'lastLectures']);
+Route::get('/lectures/last',[LectureController::class ,'lastLectures']);
 Route::get('/contentsCount',function(){
     $lessonsCount = count(Lesson::all());
     $questionsCount = count(Question::all());
@@ -47,9 +47,10 @@ Route::get('/contentsCount',function(){
 });
 
 //       MONTH ROUTES
-Route::apiResource('months',LectureController::class)->except('index')->name('show','api.months.show');
+Route::apiResource('lectures',LectureController::class)->except('index')->names(['show'=>'api.lectures.show','destroy'=>'api.lectures.destroy']);
 Route::get('/grades/grade{gradeId}',[LectureController::class,'index']);
 Route::post('/search',[LectureController::class,'search']);
+Route::post('/view-lecture',[LectureController::class,'viewLecture']);
 
 //       LESSON ROUTES
 Route::apiResource('/lessons',LessonController::class)->names(['store'=>'api.lessons.store','update'=>'api.lessons.update','destroy'=>'api.lessons.destroy']);

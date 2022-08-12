@@ -41,6 +41,13 @@ class LessonController extends Controller
     {
         $data = $request->all();
 
+        $request->validate([
+            'section' => 'required|exists:sections,id',
+            'lessonTitle' => 'required|string|max:255',
+            'description' => 'required|string',
+            'url' => 'required|string|max:255|unique:lessons,url',
+        ]);
+
         $section = Section::findOrFail($data['section']);
         $lecture = $section->lecture;
         $time = getDuration($data['url']);
@@ -68,7 +75,6 @@ class LessonController extends Controller
         if ($lesson){
             SectionItem::create([
                 'title' => $lesson->title,
-                'type' => 'lesson',
                 'lesson_id' => $lesson->id,
                 'order' => count($section->items) + 1,
                 'section_id' => $section->id,

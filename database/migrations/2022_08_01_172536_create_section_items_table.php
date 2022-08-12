@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('section_items', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->integer('order');
             $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->foreignId('lesson_id')->nullable()->constrained()->cascadeOnDelete();

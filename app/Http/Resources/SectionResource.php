@@ -30,6 +30,7 @@ class SectionResource extends JsonResource
      */
     public function toArray($request)
     {
+
         $data = [
             'id' => $this->id,
             'order' => $this->order,
@@ -39,7 +40,7 @@ class SectionResource extends JsonResource
             'totalQuestionsCount' => $this->total_questions_count,
             'examsCount' => count($this->items()->where('exam_id', '!=', null)->get()),
             'lessonsCount' => count($this->items()->where('lesson_id', '!=', null)->get()),
-            'items' => count($this->items) ? SectionItemCollection::only($this->items()->orderBy('order')->get(), ['type', 'order', 'item']) : null,
+            'items' => count($this->items) ? SectionItemCollection::only($this->items()->orderBy('order')->get(), ['id','type', 'order']) : null,
 
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,

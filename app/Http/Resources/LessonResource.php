@@ -33,7 +33,7 @@ class LessonResource extends JsonResource
         $data = [
             'id' => $this->id,
             'title' => $this->title,
-            'url' => $this->url,
+            'urls' => getVideoUrl($this->url)['videos'],
             'time' => $this->time,
             'type' => $this->type,
             'semester' => $this->semester,
