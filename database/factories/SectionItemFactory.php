@@ -20,6 +20,7 @@ class SectionItemFactory extends Factory
     {
         $lessonId = $this->faker->optional()->randomElement(Lesson::all()->pluck('id'));
         return [
+            "title"=>$this->faker->sentence,
             'order' => $this->faker->numberBetween(1, 10),
             'section_id' => $this->faker->randomElement(Section::all()->pluck('id')),
             'lesson_id' => $lessonId ,
