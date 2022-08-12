@@ -107,14 +107,14 @@ $firstItem = $lecture
                     <div class="col-12 d-flex justify-content-center">
 
                         <span class="ex_text" style="margin-top: 20px;">يجب انت تحصل على <span
-                                class="prc">{{$lesson->min_percentage}}%</span> على
+                                class="prc">{{ $lesson->min_percentage }}%</span> على
                             الاقل</span>
 
                     </div>
                     <div class="col-12 d-flex justify-content-center">
-                        <span class="ex_text">في امتحان <span>({{$lesson->exam->title}})</span></span>
+                        <span class="ex_text">في امتحان <span>({{ $lesson->exam->title }})</span></span>
                     </div>
-                    @if ($lesson->exam->passedExams->users->contains(Auth::user()) )
+                    @if ($lesson->exam->passedExams->users->contains(Auth::user()))
                         <div class="col-12 d-flex justify-content-center">
                             <p class="ex_red">لم يتبق لك أي من المحاولات</p>
                         </div>
@@ -187,10 +187,10 @@ $firstItem = $lecture
         </div>
     @endsection
 @else
+    @section('main')
         @php
             $exam = $firstItem->item;
         @endphp
-    @section('main')
         <div class="exam-parent">
             <div class="exam-tab swiper mySwiper">
                 <div class="swiper-wrapper">
@@ -223,7 +223,7 @@ $firstItem = $lecture
             <div class="exam-questions">
                 <div class="container">
                     <div class="row">
-                        @for ($i = 1; $i <= 15; $i++)
+                        @for ($i = 1; $i <= $exam->questions_count; $i++)
                             @if ($i == 1)
                                 @php
                                     $active = 'active-tab';
@@ -269,16 +269,19 @@ $firstItem = $lecture
                             </div>
                         @endfor
 
-                        <div class="col-12">
-                            <div class="btn-control d-flex justify-content-center">
-                                <button class="rightBtn">
-                                    <i class="fa-solid fa-angles-right"></i>
-                                </button>
-                                <button class="leftBtn">
-                                    <i class="fa-solid fa-angles-left"></i>
-                                </button>
+                        @if ($exam->questions_count >= 2)
+                            <div class="col-12">
+                                <div class="btn-control d-flex justify-content-center">
+                                    <button class="rightBtn">
+                                        <i class="fa-solid fa-angles-right"></i>
+                                    </button>
+                                    <button class="leftBtn">
+                                        <i class="fa-solid fa-angles-left"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        @endif
+
                     </div>
                 </div>
 
