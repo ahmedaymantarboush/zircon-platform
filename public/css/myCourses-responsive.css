@@ -1,37 +1,4 @@
 @media (max-width: 991.5px) {
-    .closeFilter {
-        display: block;
-    }
-    .filterParent {
-        position: fixed;
-        z-index: -1;
-        top: 1rem;
-        right: -50%;
-        width: 35%;
-        display: block;
-        height: 90vh;
-        overflow-y: scroll;
-        background: var(--second-bg);
-
-        box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-        border-radius: 2rem;
-        padding-top: 4rem;
-        padding-bottom: 2rem;
-        opacity: 0;
-
-        transition: 0.3s all ease;
-    }
-    .filterParent.activeMenu {
-        z-index: 9999999;
-        right: 2rem;
-
-        opacity: 1;
-    }
-    .filterParent::-webkit-scrollbar {
-        display: none;
-    }
-}
-@media (max-width: 991.5px) {
     html {
         font-size: 60%;
     }
@@ -42,12 +9,12 @@
         flex-direction: column;
         padding: 2rem 2rem;
         border-radius: 2rem;
-        top: -20rem;
+        top: -60rem;
         opacity: 0;
         left: 50%;
         z-index: -1;
         transform: translateX(-50%);
-        transition: 0.6s all ease;
+        transition: 0.9s all ease;
         box-shadow: var(--shadow);
     }
     .activeNavMenu .left {
@@ -109,6 +76,44 @@
         transform-origin: right;
         top: 21.5px;
     }
+    /****** auth nav *********/
+
+    .mobDetails {
+        display: block;
+    }
+    .mainSearch {
+        display: none;
+    }
+    .studentBtn {
+        display: none;
+    }
+
+    .mobDetails .navDrop {
+        margin-top: 2rem;
+    }
+    .studentImage {
+        width: 8rem;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -55%);
+    }
+    .studentImage img {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        padding: 0.5rem;
+        background: var(--second-bg);
+        transition: 0.3s all ease;
+    }
+    .studentNameMob {
+        font-size: 2rem;
+        margin-top: 4rem;
+        text-align: center;
+    }
+    .mobSearch {
+        margin-top: 2rem;
+    }
+
     /** start levels **/
     .levelItem {
         padding: 0;
@@ -118,7 +123,15 @@
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
         position: relative;
     }
-
+    .grade1 .typeGrade {
+        background-color: var(--l-red-color);
+    }
+    .grade2 .typeGrade {
+        background-color: var(--l-blue-color);
+    }
+    .grade3 .typeGrade {
+        background-color: var(--d-yellow-color);
+    }
     .typeGrade {
         display: inline-block;
         position: absolute;
@@ -142,7 +155,7 @@
         border-radius: 0;
     }
     .levelContent {
-        padding: 1.5rem 2rem;
+        padding: 1.5rem;
     }
 
     .levelDescription {
@@ -158,15 +171,13 @@
     .levelPrice {
         padding-bottom: 1.5rem;
     }
-    /** footer **/
-    .crParent {
-        flex-direction: column;
-        text-align: center;
-    }
 }
 @media (max-width: 767px) {
-    .filterParent {
-        width: 50%;
+    .activeNavMenu .left {
+        width: 40%;
+    }
+    .studentNameMob {
+        font-size: 1.8rem;
     }
     .levelsBox {
         width: 70%;
@@ -174,8 +185,8 @@
     }
 }
 @media (max-width: 600px) {
-    .filterParent {
-        width: 60%;
+    .activeNavMenu .left {
+        width: 50%;
     }
     .levelsBox {
         width: 85%;
@@ -183,7 +194,7 @@
     }
 }
 @media (max-width: 500px) {
-    .filterParent {
+    .activeNavMenu .left {
         width: 65%;
     }
     html {
@@ -195,8 +206,8 @@
     }
 }
 @media (max-width: 400px) {
-    .filterParent {
-        width: 85%;
+    .activeNavMenu .left {
+        width: 70%;
     }
     .levelsBox {
         width: 100%;
