@@ -33,9 +33,9 @@
 
 <body>
 
-    <div class='errorMessageModal '>
+    <!-- <div class='errorMessageModal '>
         حدث خطأ اثناء التسجيل حاول مرة اخري
-    </div>
+    </div> -->
     <section class='signup'>
         <div class="signupCard">
 

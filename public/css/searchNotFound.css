@@ -1,0 +1,752 @@
+/*************[start global system]******************/
+/*
+--- 01 TYPOGRAPHY SYSTEM
+
+- Font sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Font weights
+Default: 400
+Medium: 500
+Semi-bold: 600
+Bold: 700
+
+
+--- 07 WHITESPACE
+
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+:root {
+    --d-red-color: #fa5f5c;
+    --d-blue-color: #6d8dfe;
+    --d-yellow-color: #f3c83c;
+    --l-yellow-color: #fcd34d;
+    --l-red-color: #ff7675;
+    --l-blue-color: #71bdfc;
+    --green-color: #82dedd;
+    --main-bg: #e7f6fd;
+    --second-bg: #fff;
+    --font-dark: #1d212c;
+    --font-light: #959595;
+    --shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+    list-style: none;
+    word-wrap: break-word;
+
+    text-transform: capitalize;
+
+    font-family: "cairo";
+}
+
+html {
+    /* font-size: 10px; */
+    /* 10px / 16px = 0.625 = 62.5% */
+    /* Percentage of user's browser font-size setting */
+    font-size: 62.5%;
+}
+body {
+    line-height: 1.6;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: capitalize;
+    color: var(--font-dark);
+    background: var(--second-bg);
+    overflow-x: hidden;
+    transition: 0.4s all ease;
+    margin: 0 auto;
+    padding-right: 0 !important;
+}
+
+::-moz-selection {
+    background-color: var(--main-color);
+    color: #fff;
+    text-shadow: none;
+}
+
+::selection {
+    background-color: var(--d-yellow-color);
+
+    color: #fff;
+    text-shadow: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    color: var(--font-dark);
+}
+
+p {
+    color: var(--p-color);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+ul {
+    margin: 0;
+}
+
+span,
+a,
+a:hover {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.section-padding {
+    padding: 8rem 0;
+}
+
+.ontop {
+    position: relative;
+    z-index: 4;
+}
+
+.position-re {
+    position: relative;
+}
+
+.bg-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-fixed {
+    background-attachment: fixed;
+}
+.d-redColor {
+    color: var(--d-red-color);
+    font-weight: 600;
+}
+.d-blueColor {
+    color: var(--d-blue-color);
+    font-weight: 600;
+}
+.d-yellowColor {
+    color: var(--d-yellow-color);
+    font-weight: 600;
+}
+.l-redColor {
+    color: var(--l-red-color);
+}
+.l-blueColor {
+    color: var(--l-blue-color);
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: #000;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+.vid-parent {
+    width: 80%;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 80%;
+    z-index: -1;
+    opacity: 0;
+}
+.vid-parent.vid-active {
+    z-index: 9999999999;
+    top: 50%;
+    opacity: 1;
+}
+.close-vid {
+    position: fixed;
+    top: 3rem;
+    right: 3rem;
+    font-size: 3rem;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    z-index: 99999999999;
+}
+.close-vid.vid-active {
+    display: block !important;
+}
+.preview-vid {
+    width: 100%;
+    height: 100%;
+}
+.overlay.vid-active {
+    opacity: 0.7;
+    z-index: 9999999999;
+}
+
+/*********************************************
+*********** start navbar ********************
+*******************************************/
+nav {
+    background: var(--second-bg);
+    padding: 1.5rem 3rem;
+    position: fixed;
+    width: 100%;
+    box-shadow: var(--shadow);
+    transition: 0.3s all ease;
+    z-index: 999;
+    top: 0;
+}
+
+.navProgress {
+    position: absolute;
+    bottom: 0;
+    transition: 0.4s all ease;
+    height: 4px;
+    border-radius: 3rem;
+    width: 100%;
+    right: 0;
+    background-color: #d1d5db;
+}
+
+.navProgress .navProgChild {
+    height: 100%;
+    background-color: var(--d-blue-color);
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    border-radius: 3rem;
+}
+nav .customeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.right,
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.navAtom img {
+    width: 50px;
+}
+.logoBrand {
+    font-size: 2.4rem;
+    margin: 0 0.8rem 0 1.5rem;
+    color: var(--font-dark);
+    font-weight: bold;
+}
+/*** light and dark svg ***/
+.sun,
+.moon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s all ease;
+}
+.sun {
+    z-index: 2;
+    opacity: 1;
+}
+.dark .sun {
+    opacity: 0;
+    z-index: 1;
+}
+.sun svg {
+    color: #feca57;
+    width: 35px;
+    transition: 0.3s all ease;
+    transform: rotate(90deg);
+}
+.dark .sun svg {
+    transform: rotate(0deg);
+}
+
+.dark .moon {
+    opacity: 1;
+    z-index: 2;
+}
+.moon svg {
+    width: 35px;
+    transform: rotate(180deg);
+    transition: 0.3s all ease;
+}
+.dark .moon svg {
+    transition: 0.3s all ease;
+    transform: rotate(45deg);
+}
+/** search **/
+.search {
+    position: relative;
+    width: 30%;
+    margin-left: 3rem;
+}
+.search span {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #b4b4b4;
+}
+.search input {
+    width: 100%;
+    padding: 0.5rem 3rem 0.5rem 1.5rem;
+    border-radius: 3rem;
+    border: 1px solid #707070;
+    transition: 0.3s all ease;
+    background: var(--second-bg);
+    color: #707070;
+}
+.search input:focus {
+    box-shadow: var(--shadow);
+}
+/*** register ***/
+.left .register {
+    display: flex;
+}
+.signup {
+    margin-left: 2.5rem;
+}
+.regItem,
+.regItem:hover {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+}
+.signup .regItem,
+.login .regItem {
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    transition: 0.3s all ease;
+
+    position: relative;
+}
+.signup:hover .regItem,
+.login:hover .regItem {
+    transform: translateY(-0.5rem);
+}
+
+.signup .regIcon,
+.login .regIcon {
+    transition: 0.2s cubic-bezier(0.88, 0.58, 0.5, 2.72) all;
+}
+.signup:hover .regIcon,
+.login:hover .regIcon {
+    transform: translateY(-0.3rem) rotate(10deg);
+}
+.regIcon {
+    margin-left: 1rem;
+    width: 25px;
+}
+.line {
+    position: absolute;
+
+    background-color: transparent;
+}
+.signup .line {
+    background-color: var(--l-red-color);
+}
+.login .line {
+    background-color: var(--l-blue-color);
+}
+.regItem .line:nth-child(1) {
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 2px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.3s transform ease;
+}
+.regItem:hover .line:nth-child(1) {
+    transform: scaleY(1.0001);
+    transform-origin: bottom;
+}
+.regItem .line:nth-child(2) {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: 0.3s transform ease;
+}
+.regItem:hover .line:nth-child(2) {
+    transform: scaleX(1.0001);
+    transform-origin: left;
+}
+.regItem .line:nth-child(3) {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: 0.3s transform ease;
+    transition-delay: 0.3s;
+}
+.regItem:hover .line:nth-child(3) {
+    transform: scaleX(1.0001);
+    transform-origin: left;
+    transition: 0.3s transform ease;
+}
+.regItem .line:nth-child(4) {
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 2px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.3s transform ease;
+}
+.regItem:hover .line:nth-child(4) {
+    transform: scaleY(1.0001);
+    transform-origin: bottom;
+    transition: 0.3s transform ease;
+}
+.toggleBarBtn {
+    display: none;
+}
+.container {
+    max-width: 1340px;
+}
+.mb-30 {
+    margin-bottom: 3rem;
+}
+
+/*********************************************
+*********** start header ********************
+*******************************************/
+.header {
+    padding: 14rem 0 7rem;
+    background: url(../imgs/thumbnail_1.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.pageName {
+    color: var(--font-dark);
+    font-size: 2.8rem;
+    font-weight: bold;
+}
+.errorImage {
+    width: 50%;
+
+    margin: 3rem auto;
+}
+/*****************************************
+********** start footer ******************
+*****************************************/
+footer {
+    margin-top: 12rem;
+    padding: 2rem 0;
+    /* background-color: var(--green-color); */
+    position: relative;
+}
+
+.footerIcon {
+    font-size: 3.4rem;
+    margin-bottom: 1rem;
+}
+.footerIcon a {
+    color: #fff;
+    transition: 0.3s all ease;
+    cursor: pointer;
+}
+.footerIcon a:nth-child(1):hover {
+    color: var(--d-blue-color);
+}
+.footerIcon a:nth-child(2):hover {
+    color: var(--d-red-color);
+}
+.footerIcon a:nth-child(3):hover {
+    color: #a29bfe;
+}
+.footerIcon a:hover {
+    transform: scale(1.1) rotate(15deg);
+    color: #888;
+}
+.footerIcon a:not(:last-child) {
+    margin-left: 1.5rem;
+}
+.copyRight {
+    color: #fff;
+    font-size: 2rem;
+    width: 100%;
+    padding-top: 1rem;
+    border-top: 1px solid;
+}
+.crParent {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 70%;
+}
+.copyRight p {
+    font-size: 1.8rem;
+}
+.copyRight .space {
+    margin: 0 1rem;
+}
+.copyRight .crTeacher {
+    font-weight: bold;
+}
+.copyRight .heart {
+    color: #ff5d3b;
+}
+.copyRight a {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/** footer waves **/
+
+/**************/
+
+div.waves {
+    width: 100%;
+    bottom: 0;
+    /*height: 100%;*/
+    position: absolute;
+    z-index: -1;
+}
+.tutorial-link {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.waves svg {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+
+    animation-duration: 0.1s !important;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.spacer {
+    height: 100px;
+    width: 100%;
+}
+
+@keyframes example {
+    0% {
+        left: 0px;
+        top: 0px;
+    }
+
+    50% {
+        left: -2000px;
+        top: 200px;
+    }
+
+    100% {
+        left: 0px;
+        top: 0px;
+    }
+}
+/***************************************/
+/******************************************
+********************************************
+*********************************************
+*********************************************
+****** start dark ****************************
+****************************************
+********************************************
+*********************************************
+**********************************************/
+
+.dark:root {
+    --main-bg: #2d3946;
+    --second-bg: #556373;
+    --font-dark: #fff;
+    --font-light: #ebebeb;
+}
+
+/***** start nav ******/
+.dark nav {
+    background: #272d3d;
+}
+.dark .navProgress {
+    background: #373e47;
+}
+.dark .navProgChild {
+    background: var(--green-color);
+}
+/***** start  ******/
+.dark .whiteBox {
+    background: #405368;
+}
+.dark .iconCharge {
+    background: #405368;
+}
+.dark .num,
+.dark .detail {
+    color: #fff;
+}
+.dark .statICon {
+    color: #405368;
+}
+.dark #chart {
+    background: #405368 !important;
+}
+.dark .Presence,
+.dark .Absence {
+    color: #fff;
+}
+.dark .someDetailsHeading {
+    color: #fff;
+}
+
+.dark .type {
+    color: #fff;
+}
+.dark .info {
+    color: #d4d4d4;
+}
+.dark .barcode rect:first-of-type {
+    fill: #405368 !important;
+}
+.dark .barcode g {
+    fill: #fff !important;
+}
+.dark .latestCard {
+    background: #405368;
+}
+/**** footer ******/
+
+.dark footer .wave1 path {
+    fill: rgba(64, 83, 104);
+    transition: 0.3s all ease;
+}
+.dark footer .wave2 path {
+    fill: rgba(64, 83, 104, 0.6);
+    transition: 0.3s all ease;
+}
+.dark footer .wave3 path {
+    fill: rgba(64, 83, 104, 0.4);
+    transition: 0.3s all ease;
+}
+
+/*****responsive*****/
+
+@media (max-width: 992px) {
+    html {
+        font-size: 60%;
+    }
+    /** start nav **/
+    .left {
+        position: fixed;
+        background-color: var(--second-bg);
+        flex-direction: column;
+        padding: 2rem 2rem;
+        border-radius: 2rem;
+        top: -20rem;
+        opacity: 0;
+        left: 50%;
+        z-index: -1;
+        transform: translateX(-50%);
+        transition: 0.6s all ease;
+        box-shadow: var(--shadow);
+    }
+    .activeNavMenu .left {
+        z-index: 9999999999;
+        opacity: 1;
+        top: 50%;
+        transform: translate(-50%, -80%);
+    }
+    .left .search {
+        width: 100%;
+        margin-left: 0;
+    }
+    .register {
+        flex-direction: column;
+        text-align: center;
+    }
+    .signup {
+        margin: 3rem 0 2rem;
+    }
+    .toggleBarBtn {
+        display: block;
+        position: relative;
+        width: 30px;
+        background: none;
+        border: none;
+        height: 30px;
+    }
+    .toggleBarBtn span {
+        width: 30px;
+        height: 4px;
+        background-color: var(--font-dark);
+        border-radius: 10rem;
+        margin: 0.25rem 0;
+        left: 0;
+        transition: 0.3s all ease;
+        position: absolute;
+    }
+    .toggleBarBtn .topLine {
+        top: 0;
+    }
+    .toggleBarBtn .middleLine {
+        top: 8px;
+    }
+    .toggleBarBtn .bottomLine {
+        top: 16px;
+    }
+    .activeNavMenu .topLine {
+        width: 30px;
+        transform: rotate(-45deg);
+
+        transform-origin: right;
+    }
+    .activeNavMenu .middleLine {
+        opacity: 0;
+    }
+    .activeNavMenu .bottomLine {
+        width: 30px;
+        transform: rotate(45deg);
+        transform-origin: right;
+        top: 21.5px;
+    }
+
+    .errorImage {
+        width: 70%;
+    }
+    /** footer **/
+    .crParent {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 580px) {
+    .errorImage {
+        width: 95%;
+    }
+}
