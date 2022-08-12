@@ -383,3 +383,11 @@ html,body{
     border: 1px solid var(--main-color);
     background-color: #E7F6FD;
 }
+.correctAnser{
+    border: 1px solid var(--green);
+    background-color: var(--bg-green);
+}
+.wrongAnser{
+    border: 1px solid var(--red);
+    background-color: var(--bg-red);
+}
