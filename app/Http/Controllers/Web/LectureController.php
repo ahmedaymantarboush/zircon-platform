@@ -227,6 +227,23 @@ class LectureController extends Controller
         endif;
     }
 
+    public function viewLecture()
+    {
+        $slug = request()->slug;
+        $user = Auth::user();
+        if ($slug && $user) :
+            $lecture = Lecture::where(['slug'=> $slug,'published'=>true])->first();
+            if ($lecture->owners->contains($user)) :
+                dd($lecture);
+                return view('Home.lecture_viewer',compact('lecture'));
+            else :
+                return abort(404);
+            endif;
+        else :
+            return abort(404);
+        endif;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -309,7 +326,7 @@ class LectureController extends Controller
      */
     public function show($slug)
     {
-        $lecture = Lecture::where('slug', $slug)->first();
+        $lecture = Lecture::where(['slug'=> $slug,'published'=>true])->first();
         if ($lecture) :
             return view("home.lectureDetails", compact('lecture'));
         else :
@@ -325,7 +342,7 @@ class LectureController extends Controller
      */
     public function edit($slug)
     {
-        $lecture = Lecture::where('slug', $slug)->first();
+        $lecture = Lecture::where(['slug'=> $slug,'published'=>true])->first();
         if ($lecture) :
             return view("admin.editLecture", compact('lecture'));
         else :
@@ -343,7 +360,7 @@ class LectureController extends Controller
     public function update(UpdateLectureRequest $request, $slug)
     {
         $data = $request->all();
-        $lecture = Lecture::where('slug', $slug)->first();
+        $lecture = Lecture::where(['slug'=> $slug,'published'=>true])->first();
 
         if ($data['price'] >= $data['finalPrice'] || $data['free']) {
             $lecture->update($this->lectureData($request, 'poster', $lecture));

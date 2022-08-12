@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('exam_id')->constrained()->cascadeOnDelete();
             $table->string('answer')->nullable();
             $table->boolean('correct')->default(false);
+            $table->boolean('flaged')->default(false);
             $table->timestamps();
         });
     }

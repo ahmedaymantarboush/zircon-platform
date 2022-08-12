@@ -219,10 +219,18 @@
                             </div>
                         </div>
                         <div class="card-content">
-                            <div class="price">
                                 @php
                                     $price = getPrice($lecture);
                                 @endphp
+                            @if(Auth::check() && $lecture->owners->contains(Auth::user()))
+                            <form action="{{route('lecture.view')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="slug" value="{{$lecture->slug}}">
+                                <button type="submit" class="buy-now" data-toggle="modal" data-target="#notEnough">
+                                    عرض الشهر </button>
+                            </form>
+                            @else
+                            <div class="price">
                                 <span class="real-price"><span class="number">{{ $price }}</span><span
                                         class="unit">ج.م</span>
                                 </span>
@@ -264,7 +272,6 @@
                             <button type="button" class="buy-now" data-toggle="modal" data-target="#notEnough">
                                 شراء الأن </button>
                             <div class="coupon">
-
                                 <button class="add-coupon" id="couponBtn" data-toggle="modal" data-target="#chargeCoupon">
                                     أدخل الكوبون
                                 </button>
@@ -287,6 +294,7 @@
                                                                     <input type="text" id="coupon-input" />
                                                                 </form> -->
                             </div>
+                            @endif
                             <div class="course-content">
                                 <h2>محتوي المحاضرة:</h2>
                                 <div class="item">
@@ -303,7 +311,6 @@
                                     <p>الوصول من اي مكان</p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
