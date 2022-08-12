@@ -95,9 +95,31 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 /////////////////add flag//////////////
+function addDisabled(){
+    let correctAnsers = document.querySelectorAll('.correcrAnser');
+    let wrongAnsers = document.querySelectorAll('.wrongAnser');
+    let ansers = document.querySelectorAll('.anserBox');
+    for(let i=0;i< correctAnsers.length;i++){
+        let queNamber = correctAnsers[i].getAttribute('queNamber');
+        for(let j=0;j<ansers.length;j++){
+            if(ansers[j].getAttribute('queNamber')== queNamber){
+                ansers[j].classList.add('disabledAnser');
+            }
+        }
+
+    }
+    for(let i=0;i< wrongAnsers.length;i++){
+        let queNamber = wrongAnsers[i].getAttribute('queNamber');
+        for(let j=0;j<ansers.length;j++){
+            if(ansers[j].getAttribute('queNamber')== queNamber){
+                ansers[j].classList.add('disabledAnser');
+            }
+        }
+
+    }
+}
 $(document).ready(function (){
-    let allFlags
-    allFlags= document.querySelectorAll('.unflagQuestion');
+    let allFlags= document.querySelectorAll('.unflagQuestion');
     for(let i=0;i < allFlags.length;i++){
         let flag =allFlags[i].getAttribute('flag');
         let num =allFlags[i].getAttribute('queNamber');
@@ -110,6 +132,7 @@ $(document).ready(function (){
             flagIcon.classList.add("show_icon");
         }
     }
+    addDisabled();
 
     $('.question_head').click(function (){
         let flagType = $(this).find('i').attr('flag');
@@ -138,18 +161,29 @@ $(document).ready(function (){
         }
     });
     $('.anserBox').click(function (){
+        addDisabled();
         let queNamber = $(this).attr('queNamber');
         let ansers = document.querySelectorAll('.anserBox');
-        for(let i=0;i<ansers.length;i++){
-            if(ansers[i].getAttribute('queNamber')==queNamber){
-                ansers[i].classList.remove("selectedAnser");
+        let disabledAnsers= document.querySelectorAll('.disabledAnser');
+        if(disabledAnsers.length !=0){
+            for(let k=0;k <disabledAnsers.length;k++){
+                if(disabledAnsers[k].getAttribute('queNamber') != queNamber){
+
+                }
             }
+        }else {
+            for(let i=0;i<ansers.length;i++){
+                if(ansers[i].getAttribute('queNamber')==queNamber){
+                    ansers[i].classList.remove("selectedAnser");
+                }
+            }
+            let yesId = '#yesIcon_'+ queNamber;
+            let yesIcon = document.querySelector(yesId);
+            yesIcon.classList.remove("hide_icon");
+            yesIcon.classList.add("show_icon");
+            $(this).find('input').prop('checked',true);
+            $(this).addClass('selectedAnser');
         }
-        let yesId = '#yesIcon_'+ queNamber;
-        let yesIcon = document.querySelector(yesId);
-        yesIcon.classList.remove("hide_icon");
-        yesIcon.classList.add("show_icon");
-        $(this).find('input').prop('checked',true);
-        $(this).addClass('selectedAnser');
+
     });
 });

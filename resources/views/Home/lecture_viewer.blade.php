@@ -249,7 +249,7 @@
                                 </div>
                                 @for($j=1;$j<=4;$j++)
                                     <div class="col-12">
-                                        <div class="anserBox d-flex justify-content-start" queNamber="{{$i}}">
+                                        <div class="anserBox d-flex justify-content-start" queNamber="{{$i}}" >
                                             <input type="radio" name="anser{{$i}}" value="anser_database_id">
                                             <span class="anser_text">15 A</span>
                                         </div>
