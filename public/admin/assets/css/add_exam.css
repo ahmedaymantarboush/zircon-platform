@@ -1,0 +1,123 @@
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.parent{
+    position: relative;
+}
+.bg_addExam{
+    height: 250px;
+    width: 100%;
+    max-width: 1540px;
+    background-image: url("../imgs/add_bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    margin-top: 25px;
+    z-index: 1;
+    position: absolute;
+}
+.main_div{
+    z-index: 2;
+    position: absolute;
+    margin-top: 120px;
+    width: 100%;
+}
+.page_title{
+    background-color: #ffffff;
+    height: 80px;
+    width: 100%;
+    border-radius: 15px;
+    padding-right: 20px;
+    color: var(--font-light);
+    font-size: 20px;
+    font-weight: 700;
+    box-shadow: var(--shadow);
+}
+.page_title i{
+    font-size: 25px;
+    margin-left: 15px;
+}
+.main_exam_info{
+    background-color: #ffffff;
+    margin-top: 20px;
+    width: 100%;
+    padding-right: 20px;
+    padding-top: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+.add_questions{
+    background-color: #ffffff;
+    margin-top: 20px;
+
+    padding-right: 20px;
+    padding-top: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+.main_title{
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--font-dark);
+}
+.main_title span{
+    color: #BBBBBB;
+}
+.blue_line{
+    background-color: var(--main-color);
+    width: 40px;
+    height: 5px;
+    margin-top: 8px;
+}
+.input_label{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--font-light);
+    margin-top: 50px;
+}
+
+.input_box{
+    margin-top: 20px;
+}
+.end-line{
+    width: 99%;
+    background-color: #C4C4C4;
+    height: 1px;
+    margin-top: 50px;
+}
+.sub_btn{
+    border-style: none;
+    background-color: var(--main-color);
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 7px 30px 7px 30px;
+    margin-bottom: 20px;
+}
+.sub_btn:hover{
+    background-color: #1a64c3;
+}
+.a_btn{
+    text-decoration: none;
+    color: var(--font-light);
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid var(--font-light);
+    margin-top: 20px;
+    margin-right: 15px;
+    padding: 5px 30px 5px 30px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+.a_btn:hover{
+    background-color: var(--font-light);
+    color: #ffffff;
+}

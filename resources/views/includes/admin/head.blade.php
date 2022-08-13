@@ -14,15 +14,10 @@
 		/>
 		<!-- font awesome -->
 		<!-- موجود في كله  -->
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-			integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
+        <script src="https://kit.fontawesome.com/f2178052c7.js" crossorigin="anonymous"></script>
 
-		<!-- موجود في كله  -->
+
+        <!-- موجود في كله  -->
 		<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 		rel="stylesheet"

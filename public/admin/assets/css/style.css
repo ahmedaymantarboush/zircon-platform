@@ -19,8 +19,7 @@ Bold: 700
 */
 :root {
 	--main-color: #2484ff;
-
-	--font-light: #67748e;
+	--font-light: #67748E;
 	--font-dark: #344767;
 	--shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
 }
