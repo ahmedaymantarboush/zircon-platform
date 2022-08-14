@@ -1,8 +1,15 @@
 @extends('layouts.adminLayout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/add_exam.css') }}" />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/add_exam.css') }}" />
 @endsection
 
 @section('content')
@@ -71,8 +78,8 @@
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-12">
-                            <label for="formGroupExampleInput" class="form-label input_label">درجة الصعوبة :</label>
-                            <select class="form-select form-select-lg is-valid" aria-label="Default select example" id="formGroupExampleInput" style="font-size: 15px;width: 90%;">
+                            <label for="question_hardness" class="form-label input_label">درجة الصعوبة :</label>
+                            <select name="question_hardness" class="form-select form-select-lg is-valid" aria-label="Default select example" id="question_hardness" style="font-size: 15px;width: 90%;">
                                 <option selected>ادخل درجة الصعوبة</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -91,7 +98,7 @@
                         </div>
                         <div class="col-11">
                             <label for="formGroupExampleInput" class="form-label input_label">وصف الامتحان :</label>
-                            <textarea class="text-editor" id="formGroupExampleInput" style="width: 90%;min-height: 300px;"></textarea>
+                            <textarea class="text-editor-div" id="formGroupExampleInput" style="width: 90%;min-height: 300px;"></textarea>
                         </div>
                         <div class="col-12">
                             <div class="end-line"></div>
@@ -106,20 +113,72 @@
                     </form>
                 </div>
                 @if(1)
-                    <div class="add_questions">
+                    <div class="add_questions" style="margin-bottom: 20px">
                         <div class="row">
                             <div class="col-12">
-                                <p class="main_title">الاسئلة <span>(2)</span></p>
+                                <p class="main_title">الاسئلة <span id="que_counter">(2)</span></p>
                                 <div class="blue_line"></div>
                             </div>
-                            <div class="col-12">
-                                <div class="container">
-                                    <div class="row" style="width: 100%">
-                                        @for($i =1;$i<=2;$i++)
-                                            <div class="col-12">
-
-                                            </div>
-                                        @endfor
+                            <div class="col-12"style="margin-bottom: 20px">
+                                <div class="container" >
+                                    <div class="row questions" style="width: 100%">
+                                        <section class="Que-boxs">
+                                            @for($i =1;$i<=2;$i++)
+                                                <div class="col-12">
+                                                    <div class="question-box">
+                                                        <div class="d-flex justify-content-between">
+                                                            <div class="question_title">
+                                                                <span class="que_namber">السؤال <span>{{$i}}</span> :</span>
+                                                                <span class="que_title">
+                                                                اختر الجزئية الدراسية
+                                                            </span>
+                                                            </div>
+                                                            <div class="icons">
+                                                                <i class="fa-solid fa-circle-xmark deleteBtn" style="margin-left: 15px;"></i>
+                                                                <i class="fa-solid fa-chevron-down toggleBtn toggleNonActive"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex justify-content-center" >
+                                                            <div class="container">
+                                                                <div class="delete-warning" style="">
+                                                                    <div class="container d-flex justify-content-center">
+                                                                        <section>
+                                                                            <p>هل انت متأكد من انك تريد مسح هذا السؤال ؟</p>
+                                                                            <section class="d-flex justify-content-center">
+                                                                                <button type="button" class="btn btn-danger btn-lg" id="del_{{$i}}">مسح</button>
+                                                                                <button type="button" class="btn btn-outline-secondary btn-lg"id="cancel_{{$i}}">الغاء</button>
+                                                                            </section>
+                                                                        </section>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="question-details"style="display: none;">
+                                                                    <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">الجزئية الدراسية للسؤال :</label>
+                                                                    <select class="form-select form-select-lg search-select-box " name="part_{{$i}}" id="formGroupExampleInput" data-live-search="true">
+                                                                        <option value="" selected>
+                                                                            اختر الجزئية التعليمية
+                                                                        </option>
+                                                                        <option value="الصف الأول الثانوي">
+                                                                            الصف الأول الثانوي
+                                                                        </option>
+                                                                        <option value="الصف الثاني الثانوي">
+                                                                            الصف الثاني الثانوي
+                                                                        </option>
+                                                                        <option value="الصف الثالث الثانوي">
+                                                                            الصف الثالث الثانوي
+                                                                        </option>
+                                                                    </select>
+                                                                    <input type="hidden" name="hardness_{{$i}}" class="hidden_hardness" value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endfor
+                                        </section>
+                                        <div class="col-12 add_question d-flex justify-content-center">
+                                            <i class="fa-solid fa-plus"></i>
+                                            <span>اضافة سؤال</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -139,21 +198,15 @@
 
 
 @section('javascript')
-    <!-- bootstrap 5  -->
-    <!-- موجود في كل الصفحات  -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
     <!-- text editor  -->
     <!-- موجود هنا والايديت  -->
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
-    <script src="{{asset('admin/assets/js/add-exam.js')}}"></script>
 
 {{--    <!-- main js file -->--}}
 {{--    <!-- موجود في كل الصفحات  -->--}}
-    <script src="{{ asset('admin/assets/js/main.js') }}"></script>
 
     {{--Duration picker--}}
     {{--الصفحة دي بس--}}
@@ -163,5 +216,15 @@
             visibility: hidden;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <!-- bootstrap 5  -->
+    <!-- موجود في كل الصفحات  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="{{ asset('admin/assets/js/main.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/add-exam.js') }}"></script>
 
 @endsection

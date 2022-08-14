@@ -1,8 +1,4 @@
-$("select")
-	.selectpicker()
-	.ready(function () {
-		$(".search-select-box select").selectpicker();
-	});
+
 /////////////////////
 ////////////////////
 //////side bar//////
