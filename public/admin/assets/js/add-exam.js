@@ -1,3 +1,56 @@
+/////////////////////////////////////////////////////
+////////////////////// Main ////////////////////////
+///////////////////////////////////////////////////
+function autoSelect(){
+    let hardnessInputs = document.querySelectorAll('.hidden_hardness');
+    let que_hardness = document.querySelector('#question_hardness').value;
+    for(let i=0;i<hardnessInputs.length;i++){
+        hardnessInputs[i].value = que_hardness;
+    }
+}
+function closeAllActive(){
+    $('.question-box').each(function (){
+        if($(this).hasClass('activeBox')){
+            $(this).removeClass('activeBox');
+            if($(this).find('.toggleBtn').hasClass('toggleActive')){
+                $(this).find('.toggleBtn').removeClass('toggleActive');
+                $(this).find('.toggleBtn').addClass('toggleNonActive');
+            }
+            if($(this).find('.question-details').css('display')!='none'){
+                $(this).find('.question-details').slideUp(400);
+            }
+        }
+        if($(this).hasClass('deleteOpened')){
+            $(this).removeClass('deleteOpened');
+            if($(this).find('.delete-warning').css('display')!='none'){
+                $(this).find('.delete-warning').slideUp(400);
+            }
+        }
+    });
+}
+function updataCounter(){
+    let questionNamber = document.querySelectorAll('.question-box');
+    questionNamber = '('+ questionNamber.length + ')';
+    $('#que_counter').text(questionNamber);
+    let counter =1;
+    $('.title_num').each(function (){
+        $(this).text(counter);
+        counter++;
+    });
+}
+
+$(document).ready(function (){
+    autoSelect();
+    closeAllActive();
+    updataCounter();
+    $('.select_part').each(function (){
+        let question_box= $(this).parent().closest('.question-box');
+        let selectedValue = this.options[this.selectedIndex].text;
+        alert(selectedValue);
+        $(question_box).find('.que_title').text(selectedValue);
+    });
+});
+
 //////////////////////////////////////////////////
 ///////////////////text editor///////////////////
 ////////////////////////////////////////////////
@@ -19,31 +72,7 @@ ClassicEditor.create(document.querySelector(".text-editor-div"), {
     })
     .catch((err) => {});
 
-///////////////////////////////////////////////////////
-///////////////////Initialize Swiper//////////////////
-/////////////////////////////////////////////////////
-    var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 10,
-    pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-},
-    breakpoints: {
-    640: {
-    slidesPerView: 2,
-    spaceBetween: 20,
-},
-    768: {
-    slidesPerView: 4,
-    spaceBetween: 40,
-},
-    1024: {
-    slidesPerView: 5,
-    spaceBetween: 50,
-},
-},
-});
+
 ///////////////////////////////////////////////////////
 ////////////search select/////////////////////////////
 /////////////////////////////////////////////////////
@@ -52,34 +81,16 @@ $(".search-select-box").selectpicker();
 ///////////Auto input hardness level/////////////
 ////////////////////////////////////////////////
 $('#question_hardness').change(function (){
-    let hardnessInputs = document.querySelectorAll('.hidden_hardness');
-    let que_hardness = document.querySelector('#question_hardness').value;
-    for(let i=0;i<hardnessInputs.length;i++){
-        hardnessInputs[i].value = que_hardness;
-    }
+    autoSelect();
 });
 /////////////////////////////////////////////////
 /////////////Toggle Questions Details///////////
 ///////////////////////////////////////////////
-function closeAllActive(){
-    $('.question-box').each(function (){
-        if($(this).hasClass('activeBox')){
-            $(this).removeClass('activeBox');
-            if($(this).find('.toggleBtn').hasClass('toggleActive')){
-                $(this).find('.toggleBtn').removeClass('toggleActive');
-                $(this).find('.toggleBtn').addClass('toggleNonActive');
-            }
-            if($(this).find('.question-details').css('display')!='none'){
-                $(this).find('.question-details').slideUp(600);
-            }
-        }
-    });
-}
 $(document).on('click','.toggleBtn',function (){
     let box= $(this).parent().closest('.question-box');
     if($(box).hasClass('activeBox')){
         closeAllActive();
-        $(box).find('.question-details').slideUp(600);
+        $(box).find('.question-details').slideUp(400);
         $(box).find('.toggleBtn').removeClass('toggleActive');
         $(box).find('.toggleBtn').addClass('toggleNonActive');
     }else {
@@ -87,18 +98,13 @@ $(document).on('click','.toggleBtn',function (){
         $(box).addClass('activeBox');
         $(box).find('.toggleBtn').removeClass('toggleNonActive');
         $(box).find('.toggleBtn').addClass('toggleActive');
-        $(box).find('.question-details').slideDown(600);
+        $(box).find('.question-details').slideDown(400);
     }
 });
 
 //////////////////////////////////////////////////////////////////
 ////////////////////Add New Question/////////////////////////////
 ////////////////////////////////////////////////////////////////
-function updataCounter(){
-    let questionNamber = document.querySelectorAll('.question-box');
-    questionNamber = '('+ questionNamber.length + ')';
-    $('#que_counter').text(questionNamber);
-}
 $('.add_question').click(function (){
     closeAllActive();
     let finalNamber = document.querySelectorAll('.que_namber');
@@ -106,72 +112,162 @@ $('.add_question').click(function (){
     finalNamber = finalNamber[temp-1];
     finalNamber = parseInt(finalNamber.querySelector('span').innerHTML);
     finalNamber = finalNamber+1;
-    $('.Que-boxs').append('<div class="col-12">\n' +
-        '                                                <div class="question-box activeBox">\n' +
-        '                                                    <div class="d-flex justify-content-between">\n' +
-        '                                                        <div class="question_title">\n' +
-        '                                                            <span class="que_namber">السؤال <span>'+finalNamber+'</span> :</span>\n' +
-        '                                                            <span class="que_title">\n' +
-        '                                                                اختر الجزئية الدراسية\n' +
-        '                                                            </span>\n' +
-        '                                                        </div>\n' +
-        '                                                        <i class="fa-solid fa-chevron-down toggleBtn toggleActive"></i>\n' +
-        '                                                    </div>\n' +
-        '                                                    <div class="d-flex justify-content-center" >\n' +
-        '                                                        <div class="container">\n' +
-        '                                                            <div class="question-details">\n' +
-        '                                                                <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">الجزئية الدراسية للسؤال :</label>\n' +
-        '                                                                <select class="form-select form-select-lg search-select-box " name="part_'+finalNamber+'" id="formGroupExampleInput" data-live-search="true">\n' +
-        '                                                                    <option value="" selected>\n' +
-        '                                                                        اختر الجزئية التعليمية\n' +
-        '                                                                    </option>\n' +
-        '                                                                    <option value="الصف الأول الثانوي">\n' +
-        '                                                                        الصف الأول الثانوي\n' +
-        '                                                                    </option>\n' +
-        '                                                                    <option value="الصف الثاني الثانوي">\n' +
-        '                                                                        الصف الثاني الثانوي\n' +
-        '                                                                    </option>\n' +
-        '                                                                    <option value="الصف الثالث الثانوي">\n' +
-        '                                                                        الصف الثالث الثانوي\n' +
-        '                                                                    </option>\n' +
-        '                                                                </select>\n' +
-        '                                                                <input type="hidden" name="hardness_'+finalNamber+'" class="hidden_hardness" value="">\n' +
-        '                                                            </div>\n' +
-        '                                                        </div>\n' +
-        '                                                    </div>\n' +
-        '                                                </div>\n' +
-        '                                            </div>');
+    if($('.exam_type').val() == 1){
+        //////// Dynamic question //////////
+        $('.Que-boxs').append('<div class="col-12">\n' +
+            '                                                    <div class="question-box activeBox">\n' +
+            '                                                        <div class="d-flex justify-content-between">\n' +
+            '                                                            <div class="question_title">\n' +
+            '                                                                <span class="que_namber">السؤال <span class="title_num">'+finalNamber+'</span> :</span>\n' +
+            '                                                                <span class="que_title">\n' +
+            '                                                                اختر الجزئية الدراسية\n' +
+            '                                                            </span>\n' +
+            '                                                            </div>\n' +
+            '                                                            <div class="icons">\n' +
+            '                                                                <i class="fa-solid fa-circle-xmark deleteBtn" style="margin-left: 15px;"></i>\n' +
+            '                                                                <i class="fa-solid fa-chevron-down toggleBtn toggleActive"></i>\n' +
+            '                                                            </div>\n' +
+            '                                                        </div>\n' +
+            '                                                        <div class="d-flex justify-content-center" >\n' +
+            '                                                            <div class="container">\n' +
+            '                                                                <div class="delete-warning" style="display: none">\n' +
+            '                                                                    <div class="container d-flex justify-content-center">\n' +
+            '                                                                        <section>\n' +
+            '                                                                            <p>هل انت متأكد من انك تريد مسح هذا السؤال ؟</p>\n' +
+            '                                                                            <section class="d-flex justify-content-center">\n' +
+            '                                                                                <button type="button" class="btn btn-danger btn-lg">مسح</button>\n' +
+            '                                                                                <button type="button" class="btn btn-outline-secondary btn-lg">الغاء</button>\n' +
+            '                                                                            </section>\n' +
+            '                                                                        </section>\n' +
+            '                                                                    </div>\n' +
+            '                                                                </div>\n' +
+            '                                                                <div class="question-details">\n' +
+            '                                                                    <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">الجزئية الدراسية للسؤال :</label>\n' +
+            '                                                                    <select class="form-select form-select-lg search-select-box select_part " name="part_'+finalNamber+'" id="formGroupExampleInput" data-live-search="true">\n' +
+            '                                                                        <option value="" selected>\n' +
+            '                                                                            اختر الجزئية التعليمية\n' +
+            '                                                                        </option>\n' +
+            '                                                                        <option value="الصف الأول الثانوي">\n' +
+            '                                                                            الصف الأول الثانوي\n' +
+            '                                                                        </option>\n' +
+            '                                                                        <option value="الصف الثاني الثانوي">\n' +
+            '                                                                            الصف الثاني الثانوي\n' +
+            '                                                                        </option>\n' +
+            '                                                                        <option value="الصف الثالث الثانوي">\n' +
+            '                                                                            الصف الثالث الثانوي\n' +
+            '                                                                        </option>\n' +
+            '                                                                    </select>\n' +
+            '                                                                    <input type="hidden" name="hardness_'+finalNamber+'" class="hidden_hardness" value="">\n' +
+            '                                                                </div>\n' +
+            '                                                            </div>\n' +
+            '                                                        </div>\n' +
+            '                                                    </div>\n' +
+            '                                                </div>');
+    }else if($('.exam_type').val() == 0) {
+        ////////// static Qustion ///////////
+        $('.Que-boxs').append('<div class="col-12">\n' +
+            '    <div class="question-box activeBox">\n' +
+            '        <div class="d-flex justify-content-between">\n' +
+            '            <div class="question_title">\n' +
+            '                <span class="que_namber">السؤال <span class="title_num">'+finalNamber+'</span> :</span>\n' +
+            '                <span class="que_title">\n' +
+            '                                                                اختر الجزئية الدراسية\n' +
+            '                                                            </span>\n' +
+            '            </div>\n' +
+            '            <div class="icons">\n' +
+            '                <i class="fa-solid fa-circle-xmark deleteBtn" style="margin-left: 15px;"></i>\n' +
+            '                <i class="fa-solid fa-chevron-down toggleBtn toggleActive"></i>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="d-flex justify-content-center">\n' +
+            '            <div class="container">\n' +
+            '                <div class="delete-warning" style="display: none">\n' +
+            '                    <div class="container d-flex justify-content-center">\n' +
+            '                        <section>\n' +
+            '                            <p>هل انت متأكد من انك تريد مسح هذا السؤال ؟</p>\n' +
+            '                            <section class="d-flex justify-content-center">\n' +
+            '                                <button type="button" class="btn btn-danger btn-lg" id="del_'+finalNamber+'">مسح</button>\n' +
+            '                                <button type="button" class="btn btn-outline-secondary btn-lg"\n' +
+            '                                        id="cancel_'+finalNamber+'">الغاء\n' +
+            '                                </button>\n' +
+            '                            </section>\n' +
+            '                        </section>\n' +
+            '                    </div>\n' +
+            '                </div>\n' +
+            '                <div class="question-details" >\n' +
+            '                    <label htmlFor="formGroupExampleInput" class="form-label input_label" style="margin:0;">الجزئية\n' +
+            '                        الدراسية للسؤال :</label>\n' +
+            '                    <select class="form-select form-select-lg search-select-box select_part" name="part_'+finalNamber+'"\n' +
+            '                            id="formGroupExampleInput" data-live-search="true">\n' +
+            '                        <option value="" selected>\n' +
+            '                            اختر الجزئية التعليمية\n' +
+            '                        </option>\n' +
+            '                        <option value="الصف الأول الثانوي">\n' +
+            '                            الصف الأول الثانوي\n' +
+            '                        </option>\n' +
+            '                        <option value="الصف الثاني الثانوي">\n' +
+            '                            الصف الثاني الثانوي\n' +
+            '                        </option>\n' +
+            '                        <option value="الصف الثالث الثانوي">\n' +
+            '                            الصف الثالث الثانوي\n' +
+            '                        </option>\n' +
+            '                    </select>\n' +
+            '                    <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">اختر\n' +
+            '                        السؤال :</label>\n' +
+            '                    <select class="form-select form-select-lg search-select-box " name="question_'+finalNamber+'"\n' +
+            '                            id="formGroupExampleInput" data-live-search="true">\n' +
+            '                        <option value="" selected>\n' +
+            '                            اختر السؤال\n' +
+            '                        </option>\n' +
+            '                        <option value="الصف الأول الثانوي">\n' +
+            '                            الصف الأول الثانوي\n' +
+            '                        </option>\n' +
+            '                        <option value="الصف الثاني الثانوي">\n' +
+            '                            الصف الثاني الثانوي\n' +
+            '                        </option>\n' +
+            '                        <option value="الصف الثالث الثانوي">\n' +
+            '                            الصف الثالث الثانوي\n' +
+            '                        </option>\n' +
+            '                    </select>\n' +
+            '                    <input type="hidden" name="hardness_'+finalNamber+'" class="hidden_hardness" value="">\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '    </div>\n' +
+            '</div>');
+    }else {
+
+    }
     updataCounter();
+    $(".search-select-box").selectpicker();
+    autoSelect();
 
 });
 //////////////////////////////////////////////////////////////////////////
 /////////////////////Change Question Title //////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-$(document).on('change','.search-select-box',function (){
-    let partName = $(this).attr('name');
-    let splitNamber = partName.split('_');
-    let questionNamber = parseInt(splitNamber[1]);
-    let questions = document.querySelectorAll('.que_title');
-    for (let i=0;i<questions.length;i++){
-        if(i+1 == questionNamber){
-            questions[i].innerHTML = $(this).val();
-        }
-    }
+$(document).on('change','.select_part',function (){
+    let question_box= $(this).parent().closest('.question-box');
+    var selectedValue = this.options[this.selectedIndex].text;
+    $(question_box).find('.que_title').text(selectedValue);
 });
 ///////////////////////////////////////////////////////////////////////
 ////////////////////////Delete Question///////////////////////////////
 /////////////////////////////////////////////////////////////////////
-$(document).on('click','.btn-danger',function (){
-    closeAllActive();
-    let queNamber = $(this).attr('id');
-    let temp = queNamber.split('_');
-    queNamber = parseInt(temp[1]);
-    queNamber = queNamber -1;
-    let boxs = document.querySelectorAll('.question-box');
-    for(let i=0;i<boxs.length;i++){
-        if(i == queNamber){
-            boxs[i].remove();
-        }
+$(document).on('click','.deleteBtn',function (){
+    let question_box= $(this).parent().closest('.question-box');
+    if(question_box.hasClass('deleteOpened')){
+        closeAllActive();
+        $(question_box).find('.delete-warning').slideUp(400);
+    }else {
+        closeAllActive();
+        $(question_box).addClass('deleteOpened');
+        $(question_box).find('.delete-warning').slideDown(400);
     }
-
 });
+$(document).on('click','.btn-danger',function (){
+    let question_box= $(this).parent().closest('.question-box');
+    $(question_box).remove();
+    updataCounter();
+});
+

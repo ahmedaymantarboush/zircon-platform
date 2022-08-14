@@ -71,11 +71,19 @@
                         </div>
                         <div class="col-lg-2 col-md-12">
                             <label for="formGroupExampleInput" class="form-label input_label">نوع الامتحان:</label>
-                            <select class="form-select form-select-lg" aria-label="Default select example" id="formGroupExampleInput" style="font-size: 15px;width: 90%;">
-                                <option selected>ادخل نوع الامتحان</option>
-                                <option value="1">امتحان زيركون</option>
-                                <option value="2">امتحان ثابت</option>
-                            </select>
+                            @if(1)
+                                <select name="exam_type" class="form-select form-select-lg exam_type" aria-label="Default select example" id="formGroupExampleInput" style="font-size: 15px;width: 90%;" disabled>
+                                    <option >ادخل نوع الامتحان</option>
+                                    <option value="1">امتحان زيركون</option>
+                                    <option value="0"selected>امتحان ثابت</option>
+                                </select>
+                            @else
+                                <select name="exam_type" class="form-select form-select-lg exam_type" aria-label="Default select example" id="formGroupExampleInput" style="font-size: 15px;width: 90%;">
+                                    <option selected>ادخل نوع الامتحان</option>
+                                    <option value="1">امتحان زيركون</option>
+                                    <option value="2">امتحان ثابت</option>
+                                </select>
+                            @endif
                         </div>
                         <div class="col-lg-2 col-md-12">
                             <label for="question_hardness" class="form-label input_label">درجة الصعوبة :</label>
@@ -128,7 +136,7 @@
                                                     <div class="question-box">
                                                         <div class="d-flex justify-content-between">
                                                             <div class="question_title">
-                                                                <span class="que_namber">السؤال <span>{{$i}}</span> :</span>
+                                                                <span class="que_namber">السؤال <span class="title_num">{{$i}}</span> :</span>
                                                                 <span class="que_title">
                                                                 اختر الجزئية الدراسية
                                                             </span>
@@ -140,7 +148,7 @@
                                                         </div>
                                                         <div class="d-flex justify-content-center" >
                                                             <div class="container">
-                                                                <div class="delete-warning" style="">
+                                                                <div class="delete-warning" style="display: none">
                                                                     <div class="container d-flex justify-content-center">
                                                                         <section>
                                                                             <p>هل انت متأكد من انك تريد مسح هذا السؤال ؟</p>
@@ -153,11 +161,11 @@
                                                                 </div>
                                                                 <div class="question-details"style="display: none;">
                                                                     <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">الجزئية الدراسية للسؤال :</label>
-                                                                    <select class="form-select form-select-lg search-select-box " name="part_{{$i}}" id="formGroupExampleInput" data-live-search="true">
-                                                                        <option value="" selected>
+                                                                    <select class="form-select form-select-lg search-select-box select_part" name="part_{{$i}}" id="formGroupExampleInput" data-live-search="true">
+                                                                        <option value="اختر الجزئية التعليمية" selected>
                                                                             اختر الجزئية التعليمية
                                                                         </option>
-                                                                        <option value="الصف الأول الثانوي">
+                                                                        <option value="الصف الأول الثانوي" >
                                                                             الصف الأول الثانوي
                                                                         </option>
                                                                         <option value="الصف الثاني الثانوي">
@@ -167,6 +175,23 @@
                                                                             الصف الثالث الثانوي
                                                                         </option>
                                                                     </select>
+                                                                    @if(1)
+                                                                        <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">اختر السؤال :</label>
+                                                                        <select class="form-select form-select-lg search-select-box " name="question_{{$i}}" id="formGroupExampleInput" data-live-search="true">
+                                                                            <option value="" selected>
+                                                                                اختر السؤال
+                                                                            </option>
+                                                                            <option value="الصف الأول الثانوي">
+                                                                                الصف الأول الثانوي
+                                                                            </option>
+                                                                            <option value="الصف الثاني الثانوي">
+                                                                                الصف الثاني الثانوي
+                                                                            </option>
+                                                                            <option value="الصف الثالث الثانوي">
+                                                                                الصف الثالث الثانوي
+                                                                            </option>
+                                                                        </select>
+                                                                    @endif
                                                                     <input type="hidden" name="hardness_{{$i}}" class="hidden_hardness" value="">
                                                                 </div>
                                                             </div>
