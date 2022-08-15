@@ -270,4 +270,11 @@ $(document).on('click','.btn-danger',function (){
     $(question_box).remove();
     updataCounter();
 });
+$(document).on('click','.btn-outline-secondary',function (){
+    let question_box= $(this).parent().closest('.question-box');
+    if(question_box.hasClass('deleteOpened')){
+        closeAllActive();
+        $(question_box).find('.delete-warning').slideUp(400);
+    }
+});
 
