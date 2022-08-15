@@ -25,11 +25,11 @@
     <link rel="stylesheet" href="{{URL::asset('css/bootstrap-rtl.min.css')}}">
 
     <!-- css file -->
-    <link rel="stylesheet" href="{{URL::asset('css/searchNotFound.css')}} " class="rel">
+    <link rel="stylesheet" href="{{URL::asset('css/confirmEmail.css')}} " class="rel">
 
 </head>
 
-<body class='grade1'>
+<body>
 
     <nav class="myNav ">
         <div class="navProgress">
@@ -123,10 +123,10 @@
         </div>
     </nav>
     <section class="header">
-        <h2 class='pageName'>تم العثور علي 530 من النتائج <span>"الباب الاول"</span></h2>
+        <h2 class='pageName'>تم تأكيد البريد الالكتروني بنجاح</h2>
     </section>
     <div class="errorImage">
-        <img src="{{URL::asset('imgs/no-result-search.png')}}" alt="">
+        <img src="{{URL::asset('imgs/email_ver.png')}}" alt="">
     </div>
     <footer class=' '>
         <div class="waves wave1">
@@ -354,7 +354,7 @@
 
 
     <!-- main js file -->
-    <script src="{{URL::asset('js/searchNotFound.js')}}"></script>
+    <script src="{{URL::asset('js/confirmEmail.js')}}"></script>
 </body>
 
 </html>

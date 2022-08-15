@@ -58,7 +58,11 @@
                                                         $id = $grade->id + 9;
                                                     @endphp
                                                     <input type="checkbox" value="{{ $grade->id }}"
-                                                        @checked(array_key_exists('grades', $appliedFilters) ? (count($appliedFilters) ? in_array($grade->id, $appliedFilters['grades']) : false ) : false) name="grade{{ $id }}" />
+                                                        @checked(array_key_exists('grades', $appliedFilters)
+                                                                ? (count($appliedFilters)
+                                                                    ? in_array($grade->id, $appliedFilters['grades'])
+                                                                    : false)
+                                                                : false) name="grade{{ $id }}" />
                                                     <label for="">
                                                         {{ $grade->name }}
                                                         @php
@@ -239,6 +243,9 @@
             @include('components.Home.pagination', ['paginator' => $lectures->paginate(6)])
         </div>
     @else
+        <div class="errorImage">
+            <img src="{{ URL::asset('imgs/no-result-search.png') }}" alt="">
+        </div>
     @endif
 @endsection
 @section('javascript')

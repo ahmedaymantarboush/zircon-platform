@@ -32,7 +32,7 @@ Route::get('grades/grade{id}', [LectureController::class,'index'])->name('months
 Route::resource('months', LectureController::class)->only(['show']);
 Route::post('month-viewer', [LectureController::class,'viewLecture'])->name('lecture.view');
 Route::get('search', [LectureController::class, 'search'])->name('search');
-
+Route::get('my-cources', [LectureController::class, 'myLectures'])->name('months.mycources');
 //  ADMIN ROUTES
 
 Route::prefix('admin')->group(function () {

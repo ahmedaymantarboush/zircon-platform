@@ -213,6 +213,15 @@ class LectureController extends Controller
         endif;
         return view("home.search", $data);
     }
+
+    public function myLectures(){
+        $user = Auth::user();
+        if(!$user){
+            return redirect()->route('login');
+        }
+        $lectures = $user->ownedLectures();
+        return view("home.myCourses", compact("lectures"));
+    }
     /**
      * Show the form for creating a new resource.
      *

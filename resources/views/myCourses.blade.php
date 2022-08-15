@@ -89,36 +89,6 @@
                         <span><i class="fa-solid fa-magnifying-glass"></i></span>
 
                     </form>
-                    <!-- <div class="register">
-                        <div class="signup">
-                            <a href="{{route('register')}}" class="regItem lineParent">
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/apple.png') }}" alt="">
-                                </span>
-                                <span class="regType">
-                                    أنشئ حساب <span class='d-redColor'>جديد</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="login">
-                            <a href="{{route('login')}}" class="regItem lineParent">
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
-                                </span>
-                                <span class="regType">
-                                    تسجيل <span class='d-blueColor'>الدخول</span>
-                                </span>
-                            </a>
-                        </div>
-                    </div> -->
                     <div class="studentInfo">
                         <div class="studentBtn">
                             <button role="button" type="button" class="btn ftu-btn lineParent" data-toggle="dropdown">

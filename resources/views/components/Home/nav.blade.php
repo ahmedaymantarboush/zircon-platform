@@ -104,6 +104,126 @@
                             </a>
                         </div>
                     </div>
+                    {{-- <div class="studentInfo">
+                        <div class="studentBtn">
+                            <button role="button" type="button" class="btn ftu-btn lineParent" data-toggle="dropdown">
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class='studentIcon'>
+                                    <i class='fa fa-user'></i>
+                                </span>
+                                <span class='studentName'>علي علاء الدين السيد</span>
+                            </button>
+                            <ul class="dropdown-menu navDrop">
+                                <li>
+
+                                    <a class="dropdown-item navDropItem lineParent" href="#">
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class='navDropIcon'>
+                                            <i class='fa fa-user'></i>
+                                        </span>
+                                        الصفحة الرئيسية
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item navDropItem lineParent" href="#">
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class='navDropIcon'>
+                                            <i class='fa fa-user'></i>
+                                        </span>
+                                        محاضراتي
+                                    </a>
+                                </li>
+
+
+                                <li>
+                                    <a href="javascript:{}" onclick="window.logoutFrm.submit()"
+                                        class="dropdown-item navDropItem lineParent">
+                                        <form id="logoutFrm" action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class='navDropIcon'>
+                                                <i class='fa fa-user'></i>
+                                            </span>
+                                            <span class="">
+
+                                                تسجيل الخروج</span>
+                                            </span>
+                                        </form>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mobDetails">
+                            <div class="studentImage">
+                                <img src="{{URL::asset('imgs/user.png')}}" alt="">
+                            </div>
+                            <h3 class='studentNameMob'>علي علاء الدين السيد</h3>
+                            <form class="search mobSearch">
+                                <input type="search" name="navSearch">
+                                <span><i class="fa-solid fa-magnifying-glass"></i></span>
+
+                            </form>
+                            <ul class=" navDrop">
+                                <li>
+
+                                    <a class="dropdown-item navDropItem lineParent" href="#">
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class='navDropIcon'>
+                                            <i class='fa fa-user'></i>
+                                        </span>
+                                        الصفحة الرئيسية
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item navDropItem lineParent" href="#">
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class='navDropIcon'>
+                                            <i class='fa fa-user'></i>
+                                        </span>
+                                        محاضراتي
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="javascript:{}" onclick="window.logoutFrm.submit()"
+                                        class="dropdown-item navDropItem lineParent">
+                                        <form id="logoutFrm" action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class='navDropIcon'>
+                                                <i class='fa fa-user'></i>
+                                            </span>
+                                            <span class="">تسجيل الخروج</span>
+                                            </span>
+                                        </form>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> --}}
                 @endauth
 
             </div>

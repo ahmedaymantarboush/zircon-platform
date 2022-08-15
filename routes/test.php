@@ -25,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('search');
 // });
 
- Route::get('/signup', function () {
-     return view('signup');
- });
+//  Route::get('/signup', function () {
+//      return view('signup');
+//  });
 // Route::get('/login', function () {
 //     return view('login');
 // });
@@ -36,29 +36,29 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/test', function () {
-    return view('profile');
+    return view('confirmEmail');
 });
 
 
-Route::get('/tt', function () {
-    // $headers = ['Content-Type' => 'video/mp4', 'Accept-Ranges' => 'bytes'];
-    // $response = Http::withHeaders(['Content-Type' => 'video/mp4', 'Accept-Ranges' => 'bytes'])->get(getVideoUrl('LgV1IcqX3QE')['videos']['720p']);
-    // return $response;
-    // return getVideoUrl('LgV1IcqX3QE')['videos']['720p'];
+// Route::get('/tt', function () {
+//     // $headers = ['Content-Type' => 'video/mp4', 'Accept-Ranges' => 'bytes'];
+//     // $response = Http::withHeaders(['Content-Type' => 'video/mp4', 'Accept-Ranges' => 'bytes'])->get(getVideoUrl('LgV1IcqX3QE')['videos']['720p']);
+//     // return $response;
+//     // return getVideoUrl('LgV1IcqX3QE')['videos']['720p'];
 
-    // $url = getVideoUrl('M9wmZ4Lcskk')['videos']['360p'];
+//     // $url = getVideoUrl('M9wmZ4Lcskk')['videos']['360p'];
 
-    // set_time_limit(0);
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_TIMEOUT, 500);
-    // curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_POST, 0);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//     // set_time_limit(0);
+//     // $ch = curl_init();
+//     // curl_setopt($ch, CURLOPT_TIMEOUT, 500);
+//     // curl_setopt($ch, CURLOPT_URL, $url);
+//     // curl_setopt($ch, CURLOPT_POST, 0);
+//     // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    // $response = curl_exec($ch);
-    // curl_close($ch);
-    // return $response;
-});
+//     // $response = curl_exec($ch);
+//     // curl_close($ch);
+//     // return $response;
+// });
 //test route for lecture viewer
 Route::get('/lectureview',function (){
     return view('Home.lecture_viewer');
