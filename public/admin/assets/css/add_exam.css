@@ -213,3 +213,10 @@ body{
 .btn-outline-secondary{
     margin-right: 10px;
 }
+.btn-light{
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.btn-light:after{
+    display: none;
+}
