@@ -10,6 +10,19 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/add_exam.css') }}" />
+    <script>
+        parts = [
+            @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get()->pluck('name') as $partName)
+                '{{ $partName }}',
+            @endforeach
+        ]
+        questions = {}
+        @if (!$exam->dynamic)
+            @foreach (\App\Models\Question::where()->get() as $question)
+                questions['{{ $question->name }}'] = '{{ $question->id }}'
+            @endforeach
+        @endif
+    </script>
 @endsection
 {{-- ////////////////////////////////////////////////////////////////////// --}}
 {{-- ///////////////////////// Main ////////////////////////////////////// --}}
@@ -24,7 +37,7 @@
                     <span>تعديل الامتحان</span>
                 </div>
                 <div class="main_exam_info">
-                    @include('components.Admin.examForm',['exam'=>$exam])
+                    @include('components.Admin.examForm', ['exam' => $exam])
                 </div>
                 <div class="add_questions" style="margin-bottom: 20px">
                     <div class="row">
@@ -39,7 +52,7 @@
                                         {{-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
                                         {{-- ///////////////////////////////////////////////////// Questions Loop //////////////////////////////////////////////////////////////////// --}}
                                         {{-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
-                                        @for ($i = 1; $i <= 2; $i++)
+                                        @for ($i = 1; $i <= $exam->questions_count; $i++)
                                             {{-- ////////////// بدل الi ضيف counter /////////////////// --}}
                                             <div class="col-12">
                                                 <div class="question-box">
@@ -78,8 +91,8 @@
                                                             </div>
                                                             <div class="question-details"style="display: none;">
                                                                 <label for="formGroupExampleInput"
-                                                                    class="form-label input_label"
-                                                                    style="margin:0;">الجزئية الدراسية للسؤال :</label>
+                                                                    class="form-label input_label" style="margin:0;">الجزئية
+                                                                    الدراسية للسؤال :</label>
                                                                 <select
                                                                     class="form-select form-select-lg search-select-box select_part"
                                                                     name="part_{{ $i }}"
@@ -87,39 +100,56 @@
                                                                     <option value="اختر الجزئية التعليمية" selected>
                                                                         اختر الجزئية التعليمية
                                                                     </option>
-                                                                    <option value="الصف الأول الثانوي">
-                                                                        الصف الأول الثانوي
-                                                                    </option>
-                                                                    <option value="الصف الثاني الثانوي">
+                                                                    @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get()->pluck('name') as $partName)
+                                                                        <option value="{{$partName}}">
+                                                                            {{$partName}}
+                                                                        </option>
+                                                                    @endforeach
+                                                                    {{-- <option value="الصف الثاني الثانوي">
                                                                         الصف الثاني الثانوي
                                                                     </option>
                                                                     <option value="الصف الثالث الثانوي">
                                                                         الصف الثالث الثانوي
-                                                                    </option>
+                                                                    </option> --}}
                                                                 </select>
+                                                                @if ($exam->dynamic)
+                                                                    <label for="formGroupExampleInput"
+                                                                        style="margin-top: 10px;"
+                                                                        class="form-label input_label">عدد الأسئلة:
+                                                                    </label>
+                                                                    <input type="number" name='count_{{ $i }}'
+                                                                        value="{{ old("count_$i") }}"
+                                                                        class="form-control-lg form-control"
+                                                                        id="formGroupExampleInput"
+                                                                        placeholder="ادخل عدد الأسئلة"
+                                                                        style="font-size: 15px">
+                                                                @else
                                                                     <label for="formGroupExampleInput"
                                                                         class="form-label input_label"
                                                                         style="margin:0;">اختر السؤال :</label>
                                                                     <select
                                                                         class="form-select form-select-lg search-select-box "
                                                                         name="question_{{ $i }}"
-                                                                        id="formGroupExampleInput"
-                                                                        data-live-search="true">
+                                                                        id="formGroupExampleInput" data-live-search="true">
                                                                         <option value="" selected>
                                                                             اختر السؤال
                                                                         </option>
-                                                                        <option value="الصف الأول الثانوي">
-                                                                            الصف الأول الثانوي
-                                                                        </option>
-                                                                        <option value="الصف الثاني الثانوي">
+                                                                        @foreach (\App\Models\Question::where()->get() as $question)
+                                                                            <option value="{{ $question->id }}">
+                                                                                {{ $question->name }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                        {{-- <option value="الصف الثاني الثانوي">
                                                                             الصف الثاني الثانوي
                                                                         </option>
                                                                         <option value="الصف الثالث الثانوي">
                                                                             الصف الثالث الثانوي
-                                                                        </option>
+                                                                        </option> --}}
                                                                     </select>
+                                                                @endif
                                                                 <input type="hidden" name="hardness_{{ $i }}"
-                                                                    class="hidden_hardness" value="">
+                                                                    class="hidden_hardness"
+                                                                    value="{{ $exam->exam_hardness }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -129,7 +159,7 @@
                                         {{-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
                                         {{-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
                                     </section>
-                                    <div class="col-12 add_question d-flex justify-content-center">
+                                    <div class="col-12 add_question d-flex justify-content-center" style="cursor: pointer;">
                                         <i class="fa-solid fa-plus"></i>
                                         <span>اضافة سؤال</span>
                                     </div>

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Grade;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,6 +22,8 @@ class PartFactory extends Factory
             'name'=>fake()->name(),
             'description'=>fake()->paragraph(),
             'user_id'=>$this->faker->randomElement(User::all()->pluck('id')),
+            'grade_id'=>$this->faker->randomElement(Grade::all()->pluck('id')),
+            'subject_id'=>1,
         ];
     }
 }
