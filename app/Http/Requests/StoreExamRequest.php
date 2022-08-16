@@ -40,8 +40,8 @@ class StoreExamRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'    =>  _('الرجاء ادخال السؤال'),
-            'name.string'      =>  _('يجب أن يكون السؤال عبارة عن نص'),
+            'name.required'    =>  _('الرجاء ادخال اسم الامتحان'),
+            'name.string'      =>  _('يجب أن يكون اسم الامتحان عبارة عن نص'),
             'name.max'         =>  _('يجب أن لا يزيد عدد الأحرف عن 70 حرف'),
 
             'examStartsAt.required' => _('الرجاء ادخال تاريخ ووقت بداية الامتحان'),
@@ -62,8 +62,8 @@ class StoreExamRequest extends FormRequest
             'exam_type.string'=> _('يجب أن يكون نوع الامتحان عبارة عن نص'),
             'exam_type.in'=> _('الرجاء اختيار نوع الامتحان بشكل صحيح'),
 
-            'question_hardness.required' => _('الرجاء اختيار صعوبة السؤال'),
-            'question_hardness.in' => _('الرجاء اختيار صعوبة السؤال بشكل صحيح'),
+            'question_hardness.required' => _('الرجاء اختيار صعوبة الامتحان'),
+            'question_hardness.in' => _('الرجاء اختيار صعوبة الامتحان بشكل صحيح'),
 
             'totalTime.required' => _('الرجاء ادخال وقت الامتحان'),
 

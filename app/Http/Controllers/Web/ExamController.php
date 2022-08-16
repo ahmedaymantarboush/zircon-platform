@@ -53,7 +53,7 @@ class ExamController extends Controller
             endforeach;
             $exam = new Exam();
             $exam->title = $request->name;
-            $exam->dynamic = $request->exam_type == 'zirconExam';
+            $exam->dynamic = $request->exam_type;
             $exam->grade_id = Grade::where('name',$request->grade)->first()->id;
             // $exam->subject_id = Subject::where('name',$request->subject)->first()->id;
             $exam->questions_hardness = $request->question_hardness;
@@ -107,9 +107,35 @@ class ExamController extends Controller
      * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateExamRequest $request, Exam $exam)
+    public function update(UpdateExamRequest $request, $id)
     {
-        //
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false):
+            $time = 0;
+            foreach(explode(':', $request->totalTime) as $index => $timePart):
+                $time += intval($timePart) * pow(60, 2 - $index);
+            endforeach;
+            $exam = Exam::find($id);
+            if (!$exam) {
+                return abort(404);
+            }elseif($exam->publisher->id != $user->id){
+                return abort(403);
+            }
+            $exam->title = $request->name;
+            $exam->grade_id = Grade::where('name',$request->grade)->first()->id;
+            $exam->questions_hardness = $request->question_hardness;
+            $exam->time = $time;
+            $exam->description = $request->description;
+            $exam->starts_at = $request->examStartsAt;
+            $exam->ends_at = $request->examEndsAt;
+            $exam->save();
+
+
+
+            return redirect()->route('exams.edit', $exam->id);
+        else:
+            return abort(404);
+        endif;
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Storage;
-use hisorange\BrowserDetect\Facade as BrowserDetect;
+// use hisorange\BrowserDetect\Facade as BrowserDetect;
 
 function apiResponse($success, $message, $data, $statusCode = 200)
 {
