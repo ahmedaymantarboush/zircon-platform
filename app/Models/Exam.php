@@ -17,6 +17,16 @@ class Exam extends Model
         'subject_id'
     ];
 
+    public function grade()
+    {
+        return $this->belongsTo('App\Models\Grade');
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo('App\Models\Subject');
+    }
+
     public function dynamicExams()
     {
         return $this->hasMany(DynamicExam::class, 'exam_id', 'id');
