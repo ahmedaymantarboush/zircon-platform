@@ -84,12 +84,12 @@
         </div>
         <div class="col-lg-2 col-md-12">
             <label for="formGroupExampleInput" class="form-label input_label">نوع الامتحان:</label>
-            <select name='exam_type'
+            <select @disabled(isset($exam)) name='exam_type'
                 class="form-select form-select-lg @error('exam_type') is-invalid @enderror exam_type"
                 aria-label="Default select example" id="formGroupExampleInput" style="font-size: 15px;width: 90%;">
                 <option selected>ادخل نوع الامتحان</option>
-                <option @selected($exam->dynamic || old('exam_type') == 'zirconExam') value="zirconExam">{{-- امتحان زيركون --}}Zircon Exam</option>
-                <option @selected(!$exam->dynamic || old('exam_type') == 'staticExam') value="staticExam">امتحان ثابت</option>
+                <option @selected($exam->dynamic || old('exam_type') == 'zirconExam') value="1">{{-- امتحان زيركون --}}Zircon Exam</option>
+                <option @selected(!$exam->dynamic || old('exam_type') == 'staticExam') value="0">امتحان ثابت</option>
             </select>
             @error('exam_type')
                 <div class="invalid-feedback" style="font-size: 13px;">

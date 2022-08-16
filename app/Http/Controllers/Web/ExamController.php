@@ -53,7 +53,7 @@ class ExamController extends Controller
             endforeach;
             $exam = new Exam();
             $exam->title = $request->name;
-            $exam->dynamic = $request->exam_type == 'zirconExam';
+            $exam->dynamic = $request->exam_type;
             $exam->grade_id = Grade::where('name',$request->grade)->first()->id;
             // $exam->subject_id = Subject::where('name',$request->subject)->first()->id;
             $exam->questions_hardness = $request->question_hardness;
@@ -122,7 +122,6 @@ class ExamController extends Controller
                 return abort(403);
             }
             $exam->title = $request->name;
-            $exam->dynamic = $request->exam_type == 'zirconExam';
             $exam->grade_id = Grade::where('name',$request->grade)->first()->id;
             $exam->questions_hardness = $request->question_hardness;
             $exam->time = $time;
