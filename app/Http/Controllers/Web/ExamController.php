@@ -118,8 +118,18 @@ class ExamController extends Controller
      * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Exam $exam)
+    public function destroy($id)
     {
-        //
+        $exam = Exam::find($id);
+        if (!$exam) {
+            return abort(404);
+        }
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 && $exam->publisher->id == $user->id : false):
+            $exam->delete();
+            return redirect()->back();
+        else:
+            return abort(404);
+        endif;
     }
 }
