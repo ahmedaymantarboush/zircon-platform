@@ -56,7 +56,7 @@ class ExamController extends Controller
             $exam->dynamic = $request->exam_type;
             $exam->grade_id = Grade::where('name',$request->grade)->first()->id;
             // $exam->subject_id = Subject::where('name',$request->subject)->first()->id;
-            $exam->questions_hardness = $request->question_hardness;
+            $exam->exam_hardness = $request->question_hardness;
             $exam->time = $time;
             $exam->description = $request->description;
             $exam->starts_at = $request->examStartsAt;
