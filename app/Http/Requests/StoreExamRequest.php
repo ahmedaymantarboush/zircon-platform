@@ -27,8 +27,8 @@ class StoreExamRequest extends FormRequest
     {
         return [
             'name'    =>  ['required','string'],
-            'examStartsAt' => ['required','datetime'],
-            'examEndsAt' => ['required','datetime'],
+            'examStartsAt' => ['required','date_format:Y-m-d\TH:i'],
+            'examEndsAt' => ['required','date_format:Y-m-d\TH:i'],
             'grade' => ['required','string','exists:grades,name'],
             // 'subject' => ['required','string','exists:subjects,name'],
             'exam_type'=> ['required','string','in:zirconExam,staticExam'],
@@ -37,7 +37,6 @@ class StoreExamRequest extends FormRequest
             'description' => ['required','string'],
         ];
     }
-
     public function messages()
     {
         return [
@@ -46,10 +45,10 @@ class StoreExamRequest extends FormRequest
             'name.max'         =>  _('يجب أن لا يزيد عدد الأحرف عن 70 حرف'),
 
             'examStartsAt.required' => _('الرجاء ادخال تاريخ ووقت بداية الامتحان'),
-            'examStartsAt.datetime' => _('الرجاء ادخال تاريخ ووقت بداية الامتحان بشكل صحيح'),
+            'examStartsAt.date_format' => _('الرجاء ادخال تاريخ ووقت بداية الامتحان بشكل صحيح'),
 
             'examEndsAt.required' => _('الرجاء ادخال تاريخ ووقت نهاية الامتحان'),
-            'examEndsAt.datetime' => _('الرجاء ادخال تاريخ ووقت نهاية الامتحان بشكل صحيح'),
+            'examEndsAt.date_format' => _('الرجاء ادخال تاريخ ووقت نهاية الامتحان بشكل صحيح'),
 
             'grade.required' => _('الرجاء اختيار المرحلة الدراسية'),
             'grade.string' => _('يجب أن يكون المرحلة الدراسية عبارة عن نص'),
