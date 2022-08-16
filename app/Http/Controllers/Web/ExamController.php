@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Models\Exam;
 use App\Http\Requests\StoreExamRequest;
 use App\Http\Requests\UpdateExamRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ExamController extends Controller
 {
@@ -25,7 +27,12 @@ class ExamController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false):
+            return view('admin.addExam');
+        else:
+            return abort(404);
+        endif;
     }
 
     /**
