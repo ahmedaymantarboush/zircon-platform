@@ -11,7 +11,7 @@
         </div>
         <div class="col-lg-4 col-md-12">
             <label for="formGroupExampleInput" class="form-label input_label">اسم الامتحان: </label>
-            <input type="text" name='name' value="{{ old('name') }}" class="form-control-lg form-control"
+            <input type="text" name='name' value="{{ old('name') }}" class="form-control-lg form-control @error('name') is-invalid @enderror"
                 id="formGroupExampleInput" placeholder="ادخل اسم الامتحان" style="font-size: 15px;width: 90%;">
             @error('name')
                 <div class="invalid-feedback" style="font-size: 13px;">
@@ -41,31 +41,37 @@
                 </div>
             @enderror
         </div>
-        <div class="col-lg-3 col-md-12">
+        {{-- <div class="col-lg-3 col-md-12">
             <label for="formGroupExampleInput" class="form-label input_label">مادة الامتحان: </label>
             <select class="form-select form-select-lg @error('subject') is-invalid @enderror" name='subject'
                 value="{{ old('subject') }}" aria-label="Default select example" id="formGroupExampleInput"
                 style="font-size: 15px;width: 90%;">
                 <option selected>ادخل مادة الامتحان</option>
-                <option value="1">كيمياء</option>
+                @foreach (\App\Models\Subject::all() as $subject)
+                    <option value="{{ $subject->name }}">{{ $subject->name }}</option>
+                @endforeach
+                {{-- <option value="1">كيمياء</option>
                 <option value="2">فيزياء</option>
-                <option value="3">برمجة عشان بحبها</option>
-            </select>
+                <option value="3">برمجة عشان بحبها</option> --}}
+            {{-- </select>
             @error('subject')
                 <div class="invalid-feedback" style="font-size: 13px;">
                     {{ $message }}
                 </div>
             @enderror
-        </div>
+        </div> --}}
         <div class="col-lg-3 col-md-12">
             <label for="formGroupExampleInput" class="form-label input_label">مرحلة الامتحان:</label>
             <select class="form-select form-select-lg @error('grade') is-invalid @enderror" name='grade'
                 value="{{ old('grade') }}" aria-label="Default select example" id="formGroupExampleInput"
                 style="font-size: 15px;width: 90%;">
                 <option selected>ادخل مرحلة الامتحان</option>
-                <option value="1">الصف الاول الثانوي</option>
+                @foreach (\App\Models\Grade::all() as $grade)
+                    <option value="{{ $grade->name }}">{{ $grade->name }}</option>
+                @endforeach
+                {{-- <option value="1">الصف الاول الثانوي</option>
                 <option value="2">الصف الثاني الثانوي</option>
-                <option value="3">الصف الثالث الثانوي "استغفر الله"</option>
+                <option value="3">الصف الثالث الثانوي "استغفر الله"</option> --}}
             </select>
             @error('grade')
                 <div class="invalid-feedback" style="font-size: 13px;">
@@ -79,8 +85,8 @@
                 class="form-select form-select-lg @error('exam_type') is-invalid @enderror exam_type"
                 aria-label="Default select example" id="formGroupExampleInput" style="font-size: 15px;width: 90%;">
                 <option selected>ادخل نوع الامتحان</option>
-                <option value="1">امتحان زيركون</option>
-                <option value="2">امتحان ثابت</option>
+                <option value="zirconExam">{{-- امتحان زيركون --}}Zircon Exam</option>
+                <option value="staticExam">امتحان ثابت</option>
             </select>
             @error('exam_type')
                 <div class="invalid-feedback" style="font-size: 13px;">
@@ -98,7 +104,7 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="5">للطالب الشكساوي</option>
             </select>
             @error('question_hardness')
                 <div class="invalid-feedback" style="font-size: 13px;">

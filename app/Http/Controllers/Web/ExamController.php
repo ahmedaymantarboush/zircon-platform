@@ -43,7 +43,7 @@ class ExamController extends Controller
      */
     public function store(StoreExamRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**
