@@ -1,0 +1,105 @@
+.input_label{
+    margin-top: 20px;
+}
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+    width: 95%;
+}
+@media only screen and (max-width: 600px) {
+    .order_1{
+        order: 1;
+    }
+    .order_2{
+        order: 2;
+    }
+}
+/********** profile content *************/
+.profileDetails {
+    position: relative;
+    padding: 0;
+}
+.profileImg {
+    width: 10rem;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+.profileImg img {
+    border-radius: 1rem;
+}
+.profileContent {
+    padding: 7rem 0rem 4rem;
+}
+.personalInformation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 0 2rem;
+}
+.profileName {
+    color: var(--font-dark);
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.profileType {
+    color: var(--font-light);
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+.someDetails {
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+}
+.control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.someDetailsHeading {
+    font-size: 2rem;
+    color: #556373;
+}
+.printBtn,
+.editBtn {
+    border: none;
+    background: none;
+    color: #989ca2;
+    font-size: 1.8rem;
+    margin: 0 0.5rem;
+    transition: 0.3s all ease;
+}
+.printBtn:hover,
+.editBtn:hover {
+    color: var(--font-dark);
+}
+.item {
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 1.4rem;
+}
+.type {
+    margin-left: 0.5rem;
+    color: #556373;
+}
+.info {
+    color: #87919d;
+}
+.barcodeBox {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.barcodeText {
+    display: none;
+}
