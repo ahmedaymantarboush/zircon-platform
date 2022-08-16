@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('title',50);
             $table->boolean('dynamic')->default(false);
             $table->text('description');
-            $table->integer('questions_count');
+            $table->integer('questions_count')->default(0);
+            $table->integer('questions_hardness');
             $table->foreignId('user_id')->default(1)->constrained()->cascadeOnDelete();
             $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
             $table->foreignId('subject_id')->default(env('DEFAULT_SUBJECT_ID'))->constrained()->cascadeOnDelete();
-            $table->foreignId('lecture_id')->nullabl()->constrained()->cascadeOnDelete();
+            $table->foreignId('lecture_id')->nullable()->constrained()->cascadeOnDelete();
             $table->integer('time')->default(0);
             $table->dateTime('starts_at')->nullable();
             $table->dateTime('ends_at')->nullable();

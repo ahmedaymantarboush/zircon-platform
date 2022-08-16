@@ -56,7 +56,7 @@ Route::post('/view-lecture',[LectureController::class,'viewLecture']);
 Route::apiResource('/lessons',LessonController::class)->names(['store'=>'api.lessons.store','update'=>'api.lessons.update','destroy'=>'api.lessons.destroy']);
 
 //       EXAM ROUTES
-Route::apiResource('/exams',ExamController::class);
+Route::apiResource('/exams',ExamController::class)->names(['index'=>'api.exams.index','store'=>'api.exams.store','update'=>'api.exams.update','destroy'=>'api.exams.destroy']);
 
 //       USER ROUTES
 Route::post('recharge',[BalanceCardController::class,'recharge']);
