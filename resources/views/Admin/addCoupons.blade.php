@@ -74,7 +74,7 @@
                                     <p class="main_title">تحرير كروت شحن جديد </p>
                                     <div class="blue_line"></div>
                                 </section>
-                                <button type="button" class="sub_btn print_btn" style="margin-left: 50px;">اضافة</button>
+                                <button type="button" class="sub_btn print_btn" style="margin-left: 50px;">طباعة</button>
                             </div>
 
                             @for ($i=1;$i<=6;$i++)
@@ -105,7 +105,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <!-- bootstrap 5  -->
@@ -116,6 +115,5 @@
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>
     <script src="{{ asset('admin/assets/js/add-coupons.js') }}"></script>
     <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
-
 @endsection
 
