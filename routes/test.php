@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/test', function () {
-    return view('admin.addExam');
+    return view('admin.addCoupons');
 });
 
 

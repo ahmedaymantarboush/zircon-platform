@@ -62,7 +62,7 @@
 </div>
 <style>
     .coupon-card{
-        position: absolute;
+        position: relative;
         width: 100%;
     }
     .title-div{

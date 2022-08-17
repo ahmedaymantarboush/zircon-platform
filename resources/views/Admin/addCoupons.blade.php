@@ -76,17 +76,18 @@
                                 </section>
                                 <button type="button" class="sub_btn print_btn" style="margin-left: 50px;">اضافة</button>
                             </div>
-                            <div class="col-lg-4 col-sm-12" style="padding-top: 30px">
-                                @include('components.Admin.coupon-card',[
-                                    'counter'=>'1',
-                                    'id'=>'5',
-                                    'start_date'=>'27-7-2022:17:50',
-                                    'end_date'=>'27-7-2023:17:50',
-                                    'value'=>'50',
-                                    'code'=>'as56d4ef55',
-                                    'app_name'=>'أ/ محمد البري',
-                                ])
-
+                            <div class="col-lg col-sm-12" style="padding-top: 30px">
+                                @for ($i=1;$i<=6;$i++)
+                                    @include('components.Admin.coupon-card',[
+                                        'counter'=>$i,
+                                        'id'=>rand(1,7),
+                                        'start_date'=>'27-7-2022:17:50',
+                                        'end_date'=>'27-7-2023:17:50',
+                                        'value'=>rand(50,100),
+                                        'code'=>Str::random(10),
+                                        'app_name'=>'أ/ محمد البري',
+                                    ])
+                                @endfor
                             </div>
 
                         </div>
