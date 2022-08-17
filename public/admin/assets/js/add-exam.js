@@ -1,50 +1,50 @@
 /////////////////////////////////////////////////////
 ////////////////////// Main ////////////////////////
 ///////////////////////////////////////////////////
-function autoSelect(){
+function autoSelect() {
     let hardnessInputs = document.querySelectorAll('.hidden_hardness');
     let que_hardness = document.querySelector('#question_hardness').value;
-    for(let i=0;i<hardnessInputs.length;i++){
+    for (let i = 0; i < hardnessInputs.length; i++) {
         hardnessInputs[i].value = que_hardness;
     }
 }
-function closeAllActive(){
-    $('.question-box').each(function (){
-        if($(this).hasClass('activeBox')){
+function closeAllActive() {
+    $('.question-box').each(function () {
+        if ($(this).hasClass('activeBox')) {
             $(this).removeClass('activeBox');
-            if($(this).find('.toggleBtn').hasClass('toggleActive')){
+            if ($(this).find('.toggleBtn').hasClass('toggleActive')) {
                 $(this).find('.toggleBtn').removeClass('toggleActive');
                 $(this).find('.toggleBtn').addClass('toggleNonActive');
             }
-            if($(this).find('.question-details').css('display')!='none'){
+            if ($(this).find('.question-details').css('display') != 'none') {
                 $(this).find('.question-details').slideUp(400);
             }
         }
-        if($(this).hasClass('deleteOpened')){
+        if ($(this).hasClass('deleteOpened')) {
             $(this).removeClass('deleteOpened');
-            if($(this).find('.delete-warning').css('display')!='none'){
+            if ($(this).find('.delete-warning').css('display') != 'none') {
                 $(this).find('.delete-warning').slideUp(400);
             }
         }
     });
 }
-function updataCounter(){
+function updataCounter() {
     let questionNamber = document.querySelectorAll('.question-box');
-    questionNamber = '('+ questionNamber.length + ')';
+    questionNamber = '(' + questionNamber.length + ')';
     $('#que_counter').text(questionNamber);
-    let counter =1;
-    $('.title_num').each(function (){
+    let counter = 1;
+    $('.title_num').each(function () {
         $(this).text(counter);
         counter++;
     });
 }
 
-$(document).ready(function (){
+$(document).ready(function () {
     autoSelect();
     closeAllActive();
     updataCounter();
-    $('.select_part').each(function (){
-        let question_box= $(this).parent().closest('.question-box');
+    $('.select_part').each(function () {
+        let question_box = $(this).parent().closest('.question-box');
         let selectedValue = this.options[this.selectedIndex].text;
         alert(selectedValue);
         $(question_box).find('.que_title').text(selectedValue);
@@ -70,7 +70,7 @@ ClassicEditor.create(document.querySelector(".text-editor-div"), {
         wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
         window.editor = editor;
     })
-    .catch((err) => {});
+    .catch((err) => { });
 
 
 ///////////////////////////////////////////////////////
@@ -80,20 +80,20 @@ $(".search-select-box").selectpicker();
 //////////////////////////////////////////////////
 ///////////Auto input hardness level/////////////
 ////////////////////////////////////////////////
-$('#question_hardness').change(function (){
+$('#question_hardness').change(function () {
     autoSelect();
 });
 /////////////////////////////////////////////////
 /////////////Toggle Questions Details///////////
 ///////////////////////////////////////////////
-$(document).on('click','.toggleBtn',function (){
-    let box= $(this).parent().closest('.question-box');
-    if($(box).hasClass('activeBox')){
+$(document).on('click', '.toggleBtn', function () {
+    let box = $(this).parent().closest('.question-box');
+    if ($(box).hasClass('activeBox')) {
         closeAllActive();
         $(box).find('.question-details').slideUp(400);
         $(box).find('.toggleBtn').removeClass('toggleActive');
         $(box).find('.toggleBtn').addClass('toggleNonActive');
-    }else {
+    } else {
         closeAllActive();
         $(box).addClass('activeBox');
         $(box).find('.toggleBtn').removeClass('toggleNonActive');
@@ -105,79 +105,79 @@ $(document).on('click','.toggleBtn',function (){
 //////////////////////////////////////////////////////////////////
 ////////////////////Add New Question/////////////////////////////
 ////////////////////////////////////////////////////////////////
-$('.add_question').click(function (){
+$('.add_question').click(function () {
     closeAllActive();
     let finalNamber = document.querySelectorAll('.que_namber');
     let temp = finalNamber.length
-    finalNamber = finalNamber[temp-1];
-    finalNamber = parseInt(finalNamber.querySelector('span').innerHTML);
-    finalNamber = finalNamber+1;
-    if($('.exam_type').val() == 1){
+    if (temp){
+        finalNamber = finalNamber[temp - 1];
+        finalNamber = parseInt(finalNamber.querySelector('span').innerHTML);
+        finalNamber = finalNamber + 1;
+    }else{
+        finalNamber = 1;
+    }
+    if ($('.exam_type').val() == 1) {
         //////// Dynamic question //////////
+        partOptions='';
+        parts.forEach(part => {
+            partOptions+= `<option value='${part}'>${part}</option>\n`
+        });
         $('.Que-boxs').append(`<div class="col-12">
-                                                                <div class="question-box activeBox">
-                                                                    <div class="d-flex justify-content-between">
-                                                                        <div class="question_title">
-                                                                            <span class="que_namber">السؤال <span class="title_num">${finalNamber}</span> :</span>
-                                                                            <span class="que_title">
-                                                                            اختر الجزئية الدراسية
-                                                                        </span>
-                                                                        </div>
-                                                                        <div class="icons">
-                                                                            <i class="fa-solid fa-circle-xmark deleteBtn" style="margin-left: 15px;"></i>
-                                                                            <i class="fa-solid fa-chevron-down toggleBtn toggleActive"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-flex justify-content-center" >
-                                                                        <div class="container">
-                                                                            <div class="delete-warning" style="display: none">
-                                                                                <div class="container d-flex justify-content-center">
-                                                                                    <section>
-                                                                                        <p>هل انت متأكد من انك تريد مسح هذا السؤال ؟</p>
-                                                                                        <section class="d-flex justify-content-center">
-                                                                                            <button type="button" class="btn btn-danger btn-lg">مسح</button>
-                                                                                            <button type="button" class="btn btn-outline-secondary btn-lg">الغاء</button>
-                                                                                        </section>
-                                                                                    </section>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="question-details">
-                                                                                <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">الجزئية الدراسية للسؤال :</label>
-                                                                                <select class="form-select form-select-lg search-select-box select_part " name="part_${finalNamber}" id="formGroupExampleInput" data-live-search="true">
-                                                                                    <option value="" selected>
-                                                                                        اختر الجزئية التعليمية
-                                                                                    </option>
-                                                                                    <option value="الصف الأول الثانوي">
-                                                                                        الصف الأول الثانوي
-                                                                                    </option>
-                                                                                    <option value="الصف الثاني الثانوي">
-                                                                                        الصف الثاني الثانوي
-                                                                                    </option>
-                                                                                    <option value="الصف الثالث الثانوي">
-                                                                                        الصف الثالث الثانوي
-                                                                                    </option>
-                                                                                </select>
-                                                                               <label for="formGroupExampleInput" style="margin-top: 10px;"
-                                                                        class="form-label input_label">عدد الأسئلة:
-                                                                    </label>
-                                                                    <input type="text" name='count_${finalNamber}'
-                                                                        class="form-control-lg form-control"
-                                                                        id="formGroupExampleInput"
-                                                                        placeholder="ادخل عدد الأسئلة"
-                                                                        style="font-size: 15px">
-                                                                                <input type="hidden" name="hardness_${finalNamber}" class="hidden_hardness" value="">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>`);
-    }else if($('.exam_type').val() == 0) {
+                                    <div class="question-box activeBox">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="question_title">
+                                                <span class="que_namber">السؤال <span class="title_num">${finalNamber}</span> :</span>
+                                                <span class="que_title">
+                                                اختر الجزئية الدراسية
+                                            </span>
+                                            </div>
+                                            <div class="icons">
+                                                <i class="fa-solid fa-circle-xmark deleteBtn" style="margin-left: 15px;"></i>
+                                                <i class="fa-solid fa-chevron-down toggleBtn toggleActive"></i>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center" >
+                                            <div class="container">
+                                                <div class="delete-warning" style="display: none">
+                                                    <div class="container d-flex justify-content-center">
+                                                        <section>
+                                                            <p>هل انت متأكد من انك تريد مسح هذا السؤال ؟</p>
+                                                            <section class="d-flex justify-content-center">
+                                                                <button type="button" class="btn btn-danger btn-lg">مسح</button>
+                                                                <button type="button" class="btn btn-outline-secondary btn-lg">الغاء</button>
+                                                            </section>
+                                                        </section>
+                                                    </div>
+                                                </div>
+                                                <div class="question-details">
+                                                    <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">الجزئية الدراسية للسؤال :</label>
+                                                    <select class="form-select form-select-lg search-select-box select_part " name="part_${finalNamber}" id="formGroupExampleInput" data-live-search="true">
+                                                        <option value="" selected>
+                                                            اختر الجزئية التعليمية
+                                                        </option>
+                                                        ${partOptions}
+                                                    </select>
+                                                    <label for="formGroupExampleInput" style="margin-top: 10px;"
+                                            class="form-label input_label">عدد الأسئلة:
+                                        </label>
+                                        <input type="text" name='count_${finalNamber}'
+                                            class="form-control-lg form-control"
+                                            id="formGroupExampleInput"
+                                            placeholder="ادخل عدد الأسئلة"
+                                            style="font-size: 15px">
+                                                    <input type="hidden" name="hardness_${finalNamber}" class="hidden_hardness" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`);
+    } else if ($('.exam_type').val() == 0) {
         ////////// static Qustion ///////////
         $('.Que-boxs').append('<div class="col-12">\n' +
             '    <div class="question-box activeBox">\n' +
             '        <div class="d-flex justify-content-between">\n' +
             '            <div class="question_title">\n' +
-            '                <span class="que_namber">السؤال <span class="title_num">'+finalNamber+'</span> :</span>\n' +
+            '                <span class="que_namber">السؤال <span class="title_num">' + finalNamber + '</span> :</span>\n' +
             '                <span class="que_title">\n' +
             '                                                                اختر الجزئية الدراسية\n' +
             '                                                            </span>\n' +
@@ -194,9 +194,9 @@ $('.add_question').click(function (){
             '                        <section>\n' +
             '                            <p>هل انت متأكد من انك تريد مسح هذا السؤال ؟</p>\n' +
             '                            <section class="d-flex justify-content-center">\n' +
-            '                                <button type="button" class="btn btn-danger btn-lg" id="del_'+finalNamber+'">مسح</button>\n' +
+            '                                <button type="button" class="btn btn-danger btn-lg" id="del_' + finalNamber + '">مسح</button>\n' +
             '                                <button type="button" class="btn btn-outline-secondary btn-lg"\n' +
-            '                                        id="cancel_'+finalNamber+'">الغاء\n' +
+            '                                        id="cancel_' + finalNamber + '">الغاء\n' +
             '                                </button>\n' +
             '                            </section>\n' +
             '                        </section>\n' +
@@ -205,7 +205,7 @@ $('.add_question').click(function (){
             '                <div class="question-details" >\n' +
             '                    <label htmlFor="formGroupExampleInput" class="form-label input_label" style="margin:0;">الجزئية\n' +
             '                        الدراسية للسؤال :</label>\n' +
-            '                    <select class="form-select form-select-lg search-select-box select_part" name="part_'+finalNamber+'"\n' +
+            '                    <select class="form-select form-select-lg search-select-box select_part" name="part_' + finalNamber + '"\n' +
             '                            id="formGroupExampleInput" data-live-search="true">\n' +
             '                        <option value="" selected>\n' +
             '                            اختر الجزئية التعليمية\n' +
@@ -222,7 +222,7 @@ $('.add_question').click(function (){
             '                    </select>\n' +
             '                    <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">اختر\n' +
             '                        السؤال :</label>\n' +
-            '                    <select class="form-select form-select-lg search-select-box " name="question_'+finalNamber+'"\n' +
+            '                    <select class="form-select form-select-lg search-select-box " name="question_' + finalNamber + '"\n' +
             '                            id="formGroupExampleInput" data-live-search="true">\n' +
             '                        <option value="" selected>\n' +
             '                            اختر السؤال\n' +
@@ -237,13 +237,13 @@ $('.add_question').click(function (){
             '                            الصف الثالث الثانوي\n' +
             '                        </option>\n' +
             '                    </select>\n' +
-            '                    <input type="hidden" name="hardness_'+finalNamber+'" class="hidden_hardness" value="">\n' +
+            '                    <input type="hidden" name="hardness_' + finalNamber + '" class="hidden_hardness" value="">\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '    </div>\n' +
             '</div>');
-    }else {
+    } else {
 
     }
     updataCounter();
@@ -254,33 +254,33 @@ $('.add_question').click(function (){
 //////////////////////////////////////////////////////////////////////////
 /////////////////////Change Question Title //////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-$(document).on('change','.select_part',function (){
-    let question_box= $(this).parent().closest('.question-box');
+$(document).on('change', '.select_part', function () {
+    let question_box = $(this).parent().closest('.question-box');
     var selectedValue = this.options[this.selectedIndex].text;
     $(question_box).find('.que_title').text(selectedValue);
 });
 ///////////////////////////////////////////////////////////////////////
 ////////////////////////Delete Question///////////////////////////////
 /////////////////////////////////////////////////////////////////////
-$(document).on('click','.deleteBtn',function (){
-    let question_box= $(this).parent().closest('.question-box');
-    if(question_box.hasClass('deleteOpened')){
+$(document).on('click', '.deleteBtn', function () {
+    let question_box = $(this).parent().closest('.question-box');
+    if (question_box.hasClass('deleteOpened')) {
         closeAllActive();
         $(question_box).find('.delete-warning').slideUp(400);
-    }else {
+    } else {
         closeAllActive();
         $(question_box).addClass('deleteOpened');
         $(question_box).find('.delete-warning').slideDown(400);
     }
 });
-$(document).on('click','.btn-danger',function (){
-    let question_box= $(this).parent().closest('.question-box');
+$(document).on('click', '.btn-danger', function () {
+    let question_box = $(this).parent().closest('.question-box');
     $(question_box).remove();
     updataCounter();
 });
-$(document).on('click','.btn-outline-secondary',function (){
-    let question_box= $(this).parent().closest('.question-box');
-    if(question_box.hasClass('deleteOpened')){
+$(document).on('click', '.btn-outline-secondary', function () {
+    let question_box = $(this).parent().closest('.question-box');
+    if (question_box.hasClass('deleteOpened')) {
         closeAllActive();
         $(question_box).find('.delete-warning').slideUp(400);
     }

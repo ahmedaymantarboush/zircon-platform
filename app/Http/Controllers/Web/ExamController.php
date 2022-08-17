@@ -123,7 +123,7 @@ class ExamController extends Controller
             }
             $exam->title = $request->name;
             $exam->grade_id = Grade::where('name',$request->grade)->first()->id;
-            $exam->questions_hardness = $request->question_hardness;
+            $exam->exam_hardness = $request->question_hardness;
             $exam->time = $time;
             $exam->description = $request->description;
             $exam->starts_at = $request->examStartsAt;

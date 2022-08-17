@@ -31,7 +31,7 @@ class StoreExamRequest extends FormRequest
             'examEndsAt' => ['required','date_format:Y-m-d\TH:i'],
             'grade' => ['required','string','exists:grades,name'],
             // 'subject' => ['required','string','exists:subjects,name'],
-            'exam_type'=> ['required','string','in:zirconExam,staticExam'],
+            'exam_type'=> ['required','string','in:1,0'],
             'question_hardness' => ['required','in:1,2,3,4,5'],
             'totalTime' => ['required'],
             'description' => ['required','string'],

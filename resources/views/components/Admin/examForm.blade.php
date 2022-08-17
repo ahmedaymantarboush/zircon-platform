@@ -70,7 +70,7 @@
                 aria-label="Default select example" id="formGroupExampleInput" style="font-size: 15px;width: 90%;">
                 <option selected>ادخل مرحلة الامتحان</option>
                 @foreach (\App\Models\Grade::all() as $grade)
-                    <option @selected($exam->grade->name == $grade->name || old('grade') == $grade->name) value="{{ $grade->name }}">{{ $grade->name }}</option>
+                    <option @selected(isset($exam) ? $exam->grade->name == $grade->name : old('grade') == $grade->name || old('grade') == $grade->name) value="{{ $grade->name }}">{{ $grade->name }}</option>
                 @endforeach
                 {{-- <option value="1">الصف الاول الثانوي</option>
                 <option value="2">الصف الثاني الثانوي</option>
@@ -88,8 +88,8 @@
                 class="form-select form-select-lg @error('exam_type') is-invalid @enderror exam_type"
                 aria-label="Default select example" id="formGroupExampleInput" style="font-size: 15px;width: 90%;">
                 <option selected>ادخل نوع الامتحان</option>
-                <option @selected($exam->dynamic || old('exam_type') == 'zirconExam') value="1">{{-- امتحان زيركون --}}Zircon Exam</option>
-                <option @selected(!$exam->dynamic || old('exam_type') == 'staticExam') value="0">امتحان ثابت</option>
+                <option @selected(isset($exam) ? $exam->dynamic : old('exam_type') == '1' || old('exam_type') == '1') value="1">{{-- امتحان زيركون --}}Zircon Exam</option>
+                <option @selected(isset($exam) ? !$exam->dynamic : old('exam_type') == '0' || old('exam_type') == '0') value="0">امتحان ثابت</option>
             </select>
             @error('exam_type')
                 <div class="invalid-feedback" style="font-size: 13px;">
@@ -104,9 +104,9 @@
                 aria-label="Default select example" id="question_hardness" style="font-size: 15px;width: 90%;">
                 <option selected>ادخل درجة الصعوبة</option>
                 @for ($i = 1; $i <= 4; $i++)
-                    <option @selected($exam->exam_hardness == $i || old('question_hardness') == "$i") value="{{ $i }}">{{$i}}</option>
+                    <option @selected(isset($exam) ? $exam->exam_hardness == $i : old('question_hardness') == "$i" || old('question_hardness') == "$i") value="{{ $i }}">{{$i}}</option>
                 @endfor
-                <option @selected($exam->exam_hardness == '5' || old('question_hardness') == '5') value="5">للطالب الشكساوي</option>
+                <option @selected(isset($exam) ? $exam->exam_hardness == '5' : old('question_hardness') == '5' || old('question_hardness') == '5') value="5">للطالب الشكساوي</option>
             </select>
             @error('question_hardness')
                 <div class="invalid-feedback" style="font-size: 13px;">
@@ -151,7 +151,7 @@ echo old('description');
         </div>
         <div class="col-12">
             <div class="end-line"></div>
-            <button type="submit" class="sub_btn">اضافة</button>
+            <button type="submit" class="sub_btn">@isset($exam)تعديل@else اضافة@endif</button>
             <a href="#" class="a_btn">قائمة الامتحانات</a>
         </div>
     </div>
