@@ -15,13 +15,14 @@
             @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get()->pluck('name') as $partName)
                 '{{ $partName }}',
             @endforeach
+        ];
+        questions = [
+            @if (!$exam->dynamic)
+                @foreach (\App\Models\Question::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $question)
+                    ['{{ $question->id }}', '{{ $question->name }}'],
+                @endforeach
+            @endif
         ]
-        questions = {}
-        @if (!$exam->dynamic)
-            @foreach (\App\Models\Question::where()->get() as $question)
-                questions['{{ $question->name }}'] = '{{ $question->id }}'
-            @endforeach
-        @endif
     </script>
 @endsection
 {{-- ////////////////////////////////////////////////////////////////////// --}}
@@ -135,59 +136,63 @@
                                                 </div>
                                             @endfor
                                         @else
-                                            <div class="col-12">
-                                                <div class="question-box">
-                                                    <div class="d-flex justify-content-between">
-                                                        <div class="question_title">
-                                                            <span class="que_namber">السؤال <span
-                                                                    class="title_num">{{ $i }}</span>
-                                                                :</span>
-                                                            <span class="que_title">
-                                                                {{-- ////////////// هنا مكان الجزئيه الدراسية للسؤال /////////////////// --}}
-                                                                اختر الجزئية الدراسية
-                                                            </span>
-                                                        </div>
-                                                        <div class="icons">
-                                                            <i class="fa-solid fa-circle-xmark deleteBtn"
-                                                                style="margin-left: 15px;"></i>
-                                                            <i
-                                                                class="fa-solid fa-chevron-down toggleBtn toggleNonActive"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex justify-content-center">
-                                                        <div class="container">
-                                                            <div class="delete-warning" style="display: none">
-                                                                <div class="container d-flex justify-content-center">
-                                                                    <section>
-                                                                        <p>هل انت متأكد من انك تريد
-                                                                            مسح هذا السؤال ؟</p>
-                                                                        <section class="d-flex justify-content-center">
-                                                                            <button type="button"
-                                                                                class="btn btn-danger btn-lg"
-                                                                                id="del_{{ $i }}">مسح</button>
-                                                                            <button type="button"
-                                                                                class="btn btn-outline-secondary btn-lg"id="cancel_{{ $i }}">الغاء</button>
-                                                                        </section>
-                                                                    </section>
-                                                                </div>
+                                            @foreach ($exam->questions as $index => $question)
+                                                @php
+                                                    $i = $index + 1;
+                                                @endphp
+                                                <div class="col-12">
+                                                    <div class="question-box">
+                                                        <div class="d-flex justify-content-between">
+                                                            <div class="question_title">
+                                                                <span class="que_namber">السؤال <span
+                                                                        class="title_num">{{ $i }}</span>
+                                                                    :</span>
+                                                                <span class="que_title">
+                                                                    اختر الجزئية الدراسية
+                                                                </span>
                                                             </div>
-                                                            <div class="question-details"style="display: none;">
-                                                                <label for="formGroupExampleInput"
-                                                                    class="form-label input_label"
-                                                                    style="margin:0;">الجزئية
-                                                                    الدراسية للسؤال :</label>
-                                                                <select
-                                                                    class="form-select form-select-lg search-select-box select_part"
-                                                                    name="part_{{ $i }}"
-                                                                    id="formGroupExampleInput" data-live-search="true">
-                                                                    <option value="اختر الجزئية التعليمية" selected>
-                                                                        اختر الجزئية التعليمية
-                                                                    </option>
-                                                                    @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get()->pluck('name') as $partName)
-                                                                        <option value="{{ $partName }}">
-                                                                            {{ $partName }}
+                                                            <div class="icons">
+                                                                <i class="fa-solid fa-circle-xmark deleteBtn"
+                                                                    style="margin-left: 15px;"></i>
+                                                                <i class="fa-solid fa-chevron-down toggleBtn toggleNonActive"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex justify-content-center">
+                                                            <div class="container">
+                                                                <div class="delete-warning" style="display: none">
+                                                                    <div class="container d-flex justify-content-center">
+                                                                        <section>
+                                                                            <p>هل انت متأكد من انك تريد
+                                                                                مسح هذا السؤال ؟</p>
+                                                                            <section class="d-flex justify-content-center">
+                                                                                <button type="button"
+                                                                                    class="btn btn-danger btn-lg"
+                                                                                    id="del_{{ $i }}">مسح</button>
+                                                                                <button type="button"
+                                                                                    class="btn btn-outline-secondary btn-lg"id="cancel_{{ $i }}">الغاء</button>
+                                                                            </section>
+                                                                        </section>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="question-details"style="display: none;">
+                                                                    <label for="formGroupExampleInput"
+                                                                        class="form-label input_label"
+                                                                        style="margin:0;">الجزئية
+                                                                        الدراسية للسؤال :</label>
+                                                                    <select
+                                                                        class="form-select form-select-lg search-select-box select_part"
+                                                                        name="part_{{ $i }}"
+                                                                        id="formGroupExampleInput"
+                                                                        data-live-search="true">
+                                                                        <option value="اختر الجزئية التعليمية" selected>
+                                                                            اختر الجزئية التعليمية
                                                                         </option>
-                                                                    @endforeach
+                                                                        @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get()->pluck('name') as $partName)
+                                                                            <option @selected($question->part->name == $partName) value="{{ $partName }}">
+                                                                                {{ $partName }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
                                                                     <label for="formGroupExampleInput"
                                                                         class="form-label input_label"
                                                                         style="margin:0;">اختر
@@ -200,27 +205,22 @@
                                                                         <option value="" selected>
                                                                             اختر السؤال
                                                                         </option>
-                                                                        @foreach (\App\Models\Question::where()->get() as $question)
-                                                                            <option value="{{ $question->id }}">
-                                                                                {{ $question->name }}
+                                                                        @foreach (\App\Models\Question::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $questionOption)
+                                                                            <option @selected($question->id == $questionOption->id) value="{{ $questionOption->id }}">
+                                                                                {{ $questionOption->name }}
                                                                             </option>
                                                                         @endforeach
-                                                                        {{-- <option value="الصف الثاني الثانوي">
-                                                                            الصف الثاني الثانوي
-                                                                        </option>
-                                                                        <option value="الصف الثالث الثانوي">
-                                                                            الصف الثالث الثانوي
-                                                                        </option> --}}
                                                                     </select>
                                                                     <input type="hidden"
                                                                         name="hardness_{{ $i }}"
                                                                         class="hidden_hardness"
                                                                         value="{{ $exam->exam_hardness }}">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endforeach
                                         @endif
                                         {{-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
                                         {{-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}

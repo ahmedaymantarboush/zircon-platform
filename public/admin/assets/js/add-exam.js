@@ -109,18 +109,18 @@ $('.add_question').click(function () {
     closeAllActive();
     let finalNamber = document.querySelectorAll('.que_namber');
     let temp = finalNamber.length
-    if (temp){
+    if (temp) {
         finalNamber = finalNamber[temp - 1];
         finalNamber = parseInt(finalNamber.querySelector('span').innerHTML);
         finalNamber = finalNamber + 1;
-    }else{
+    } else {
         finalNamber = 1;
     }
     if ($('.exam_type').val() == 1) {
         //////// Dynamic question //////////
-        partOptions='';
+        partOptions = '';
         parts.forEach(part => {
-            partOptions+= `<option value='${part}'>${part}</option>\n`
+            partOptions += `<option value='${part}'>${part}</option>\n`
         });
         $('.Que-boxs').append(`<div class="col-12">
                                     <div class="question-box activeBox">
@@ -172,77 +172,163 @@ $('.add_question').click(function () {
                                     </div>
                                 </div>`);
     } else if ($('.exam_type').val() == 0) {
+        partOptions = '';
+        parts.forEach(part => {
+            partOptions += `<option value='${part}'>${part}</option>\n`
+        });
+        questionOptions = '';
+        questions.forEach(question => {
+            questionOptions += `<option value='${question[0]}'>${question[1]}</option>\n`
+        });
+
         ////////// static Qustion ///////////
-        $('.Que-boxs').append('<div class="col-12">\n' +
-            '    <div class="question-box activeBox">\n' +
-            '        <div class="d-flex justify-content-between">\n' +
-            '            <div class="question_title">\n' +
-            '                <span class="que_namber">السؤال <span class="title_num">' + finalNamber + '</span> :</span>\n' +
-            '                <span class="que_title">\n' +
-            '                                                                اختر الجزئية الدراسية\n' +
-            '                                                            </span>\n' +
-            '            </div>\n' +
-            '            <div class="icons">\n' +
-            '                <i class="fa-solid fa-circle-xmark deleteBtn" style="margin-left: 15px;"></i>\n' +
-            '                <i class="fa-solid fa-chevron-down toggleBtn toggleActive"></i>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '        <div class="d-flex justify-content-center">\n' +
-            '            <div class="container">\n' +
-            '                <div class="delete-warning" style="display: none">\n' +
-            '                    <div class="container d-flex justify-content-center">\n' +
-            '                        <section>\n' +
-            '                            <p>هل انت متأكد من انك تريد مسح هذا السؤال ؟</p>\n' +
-            '                            <section class="d-flex justify-content-center">\n' +
-            '                                <button type="button" class="btn btn-danger btn-lg" id="del_' + finalNamber + '">مسح</button>\n' +
-            '                                <button type="button" class="btn btn-outline-secondary btn-lg"\n' +
-            '                                        id="cancel_' + finalNamber + '">الغاء\n' +
-            '                                </button>\n' +
-            '                            </section>\n' +
-            '                        </section>\n' +
-            '                    </div>\n' +
-            '                </div>\n' +
-            '                <div class="question-details" >\n' +
-            '                    <label htmlFor="formGroupExampleInput" class="form-label input_label" style="margin:0;">الجزئية\n' +
-            '                        الدراسية للسؤال :</label>\n' +
-            '                    <select class="form-select form-select-lg search-select-box select_part" name="part_' + finalNamber + '"\n' +
-            '                            id="formGroupExampleInput" data-live-search="true">\n' +
-            '                        <option value="" selected>\n' +
-            '                            اختر الجزئية التعليمية\n' +
-            '                        </option>\n' +
-            '                        <option value="الصف الأول الثانوي">\n' +
-            '                            الصف الأول الثانوي\n' +
-            '                        </option>\n' +
-            '                        <option value="الصف الثاني الثانوي">\n' +
-            '                            الصف الثاني الثانوي\n' +
-            '                        </option>\n' +
-            '                        <option value="الصف الثالث الثانوي">\n' +
-            '                            الصف الثالث الثانوي\n' +
-            '                        </option>\n' +
-            '                    </select>\n' +
-            '                    <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">اختر\n' +
-            '                        السؤال :</label>\n' +
-            '                    <select class="form-select form-select-lg search-select-box " name="question_' + finalNamber + '"\n' +
-            '                            id="formGroupExampleInput" data-live-search="true">\n' +
-            '                        <option value="" selected>\n' +
-            '                            اختر السؤال\n' +
-            '                        </option>\n' +
-            '                        <option value="الصف الأول الثانوي">\n' +
-            '                            الصف الأول الثانوي\n' +
-            '                        </option>\n' +
-            '                        <option value="الصف الثاني الثانوي">\n' +
-            '                            الصف الثاني الثانوي\n' +
-            '                        </option>\n' +
-            '                        <option value="الصف الثالث الثانوي">\n' +
-            '                            الصف الثالث الثانوي\n' +
-            '                        </option>\n' +
-            '                    </select>\n' +
-            '                    <input type="hidden" name="hardness_' + finalNamber + '" class="hidden_hardness" value="">\n' +
-            '                </div>\n' +
-            '            </div>\n' +
-            '        </div>\n' +
-            '    </div>\n' +
-            '</div>');
+        $('.Que-boxs').append(
+            // '<div class="col-12">\n' +
+            // '    <div class="question-box activeBox">\n' +
+            // '        <div class="d-flex justify-content-between">\n' +
+            // '            <div class="question_title">\n' +
+            // '                <span class="que_namber">السؤال <span class="title_num">' + finalNamber + '</span> :</span>\n' +
+            // '                <span class="que_title">\n' +
+            // '                                                                اختر الجزئية الدراسية\n' +
+            // '                                                            </span>\n' +
+            // '            </div>\n' +
+            // '            <div class="icons">\n' +
+            // '                <i class="fa-solid fa-circle-xmark deleteBtn" style="margin-left: 15px;"></i>\n' +
+            // '                <i class="fa-solid fa-chevron-down toggleBtn toggleActive"></i>\n' +
+            // '            </div>\n' +
+            // '        </div>\n' +
+            // '        <div class="d-flex justify-content-center">\n' +
+            // '            <div class="container">\n' +
+            // '                <div class="delete-warning" style="display: none">\n' +
+            // '                    <div class="container d-flex justify-content-center">\n' +
+            // '                        <section>\n' +
+            // '                            <p>هل انت متأكد من انك تريد مسح هذا السؤال ؟</p>\n' +
+            // '                            <section class="d-flex justify-content-center">\n' +
+            // '                                <button type="button" class="btn btn-danger btn-lg" id="del_' + finalNamber + '">مسح</button>\n' +
+            // '                                <button type="button" class="btn btn-outline-secondary btn-lg"\n' +
+            // '                                        id="cancel_' + finalNamber + '">الغاء\n' +
+            // '                                </button>\n' +
+            // '                            </section>\n' +
+            // '                        </section>\n' +
+            // '                    </div>\n' +
+            // '                </div>\n' +
+            // '                <div class="question-details" >\n' +
+            // '                    <label htmlFor="formGroupExampleInput" class="form-label input_label" style="margin:0;">الجزئية\n' +
+            // '                        الدراسية للسؤال :</label>\n' +
+            // '                    <select class="form-select form-select-lg search-select-box select_part" name="part_' + finalNamber + '"\n' +
+            // '                            id="formGroupExampleInput" data-live-search="true">\n' +
+            // '                        <option value="" selected>\n' +
+            // '                            اختر الجزئية التعليمية\n' +
+            // '                        </option>\n' +
+            // '                        <option value="الصف الأول الثانوي">\n' +
+            // '                            الصف الأول الثانوي\n' +
+            // '                        </option>\n' +
+            // '                        <option value="الصف الثاني الثانوي">\n' +
+            // '                            الصف الثاني الثانوي\n' +
+            // '                        </option>\n' +
+            // '                        <option value="الصف الثالث الثانوي">\n' +
+            // '                            الصف الثالث الثانوي\n' +
+            // '                        </option>\n' +
+            // '                    </select>\n' +
+            // '                    <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">اختر\n' +
+            // '                        السؤال :</label>\n' +
+            // '                    <select class="form-select form-select-lg search-select-box " name="question_' + finalNamber + '"\n' +
+            // '                            id="formGroupExampleInput" data-live-search="true">\n' +
+            // '                        <option value="" selected>\n' +
+            // '                            اختر السؤال\n' +
+            // '                        </option>\n' +
+            // '                        <option value="الصف الأول الثانوي">\n' +
+            // '                            الصف الأول الثانوي\n' +
+            // '                        </option>\n' +
+            // '                        <option value="الصف الثاني الثانوي">\n' +
+            // '                            الصف الثاني الثانوي\n' +
+            // '                        </option>\n' +
+            // '                        <option value="الصف الثالث الثانوي">\n' +
+            // '                            الصف الثالث الثانوي\n' +
+            // '                        </option>\n' +
+            // '                    </select>\n' +
+            // '                    <input type="hidden" name="hardness_' + finalNamber + '" class="hidden_hardness" value="">\n' +
+            // '                </div>\n' +
+            // '            </div>\n' +
+            // '        </div>\n' +
+            // '    </div>\n' +
+            // '</div>'
+            `
+            <div class="col-12">
+                                                    <div class="question-box">
+                                                        <div class="d-flex justify-content-between">
+                                                            <div class="question_title">
+                                                                <span class="que_namber">السؤال <span
+                                                                        class="title_num">${finalNamber}</span>
+                                                                    :</span>
+                                                                <span class="que_title">
+                                                                    اختر الجزئية الدراسية
+                                                                </span>
+                                                            </div>
+                                                            <div class="icons">
+                                                                <i class="fa-solid fa-circle-xmark deleteBtn"
+                                                                    style="margin-left: 15px;"></i>
+                                                                <i
+                                                                    class="fa-solid fa-chevron-down toggleBtn toggleNonActive"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex justify-content-center">
+                                                            <div class="container">
+                                                                <div class="delete-warning" style="display: none">
+                                                                    <div class="container d-flex justify-content-center">
+                                                                        <section>
+                                                                            <p>هل انت متأكد من انك تريد
+                                                                                مسح هذا السؤال ؟</p>
+                                                                            <section class="d-flex justify-content-center">
+                                                                                <button type="button"
+                                                                                    class="btn btn-danger btn-lg"
+                                                                                    id="del_${finalNamber}">مسح</button>
+                                                                                <button type="button"
+                                                                                    class="btn btn-outline-secondary btn-lg"id="cancel_${finalNamber}">الغاء</button>
+                                                                            </section>
+                                                                        </section>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="question-details"style="display: none;">
+                                                                    <label for="formGroupExampleInput"
+                                                                        class="form-label input_label"
+                                                                        style="margin:0;">الجزئية
+                                                                        الدراسية للسؤال :</label>
+                                                                    <select
+                                                                        class="form-select form-select-lg search-select-box select_part"
+                                                                        name="part_${finalNamber}"
+                                                                        id="formGroupExampleInput"
+                                                                        data-live-search="true">
+                                                                        <option value="اختر الجزئية التعليمية" selected>
+                                                                            اختر الجزئية التعليمية
+                                                                        </option>
+                                                                        ${partOptions}
+                                                                    </select>
+                                                                        <label for="formGroupExampleInput"
+                                                                            class="form-label input_label"
+                                                                            style="margin:0;">اختر
+                                                                            السؤال :</label>
+                                                                        <select
+                                                                            class="form-select form-select-lg search-select-box "
+                                                                            name="question_${finalNamber}"
+                                                                            id="formGroupExampleInput"
+                                                                            data-live-search="true">
+                                                                            <option value="" selected>
+                                                                                اختر السؤال
+                                                                            </option>
+                                                                            ${questionOptions}
+                                                                        </select>
+                                                                        <input type="hidden"
+                                                                            name="hardness_${finalNamber}"
+                                                                            class="hidden_hardness"
+                                                                            value="{{ $exam->exam_hardness }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+            `
+        );
     } else {
 
     }
