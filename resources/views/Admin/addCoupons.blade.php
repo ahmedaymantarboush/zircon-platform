@@ -11,7 +11,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/add_exam.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin/assets/css/add_coupons.css') }}"/>
-    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 @endsection
 {{-- ////////////////////////////////////////////////////////////////////// --}}
 {{-- ///////////////////////// Main ////////////////////////////////////// --}}
@@ -76,20 +76,20 @@
                                 </section>
                                 <button type="button" class="sub_btn print_btn" style="margin-left: 50px;">اضافة</button>
                             </div>
-                            <div class="col-lg col-sm-12" style="padding-top: 30px">
-                                @for ($i=1;$i<=6;$i++)
-                                    @include('components.Admin.coupon-card',[
-                                        'counter'=>$i,
-                                        'id'=>rand(1,7),
-                                        'start_date'=>'27-7-2022:17:50',
-                                        'end_date'=>'27-7-2023:17:50',
-                                        'value'=>rand(50,100),
-                                        'code'=>Str::random(10),
-                                        'app_name'=>'أ/ محمد البري',
-                                    ])
-                                @endfor
-                            </div>
 
+                            @for ($i=1;$i<=6;$i++)
+                                <div class="col-lg-4 col-sm-12" style="padding-top: 30px">
+                                    @include('components.Admin.coupon-card',[
+                                                                        'counter'=>$i,
+                                                                        'id'=>rand(1,7),
+                                                                        'start_date'=>'27-7-2022:17:50',
+                                                                        'end_date'=>'27-7-2023:17:50',
+                                                                        'value'=>rand(50,100),
+                                                                        'code'=>Str::random(10),
+                                                                        'app_name'=>'أ/ محمد البري',
+                                                                    ])
+                                </div>
+                            @endfor
                         </div>
                 </div>
             </div>
@@ -106,21 +106,6 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
 
-    <!-- text editor  -->
-    <!-- موجود هنا والايديت  -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
-
-    {{-- <!-- main js file --> --}}
-    {{-- <!-- موجود في كل الصفحات  --> --}}
-
-    {{-- Duration picker --}}
-    {{-- الصفحة دي بس --}}
-    <script src="https://cdn.jsdelivr.net/npm/html-duration-picker@latest/dist/html-duration-picker.min.js"></script>
-    <style>
-        .scroll-btn {
-            visibility: hidden;
-        }
-    </style>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <!-- bootstrap 5  -->
@@ -129,8 +114,8 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>
-    <script src="{{ asset('js/qrcode.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/add-coupons.js') }}"></script>
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
 @endsection
 
