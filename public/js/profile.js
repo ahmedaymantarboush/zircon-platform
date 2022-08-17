@@ -108,9 +108,14 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
 
-let totalAnswers = Number(document.querySelector('.totalAnswers').textContent.trim());
-let correctAnswers = Number(document.querySelector('.correctAnswers').textContent.trim());
-let correctAnswersPrecentage = Math.round(correctAnswers * 10000 / totalAnswers) / 100;
+let totalAnswers = Number(
+    document.querySelector(".totalAnswers").textContent.trim()
+);
+let correctAnswers = Number(
+    document.querySelector(".correctAnswers").textContent.trim()
+);
+let correctAnswersPrecentage =
+    Math.round((correctAnswers * 10000) / totalAnswers) / 100;
 var options2 = {
     series: [100 - correctAnswersPrecentage, correctAnswersPrecentage],
     chart: {
