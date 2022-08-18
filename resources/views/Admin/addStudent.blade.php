@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-sm-12 order_2">
                         <div class="main_exam_info">
-                            <form action="{{route('admin.user.store')}}" method="POST" class="exam-form">
+                            <form action="{{ route('admin.user.store') }}" method="POST" class="exam-form">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12">
@@ -111,7 +111,7 @@
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">رقم هاتف الطالب :</label>
-                                        <input value="{{old('stu_number')}}" name="stu_number" type="number"
+                                        <input value="{{ old('stu_number') }}" name="stu_number" type="number"
                                             class="@error('stu_number') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل رقم هاتف الطالب"
                                             style="font-size: 15px;width: 95%;">
@@ -122,7 +122,8 @@
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">رقم هاتف ولي امر الطالب :</label>
-                                        <input value="{{old('stu_parent_number')}}" name="stu_parent_number" type="number"
+                                        <input value="{{ old('stu_parent_number') }}" name="stu_parent_number"
+                                            type="number"
                                             class="@error('stu_parent_number') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل رقم هاتف ولي امر الطالب"
                                             style="font-size: 15px;width: 95%;">
@@ -133,7 +134,7 @@
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">البريد الالكتروني للطالب :</label>
-                                        <input value="{{old('stu_email')}}" name="stu_email" type="email"
+                                        <input value="{{ old('stu_email') }}" name="stu_email" type="email"
                                             class="@error('stu_email') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل البريد الالكتروني للطالب"
                                             style="font-size: 15px;width: 95%;">
@@ -156,19 +157,20 @@
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">كلمة مرور الطالب :</label>
                                         <input name="password_confirmation" type="password"
-                                            class="form-control-lg form-control"
-                                            id="formGroupExampleInput" placeholder="أعد إدخال كلمة مرور الطالب"
-                                            style="font-size: 15px;width:95%;">
+                                            class="form-control-lg form-control" id="formGroupExampleInput"
+                                            placeholder="أعد إدخال كلمة مرور الطالب" style="font-size: 15px;width:95%;">
                                     </div>
-                                    {{-- <div class="col-12">
-                                        <label for="formGroupExampleInput" class="form-label input_label" style="margin-top: 40px">كود الطالب :</label>
-                                        <input
-                                            name="stu_code"
-                                            type="text" class="@error('stu_name') is-invalid @enderror form-control-lg form-control" id="formGroupExampleInput"
-                                            placeholder="ادخل كود الطالب" style="font-size: 15px;width: 95%;">
-                                                                                @error('stu_name')
-                                            <p class='invalid-feedback'>{{$message}}</p>
-                                        @enderror</div> --}}
+                                    <div class="col-12">
+                                        <label for="formGroupExampleInput" class="form-label input_label"
+                                            style="margin-top: 40px">كود الطالب :</label>
+                                        <input value="{{Str::random(16)}}" name="stu_code" type="text"
+                                            class="@error('stu_code') is-invalid @enderror form-control-lg form-control"
+                                            id="formGroupExampleInput" placeholder="ادخل كود الطالب"
+                                            style="font-size: 15px;width: 95%;">
+                                        @error('stu_code')
+                                            <p class='invalid-feedback'>{{ $message }}</p>
+                                        @enderror
+                                    </div>
 
                                     <div class="col-12">
                                         <div class="end-line"></div>

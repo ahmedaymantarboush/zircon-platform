@@ -94,6 +94,7 @@ class UserController extends Controller
 
         Validator::make($data, [
             'stu_name' => ['required', 'string', 'max:255'],
+            'stu_code' => ['required', 'string', 'max:255', 'unique:users,code'],
             'stu_email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'stu_grade' => ['required', 'string', 'exists:grades,id'],
@@ -106,6 +107,11 @@ class UserController extends Controller
             'stu_name.required' => "الاسم مطلوب",
             'stu_name.string' => "الاسم يجب ان يكون حروف",
             'stu_name.max' => "أكبر عدد ممكن من الحروف هو 255 حرف",
+
+            'stu_code.required' => "الكود مطلوب",
+            'stu_code.string' => "الكود يجب ان يكون حروف",
+            'stu_code.max' => "أكبر عدد ممكن من الحروف هو 255 حرف",
+            'stu_code.unique' => "الكود موجود بالفعل",
 
             'stu_email.required' => "البريد الالكتروني مطلوب",
             'stu_email.string' => "البريد الالكتروني يجب ان يكون حروف",
@@ -154,7 +160,7 @@ class UserController extends Controller
             'parent_phone_number' => $data['stu_parent_number'],
             // 'image' ,
             'governorate_id' => $data['stu_gov'],
-            'code' => Str::random(16),
+            'code' => $data['stu_code'],
             'center_id' => $data['stu_place'] ?? $data['stu_place'],
             'role_num' => $data['role'] ?? 4,
             'balance' => 0,
