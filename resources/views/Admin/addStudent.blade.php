@@ -32,91 +32,143 @@
                                         <div class="blue_line"></div>
                                     </div>
                                     <div class="col-12">
-                                        <label for="formGroupExampleInput" class="form-label input_label" style="margin-top: 40px">اسم الطالب :</label>
-                                        <input name="stu_name"
-                                            type="text" class="form-control-lg form-control" id="formGroupExampleInput"
-                                            placeholder="ادخل اسم الطالب" style="font-size: 15px;width: 95%;">
+                                        <label for="formGroupExampleInput" class="form-label input_label"
+                                            style="margin-top: 40px">اسم الطالب :</label>
+                                        <input name="stu_name" value="{{ old('stu_name') }}" type="text"
+                                            class="@error('stu_name') is-invalid @enderror form-control-lg form-control"
+                                            id="formGroupExampleInput" placeholder="ادخل اسم الطالب"
+                                            style="font-size: 15px;width: 95%;">
+                                        @error('stu_name')
+                                            <p class='invalid-feedback'>{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label">المحافظة :</label>
-                                        <select
-                                            name="stu_gov"
-                                            class="form-select form-select-lg search-select-box "
-                                            id="formGroupExampleInput"
-                                            data-live-search="true">
-                                            <option value="" selected>
-                                                اختر المحافظة
+                                        <select name="stu_gov" class=""@error('stu_name') is-invalid @enderror
+                                            form-select form-select-lg search-select-box "
+                                                id="formGroupExampleInput" data-live-search="true">
+                                                <option value="">
+                                                    اختر المحافظة
+                                                </option>
+                                                 @foreach (\App\Models\Governorate::all() as
+                                            $governorate)
+                                            <option @selected(old('governorate') == $governorate->id) value="{{ $governorate->id }}">
+                                                {{ $governorate->name }}
                                             </option>
-                                            <option value="1">
-                                                القاهرة
-                                            </option>
-                                            <option value="2">
+                                            @endforeach
+                                            {{-- <option value="2">
                                                 ليبيا
                                             </option>
                                             <option value="3">
                                                 عين شمس
-                                            </option>
+                                            </option> --}}
                                         </select>
+                                        @error('stu_name')
+                                            <p class='invalid-feedback'>{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
-                                        <label for="formGroupExampleInput" class="form-label input_label">مكان الحضور :</label>
-                                        <select
-                                            name="stu_place"
-                                            class="form-select form-select-lg" aria-label="Default select example"
+                                        <label for="formGroupExampleInput" class="form-label input_label">مكان الحضور
+                                            :</label>
+                                        <select name="stu_place" class=""@error('stu_name') is-invalid @enderror
+                                            form-select form-select-lg" aria-label="Default select example"
                                             id="formGroupExampleInput" style="font-size: 15px;width: 95%;">
-                                            <option selected>ادخل مكان حضور الطالب</option>
-                                            <option value="1">المنصه</option>
-                                            <option value="2">سنتر الاوائل</option>
-                                            <option value="3">سنتر نوبل"</option>
+                                            <option value=''>ادخل مكان حضور الطالب</option>
+                                            @foreach (\App\Models\Center::all() as $center)
+                                                <option @selected(old('stu_place') == $center->id) value="{{ $center->id }}">
+                                                    {{ $center->name }}</option>
+                                            @endforeach
+
+                                            {{-- <option value="2">سنتر الاوائل</option>
+                                            <option value="3">سنتر نوبل"</option> --}}
                                         </select>
+                                        @error('stu_name')
+                                            <p class='invalid-feedback'>{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
-                                        <label for="formGroupExampleInput" class="form-label input_label">مرحلة الطالب :</label>
-                                        <select
-                                            name="stu_grade"
-                                            class="form-select form-select-lg" aria-label="Default select example"
+                                        <label for="formGroupExampleInput" class="form-label input_label">مرحلة الطالب
+                                            :</label>
+                                        <select name="stu_grade" class=""@error('stu_name') is-invalid @enderror
+                                            form-select form-select-lg" aria-label="Default select example"
                                             id="formGroupExampleInput" style="font-size: 15px;width: 95%;">
                                             <option selected>ادخل مرحلة الطالب</option>
-                                            <option value="1">الصف الاول الثانوي</option>
-                                            <option value="2">الصف الثاني الثانوي</option>
-                                            <option value="3">الصف الثالث الثانوي "استغفر الله"</option>
+                                            @foreach (\App\Models\Grade::all() as $grade)
+                                                <option @selected(old('stu_grade') == $grade->id) value="{{ $grade->id }}">
+                                                    {{ $grade->name }}</option>
+                                            @endforeach
+                                            {{-- <option value="2">الصف الثاني الثانوي</option>
+                                            <option value="3">الصف الثالث الثانوي "استغفر الله"</option> --}}
                                         </select>
+                                        @error('stu_name')
+                                            <p class='invalid-feedback'>{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
-                                        <label for="formGroupExampleInput" class="form-label input_label" style="margin-top: 40px">رقم هاتف الطالب :</label>
-                                        <input
-                                            name="stu_number"
-                                            type="number" class="form-control-lg form-control" id="formGroupExampleInput"
-                                            placeholder="ادخل رقم هاتف الطالب" style="font-size: 15px;width: 95%;">
+                                        <label for="formGroupExampleInput" class="form-label input_label"
+                                            style="margin-top: 40px">رقم هاتف الطالب :</label>
+                                        <input name="stu_number" type="number"
+                                            class="@error('stu_name') is-invalid @enderror form-control-lg form-control"
+                                            id="formGroupExampleInput" placeholder="ادخل رقم هاتف الطالب"
+                                            style="font-size: 15px;width: 95%;">
+                                        @error('stu_name')
+                                            <p class='invalid-feedback'>{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
-                                        <label for="formGroupExampleInput" class="form-label input_label" style="margin-top: 40px">رقم هاتف ولي امر الطالب :</label>
-                                        <input
-                                            name="stu_parent_number"
-                                            type="number" class="form-control-lg form-control" id="formGroupExampleInput"
-                                            placeholder="ادخل رقم هاتف ولي امر الطالب" style="font-size: 15px;width: 95%;">
+                                        <label for="formGroupExampleInput" class="form-label input_label"
+                                            style="margin-top: 40px">رقم هاتف ولي امر الطالب :</label>
+                                        <input name="stu_parent_number" type="number"
+                                            class="@error('stu_name') is-invalid @enderror form-control-lg form-control"
+                                            id="formGroupExampleInput" placeholder="ادخل رقم هاتف ولي امر الطالب"
+                                            style="font-size: 15px;width: 95%;">
+                                        @error('stu_name')
+                                            <p class='invalid-feedback'>{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
-                                        <label for="formGroupExampleInput" class="form-label input_label" style="margin-top: 40px">البريد الالكتروني للطالب :</label>
-                                        <input
-                                            name="stu_email"
-                                            type="email" class="form-control-lg form-control" id="formGroupExampleInput"
-                                            placeholder="ادخل البريد الالكتروني للطالب" style="font-size: 15px;width: 95%;">
+                                        <label for="formGroupExampleInput" class="form-label input_label"
+                                            style="margin-top: 40px">البريد الالكتروني للطالب :</label>
+                                        <input name="stu_email" type="email"
+                                            class="@error('stu_name') is-invalid @enderror form-control-lg form-control"
+                                            id="formGroupExampleInput" placeholder="ادخل البريد الالكتروني للطالب"
+                                            style="font-size: 15px;width: 95%;">
+                                        @error('stu_name')
+                                            <p class='invalid-feedback'>{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
-                                        <label for="formGroupExampleInput" class="form-label input_label" style="margin-top: 40px">كلمة مرور الطالب :</label>
-                                        <input
-                                            name="stu_password"
-                                            type="text" class="form-control-lg form-control" id="formGroupExampleInput"
-                                            placeholder="ادخل كلمة مرور الطالب" style="font-size: 15px;width: 95%;">
+                                        <label for="formGroupExampleInput" class="form-label input_label"
+                                            style="margin-top: 40px">كلمة مرور الطالب :</label>
+                                        <input name="stu_password" type="text"
+                                            class="@error('stu_name') is-invalid @enderror form-control-lg form-control"
+                                            id="formGroupExampleInput" placeholder="ادخل كلمة مرور الطالب"
+                                            style="font-size: 15px;width:95%;">
+                                        @error('stu_name')
+                                            <p class='invalid-feedback'>{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
+                                        <label for="formGroupExampleInput" class="form-label input_label"
+                                            style="margin-top: 40px">كلمة مرور الطالب :</label>
+                                        <input name="stu_password" type="text"
+                                            class="@error('stu_name') is-invalid @enderror form-control-lg form-control"
+                                            id="formGroupExampleInput" placeholder="أعد إدخال كلمة مرور الطالب"
+                                            style="font-size: 15px;width:95%;">
+                                        @error('stu_name')
+                                            <p class='invalid-feedback'>{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    {{-- <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label" style="margin-top: 40px">كود الطالب :</label>
                                         <input
                                             name="stu_code"
-                                            type="text" class="form-control-lg form-control" id="formGroupExampleInput"
+                                            type="text" class="@error('stu_name') is-invalid @enderror form-control-lg form-control" id="formGroupExampleInput"
                                             placeholder="ادخل كود الطالب" style="font-size: 15px;width: 95%;">
-                                    </div>
+                                                                                @error('stu_name')
+                                            <p class='invalid-feedback'>{{$message}}</p>
+                                        @enderror</div> --}}
+
                                     <div class="col-12">
                                         <div class="end-line"></div>
                                         <button type="submit" class="sub_btn">اضافة</button>
@@ -129,7 +181,7 @@
                     <div class="col-lg-4 col-sm-12 order_1">
                         <div class="main_exam_info profileDetails ">
                             <div class="profileImg">
-                                <img src="{{asset('imgs/user.png')}}" alt="">
+                                <img src="{{ asset('imgs/user.png') }}" alt="">
                             </div>
                             <div class="profileContent">
                                 <div class="personalInformation">
@@ -138,7 +190,7 @@
                                 </div>
 
                                 <div class="paper">
-                                    <img src="{{asset('imgs/paper2.png')}}" alt="">
+                                    <img src="{{ asset('imgs/paper2.png') }}" alt="">
                                 </div>
                                 <div class="someDetails">
                                     <div class="control">
@@ -195,7 +247,7 @@
     </script>
     <!-- barcode  -->
     <!-- هنا بس  -->
-    <script src="{{asset('js/jsBarCode.all.min.js')}}"></script>
+    <script src="{{ asset('js/jsBarCode.all.min.js') }}"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <!-- bootstrap 5  -->

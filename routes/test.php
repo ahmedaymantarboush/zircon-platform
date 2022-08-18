@@ -35,8 +35,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('test');
 // });
 
-Route::get('/test', function () {
-    return view('admin.addCoupons');
+Route::get('/test', function (){
+    return view('admin.addStudent');
 });
 
 
