@@ -44,14 +44,12 @@
                                     </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label">المحافظة :</label>
-                                        <select name="stu_gov" class=""@error('stu_name') is-invalid @enderror
-                                            form-select form-select-lg search-select-box "
-                                                id="formGroupExampleInput" data-live-search="true">
-                                                <option value="">
-                                                    اختر المحافظة
-                                                </option>
-                                                 @foreach (\App\Models\Governorate::all() as
-                                            $governorate)
+                                        <select name="stu_gov" class="@error('stu_name') is-invalid @enderror form-select form-select-lg search-select-box "
+                                                    id="formGroupExampleInput" data-live-search="true">
+                                                    <option value="">
+                                                        اختر المحافظة
+                                                    </option>
+                                                      @foreach (\App\Models\Governorate::all() as $governorate)
                                             <option @selected(old('governorate') == $governorate->id) value="{{ $governorate->id }}">
                                                 {{ $governorate->name }}
                                             </option>
@@ -70,7 +68,7 @@
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label">مكان الحضور
                                             :</label>
-                                        <select name="stu_place" class=""@error('stu_name') is-invalid @enderror
+                                        <select name="stu_place" class="@error('stu_name') is-invalid @enderror
                                             form-select form-select-lg" aria-label="Default select example"
                                             id="formGroupExampleInput" style="font-size: 15px;width: 95%;">
                                             <option value=''>ادخل مكان حضور الطالب</option>
@@ -89,7 +87,7 @@
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label">مرحلة الطالب
                                             :</label>
-                                        <select name="stu_grade" class=""@error('stu_name') is-invalid @enderror
+                                        <select name="stu_grade" class="@error('stu_name') is-invalid @enderror
                                             form-select form-select-lg" aria-label="Default select example"
                                             id="formGroupExampleInput" style="font-size: 15px;width: 95%;">
                                             <option selected>ادخل مرحلة الطالب</option>
