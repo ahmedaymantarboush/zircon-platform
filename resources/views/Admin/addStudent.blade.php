@@ -25,7 +25,8 @@
                 <div class="row">
                     <div class="col-lg-8 col-sm-12 order_2">
                         <div class="main_exam_info">
-                            <form action="" class="exam-form">
+                            <form action="{{route('admin.user.store')}}" method="POST" class="exam-form">
+                                @csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <p class="main_title">بيانات الطالب </p>
@@ -44,15 +45,16 @@
                                     </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label">المحافظة :</label>
-                                        <select name="stu_gov" class="@error('stu_name') is-invalid @enderror form-select form-select-lg search-select-box "
-                                                    id="formGroupExampleInput" data-live-search="true">
-                                                    <option value="">
-                                                        اختر المحافظة
-                                                    </option>
-                                                      @foreach (\App\Models\Governorate::all() as $governorate)
-                                            <option @selected(old('governorate') == $governorate->id) value="{{ $governorate->id }}">
-                                                {{ $governorate->name }}
+                                        <select name="stu_gov"
+                                            class="@error('stu_gov') is-invalid @enderror form-select form-select-lg search-select-box "
+                                            id="formGroupExampleInput" data-live-search="true">
+                                            <option value="">
+                                                اختر المحافظة
                                             </option>
+                                            @foreach (\App\Models\Governorate::all() as $governorate)
+                                                <option @selected(old('stu_gov') == $governorate->id) value="{{ $governorate->id }}">
+                                                    {{ $governorate->name }}
+                                                </option>
                                             @endforeach
                                             {{-- <option value="2">
                                                 ليبيا
@@ -61,17 +63,19 @@
                                                 عين شمس
                                             </option> --}}
                                         </select>
-                                        @error('stu_name')
+                                        @error('stu_gov')
                                             <p class='invalid-feedback'>{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label">مكان الحضور
                                             :</label>
-                                        <select name="stu_place" class="@error('stu_name') is-invalid @enderror
-                                            form-select form-select-lg" aria-label="Default select example"
-                                            id="formGroupExampleInput" style="font-size: 15px;width: 95%;">
-                                            <option value=''>ادخل مكان حضور الطالب</option>
+                                        <select name="stu_place"
+                                            class="@error('stu_place') is-invalid @enderror
+                                            form-select form-select-lg"
+                                            aria-label="Default select example" id="formGroupExampleInput"
+                                            style="font-size: 15px;width: 95%;">
+                                            {{-- <option value=''>ادخل مكان حضور الطالب</option> --}}
                                             @foreach (\App\Models\Center::all() as $center)
                                                 <option @selected(old('stu_place') == $center->id) value="{{ $center->id }}">
                                                     {{ $center->name }}</option>
@@ -80,16 +84,18 @@
                                             {{-- <option value="2">سنتر الاوائل</option>
                                             <option value="3">سنتر نوبل"</option> --}}
                                         </select>
-                                        @error('stu_name')
+                                        @error('stu_place')
                                             <p class='invalid-feedback'>{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label">مرحلة الطالب
                                             :</label>
-                                        <select name="stu_grade" class="@error('stu_name') is-invalid @enderror
-                                            form-select form-select-lg" aria-label="Default select example"
-                                            id="formGroupExampleInput" style="font-size: 15px;width: 95%;">
+                                        <select name="stu_grade"
+                                            class="@error('stu_grade') is-invalid @enderror
+                                            form-select form-select-lg"
+                                            aria-label="Default select example" id="formGroupExampleInput"
+                                            style="font-size: 15px;width: 95%;">
                                             <option selected>ادخل مرحلة الطالب</option>
                                             @foreach (\App\Models\Grade::all() as $grade)
                                                 <option @selected(old('stu_grade') == $grade->id) value="{{ $grade->id }}">
@@ -98,64 +104,61 @@
                                             {{-- <option value="2">الصف الثاني الثانوي</option>
                                             <option value="3">الصف الثالث الثانوي "استغفر الله"</option> --}}
                                         </select>
-                                        @error('stu_name')
+                                        @error('stu_grade')
                                             <p class='invalid-feedback'>{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">رقم هاتف الطالب :</label>
-                                        <input name="stu_number" type="number"
-                                            class="@error('stu_name') is-invalid @enderror form-control-lg form-control"
+                                        <input value="{{old('stu_number')}}" name="stu_number" type="number"
+                                            class="@error('stu_number') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل رقم هاتف الطالب"
                                             style="font-size: 15px;width: 95%;">
-                                        @error('stu_name')
+                                        @error('stu_number')
                                             <p class='invalid-feedback'>{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">رقم هاتف ولي امر الطالب :</label>
-                                        <input name="stu_parent_number" type="number"
-                                            class="@error('stu_name') is-invalid @enderror form-control-lg form-control"
+                                        <input value="{{old('stu_parent_number')}}" name="stu_parent_number" type="number"
+                                            class="@error('stu_parent_number') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل رقم هاتف ولي امر الطالب"
                                             style="font-size: 15px;width: 95%;">
-                                        @error('stu_name')
+                                        @error('stu_parent_number')
                                             <p class='invalid-feedback'>{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">البريد الالكتروني للطالب :</label>
-                                        <input name="stu_email" type="email"
-                                            class="@error('stu_name') is-invalid @enderror form-control-lg form-control"
+                                        <input value="{{old('stu_email')}}" name="stu_email" type="email"
+                                            class="@error('stu_email') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل البريد الالكتروني للطالب"
                                             style="font-size: 15px;width: 95%;">
-                                        @error('stu_name')
+                                        @error('stu_email')
                                             <p class='invalid-feedback'>{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">كلمة مرور الطالب :</label>
-                                        <input name="stu_password" type="text"
-                                            class="@error('stu_name') is-invalid @enderror form-control-lg form-control"
+                                        <input name="password" type="password"
+                                            class="@error('password') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل كلمة مرور الطالب"
                                             style="font-size: 15px;width:95%;">
-                                        @error('stu_name')
+                                        @error('password')
                                             <p class='invalid-feedback'>{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">كلمة مرور الطالب :</label>
-                                        <input name="stu_password" type="text"
-                                            class="@error('stu_name') is-invalid @enderror form-control-lg form-control"
+                                        <input name="password_confirmation" type="password"
+                                            class="form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="أعد إدخال كلمة مرور الطالب"
                                             style="font-size: 15px;width:95%;">
-                                        @error('stu_name')
-                                            <p class='invalid-feedback'>{{ $message }}</p>
-                                        @enderror
                                     </div>
                                     {{-- <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label" style="margin-top: 40px">كود الطالب :</label>

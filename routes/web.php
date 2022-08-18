@@ -44,6 +44,9 @@ Route::prefix('admin')->group(function () {
     Route::resource('exams',ExamController::class)->except(['show'])->names(['store'=>'admin.exams.store','update'=>'admin.exams.update']);
     Route::post('/sort-sections',[SectionController::class, 'sortSections'])->name('sections.resort');
     Route::post('/sort-items',[SectionItemController::class, 'sortItems'])->name('sectionitems.resort');
+    Route::get('user/create', [UserController::class,'create'])->name('admin.user.create');
+    Route::post('user/store', [UserController::class,'store'])->name('admin.user.store');
+    Route::post('user/update', [UserController::class,'update'])->name('admin.user.update');
 });
 
 //  ADMIN ROUTES
