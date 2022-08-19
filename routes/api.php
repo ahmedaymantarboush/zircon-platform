@@ -54,6 +54,7 @@ Route::apiResource('lectures',LectureController::class)->except('index')->names(
 Route::get('/grades/grade{gradeId}',[LectureController::class,'index']);
 Route::post('/search',[LectureController::class,'search']);
 Route::post('/view-lecture',[LectureController::class,'viewLecture']);
+Route::post('lectures/fastEdit',[LectureController::class,'fastEdit']);
 
 //       LESSON ROUTES
 Route::apiResource('/lessons',LessonController::class)->names(['store'=>'api.lessons.store','update'=>'api.lessons.update','destroy'=>'api.lessons.destroy']);
@@ -73,3 +74,4 @@ Route::post('parts',[PartController::class,'index']);
 
 //       QUESTION ROUTES
 Route::post('questions',[QuestionController::class,'index']);
+Route::post('questions/fastEdit',[QuestionController::class,'fastEdit']);

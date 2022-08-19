@@ -354,6 +354,29 @@ class LectureController extends Controller
         endif;
     }
 
+    public function fastEdit(){
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $lecture = Lecture::find($id);
+        if (!$lecture) :
+            return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 404);
+        endif;
+        if ($lecture->publisher->id != $user->id):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل المحاضرة'), [], 403);
+        endif;
+        return apiResponse(true, _('تم العثور على المحاضرة'), [
+            'title' => $lecture->title,
+            'shortDescription' => $lecture->short_description,
+            'grade' => $lecture->grade_id,
+            'parts' => $lecture->parts->pluck('id')->toArray(),
+            'description' => $lecture->description,
+            'free' => $lecture->price == 0,
+        ]);
+    }
     /**
      * Display the specified resource.
      *
@@ -374,7 +397,6 @@ class LectureController extends Controller
     {
         $slug = request()->slug;
 
-        
         if (!$slug) :
             return apiResponse(false, _('لم يتم إرسال المحاضرة'), [], 400);
         endif;

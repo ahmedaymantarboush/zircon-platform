@@ -15,7 +15,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $data = json_decode(request()->data,true);
+        $data = json_decode(request()->data, true);
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
@@ -27,12 +27,45 @@ class QuestionController extends Controller
         if ($grade && $subject && $level && $part) :
             $questions = Question::where(['user_id' => $user->id, 'grade_id' => $grade, 'subject_id' => $subject, 'level' => $level, 'part_id' => $part])->select(['id', 'name'])->get();
         else :
-            $questions = Question::where('user_id',$user->id)->select(['id', 'name'])->get();
+            $questions = Question::where('user_id', $user->id)->select(['id', 'name'])->get();
         endif;
         if (!count($questions)) :
             return apiResponse(false, _('لم يتم العثور على أسئلة'), [], 404);
         endif;
         return apiResponse(true, _('تم العثور على أسئلة'), $questions);
+    }
+
+    public function fastEdit()
+    {
+        $data = json_decode(request()->data, true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $question = Question::find($id);
+        if (!$question) :
+            return apiResponse(false, _('لم يتم العثور على السؤال'), [], 404);
+        endif;
+        if ($question->publisher->id != $user->id) :
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل السؤال'), [], 403);
+        endif;
+        $answers = [];
+        if ($question->answers) :
+            foreach ($question->answers as $answer) {
+                $answers[] = [
+                    'id' => $answer->id,
+                    'name' => $answer->name,
+                    'isCorrect' => $answer->is_correct,
+                ];
+            }
+        endif;
+        return apiResponse(true, _('تم العثور على السؤال'), [
+            'name' => $question->name,
+            'text' => $question->text,
+            'image' => $question->image,
+            'answers' => $answers,
+        ]);
     }
 
     /**
