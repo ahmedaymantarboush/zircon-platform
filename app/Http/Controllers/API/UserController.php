@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\BalanceCard;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\support\Str;
 
 class UserController extends Controller
 {
@@ -27,7 +29,15 @@ class UserController extends Controller
     {
         //
     }
-
+    public function genarateCode()
+    {
+        $code = Str::random(16);
+        while(User::where('code', $code)->count() > 0)
+        {
+            $code = Str::random(16);
+        }
+        return apiResponse(true,_('تم انشاء الكود بنجاح'),['code' => $code]);
+    }
     /**
      * Store a newly created resource in storage.
      *

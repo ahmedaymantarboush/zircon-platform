@@ -7,7 +7,10 @@ use App\Http\Controllers\API\CouponController;
 use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\LectureController;
+use App\Http\Controllers\API\PartController;
+use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\API\TestimonialController;
+use App\Http\Controllers\API\UserController;
 use App\Http\Resources\UserResource;
 use App\Models\Lesson;
 use App\Models\Question;
@@ -60,7 +63,13 @@ Route::apiResource('/exams',ExamController::class)->names(['index'=>'api.exams.i
 
 //       USER ROUTES
 Route::post('recharge',[BalanceCardController::class,'recharge']);
+Route::post('genarateCode',[UserController::class,'genarateCode']);
 
 //       USER ROUTES
 Route::post('checkCoupon',[CouponController::class,'checkCoupon']);
 
+//       PART ROUTES
+Route::post('parts',[PartController::class,'index']);
+
+//       QUESTION ROUTES
+Route::post('questions',[QuestionController::class,'index']);
