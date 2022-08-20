@@ -11,14 +11,14 @@
         >
             <div class="daily-box">
                 <div class="daily-content">
-                    <h3 class="daily-name">دخل اليوم</h3>
+                    <h3 class="daily-name">دخل الشهر</h3>
                     <p class="daily-p">
                         352,120 ج.م
                         <span class="percent">65</span>
                     </p>
                 </div>
                 <div class="daily-icon">
-                    <i class="fa-solid fa-user-check"></i>
+                    <i class="fa-solid fa-money-bill-trend-up"></i>
                 </div>
             </div>
         </div>
@@ -27,9 +27,9 @@
         >
             <div class="daily-box">
                 <div class="daily-content">
-                    <h3 class="daily-name">دخل اليوم</h3>
+                    <h3 class="daily-name">حضور اليوم</h3>
                     <p class="daily-p">
-                        352,120 ج.م
+                        355 طالب
                         <span class="percent">-56</span>
                     </p>
                 </div>
@@ -43,14 +43,14 @@
         >
             <div class="daily-box">
                 <div class="daily-content">
-                    <h3 class="daily-name">دخل اليوم</h3>
+                    <h3 class="daily-name">الطلاب الحاليين</h3>
                     <p class="daily-p">
-                        352,120 ج.م
+                        2150 طالب
                         <span class="percent">11</span>
                     </p>
                 </div>
                 <div class="daily-icon">
-                    <i class="fa-solid fa-user-check"></i>
+                    <i class="fa-solid fa-users-viewfinder"></i>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                     </p>
                 </div>
                 <div class="daily-icon">
-                    <i class="fa-solid fa-user-check"></i>
+                    <i class="fa-solid fa-cart-shopping"></i>
                 </div>
             </div>
         </div>
