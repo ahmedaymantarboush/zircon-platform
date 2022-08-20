@@ -1,0 +1,381 @@
+.page-heading {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: flex-start;
+	padding: 1.5rem 3rem;
+	margin-top: 4rem;
+}
+.page-icon {
+	font-size: 2rem;
+	margin-left: 1rem;
+}
+.page-h {
+	font-size: 1.8rem;
+	color: var(--font-dark);
+}
+.add-new-lec,
+.add-new-lec:hover {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.add-new-lec {
+	background-color: #fff;
+	border: 3px dashed var(--font-light);
+	transition: 0.3s all ease;
+}
+.add-new-lec:hover {
+	background-color: var(--main-color);
+	border-color: #fff;
+}
+.add-new-lec:hover .stc-name,
+.add-new-lec:hover .stc-value {
+	color: #fff;
+}
+.add-new-lec,
+.real-stc {
+	border-radius: 1.5rem;
+	margin-bottom: 3rem;
+}
+.stc-box {
+	padding: 2.5rem 0;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	color: var(--font-light);
+	font-weight: 500;
+	width: 100%;
+}
+.second-stc {
+	color: #fff;
+}
+.real-stc {
+	background: linear-gradient(to right, #67748e, #343a47);
+}
+.stc-box .stc-val-parent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.stc-name {
+	font-size: 1.4rem;
+}
+.stc-value {
+	font-size: 3.4rem;
+	font-weight: bold;
+}
+.stc-icon {
+	position: absolute;
+	left: 1rem;
+	top: 1rem;
+	color: var(--font-dark);
+	background-color: #fff;
+	width: 4.5rem;
+	height: 4.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 1rem;
+	font-size: 2.2rem;
+}
+.lec-filter {
+	background-color: #fff;
+	border-radius: 1rem;
+	padding: 2.5rem 2rem;
+	box-shadow: var(--shadow);
+}
+.lec-filter h3 {
+	margin-bottom: 3rem;
+}
+.custome-row {
+	display: flex;
+	justify-content: center;
+}
+.custome-row .row {
+	width: 90%;
+}
+.filter-item {
+	display: flex;
+	flex-direction: column;
+}
+.filter-item label {
+	color: #989696;
+	font-size: 1.4rem;
+}
+.filter-item .bootstrap-select {
+	margin-bottom: 3rem;
+	width: 100% !important;
+}
+.filter-item .bootstrap-select > .dropdown-toggle.bs-placeholder {
+	border: 1px solid #e0e0e0;
+	background: none;
+	padding: 0.5rem;
+	border-radius: 0.8rem;
+	margin-top: 1rem;
+	color: #b1b1b1;
+}
+.search-select-box button {
+	background-color: #fff;
+	border: 1px solid #e0e0e0;
+	padding: 1rem 3rem;
+	font-size: 1.2rem;
+	border-radius: 1rem;
+	text-align: right;
+}
+
+.bootstrap-select .dropdown-toggle:focus,
+.bootstrap-select > select.mobile-device:focus + .dropdown-toggle {
+	outline: none !important;
+}
+.bootstrap-select .dropdown-menu li a {
+	font-size: 1.2rem;
+	text-align: right;
+}
+.filter-option-inner-inner {
+	text-align: right;
+}
+.filter-btn {
+	width: 15%;
+	display: flex;
+	justify-content: center;
+	margin-right: 1.5%;
+	height: 6rem;
+}
+.filter-btn input {
+	align-self: flex-end;
+	width: 100%;
+	padding: 0.5rem;
+	background-color: var(--main-color);
+	border: none;
+	color: #fff;
+	border-radius: 0.8rem;
+	box-shadow: 0px 3px 6px rgba(12, 132, 255, 37%);
+	transition: 0.3s all ease;
+	height: 4rem;
+}
+.filter-btn input:hover {
+	background-color: var(--font-dark);
+}
+.search-field {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.search-field .filter-search {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+}
+.search-field .filter-search label {
+	min-width: fit-content;
+	margin-left: 1rem;
+}
+.filter-search input {
+	border: 1px solid #e0e0e0;
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+}
+.field {
+	min-width: 30%;
+}
+.search-field
+	.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	width: auto !important;
+	margin: 0 0.5rem;
+}
+
+.search-field .search-select-box button {
+	padding: 0.2rem 0.7rem;
+}
+
+/****** table *****/
+.lectures-table {
+	overflow-x: scroll;
+}
+.lectures-table::-webkit-scrollbar {
+	display: none;
+}
+.lectures-table table {
+	min-width: 100%;
+	margin-top: 3rem;
+	table-layout: auto;
+}
+.lectures-table th {
+	padding: 2rem 1rem;
+	text-align: right;
+	color: #777777;
+	border-top: 1px solid #707070;
+	text-align: center !important;
+}
+
+.lectures-table td {
+	min-width: 8rem;
+	padding: 2.5rem 1rem;
+	font-size: 1.4rem;
+	text-align: center !important;
+	color: #777777;
+}
+.lectures-table td:first-child,
+.lectures-table td:last-child,
+.lectures-table thead th:first-child {
+	/* padding-right: 1rem !important; */
+	text-align: center;
+}
+.lectures-table tbody tr:nth-child(odd) {
+	background-color: rgba(36, 132, 255, 13%);
+}
+.lectures-table tbody tr:nth-child(even) {
+	background-color: #fff;
+}
+
+.lectures-table .name-lesson {
+	color: var(--main-color);
+	font-size: 1.6rem;
+	font-weight: 600;
+}
+.lectures-table .job-teacher {
+	margin-top: 0.5rem;
+	color: #b1b1b1;
+	margin-left: 0.5rem;
+}
+
+.lectures-table .table-level-parent {
+	min-width: 14rem;
+}
+.lectures-table .number {
+	font-size: 1.6rem;
+	color: var(--font-dark);
+}
+.lectures-table .table-level {
+	background-color: #cecece;
+	color: var(--font-dark);
+	padding: 0.5rem 1rem;
+	border-radius: 1rem;
+	font-weight: 600;
+	text-align: center;
+}
+.lectures-table .table-sections {
+	min-width: 13rem;
+}
+.lectures-table .table-sections div div:first-child {
+	margin-bottom: 1rem;
+}
+.lectures-table .students {
+	min-width: 13rem;
+}
+.lectures-table .views {
+	font-size: 2rem;
+	font-weight: 600;
+}
+.lectures-table .ftu-btn {
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--main-color);
+	background: none;
+	color: var(--main-color);
+	border-radius: 1rem !important;
+}
+.open-tr {
+	padding: 0.4rem;
+	border-radius: 50%;
+
+	background: #9ed616;
+	color: #fff;
+	border: none;
+	display: none;
+	font-size: 1.6rem;
+}
+.feat-menu {
+	border: none;
+	box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.11);
+	border-radius: 1rem;
+}
+.dropdown-item {
+	text-align: right !important;
+	font-size: 1.2rem;
+	color: #8796b5;
+}
+.less-item {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1.5rem;
+}
+.sec-name {
+	margin-bottom: 1.2rem;
+	font-size: 1.6rem;
+}
+.less-item:last-child {
+	margin-bottom: 0;
+}
+.less-item input[type="file"] {
+	font-size: 1.6rem;
+}
+.less-item button {
+	padding: 0 !important;
+}
+.less-item .input-parent {
+	width: 100%;
+}
+
+/*select search*/
+.modify-select {
+	width: 100% !important 	;
+}
+.modify-select select {
+	width: 100%;
+}
+.modify-select .dropdown {
+	width: 100% !important;
+}
+
+.modify-select button {
+	background-color: #fff;
+	border: 1px solid #e0e0e0;
+	padding: 0.8rem 1.5rem !important;
+	font-size: 1.4rem;
+	border-radius: 0.5rem;
+}
+.modify-select .bootstrap-select .dropdown-menu li a {
+	font-size: 1.4rem;
+}
+.modify-select .bootstrap-select .dropdown-toggle:focus,
+.modify-select
+	.bootstrap-select
+	> select.mobile-device:focus
+	+ .dropdown-toggle {
+	outline: none !important;
+}
+.modify-select .dropdown-toggle::after {
+	float: left;
+
+	vertical-align: 0.1em;
+}
+.modify-select .bootstrap-select .dropdown-toggle .filter-option {
+	text-align: right !important;
+}
+.modify-select .bootstrap-select .dropdown-toggle .filter-option-inner {
+	padding-right: 0 !important;
+}
+/* for menu */
+.modify-select .bootstrap-select .dropdown-menu .inner .dropdown-menu {
+	text-align: right !important;
+}
+
+.ck-rounded-corners .ck.ck-editor__main > .ck-editor__editable,
+.ck.ck-editor__main > .ck-editor__editable.ck-rounded-corners {
+	min-height: 10rem;
+}
+.modal-body p {
+	font-size: 1.6rem;
+	word-break: break-word;
+}
+.del-lesson {
+	word-break: break-word;
+	color: #ea0606;
+	margin: 0 0.25rem;
+	width: fit-content;
+}
+.modal-dialog {
+	max-width: 600px;
+}

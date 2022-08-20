@@ -29,6 +29,11 @@ class Question extends Model
         return $this->belongsTo(Grade::class);
     }
 
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
     public function part()
     {
         return $this->belongsTo(Part::class);
@@ -42,5 +47,10 @@ class Question extends Model
     public function choices()
     {
         return $this->hasMany(Choice::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(AnswerdQuestion::class, 'question_id');
     }
 }

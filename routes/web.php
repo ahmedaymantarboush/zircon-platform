@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\Web\BalanceCardController;
 use App\Http\Controllers\Web\ExamController;
 use App\Http\Controllers\Web\SectionItemController;
@@ -47,6 +48,8 @@ Route::prefix('admin')->group(function () {
     Route::get('user/create', [UserController::class,'create'])->name('admin.user.create');
     Route::post('user/store', [UserController::class,'store'])->name('admin.user.store');
     Route::post('user/update', [UserController::class,'update'])->name('admin.user.update');
+    Route::post('questions/filter', [QuestionController::class,'filter'])->name('admin.questions.filter');
+    Route::post('questions/destroy', [QuestionController::class,'destroy'])->name('admin.questions.destroy');
 });
 
 //  ADMIN ROUTES

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request;
@@ -36,7 +37,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/test', function (){
-    return view('admin.addStudent');
+    return view('admin.questionBank',['questions'=>Question::all()]);
 });
 
 

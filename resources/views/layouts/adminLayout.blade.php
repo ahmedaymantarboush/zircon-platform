@@ -1,5 +1,5 @@
 @include('includes.admin.head')
-<input type="hidden" name="token" id="csrf_token" value="{{csrf_token()}}">
+<input type="hidden" name="token" id="csrf_token" value="{{ csrf_token() }}">
 <section class="main">
     <div class="container-fluid">
         <div class="row parent-row">
@@ -30,48 +30,29 @@
                             </span>
                             <span class="box-name"> الطلاب </span>
                             <span class="parent-arrow">
-                                <i class="fa-solid fa-angle-down"></i
-                            ></span>
+                                <i class="fa-solid fa-angle-down"></i></span>
                         </div>
 
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name"
-                                    >الطالب رقم1</a
-                                >
+                                <a href="#" class="child-name">الطالب رقم1</a>
                                 <span class="child-arrow">
-                                    <i
-                                        class="fa-solid fa-angle-down"
-                                    ></i
-                                ></span>
+                                    <i class="fa-solid fa-angle-down"></i></span>
                             </div>
                             <div class="grand-child">
-                                <a href="#" class="grand-child-name"
-                                    >ساقط مرتفع</a
-                                >
-                                <a href="#" class="grand-child-name"
-                                    >مقبول</a
-                                >
+                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
+                                <a href="#" class="grand-child-name">مقبول</a>
                             </div>
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name"
-                                    >الطالب رقم 2</a
-                                >
+                                <a href="#" class="child-name">الطالب رقم 2</a>
                                 <span class="child-arrow">
-                                    <i
-                                        class="fa-solid fa-angle-down"
-                                    ></i
-                                ></span>
+                                    <i class="fa-solid fa-angle-down"></i></span>
                             </div>
                             <div class="grand-child">
-                                <a href="#" class="grand-child-name"
-                                    >ساقط مرتفع</a
-                                >
-                                <a href="#" class="grand-child-name"
-                                    >مقبول</a
-                                >
+                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
+                                <a href="#" class="grand-child-name">مقبول</a>
                             </div>
                         </div>
                     </div>
@@ -83,48 +64,29 @@
                             </span>
                             <span class="box-name"> الطلاب </span>
                             <span class="parent-arrow">
-                                <i class="fa-solid fa-angle-down"></i
-                            ></span>
+                                <i class="fa-solid fa-angle-down"></i></span>
                         </div>
 
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name"
-                                    >الطالب رقم1</a
-                                >
+                                <a href="#" class="child-name">الطالب رقم1</a>
                                 <span class="child-arrow">
-                                    <i
-                                        class="fa-solid fa-angle-down"
-                                    ></i
-                                ></span>
+                                    <i class="fa-solid fa-angle-down"></i></span>
                             </div>
                             <div class="grand-child">
-                                <a href="#" class="grand-child-name"
-                                    >ساقط مرتفع</a
-                                >
-                                <a href="#" class="grand-child-name"
-                                    >مقبول</a
-                                >
+                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
+                                <a href="#" class="grand-child-name">مقبول</a>
                             </div>
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name"
-                                    >الطالب رقم 2</a
-                                >
+                                <a href="#" class="child-name">الطالب رقم 2</a>
                                 <span class="child-arrow">
-                                    <i
-                                        class="fa-solid fa-angle-down"
-                                    ></i
-                                ></span>
+                                    <i class="fa-solid fa-angle-down"></i></span>
                             </div>
                             <div class="grand-child">
-                                <a href="#" class="grand-child-name"
-                                    >ساقط مرتفع</a
-                                >
-                                <a href="#" class="grand-child-name"
-                                    >مقبول</a
-                                >
+                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
+                                <a href="#" class="grand-child-name">مقبول</a>
                             </div>
                         </div>
                     </div>
@@ -135,57 +97,36 @@
                             </span>
                             <span class="box-name"> الطلاب </span>
                             <span class="parent-arrow">
-                                <i class="fa-solid fa-angle-down"></i
-                            ></span>
+                                <i class="fa-solid fa-angle-down"></i></span>
                         </div>
 
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name"
-                                    >الطالب رقم1</a
-                                >
+                                <a href="#" class="child-name">الطالب رقم1</a>
                                 <span class="child-arrow">
-                                    <i
-                                        class="fa-solid fa-angle-down"
-                                    ></i
-                                ></span>
+                                    <i class="fa-solid fa-angle-down"></i></span>
                             </div>
                             <div class="grand-child">
-                                <a href="#" class="grand-child-name"
-                                    >ساقط مرتفع</a
-                                >
-                                <a href="#" class="grand-child-name"
-                                    >مقبول</a
-                                >
+                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
+                                <a href="#" class="grand-child-name">مقبول</a>
                             </div>
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name"
-                                    >الطالب رقم 2</a
-                                >
+                                <a href="#" class="child-name">الطالب رقم 2</a>
                                 <span class="child-arrow">
-                                    <i
-                                        class="fa-solid fa-angle-down"
-                                    ></i
-                                ></span>
+                                    <i class="fa-solid fa-angle-down"></i></span>
                             </div>
                             <div class="grand-child">
-                                <a href="#" class="grand-child-name"
-                                    >ساقط مرتفع</a
-                                >
-                                <a href="#" class="grand-child-name"
-                                    >مقبول</a
-                                >
+                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
+                                <a href="#" class="grand-child-name">مقبول</a>
                             </div>
                         </div>
                     </div>
                     <div class="logout">
                         <div class="box">
                             <span class="box-icon">
-                                <i
-                                    class="fa-solid fa-arrow-right-from-bracket"
-                                ></i>
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             </span>
                             <button class="box-name">
                                 تسجيل الخروج
@@ -205,7 +146,7 @@
                     </div>
                     <div class="admin-name">
                         <a href="#"><i class="fa-solid fa-user"></i></a>
-{{--                        <p>@php $names = explode(' ',Auth::user()->name);@endphp @if(count($names)>4){{ $names[0] }} {{ $names[1] }} {{ $names[2] }} {{ $names[3] }}@else{{ Auth::user()->name }}@endif</p>--}}
+                        {{-- <p>@php $names = explode(' ',Auth::user()->name);@endphp @if (count($names) > 4){{ $names[0] }} {{ $names[1] }} {{ $names[2] }} {{ $names[3] }}@else{{ Auth::user()->name }}@endif</p> --}}
                     </div>
                     <div class="open-signup">
                         <button class="open-signup-btn">
@@ -227,9 +168,9 @@
                         </div>
                     </div>
                 </div>
-                    @yield('content')
-                </div>
+                @yield('content')
             </div>
         </div>
-    </section>
+    </div>
+</section>
 @include('includes.admin.footer')
