@@ -181,7 +181,7 @@
                         </li>
                     </ul>
                 </div>
-                <table>
+                <table style="width: 100%;">
                     <thead>
                     <tr>
                         <th>السناتر</th>
@@ -954,6 +954,92 @@
                     formatter: function (val) {
                         return  val;
                     },
+                },
+            },
+        };
+        // curve
+        var options4 = {
+            series: [
+                {
+                    name: "الدخل",
+                    data: [31, 40, 28, 51, 42, 109, 100],
+                },
+                {
+                    name: "المستوى العام",
+                    data: [11, 32, 45, 32, 34, 52, 41],
+                },
+            ],
+            fill: {
+                colors: ["#2484FF", "#344767"],
+            },
+            chart: {
+                height: 280,
+                type: "area",
+                fontFamily: "poppins",
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                curve: "smooth",
+                colors: ["#3645FA", "#344767"],
+            },
+            xaxis: {
+                type: "date",
+                categories: [
+                    "2018-02-20",
+                    "2018-03-20",
+                    "2018-04-20",
+                    "2018-05-20",
+                    "2018-06-20",
+                    "2018-07-20",
+                    "2018-08-20",
+                ],
+            },
+            tooltip: {
+                x: {
+                    format: "dd/MM/yy",
+                },
+            },
+        };
+        var options5 = {
+            series: [
+                {
+                    name: "عدد الزوار",
+                    data: [31, 40, 28, 51, 42, 109, 100],
+                    color: '#3645FA',
+                },
+            ],
+            fill: {
+                colors: ["#2484FF"],
+            },
+            chart: {
+                height: 280,
+                type: "area",
+                fontFamily: "poppins",
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                curve: "smooth",
+                colors: ["#3645FA", "#344767"],
+            },
+            xaxis: {
+                type: "date",
+                categories: [
+                    "02-19",
+                    "03-19",
+                    "04-19",
+                    "05-19",
+                    "06-19",
+                    "07-19",
+                    "08-19",
+                ],
+            },
+            tooltip: {
+                x: {
+                    format: "dd/MM",
                 },
             },
         };

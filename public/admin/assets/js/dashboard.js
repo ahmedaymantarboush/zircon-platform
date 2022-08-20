@@ -7,93 +7,11 @@ chart.render();
 var chart = new ApexCharts(document.querySelector(".column"), options3);
 chart.render();
 
-var options4 = {
-	series: [
-		{
-			name: "series1",
-			data: [31, 40, 28, 51, 42, 109, 100],
-		},
-		{
-			name: "series2",
-			data: [11, 32, 45, 32, 34, 52, 41],
-		},
-	],
-	fill: {
-		colors: ["#2484FF", "#344767"],
-	},
-	chart: {
-		height: 280,
-		type: "area",
-		fontFamily: "poppins",
-	},
-	dataLabels: {
-		enabled: false,
-	},
-	stroke: {
-		curve: "smooth",
-		colors: ["#3645FA", "#344767"],
-	},
-	xaxis: {
-		type: "date",
-		categories: [
-			"2018-02-20",
-			"2018-03-20",
-			"2018-04-20",
-			"2018-05-20",
-			"2018-06-20",
-			"2018-07-20",
-			"2018-08-20",
-		],
-	},
-	tooltip: {
-		x: {
-			format: "dd/MM/yy",
-		},
-	},
-};
+
 
 var chart = new ApexCharts(document.querySelector(".spline"), options4);
 chart.render();
-var options5 = {
-	series: [
-		{
-			name: "visits",
-			data: [31, 40, 28, 51, 42, 109, 100],
-		},
-	],
-	fill: {
-		colors: ["#2484FF"],
-	},
-	chart: {
-		height: 280,
-		type: "area",
-		fontFamily: "poppins",
-	},
-	dataLabels: {
-		enabled: false,
-	},
-	stroke: {
-		curve: "smooth",
-		colors: ["#3645FA", "#344767"],
-	},
-	xaxis: {
-		type: "datetime",
-		categories: [
-			"2018-09-19T00:00:00.000Z",
-			"2018-09-19T01:30:00.000Z",
-			"2018-09-19T02:30:00.000Z",
-			"2018-09-19T03:30:00.000Z",
-			"2018-09-19T04:30:00.000Z",
-			"2018-09-19T05:30:00.000Z",
-			"2018-09-19T06:30:00.000Z",
-		],
-	},
-	tooltip: {
-		x: {
-			format: "dd/MM/yy HH:mm",
-		},
-	},
-};
+
 var chart = new ApexCharts(document.querySelector(".visits-curve"), options5);
 chart.render();
 //  start add student
