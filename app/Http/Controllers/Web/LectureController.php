@@ -32,6 +32,10 @@ class LectureController extends Controller
         endif;
     }
 
+    public function allLectures()
+    {
+        return view("admin.lectures", ['lectures'=>Lecture::all()]);
+    }
 
     public function search()
     {
