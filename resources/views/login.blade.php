@@ -14,7 +14,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600&display=swap"
         rel="stylesheet" />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- font awesome -->
     <link rel="stylesheet" href="{{URL::asset('css/all.min.css')}}">
@@ -40,7 +40,7 @@
             <div class="customeRow">
 
                 <div class="image">
-                    <img src="{{ URL::asset('imgs/elbirryLogin.png') }}" alt="">
+                    <img src="{{asset('imgs/elbirryLogin.png') }}" alt="">
                     <div class="imageContent">
                         <p>سجل دخولك دلوقتي و خليك
                             مع البري</p>
@@ -52,21 +52,21 @@
                 <div class="content">
                     <h2>تسجيل الدخول</h2>
 
-                    <form action="">
+                    <form class="loginForm">
                         <div class="box ">
                             <div class="inputItem">
                                 <span class='inputIcon'><i class="fa-solid fa-envelope"></i></span>
-                                <input type="text" placeholder='&nbsp;'>
+                                <input type="text" id="email" placeholder='&nbsp;'>
                                 <label for="">البريد الالكتروني</label>
                             </div>
                             <div class="error">
                                 حدث خطأ في التسجيل
                             </div>
                         </div>
-                        <div class="box ">
+                        <div class="box">
                             <div class="inputItem">
                                 <span class='inputIcon'><i class="fa-solid fa-lock"></i></span>
-                                <input type="password" placeholder='&nbsp;'>
+                                <input type="password" placeholder='&nbsp;' id="password">
                                 <label for="">كلمة المرور</label>
                             </div>
                             <div class="error">

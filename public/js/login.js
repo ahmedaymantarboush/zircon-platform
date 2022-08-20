@@ -11,3 +11,5 @@ let updateUI = function () {
     addDarkClassToHtml();
 };
 updateUI();
+
+
