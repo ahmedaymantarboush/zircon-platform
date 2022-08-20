@@ -62,6 +62,11 @@ class QuestionController extends Controller
         endif;
         return apiResponse(true, _('تم العثور على السؤال'), [
             'name' => $question->name,
+            'grade' => $question->grade->id,
+            'subject' => $question->subject->id,
+            'part' => $question->part->id,
+            'level' => $question->level,
+            'answersCount' => count($answers),
             'text' => $question->text,
             'image' => $question->image,
             'answers' => $answers,

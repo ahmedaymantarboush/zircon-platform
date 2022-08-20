@@ -40,8 +40,8 @@ class TestimonialController extends Controller
         endif;
         return apiResponse(true, _('تم العثور على الشهادة'), [
             'studentName' => $testimonial->student_name,
-            'image' => $testimonial->image,
             'degree' => $testimonial->degree,
+            'image' => $testimonial->image,
             'content' => $testimonial->content,
         ]);
     }

@@ -371,7 +371,7 @@ class LectureController extends Controller
         return apiResponse(true, _('تم العثور على المحاضرة'), [
             'title' => $lecture->title,
             'shortDescription' => $lecture->short_description,
-            'grade' => $lecture->grade_id,
+            'grade' => $lecture->grade->id,
             'parts' => $lecture->parts->pluck('id')->toArray(),
             'description' => $lecture->description,
             'free' => $lecture->price == 0,

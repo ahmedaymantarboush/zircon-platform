@@ -65,6 +65,11 @@ Route::apiResource('/exams',ExamController::class)->names(['index'=>'api.exams.i
 //       USER ROUTES
 Route::post('recharge',[BalanceCardController::class,'recharge']);
 Route::post('genarateCode',[UserController::class,'genarateCode']);
+Route::post('getBalance',[UserController::class,'getBalance']);
+Route::post('editBalance',[UserController::class,'editBalance']);
+Route::post('getCode',[UserController::class,'getCode']);
+Route::post('editCode',[UserController::class,'editCode']);
+Route::post('getStudentCardData',[UserController::class,'getStudentCardData']);
 
 //       USER ROUTES
 Route::post('checkCoupon',[CouponController::class,'checkCoupon']);
@@ -78,3 +83,6 @@ Route::post('questions/fastEdit',[QuestionController::class,'fastEdit']);
 
 //       TESTIMONIAL ROUTES
 Route::post('testimonials/fastEdit',[TestimonialController::class,'fastEdit']);
+
+//       CENTER ROUTES
+Route::post('centers/fastEdit',[CenterController::class,'fastEdit']);

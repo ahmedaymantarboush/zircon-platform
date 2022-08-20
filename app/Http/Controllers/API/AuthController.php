@@ -18,18 +18,18 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $jsonRequest = json_decode($request->data,true);
-        $validator = Validator::make($jsonRequest,[
+        $jsonRequest = json_decode($request->data, true);
+        $validator = Validator::make($jsonRequest, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'grade' => ['required', 'string', 'exists:grades,name'],
-            'phoneNumber' => ['required', 'string', 'unique:users,phone_number','max:13','min:11'],
-            'parentPhoneNumber' => ['required', 'string','max:13','min:11'],
-            'governorate' => ['required','string','exists:governorates,name'],
-            'center'=>['nullable','string','exists:centers,name'],
+            'phoneNumber' => ['required', 'string', 'unique:users,phone_number', 'max:13', 'min:11'],
+            'parentPhoneNumber' => ['required', 'string', 'max:13', 'min:11'],
+            'governorate' => ['required', 'string', 'exists:governorates,name'],
+            'center' => ['nullable', 'string', 'exists:centers,name'],
 
-        ],[
+        ], [
             'name.required' => "الاسم مطلوب",
             'name.string' => "الاسم يجب ان يكون حروف",
             'name.max' => "أكبر عدد ممكن من الحروف هو 255 حرف",
@@ -67,42 +67,45 @@ class AuthController extends Controller
             'center.string' => "المركز يجب ان يكون حروف",
             'center.exists' => "الرجاء اختيار مركز صحيح",
         ]);
-        if ($validator->fails()){
-            return apiResponse(false,_('هناك خطأ في صحة البيانات'),$validator->errors(),400);
+        if ($validator->fails()) {
+            return apiResponse(false, _('هناك خطأ في صحة البيانات'), $validator->errors(), 400);
         }
 
         $user = User::create([
-            'name'=> $jsonRequest['name'],
-            'email'=> $jsonRequest['email'],
-            'phone_number'=> $jsonRequest['phoneNumber'],
-            'parent_phone_number'=> $jsonRequest['parentPhoneNumber'],
-            'password'=> Hash::make($jsonRequest['password']),
-            'grade_id'=> Grade::where('name',$jsonRequest['grade'])->first()->id,
-            'governorate_id'=> Governorate::where('name',$jsonRequest['governorate'])->first()->id,
-            'code'=> Str::random(16),
+            'name' => $jsonRequest['name'],
+            'email' => $jsonRequest['email'],
+            'phone_number' => $jsonRequest['phoneNumber'],
+            'parent_phone_number' => $jsonRequest['parentPhoneNumber'],
+            'password' => Hash::make($jsonRequest['password']),
+            'grade_id' => Grade::where('name', $jsonRequest['grade'])->first()->id,
+            'governorate_id' => Governorate::where('name', $jsonRequest['governorate'])->first()->id,
+            'code' => Str::random(16),
 
-            'center_id'=> $jsonRequest['center'] ? Center::where('name',$jsonRequest['center'])->first()->id : 1,
-            'role_num'=> 4,
-            'balance'=> 0,
+            'center_id' => $jsonRequest['center'] ? Center::where('name', $jsonRequest['center'])->first()->id : 1,
+            'role_num' => 4,
+            'balance' => 0,
         ]);
 
-        if (!$user){
-            return apiResponse(false,_('حدث خطأ ولم يتم انشاء المستخدم يرجىة المحالوة مرة أخرى'),[],500);
+        if (!$user) {
+            return apiResponse(false, _('حدث خطأ ولم يتم انشاء المستخدم يرجىة المحالوة مرة أخرى'), [], 500);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
-
-        return apiResponse(true,_('تم انشاء المسخدم بنجاح'),[
-            '_token'=>$token,
-            '_token_type'=>'Bearer'
+        if ($token) :
+            auth()->login($user);
+        endif;
+        return apiResponse(true, _('تم انشاء المسخدم بنجاح'), [
+            '_token' => $token,
+            '_token_type' => 'Bearer'
         ]);
     }
-    public function login(Request $request){
-        $jsonRequest = json_decode($request->data,true);
-        $validator = Validator::make($jsonRequest,[
-            'email' => ['required', 'string', 'email', 'max:255','exists:users,email'],
+    public function login(Request $request)
+    {
+        $jsonRequest = json_decode($request->data, true);
+        $validator = Validator::make($jsonRequest, [
+            'email' => ['required', 'string', 'email', 'max:255', 'exists:users,email'],
             'password' => ['required', 'string', 'min:8'],
-        ],[
+        ], [
             'email.required' => "البريد الالكتروني مطلوب",
             'email.string' => "البريد الالكتروني يجب ان يكون حروف",
             'email.email' => "البرجاء ادخال البريد الالكتروني بشكل صحيح",
@@ -113,31 +116,35 @@ class AuthController extends Controller
             'password.string' => "يجب أن تكون كلمة المرور عبارة عن نص",
             'password.min' => "أقل عدد ممكن من الحروف هو 8 حروف",
         ]);
-        if ($validator->fails()){
-            return apiResponse(false,_('هناك خطأ في صحة البيانات'),$validator->errors(),400);
+        if ($validator->fails()) {
+            return apiResponse(false, _('هناك خطأ في صحة البيانات'), $validator->errors(), 400);
         }
-        if (!Auth::attempt(['email' => $jsonRequest['email'] , 'password' => $jsonRequest['password']])){
-            return apiResponse(false,_('هذا المسخدم غير موجود'),[],401);
+        if (!Auth::attempt(['email' => $jsonRequest['email'], 'password' => $jsonRequest['password']])) {
+            return apiResponse(false, _('هذا المسخدم غير موجود'), [], 404);
         }
-        $user = User::where(['email'=>$jsonRequest['email']])->first();
-        if (!$user){
-            return apiResponse(false,_('هذا المسخدم غير موجود'),[],401);
+        $user = User::where(['email' => $jsonRequest['email']])->first();
+        if (!$user) {
+            return apiResponse(false, _('هذا المسخدم غير موجود'), [], 404);
         }
         $token = $user->createToken('auth_token')->plainTextToken;
-        return apiResponse(true,_('تم تسجيل الدخول بنجاح'),[
-            '_token'=>$token,
-            '_token_type'=>'Bearer'
+        if ($token) :
+            auth()->login($user);
+        endif;
+        return apiResponse(true, _('تم تسجيل الدخول بنجاح'), [
+            '_token' => $token,
+            '_token_type' => 'Bearer'
         ]);
     }
-    public function logout(){
+    public function logout()
+    {
         $user = apiUser();
-        if (!$user):
-            return apiResponse(false,_('هذا المستخدم غير متاح'),[],401);
+        if (!$user) :
+            return apiResponse(false, _('هذا المستخدم غير متاح'), [], 401);
         endif;
-        if ($user->tokens()->delete()):
-            return apiResponse(true,_('تم تسجيل الخروج بنجاح'),[]);
-        else:
-            return apiResponse(false,_('حدث خطأ أثناء تسجيل الخروج'),[],500);
+        if ($user->tokens()->delete()) :
+            return apiResponse(true, _('تم تسجيل الخروج بنجاح'), []);
+        else :
+            return apiResponse(false, _('حدث خطأ أثناء تسجيل الخروج'), [], 500);
         endif;
     }
 }

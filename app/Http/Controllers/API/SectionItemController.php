@@ -37,8 +37,6 @@ class SectionItemController extends Controller
      */
     public function show($id)
     {
-        $item =SectionItem::find($id);
-        if(!$item)
     }
 
     /**

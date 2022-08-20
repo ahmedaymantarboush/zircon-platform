@@ -34,6 +34,27 @@ class CenterController extends Controller
         }
     }
 
+    public function fastEdit(){
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $center = Center::find($id);
+        if (!$center) :
+            return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 404);
+        endif;
+        if ($user->role->number < 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
+        endif;
+        return apiResponse(true, _('تم العثور على المحاضرة'), [
+            'name' => $center->name,
+            'url' => $center->url,
+            'governorate' => $center->governorate->id,
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

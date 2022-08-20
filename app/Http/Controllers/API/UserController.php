@@ -32,11 +32,10 @@ class UserController extends Controller
     public function genarateCode()
     {
         $code = Str::random(16);
-        while(User::where('code', $code)->count() > 0)
-        {
+        while (User::where('code', $code)->count() > 0) {
             $code = Str::random(16);
         }
-        return apiResponse(true,_('تم انشاء الكود بنجاح'),['code' => $code]);
+        return apiResponse(true, _('تم انشاء الكود بنجاح'), ['code' => $code]);
     }
     /**
      * Store a newly created resource in storage.
@@ -68,6 +67,117 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function getBalance()
+    {
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $student = User::find($id);
+        if (!$student) :
+            return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
+        endif;
+        if ($user->role->number < 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
+        endif;
+        return apiResponse(true, _('تم العثور على الطالب'), [
+            'balance' => $student->balance,
+        ]);
+    }
+    public function editBalance()
+    {
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $student = User::find($id);
+        if (!$student) :
+            return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
+        endif;
+        if ($user->role->number < 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
+        endif;
+        $student->balance = $data['balance'] ?? 0;
+        $student->save();
+        return apiResponse(true, _('تم العثور على الطالب'), [
+            'balance' => $student->balance,
+        ]);
+    }
+
+    public function getCode()
+    {
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $student = User::find($id);
+        if (!$student) :
+            return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
+        endif;
+        if ($user->role->number < 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
+        endif;
+        return apiResponse(true, _('تم العثور على الطالب'), [
+            'code' => $student->code,
+        ]);
+    }
+    public function editCode()
+    {
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $student = User::find($id);
+        if (!$student) :
+            return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
+        endif;
+        if ($user->role->number < 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
+        endif;
+        $code = $data['code'] ?? 0;
+        if (User::where('code',$code)->first()):
+            return apiResponse(false, _('الكود موجود بالفعل'), [], 404);
+        endif;
+        $student->code = $code;
+        $student->save();
+        return apiResponse(true, _('تم العثور على الطالب'), [
+            'code' => $student->code,
+        ]);
+    }
+    public function getStudentCardData(){
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $student = User::find($id);
+        if (!$student) :
+            return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
+        endif;
+        if ($user->role->number < 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
+        endif;
+        return apiResponse(true, _('تم العثور على الطالب'), [
+            'role' => $student->role->title,
+            'name' => $student->name,
+            'grade' => $student->grade->name,
+            'phoneNumber' => $student->phone_number,
+            'parentPhoneNumber' => $student->parent_phone_number,
+            'governorate' => $student->governorate->name,
+            'center' => $student->center->name,
+            'code' => $student->code,
+        ]);
     }
 
     /**
