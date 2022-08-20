@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Web;
 
 use App\Models\Question;
 use App\Http\Requests\StoreQuestionRequest;
@@ -16,7 +16,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.questionBank',['questions'=>Question::all()]);
     }
 
     /**
