@@ -47,6 +47,9 @@ Route::prefix('admin')->group(function () {
     Route::get('user/create', [UserController::class,'create'])->name('admin.user.create');
     Route::post('user/store', [UserController::class,'store'])->name('admin.user.store');
     Route::post('user/update', [UserController::class,'update'])->name('admin.user.update');
+    
+
+
     Route::get('questions', [QuestionController::class,'index'])->name('admin.questions.index');
     Route::post('questions/filter', [QuestionController::class,'filter'])->name('admin.questions.filter');
     Route::post('questions/destroy', [QuestionController::class,'destroy'])->name('admin.questions.destroy');

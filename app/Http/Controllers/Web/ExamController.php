@@ -19,7 +19,7 @@ class ExamController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.allExams', ['exams' => Exam::all()]);
     }
 
     /**
