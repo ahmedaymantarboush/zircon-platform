@@ -9,7 +9,6 @@ use App\Http\Controllers\Web\LessonController;
 use App\Http\Controllers\Web\SectionController;
 use App\Http\Controllers\Web\LectureController;
 use App\Http\Controllers\Web\UserController;
-use App\Models\Lecture;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
