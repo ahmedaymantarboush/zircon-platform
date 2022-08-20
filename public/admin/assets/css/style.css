@@ -19,7 +19,8 @@ Bold: 700
 */
 :root {
 	--main-color: #2484ff;
-	--font-light: #67748E;
+
+	--font-light: #67748e;
 	--font-dark: #344767;
 	--shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
 }
@@ -810,12 +811,20 @@ th {
 	font-family: "poppins";
 	margin-bottom: 0.5rem;
 }
+.modal {
+	direction: ltr;
+}
 /**/
 .modal-body {
-	padding: 2rem;
+	direction: rtl;
+	padding: 2rem 3rem;
 }
 .modal-header {
+	direction: rtl;
 	padding: 1rem;
+}
+.modal-footer {
+	direction: rtl;
 }
 .modal-title {
 	font-size: 1.8rem;
@@ -823,7 +832,7 @@ th {
 .my-input {
 	border: 1px solid #e0e0e0;
 	width: 100%;
-	padding: 1rem 2rem;
+	padding: 0.8rem 2rem;
 	border-radius: 0.8rem;
 }
 .my-input::placeholder {
@@ -842,4 +851,26 @@ th {
 .modal-footer button {
 	font-size: 1.6rem;
 	padding: 0.5rem 2.5rem;
+}
+.tooltip-inner {
+	font-size: 1.4rem;
+}
+.lectures-table .name-lesson {
+	width: 18rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.less-item input[type="file"] {
+	font-size: 1.6rem;
+}
+.file {
+	margin: 2rem 0 0;
+}
+.file label {
+	font-size: 1.6rem;
+	margin-bottom: 1rem;
+}
+.file input {
+	font-size: 1.4rem;
 }

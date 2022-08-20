@@ -377,21 +377,14 @@
 		display: none;
 	}
 
-	/* .lectures-table tr:nth-child(odd) .number,
-	.lectures-table tr:nth-child(even) td {
-		background-color: rgba(36, 132, 255, 13%);
+	.lectures-table .redBg td {
+		background-color: rgba(234, 6, 6, 0.1);
 	}
-	.lectures-table tr:nth-child(even) .number,
-	.lectures-table tr:nth-child(odd) td {
-		background: #fff;
-	} */
-	.lectures-table .odd .number,
-	.lectures-table .even td {
-		background-color: #fff;
+	.lectures-table .greenBg td {
+		background-color: rgba(158, 214, 22, 0.1);
 	}
-	.lectures-table .even .number,
-	.lectures-table .odd td {
-		background-color: rgba(36, 132, 255, 13%);
+	.lectures-table .blueBg td {
+		background-color: rgba(36, 132, 255, 0.13);
 	}
 
 	.lectures-table td {
@@ -436,5 +429,19 @@
 		width: 4rem;
 		height: 4rem;
 		font-size: 1.8rem;
+	}
+}
+
+@media (max-width: 680px) {
+	.search-field {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.filterSearchParent {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.addLocation {
+		margin: 3rem 0 1.5rem;
 	}
 }

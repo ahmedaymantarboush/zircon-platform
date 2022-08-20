@@ -1,3 +1,4 @@
+$(" select").selectpicker();
 
 /////////////////////
 ////////////////////
@@ -57,3 +58,6 @@ let checkBoxToShow = function (checkInput, ele) {
 	checkInput.addEventListener("click", yes);
 	yes();
 };
+$(function () {
+	$('[data-toggle="tooltip"]').tooltip();
+});
