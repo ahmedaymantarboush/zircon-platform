@@ -36,6 +36,7 @@ Route::get('search', [LectureController::class, 'search'])->name('search');
 Route::get('my-cources', [LectureController::class, 'myLectures'])->name('months.mycources');
 
 //  ADMIN ROUTES
+Route::get('dashboard', [HomeController::class, 'admin'])->name('admin.index');
 Route::prefix('admin')->group(function () {
     Route::resource('lectures',LectureController::class)->except(['show'])->names(['store'=>'admin.lectures.store','update'=>'admin.lectures.update']);
     Route::resource('lessons',LessonController::class)->except(['index'])->names(['store'=>'admin.lesson.store','update'=>'admin.lesson.update','show'=>'admin.lesson.show']);

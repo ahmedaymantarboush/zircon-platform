@@ -33,4 +33,8 @@ class HomeController extends Controller
         ];
         return view('index',compact('lectures'));
     }
+
+    public function admin(){
+        return view('Admin.dashboard');
+    }
 }
