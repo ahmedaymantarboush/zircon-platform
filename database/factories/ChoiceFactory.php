@@ -16,13 +16,13 @@ class ChoiceFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->optional()->sentence();
-        $image = $name ? null : $this->faker->optional()->imageUrl();
-        $video = $image ? null : $this->faker->optional()->url();
-        $audio = $video ? null : $this->faker->optional()->url();
+        $text = $this->faker->optional()->sentence();
+        $image = $text ? null : $this->faker->optional()->imageUrl();
+        $video = $text || $image ? null : $this->faker->optional()->url();
+        $audio = $text || $image || $video ? null : $this->faker->optional()->url();
         return [
             'question_id' => $this->faker->randomElement(\App\Models\Question::all()->pluck('id')),
-            'name' => $name,
+            'text' => $text,
             'image' => $image,
             'video' => $video,
             'audio' => $audio,

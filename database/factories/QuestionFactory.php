@@ -18,6 +18,7 @@ class QuestionFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
+            'text' => $this->faker->text(),
             'image' => $this->faker->imageUrl,
             'video' => $this->faker->url,
             'audio' => $this->faker->url,

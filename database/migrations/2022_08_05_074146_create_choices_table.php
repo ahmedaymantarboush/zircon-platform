@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('question_id')->constrained()->cascadeOnDelete();
             $table->string('name')->nullable();
+            $table->string('text')->nullable();
             $table->string('image')->nullable();
             $table->string('video')->nullable();
             $table->string('audio')->nullable();

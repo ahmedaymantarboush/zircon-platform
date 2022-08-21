@@ -224,13 +224,8 @@
                                 <div class="custome-parent">
                                     <div class="question-code-parent">
                                         <span class="question-mark"><i class="fa-solid fa-question"></i></span>
-                                        <!-- <span
-                                                                                                                       class="question-code"
-                                                                                                                      >
-                                                                                                                       ما هو التيار الكهربي
-                                                                                                                      </span> -->
                                         <button type="button" class="btn question-code" data-toggle="tooltip"
-                                            data-placement="top" title="{{ $question->name }}">
+                                            data-placement="top" title="{{ $question->text }}">
                                             {{ $question->name }}
                                         </button>
                                     </div>

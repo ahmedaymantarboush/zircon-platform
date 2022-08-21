@@ -20,14 +20,15 @@ class AnswerdQuestionFactory extends Factory
      */
     public function definition()
     {
-        $answerId = fake()->randomElement(Choice::all()->pluck('id'));
-        $choice = Choice::find($answerId);
+        $question = Question::find(fake()->randomElement(Question::all()->pluck('id')));
+        $choice = count($question->answers) ? Choice::find(fake()->randomElement($question->answers->pluck('id'))) : null;
+        $correct = count($question->answers) ?  $choice->correct : fake()->boolean();
         return [
             "user_id" => fake()->randomElement(User::all()->pluck('id')),
-            "question_id" => fake()->randomElement(Question::all()->pluck('id')),
+            "question_id" => $question->id,
             "exam_id" => fake()->randomElement(Exam::all()->pluck('id')),
-            "answer" => $answerId,
-            "correct" => $choice->correct
+            "answer" => $choice ? $choice->text : fake()->text(),
+            "correct" => $correct
         ];
     }
 }

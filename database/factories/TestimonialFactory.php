@@ -26,8 +26,8 @@ class TestimonialFactory extends Factory
             'subject_degree'=>fake()->numberBetween(40,60),
             'subject_id'=>1,
             'grade_id'=>fake()->randomElement(Grade::all()->pluck('id')),
-            'teacher_id'=>fake()->randomElement(User::where('role_id',3)->pluck('id')),
-            'student_id'=>fake()->randomElement(User::where('role_id','>=',4)->pluck('id')),
+            'teacher_id'=>fake()->randomElement(User::where('role_num',3)->pluck('id')),
+            'student_id'=>fake()->randomElement(User::where('role_num','>=',4)->pluck('id')),
         ];
     }
 }
