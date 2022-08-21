@@ -111,7 +111,6 @@ let addEditModalFunction = (parent) => {
     let answerParent = document.querySelector("." + parent + " .answersParent");
     let answerLabel = document.querySelector("." + parent + " #answerLabel");
     let nextBtn = document.querySelector("." + parent + " .nextBtn");
-    console.log(answerLabel);
     let exportInput = function () {
         let lengthOfQuestion = maxQuestion();
         answerParent.innerHTML = "";
@@ -170,7 +169,6 @@ let editFun = async function (url, myData, el = null) {
         let responseData = await postData.json();
 
         if (postData.status == 200) {
-            console.log(responseData);
             return responseData;
         }
         return null;
@@ -182,7 +180,7 @@ let editFun = async function (url, myData, el = null) {
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("q-modify")) return;
     let dataId = e.target.closest("tr").dataset.id;
-    console.log(dataId);
+
     let sendObj = {
         id: dataId,
     };
@@ -196,7 +194,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     let objData = myResponse.data;
-    console.log(objData);
+
     let questionAddress = document.querySelector(
         ".editModalForm #questionAddress"
     );
@@ -229,7 +227,9 @@ document.querySelector("table").addEventListener("click", async function (e) {
         ".editModalForm #chooseHard option"
     );
     let ansewrsCount = document.querySelector(".editModalForm #ansewrsCount");
-    let description = document.querySelector(".editModalForm .ck-content ");
+    let description = document.querySelector(
+        ".editModalForm .ck-editor__editable "
+    );
 
     ////////////////////
     //// fill data/////
@@ -256,7 +256,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
 
     ansewrsCount.value = objData.choicesCount;
 
-    description.innerHTML = objData.text;
+    description.ckeditorInstance.setData(objData.text);
     let nextEditModal = document.querySelector(".editModalForm .nextBtn");
     nextEditModal.addEventListener("click", function () {
         let answersInput = document.querySelectorAll(".answersInput");
