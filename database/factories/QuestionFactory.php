@@ -22,7 +22,7 @@ class QuestionFactory extends Factory
             'image' => $this->faker->imageUrl,
             'video' => $this->faker->url,
             'audio' => $this->faker->url,
-            'type' => $this->faker->randomElement(['MCQ','Written']),
+            'type' => 'MCQ',
             'explanation' => $this->faker->text(),
             'level' => $this->faker->numberBetween(1,10),
             'grade_id' => $this->faker->randomElement(\App\Models\Grade::all()->pluck('id')),

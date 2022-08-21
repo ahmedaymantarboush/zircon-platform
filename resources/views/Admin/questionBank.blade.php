@@ -1015,7 +1015,6 @@
                                                 {{ $part->name }}
                                             </option>
                                         @endforeach
-
                                     </select>
                                     @error('part')
                                         <span class="invalid-feedback" role="alert">

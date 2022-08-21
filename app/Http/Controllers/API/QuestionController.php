@@ -50,13 +50,13 @@ class QuestionController extends Controller
         if ($question->publisher->id != $user->id) :
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل السؤال'), [], 403);
         endif;
-        $answers = [];
-        if ($question->answers) :
-            foreach ($question->answers as $answer) {
-                $answers[] = [
-                    'id' => $answer->id,
-                    'name' => $answer->name,
-                    'isCorrect' => $answer->is_correct,
+        $choices = [];
+        if ($question->choices) :
+            foreach ($question->choices as $choice) {
+                $choices[] = [
+                    'id' => $choice->id,
+                    'name' => $choice->name,
+                    'isCorrect' => $choice->correct,
                 ];
             }
         endif;
@@ -66,10 +66,10 @@ class QuestionController extends Controller
             'subject' => $question->subject->id,
             'part' => $question->part->id,
             'level' => $question->level,
-            'answersCount' => count($answers),
+            'choicesCount' => count($choices),
             'text' => $question->text,
             'image' => $question->image,
-            'answers' => $answers,
+            'choices' => $choices,
         ]);
     }
 
