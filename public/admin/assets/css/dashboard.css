@@ -1,0 +1,487 @@
+.daily {
+	margin-top: 4rem;
+
+	justify-content: center;
+}
+.daily-box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem 1.5rem;
+	background-color: #fff;
+	box-shadow: var(--shadow);
+	border-radius: 10px;
+	margin-bottom: 2rem;
+}
+.daily > div:not(:last-of-type) {
+	padding-left: 0.5rem;
+}
+.daily-box .daily-name {
+	font-size: 1.1rem;
+	margin-bottom: 1rem;
+	font-weight: 600;
+	color: var(--font-light);
+}
+.daily-box .daily-p {
+	font-size: 1.6rem;
+	color: var(--font-dark);
+	display: flex;
+	align-items: center;
+}
+.daily-box .daily-p .percent {
+	margin-right: 0.8rem;
+	color: #9ed616;
+	font-size: 1.4rem;
+	margin-top: 0.3rem;
+	font-weight: bold;
+}
+.daily-box .daily-icon {
+	width: 4.5rem;
+	height: 4.5rem;
+	background: linear-gradient(to bottom right, #2484ff 0%, #124280 90%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-size: 2rem;
+	border-radius: 1.2rem;
+}
+/*****************start team ******************/
+
+.team {
+	justify-content: space-between;
+}
+.team > div:not(:last-of-type) {
+	padding-left: 1.5rem;
+}
+.release {
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem 1.5rem;
+}
+.team-image {
+	width: 30%;
+	background: linear-gradient(to right, #2484ff, #3645fa);
+	padding: 1rem 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 2rem;
+}
+.release-content {
+	width: 60%;
+	padding-top: 3rem;
+}
+.team-by {
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
+}
+.team-name {
+	font-size: 1.8rem;
+	color: var(--font-dark);
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+.sum-details {
+	font-size: 1.2rem;
+	margin-bottom: 4rem;
+}
+.page {
+	font-size: 1.2rem;
+	display: flex;
+	align-items: center;
+}
+.page svg {
+	margin-right: 0.5rem;
+}
+.page:hover {
+	display: flex;
+}
+.page:hover svg {
+	margin-right: 1rem;
+}
+.apexcharts-legend,
+.apexcharts-toolbar {
+	display: none !important;
+}
+
+.type {
+	display: flex;
+	justify-content: center;
+}
+.type div {
+	margin: 0 0.5rem;
+	padding-right: 1.5rem;
+	position: relative;
+	font-size: 1.4rem;
+}
+.type div:after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+	border-radius: 50%;
+	width: 1rem;
+	height: 1rem;
+}
+.type div:first-of-type:after {
+	background-color: #2484ff;
+}
+.type div:last-of-type:after {
+	background-color: #3645fa;
+}
+
+/*********curves**********/
+.apexcharts-yaxis-title {
+	display: none;
+}
+.curves {
+	justify-content: space-between;
+}
+.curves div {
+	display: flex;
+	justify-content: center;
+	direction: ltr;
+	align-items: center;
+}
+.curves div::-webkit-scrollbar,
+.visitors div::-webkit-scrollbar {
+	display: none;
+}
+
+.column-contnet {
+	display: flex;
+}
+.column-contnet div,
+.spline-contnet div {
+	margin: 1rem 1rem;
+	padding-right: 1.2rem;
+	font-size: 1.4rem;
+	position: relative;
+}
+.column-contnet div::after,
+.spline-contnet div::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+	border-radius: 0.2rem;
+	width: 1rem;
+	height: 1rem;
+}
+.spline-contnet div::after {
+	border-radius: 50%;
+}
+.column-contnet .item1::after {
+	background-color: #2484ff;
+}
+.column-contnet .item2::after {
+	background-color: #344767;
+}
+.column-contnet .item3::after {
+	background-color: #3645fa;
+}
+.spline-contnet .item1::after {
+	background-color: #344767;
+}
+.spline-contnet .item2::after {
+	background-color: #2484ff;
+}
+/*********visitors**********/
+.visitors {
+	justify-content: space-between;
+}
+.visits-curve-parent {
+	position: relative;
+}
+.visits-content {
+	position: absolute;
+	top: 5rem;
+	right: 5rem;
+}
+.visits-curve {
+	min-width: 200%;
+	margin-right: -100%;
+}
+.visitors-name {
+	font-size: 2.4rem;
+	color: var(--font-dark);
+	font-weight: 600;
+}
+.visits-count {
+	font-size: 2.6rem;
+	margin-top: 1rem;
+	font-family: "poppins";
+	color: var(--font-light);
+	font-weight: 400;
+}
+.visits-content .percent {
+	font-size: 1.6rem !important;
+}
+/********* add student **********/
+.add-student-parent {
+	justify-content: center;
+	overflow-y: scroll;
+	max-height: 30rem;
+	padding: 1rem;
+}
+.add-student {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	padding: 1rem 1.5rem;
+	align-items: center;
+}
+.add-student .student-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 5rem;
+	border-radius: 1.2rem;
+	height: 5rem;
+	box-shadow: var(--shadow);
+	background-color: #2484ff;
+	color: #fff;
+	font-size: 2.8rem;
+}
+.add-student .student-level {
+	font-size: 1.4rem;
+
+	color: var(--font-light);
+}
+.add-student .total {
+	font-size: 2rem;
+	font-weight: bold;
+	color: var(--font-dark);
+}
+.add-student .total span {
+	margin-right: -0.3rem;
+}
+.add-student .add-btn {
+	background: none;
+	transition: 0.3s all ease;
+	border: none;
+	font-size: 1.8rem;
+	color: var(--font-light);
+}
+.add-student .add-btn:hover {
+	color: var(--main-color);
+}
+.daily {
+	margin-top: 4rem;
+
+	justify-content: center;
+}
+
+.daily > div:not(:last-of-type) {
+	padding-left: 0.5rem;
+}
+.daily-box .daily-name {
+	font-size: 1.1rem;
+	margin-bottom: 1rem;
+	font-weight: 600;
+	color: var(--font-light);
+}
+.daily-box .daily-p {
+	font-size: 1.6rem;
+	color: var(--font-dark);
+	display: flex;
+	align-items: center;
+}
+.daily-box .daily-p .percent {
+	margin-right: 0.8rem;
+	color: #9ed616;
+	font-size: 1.4rem;
+	margin-top: 0.3rem;
+	font-weight: bold;
+}
+.daily-box .daily-icon {
+	width: 4.5rem;
+	height: 4.5rem;
+	background: linear-gradient(to bottom right, #2484ff 0%, #124280 90%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-size: 2rem;
+	border-radius: 1.2rem;
+}
+/*****************start team ******************/
+
+.team {
+	justify-content: space-between;
+}
+.team > div:not(:last-of-type) {
+	padding-left: 1.5rem;
+}
+.release {
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem 1.5rem;
+}
+.team-image {
+	width: 30%;
+	background: linear-gradient(to right, #2484ff, #3645fa);
+	padding: 1rem 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 2rem;
+}
+.release-content {
+	width: 60%;
+	padding-top: 3rem;
+}
+.team-by {
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
+}
+.team-name {
+	font-size: 1.8rem;
+	color: var(--font-dark);
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+.sum-details {
+	font-size: 1.2rem;
+	margin-bottom: 4rem;
+}
+.page {
+	font-size: 1.2rem;
+	display: flex;
+	align-items: center;
+}
+.page svg {
+	margin-right: 0.5rem;
+}
+.page:hover {
+	display: flex;
+}
+.page:hover svg {
+	margin-right: 1rem;
+}
+.apexcharts-legend,
+.apexcharts-toolbar {
+	display: none !important;
+}
+
+.type {
+	display: flex;
+	justify-content: center;
+}
+.type div {
+	margin: 0 0.5rem;
+	padding-right: 1.5rem;
+	position: relative;
+	font-size: 1.4rem;
+}
+.type div:after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+	border-radius: 50%;
+	width: 1rem;
+	height: 1rem;
+}
+.type div:first-of-type:after {
+	background-color: #2484ff;
+}
+.type div:last-of-type:after {
+	background-color: #3645fa;
+}
+
+/*********curves**********/
+.apexcharts-yaxis-title {
+	display: none;
+}
+.curves {
+	justify-content: space-between;
+}
+.curves div {
+	display: flex;
+	justify-content: center;
+	direction: ltr;
+	align-items: center;
+}
+.curves div::-webkit-scrollbar,
+.visitors div::-webkit-scrollbar {
+	display: none;
+}
+
+.column-contnet {
+	display: flex;
+}
+.column-contnet div,
+.spline-contnet div {
+	margin: 1rem 1rem;
+	padding-right: 1.2rem;
+	font-size: 1.4rem;
+	position: relative;
+}
+.column-contnet div::after,
+.spline-contnet div::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+	border-radius: 0.2rem;
+	width: 1rem;
+	height: 1rem;
+}
+.spline-contnet div::after {
+	border-radius: 50%;
+}
+.column-contnet .item1::after {
+	background-color: #2484ff;
+}
+.column-contnet .item2::after {
+	background-color: #344767;
+}
+.column-contnet .item3::after {
+	background-color: #3645fa;
+}
+.spline-contnet .item1::after {
+	background-color: #344767;
+}
+.spline-contnet .item2::after {
+	background-color: #2484ff;
+}
+/*********visitors**********/
+.visitors {
+	justify-content: space-between;
+}
+.visits-curve-parent {
+	position: relative;
+}
+.visits-content {
+	position: absolute;
+	top: 5rem;
+	right: 5rem;
+}
+.visits-curve {
+	min-width: 200%;
+	margin-right: -100%;
+}
+.visitors-name {
+	font-size: 2.4rem;
+	color: var(--font-dark);
+	font-weight: 600;
+}
+.visits-count {
+	font-size: 2.6rem;
+	margin-top: 1rem;
+	font-family: "poppins";
+	color: var(--font-light);
+	font-weight: 400;
+}
+.visits-content .percent {
+	font-size: 1.6rem !important;
+}
+.__web-inspector-hide-shortcut__{
+	visibility: hidden !important;
+}

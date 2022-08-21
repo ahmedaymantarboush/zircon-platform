@@ -16,15 +16,23 @@ let addElement = function (ele, className) {
 ///////////////////////////////////
 // [01- dark and light ]
 let funChangeImagesDark = function () {
-    // let paperImg1 = document.querySelector(".paper img");
-    // let paperImg2 = document.querySelector(".paper2 img");
-    // if (document.documentElement.classList.contains("dark")) {
-    //     paperImg1.setAttribute("src", "../imgs/paperdark.png");
-    //     paperImg2.setAttribute("src", "../imgs/paper2_dark.png");
-    // } else {
-    //     paperImg1.setAttribute("src", "../imgs/paper.png");
-    //     paperImg2.setAttribute("src", "../imgs/paper2.png");
-    // }
+    let paperImg1 = document.querySelector(".paper img");
+    let paperImg2 = document.querySelector(".paper2 img");
+    if (document.documentElement.classList.contains("dark")) {
+        if(window.innerWidth <=768){
+            paperImg2.setAttribute("src", "../imgs/mob_banner_dark.png");
+        }else {
+            paperImg2.setAttribute("src", "../imgs/profile_banner_dark.png");
+        }
+        paperImg1.setAttribute("src", "../imgs/paper2_dark_p.png");
+    } else {
+        if(window.innerWidth <=768){
+            paperImg2.setAttribute("src", "../imgs/mob_banner.png");
+        }else {
+            paperImg2.setAttribute("src", "../imgs/profile_banner.png");
+        }
+        paperImg1.setAttribute("src", "../imgs/paper2.png");
+    }
 };
 
 let addStyleToLocaleStorage = function () {

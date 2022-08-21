@@ -383,8 +383,8 @@ nav .customeContainer {
 *********** start header ********************
 *******************************************/
 .header {
-    padding: 12rem 0 6rem;
-    background: url(../imgs/thumbnail_1.png) no-repeat;
+    padding: 17rem 0 17rem;
+    background: url(../imgs/lecture_banner.png) no-repeat;
     background-position: center;
     background-size: cover;
     display: flex;
@@ -395,6 +395,7 @@ nav .customeContainer {
     color: var(--font-dark);
     font-size: 2.8rem;
     font-weight: bold;
+    text-align: center;
 }
 .grade1 .pageName span {
     color: var(--l-red-color);

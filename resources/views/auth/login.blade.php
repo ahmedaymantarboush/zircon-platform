@@ -14,7 +14,7 @@
         <h2>تسجيل الدخول</h2>
 
         <form action="{{ route('login') }}" method="post">
-            @csrf-
+            @csrf
             <div class="box @error('email') isInvalid @enderror">
                 <div class="inputItem">
                     <span class='inputIcon'><i class="fa-solid fa-envelope"></i></span>
@@ -39,5 +39,5 @@
             </div>
         </form>
 
-    </div>+
+    </div>
 @endsection

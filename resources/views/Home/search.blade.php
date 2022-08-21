@@ -1,7 +1,7 @@
 @extends('layouts.HomeLayout')
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('css/search.css') }} " class="rel">
-    <link rel="stylesheet" href="{{ URL::asset('css/search-responsive.css') }} " class="rel">
+    <link rel="stylesheet" href="{{ asset('css/search.css') }} " class="rel">
+    <link rel="stylesheet" href="{{ asset('css/search-responsive.css') }} " class="rel">
 @endsection
 @section('content')
     <section class="header">
@@ -244,11 +244,11 @@
         </div>
     @else
         <div class="errorImage">
-            <img src="{{ URL::asset('imgs/no-result-search.png') }}" alt="">
+            <img src="{{ asset('imgs/no-result-search.png') }}" alt="">
         </div>
     @endif
 @endsection
 @section('javascript')
     <!-- main js file -->
-    <script src="{{ URL::asset('js/search.js') }}"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
 @endsection

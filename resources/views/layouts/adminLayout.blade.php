@@ -173,4 +173,5 @@
         </div>
     </div>
 </section>
+@yield('extra')
 @include('includes.admin.footer')

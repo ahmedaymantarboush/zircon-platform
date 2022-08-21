@@ -123,6 +123,16 @@
     .preview-card-image {
         display: none;
     }
+    .header{
+        padding: 15rem 0 12rem;
+    }
+    .month{
+        padding: 2rem 0;
+    }
+    .lec-image-content,.lec-hero-image img{
+        border-radius: 10px;
+    }
+
 }
 @media (max-width: 480px) {
     html {
