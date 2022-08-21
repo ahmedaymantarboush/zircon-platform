@@ -27,7 +27,6 @@
 
 		<!-- css file -->
 		<!-- موجود في كله  -->
-		<link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}" />
 
         @yield('css')
 
