@@ -55,7 +55,7 @@ class QuestionController extends Controller
             foreach ($question->choices as $choice) {
                 $choices[] = [
                     'id' => $choice->id,
-                    'name' => $choice->name,
+                    'text' => $choice->text,
                     'isCorrect' => $choice->correct,
                 ];
             }
