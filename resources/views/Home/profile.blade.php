@@ -9,7 +9,7 @@
 
 @section('content')
     <section class="main">
-        <div class="bg nonePrint">
+        <div class="bg nonePrint paper2">
             <img src="{{ URL::asset('imgs/course-1.png') }}" alt="">
         </div>
         <div class="container">

@@ -129,7 +129,7 @@
         </div>
     </nav>
     <div class="header">
-        <div class="container">
+        <div class="container"style="margin-top: -10px;">
             <div class="headerContent">
                 <div class="lec-hero-image ontop">
                     <div class="lec-image-content">

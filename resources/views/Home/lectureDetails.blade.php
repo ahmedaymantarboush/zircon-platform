@@ -1,7 +1,7 @@
 @extends('layouts.HomeLayout')
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('css/lecture.css') }} " class="rel">
-    <link rel="stylesheet" href="{{ URL::asset('css/lecture-responsive.css') }} " class="rel">
+    <link rel="stylesheet" href="{{ asset('css/lecture.css') }} " class="rel">
+    <link rel="stylesheet" href="{{ asset('css/lecture-responsive.css') }} " class="rel">
 @endsection
 @section('beforeNav')
     <div class="overlay"></div>
@@ -423,5 +423,5 @@
     </div>
 @endsection
 @section('js')
-    <script src="{{ URL::asset('js/lecture.js') }}"></script>
+    <script src="{{ asset('js/lecture.js') }}"></script>
 @endsection

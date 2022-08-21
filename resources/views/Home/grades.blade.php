@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{ URL::asset('css/levels-responsive.css') }} " class="rel">
 @endsection
 @section('content')
-    <section class="header grade{{$lectures[0]->grade->id}}">
+    <section class="header grade {{$lectures[0]->grade->id}}">
         @php
             $grades = [
                 '1' => "الأول الثانوي",

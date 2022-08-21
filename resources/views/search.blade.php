@@ -17,17 +17,17 @@
 
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="{{URL::asset('css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/all.min.css')}}">
 
 
     <!--swiper-->
 
     <!--bootstrap-->
-    <link rel="stylesheet" href="{{URL::asset('css/bootstrap-rtl.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-rtl.min.css')}}">
 
     <!-- css file -->
-    <link rel="stylesheet" href="{{URL::asset('css/search.css')}} " class="rel">
-    <link rel="stylesheet" href="{{URL::asset('css/search-responsive.css')}} " class="rel">
+    <link rel="stylesheet" href="{{asset('css/search.css')}} " class="rel">
+    <link rel="stylesheet" href="{{asset('css/search-responsive.css')}} " class="rel">
 
 </head>
 
@@ -40,7 +40,7 @@
         <div class="customeContainer">
             <div class="right">
                 <div class=" navAtom">
-                    <img src="{{ URL::asset('imgs/logoAtom.png') }}" alt="">
+                    <img src="{{ asset('imgs/logoAtom.png') }}" alt="">
 
 
                 </div>
@@ -97,7 +97,7 @@
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/apple.png') }}" alt="">
+                                    <img src="{{ asset('imgs/apple.png') }}" alt="">
                                 </span>
                                 <span class="regType">
                                     أنشئ حساب <span class='d-redColor'>جديد</span>
@@ -111,7 +111,7 @@
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
+                                    <img src="{{ asset('imgs/drop.png') }}" alt="">
                                 </span>
                                 <span class="regType">
                                     تسجيل <span class='d-blueColor'>الدخول</span>
@@ -124,7 +124,7 @@
             </div>
         </div>
     </nav>
-    <section class="header">
+    <section class="header d-flex justify-content-center align-items-center">
         <h2 class='pageName'>تم العثور علي 530 من النتائج <span>"الباب الاول"</span></h2>
     </section>
     <div class="searchParent">
@@ -309,7 +309,7 @@
 
                                 <div class="levelContentParent">
                                     <div class="levelImage">
-                                        <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                        <img src="{{ asset('imgs/thumbnail_1.png') }}" alt="">
                                     </div>
 
 
@@ -347,7 +347,7 @@
 
                                 <div class="levelContentParent">
                                     <div class="levelImage">
-                                        <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                        <img src="{{ asset('imgs/thumbnail_1.png') }}" alt="">
                                     </div>
 
 
@@ -385,7 +385,7 @@
 
                                 <div class="levelContentParent">
                                     <div class="levelImage">
-                                        <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                        <img src="{{ asset('imgs/thumbnail_1.png') }}" alt="">
                                     </div>
 
 
@@ -423,7 +423,7 @@
 
                                 <div class="levelContentParent">
                                     <div class="levelImage">
-                                        <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                        <img src="{{ asset('imgs/thumbnail_1.png') }}" alt="">
                                     </div>
 
 
@@ -461,7 +461,7 @@
 
                                 <div class="levelContentParent">
                                     <div class="levelImage">
-                                        <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                        <img src="{{ asset('imgs/thumbnail_1.png') }}" alt="">
                                     </div>
 
 
@@ -499,7 +499,7 @@
 
                                 <div class="levelContentParent">
                                     <div class="levelImage">
-                                        <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                        <img src="{{ asset('imgs/thumbnail_1.png') }}" alt="">
                                     </div>
 
 
@@ -772,18 +772,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
     <!--font awesome-->
-    <script src="{{URL::asset('js/all.min.js')}}"></script>
+    <script src="{{asset('js/all.min.js')}}"></script>
 
 
     <!--jquery js-->
-    <script src="{{URL::asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
 
     <!--bootstrap js-->
-    <script src="{{URL::asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 
 
     <!-- main js file -->
-    <script src="{{URL::asset('js/search.js')}}"></script>
+    <script src="{{asset('js/search.js')}}"></script>
 </body>
 
 </html>

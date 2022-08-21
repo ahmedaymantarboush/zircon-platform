@@ -435,9 +435,7 @@ nav .customeContainer {
     max-width: 1320px;
 }
 .header {
-    padding: 14rem 0 7rem;
-    /* background: url(../imgs/thumbnail_1.png) no-repeat; */
-    background: var(--main-bg);
+    padding: 11rem 0 7rem;
     transition: 0.3s all ease;
     background-position: center;
     background-size: cover;
@@ -633,7 +631,7 @@ nav .customeContainer {
     color: #fff;
 
     flex-direction: column;
-    background-color: rgb(31, 29, 14, 0.69);
+    background-color: rgb(31 29 14 / 36%);
 }
 .lec-image-content .play {
     border-radius: 50%;

@@ -17,18 +17,18 @@
 
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="{{URL::asset('css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/all.min.css')}}">
 
 
     <!--swiper-->
-    <link rel="stylesheet" href="{{URL::asset('css/swiper.bundle.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/swiper.bundle.min.css')}}">
 
     <!--bootstrap-->
-    <link rel="stylesheet" href="{{URL::asset('css/bootstrap-rtl.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-rtl.min.css')}}">
 
     <!-- css file -->
-    <link rel="stylesheet" href="{{URL::asset('css/profile.css')}} " class="rel">
-    <link rel="stylesheet" href="{{URL::asset('css/profile-responsive.css')}} " class="rel">
+    <link rel="stylesheet" href="{{asset('css/profile.css')}} " class="rel">
+    <link rel="stylesheet" href="{{asset('css/profile-responsive.css')}} " class="rel">
 
 </head>
 
@@ -41,7 +41,7 @@
         <div class="customeContainer">
             <div class="right">
                 <div class=" navAtom">
-                    <img src="{{ URL::asset('imgs/logoAtom.png') }}" alt="">
+                    <img src="{{ asset('imgs/logoAtom.png') }}" alt="">
 
 
                 </div>
@@ -98,7 +98,7 @@
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/apple.png') }}" alt="">
+                                    <img src="{{ asset('imgs/apple.png') }}" alt="">
                                 </span>
                                 <span class="regType">
                                     أنشئ حساب <span class='d-redColor'>جديد</span>
@@ -112,7 +112,7 @@
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
+                                    <img src="{{ asset('imgs/drop.png') }}" alt="">
                                 </span>
                                 <span class="regType">
                                     تسجيل <span class='d-blueColor'>الدخول</span>
@@ -126,8 +126,8 @@
         </div>
     </nav>
     <section class="main">
-        <div class="bg nonePrint">
-            <img src="{{URL::asset('imgs/course-1.png')}}" alt="">
+        <div class="bg nonePrint paper2">
+            <img src="{{asset('imgs/profile_banner.png')}}" alt="">
         </div>
         <div class="container">
             <div class="row">
@@ -189,7 +189,7 @@
                 <div class="col-lg-4 col-md-5 mb-30 leftProfile ">
                     <div class="whiteBox profileDetails ">
                         <div class="profileImg">
-                            <img src="{{URL::asset('imgs/user.png')}}" alt="">
+                            <img src="{{asset('imgs/user.png')}}" alt="">
                         </div>
                         <div class="profileContent">
                             <div class="personalInformation">
@@ -197,7 +197,7 @@
                                 <span class='profileType'>طالب</span>
                             </div>
                             <div class="paper">
-                                <img src="{{URL::asset('imgs/paper2.png')}}" alt="">
+                                <img src="{{asset('imgs/paper2.png')}}" alt="">
                             </div>
                             <div class="someDetails">
                                 <div class="control">
@@ -251,7 +251,7 @@
                                 الصف الاول الثانوي
                             </div>
                             <div class="image">
-                                <img src="{{URL::asset('imgs/thumbnail_1.png')}}" alt="">
+                                <img src="{{asset('imgs/thumbnail_1.png')}}" alt="">
                             </div>
                             <div class="content">
                                 <div class="lessonsCount">
@@ -280,7 +280,7 @@
                                 الصف الاول الثانوي
                             </div>
                             <div class="image">
-                                <img src="{{URL::asset('imgs/thumbnail_1.png')}}" alt="">
+                                <img src="{{asset('imgs/thumbnail_1.png')}}" alt="">
                             </div>
                             <div class="content">
                                 <div class="lessonsCount">
@@ -309,7 +309,7 @@
                                 الصف الاول الثانوي
                             </div>
                             <div class="image">
-                                <img src="{{URL::asset('imgs/thumbnail_1.png')}}" alt="">
+                                <img src="{{asset('imgs/thumbnail_1.png')}}" alt="">
                             </div>
                             <div class="content">
                                 <div class="lessonsCount">
@@ -338,7 +338,7 @@
                                 الصف الاول الثانوي
                             </div>
                             <div class="image">
-                                <img src="{{URL::asset('imgs/thumbnail_1.png')}}" alt="">
+                                <img src="{{asset('imgs/thumbnail_1.png')}}" alt="">
                             </div>
                             <div class="content">
                                 <div class="lessonsCount">
@@ -367,7 +367,7 @@
                                 الصف الاول الثانوي
                             </div>
                             <div class="image">
-                                <img src="{{URL::asset('imgs/thumbnail_1.png')}}" alt="">
+                                <img src="{{asset('imgs/thumbnail_1.png')}}" alt="">
                             </div>
                             <div class="content">
                                 <div class="lessonsCount">
@@ -715,21 +715,21 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- barcode  -->
     <!-- هنا بس  -->
-    <script src="{{URL::asset('js/jsBarCode.all.min.js')}}"></script>
+    <script src="{{asset('js/jsBarCode.all.min.js')}}"></script>
     <!--font awesome-->
-    <script src="{{URL::asset('js/all.min.js')}}"></script>
+    <script src="{{asset('js/all.min.js')}}"></script>
 
     <!-- هنا و الهوم  -->
-    <script src="{{URL::asset('js/swiper.bundle.min.js')}}"></script>
+    <script src="{{asset('js/swiper.bundle.min.js')}}"></script>
     <!--jquery js-->
-    <script src="{{URL::asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
 
     <!--bootstrap js-->
-    <script src="{{URL::asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 
 
     <!-- main js file -->
-    <script src="{{URL::asset('js/profile.js')}}"></script>
+    <script src="{{asset('js/profile.js')}}"></script>
 </body>
 
 </html>
