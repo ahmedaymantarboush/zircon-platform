@@ -16,16 +16,16 @@ class ChoiceFactory extends Factory
      */
     public function definition()
     {
-        $text = $this->faker->optional()->sentence();
-        $image = $text ? null : $this->faker->optional()->imageUrl();
-        $video = $text || $image ? null : $this->faker->optional()->url();
-        $audio = $text || $image || $video ? null : $this->faker->optional()->url();
+        $text = $this->faker->sentence();
+        // $image = $text ? null : $this->faker->optional()->imageUrl();
+        // $video = $text || $image ? null : $this->faker->optional()->url();
+        // $audio = $text || $image || $video ? null : $this->faker->optional()->url();
         return [
             'question_id' => $this->faker->randomElement(\App\Models\Question::all()->pluck('id')),
             'text' => $text,
-            'image' => $image,
-            'video' => $video,
-            'audio' => $audio,
+            // 'image' => $image,
+            // 'video' => $video,
+            // 'audio' => $audio,
             'correct' => $this->faker->randomElement([true, false]),
         ];
     }
