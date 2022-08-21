@@ -594,7 +594,7 @@
                                 <label class="sec-name">الجزئية الدراسية</label>
                                 <div class="search-select modify-select" id="select-part-parent">
                                     <select name="" id="" class="@error('title') is-invalid @enderror"
-                                        data-live-search="true" multiple>
+                                        data-live-search="true">
                                         <option value="">
                                             اختر القسم الذي يتبعه هذا الدرس
                                         </option>
@@ -619,7 +619,7 @@
                                 <label class="sec-name">درجة الصعوبة</label>
                                 <div class="search-select modify-select" id="select-part-parent">
                                     <select name="" id="" class="" data-live-search="true"
-                                        multiple>
+                                       >
                                         <option value="">
                                             اختر القسم الذي يتبعه هذا الدرس
                                         </option>
@@ -800,7 +800,7 @@
                                 <label class="sec-name">الجزئية الدراسية</label>
                                 <div class="search-select modify-select" id="select-part-parent">
                                     <select name="newPart" id="" class="@error('newPart') is-invalid @enderror"
-                                        data-live-search="true" multiple>
+                                        data-live-search="true">
                                         <option value="">
                                             اختر الجزئية الدراسية
                                         </option>
@@ -822,7 +822,7 @@
                                 <label class="sec-name">درجة الصعوبة</label>
                                 <div class="search-select modify-select" id="select-part-parent">
                                     <select name="newLevel" id=""
-                                        class="@error('newLevel') is-invalid @enderror" data-live-search="true" multiple>
+                                        class="@error('newLevel') is-invalid @enderror" data-live-search="true">
                                         <option value="">
                                             اختر درجة الصعوبة
                                         </option>
@@ -1006,7 +1006,7 @@
                                 <label class="sec-name">الجزئية الدراسية</label>
                                 <div class="search-select modify-select" id="select-part-parent">
                                     <select name="part" id="" class="@error('part') is-invalid @enderror"
-                                        data-live-search="true" multiple>
+                                        data-live-search="true">
                                         <option value="">
                                             اختر الجزئية الدراسية
                                         </option>
@@ -1028,7 +1028,7 @@
                                 <label class="sec-name">درجة الصعوبة</label>
                                 <div class="search-select modify-select" id="select-part-parent">
                                     <select name="level" id="" class="@error('level') is-invalid @enderror"
-                                        data-live-search="true" multiple>
+                                        data-live-search="true">
                                         <option value="">
                                             اختر درجة الصعوبة
                                         </option>
