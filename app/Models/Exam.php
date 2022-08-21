@@ -120,6 +120,11 @@ class Exam extends Model
     {
         return $this->hasMany(PassedExam::class, 'exam_id');
     }
+    
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'passed_exams', 'exam_id', 'user_id');
+    }
 
     public function answerdQuestions()
     {

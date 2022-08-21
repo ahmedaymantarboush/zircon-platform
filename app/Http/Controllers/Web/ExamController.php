@@ -69,6 +69,16 @@ class ExamController extends Controller
         endif;
     }
 
+    public function students($id)
+    {
+        $exam = Exam::find($id);
+        if ($exam ? $exam->user_id == Auth::user()->id : false):
+            return view('admin.examStudents', ['students' => $exam->students]);
+        else:
+            return abort(404);
+        endif;
+    }
+
     /**
      * Display the specified resource.
      *

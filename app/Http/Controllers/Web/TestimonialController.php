@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
 use App\Http\Requests\StoreTestimonialRequest;
 use App\Http\Requests\UpdateTestimonialRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TestimonialController extends Controller
 {
@@ -15,7 +17,12 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false):
+            return view('Admin.certificates', ['certificates' => Testimonial::all()]);
+        else:
+            return abort(404);
+        endif;
     }
 
     /**

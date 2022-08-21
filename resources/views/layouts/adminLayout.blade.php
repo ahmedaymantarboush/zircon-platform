@@ -146,7 +146,13 @@
                     </div>
                     <div class="admin-name">
                         <a href="#"><i class="fa-solid fa-user"></i></a>
-                        {{-- <p>@php $names = explode(' ',Auth::user()->name);@endphp @if (count($names) > 4){{ $names[0] }} {{ $names[1] }} {{ $names[2] }} {{ $names[3] }}@else{{ Auth::user()->name }}@endif</p> --}}
+                        @if (Auth::check())
+                            <p>@php $names = explode(' ',Auth::user()->name);@endphp @if (count($names) > 4)
+                                    {{ $names[0] }} {{ $names[1] }} {{ $names[2] }}
+                                    {{ $names[3] }}@else{{ Auth::user()->name }}
+                                @endif
+                            </p>
+                        @endif
                     </div>
                     <div class="open-signup">
                         <button class="open-signup-btn">

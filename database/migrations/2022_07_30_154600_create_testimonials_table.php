@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('image');
             $table->float('degree');
             $table->string('content');
+            $table->float('subject_degree');
+            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('teacher_id')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->foreignId('student_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

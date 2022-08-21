@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Web\TestimonialController;
 use App\Http\Controllers\Web\QuestionController;
 use App\Http\Controllers\Web\BalanceCardController;
 use App\Http\Controllers\Web\ExamController;
@@ -43,6 +44,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('sections',SectionController::class)->except(['show']);
     Route::resource('sectionitems',SectionItemController::class)->except(['show']);
     Route::resource('exams',ExamController::class)->except(['show'])->names(['store'=>'admin.exams.store','update'=>'admin.exams.update']);
+    Route::get('exams/{id}/students',[ExamCoZntroller::class,'students'])->name('admin.exams.students');
     Route::post('/sort-sections',[SectionController::class, 'sortSections'])->name('sections.resort');
     Route::post('/sort-items',[SectionItemController::class, 'sortItems'])->name('sectionitems.resort');
     Route::get('user/create', [UserController::class,'create'])->name('admin.user.create');
@@ -54,6 +56,8 @@ Route::prefix('admin')->group(function () {
     Route::get('questions', [QuestionController::class,'index'])->name('admin.questions.index');
     Route::post('questions/filter', [QuestionController::class,'filter'])->name('admin.questions.filter');
     Route::post('questions/destroy', [QuestionController::class,'destroy'])->name('admin.questions.destroy');
+
+    Route::get('certificates', [TestimonialController::class,'index'])->name('admin.certificates.index');
 });
 
 //  ADMIN ROUTES

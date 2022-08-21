@@ -440,7 +440,7 @@ nav .customeContainer {
 *******************************************/
 .header {
     padding: 14rem 0 7rem;
-    background: url(../imgs/thumbnail_1.png) no-repeat;
+    background: url(../imgs/lecture_banner.png) no-repeat;
     background-position: center;
     background-size: cover;
     display: flex;
