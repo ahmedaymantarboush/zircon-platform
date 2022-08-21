@@ -14,12 +14,12 @@
 <div class="lectures-statistics row">
     <div class="col-lg-3 col-sm-6">
         <a href="#" class="add-new-lec" style="width: 100%">
-            <div class="stc-box" data-bs-toggle="modal" data-bs-target="#quick-modify" id="addNewQuestion">
+            <div class="stc-box" data-bs-toggle="modal" data-bs-target="#addQues" id="addNewQuestion">
                 <div class="stc-val-parent">
                     <span class="stc-value">
                         <i class="fa-solid fa-plus"></i>
                     </span>
-                    <span data-bs-toggle="modal" data-bs-target="#addQues" class="stc-name">اضافة السؤال
+                    <span class="stc-name">اضافة السؤال
                     </span>
                 </div>
             </div>
@@ -522,7 +522,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title addQuestionTitle" id="exampleModalLabel">
-                        إضافة سؤال
+                        تعديل سؤال
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -669,6 +669,212 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title addQuestionTitle" id="exampleModalLabel">
+                        تعديل السؤال
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="">
+                    <div class="modal-body">
+                        <div>
+                            <label for="" class="sec-name">هل هذا السؤال يحتوي على صورة ؟</label>
+                            <div class="hasImage">
+                                <input type="checkbox" id="hasImageCheck" />
+                                <label for="">ضع علامة اذا كان السؤال يحتوي على
+                                    صورة</label>
+                            </div>
+                        </div>
+                        <div class="file" id="hasImageFile">
+                            <label for="formFile" class="sec-name">رفع
+                            </label>
+                            <input class="form-control" type="file" id="formFile" value="تصفح"
+                                accept="image/png, image/jpeg" />
+                        </div>
+                        <div class="less-item">
+                            <label class="sec-name">وصف الدرس</label>
+                            <div class="text-editor2"></div>
+                        </div>
+                        <div class="answersParent">
+                            <label id="answerLabel" for="" class="sec-name">الاجابات</label>
+                            <!-- <div class="answerItem">
+                                                                     <div class="radioBox">
+                                                                      <input
+                                                                       type="radio"
+                                                                       name="answerInput"
+                                                                       id="1"
+                                                                      />
+                                                                      <label for="1"></label>
+                                                                     </div>
+                                                                     <input type="text" class="my-input" />
+                                                                    </div>
+                                                                    -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary nextBtn">
+                            أضافة
+                        </button>
+                        <button type="button" class="btn btn-secondary prevBtn" data-bs-dismiss="modal">
+                            السابق
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</form>
+<form action="" class='addModalForm'>
+    <div class="modal fade prevPopup" id="addQues" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title addQuestionTitle" id="exampleModalLabel">
+                        إضافة سؤال
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div action="">
+                    <div class="modal-body">
+                        <div class="less-item custome-item">
+                            <label class="sec-name">عنوان السؤال</label>
+
+                            <div class="input-parent">
+                                <input type="text" class="my-input is-invalid" placeholder=" ادخل عنوان الدرس"
+                                    id="address-lec" />
+                                <span class="invalid-feedback" role="alert">
+                                    @error('title')
+                                    <strong>{{ $message }}</strong>
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="less-item custome-item">
+                            <label class="sec-name">المرحلة الدراسية</label>
+                            <div class="search-select modify-select" id="select-level-parent">
+                                <select name="" id="" class="is-invalid" data-live-search="true">
+                                    <option value="">
+                                        اختر القسم الذي يتبعه هذا الدرس
+                                    </option>
+                                    <option value="">
+                                        الصف الأول الثانوي
+                                    </option>
+                                    <option value="">
+                                        الصف الثاني الثانوي
+                                    </option>
+                                    <option value="">
+                                        الصف الثالث الثانوي
+                                    </option>
+                                </select>
+                                <span class="invalid-feedback" role="alert">
+                                    @error('title')
+                                    <strong>{{ $message }}</strong>
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="less-item custome-item">
+                            <label class="sec-name">المادة</label>
+                            <div class="search-select modify-select" id="select-subject-parent">
+                                <select name="" id="" class="is-invalid" data-live-search="true">
+                                    <option value="">
+                                        اختر القسم الذي يتبعه هذا الدرس
+                                    </option>
+                                    <option value="">
+                                        الصف الأول الثانوي
+                                    </option>
+                                    <option value="">
+                                        الصف الثاني الثانوي
+                                    </option>
+                                    <option value="">
+                                        الصف الثالث الثانوي
+                                    </option>
+                                </select>
+                                <span class="invalid-feedback" role="alert">
+                                    @error('title')
+                                    <strong>{{ $message }}</strong>
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="less-item custome-item">
+                            <label class="sec-name">الجزئية الدراسية</label>
+                            <div class="search-select modify-select" id="select-part-parent">
+                                <select name="" id="" class="is-invalid" data-live-search="true" multiple>
+                                    <option value="">
+                                        اختر القسم الذي يتبعه هذا الدرس
+                                    </option>
+                                    <option value="">
+                                        الصف الأول الثانوي
+                                    </option>
+                                    <option value="">
+                                        الصف الثاني الثانوي
+                                    </option>
+                                    <option value="">
+                                        الصف الثالث الثانوي
+                                    </option>
+                                </select>
+                                <span class="invalid-feedback" role="alert">
+                                    @error('title')
+                                    <strong>{{ $message }}</strong>
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="less-item custome-item">
+                            <label class="sec-name">درجة الصعوبة</label>
+                            <div class="search-select modify-select" id="select-part-parent">
+                                <select name="" id="" class="" data-live-search="true" multiple>
+                                    <option value="">
+                                        اختر القسم الذي يتبعه هذا الدرس
+                                    </option>
+                                    <option value="">
+                                        الصف الأول الثانوي
+                                    </option>
+                                    <option value="">
+                                        الصف الثاني الثانوي
+                                    </option>
+                                    <option value="">
+                                        الصف الثالث الثانوي
+                                    </option>
+                                </select>
+                                <span class="invalid-feedback" role="alert">
+                                    @error('title')
+                                    <strong>{{ $message }}</strong>
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="less-item custome-item">
+                            <label class="sec-name">عدد الاجابات</label>
+
+                            <div class="input-parent">
+                                <input type="number" class="my-input is-invalid"
+                                    placeholder=" ادخل عدد الاجابات من 1 الي 6" id="ansewrsCount" min="1" max="6" />
+                                <span class="invalid-feedback" role="alert">
+                                    @error('title')
+                                    <strong>{{ $message }}</strong>
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary nextBtn">
+                            التالي
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            الغاء
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="nextPopupAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title addQuestionTitle" id="exampleModalLabel">
                         إضافة سؤال جديد
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -721,212 +927,6 @@
             </div>
         </div>
     </div>
-</form>
-<form action="" class='addModalForm'>
-    <div class="modal fade prevPopup" id="addQues" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title addQuestionTitle" id="exampleModalLabel">
-                        إضافة سؤال
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="less-item custome-item">
-                        <label class="sec-name">عنوان السؤال</label>
-
-                        <div class="input-parent">
-                            <input type="text" class="my-input is-invalid" placeholder=" ادخل عنوان الدرس"
-                                id="address-lec" />
-                            <span class="invalid-feedback" role="alert">
-                                @error('title')
-                                <strong>{{ $message }}</strong>
-                                @enderror
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="less-item custome-item">
-                        <label class="sec-name">المرحلة الدراسية</label>
-                        <div class="search-select modify-select" id="select-level-parent">
-                            <select name="" id="" class="is-invalid" data-live-search="true">
-                                <option value="">
-                                    اختر القسم الذي يتبعه هذا الدرس
-                                </option>
-                                <option value="">
-                                    الصف الأول الثانوي
-                                </option>
-                                <option value="">
-                                    الصف الثاني الثانوي
-                                </option>
-                                <option value="">
-                                    الصف الثالث الثانوي
-                                </option>
-                            </select>
-                            <span class="invalid-feedback" role="alert">
-                                @error('title')
-                                <strong>{{ $message }}</strong>
-                                @enderror
-                            </span>
-                        </div>
-                    </div>
-                    <div class="less-item custome-item">
-                        <label class="sec-name">المادة</label>
-                        <div class="search-select modify-select" id="select-subject-parent">
-                            <select name="" id="" class="is-invalid" data-live-search="true">
-                                <option value="">
-                                    اختر القسم الذي يتبعه هذا الدرس
-                                </option>
-                                <option value="">
-                                    الصف الأول الثانوي
-                                </option>
-                                <option value="">
-                                    الصف الثاني الثانوي
-                                </option>
-                                <option value="">
-                                    الصف الثالث الثانوي
-                                </option>
-                            </select>
-                            <span class="invalid-feedback" role="alert">
-                                @error('title')
-                                <strong>{{ $message }}</strong>
-                                @enderror
-                            </span>
-                        </div>
-                    </div>
-                    <div class="less-item custome-item">
-                        <label class="sec-name">الجزئية الدراسية</label>
-                        <div class="search-select modify-select" id="select-part-parent">
-                            <select name="" id="" class="is-invalid" data-live-search="true" multiple>
-                                <option value="">
-                                    اختر القسم الذي يتبعه هذا الدرس
-                                </option>
-                                <option value="">
-                                    الصف الأول الثانوي
-                                </option>
-                                <option value="">
-                                    الصف الثاني الثانوي
-                                </option>
-                                <option value="">
-                                    الصف الثالث الثانوي
-                                </option>
-                            </select>
-                            <span class="invalid-feedback" role="alert">
-                                @error('title')
-                                <strong>{{ $message }}</strong>
-                                @enderror
-                            </span>
-                        </div>
-                    </div>
-                    <div class="less-item custome-item">
-                        <label class="sec-name">درجة الصعوبة</label>
-                        <div class="search-select modify-select" id="select-part-parent">
-                            <select name="" id="" class="" data-live-search="true" multiple>
-                                <option value="">
-                                    اختر القسم الذي يتبعه هذا الدرس
-                                </option>
-                                <option value="">
-                                    الصف الأول الثانوي
-                                </option>
-                                <option value="">
-                                    الصف الثاني الثانوي
-                                </option>
-                                <option value="">
-                                    الصف الثالث الثانوي
-                                </option>
-                            </select>
-                            <span class="invalid-feedback" role="alert">
-                                @error('title')
-                                <strong>{{ $message }}</strong>
-                                @enderror
-                            </span>
-                        </div>
-                    </div>
-                    <div class="less-item custome-item">
-                        <label class="sec-name">عدد الاجابات</label>
-
-                        <div class="input-parent">
-                            <input type="number" class="my-input is-invalid" placeholder=" ادخل عدد الاجابات من 1 الي 6"
-                                id="ansewrsCount" min="1" max="6" />
-                            <span class="invalid-feedback" role="alert">
-                                @error('title')
-                                <strong>{{ $message }}</strong>
-                                @enderror
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary nextBtn">
-                        التالي
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        الغاء
-                    </button>
-                </div>
-                </d>
-
-            </div>
-        </div>
-        <div class="modal fade" id="nextPopupAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title addQuestionTitle" id="exampleModalLabel">
-                            إضافة سؤال جديد
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="">
-                        <div class="modal-body">
-                            <div>
-                                <label for="" class="sec-name">هل هذا السؤال يحتوي على صورة ؟</label>
-                                <div class="hasImage">
-                                    <input type="checkbox" id="hasImageCheck" />
-                                    <label for="">ضع علامة اذا كان السؤال يحتوي على
-                                        صورة</label>
-                                </div>
-                            </div>
-                            <div class="file" id="hasImageFile">
-                                <label for="formFile" class="sec-name">رفع
-                                </label>
-                                <input class="form-control" type="file" id="formFile" value="تصفح"
-                                    accept="image/png, image/jpeg" />
-                            </div>
-                            <div class="less-item">
-                                <label class="sec-name">وصف الدرس</label>
-                                <textarea class="text-editor2"></textarea>
-                            </div>
-                            <div class="answersParent">
-                                <label id="answerLabel" for="" class="sec-name">الاجابات</label>
-                                <!-- <div class="answerItem">
-                                                                                             <div class="radioBox">
-                                                                                              <input
-                                                                                               type="radio"
-                                                                                               name="answerInput"
-                                                                                               id="1"
-                                                                                              />
-                                                                                              <label for="1"></label>
-                                                                                             </div>
-                                                                                             <input type="text" class="my-input" />
-                                                                                            </div>
-                                                                                            -->
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary nextBtn">
-                                أضافة
-                            </button>
-                            <button type="button" class="btn btn-secondary prevBtn" data-bs-dismiss="modal">
-                                السابق
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
 </form>
 
 <div class="modal fade" id="delete-lecture" tabindex="-1" aria-labelledby="" aria-hidden="true">
