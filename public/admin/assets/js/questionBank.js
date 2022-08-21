@@ -133,83 +133,100 @@ $(document).ready(function () {
 // select search disabled and enabled
 //////////
 /// first select
-let parentOfSelectOne = document.getElementById("select-level-parent");
-let optionOne = document.querySelectorAll("#select-level-parent select option");
-// second select
-let parentOfSelectTwo = document.getElementById("select-subject-parent");
-let selectBtnTwo = document.querySelector("#select-subject-parent button");
-let twoValue = document.querySelector(
-    "#select-subject-parent .filter-option-inner-inner"
-);
-let seletBoxTwo = document.querySelector("#select-subject-parent select");
+let addEditModalFunction = (parent) => {
+    let parentOfSelectOne = document.querySelector(
+        "." + parent + " #select-level-parent"
+    );
+    let optionOne = document.querySelectorAll(
+        "#select-level-parent select option"
+    );
+    // second select
+    let parentOfSelectTwo = document.querySelector(
+        "." + parent + " #select-subject-parent"
+    );
+    let selectBtnTwo = document.querySelector(
+        "." + parent + " #select-subject-parent button"
+    );
+    let twoValue = document.querySelector(
+        "." + parent + " #select-subject-parent .filter-option-inner-inner"
+    );
+    let seletBoxTwo = document.querySelector(
+        "." + parent + " #select-subject-parent select"
+    );
 
-let optionTwo = document.querySelectorAll(
-    "#select-subject-parent select option"
-);
-//third select
-let selectBtnThree = document.querySelector("#select-part-parent button");
-let threeValue = document.querySelector(
-    "#select-part-parent .filter-option-inner-inner"
-);
-let optionThree = document.querySelectorAll(
-    "#select-part-parent select option"
-);
-let seletBoxThree = document.querySelector("#select-part-parent select");
-seletBoxThree.addEventListener("change", function () {
-    let content = threeValue.textContent;
-    if (content == "Nothing selected") {
-        threeValue.textContent = optionThree[0].textContent.trim();
-    }
-});
-let filtetLevelOne = document
-    .getElementById("select-level-parent")
-    .querySelector(".filter-option-inner-inner");
+    let optionTwo = document.querySelectorAll(
+        "." + parent + " #select-subject-parent select option"
+    );
+    //third select
+    let selectBtnThree = document.querySelector(
+        "." + parent + " #select-part-parent button"
+    );
+    let threeValue = document.querySelector(
+        "." + parent + " #select-part-parent .filter-option-inner-inner"
+    );
+    let optionThree = document.querySelectorAll(
+        "." + parent + " #select-part-parent select option"
+    );
+    let seletBoxThree = document.querySelector(
+        "." + parent + " #select-part-parent select"
+    );
+    seletBoxThree.addEventListener("change", function () {
+        let content = threeValue.textContent;
+        if (content == "Nothing selected") {
+            threeValue.textContent = optionThree[0].textContent.trim();
+        }
+    });
+    let filtetLevelOne = document
+        .querySelector("." + parent + " #select-level-parent")
+        .querySelector("." + parent + " .filter-option-inner-inner");
 
-let filtetLevelTwo = document
-    .getElementById("select-subject-parent")
-    .querySelector(".filter-option-inner-inner");
+    let filtetLevelTwo = document
+        .querySelector("." + parent + " #select-subject-parent")
+        .querySelector("." + parent + " .filter-option-inner-inner");
 
-twoValue.textContent = optionTwo[0].textContent.trim();
-disabledSelect(filtetLevelOne, selectBtnTwo, optionTwo, twoValue);
-disabledSelect(filtetLevelTwo, selectBtnThree, optionThree, threeValue);
-document.body.addEventListener("click", function () {
+    twoValue.textContent = optionTwo[0].textContent.trim();
     disabledSelect(filtetLevelOne, selectBtnTwo, optionTwo, twoValue);
     disabledSelect(filtetLevelTwo, selectBtnThree, optionThree, threeValue);
-});
-function disabledSelect(num, btn, options, val) {
-    if (num.textContent.trim() == optionOne[0].textContent.trim()) {
-        btn.disabled = "disabled";
-        val.textContent = options[0].textContent.trim();
-    } else {
-        btn.removeAttribute("disabled");
+    document.body.addEventListener("click", function () {
+        disabledSelect(filtetLevelOne, selectBtnTwo, optionTwo, twoValue);
+        disabledSelect(filtetLevelTwo, selectBtnThree, optionThree, threeValue);
+    });
+    function disabledSelect(num, btn, options, val) {
+        if (num.textContent.trim() == optionOne[0].textContent.trim()) {
+            btn.disabled = "disabled";
+            val.textContent = options[0].textContent.trim();
+        } else {
+            btn.removeAttribute("disabled");
+        }
     }
-}
 
-seletBoxThree.addEventListener("change", function () {
-    let content = twoValue.textContent;
-    if (content == "Nothing selected") {
-        twoValue.textContent = optionTwo[0].textContent.trim();
-    }
-});
+    seletBoxThree.addEventListener("change", function () {
+        let content = twoValue.textContent;
+        if (content == "Nothing selected") {
+            twoValue.textContent = optionTwo[0].textContent.trim();
+        }
+    });
 
-//// if has image
-let hasImageCheck = document.getElementById("hasImageCheck");
-let hasImageFile = document.getElementById("hasImageFile");
-checkBoxToShow(hasImageCheck, hasImageFile);
+    //// if has image
+    let hasImageCheck = document.querySelector(
+        "." + parent + " #hasImageCheck"
+    );
+    let hasImageFile = document.querySelector("." + parent + " #hasImageFile");
+    checkBoxToShow(hasImageCheck, hasImageFile);
 
-// answers count
+    // answers count
 
-let ansewrsCount = document.getElementById("ansewrsCount");
-let answerParent = document.querySelector(".answersParent");
-let answerLabel = document.getElementById("answerLabel");
-console.log(answerLabel);
+    let ansewrsCount = document.querySelector("." + parent + " #ansewrsCount");
+    let answerParent = document.querySelector("." + parent + " .answersParent");
+    let answerLabel = document.querySelector("." + parent + " #answerLabel");
+    console.log(answerLabel);
 
-ansewrsCount.addEventListener("keyup", function () {
-    let lengthOfQuestion = maxQuestion();
-    answerParent.innerHTML = "";
-    answerParent.insertAdjacentElement("beforebegin", answerLabel);
-    for (let i = 1; i <= lengthOfQuestion; i++) {
-        let html = `<div class="answerItem">
+    ansewrsCount.addEventListener("keyup", function () {
+        let lengthOfQuestion = maxQuestion();
+        answerParent.innerHTML = "";
+        answerParent.insertAdjacentElement("beforebegin", answerLabel);
+        for (let i = 1; i <= lengthOfQuestion; i++) {
+            let html = `<div class="answerItem">
 		<div class="radioBox">
 		<input
 		type="radio"
@@ -220,18 +237,65 @@ ansewrsCount.addEventListener("keyup", function () {
 		</div>
 		<input type="text" class="my-input" />
 		</div>`;
-        answerParent.insertAdjacentHTML("beforeend", html);
+            answerParent.insertAdjacentHTML("beforeend", html);
+        }
+    });
+    ansewrsCount.addEventListener("keypress", maxQuestion);
+    ansewrsCount.addEventListener("keydown", maxQuestion);
+    ansewrsCount.addEventListener("change", maxQuestion);
+    function maxQuestion() {
+        ansewrsCount.max = 6;
+        if (Number(ansewrsCount.value) < 0) {
+            ansewrsCount.value = 1;
+        } else if (+ansewrsCount.value > 6) {
+            ansewrsCount.value = 6;
+        }
+        return ansewrsCount.value;
     }
+};
+addEditModalFunction("editModalForm");
+addEditModalFunction("addModalForm");
+
+///////////////////////////
+// edit modal Ajax////////
+/////////////////////////
+
+// Ajax function
+
+let editFun = async function (url, myData, el = null) {
+    try {
+        let postData = await fetch(url, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: myData,
+        });
+
+        let responseData = await postData.json();
+        console.log(responseData);
+        if (postData.status == 200) {
+        }
+    } catch (err) {
+        console.log(err.error);
+    }
+};
+// calling
+document.querySelector("table").addEventListener("click", function (e) {
+    if (!e.target.classList.contains("q-modify")) return;
+    let dataId = e.target.closest("tr").dataset.id;
+    console.log(dataId);
+    let sendObj = {
+        id: dataId,
+    };
+
+    form = new FormData();
+    form.append("data", JSON.stringify(sendObj));
+
+    editFun(
+        `${window.location.protocol}//${window.location.host}/api/questions/fastEdit/`,
+        form,
+        e
+    );
 });
-ansewrsCount.addEventListener("keypress", maxQuestion);
-ansewrsCount.addEventListener("keydown", maxQuestion);
-ansewrsCount.addEventListener("change", maxQuestion);
-function maxQuestion() {
-    ansewrsCount.max = 6;
-    if (Number(ansewrsCount.value) < 0) {
-        ansewrsCount.value = 1;
-    } else if (+ansewrsCount.value > 6) {
-        ansewrsCount.value = 6;
-    }
-    return ansewrsCount.value;
-}
