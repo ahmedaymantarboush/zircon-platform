@@ -17,7 +17,13 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return view('admin.questionBank', ['questions' => Question::all()->sortByDesc('id')]);
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false) {
+            $questions = Question::all();
+            return view('admin.questionBank', compact('questions'));
+        } else {
+            return abort(404);
+        }
     }
 
     /**

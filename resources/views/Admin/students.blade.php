@@ -50,7 +50,7 @@
                             endforeach;
                         @endphp --}}
                         <span class="stc-value">
-                            {{ (\App\Models\AnswerdQuestion::where('correct', 1)->count() / \App\Models\AnswerdQuestion::count()) * max(\App\Models\Question::all()->pluck('level')->toArray()) }}
+                            {{ \App\Models\AnswerdQuestion::count() ? (\App\Models\AnswerdQuestion::where('correct', 1)->count() / \App\Models\AnswerdQuestion::count()) * max(\App\Models\Question::all()->pluck('level')->toArray()) : 0 }}
                         </span>
                         <span class="stc-name">متوسط المستوي العام</span>
                     </div>
@@ -230,7 +230,7 @@
                             #{{$user->code}}
                         </td>
                         <td data-lable="المستوي العام :" class="views">
-                            {{number_format(( $correctAnswers / ($correctAnswers + $wrongAnswers) ) * max(\App\Models\Question::all()->pluck('level')->toArray()) ,2) }}
+                            {{$correctAnswers + $wrongAnswers ? number_format(( $correctAnswers / ($correctAnswers + $wrongAnswers) ) * max(\App\Models\Question::all()->pluck('level')->toArray()) ,2) : 0 }}
                         </td>
                         <td data-lable="إجابة صحيحة :" class="table-stat-parent">
                             <span class="table-stat not-active">{{$correctAnswers}}</span>
