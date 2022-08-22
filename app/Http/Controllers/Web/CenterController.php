@@ -45,8 +45,25 @@ class CenterController extends Controller
     public function store(StoreCenterRequest $request)
     {
         $data = $request->all();
-        dd($data);
-        $center = Center::find($data['id']);
+        $user = Auth::user();
+        if (!$user) :
+            return abort(401);
+        endif;
+        if ($user->role->number >= 4) :
+            return abort(403);
+        endif;
+
+        $center = Center::create([
+            'name' => $data['name'],
+            'url' => $data['url'],
+            'governorate_id' =>  $data['governorate']
+        ]);
+
+        if ($request->hasFile('image')) :
+            $center->image = uploadFile($request, 'image', $center->name . $center->id);
+            $center->save();
+        endif;
+        return redirect()->back();
     }
 
     /**
@@ -81,8 +98,24 @@ class CenterController extends Controller
     public function update(UpdateCenterRequest $request)
     {
         $data = $request->all();
-        dd($data);
         $center = Center::find($data['id']);
+        $data = $request->all();
+        $user = Auth::user();
+        if (!$user) :
+            return abort(401);
+        endif;
+        if ($user->role->number >= 4) :
+            return abort(403);
+        endif;
+
+        $center->name = $data['newName'];
+        $center->url = $data['newUrl'];
+        $center->governorate_id =  $data['newGovernorate'];
+        if ($request->hasFile('newImage')) :
+            $center->image = uploadFile($request, 'newImage', $center->name . $center->id,explode('/storage/',$center->image)[1] ?? '');
+            $center->save();
+        endif;
+        return redirect()->back();
     }
 
     /**

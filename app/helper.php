@@ -12,7 +12,7 @@ function apiResponse($success, $message, $data, $statusCode = 200)
     ], $statusCode);
 }
 
-function removeCustomTags($content, $tags = ['script','iframe','style'])
+function removeCustomTags($content, $tags = ['script', 'iframe', 'style'])
 {
     foreach ($tags as $tag) {
         $content = str_replace('<' . $tag, '&lt;' . $tag, $content);
@@ -32,7 +32,7 @@ function uploadFile($request, $uploadedFileName, $newFileName, $oldPath = "", $f
     }
     $savePath = $path . '/' . ($newFileName ? $newFileName . '.' . $file->getClientOriginalExtension() : $file->getClientOriginalName());
     $UploadedFile = Storage::disk('public')->put($savePath, file_get_contents($file));
-    if ($UploadedFile && $oldPath) {
+    if ($UploadedFile && $oldPath && $savePath != $oldPath) {
         if (Storage::disk('public')->exists($oldPath)) {
             Storage::disk('public')->delete($oldPath);
         }
