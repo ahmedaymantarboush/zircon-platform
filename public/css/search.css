@@ -267,7 +267,7 @@ nav .customeContainer {
     border: 1px solid #707070;
     transition: 0.3s all ease;
     background: var(--second-bg);
-    color: #707070;
+    color: var(--font-dark);
 }
 .search input:focus {
     box-shadow: var(--shadow);

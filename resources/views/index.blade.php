@@ -177,8 +177,11 @@
                 <p class="monthsText">جميع الأشهر الدراسية لمراحل الثانوية العامة</p>
             </div>
             <div class="row text-center" style='overflow:hidden'>
-                @foreach ($lectures as $lecture)
-                    <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromRight">
+                @php
+                    $direction = ['Right', 'Down', 'Up', 'Left'];
+                @endphp
+                @foreach ($lectures as $index => $lecture)
+                    <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_from{{ $direction[$index - 1] }}">
                         <a class="latestCard grade{{ $lecture->grade->id }}"
                             href='{{ route('months.show', $lecture->slug) }}'>
                             <div class="cardGrade">

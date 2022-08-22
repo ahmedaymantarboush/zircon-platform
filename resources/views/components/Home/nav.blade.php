@@ -49,11 +49,11 @@
 
             </button>
             <div class="left ">
-                <form class="search" action="{{route('search')}}">
+                <form class="search" action="{{ route('search') }}">
                     <input type="search" name='q' name="navSearch">
                     <span><i class="fa-solid fa-magnifying-glass"></i></span>
                 </form>
-                @auth()
+                @auth
                     <div class="register">
                         <div class="login">
                             <a href="javascript:{}" onclick="window.logoutFrm.submit()" class="regItem">
@@ -70,37 +70,6 @@
                                         تسجيل <span class='d-blueColor'>الخروج</span>
                                     </span>
                                 </form>
-                            </a>
-                        </div>
-                    </div>
-                @else
-                    <div class="register">
-                        <div class="signup">
-                            <a href="{{ route('register') }}" class="regItem">
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/apple.png') }}" alt="">
-                                </span>
-                                <span class="regType">
-                                    أنشئ حساب <span class='d-redColor'>جديد</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="login">
-                            <a href="{{ route('login') }}" class="regItem">
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
-                                </span>
-                                <span class="regType">
-                                    تسجيل <span class='d-blueColor'>الدخول</span>
-                                </span>
                             </a>
                         </div>
                     </div>
@@ -168,7 +137,7 @@
                         </div>
                         <div class="mobDetails">
                             <div class="studentImage">
-                                <img src="{{URL::asset('imgs/user.png')}}" alt="">
+                                <img src="{{ URL::asset('imgs/user.png') }}" alt="">
                             </div>
                             <h3 class='studentNameMob'>علي علاء الدين السيد</h3>
                             <form class="search mobSearch">
@@ -216,7 +185,9 @@
                                             <span class='navDropIcon'>
                                                 <i class='fa fa-user'></i>
                                             </span>
-                                            <span class="">تسجيل الخروج</span>
+                                            <span class="">
+
+                                                تسجيل الخروج</span>
                                             </span>
                                         </form>
                                     </a>
@@ -224,6 +195,37 @@
                             </ul>
                         </div>
                     </div> --}}
+                @else
+                    <div class="register">
+                        <div class="signup">
+                            <a href="{{ route('register') }}" class="regItem">
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="regIcon">
+                                    <img src="{{ URL::asset('imgs/apple.png') }}" alt="">
+                                </span>
+                                <span class="regType">
+                                    أنشئ حساب <span class='d-redColor'>جديد</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="login">
+                            <a href="{{ route('login') }}" class="regItem">
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="regIcon">
+                                    <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
+                                </span>
+                                <span class="regType">
+                                    تسجيل <span class='d-blueColor'>الدخول</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
                 @endauth
 
             </div>
