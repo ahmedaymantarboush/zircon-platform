@@ -20,6 +20,9 @@ class QuestionController extends Controller
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
+        if ($user->role->number < 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
+        endif;
         $grade = $data['grade'] ?? 0;
         $subject = $data['subject'] ?? 0;
         $level = $data['level'] ?? 0;
@@ -41,6 +44,9 @@ class QuestionController extends Controller
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        if ($user->role->number < 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
         endif;
         $id = $data['id'] ?? 0;
         $question = Question::find($id);
