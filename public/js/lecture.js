@@ -31,7 +31,6 @@ let funChangeImagesDark = function () {
         }
     }
 };
-
 let addStyleToLocaleStorage = function () {
     if (localStorage.getItem("style") === null) {
         localStorage.setItem("style", "dark");
