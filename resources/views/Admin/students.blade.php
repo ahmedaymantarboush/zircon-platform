@@ -351,7 +351,7 @@
                                     <a class="dropdown-item" href="#">تعديل الطالب</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">تعليق الطالب</a>
+                                    <a class="dropdown-item" href="#">تغيير حالة الطالب</a>
                                 </li>
                                 <li>
                                     <a data-bs-toggle="modal" data-bs-target="#editCharge" class="dropdown-item"
@@ -590,23 +590,23 @@
                                 </div>
                                 <div class="item">
                                     <span class="type">الاسم:</span>
-                                    <span class="info">عبدالرحمن مصطفى محمود</span>
+                                    <span class="info cardName">عبدالرحمن مصطفى محمود</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">المرحلة الدراسية:</span>
-                                    <span class="info">الصف الثالث الثانوي</span>
+                                    <span class="info cardGrade">الصف الثالث الثانوي</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">الرقم:</span>
-                                    <span class="info">01234567891</span>
+                                    <span class="info cardNumber">01234567891</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">رقم ولي الامر:</span>
-                                    <span class="info">01234567891</span>
+                                    <span class="info cardParentNumber">01234567891</span>
                                 </div>
                                 <div class="item">
                                     <span class="type"> المحافظة:</span>
-                                    <span class="info">القاهرة</span>
+                                    <span class="info cardGovernorate">القاهرة</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">مكان الحضور:</span>
@@ -728,6 +728,8 @@
 @endsection
 @section('javascript')
 <script src="{{ asset('admin/assets/js/jsBarCode.all') }}.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.8.0/dist/JsBarcode.all.min.js"></script> -->
+
 
 <!--font awesome-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
