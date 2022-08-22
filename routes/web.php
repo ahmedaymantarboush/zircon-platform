@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\CenterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Web\TestimonialController;
 use App\Http\Controllers\Web\QuestionController;
@@ -62,6 +63,11 @@ Route::prefix('admin')->group(function () {
     Route::post('questions/update', [QuestionController::class,'update'])->name('admin.questions.update');
 
     Route::get('certificates', [TestimonialController::class,'index'])->name('admin.certificates.index');
+
+    Route::get('centers', [CenterController::class,'index'])->name('admin.centers.index');
+    Route::post('centers/update', [CenterController::class,'update'])->name('admin.centers.update');
+    Route::post('centers/store', [CenterController::class,'store'])->name('admin.centers.store');
+
 });
 
 //  ADMIN ROUTES

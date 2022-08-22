@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Models\Center;
 use App\Http\Requests\StoreCenterRequest;
 use App\Http\Requests\UpdateCenterRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CenterController extends Controller
 {
@@ -15,7 +17,13 @@ class CenterController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false) {
+            $centers = Center::all();
+            return view('admin.centers', compact('centers'));
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -36,7 +44,9 @@ class CenterController extends Controller
      */
     public function store(StoreCenterRequest $request)
     {
-        //
+        $data = $request->all();
+        dd($data);
+        $center = Center::find($data['id']);
     }
 
     /**
@@ -68,9 +78,11 @@ class CenterController extends Controller
      * @param  \App\Models\Center  $center
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCenterRequest $request, Center $center)
+    public function update(UpdateCenterRequest $request)
     {
-        //
+        $data = $request->all();
+        dd($data);
+        $center = Center::find($data['id']);
     }
 
     /**

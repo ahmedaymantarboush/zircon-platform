@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-sm-12 order_2">
                         <div class="main_exam_info">
-                            <form action="{{ route('admin.user.store') }}" method="POST" class="exam-form">
+                            <form action="{{ route('admin.users.store') }}" method="POST" class="exam-form">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12">

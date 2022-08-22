@@ -177,6 +177,7 @@ class UserController extends Controller
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
         endif;
         return apiResponse(true, _('تم العثور على الطالب'), [
+            'image' => $student->image,
             'role' => $student->role->title,
             'name' => $student->name,
             'grade' => $student->grade->name,

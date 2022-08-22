@@ -54,7 +54,6 @@ let editFun = async function (url, myData, el = null) {
         }
         return null;
     } catch (err) {
-        console.log(err.error);
     }
 };
 // edit charge
@@ -96,14 +95,13 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     let objData = myResponse.data;
-    console.log(objData);
     let editCodeInput = document.querySelector("#editCodeInput");
     editCodeInput.value = objData.code;
 
     // save code
     document
-        .querySelector("#saveCode")
-        .addEventListener("click", async function (event) {
+        .querySelector("#saveCodeForm")
+        .addEventListener("submit", async function (event) {
             let sendSaveObj = {
                 id: dataId,
                 code: editCodeInput.value,
@@ -116,17 +114,74 @@ document.querySelector("table").addEventListener("click", async function (e) {
                 event
             );
 
-            if (!mySaveResponse == null) {
-                let saveData = mySaveResponse.data;
+            if (!mySaveResponse != null) {
+                // let saveData = mySaveResponse.data;
+                location.reload();
+            } else {
+                event.preventDefault()
+                let errorParentBody = document.querySelector(
+                    "#editCode .modal-body .errorParent"
+                );
+                errorParentBody.innerHTML = "";
+                errorParentBody.insertAdjacentHTML(
+                    "beforeend",
+                    `<p class='dangerText'>هذا الكود موجود بالفعل</p>`
+                );
             }
-            let errorParentBody = document.querySelector(
-                "#editCode .modal-body .errorParent"
+        });
+});
+
+
+// edit code
+document.querySelector("table").addEventListener("click", async function (e) {
+    if (!e.target.classList.contains("editCharge")) return;
+    let dataId = e.target.closest("tr").dataset.id;
+
+    let sendObj = {
+        id: dataId,
+    };
+
+    form = new FormData();
+    form.append("data", JSON.stringify(sendObj));
+
+    let myResponse = await editFun(
+        `${window.location.protocol}//${window.location.host}/api/users/getBalance`,
+        form,
+        e
+    );
+    let objData = myResponse.data;
+    let editChargeInput = document.querySelector("#editChargeInput");
+    editChargeInput.value = objData.balance;
+
+    // save code
+    document
+        .querySelector("#saveBalanceForm")
+        .addEventListener("submit", async function (event) {
+            let sendSaveObj = {
+                id: dataId,
+                balance: editChargeInput.value,
+            };
+            saveForm = new FormData();
+            saveForm.append("data", JSON.stringify(sendSaveObj));
+            let mySaveResponse = await editFun(
+                `${window.location.protocol}//${window.location.host}/api/users/editBalance`,
+                saveForm,
+                event
             );
 
-            errorParentBody.innerHTML = "";
-            errorParentBody.insertAdjacentHTML(
-                "beforeend",
-                `<p class='dangerText'>هذا الكود موجود بالفعل</p>`
-            );
+            if (!mySaveResponse != null) {
+                let saveData = mySaveResponse.data;
+                location.reload();
+            } else {
+                event.preventDefault()
+                let errorParentBody = document.querySelector(
+                    "#editCode .modal-body .errorParent"
+                );
+                errorParentBody.innerHTML = "";
+                errorParentBody.insertAdjacentHTML(
+                    "beforeend",
+                    `<p class='dangerText'>${mySaveResponse.message}</p>`
+                );
+            }
         });
 });
