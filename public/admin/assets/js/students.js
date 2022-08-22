@@ -99,9 +99,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     editCodeInput.value = objData.code;
 
     // save code
-    document
-        .querySelector("#saveCodeForm")
-        .addEventListener("submit", async function (event) {
+    document.querySelector("#saveCode").addEventListener("click", async function (event) {
             let sendSaveObj = {
                 id: dataId,
                 code: editCodeInput.value,
@@ -114,8 +112,8 @@ document.querySelector("table").addEventListener("click", async function (e) {
                 event
             );
 
-            if (!mySaveResponse != null) {
-                // let saveData = mySaveResponse.data;
+            if (mySaveResponse != null) {
+                let saveData = mySaveResponse.data;
                 location.reload();
             } else {
                 event.preventDefault()
@@ -132,7 +130,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
 });
 
 
-// edit code
+// edit charge
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("editCharge")) return;
     let dataId = e.target.closest("tr").dataset.id;
@@ -153,35 +151,31 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let editChargeInput = document.querySelector("#editChargeInput");
     editChargeInput.value = objData.balance;
 
-    // save code
-    document
-        .querySelector("#saveBalanceForm")
-        .addEventListener("submit", async function (event) {
-            let sendSaveObj = {
-                id: dataId,
-                balance: editChargeInput.value,
-            };
-            saveForm = new FormData();
-            saveForm.append("data", JSON.stringify(sendSaveObj));
-            let mySaveResponse = await editFun(
-                `${window.location.protocol}//${window.location.host}/api/users/editBalance`,
-                saveForm,
-                event
+    // save charge
+    document.querySelector("#saveBalance").addEventListener("click", async function (event) {
+        let sendSaveObj = {
+            id: dataId,
+            balance: editChargeInput.value,
+        };
+        saveForm = new FormData();
+        saveForm.append("data", JSON.stringify(sendSaveObj));
+        let mySaveResponse = await editFun(
+            `${window.location.protocol}//${window.location.host}/api/users/editBalance`,
+            saveForm,
+            event
+        );
+        if (mySaveResponse != null) {
+            let saveData = mySaveResponse.data;
+            location.reload();
+        } else {
+            let errorParentBody = document.querySelector(
+                "#editCode .modal-body .errorParent"
             );
-
-            if (!mySaveResponse != null) {
-                let saveData = mySaveResponse.data;
-                location.reload();
-            } else {
-                event.preventDefault()
-                let errorParentBody = document.querySelector(
-                    "#editCode .modal-body .errorParent"
-                );
-                errorParentBody.innerHTML = "";
-                errorParentBody.insertAdjacentHTML(
-                    "beforeend",
-                    `<p class='dangerText'>${mySaveResponse.message}</p>`
-                );
-            }
-        });
+            errorParentBody.innerHTML = "";
+            errorParentBody.insertAdjacentHTML(
+                "beforeend",
+                `<p class='dangerText'>${mySaveResponse.message}</p>`
+            );
+        }
+    });
 });
