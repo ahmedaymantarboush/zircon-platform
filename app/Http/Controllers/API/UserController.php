@@ -81,10 +81,12 @@ class UserController extends Controller
         if (!$student) :
             return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
         endif;
-        if ($user->role->number < 4):
+        if ($user->role->number >= 4):
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
         endif;
         return apiResponse(true, _('تم العثور على الطالب'), [
+            'id' => $student->id,
+            'name' => $student->name,
             'balance' => $student->balance,
         ]);
     }
@@ -100,12 +102,14 @@ class UserController extends Controller
         if (!$student) :
             return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
         endif;
-        if ($user->role->number < 4):
+        if ($user->role->number >= 4):
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
         endif;
         $student->balance = $data['balance'] ?? 0;
         $student->save();
-        return apiResponse(true, _('تم العثور على الطالب'), [
+        return apiResponse(true, _('تم تعديل الطالب بنجاح'), [
+            'id' => $student->id,
+            'name' => $student->name,
             'balance' => $student->balance,
         ]);
     }
@@ -122,10 +126,12 @@ class UserController extends Controller
         if (!$student) :
             return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
         endif;
-        if ($user->role->number < 4):
+        if ($user->role->number >= 4):
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
         endif;
         return apiResponse(true, _('تم العثور على الطالب'), [
+            'id' => $student->id,
+            'name' => $student->name,
             'code' => $student->code,
         ]);
     }
@@ -141,7 +147,7 @@ class UserController extends Controller
         if (!$student) :
             return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
         endif;
-        if ($user->role->number < 4):
+        if ($user->role->number >= 4):
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
         endif;
         $code = $data['code'] ?? 0;
@@ -150,7 +156,9 @@ class UserController extends Controller
         endif;
         $student->code = $code;
         $student->save();
-        return apiResponse(true, _('تم العثور على الطالب'), [
+        return apiResponse(true, _('تم تعديل الطالب بنجاح'), [
+            'id' => $student->id,
+            'name' => $student->name,
             'code' => $student->code,
         ]);
     }
@@ -177,6 +185,32 @@ class UserController extends Controller
             'governorate' => $student->governorate->name,
             'center' => $student->center->name,
             'code' => $student->code,
+        ]);
+    }
+
+    public function hanging()
+    {
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $student = User::find($id);
+        if (!$student) :
+            return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
+        endif;
+        if ($user->role->number >= 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
+        endif;
+        if ($user->id == $student->id):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
+        endif;
+        $student->hanging = !$student->hanging;
+        $student->save();
+        return apiResponse(true, _('تم تعديل الطالب بنجاح'), [
+            'id' => $student->id,
+            'hanging' => $student->hanging,
         ]);
     }
 

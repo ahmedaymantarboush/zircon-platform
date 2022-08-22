@@ -16,6 +16,17 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false) {
+            $users = User::where('role_num', '>=', $user->role->number)->get();
+            return view('admin.students', compact('users'));
+        } else {
+            return abort(404);
+        }
+    }
+
     public function update(Request $request)
     {
         $user = Auth::user();

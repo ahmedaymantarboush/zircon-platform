@@ -24,7 +24,7 @@ class QuestionFactory extends Factory
             'audio' => $this->faker->url,
             'type' => 'MCQ',
             'explanation' => $this->faker->text(),
-            'level' => $this->faker->numberBetween(1,10),
+            'level' => $this->faker->numberBetween(1,5),
             'grade_id' => $this->faker->randomElement(\App\Models\Grade::all()->pluck('id')),
             'part_id' => $this->faker->randomElement(\App\Models\Part::all()->pluck('id')),
             'subject_id'=>1,

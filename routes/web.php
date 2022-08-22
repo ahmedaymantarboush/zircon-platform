@@ -47,9 +47,11 @@ Route::prefix('admin')->group(function () {
     Route::get('exams/{id}/students',[ExamCoZntroller::class,'students'])->name('admin.exams.students');
     Route::post('/sort-sections',[SectionController::class, 'sortSections'])->name('sections.resort');
     Route::post('/sort-items',[SectionItemController::class, 'sortItems'])->name('sectionitems.resort');
-    Route::get('user/create', [UserController::class,'create'])->name('admin.user.create');
-    Route::post('user/store', [UserController::class,'store'])->name('admin.user.store');
-    Route::post('user/update', [UserController::class,'update'])->name('admin.user.update');
+
+    Route::get('users', [UserController::class,'index'])->name('admin.users.index');
+    Route::get('users/create', [UserController::class,'create'])->name('admin.users.create');
+    Route::post('users/store', [UserController::class,'store'])->name('admin.users.store');
+    Route::post('users/update', [UserController::class,'update'])->name('admin.users.update');
 
     Route::get('lectures',[LectureController::class, 'allLectures'])->name('admin.lectures.index');
 

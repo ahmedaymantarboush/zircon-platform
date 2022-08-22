@@ -25,8 +25,10 @@ return new class extends Migration
             $table->float('balance')->default(0);
             $table->string('platform')->default(config('app.name'));
             $table->string('code',50)->unique();
-            $table->softDeletes();
+            $table->boolean('activated')->default(true);
+            $table->boolean('hanging')->default(false);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

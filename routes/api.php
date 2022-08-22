@@ -63,13 +63,14 @@ Route::apiResource('/lessons',LessonController::class)->names(['store'=>'api.les
 Route::apiResource('/exams',ExamController::class)->names(['index'=>'api.exams.index','store'=>'api.exams.store','update'=>'api.exams.update','destroy'=>'api.exams.destroy']);
 
 //       USER ROUTES
-Route::post('recharge',[BalanceCardController::class,'recharge']);
-Route::post('genarateCode',[UserController::class,'genarateCode']);
-Route::post('getBalance',[UserController::class,'getBalance']);
-Route::post('editBalance',[UserController::class,'editBalance']);
-Route::post('getCode',[UserController::class,'getCode']);
-Route::post('editCode',[UserController::class,'editCode']);
-Route::post('getStudentCardData',[UserController::class,'getStudentCardData']);
+Route::post('users/recharge',[BalanceCardController::class,'recharge']);
+Route::post('users/genarateCode',[UserController::class,'genarateCode']);
+Route::post('users/getBalance',[UserController::class,'getBalance']);
+Route::post('users/editBalance',[UserController::class,'editBalance']);
+Route::post('users/getCode',[UserController::class,'getCode']);
+Route::post('users/editCode',[UserController::class,'editCode']);
+Route::post('users/getStudentCardData',[UserController::class,'getStudentCardData']);
+Route::post('users/hanging',[UserController::class,'hanging']);
 
 //       USER ROUTES
 Route::post('checkCoupon',[CouponController::class,'checkCoupon']);
