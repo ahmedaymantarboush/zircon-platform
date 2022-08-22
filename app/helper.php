@@ -12,7 +12,7 @@ function apiResponse($success, $message, $data, $statusCode = 200)
     ], $statusCode);
 }
 
-function removeCustomTags($content, $tags = [])
+function removeCustomTags($content, $tags = ['script','iframe','style'])
 {
     foreach ($tags as $tag) {
         $content = str_replace('<' . $tag, '&lt;' . $tag, $content);

@@ -87,7 +87,6 @@
                                 @foreach (\App\Models\Grade::all() as $grade)
                                 <option value="{{ $grade->id }}">{{ $grade->name }}</option>
                                 @endforeach
-                                {{-- <option value="">3</option> --}}
                             </select>
                         </div>
                     </div>
@@ -198,16 +197,9 @@
                 @foreach ($questions as $index => $question)
                 @php
                 $i = $index + 1;
-                $correctAnswers = count(
-                $question
-                ->answers()
-                ->where('correct', 1)
-                ->get(),
-                );
+                $correctAnswers = count($question->answers()->where('correct', 1)->get());
                 $wrongAnswers = count(
-                $question
-                ->answers()
-                ->where('correct', 0)
+                $question->answers()->where('correct', 0)
                 ->get(),
                 );
                 @endphp
@@ -513,7 +505,8 @@
     </div>
 </div>
 
-<form action="" class='editModalForm'>
+<form action="{{route('admin.questions.update')}}" method="POST"  class='editModalForm' enctype="multipart/form-data">
+    @csrf
     <div class="modal fade prevPopup" id="quick-modify" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -633,10 +626,10 @@
                             <label class="sec-name">عدد الاجابات</label>
 
                             <div class="input-parent">
-                                <input value="{{ old('newQuestionsCount') }}" type="number" name="newQuestionsCount"
-                                    class="my-input @error('newQuestionsCount') is-invalid @enderror"
+                                <input value="{{ old('newChoicesCount') }}" type="number" name="newChoicesCount"
+                                    class="my-input @error('newChoicesCount') is-invalid @enderror"
                                     placeholder=" ادخل عدد الاجابات من 1 الي 6" id="ansewrsCount" min="1" max="6" />
-                                @error('newQuestionsCount')
+                                @error('newChoicesCount')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -706,7 +699,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary nextBtn">
-                            أضافة
+                            تعديل
                         </button>
                         <button type="button" class="btn btn-secondary prevBtn" data-bs-dismiss="modal">
                             السابق
@@ -717,7 +710,8 @@
         </div>
     </div>
 </form>
-<form action="" class='addModalForm'>
+<form action="{{route('admin.questions.store')}}" method="POST" class='addModalForm' enctype="multipart/form-data">
+    @csrf
     <div class="modal fade prevPopup" id="addQues" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -753,7 +747,7 @@
                                         اختر المرحلة الدراسية
                                     </option>
                                     @foreach (\App\Models\Grade::all() as $grade)
-                                    <option @selected(old('grade')==$grade->id) value="{{ $grade->id }}">
+                                    <option @selected(old('grade') == $grade->id) value="{{ $grade->id }}">
                                         {{ $grade->name }}
                                     </option>
                                     @endforeach
@@ -774,7 +768,7 @@
                                         اختر المادة
                                     </option>
                                     @foreach (\App\Models\Subject::all() as $subject)
-                                    <option @selected(old('subject')==$subject->id) value="{{ $subject->id }}">
+                                    <option @selected(old('subject') == $subject->id) value="{{ $subject->id }}">
                                         {{ $subject->name }}
                                     </option>
                                     @endforeach
@@ -795,7 +789,7 @@
                                         اختر الجزئية الدراسية
                                     </option>
                                     @foreach (\App\Models\Part::all() as $part)
-                                    <option @selected(old('part')==$part->id) value="{{ $part->id }}">
+                                    <option @selected(old('part') == $part->id) value="{{ $part->id }}">
                                         {{ $part->name }}
                                     </option>
                                     @endforeach
@@ -834,10 +828,10 @@
                             <label class="sec-name">عدد الاجابات</label>
 
                             <div class="input-parent">
-                                <input value="{{ old('questionsCount') }}" type="number" name="questionsCount"
-                                    class="my-input @error('questionsCount') is-invalid @enderror"
+                                <input value="{{ old('choicesCount') }}" type="number" name="choicesCount"
+                                    class="my-input @error('choicesCount') is-invalid @enderror"
                                     placeholder=" ادخل عدد الاجابات من 1 الي 6" id="ansewrsCount" min="1" max="6" />
-                                @error('questionsCount')
+                                @error('choicesCount')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -926,7 +920,8 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="">
+            <form action="{{route('admin.questions.destroy')}}" id="deleteModal" method="POST">
+                @csrf
                 <div class="modal-body">
                     <p class="sure-to-del">
                         هل انت متأكد انك تريد مسح السؤال

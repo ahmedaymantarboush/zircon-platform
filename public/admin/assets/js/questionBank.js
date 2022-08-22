@@ -47,7 +47,7 @@ ClassicEditor.create(document.querySelector(".text-editor1"), {
         wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
         window.editor = editor;
     })
-    .catch((err) => {});
+    .catch((err) => { });
 ClassicEditor.create(document.querySelector(".text-editor2"), {
     language: {
         // The UI will be English.
@@ -64,11 +64,12 @@ ClassicEditor.create(document.querySelector(".text-editor2"), {
         wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
         window.editor = editor;
     })
-    .catch((err) => {});
+    .catch((err) => { });
 
 // edit
 $(document).ready(function () {
     $("#quick-modify .nextBtn").click(function (e) {
+        $("#nextPopupQuick").val($("#nextPopupQuick").val());
         $("#nextPopupQuick").modal("show");
         $("#quick-modify").modal("hide");
     });
@@ -97,7 +98,7 @@ $(document).ready(function () {
 // select search disabled and enabled
 //////////
 /// first select
-let addEditModalFunction = (parent) => {
+let addEditModalFunction = (parent, edit = false) => {
     //// if has image
     let hasImageCheck = document.querySelector(
         "." + parent + " #hasImageCheck"
@@ -117,17 +118,12 @@ let addEditModalFunction = (parent) => {
         answerParent.insertAdjacentElement("beforebegin", answerLabel);
         for (let i = 1; i <= lengthOfQuestion; i++) {
             let html = `<div class="answerItem">
-		<div class="radioBox">
-		<input
-		type="radio"
-        class='answersRadio'
-		name="answerInput"
-		id="${i}"
-		/>
-		<label for="${i}"></label>
-		</div>
-		<input type="text" class="my-input answersInput" />
-		</div>`;
+                            <div class="radioBox">
+                                <input type="radio" class='answersRadio' name="${edit ? 'newC' : 'c'}orrectAnswer" id="${i}" value="${i}"/>
+                                <label for="${i}"></label>
+                            </div>
+                            <input type="text" name="${edit ? 'newC' : 'c'}hoice${i}" class="my-input answersInput" />
+                        </div>`;
             answerParent.insertAdjacentHTML("beforeend", html);
         }
     };
@@ -146,7 +142,7 @@ let addEditModalFunction = (parent) => {
         return ansewrsCount.value;
     }
 };
-addEditModalFunction("editModalForm");
+addEditModalFunction("editModalForm", true);
 addEditModalFunction("addModalForm");
 
 ///////////////////////////
@@ -274,4 +270,36 @@ document.querySelector("table").addEventListener("click", async function (e) {
             }
         });
     });
+    let questionIdInput = document.querySelector(`.editModalForm [name='questionId']`);
+    if (!questionIdInput) {
+        let editForm = document.querySelector(".editModalForm");
+        let questionIdInput = document.createElement("input");
+        questionIdInput.setAttribute("type", "hidden");
+        questionIdInput.setAttribute("name", "questionId");
+        questionIdInput.setAttribute("value", dataId);
+        editForm.appendChild(questionIdInput);
+    }else{
+        questionIdInput.value = dataId;
+    }
 });
+
+//////////////////////
+/////DELETE MODAL/////
+//////////////////////
+document.querySelectorAll(".delete-lec").forEach(el => {
+    el.addEventListener("click", function (e) {
+        let dataId = e.target.closest("tr").dataset.id;
+        let questionIdInput = document.querySelector(`#deleteModal [name='questionId']`);
+        document.getElementsByClassName("del-lesson")[0].innerHTML = e.target.closest("tr").querySelector(".question-code").innerHTML;
+        if (!questionIdInput) {
+            let deleteForm = document.querySelector("#deleteModal");
+            let questionIdInput = document.createElement("input");
+            questionIdInput.setAttribute("type", "hidden");
+            questionIdInput.setAttribute("name", "questionId");
+            questionIdInput.setAttribute("value", dataId);
+            deleteForm.appendChild(questionIdInput);
+        }else{
+            questionIdInput.value = dataId;
+        }
+    })
+})

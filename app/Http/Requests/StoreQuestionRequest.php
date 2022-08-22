@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreQuestionRequest extends FormRequest
 {
@@ -13,7 +14,8 @@ class StoreQuestionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $user = Auth::user();
+        return $user ? $user->role->number < 4 : false;
     }
 
     /**

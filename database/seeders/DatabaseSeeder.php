@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -100,20 +101,25 @@ class DatabaseSeeder extends Seeder
             'governorate_id' => 2,
         ]);
 
+        \App\Models\User::factory()->create([
+            'role_num'=>1,
+            'email'=>'ahmedaymantarboush@gmail.com',
+            'password'=>Hash::make('123456789')
+        ]);
         \App\Models\User::factory(50)->create();
 
-        \App\Models\Lecture::factory(50)->create();
+        \App\Models\Lecture::factory(50)->create(['user_id'=>1]);
 
-        \App\Models\Part::factory(20)->create();
+        \App\Models\Part::factory(20)->create(['user_id'=>1]);
 
-        \App\Models\Exam::factory(50)->create();
+        \App\Models\Exam::factory(50)->create(['user_id'=>1]);
 
-        \App\Models\Question::factory(150)->create();
+        \App\Models\Question::factory(150)->create(['user_id'=>1]);
 
         \App\Models\Choice::factory(150)->create();
 
         \App\Models\ExamQuestion::factory(300)->create();
-        
+
         \App\Models\AnswerdQuestion::factory(300)->create();
 
         \App\Models\Lesson::factory(50)->create();
@@ -124,7 +130,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\SectionItem::factory(50)->create();
 
-        \App\Models\Testimonial::factory(50)->create();
+        \App\Models\Testimonial::factory(50)->create(['teacher_id'=>1]);
 
         \App\Models\LectureUser::factory(25)->create();
 

@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Choice extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'question_id',
+        'name',
+        'text',
+        'image',
+        'video',
+        'audio',
+        'correct',
+    ];
 
     public function question()
     {
