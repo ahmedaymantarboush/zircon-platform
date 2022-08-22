@@ -173,7 +173,7 @@ class UserController extends Controller
         if (!$student) :
             return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
         endif;
-        if ($user->role->number < 4):
+        if ($user->role->number >= 4):
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
         endif;
         return apiResponse(true, _('تم العثور على الطالب'), [
