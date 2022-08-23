@@ -40,7 +40,7 @@ function uploadFile($request, $uploadedFileName, $newFileName, $oldPath = "", $f
             Storage::disk('public')->delete($oldPath);
         }
     }
-    return 'http://' . $request->getHttpHost() . '/storage/' . $savePath; //Storage::url($UploadedFile);
+    return asset('/storage/' . $savePath); //Storage::url($UploadedFile);
 }
 
 function getPrice($lecture)
