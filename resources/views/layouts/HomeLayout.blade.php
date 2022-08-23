@@ -31,7 +31,7 @@
 <body>
     <input type="hidden" name="token" id="csrf_token" value="{{ csrf_token() }}">
     @yield('beforeNav')
-    @include('components.Home.nav')
+    @include('components.home.nav')
     @yield('content')
     <footer class=' '>
         <div class="waves wave1">

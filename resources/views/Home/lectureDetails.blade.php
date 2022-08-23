@@ -1,4 +1,4 @@
-@extends('layouts.HomeLayout')
+@extends('layouts.homeLayout')
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/lecture.css') }} " class="rel">
     <link rel="stylesheet" href="{{ asset('css/lecture-responsive.css') }} " class="rel">

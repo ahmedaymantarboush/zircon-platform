@@ -24,7 +24,7 @@
                     <span>اضافة امتحان جديد</span>
                 </div>
                 <div class="main_exam_info">
-                    @include('components.Admin.examForm')
+                    @include('components.admin.examForm')
                 </div>
             </div>
         </div>

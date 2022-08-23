@@ -1,4 +1,4 @@
-@extends('layouts.HomeLayout')
+@extends('layouts.homeLayout')
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('css/myCourses.css') }} " class="rel">
     <link rel="stylesheet" href="{{ URL::asset('css/myCourses-responsive.css') }} " class="rel">
@@ -44,7 +44,7 @@
                     </div>
                 @endforeach
             </div>
-            @include('components.Home.pagination', ['paginator' => $lectures->paginate(6)])
+            @include('components.home.pagination', ['paginator' => $lectures->paginate(6)])
         </div>
     </section>
 @endsection

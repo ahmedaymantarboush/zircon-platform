@@ -1,4 +1,4 @@
-@extends('layouts.HomeLayout')
+@extends('layouts.homeLayout')
 @section('css')
     <!--swiper-->
     <link rel="stylesheet" href="{{ URL::asset('css/swiper.bundle.min.css') }}">

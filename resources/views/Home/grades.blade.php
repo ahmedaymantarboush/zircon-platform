@@ -1,4 +1,4 @@
-@extends('layouts.HomeLayout')
+@extends('layouts.homeLayout')
 @section('css')
 <!-- css file -->
 <link rel="stylesheet" href="{{ URL::asset('css/levels.css') }} " class="rel">
