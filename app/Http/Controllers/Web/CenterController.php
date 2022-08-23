@@ -20,7 +20,11 @@ class CenterController extends Controller
         $user = Auth::user();
         if ($user ? $user->role->number < 4 : false) {
             $centers = Center::all();
+<<<<<<< HEAD
             return view('Admin.centers', compact('centers'));
+=======
+            return view('admin.centers', compact('centers'));
+>>>>>>> 6aac4ca0134069b57eb497cad985b9e3aafd2476
         } else {
             return abort(404);
         }

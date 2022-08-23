@@ -578,10 +578,17 @@
                                     عبدالرحمن مصطفى محمود
                                 </h3>
                                 <span class="profileType">طالب</span>
+<<<<<<< HEAD
                             </div>
                             <div class="paper">
                                 <img src="{{ asset('admin/assets/imgs/paper2.png') }}" alt="" />
                             </div>
+=======
+                            </div>
+                            <div class="paper">
+                                <img src="{{ asset('admin/assets/imgs/paper2.png') }}" alt="" />
+                            </div>
+>>>>>>> 6aac4ca0134069b57eb497cad985b9e3aafd2476
                             <div class="someDetails">
                                 <div class="control">
                                     <h3 class="someDetailsHeading">
@@ -599,12 +606,21 @@
                                 <div class="item">
                                     <span class="type">الرقم:</span>
                                     <span class="info cardNumber">01234567891</span>
+<<<<<<< HEAD
                                 </div>
                                 <div class="item">
                                     <span class="type">رقم ولي الامر:</span>
                                     <span class="info cardParentNumber">01234567891</span>
                                 </div>
                                 <div class="item">
+=======
+                                </div>
+                                <div class="item">
+                                    <span class="type">رقم ولي الامر:</span>
+                                    <span class="info cardParentNumber">01234567891</span>
+                                </div>
+                                <div class="item">
+>>>>>>> 6aac4ca0134069b57eb497cad985b9e3aafd2476
                                     <span class="type"> المحافظة:</span>
                                     <span class="info cardGovernorate">القاهرة</span>
                                 </div>
@@ -729,6 +745,7 @@
 @section('javascript')
 <script src="{{ asset('admin/assets/js/jsBarCode.all') }}.min.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.8.0/dist/JsBarcode.all.min.js"></script> -->
+<<<<<<< HEAD
 
 
 <!--font awesome-->
@@ -756,3 +773,32 @@
 <script src="{{ asset('admin/assets/js/main.js') }}"></script>
 <script src="{{ asset('admin/assets/js/students.js') }}"></script>
 @endsection
+=======
+
+
+<!--font awesome-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
+    integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- bootstrap 4  -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+<!-- bootstrap 5  -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<!-- text editor  -->
+<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+
+<!-- main js file -->
+<script src="{{ asset('admin/assets/js/main.js') }}"></script>
+<script src="{{ asset('admin/assets/js/students.js') }}"></script>
+@endsection
+>>>>>>> 6aac4ca0134069b57eb497cad985b9e3aafd2476

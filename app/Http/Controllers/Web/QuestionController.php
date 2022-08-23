@@ -20,7 +20,11 @@ class QuestionController extends Controller
         $user = Auth::user();
         if ($user ? $user->role->number < 4 : false) {
             $questions = Question::all();
+<<<<<<< HEAD
             return view('Admin.questionBank', compact('questions'));
+=======
+            return view('admin.questionBank', compact('questions'));
+>>>>>>> 6aac4ca0134069b57eb497cad985b9e3aafd2476
         } else {
             return abort(404);
         }

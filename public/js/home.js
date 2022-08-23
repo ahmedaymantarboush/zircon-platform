@@ -85,11 +85,19 @@ let funChangeImagesDark = function () {
 
     let paperImg2 = document.querySelector(".paper2 img");
     if (document.documentElement.classList.contains("dark")) {
+<<<<<<< HEAD
         paperImg1.setAttribute("src", "public/imgs/paperdark.png");
         paperImg2.setAttribute("src", "public/imgs/paper2_dark.png");
     } else {
         paperImg1.setAttribute("src", "public/imgs/paper.png");
         paperImg2.setAttribute("src", "public/imgs/paper2.png");
+=======
+        paperImg1.setAttribute("src", "imgs/paperdark.png");
+        paperImg2.setAttribute("src", "imgs/paper2_dark.png");
+    } else {
+        paperImg1.setAttribute("src", "imgs/paper.png");
+        paperImg2.setAttribute("src", "imgs/paper2.png");
+>>>>>>> 6aac4ca0134069b57eb497cad985b9e3aafd2476
     }
 };
 
