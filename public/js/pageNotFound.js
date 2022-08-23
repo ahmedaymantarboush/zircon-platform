@@ -16,11 +16,19 @@ let addElement = function (ele, className) {
 ///////////////////////////////////
 // [01- dark and light ]
 let funChangeImagesDark = function () {
-    let errorImage = document.querySelector(".errorImage img");
+    let headerImage = document.querySelector(".header");
     if (document.documentElement.classList.contains("dark")) {
-        errorImage.setAttribute("src", "../imgs/error404_dark.png");
+        if(window.innerWidth <= 765){
+            headerImage.setAttribute("style", "background: url(../public/imgs/mob_banner_dark.png) no-repeat;");
+        }else{
+            headerImage.setAttribute("style", "background: url(../public/imgs/lecture_banner_dark.png) no-repeat;");
+        }
     } else {
-        errorImage.setAttribute("src", "../imgs/error404.png");
+        if(window.innerWidth <= 765){
+            headerImage.setAttribute("style", "background: url(../public/imgs/mob_banner.png) no-repeat;");
+        }else{
+            headerImage.setAttribute("style", "background: url(../public/imgs/lecture_banner.png) no-repeat;");
+        }
     }
 };
 

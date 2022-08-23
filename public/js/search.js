@@ -76,9 +76,17 @@ document.addEventListener("DOMContentLoaded", function () {
 let funChangeImagesDark = function () {
     let headerImage = document.querySelector(".header");
     if (document.documentElement.classList.contains("dark")) {
-        headerImage.setAttribute("style", "background: url(../imgs/lecture_banner_dark.png) no-repeat;");
+        if(window.innerWidth <= 765){
+            headerImage.setAttribute("style", "background: url(../public/imgs/mob_banner_dark.png) no-repeat;");
+        }else{
+            headerImage.setAttribute("style", "background: url(../public/imgs/lecture_banner_dark.png) no-repeat;");
+        }
     } else {
-        headerImage.setAttribute("style", "background: url(../imgs/lecture_banner.png) no-repeat;");
+        if(window.innerWidth <= 765){
+            headerImage.setAttribute("style", "background: url(../public/imgs/mob_banner.png) no-repeat;");
+        }else{
+            headerImage.setAttribute("style", "background: url(../public/imgs/lecture_banner.png) no-repeat;");
+        }
     }
 };
 

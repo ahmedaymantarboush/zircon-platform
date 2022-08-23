@@ -14,7 +14,12 @@ class Center extends Model
         'image',
         'governorate_id'
     ];
+
     public function govenrnorate(){
         return $this->belongsTo(Governorate::class,'governorate_id');
+    }
+
+    public function students(){
+        return $this->hasMany(User::class);
     }
 }

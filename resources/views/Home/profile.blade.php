@@ -10,7 +10,7 @@
 @section('content')
     <section class="main">
         <div class="bg nonePrint paper2">
-            <img src="{{ URL::asset('imgs/course-1.png') }}" alt="">
+            <img src="" alt="">
         </div>
         <div class="container">
             <div class="row">
@@ -72,7 +72,7 @@
                 <div class="col-lg-4 col-md-5 mb-30 leftProfile ">
                     <div class="whiteBox profileDetails ">
                         <div class="profileImg">
-                            <img src="{{ URL::asset('imgs/user.png') }}" alt="">
+                            <img src="{{ $user->image }}" alt="">
                         </div>
                         <div class="profileContent">
                             <div class="personalInformation">
@@ -80,7 +80,7 @@
                                 <span class='profileType'>{{ $user->role->title }}</span>
                             </div>
                             <div class="paper">
-                                <img src="{{ URL::asset('imgs/paper2.png') }}" alt="">
+                                <img src="" alt="">
                             </div>
                             <div class="someDetails">
                                 <div class="control">

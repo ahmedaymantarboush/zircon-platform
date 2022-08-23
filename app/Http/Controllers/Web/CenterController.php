@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Models\Center;
 use App\Http\Requests\StoreCenterRequest;
 use App\Http\Requests\UpdateCenterRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CenterController extends Controller
 {
@@ -15,7 +17,13 @@ class CenterController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false) {
+            $centers = Center::all();
+            return view('Admin.centers', compact('centers'));
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -36,7 +44,26 @@ class CenterController extends Controller
      */
     public function store(StoreCenterRequest $request)
     {
-        //
+        $data = $request->all();
+        $user = Auth::user();
+        if (!$user) :
+            return abort(401);
+        endif;
+        if ($user->role->number >= 4) :
+            return abort(403);
+        endif;
+
+        $center = Center::create([
+            'name' => $data['name'],
+            'url' => $data['url'],
+            'governorate_id' =>  $data['governorate']
+        ]);
+
+        if ($request->hasFile('image')) :
+            $center->image = uploadFile($request, 'image', $center->name . $center->id);
+            $center->save();
+        endif;
+        return redirect()->back();
     }
 
     /**
@@ -68,9 +95,27 @@ class CenterController extends Controller
      * @param  \App\Models\Center  $center
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCenterRequest $request, Center $center)
+    public function update(UpdateCenterRequest $request)
     {
-        //
+        $data = $request->all();
+        $center = Center::find($data['id']);
+        $data = $request->all();
+        $user = Auth::user();
+        if (!$user) :
+            return abort(401);
+        endif;
+        if ($user->role->number >= 4) :
+            return abort(403);
+        endif;
+
+        $center->name = $data['newName'];
+        $center->url = $data['newUrl'];
+        $center->governorate_id =  $data['newGovernorate'];
+        if ($request->hasFile('newImage')) :
+            $center->image = uploadFile($request, 'newImage', $center->name . $center->id,explode('/storage/',$center->image)[1] ?? '');
+            $center->save();
+        endif;
+        return redirect()->back();
     }
 
     /**

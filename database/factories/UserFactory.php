@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'governorate_id' => $this->faker->randomElement(\App\Models\Governorate::all()->pluck('id')),
             'code' => Str::random(16),
             'center_id' => $this->faker->randomElement(\App\Models\Center::all()->pluck('id')),
+            'balance' => $this->faker->numberBetween(0, 100),
         ];
     }
 

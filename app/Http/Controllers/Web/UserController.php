@@ -16,6 +16,17 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false) {
+            $users = User::where('role_num', '>=', $user->role->number)->get();
+            return view('Admin.students', compact('users'));
+        } else {
+            return abort(404);
+        }
+    }
+
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -83,7 +94,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         if ($user ? $user->role->number < 4 : false) :
-            return view('admin.addStudent');
+            return view('Admin.addStudent');
         esle:
             return abort(404);
         endif;

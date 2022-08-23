@@ -20,7 +20,7 @@ class TestimonialFactory extends Factory
     {
         return [
             'student_name'=>fake()->name(),
-            'image'=>'http://127.0.0.1:8000/imgs/h-t-img.jpeg',
+            'image'=>asset('imgs/h-t-img.jpeg'),
             'degree'=>fake()->numberBetween(330,410),
             'content'=>fake()->text(100),
             'subject_degree'=>fake()->numberBetween(40,60),

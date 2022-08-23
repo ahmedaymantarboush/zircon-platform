@@ -18,9 +18,9 @@ let addElement = function (ele, className) {
 let funChangeImagesDark = function () {
     let errorImage = document.querySelector(".errorImage img");
     if (document.documentElement.classList.contains("dark")) {
-        errorImage.setAttribute("src", "../imgs/email_ver_dark.png");
+        errorImage.setAttribute("src", "public/imgs/email_ver_dark.png");
     } else {
-        errorImage.setAttribute("src", "../imgs/email_ver.png");
+        errorImage.setAttribute("src", "public/imgs/email_ver.png");
     }
 };
 

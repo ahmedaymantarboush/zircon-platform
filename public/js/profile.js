@@ -20,18 +20,18 @@ let funChangeImagesDark = function () {
     let paperImg2 = document.querySelector(".paper2 img");
     if (document.documentElement.classList.contains("dark")) {
         if(window.innerWidth <=768){
-            paperImg2.setAttribute("src", "../imgs/mob_banner_dark.png");
+            paperImg2.setAttribute("src", "public/imgs/mob_banner_dark.png");
         }else {
-            paperImg2.setAttribute("src", "../imgs/profile_banner_dark.png");
+            paperImg2.setAttribute("src", "public/imgs/profile_banner_dark.png");
         }
-        paperImg1.setAttribute("src", "../imgs/paper2_dark_p.png");
+        paperImg1.setAttribute("src", "public/imgs/paper2_dark_p.png");
     } else {
         if(window.innerWidth <=768){
-            paperImg2.setAttribute("src", "../imgs/mob_banner.png");
+            paperImg2.setAttribute("src", "public/imgs/mob_banner.png");
         }else {
-            paperImg2.setAttribute("src", "../imgs/profile_banner.png");
+            paperImg2.setAttribute("src", "public/imgs/profile_banner.png");
         }
-        paperImg1.setAttribute("src", "../imgs/paper2.png");
+        paperImg1.setAttribute("src", "public/imgs/paper2.png");
     }
 };
 

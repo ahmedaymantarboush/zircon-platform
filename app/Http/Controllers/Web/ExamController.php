@@ -19,7 +19,7 @@ class ExamController extends Controller
      */
     public function index()
     {
-        return view('admin.allExams', ['exams' => Exam::all()]);
+        return view('Admin.allExams', ['exams' => Exam::all()]);
     }
 
     /**
@@ -31,7 +31,7 @@ class ExamController extends Controller
     {
         $user = Auth::user();
         if ($user ? $user->role->number < 4 : false):
-            return view('admin.addExam');
+            return view('Admin.addExam');
         else:
             return abort(404);
         endif;
@@ -73,7 +73,7 @@ class ExamController extends Controller
     {
         $exam = Exam::find($id);
         if ($exam ? $exam->user_id == Auth::user()->id : false):
-            return view('admin.examStudents', ['students' => $exam->students]);
+            return view('Admin.examStudents', ['students' => $exam->students]);
         else:
             return abort(404);
         endif;
@@ -104,7 +104,7 @@ class ExamController extends Controller
         }
         $user = Auth::user();
         if ($user ? $user->role->number < 4 && $exam->publisher->id == $user->id : false):
-            return view('admin.editExam', compact('exam'));
+            return view('Admin.editExam', compact('exam'));
         else:
             return abort(404);
         endif;

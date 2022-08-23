@@ -44,7 +44,7 @@
                     </div>
                 @endforeach
             </div>
-            @include('components.home.pagination', ['paginator' => $lectures->paginate(6)])
+            @include('components.Home.pagination', ['paginator' => $lectures->paginate(6)])
         </div>
     </section>
 @endsection

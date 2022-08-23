@@ -26,7 +26,7 @@ class LectureController extends Controller
         $gradeId = $id - 9;
         $lectures = Lecture::where(['published' => true, 'grade_id' => $gradeId])->orderBy('id', 'desc')->get();
         if (Grade::find($gradeId)) :
-            return view("home.grades", compact('lectures'));
+            return view("Home.grades", compact('lectures'));
         else :
             return abort(404);
         endif;
@@ -34,7 +34,7 @@ class LectureController extends Controller
 
     public function allLectures()
     {
-        return view("admin.lectures", ['lectures'=>Lecture::all()]);
+        return view("Admin.lectures", ['lectures'=>Lecture::all()]);
     }
 
     public function search()
@@ -212,10 +212,10 @@ class LectureController extends Controller
                     ],
                 ];
 
-                return view("home.search", $data);
+                return view("Home.search", $data);
             endif;
         endif;
-        return view("home.search", $data);
+        return view("Home.search", $data);
     }
 
     public function myLectures(){
@@ -224,7 +224,7 @@ class LectureController extends Controller
             return redirect()->route('login');
         }
         $lectures = $user->ownedLectures();
-        return view("home.myCourses", compact("lectures"));
+        return view("Home.myCourses", compact("lectures"));
     }
     /**
      * Show the form for creating a new resource.
@@ -234,7 +234,7 @@ class LectureController extends Controller
     public function create()
     {
         if (Auth::user()->role->number < 4) :
-            return view('admin.addLEcture');
+            return view('Admin.addLEcture');
         else :
             return abort(404);
         endif;
@@ -340,7 +340,7 @@ class LectureController extends Controller
     {
         $lecture = Lecture::where(['slug'=> $slug,'published'=>true])->first();
         if ($lecture) :
-            return view("home.lectureDetails", compact('lecture'));
+            return view("Home.lectureDetails", compact('lecture'));
         else :
             return abort(404);
         endif;
@@ -356,7 +356,7 @@ class LectureController extends Controller
     {
         $lecture = Lecture::where(['slug'=> $slug,'published'=>true])->first();
         if ($lecture) :
-            return view("admin.editLecture", compact('lecture'));
+            return view("Admin.editLecture", compact('lecture'));
         else :
             return abort(404);
         endif;

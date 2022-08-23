@@ -53,7 +53,12 @@ class BalanceCardController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false) :
+            return view('Admin.addCoupons');
+        else :
+            return abort(404);
+        endif;
     }
 
     /**
@@ -64,7 +69,19 @@ class BalanceCardController extends Controller
      */
     public function store(StoreBalanceCardRequest $request)
     {
-        //
+        $user = Auth::user();
+        $data = $request->all();
+        if ($user ? $user->role->number < 4 : false) :
+            $balanceCards = BalanceCard::factory($data['count'])->create([
+                'value' => $data['value'],
+                'center_id' => $data['center'],
+                'publisher_id' => $user->id,
+            ]);
+            $data['balanceCards'] = $balanceCards;
+            return redirect(route('Admin.balancecards.create'))->with($data);
+        else :
+            return abort(404);
+        endif;
     }
 
     /**

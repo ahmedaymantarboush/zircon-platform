@@ -422,6 +422,6 @@
         </div>
     </div>
 @endsection
-@section('js')
+@section('javascript')
     <script src="{{ asset('js/lecture.js') }}"></script>
 @endsection

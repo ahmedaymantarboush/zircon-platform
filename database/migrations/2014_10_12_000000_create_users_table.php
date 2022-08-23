@@ -19,14 +19,16 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone_number',11)->unique();
             $table->string('parent_phone_number',11);
-            $table->string('image')->nullable();
+            $table->string('image')->default(asset('imgs/user.png'));
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->float('balance')->default(0);
             $table->string('platform')->default(config('app.name'));
             $table->string('code',50)->unique();
-            $table->softDeletes();
+            $table->boolean('activated')->default(true);
+            $table->boolean('hanging')->default(false);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

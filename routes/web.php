@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\CenterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Web\TestimonialController;
 use App\Http\Controllers\Web\QuestionController;
@@ -47,9 +48,11 @@ Route::prefix('admin')->group(function () {
     Route::get('exams/{id}/students',[ExamCoZntroller::class,'students'])->name('admin.exams.students');
     Route::post('/sort-sections',[SectionController::class, 'sortSections'])->name('sections.resort');
     Route::post('/sort-items',[SectionItemController::class, 'sortItems'])->name('sectionitems.resort');
-    Route::get('user/create', [UserController::class,'create'])->name('admin.user.create');
-    Route::post('user/store', [UserController::class,'store'])->name('admin.user.store');
-    Route::post('user/update', [UserController::class,'update'])->name('admin.user.update');
+
+    Route::get('users', [UserController::class,'index'])->name('admin.users.index');
+    Route::get('users/create', [UserController::class,'create'])->name('admin.users.create');
+    Route::post('users/store', [UserController::class,'store'])->name('admin.users.store');
+    Route::post('users/update', [UserController::class,'update'])->name('admin.users.update');
 
     Route::get('lectures',[LectureController::class, 'allLectures'])->name('admin.lectures.index');
 
@@ -60,6 +63,14 @@ Route::prefix('admin')->group(function () {
     Route::post('questions/update', [QuestionController::class,'update'])->name('admin.questions.update');
 
     Route::get('certificates', [TestimonialController::class,'index'])->name('admin.certificates.index');
+
+    Route::get('centers', [CenterController::class,'index'])->name('admin.centers.index');
+    Route::post('centers/update', [CenterController::class,'update'])->name('admin.centers.update');
+    Route::post('centers/store', [CenterController::class,'store'])->name('admin.centers.store');
+
+    Route::get('balancecards/create', [BalanceCardController::class,'create'])->name('admin.balancecards.create');
+    Route::post('balancecards/store', [BalanceCardController::class,'store'])->name('admin.balancecards.store');
+
 });
 
 //  ADMIN ROUTES

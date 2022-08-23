@@ -71,15 +71,20 @@ document.addEventListener("DOMContentLoaded", function () {
 ///////////////////////////////////
 // [01- dark and light ]
 let funChangeImagesDark = function () {
-    // let paperImg1 = document.querySelector(".paper img");
-    // let paperImg2 = document.querySelector(".paper2 img");
-    // if (document.documentElement.classList.contains("dark")) {
-    //     paperImg1.setAttribute("src", "../imgs/paperdark.png");
-    //     paperImg2.setAttribute("src", "../imgs/paper2_dark.png");
-    // } else {
-    //     paperImg1.setAttribute("src", "../imgs/paper.png");
-    //     paperImg2.setAttribute("src", "../imgs/paper2.png");
-    // }
+    let headerImage = document.querySelector(".header");
+    if (document.documentElement.classList.contains("dark")) {
+        if(window.innerWidth <= 765){
+            headerImage.setAttribute("style", "background: url(../imgs/mob_banner_dark.png) no-repeat;");
+        }else{
+            headerImage.setAttribute("style", "background: url(../imgs/lecture_banner_dark.png) no-repeat;");
+        }
+    } else {
+        if(window.innerWidth <= 765){
+            headerImage.setAttribute("style", "background: url(../imgs/mob_banner.png) no-repeat;");
+        }else{
+            headerImage.setAttribute("style", "background: url(../imgs/lecture_banner.png) no-repeat;");
+        }
+    }
 };
 
 let addStyleToLocaleStorage = function () {

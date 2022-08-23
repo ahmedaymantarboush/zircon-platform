@@ -1,4 +1,4 @@
-@include('includes.admin.head')
+@include('includes.Admin.head')
 <input type="hidden" name="token" id="csrf_token" value="{{ csrf_token() }}">
 <section class="main">
     <div class="container-fluid">
@@ -180,4 +180,4 @@
     </div>
 </section>
 @yield('extra')
-@include('includes.admin.footer')
+@include('includes.Admin.footer')
