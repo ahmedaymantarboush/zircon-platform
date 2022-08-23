@@ -55,6 +55,7 @@ Route::prefix('admin')->group(function () {
     Route::post('users/update', [UserController::class,'update'])->name('admin.users.update');
 
     Route::get('lectures',[LectureController::class, 'allLectures'])->name('admin.lectures.index');
+    Route::post('lectures/{slug}/buy',[LectureController::class, 'buy'])->name('admin.lectures.buy');
 
     Route::get('questions', [QuestionController::class,'index'])->name('admin.questions.index');
     Route::post('questions/filter', [QuestionController::class,'filter'])->name('admin.questions.filter');

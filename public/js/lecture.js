@@ -127,9 +127,10 @@ let vidParent = document.querySelector(".vid-parent");
 let blackBg = document.querySelector(".overlay");
 let closeVid = document.querySelector(".close-vid");
 let vidBtn = document.querySelectorAll(".lec-image-content .play");
-let videoLink = "https://www.youtube.com/embed/tgbNymZ7vqY"; // حط هنا لينك الفيديو
+let videoLink = promotinalVideoUrl.value.replace('watch?v=','embed/'); // حط هنا لينك الفيديو
 vidBtn.forEach((ele) => {
-    ele.addEventListener("click", function () {
+    ele.addEventListener("click", function (e) {
+        e.preventDefault()
         let frame = `<iframe
 		src="${videoLink}"
 		class="preview-vid"

@@ -78,7 +78,7 @@ class BalanceCardController extends Controller
                 'publisher_id' => $user->id,
             ]);
             $data['balanceCards'] = $balanceCards;
-            return redirect(route('Admin.balancecards.create'))->with($data);
+            return redirect(route('admin.balancecards.create'))->with($data);
         else :
             return abort(404);
         endif;

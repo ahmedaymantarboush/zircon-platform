@@ -22,9 +22,7 @@ class BalanceCardFactory extends Factory
         return [
             'code'=>Str::random(10),
             'value'=>fake()->numberBetween(1,100),
-            'expiry_date'=>fake()->dateTimeBetween('-1 year', '+1 year'),
-            'user_id'=>$user,
-            'used_at'=> $user ? fake()->dateTimeBetween('-1 year', '+1 year') : null,
+            'expiry_date'=>fake()->dateTimeBetween('+1 year', '+1 year'),
         ];
     }
 }

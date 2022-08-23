@@ -15,12 +15,14 @@
         <div class="container">
             <div class="headerContent">
                 <div class="lec-hero-image ontop">
-                    <div class="lec-image-content">
-                        <a class="play" href="#">
-                            <i class="fa-solid fa-play"></i>
-                        </a>
-                        <p>معاينة المحاضرة</p>
-                    </div>
+                    @if ($lecture->promotinal_video_url && !$lecture->owners->contains(Auth::user()))
+                        <div class="lec-image-content">
+                            <a class="play" href="#">
+                                <i class="fa-solid fa-play"></i>
+                            </a>
+                            <p>معاينة المحاضرة</p>
+                        </div>
+                    @endif
                     <img src="{{ $lecture->poster }}" alt="" />
                 </div>
                 <h2 class='lectureName'>{{ $lecture->title }}</h2>
@@ -211,12 +213,16 @@
                     <div class="preview-card">
                         <div class="preview-card-image ontop">
                             <img src="{{ $lecture->poster }}" alt="" />
-                            <div class="lec-image-content">
-                                <a class="play" href="#">
-                                    <i class="fa-solid fa-play"></i>
-                                </a>
-                                <p>معاينة المحاضرة</p>
-                            </div>
+                            @if ($lecture->promotinal_video_url && !$lecture->owners->contains(Auth::user()))
+                                <div class="lec-image-content">
+                                    <input type="hidden" id="promotinalVideoUrl"
+                                        value="{{ $lecture->promotinal_video_url }}">
+                                    <a class="play" href="#">
+                                        <i class="fa-solid fa-play"></i>
+                                    </a>
+                                    <p>معاينة المحاضرة</p>
+                                </div>
+                            @endif
                         </div>
                         <div class="card-content">
                             @php
@@ -268,32 +274,15 @@
                                         </p>
                                     </div>
                                 @endif
-                                <!-- <a href="#" class="buy-now">شراء الأن</a> -->
-                                <button type="button" class="buy-now" data-toggle="modal" data-target="#notEnough">
+                                {{-- <!-- <a href="#" class="buy-now">شراء الأن</a> --> --}}
+                                <button type="button" class="buy-now" data-toggle="modal"
+                                    data-target="#{{ Auth::user()->balance >= $price ? 'sureBuy' : 'notEnough' }}">
                                     شراء الأن </button>
                                 <div class="coupon">
                                     <button class="add-coupon" id="couponBtn" data-toggle="modal"
                                         data-target="#chargeCoupon">
                                         أدخل الكوبون
                                     </button>
-                                    <!-- <form class="have-coupon">
-                                                                        <div class="dis-coupon">
-                                                                            <button class="close-coupon" type="button">
-                                                                                <i class="fa fa-close"></i>
-                                                                            </button>
-
-                                                                            <p class="coupon-text">
-                                                                                KEEPLEARNING
-                                                                            </p>
-                                                                            <input type="text" id="hiddenInput" hidden />
-                                                                            <span class="coupon-status">منفذ</span>
-                                                                            <span class="coupon-status is-invalid-coupon">
-                                                                                غير صالح
-                                                                            </span>
-                                                                        </div>
-                                                                        <input type="submit" value="أضف" id="add-coupon" />
-                                                                        <input type="text" id="coupon-input" />
-                                                                    </form> -->
                                 </div>
                             @endif
                             <div class="course-content">
@@ -326,7 +315,8 @@
             <div class="modal fade sureBuyModal" id="sureBuy" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form class="modal-content">
+                    <form method="POST" action="{{route('admin.lectures.buy',$lecture->slug)}}" class="modal-content">
+                        @csrf
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">شراء الشهر</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -337,7 +327,7 @@
                             هل انت متأكد انك تريد شراء الشهر؟ (رصيدك: {{ Auth::user()->balance }} ج.م)
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn myButton">شراء</button>
+                            <button type="submit" class="btn myButton">شراء</button>
                             <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
                         </div>
                     </form>
@@ -356,11 +346,11 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            رصيدك الحالي ({{ Auth::user()->balance }} ج.م) لا يكفي لشراء الشهر </div>
+                            رصيدك الحالي ({{ Auth::user()->balance }} ج.م) لا يكفي لشراء الشهر
+                        </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn myButton" data-toggle="modal" data-target="#charge"
-                                id='chargeTransferBtn'>شحن
-                                رصيد</button>
+                            <button type="submit" class="btn myButton" data-toggle="modal" data-target="#charge"
+                                id='chargeTransferBtn'>شحن رصيد</button>
                             <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
                         </div>
                     </div>
@@ -370,7 +360,8 @@
             <div class="modal fade chargeModal" id="charge" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form class="modal-content">
+                    <form method="POST" action="{{ route('balance.recharge') }}" class="modal-content">
+                        @csrf
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">شحن رصيد</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -380,15 +371,18 @@
                         <div class="modal-body">
                             <div class="chargeField">
                                 <label for="">كود الشحن</label>
-                                <input type="text" placeholder='ادخل كود الشحن'>
+                                <input type="text" name="code" placeholder='ادخل كود الشحن'>
                             </div>
-                            {{-- <p class='finishChargeText'>تم الشحن بنجاح رصيدك الحالي 150 ج.م</p>
-
-                        <p class='wrongChargeText'>الكود الذي ادخلته غير صحيح رصيدك الحالي 100 ج.م</p> --}}
+                            @if (request()->session()->has('success') &&
+                                !request()->session()->get('success'))
+                                <p
+                                    class="{{ request()->session()->get('success')? 'finishChargeText': 'wrongChargeText' }}">
+                                    {{ request()->session()->get('msg') }}</p>
+                            @endif
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn myButton">شحن رصيد</button>
-                            <button type="button" class="btn secBtn" data-dismiss="modal">الغاء</button>
+                            <button type="submit" class="btn myButton">شحن رصيد</button>
+                            <button type="button" class="btn secBtn" data-dismiss="modal">إغلاق</button>
                         </div>
                     </form>
                 </div>

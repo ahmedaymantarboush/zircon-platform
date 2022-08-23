@@ -12,6 +12,7 @@ use App\Models\Subject;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\LecturePart;
+use App\Models\LectureUser;
 use Illuminate\Support\Facades\Auth;
 
 class LectureController extends Controller
@@ -34,7 +35,7 @@ class LectureController extends Controller
 
     public function allLectures()
     {
-        return view("Admin.lectures", ['lectures'=>Lecture::all()]);
+        return view("Admin.lectures", ['lectures' => Lecture::all()]);
     }
 
     public function search()
@@ -218,13 +219,47 @@ class LectureController extends Controller
         return view("Home.search", $data);
     }
 
-    public function myLectures(){
+    public function myLectures()
+    {
         $user = Auth::user();
-        if(!$user){
+        if (!$user) {
             return redirect()->route('login');
         }
         $lectures = $user->ownedLectures();
         return view("Home.myCourses", compact("lectures"));
+    }
+
+    public function buy($slug)
+    {
+        $user = Auth::user();
+        if (!$user) :
+            return redirect('login');
+        endif;
+
+        $lecture = Lecture::where('slug', $slug)->first();
+        if (!$lecture) :
+            return abort(404);
+        endif;
+        $price = getPrice($lecture);
+
+        $balance = $user->balance;
+        if ($balance < $price) :
+            return redirect()->back()->withErrors(_("الرصيد الحالي ($balance ج.م) لا يكفي لاتمام عملية الشراء"));
+
+        elseif ($balance >= $price) :
+
+            $user->balance = $balance - $price;
+            if ($user->save()) :
+                $lectureUser = LectureUser::create([
+                    'lecture_id' => $lecture->id,
+                    'user_id' => $user->id,
+                ]);
+                if ($lectureUser) :
+                    return redirect()->back();
+                endif;
+            endif;
+        endif;
+        return redirect()->back()->withErrors(_("حدث خطأ أثناء الشراء يرجى المحاولة مرة أخرى"));
     }
     /**
      * Show the form for creating a new resource.
@@ -245,9 +280,9 @@ class LectureController extends Controller
         $slug = request()->slug;
         $user = Auth::user();
         if ($slug && $user) :
-            $lecture = Lecture::where(['slug'=> $slug,'published'=>true])->first();
+            $lecture = Lecture::where(['slug' => $slug, 'published' => true])->first();
             if ($lecture->owners->contains($user)) :
-                return view('Home.lecture_viewer',compact('lecture'));
+                return view('Home.lecture_viewer', compact('lecture'));
             else :
                 return abort(404);
             endif;
@@ -338,7 +373,7 @@ class LectureController extends Controller
      */
     public function show($slug)
     {
-        $lecture = Lecture::where(['slug'=> $slug,'published'=>true])->first();
+        $lecture = Lecture::where(['slug' => $slug, 'published' => true])->first();
         if ($lecture) :
             return view("Home.lectureDetails", compact('lecture'));
         else :
@@ -354,7 +389,7 @@ class LectureController extends Controller
      */
     public function edit($slug)
     {
-        $lecture = Lecture::where(['slug'=> $slug,'published'=>true])->first();
+        $lecture = Lecture::where(['slug' => $slug, 'published' => true])->first();
         if ($lecture) :
             return view("Admin.editLecture", compact('lecture'));
         else :
@@ -372,7 +407,7 @@ class LectureController extends Controller
     public function update(UpdateLectureRequest $request, $slug)
     {
         $data = $request->all();
-        $lecture = Lecture::where(['slug'=> $slug,'published'=>true])->first();
+        $lecture = Lecture::where(['slug' => $slug, 'published' => true])->first();
 
         if ($data['price'] >= $data['finalPrice'] || $data['free']) {
             $lecture->update($this->lectureData($request, 'poster', $lecture));
