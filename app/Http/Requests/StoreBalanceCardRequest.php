@@ -15,7 +15,7 @@ class StoreBalanceCardRequest extends FormRequest
     public function authorize()
     {
         $user = Auth::user();
-        return $user ? $user->role : false
+        return $user ? $user->role : false;
     }
 
     /**

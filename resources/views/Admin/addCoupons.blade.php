@@ -23,7 +23,7 @@
         <div class="d-flex justify-content-center main_div">
             <div style="width: 90%;">
                 <div class="main_exam_info">
-                    <form action="{{route('admin.balancecards.store')}}" method="POST" class="exam-form">
+                    <form action="{{ route('admin.balancecards.store') }}" method="POST" class="exam-form">
                         @csrf
                         <div class="row">
                             <div class="col-12">
@@ -32,7 +32,8 @@
                             </div>
                             <div class="col-lg-4 col-md-12">
                                 <label for="formGroupExampleInput" class="form-label input_label">عدد الكروت :</label>
-                                <input type="number" min="0" name="count" value="{{ old('count') }}"
+                                <input type="number" min="0" name="count"
+                                    value="{{ old('count') ?? Session::get('count') }}"
                                     class="form-control-lg form-control @error('count') is-invalid @enderror"
                                     id="formGroupExampleInput" placeholder="ادخل عدد الكروت"
                                     style="font-size: 15px;width: 90%;">
@@ -50,8 +51,9 @@
                                     <option>
                                         اختر المكان
                                     </option>
-                                    @foreach (\App\Models\Center::all() as $center)
-                                        <option @selected(old('center') == $center->id) value="{{ $center->id }}">{{ $center->name }}
+                                    @foreach (\App\Models\Center::all() as $location)
+                                        <option @selected(old('center') ? old('center') == $location->id : (Session::has('center') ? Session::get('center') == $location->id : '')) value="{{ $location->id }}">
+                                            {{ $location->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -63,7 +65,8 @@
                             </div>
                             <div class="col-lg-4 col-md-12">
                                 <label for="formGroupExampleInput" class="form-label input_label">قيمة الكارت :</label>
-                                <input type="number" min="0" name="value" value="{{ old('value') }}"
+                                <input type="number" min="0" name="value"
+                                    value="{{ old('value') ?? Session::get('value') }}"
                                     class="@error('value') is-invalid @enderror form-control-lg form-control"
                                     id="formGroupExampleInput" placeholder="ادخل القيمة للكارت الواحد"
                                     style="font-size: 15px;width: 90%;">
@@ -76,12 +79,18 @@
 
                             <div class="col-12">
                                 <div class="end-line"></div>
-                                <button type="submit" class="sub_btn">طباعة</button>
+                                <button type="submit" class="sub_btn">انشاء الأكواد</button>
                                 <a href="#" class="a_btn">سجل كروت الشحن</a>
                             </div>
                         </div>
                     </form>
                 </div>
+
+                @php
+                    if (Session::has('balanceCards')):
+                        $balanceCards = Session::get('balanceCards');
+                    endif;
+                @endphp
                 @isset($balanceCards)
                     <div class="main_exam_info">
                         <div class="row" style="padding-bottom: 30px">
@@ -93,25 +102,25 @@
                                 <button type="button" class="sub_btn print_btn" style="margin-left: 50px;">طباعة</button>
                             </div>
 
-                            @for ($i = 1; $i <= 6; $i++)
+                            @foreach ($balanceCards as $index => $balanceCard)
                                 <div class="col-lg-4 col-sm-12" style="padding-top: 30px">
                                     @include('components.Admin.coupon-card', [
-                                        'counter' => $i,
-                                        'id' => rand(1, 7),
-                                        'start_date' => '27-7-2022:17:50',
-                                        'end_date' => '27-7-2023:17:50',
-                                        'value' => rand(50, 100),
-                                        'code' => Str::random(10),
+                                        'counter' => $index + 1,
+                                        'id' => $balanceCard->id,
+                                        'start_date' => $balanceCard->created_at->format('d-m-y:H:i'),
+                                        'end_date' => $balanceCard->expiry_date->format('d-m-y:H:i'),
+                                        'value' => $balanceCard->value,
+                                        'code' => $balanceCard->code,
                                         'app_name' => 'أ/ محمد البري',
                                     ])
                                 </div>
-                            @endfor
+                            @endforeach
                         </div>
                     </div>
                 @endisset
+
             </div>
         </div>
-
     </div>
 @endsection
 

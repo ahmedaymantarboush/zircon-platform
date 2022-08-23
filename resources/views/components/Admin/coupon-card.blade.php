@@ -130,6 +130,7 @@
         font-weight: 500;
         font-size: 13px;
         letter-spacing: 10px;
+        text-transform: none;
     }
 
 
@@ -142,7 +143,8 @@
         const qrCode = new QRCodeStyling({
             width:95,
             height:95,
-            data:"{{$value}}//{{$id}}//{{$code}}",
+            // data:"{{$value}}//{{$id}}//{{$code}}",
+            data:"id       : {{$id}}\ncode  : {{$code}}\nvalue : {{$value}}",
             margin:0,
             qrOptions:{
                 typeNumber:"0",mode:"Byte",errorCorrectionLevel:"H"

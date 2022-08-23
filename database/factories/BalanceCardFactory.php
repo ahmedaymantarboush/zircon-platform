@@ -20,7 +20,7 @@ class BalanceCardFactory extends Factory
     {
         $user = fake()->optional()->randomElement(User::all()->pluck('id')) ?? null;
         return [
-            'code'=>Str::random(16),
+            'code'=>Str::random(10),
             'value'=>fake()->numberBetween(1,100),
             'expiry_date'=>fake()->dateTimeBetween('-1 year', '+1 year'),
             'user_id'=>$user,

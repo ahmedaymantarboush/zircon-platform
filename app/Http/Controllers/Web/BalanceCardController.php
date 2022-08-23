@@ -54,9 +54,9 @@ class BalanceCardController extends Controller
     public function create()
     {
         $user = Auth::user();
-        if ($user ? $user->role->number < 4 : false):
+        if ($user ? $user->role->number < 4 : false) :
             return view('Admin.addCoupons');
-        else:
+        else :
             return abort(404);
         endif;
     }
@@ -71,10 +71,15 @@ class BalanceCardController extends Controller
     {
         $user = Auth::user();
         $data = $request->all();
-        if ($user ? $user->role->number < 4 : false):
-            $balanceCards = BalanceCard::factory($data['count'])->create([]);
-            return view('Admin.addCoupons',compact('balanceCards'));
-        else:
+        if ($user ? $user->role->number < 4 : false) :
+            $balanceCards = BalanceCard::factory($data['count'])->create([
+                'value' => $data['value'],
+                'center_id' => $data['center'],
+                'publisher_id' => $user->id,
+            ]);
+            $data['balanceCards'] = $balanceCards;
+            return redirect(route('admin.balancecards.create'))->with($data);
+        else :
             return abort(404);
         endif;
     }
