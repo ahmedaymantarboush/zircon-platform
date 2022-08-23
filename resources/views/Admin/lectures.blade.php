@@ -209,7 +209,7 @@
                             عدد الطلاب : {{count($lecture->owners)}}
                         </td>
                         <td data-lable="مشاهدة :" class="views">
-                            {{count($lecture->viewers)}}
+                            {{count($lecture->viewers) ?? 0}}
                         </td>
                         <td data-lable="الحالة :" class="table-stat-parent">
                             <span class="table-stat not-active">معلق</span>
