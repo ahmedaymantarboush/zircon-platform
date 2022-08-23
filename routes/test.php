@@ -72,7 +72,7 @@ Route::get('/pull', function () {
             $output = shell_exec('git pull');
             return "<h1>pull Request Is Finished</h1><br><p>$output</p>";
         else :
-            return"<h1>You Must Be Super Admin To Get This Page</h1>";
+            return"<h1>You Must Be Super Admin To Get This Page</h1> ";
         endif;
     else:
         return redirect(route('login'));
