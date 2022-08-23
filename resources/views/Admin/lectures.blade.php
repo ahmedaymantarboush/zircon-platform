@@ -5,6 +5,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
     <!-- css file -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/lectures.css') }}" />
 @endsection
 @section('content')
