@@ -70,7 +70,7 @@ Route::get('/pull', function () {
     if ($user) :
         if ($user->role->number == 1) :
             $output = nl2br(shell_exec('git pull'));
-            return "<h1>pull Request Is Finished</h1><br><p></p><h1>DONE.</h1>";
+            return "<h1>pull Request Is Finished</h1><br><p>$output</p><h1>DONE.</h1>";
         else :
             return"<h1>You Must Be Super Admin To Get This Page</h1>";
         endif;
