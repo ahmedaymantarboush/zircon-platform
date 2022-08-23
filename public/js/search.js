@@ -77,17 +77,6 @@ let funChangeImagesDark = function () {
     let headerImage = document.querySelector(".header");
     if (document.documentElement.classList.contains("dark")) {
         if(window.innerWidth <= 765){
-<<<<<<< HEAD
-            headerImage.setAttribute("style", "background: url(../public/imgs/mob_banner_dark.png) no-repeat;");
-        }else{
-            headerImage.setAttribute("style", "background: url(../public/imgs/lecture_banner_dark.png) no-repeat;");
-        }
-    } else {
-        if(window.innerWidth <= 765){
-            headerImage.setAttribute("style", "background: url(../public/imgs/mob_banner.png) no-repeat;");
-        }else{
-            headerImage.setAttribute("style", "background: url(../public/imgs/lecture_banner.png) no-repeat;");
-=======
             headerImage.setAttribute("style", "background: url(../imgs/mob_banner_dark.png) no-repeat;");
         }else{
             headerImage.setAttribute("style", "background: url(../imgs/lecture_banner_dark.png) no-repeat;");
@@ -97,7 +86,6 @@ let funChangeImagesDark = function () {
             headerImage.setAttribute("style", "background: url(../imgs/mob_banner.png) no-repeat;");
         }else{
             headerImage.setAttribute("style", "background: url(../imgs/lecture_banner.png) no-repeat;");
->>>>>>> 6aac4ca0134069b57eb497cad985b9e3aafd2476
         }
     }
 };
