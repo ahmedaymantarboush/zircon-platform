@@ -58,8 +58,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'grade' => ['required', 'string', 'exists:grades,name'],
-            'phone_number' => ['required', 'string', 'unique:users,phone_number','max:13','min:11'],
-            'parent_phone_number' => ['required', 'string','max:13','min:11'],
+            'phone_number' => ['required', 'string', 'unique:users,phone_number','max:11','min:11'],
+            'parent_phone_number' => ['required', 'string','max:11','min:11'],
             'governorate' => ['required','string','exists:governorates,name'],
             'center'=>['nullable','string','exists:centers,name'],
 
