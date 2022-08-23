@@ -38,8 +38,7 @@ class LessonController extends Controller
             'title' => $lesson->title,
             'shortDescription' => $lesson->short_description,
             'grade' => $lesson->grade_id,
-            'parts' => $lesson->parts->pluck('id')->toArray(),
-            'description' => $lesson->description,
+            'part' => $lesson->part,
             'free' => $lesson->price == 0,
         ]);
     }
@@ -61,9 +60,29 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $lesson = Lesson::find($id);
+        if (!$lesson) :
+            return apiResponse(false, _('لم يتم العثور على الدرس'), [], 404);
+        endif;
+        if (!$lesson->lecture->owners->contains($user)):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض الدرس'), [], 403);
+        endif;
+        return apiResponse(true, _('تم العثور على الدرس'), [
+            'title' => $lesson->title,
+            'shortDescription' => $lesson->short_description,
+            'grade' => $lesson->grade_id,
+            'part' => $lesson->part,
+            'description' => $lesson->description,
+            'urls' => getVideoUrl(getVideoId($lesson->id))
+        ]);
     }
 
     /**

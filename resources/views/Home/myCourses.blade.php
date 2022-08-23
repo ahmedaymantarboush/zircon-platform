@@ -1,4 +1,4 @@
-@extends('layouts.homeLayout')
+@extends('layouts.HomeLayout')
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('css/myCourses.css') }} " class="rel">
     <link rel="stylesheet" href="{{ URL::asset('css/myCourses-responsive.css') }} " class="rel">

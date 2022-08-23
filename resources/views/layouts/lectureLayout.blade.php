@@ -20,6 +20,7 @@
     <title>lecture Name</title>
 </head>
 <body>
+    <input type="hidden" id="csrf_token" name="_token" value="{{csrf_token()}}">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <header class=" lec_header square-box align-items-center">
         <div class="row" style="width: 100%;">

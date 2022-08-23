@@ -57,7 +57,8 @@ Route::post('/view-lecture',[LectureController::class,'viewLecture']);
 Route::post('lectures/fastEdit',[LectureController::class,'fastEdit']);
 
 //       LESSON ROUTES
-Route::apiResource('/lessons',LessonController::class)->names(['store'=>'api.lessons.store','update'=>'api.lessons.update','destroy'=>'api.lessons.destroy']);
+Route::apiResource('/lessons',LessonController::class)->except(['show'])->names(['store'=>'api.lessons.store','update'=>'api.lessons.update','destroy'=>'api.lessons.destroy']);
+Route::post('lessons/getLesson',[LessonController::class, 'show'])->name('api.lessons.show');
 
 //       EXAM ROUTES
 Route::apiResource('/exams',ExamController::class)->names(['index'=>'api.exams.index','store'=>'api.exams.store','update'=>'api.exams.update','destroy'=>'api.exams.destroy']);

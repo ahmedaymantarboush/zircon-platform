@@ -1,4 +1,4 @@
-@extends('layouts.homeLayout')
+@extends('layouts.HomeLayout')
 
 @section('css')
     <!--swiper-->

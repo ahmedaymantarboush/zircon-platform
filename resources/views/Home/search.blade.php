@@ -1,4 +1,4 @@
-@extends('layouts.homeLayout')
+@extends('layouts.HomeLayout')
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/search.css') }} " class="rel">
     <link rel="stylesheet" href="{{ asset('css/search-responsive.css') }} " class="rel">
