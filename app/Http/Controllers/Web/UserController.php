@@ -21,11 +21,7 @@ class UserController extends Controller
         $user = Auth::user();
         if ($user ? $user->role->number < 4 : false) {
             $users = User::where('role_num', '>=', $user->role->number)->get();
-<<<<<<< HEAD
             return view('Admin.students', compact('users'));
-=======
-            return view('admin.students', compact('users'));
->>>>>>> 6aac4ca0134069b57eb497cad985b9e3aafd2476
         } else {
             return abort(404);
         }
