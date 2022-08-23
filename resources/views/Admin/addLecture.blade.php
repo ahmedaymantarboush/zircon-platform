@@ -45,7 +45,7 @@
         </div>
         <!-- the first form in the add lecture page and it is have a 5 tabs -->
 
-        @include('components.Admin.lectureForm')
+        @include('components.admin.lectureForm')
 
         <div class="control">
             <span class="right-btn"><i class="fa-solid fa-angles-right"></i></span>

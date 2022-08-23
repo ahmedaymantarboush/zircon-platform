@@ -606,7 +606,7 @@
             </div>
         </div>
         <!-- the first form in the add lecture page and it is have a 5 tabs -->
-        @include('components.Admin.lectureForm', ['lecture' => $lecture])
+        @include('components.admin.lectureForm', ['lecture' => $lecture])
 
         <div class="control">
             <span class="right-btn"><i class="fa-solid fa-angles-right"></i></span>
