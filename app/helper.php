@@ -1,4 +1,7 @@
 <?php
+/////////////////////////////////
+/////////HELPER METHODS//////////
+/////////////////////////////////
 
 use Illuminate\Support\Facades\Storage;
 // use hisorange\BrowserDetect\Facade as BrowserDetect;
@@ -128,3 +131,7 @@ function getIp()
 {
     return request()->ip();
 }
+
+/////////////////////////////////
+///////END HELPER METHODS////////
+/////////////////////////////////
