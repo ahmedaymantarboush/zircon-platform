@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    @include('components.home.nav')
+    @include('components.Home.nav')
     @yield('content')
     <footer class=' '>
         <div class="waves wave1">

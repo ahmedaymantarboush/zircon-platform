@@ -240,7 +240,7 @@
                     </section>
                 </div>
             </div>
-            @include('components.home.pagination', ['paginator' => $lectures->paginate(6)])
+            @include('components.Home.pagination', ['paginator' => $lectures->paginate(6)])
         </div>
     @else
         <div class="errorImage">
