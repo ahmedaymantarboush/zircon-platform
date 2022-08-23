@@ -19,11 +19,14 @@ class LessonFactory extends Factory
      */
     public function definition()
     {
+        $urls = [
+            'https://www.youtube.com/watch?v=5hzsa633ZCI'
+        ];
         $examId = $this->faker->optional()->randomElement(Exam::all()->pluck('id'));
         $lectureId = $this->faker->randomElement(Lecture::all()->pluck('id'));
         return [
             'title'=>fake()->name(),
-            'url'=>fake()->url().fake()->url(),
+            'url'=>getEmbedVideoUrl(fake()->randomElement($urls)),
             'time'=>rand(500,5000),
             'type'=>fake()->randomElement(['video','pdf','audio']),
             'semester'=>fake()->randomElement(['الفصل الدراسي الأول','الفصل الدراسي الثاني']),

@@ -54,7 +54,7 @@ class LessonController extends Controller
 
         $lesson = new Lesson();
         $lesson->title = $data['lessonTitle'];
-        $lesson->url = $data['url'];
+        $lesson->url = getEmbedVideoUrl($data['url']);
         $lesson->time = $time;
         $lecture->time += $time;
         $lesson->grade_id=  $lecture->grade->id;

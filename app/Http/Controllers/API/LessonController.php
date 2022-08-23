@@ -75,13 +75,13 @@ class LessonController extends Controller
         if (!$lesson->lecture->owners->contains($user)):
             return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض الدرس'), [], 403);
         endif;
+        $urls = getVideoUrl(getVideoId($lesson->url));
         return apiResponse(true, _('تم العثور على الدرس'), [
             'title' => $lesson->title,
-            'shortDescription' => $lesson->short_description,
             'grade' => $lesson->grade_id,
-            'part' => $lesson->part,
+            'part' => $lesson->part->name,
             'description' => $lesson->description,
-            'urls' => getVideoUrl(getVideoId($lesson->id))
+            'urls' => count($urls) ? $urls : $lesson->url
         ]);
     }
 

@@ -86,6 +86,12 @@ function getVideoInfo($video_id)
     curl_close($ch);
     return $result;
 }
+function getEmbedVideoUrl($url)
+{
+    $video_id = explode('v=', $url)[1] ?? explode('embed/', $url)[1] ?? '';
+    $video_id = explode('&', $video_id)[0];
+    return $video_id ? "https://www.youtube.com/embed/$video_id" : $url;
+}
 function getVideoUrl($video_id)
 {
     $videoData = [];
