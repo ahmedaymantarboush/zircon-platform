@@ -234,7 +234,7 @@ class LectureController extends Controller
     public function create()
     {
         if (Auth::user()->role->number < 4) :
-            return view('Admin.addLEcture');
+            return view('Admin.addLecture');
         else :
             return abort(404);
         endif;
