@@ -2,6 +2,7 @@
 
 @section('css')
     <!-- موجود هنا بس  -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/add-lecture.css') }}" />
     <!-- موجود في هنا والايديت  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css" />
@@ -605,7 +606,7 @@
             </div>
         </div>
         <!-- the first form in the add lecture page and it is have a 5 tabs -->
-        @include('components.admin.lectureForm', ['lecture' => $lecture])
+        @include('components.Admin.lectureForm', ['lecture' => $lecture])
 
         <div class="control">
             <span class="right-btn"><i class="fa-solid fa-angles-right"></i></span>
