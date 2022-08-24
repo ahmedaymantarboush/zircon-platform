@@ -86,10 +86,17 @@ function getVideoInfo($video_id)
     curl_close($ch);
     return $result;
 }
+function getEmbedVideoUrl($url)
+{
+    $video_id = explode('v=', $url)[1] ?? explode('embed/', $url)[1] ?? '';
+    $video_id = explode('&', $video_id)[0];
+    return $video_id ? "https://www.youtube.com/embed/$video_id" : $url;
+}
 function getVideoUrl($video_id)
 {
     $videoData = [];
-    foreach (json_decode(getVideoInfo($video_id), true)['streamingData']['formats'] as $format) :
+    $formats = json_decode(getVideoInfo($video_id), true)['streamingData']['formats'] ?? [];
+    foreach ($formats as $format) :
         if (str_starts_with($format['mimeType'], 'video/mp4')) :
             if ($format['url'] ?? false) :
                 $videoData['videos'][$format['qualityLabel']] = $format['url'];
@@ -104,7 +111,7 @@ function getVideoUrl($video_id)
 }
 function getVideoId($url)
 {
-    $video_id = explode('v=', $url)[1];
+    $video_id = explode('v=', $url)[1] ?? explode('/embed/', $url)[1] ?? '';
     $video_id = explode('&', $video_id)[0];
     return $video_id;
 }

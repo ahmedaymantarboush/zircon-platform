@@ -16,7 +16,7 @@
 {{-- /////////////////////////////////////////////////////////////////////////////////////////////// --}}
 @section('lec_name')
     {{-- lecture_name --}}
-    <span class="lec_name">{{ $lecture->title }}</span>
+    {{ $lecture->title }}
 @endsection
 {{-- /////////////////////////////////////////////////////////////////////////////////////////////// --}}
 @section('lec_link')
@@ -30,25 +30,25 @@
 @section('sections')
     @foreach ($lecture->sections()->orderBy('order')->get() as $index => $section)
         <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapse{{ $section->id }}" aria-expanded="true" aria-controls="collapseOne">
+            <h2 class="accordion-header" id="heading{{ $section->id }}">
+                <button class="accordion-button {{$index ? 'collapsed' : ''}}" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse{{ $section->id }}" aria-expanded="{{$index ? 'false' : 'true'}}" aria-controls="collapse{{ $section->id }}">
                     <span class="collapse_sec_num">القسم {{ $index + 1 }} :</span>
                     <span>{{ $section->title }}</span>
                 </button>
             </h2>
-            <div id="collapse{{ $section->id }}" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            <div id="collapse{{ $section->id }}" class="accordion-collapse collapse {{$index ? '' : 'show'}}" aria-labelledby="heading{{ $section->id }}"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="row">
                         @foreach ($section->items()->orderBy('order')->get() as $item)
                             @php
-                                $type = $item->exam_id ? 'question' : 'lesson';
+                                $type = $item->exam_id ? 'clipboard-question' : 'file-video';
                             @endphp
                             <div class="col-12">
                                 <div class="lesson_title">
                                     <i
-                                        class="fa-solid fa-file-{{ $type == 'question' ? 'question' : $item->item->type }}"></i>
+                                        class="fa-solid fa-{{ $type }}"></i>
                                     <a class="lesson_name" id="{{ $item->id }}"
                                         href="#lessonLink">{{ $item->title }}</a>
                                     @if ($item->exam_id)

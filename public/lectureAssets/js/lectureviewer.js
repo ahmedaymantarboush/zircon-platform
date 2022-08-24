@@ -1,5 +1,4 @@
 // questions tabs
-
 let tabBtns = [...document.querySelectorAll('.tab-item')]
 let questions = [...document.querySelectorAll('.question')]
 
@@ -40,33 +39,35 @@ let tabs = function () {
 		});
 	});
 
-	//while click to btn
-	rightBtn.addEventListener("click", function () {
-		if (currentIndex <= 0) {
-			currentIndex = tabBtns.length - 1;
-			removeActive();
-			addActive(currentIndex);
-			return;
-		}
-		currentIndex--;
-		removeActive();
-		addActive(currentIndex);
-	});
-	leftBtn.addEventListener("click", function () {
-		if (currentIndex >= tabBtns.length - 1) {
-			currentIndex = 0;
-			removeActive();
-			addActive(currentIndex);
+	try {
+        //while click to btn
+        rightBtn.addEventListener("click", function () {
+            if (currentIndex <= 0) {
+                currentIndex = tabBtns.length - 1;
+                removeActive();
+                addActive(currentIndex);
+                return;
+            }
+            currentIndex--;
+            removeActive();
+            addActive(currentIndex);
+        });
+        leftBtn.addEventListener("click", function () {
+            if (currentIndex >= tabBtns.length - 1) {
+                currentIndex = 0;
+                removeActive();
+                addActive(currentIndex);
 
-			return;
-		}
-		currentIndex++;
-		removeActive();
-		addActive(currentIndex);
-	});
+                return;
+            }
+            currentIndex++;
+            removeActive();
+            addActive(currentIndex);
+        });
+
+    }catch (err){}
 };
 tabs();
-
 /////////////exam swiper/////////////
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 12,
@@ -135,7 +136,7 @@ $(document).ready(function (){
     }
     addDisabled();
 
-    $('.question_head,.').click(function (){
+    $('.question_head').click(function (){
         let flagType = $(this).find('i').attr('flag');
         let flagnum = $(this).find('i').attr('queNamber');
         flagnum = '#flagIcon_'+ flagnum;
@@ -197,4 +198,23 @@ $(document).ready(function (){
         }
 
     });
+});
+//ajax
+$(document).on('click','.lesson_name',function (){
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", APP_URL+"/api/items/getItem");
+
+    form = new FormData()
+    form.append('data', JSON.stringify({
+        'id': parseInt($(this).attr('id'))
+    }))
+
+    xhttp.setRequestHeader('Accept', 'application/json');
+    let tkn = window.csrf_token.value
+    xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+    xhttp.onreadystatechange = function (e) {
+        data = JSON.parse(this.responseText)
+        console.log(data)
+    }
+    xhttp.send(form);
 });

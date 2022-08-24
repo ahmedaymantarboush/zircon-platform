@@ -14,10 +14,16 @@ class AnswerdQuestion extends Model
         'exam_id',
         'answer',
         'correct',
+        'flagged',
     ];
 
     public function question()
     {
         return $this->belongsTo(Question::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\API\PartController;
 use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\SectionItemController;
 use App\Http\Resources\UserResource;
 use App\Models\Lesson;
 use App\Models\Question;
@@ -57,10 +58,12 @@ Route::post('/view-lecture',[LectureController::class,'viewLecture']);
 Route::post('lectures/fastEdit',[LectureController::class,'fastEdit']);
 
 //       LESSON ROUTES
-Route::apiResource('/lessons',LessonController::class)->names(['store'=>'api.lessons.store','update'=>'api.lessons.update','destroy'=>'api.lessons.destroy']);
+Route::apiResource('/lessons',LessonController::class)->except(['show'])->names(['store'=>'api.lessons.store','update'=>'api.lessons.update','destroy'=>'api.lessons.destroy']);
+Route::post('lessons/getLesson',[LessonController::class, 'show'])->name('api.lessons.show');
 
 //       EXAM ROUTES
-Route::apiResource('/exams',ExamController::class)->names(['index'=>'api.exams.index','store'=>'api.exams.store','update'=>'api.exams.update','destroy'=>'api.exams.destroy']);
+Route::apiResource('/exams',ExamController::class)->except(['show'])->names(['index'=>'api.exams.index','store'=>'api.exams.store','update'=>'api.exams.update','destroy'=>'api.exams.destroy']);
+// Route::post('exams/getExam',[ExamController::class, 'show'])->name('api.exams.show');
 
 //       USER ROUTES
 Route::post('users/recharge',[BalanceCardController::class,'recharge']);
@@ -80,6 +83,7 @@ Route::post('parts',[PartController::class,'index']);
 
 //       QUESTION ROUTES
 Route::post('questions',[QuestionController::class,'index']);
+// Route::post('questions/getQuestion',[QuestionController::class,'show']);
 Route::post('questions/fastEdit',[QuestionController::class,'fastEdit']);
 
 //       TESTIMONIAL ROUTES
@@ -87,3 +91,6 @@ Route::post('testimonials/fastEdit',[TestimonialController::class,'fastEdit']);
 
 //       CENTER ROUTES
 Route::post('centers/fastEdit',[CenterController::class,'fastEdit']);
+
+//       SECTIONITEM ROUTES
+Route::post('items/getItem',[SectionItemController::class,'show']);

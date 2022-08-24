@@ -1,4 +1,4 @@
-@extends('layouts.homeLayout')
+@extends('layouts.HomeLayout')
 
 @section('css')
     <!--swiper-->
@@ -26,14 +26,6 @@
                                     <span class="headerGrade">{{$grade->name}}</span>
                                 </div>
                                 @endforeach
-{{--
-                                <div class="swiper-slide">
-                                    <span class="headerGrade  ">الصف الثاني الثانوي</span>
-                                </div>
-                                <div class="swiper-slide">
-                                    <span class="headerGrade  ">الصف الثالث الثانوي</span>
-                                </div> --}}
-
                             </div>
                         </div>
                         <div class="headerIcons gs_reveal gs_reveal_fromRight">

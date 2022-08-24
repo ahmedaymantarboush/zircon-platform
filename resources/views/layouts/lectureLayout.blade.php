@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    @yield('seo')
+    {{-- @yield('seo') --}}
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -16,11 +16,14 @@
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="{{asset('lectureAssets/css/lectureviewer.css')}}">
+    @include('includes.appUrl')
+    <script src="{{asset('js/jquery.min.js')}}" ></script>
     {{--lecture name--}}
-    <title>lecture Name</title>
+
+    <title>{{config('app.name')}} - @yield('lec_name')</title>
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <input type="hidden" id="csrf_token" name="_token" value="{{csrf_token()}}">
     <header class=" lec_header square-box align-items-center">
         <div class="row" style="width: 100%;">
             <div class="col-lg-6 col-md-12 hd_2" style="margin: 0;padding: 0;">
@@ -34,7 +37,7 @@
             </div>
             <div class="col-lg-6 col-md-12 hd_1"style="margin: 0;padding: 0;">
                 <div class="square-box d-flex justify-content-end align-items-center"style="height: 100px;">
-                    @yield('lec_name')
+                    <span class="lec_name">@yield('lec_name')</span>
                     <img src="{{asset('lectureAssets/img/logo-white.png')}}" alt="logo">
                 </div>
             </div>

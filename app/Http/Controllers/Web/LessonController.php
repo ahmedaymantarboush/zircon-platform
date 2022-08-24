@@ -54,7 +54,7 @@ class LessonController extends Controller
 
         $lesson = new Lesson();
         $lesson->title = $data['lessonTitle'];
-        $lesson->url = $data['url'];
+        $lesson->url = getEmbedVideoUrl($data['url']);
         $lesson->time = $time;
         $lecture->time += $time;
         $lesson->grade_id=  $lecture->grade->id;
@@ -123,8 +123,10 @@ class LessonController extends Controller
      * @param  \App\Models\Lesson  $lesson
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lesson $lesson)
+    public function destroy()
     {
+        $data = request()->all();
+        $id = $data['id'];
         Lesson::findOrFail($id)->delete();
         return redirect()->back();
     }

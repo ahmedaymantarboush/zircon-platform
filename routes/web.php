@@ -34,6 +34,9 @@ Route::post('user/update', [UserController::class, 'update'])->name('user.update
 Route::get('grades/grade{id}', [LectureController::class,'index'])->name('months.index');
 Route::resource('months', LectureController::class)->only(['show']);
 Route::post('month-viewer', [LectureController::class,'viewLecture'])->name('lecture.view');
+Route::get('month-viewer', function(){
+    return redirect()->back();
+});
 Route::get('search', [LectureController::class, 'search'])->name('search');
 Route::get('my-cources', [LectureController::class, 'myLectures'])->name('months.mycources');
 

@@ -50,7 +50,7 @@
                             endforeach;
                         @endphp --}}
                     <span class="stc-value">
-                        {{ \App\Models\AnswerdQuestion::count() ? (\App\Models\AnswerdQuestion::where('correct', 1)->count() / \App\Models\AnswerdQuestion::count()) * max(\App\Models\Question::all()->pluck('level')->toArray()) : 0 }}
+                        {{ \App\Models\AnswerdQuestion::count() ? number_format((\App\Models\AnswerdQuestion::where('correct', 1)->count() / \App\Models\AnswerdQuestion::count()) * max(\App\Models\Question::all()->pluck('level')->toArray()),2) : 0 }}
                     </span>
                     <span class="stc-name">متوسط المستوي العام</span>
                 </div>
@@ -570,7 +570,7 @@
                 <div class="modal-body">
                     <div class="profileDetails" id="profileCard">
                         <div class="profileImg">
-                            <img src="{{ asset('admin/assets/imgs/user.png') }}" alt="" />
+                            <img src="{{ asset('imgs/user.png') }}" alt="" />
                         </div>
                         <div class="profileContent">
                             <div class="personalInformation">
@@ -580,7 +580,7 @@
                                 <span class="profileType">طالب</span>
                             </div>
                             <div class="paper">
-                                <img src="{{ asset('admin/assets/imgs/paper2.png') }}" alt="" />
+                                <img src="{{ asset('imgs/paper2.png') }}" alt="" />
                             </div>
                             <div class="someDetails">
                                 <div class="control">

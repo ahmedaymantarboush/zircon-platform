@@ -183,7 +183,7 @@ class LectureController extends Controller
 
     public function canBuy(Request $request)
     {
-        $jsonRequest = $request->json();
+        $jsonRequest = json_decode(request()->data,true);
         $slug = $jsonRequest['lecture'];
 
         $lecture = Lecture::where('slug', $slug)->first();

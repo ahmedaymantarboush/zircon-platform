@@ -36,9 +36,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('test');
 // });
 
-Route::get('/test', function (){
-    return view('admin.questionBank',['questions'=>Question::all()]);
-});
+// Route::get('/test', function (){
+//     return view('admin.questionBank',['questions'=>Question::all()]);
+// });
 
 
 // Route::get('/tt', function () {
@@ -61,6 +61,20 @@ Route::get('/test', function (){
 //     // return $response;
 // });
 //test route for lecture viewer
-Route::get('/lectureview',function (){
-    return view('Home.lecture_viewer');
+// Route::get('/lectureview',function (){
+//     return view('Home.lecture_viewer');
+// });
+
+Route::get('/pull', function () {
+    $user = Auth::user();
+    if ($user) :
+        if ($user->role->number == 1) :
+            $output = nl2br(shell_exec('git pull'));
+            return "<h1>pull Request Is Finished</h1><br><p>$output</p><br><h1>DONE.</h1>";
+        else :
+            return"<h1>You Must Be Super Admin To Get This Page</h1>";
+        endif;
+    else:
+        return redirect(route('login'));
+    endif;
 });

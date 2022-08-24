@@ -389,8 +389,12 @@ class LectureController extends Controller
      */
     public function edit($slug)
     {
-        $lecture = Lecture::where(['slug' => $slug, 'published' => true])->first();
-        if ($lecture) :
+        $user = Auth::user();
+        if(!$user):
+            return redirect(route('login'));
+        endif;
+        $lecture = Lecture::where(['slug' => $slug])->first();
+        if ($lecture ? $lecture->publisher->id == $user->id : false) :
             return view("Admin.editLecture", compact('lecture'));
         else :
             return abort(404);
@@ -406,9 +410,15 @@ class LectureController extends Controller
      */
     public function update(UpdateLectureRequest $request, $slug)
     {
+        $user = Auth::user();
         $data = $request->all();
-        $lecture = Lecture::where(['slug' => $slug, 'published' => true])->first();
-
+        if(!$user):
+            return redirect(route('login'));
+        endif;
+        $lecture = Lecture::where(['slug' => $slug])->first();
+        if ($lecture ? $lecture->publisher->id != $user->id : false) :
+            return abort(403);
+        endif;
         if ($data['price'] >= $data['finalPrice'] || $data['free']) {
             $lecture->update($this->lectureData($request, 'poster', $lecture));
             foreach (LecturePart::where(['lecture_id' => $lecture->id])->get() as $part) {

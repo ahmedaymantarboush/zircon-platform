@@ -23,11 +23,13 @@
 
     <!--bootstrap-->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-rtl.min.css') }}">
+    @include('includes.appUrl')
     @yield('css')
+
 </head>
 
 <body>
-    @include('components.home.nav')
+    @include('components.Home.nav')
     @yield('content')
     <footer class=' '>
         <div class="waves wave1">

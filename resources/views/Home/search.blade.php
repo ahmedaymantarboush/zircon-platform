@@ -1,4 +1,4 @@
-@extends('layouts.homeLayout')
+@extends('layouts.HomeLayout')
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/search.css') }} " class="rel">
     <link rel="stylesheet" href="{{ asset('css/search-responsive.css') }} " class="rel">
@@ -240,7 +240,7 @@
                     </section>
                 </div>
             </div>
-            @include('components.home.pagination', ['paginator' => $lectures->paginate(6)])
+            @include('components.Home.pagination', ['paginator' => $lectures->paginate(6)])
         </div>
     @else
         <div class="errorImage">

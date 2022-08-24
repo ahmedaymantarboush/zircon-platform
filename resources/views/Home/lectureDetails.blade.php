@@ -1,4 +1,4 @@
-@extends('layouts.homeLayout')
+@extends('layouts.HomeLayout')
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/lecture.css') }} " class="rel">
     <link rel="stylesheet" href="{{ asset('css/lecture-responsive.css') }} " class="rel">
@@ -228,7 +228,7 @@
                             @php
                                 $price = getPrice($lecture);
                             @endphp
-                            @if (Auth::check() && $lecture->owners->contains(Auth::user()))
+                            @if (Auth::user() ? $lecture->owners->contains(Auth::user()) : false)
                                 <form action="{{ route('lecture.view') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="slug" value="{{ $lecture->slug }}">
@@ -275,9 +275,9 @@
                                     </div>
                                 @endif
                                 {{-- <!-- <a href="#" class="buy-now">شراء الأن</a> --> --}}
-                                <button type="button" class="buy-now" data-toggle="modal"
-                                    data-target="#{{ Auth::user()->balance >= $price ? 'sureBuy' : 'notEnough' }}">
-                                    شراء الأن </button>
+                                <a href="{{ Auth::user() ? '#' : route('login') }}" type="button" class="buy-now" data-toggle="modal"
+                                    data-target="#{{ Auth::user() ? (Auth::user()->balance >= $price ? 'sureBuy' : 'notEnough') : 'notEnough' }}">
+                                    شراء الأن </a>
                                 <div class="coupon">
                                     <button class="add-coupon" id="couponBtn" data-toggle="modal"
                                         data-target="#chargeCoupon">

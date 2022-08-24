@@ -44,13 +44,15 @@ class ExamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
+        $data = json_decode(request()->data, true);
         $user = apiuser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
 
+        $id = $data['id'];
         $passedExam = $user->passedExams()->where('exam_id', $id)->first();
         if (!$passedExam) :
             $exam = Exam::find($id);
@@ -62,10 +64,20 @@ class ExamController extends Controller
         endif;
 
         if (!$passedExam) :
-            return apiResponse(false, _('عفوا حدث خطأ ما لذلك لم نتمكن من انشاء الامتحان الخاص بك'), [], 500);
+            return apiResponse(false, _('عفوا حدث خطأ ما لذلك لم نتمكن من انشاء الامتحان الخاص بالطالب'), [], 500);
         endif;
-
-        return apiResponse(true, _('الامتحان الذي طلبته موجود'), PassedExamResource::only($passedExam, ['exam', 'percentage', 'exam_started_at', 'exam_ended_at', 'finished']));
+        $exam = $passedExam->exam;
+        $answerdQuestions = [];
+        foreach ($exam->answerdQuestions()->inRandomOrder()->get() as $answerdQuestion) :
+            $answerdQuestions[] = $answerdQuestion->id;
+        endforeach;
+        $data = [
+            'questions' => $answerdQuestions,
+            'examStartedAt' => $passedExam->exam_started_at,
+            'examEndedAt' => $passedExam->exam_ended_at,
+            'finished' => $passedExam->finished,
+        ];
+        return apiResponse(true, _('الامتحان الذي طلبته موجود'), $data);
     }
 
     /**
