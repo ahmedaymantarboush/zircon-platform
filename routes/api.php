@@ -57,6 +57,7 @@ Route::post('/search',[LectureController::class,'search']);
 Route::post('/view-lecture',[LectureController::class,'viewLecture']);
 Route::post('lectures/fastEdit',[LectureController::class,'fastEdit']);
 Route::post('lectures/delete',[LectureController::class,'destroy'])->name('api.lectures.destroy');
+Route::post('lectures/publish',[LectureController::class,'publish'])->name('api.lectures.publish');
 
 //       LESSON ROUTES
 Route::apiResource('/lessons',LessonController::class)->except(['show'])->names(['store'=>'api.lessons.store','update'=>'api.lessons.update','destroy'=>'api.lessons.destroy']);

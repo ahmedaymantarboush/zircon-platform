@@ -520,5 +520,6 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
 
     <!-- main js file -->
+    <script src="{{ asset('admin/assets/js/main.js') }}"></script>
     <script src="{{ asset('admin/assets/js/lectures.js') }}"></script>
 @endsection
