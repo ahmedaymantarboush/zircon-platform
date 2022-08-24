@@ -214,8 +214,10 @@ $(document).on('click','.lesson_name',function (){
     xhttp.onreadystatechange = function (e) {
         data = JSON.parse(this.responseText)
         console.log(data)
-        datas= data;
+        alertss(data);
     }
     xhttp.send(form);
-
+    function alertss(data){
+        alert(data.message);
+    }
 });
