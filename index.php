@@ -1,3 +1,6 @@
+<script>
+    APP_URL = "http://localhost/zircon-platform";
+</script>
 <?php
 
 use Illuminate\Contracts\Http\Kernel;
