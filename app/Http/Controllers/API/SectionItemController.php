@@ -7,6 +7,7 @@ use App\Models\Exam;
 use App\Models\Lesson;
 use App\Models\SectionItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SectionItemController extends Controller
 {
@@ -40,7 +41,7 @@ class SectionItemController extends Controller
     public function show()
     {
         $data = json_decode(request()->data, true);
-        $user = apiUser();
+        $user = apiUser() ?? Auth::user();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
