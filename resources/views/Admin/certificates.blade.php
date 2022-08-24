@@ -27,7 +27,7 @@
         <a class="real-stc" style="width: 100%">
             <div class="stc-box second-stc">
                 <div class="stc-val-parent">
-                    <span class="stc-value"> 132 </span>
+                    <span class="stc-value"> {{\App\Models\Testimonial::where}} </span>
                     <span class="stc-name">أوائل العام الماضي</span>
                 </div>
                 <div class="stc-icon">
