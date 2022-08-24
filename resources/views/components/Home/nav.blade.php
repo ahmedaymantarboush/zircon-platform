@@ -50,7 +50,7 @@
             </button>
             <div class="left ">
                 <form class="search" action="{{ route('search') }}">
-                    <input type="search" name='q' name="navSearch">
+                    <input type="search" value="{{request()->q}}" name='q' name="navSearch">
                     <span><i class="fa-solid fa-magnifying-glass"></i></span>
                 </form>
                 @auth
