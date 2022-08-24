@@ -92,13 +92,13 @@ document.querySelector("table").addEventListener("click", async function (e) {
         id: dataId,
     };
     let inputId = document.querySelector("#editLocationModal #trId");
-    inputId.value = 2;
+    inputId.value = dataId;
 
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/centers/fastEdit`,
+        `${window.location.protocol}//${window.location.host}/api/lectures/fastEdit`,
         form,
         e
     );
