@@ -255,8 +255,11 @@
                                         <a class="dropdown-item" href="#">الأقسام و الدروس</a>
                                     </li> --}}
                             <li>
-                                <a class="dropdown-item" href="#">{{ $lecture->published ? 'تعليق' : 'نشر' }}
-                                    المحاضرة</a>
+                                <form action="{{ route('admin.lectures.hanging') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name='slug' value="{{ $lecture->slug }}">
+                                    <button class="dropdown-item" type="submit">{{ $lecture->published ? 'تعليق' : 'نشر' }} المحاضرة</button>
+                                </form>
                             </li>
                             <li>
                                 <a class="dropdown-item delete-lec" href="#" data-bs-toggle="modal"

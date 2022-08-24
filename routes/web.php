@@ -52,6 +52,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/sort-sections',[SectionController::class, 'sortSections'])->name('sections.resort');
     Route::post('/sort-items',[SectionItemController::class, 'sortItems'])->name('sectionitems.resort');
     Route::post('lectures/fastEdit',[LectureController::class, 'fastEdit'])->name('admin.lectures.fastEdit');
+    Route::post('lectures/hanging',[LectureController::class,'hanging'])->name('admin.lectures.hanging');
 
     Route::get('users', [UserController::class,'index'])->name('admin.users.index');
     Route::get('users/create', [UserController::class,'create'])->name('admin.users.create');
