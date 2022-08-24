@@ -103,7 +103,7 @@
 
                         <ul class="dropdown-menu feat-menu">
                             <li>
-                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                <a class="dropdown-item editCenter" href="#" data-bs-toggle="modal"
                                     data-bs-target="#editLocationModal">تعديل المكان</a>
                             </li>
 
@@ -376,6 +376,7 @@
             <form action="{{route('admin.centers.update')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
+                    <input type="text" id='trId'>
                     <div class="less-item custome-item">
                         <label class="sec-name">اسم المكان</label>
 
