@@ -85,11 +85,11 @@ let editFun = async function (url, myData, el = null) {
 };
 
 document.querySelector("table").addEventListener("click", async function (e) {
-    if (!e.target.classList.contains("editCenter")) return;
-    let dataId = e.target.closest("tr").querySelector(".number").dataset.id;
+    if (!e.target.classList.contains("fastModiBtn")) return;
+    let dataId = e.target.closest("tr").querySelector(".number").dataset.slug;
     console.log(dataId);
     let sendObj = {
-        id: 2,
+        id: dataId,
     };
     let inputId = document.querySelector("#editLocationModal #trId");
     inputId.value = 2;
@@ -103,29 +103,28 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     let objData = myResponse.data;
-    let nameOfCenter = document.querySelector(
-        ".editLocationModal .nameOfCenter"
+    console.log(objData);
+    let lecAddress = document.querySelector("#quick-modify .lecAddress");
+    let shortDes = document.querySelector("#quick-modify .shortDes");
+    let selectLevelInner = document.querySelector(
+        "#quick-modify .selectLevelParent .filter-option-inner-inner"
     );
-    let urlOfCenter = document.querySelector(".editLocationModal .urlOfCenter");
-    let newGovernorateInner = document.querySelector(
-        ".editLocationModal .newGovernorateParent .filter-option-inner-inner"
+    let selectLevelOptions = document.querySelector(
+        "#quick-modify .selectLevelParent option"
     );
-    let newGovernorateOptions = document.querySelector(
-        ".editLocationModal .newGovernorateParent option"
-    );
-    nameOfCenter.value = null;
-    urlOfCenter.value = null;
-    let fillSelectFunction = function (options, selectInner, data) {
-        options.forEach((ele) => {
-            if (ele.value == data) {
-                ele.setAttribute("selected", "");
-                selectInner.textContent = ele.textContent;
-            } else {
-                ele.removeAttribute("selected");
-            }
-        });
-    };
-    fillSelectFunction(newGovernorateOptions, newGovernorateInner, null);
+    // nameOfCenter.value = null;
+    // urlOfCenter.value = null;
+    // let fillSelectFunction = function (options, selectInner, data) {
+    //     options.forEach((ele) => {
+    //         if (ele.value == data) {
+    //             ele.setAttribute("selected", "");
+    //             selectInner.textContent = ele.textContent;
+    //         } else {
+    //             ele.removeAttribute("selected");
+    //         }
+    //     });
+    // };
+    // fillSelectFunction(newGovernorateOptions, newGovernorateInner, null);
 });
 
 /**** delete lecture* */
