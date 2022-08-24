@@ -30,7 +30,6 @@
 {{-- /////////////////////////////////////////////////////////////////////////////////////////////// --}}
 @section('sections')
     <script>
-        // /* [ ['key','value'] ] */
         function mediaPlayer(urls) {
             videos = urls.videos
             SOURCES = ""
