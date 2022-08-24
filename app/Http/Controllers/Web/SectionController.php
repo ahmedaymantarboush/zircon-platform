@@ -43,6 +43,7 @@ class SectionController extends Controller
             'lecture_id' => $lectute_id,
             'order' => count(Section::where('lecture_id', $lectute_id)->get()) + 1,//$request->input('order'),
             'title' => $data['sectionTitle'],
+            'time' => 0,
         ]);
         return redirect()->back();
     }
