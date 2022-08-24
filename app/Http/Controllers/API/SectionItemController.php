@@ -61,7 +61,7 @@ class SectionItemController extends Controller
         if ($sectionItem->lesson_id) :
             $userLesson = UserLesson::firstOrCreate([
                 'lesson_id'=>$sectionItem->lesson_id,
-                'usrt_id'=>$user->id,
+                'user_id'=>$user->id,
             ]);
             $lesson = $sectionItem->item;
             $urls = getVideoUrl(getVideoId($lesson->url));
