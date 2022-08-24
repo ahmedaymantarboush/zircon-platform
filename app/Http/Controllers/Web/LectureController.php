@@ -329,7 +329,7 @@ class LectureController extends Controller
             'meta_description' => $data['metaDescription'] ? $data['metaDescription'] : $data['shortDescription'],
             'slug' => $data['slug'],
             'price' => array_key_exists('free', $data)  ? 0 : abs($data['price']),
-            'final_price' =>  array_key_exists('free', $data)  ? 0 : (array_key_exists('hasDiscount', $data) ? ($data['discountExpiryDate'] > now() ? (abs($data['finalPrice']) > abs($data['price']) ? abs($data['finalPrice']) : abs($data['price'])) : abs($data['price'])) : abs($data['price'])),
+            'final_price' =>  array_key_exists('free', $data)  ? 0 : (array_key_exists('hasDiscount', $data) ? ($data['discountExpiryDate'] > now() ? (abs($data['finalPrice']) < abs($data['price']) ? abs($data['finalPrice']) : abs($data['price'])) : abs($data['price'])) : abs($data['price'])),
             'discount_expiry_date' => $data['discountExpiryDate'] > now() ? $data['discountExpiryDate'] : null,
             'grade_id' => $data['grade'],
             'time' => 0,
