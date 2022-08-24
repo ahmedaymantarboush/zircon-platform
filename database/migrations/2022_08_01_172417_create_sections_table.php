@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('time')->dafault('0 ساعة');
+            $table->integer('time')->dafault(0);
             $table->integer('total_questions_count')->default(0);
             $table->integer('order');
             $table->foreignId('lecture_id')->constrained()->cascadeOnDelete();
-            $table->softDeletes('deleted_at', 0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

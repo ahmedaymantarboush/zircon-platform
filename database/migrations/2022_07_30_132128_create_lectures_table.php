@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('description');
             $table->boolean('published')->default(0);
             $table->string('promotinal_video_url')->nullable();
-            $table->string('poster')->nullable();
+            $table->string('poster')->default(asset('admin/assets/imgs/lecture-holder.png'));
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('slug',100)->unique();

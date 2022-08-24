@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title',50);
             $table->string('url')->unique();
             $table->integer('time');
-            $table->string('poster')->nullable();
+            $table->string('poster')->default(asset('admin/assets/imgs/lecture-holder.png'));
             $table->enum('type',['video','pdf','audio']);
             $table->enum('semester',['الفصل الدراسي الأول','الفصل الدراسي الثاني']);
             $table->text('description');
