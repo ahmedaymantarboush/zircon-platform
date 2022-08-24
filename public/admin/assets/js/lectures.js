@@ -106,7 +106,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let selectLevelInner = document.querySelector(
         "#quick-modify .selectLevelParent .filter-option-inner-inner"
     );
-    let selectLevelOptions = document.querySelector(
+    let selectLevelOptions = document.querySelectorAll(
         "#quick-modify .selectLevelParent option"
     );
     lecAddress.value = objData.title;
