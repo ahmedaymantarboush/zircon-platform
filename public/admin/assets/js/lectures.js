@@ -110,8 +110,12 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let selectLevelOptions = document.querySelectorAll(
         "#quick-modify .selectLevelParent option"
     );
+    let description = document.querySelector(
+        "#quick-modify .ck-editor__editable "
+    );
+    description.ckeditorInstance.setData(objData.description);
     lecAddress.value = objData.title;
-    shortDes.innerHTML = objData.description;
+    shortDes.innerHTML = objData.shortDescription;
     editPrice.value = objData.price;
     let fillSelectFunction = function (options, selectInner, data) {
         options.forEach((ele) => {
