@@ -88,7 +88,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let dataId = e.target.closest("tr").dataset.slug;
     console.log(dataId);
     let sendObj = {
-        id: dataId,
+        slug: dataId,
     };
 
     form = new FormData();
