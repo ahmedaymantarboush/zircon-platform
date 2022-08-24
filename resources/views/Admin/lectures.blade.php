@@ -179,7 +179,7 @@
                     @php
                         $i = $index + 1;
                     @endphp
-                    <tr data-id={{ $lecture->id }}>
+                    <tr data-slug={{ $lecture->slug }}>
                         <td class="number">
                             {{ $i }}
                             <button class="open-tr" type="button">

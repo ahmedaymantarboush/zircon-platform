@@ -189,7 +189,7 @@ class LectureController extends Controller
         $lecture = Lecture::where('slug', $slug)->first();
         $user = apiUser();
         if (!$user) :
-            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
         if (!$lecture) :
             return apiResponse(false, _('المحاضرة المطلوبة غير موجودة'), [], 404);
@@ -211,7 +211,7 @@ class LectureController extends Controller
 
         $user = apiUser();
         if (!$user) :
-            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
 
         $slug = $jsonRequest['lecture'];
@@ -325,7 +325,7 @@ class LectureController extends Controller
         endif;
 
         if (floatval($data['price']) > floatval($data['finalPrice']) || $data['free']) :
-            if ($user->role->name == 'Admin' || $user->role->name == 'Super Admin' || $user->role->name == 'Teacher') :
+            if ($user->role->number < 4) :
                 $lecture = $user->createdLectures()->create($this->lectureData($request));
                 $parts = [];
                 foreach ($data['parts'] as $part) :
@@ -365,7 +365,7 @@ class LectureController extends Controller
         if (!$lecture) :
             return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 404);
         endif;
-        if ($lecture->publisher->id != $user->id):
+        if ($lecture->publisher->id != $user->id  && $user->role->number != 1):
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل المحاضرة'), [], 403);
         endif;
         return apiResponse(true, _('تم العثور على المحاضرة'), [
@@ -408,7 +408,7 @@ class LectureController extends Controller
         if (!$lecture) :
             return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 400);
         endif;
-        if ($lecture->owners->contains($user)) :
+        if ($lecture->owners->contains($user) || $user->role->number <= 2) :
             $sections = [];
             foreach ($lecture->sections()->orderBy('order')->get() as $section) :
                 $items = [];
@@ -467,7 +467,7 @@ class LectureController extends Controller
             return apiResponse(false, _('هذا الslug متاح في محاضرة أخرى الرجاء إعادة اختيار slug مناسب'), ["slug" => ['هذا الslug متاح في محاضرة أخرى الرجاء إعادة اختيار slug مناسب']], 422);
         endif;
         if ($data['price'] >= $data['final_price'] || $data['free']) :
-            if ($user->role->name == 'Admin' || $user->role->name == 'Super Admin' || $user->role->name == 'Teacher') :
+            if ($user->role->number < 4) :
                 $lecture->update($this->lectureData($request, 'poster', $lecture));
                 foreach (LecturePart::where(['lecture_id' => $lecture->id])->get() as $part) :
                     if (!in_array($part->part_id, $data['parts'])) :
@@ -502,8 +502,10 @@ class LectureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy()
     {
+        $data = json_decode(request()->data, true);
+        $slug = $data['slug'];
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
@@ -511,7 +513,10 @@ class LectureController extends Controller
 
         $lecture = apiUser()->createdLectures()->where('slug', $slug)->first();
         if (!$lecture) :
-            return apiResponse(false, _('هذه المحاضرة غير موجوده'), [], 403);
+            return apiResponse(false, _('هذه المحاضرة غير موجوده'), [], 404);
+        endif;
+        if ($lecture != $user->id && $user->role->number != 1) :
+            return apiResponse(false, _('غير مصرح لهذا المستخدم بحذف المحاضرة'), [], 403);
         endif;
         if ($lecture->delete()) :
             return apiResponse(true, _('تم حذف المحاضرة بنجاح'), []);
