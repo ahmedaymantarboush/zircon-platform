@@ -12,6 +12,7 @@
     <meta name="description" content="{{ $lecture->meta_description }}">
     {{-- lecture auther --}}
     <meta name="author" content="{{ $lecture->publisher->name }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 {{-- /////////////////////////////////////////////////////////////////////////////////////////////// --}}
 @section('lec_name')
