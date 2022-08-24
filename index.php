@@ -1,3 +1,6 @@
+<script>
+    APP_URL = "http://localhost/zircon-platform";
+</script>
 <?php
 
 use Illuminate\Contracts\Http\Kernel;
@@ -47,7 +50,6 @@ require __DIR__.'/vendor/autoload.php';
 */
 
 $app = require_once __DIR__.'/bootstrap/app.php';
-
 $kernel = $app->make(Kernel::class);
 
 $response = $kernel->handle(
@@ -55,7 +57,4 @@ $response = $kernel->handle(
 )->send();
 
 $kernel->terminate($request, $response);
-?>
-<script>
-    APP_URL = "<?php echo env('APP_URL') ?>";
-</script>
+
