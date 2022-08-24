@@ -103,9 +103,12 @@ let editFun = async function (url, myData, el = null) {
 };
 
 document.querySelector("table").addEventListener("click", async function (e) {
-    if (!e.target.classList.contains("editCenter")) return;
-    let dataId = e.target.closest("tr").dataset.id;
-
+    if (!e.target.classList.contains("editCenter")) {
+        console.log("no");
+        return;
+    }
+    let dataId = e.target.closest("tr").querySelector(".number").textContent;
+    console.log(dataId);
     let sendObj = {
         id: dataId,
     };
