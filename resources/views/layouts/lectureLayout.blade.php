@@ -37,8 +37,7 @@
             </div>
             <div class="col-lg-6 col-md-12 hd_1"style="margin: 0;padding: 0;">
                 <div class="square-box d-flex justify-content-end align-items-center"style="height: 100px;">
-                    {{-- <span class="lec_name">@yield('lec_name')</span> --}}
-                    <span class="lec_name">{{Auth::user()->email}}</span>
+                    <span class="lec_name">@yield('lec_name')</span>
                     <img src="{{asset('lectureAssets/img/logo-white.png')}}" alt="logo">
                 </div>
             </div>
