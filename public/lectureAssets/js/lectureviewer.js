@@ -39,33 +39,35 @@ let tabs = function () {
 		});
 	});
 
-	//while click to btn
-	rightBtn.addEventListener("click", function () {
-		if (currentIndex <= 0) {
-			currentIndex = tabBtns.length - 1;
-			removeActive();
-			addActive(currentIndex);
-			return;
-		}
-		currentIndex--;
-		removeActive();
-		addActive(currentIndex);
-	});
-	leftBtn.addEventListener("click", function () {
-		if (currentIndex >= tabBtns.length - 1) {
-			currentIndex = 0;
-			removeActive();
-			addActive(currentIndex);
+	try {
+        //while click to btn
+        rightBtn.addEventListener("click", function () {
+            if (currentIndex <= 0) {
+                currentIndex = tabBtns.length - 1;
+                removeActive();
+                addActive(currentIndex);
+                return;
+            }
+            currentIndex--;
+            removeActive();
+            addActive(currentIndex);
+        });
+        leftBtn.addEventListener("click", function () {
+            if (currentIndex >= tabBtns.length - 1) {
+                currentIndex = 0;
+                removeActive();
+                addActive(currentIndex);
 
-			return;
-		}
-		currentIndex++;
-		removeActive();
-		addActive(currentIndex);
-	});
+                return;
+            }
+            currentIndex++;
+            removeActive();
+            addActive(currentIndex);
+        });
+
+    }catch (err){}
 };
 tabs();
-
 /////////////exam swiper/////////////
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 12,
