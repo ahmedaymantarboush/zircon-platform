@@ -357,7 +357,8 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="">
+                <form action="{{route('admin.lectures.fastEdit')}}" method="POST">
+                    @csrf
                     <div class="modal-body">
                         <div class="less-item custome-item">
                             <label class="sec-name">عنوان المحاضرة</label>
@@ -434,7 +435,7 @@
                             <label class="sec-name">السعر</label>
                             <div class="search-select modify-select">
                                 <input name="finalPrice" value="{{ old('finalPrice') }}" id="" type="number"
-                                    min="0" class="@error('finalPrice') is-invalid @enderror"
+                                    min="0" class="my-input @error('finalPrice') is-invalid @enderror"
                                     data-live-search="true">
                                 @error('finalPrice')
                                     <span class="invalid-feedback" role="alert">

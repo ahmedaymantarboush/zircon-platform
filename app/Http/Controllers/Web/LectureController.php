@@ -229,6 +229,12 @@ class LectureController extends Controller
         return view("Home.myCourses", compact("lectures"));
     }
 
+    public function fastEdit(){
+        $data = request()->all();
+        $user = Auth::user();
+        if (!$user)
+    }
+
     public function buy($slug)
     {
         $user = Auth::user();

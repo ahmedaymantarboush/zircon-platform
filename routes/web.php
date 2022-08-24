@@ -48,9 +48,10 @@ Route::prefix('admin')->group(function () {
     Route::resource('sections',SectionController::class)->except(['show']);
     Route::resource('sectionitems',SectionItemController::class)->except(['show']);
     Route::resource('exams',ExamController::class)->except(['show'])->names(['store'=>'admin.exams.store','update'=>'admin.exams.update']);
-    Route::get('exams/{id}/students',[ExamCoZntroller::class,'students'])->name('admin.exams.students');
+    Route::get('exams/{id}/students',[ExamController::class,'students'])->name('admin.exams.students');
     Route::post('/sort-sections',[SectionController::class, 'sortSections'])->name('sections.resort');
     Route::post('/sort-items',[SectionItemController::class, 'sortItems'])->name('sectionitems.resort');
+    Route::post('lectures/fastEdit',[LectureController::class, 'fastEdit'])->name('admin.lectures.fastEdit');
 
     Route::get('users', [UserController::class,'index'])->name('admin.users.index');
     Route::get('users/create', [UserController::class,'create'])->name('admin.users.create');
