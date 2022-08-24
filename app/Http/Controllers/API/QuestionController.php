@@ -115,7 +115,10 @@ class QuestionController extends Controller
         $question = $answerdQuestion->question;
         $choices = [];
         foreach ($question->choices as $choice):
-            $choices[] = $choice->text;
+            $choices[] = [
+                'id'=> $choice->id,
+                'text'=> $choice->text,
+            ];
         endforeach;
         $filterdQuestion = [
             'name' => $question->name,
@@ -125,7 +128,8 @@ class QuestionController extends Controller
         ];
         return apiResponse(true, _('تم العثور على السؤال'), [
             'flagged' => $answerdQuestion->flagged,
-            'answer' => $answerdQuestion->answer,
+            'textAnswer' => $answerdQuestion->answer,
+            'choice' => $answerdQuestion->choice->id,
             'question' => $filterdQuestion,
         ]);
     }

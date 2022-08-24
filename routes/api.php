@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AnswerdQuestionController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BalanceCardController;
 use App\Http\Controllers\API\CenterController;
@@ -87,6 +88,8 @@ Route::post('parts',[PartController::class,'index']);
 Route::post('questions',[QuestionController::class,'index']);
 Route::post('questions/getQuestion',[QuestionController::class,'show']);
 Route::post('questions/fastEdit',[QuestionController::class,'fastEdit']);
+Route::post('questions/sendAnswer',[AnswerdQuestionController::class,'update']);
+
 
 //       TESTIMONIAL ROUTES
 Route::post('testimonials/fastEdit',[TestimonialController::class,'fastEdit']);

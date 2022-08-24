@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('question_id')->constrained()->cascadeOnDelete();
             $table->foreignId('exam_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('choice_id')->nullable()->constrained()->cascadeOnDelete();
             $table->text('answer')->nullable();
             $table->boolean('correct')->default(false);
             $table->boolean('flagged')->default(false);

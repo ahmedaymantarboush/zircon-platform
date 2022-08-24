@@ -26,4 +26,9 @@ class AnswerdQuestion extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function choice()
+    {
+        return $this->belongsTo(Choice::class);
+    }
 }

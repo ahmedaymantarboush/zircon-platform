@@ -99,8 +99,15 @@ class SectionItemController extends Controller
                 'examStartedAt' => $passedExam->exam_started_at,
                 'examEndedAt' => $passedExam->exam_ended_at,
                 'finished' => $passedExam->finished,
+                'correctAnswers' => 0,
+                'wrongAnswers' => 0,
             ];
-
+            if ($passedExam->finished || $passedExam->exam_ended_at >= now()):
+                $passedExam->finished = true;
+                $passedExam->save();
+                $item['correctAnswers'] = $user->answerdQuestions()->where('correct',1)->count();
+                $item['wrongAnswers'] = $user->answerdQuestions()->where('correct',0)->count();
+            endif;
         endif;
         $data["item"] = $item;
 
