@@ -29,17 +29,33 @@
 @endsection
 {{-- /////////////////////////////////////////////////////////////////////////////////////////////// --}}
 @section('sections')
+    <script>
+        // /* [ ['key','value'] ] */
+        function mediaPlayer(urls) {
+            videos = urls.videos
+            SOURCES = ""
+            Object.entries(videos).forEach(url => {
+                SOURCES += `<source src="${url[1]}" size="${url[0].replace('p','')}" type="video/mp4">\n`
+            });
+            return `
+            @include('components.videoplayer.player', [
+                'videoSources' => [],
+            ])
+        `;
+        }
+    </script>
     @foreach ($lecture->sections()->orderBy('order')->get() as $index => $section)
         <div class="accordion-item">
             <h2 class="accordion-header" id="heading{{ $section->id }}">
-                <button class="accordion-button {{$index ? 'collapsed' : ''}}" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapse{{ $section->id }}" aria-expanded="{{$index ? 'false' : 'true'}}" aria-controls="collapse{{ $section->id }}">
+                <button class="accordion-button {{ $index ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse{{ $section->id }}" aria-expanded="{{ $index ? 'false' : 'true' }}"
+                    aria-controls="collapse{{ $section->id }}">
                     <span class="collapse_sec_num">القسم {{ $index + 1 }} :</span>
                     <span>{{ $section->title }}</span>
                 </button>
             </h2>
-            <div id="collapse{{ $section->id }}" class="accordion-collapse collapse {{$index ? '' : 'show'}}" aria-labelledby="heading{{ $section->id }}"
-                data-bs-parent="#accordionExample">
+            <div id="collapse{{ $section->id }}" class="accordion-collapse collapse {{ $index ? '' : 'show' }}"
+                aria-labelledby="heading{{ $section->id }}" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="row">
                         @foreach ($section->items()->orderBy('order')->get() as $item)
@@ -48,8 +64,7 @@
                             @endphp
                             <div class="col-12">
                                 <div class="lesson_title">
-                                    <i
-                                        class="fa-solid fa-{{ $type }}"></i>
+                                    <i class="fa-solid fa-{{ $type }}"></i>
                                     <a class="lesson_name" id="{{ $item->id }}"
                                         href="#lessonLink">{{ $item->title }}</a>
                                     @if ($item->exam_id)
@@ -67,11 +82,18 @@
             </div>
         </div>
     @endforeach
+    <link rel="stylesheet" href="{{ asset('css/mediaPlayer.css') }}">
+    <script src="{{ asset('js/mediaPlayer.js') }}"></script>
 @endsection
 {{-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
 {{-- {{$lecture->sections()->orderBy('order')->first()->items()->orderBy('order')->first()}} --}}
 @php
-if ($lecture->sections()->orderBy('order')->first()) {
+if (
+    $lecture
+        ->sections()
+        ->orderBy('order')
+        ->first()
+) {
     $firstItem = $lecture
         ->sections()
         ->orderBy('order')

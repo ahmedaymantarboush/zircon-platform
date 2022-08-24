@@ -36,9 +36,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('test');
 // });
 
-// Route::get('/test', function (){
-//     return view('admin.questionBank',['questions'=>Question::all()]);
-// });
+Route::get('/test', function (){
+    return view('TestPage',['questions'=>Question::all()]);
+});
 
 
 // Route::get('/tt', function () {
