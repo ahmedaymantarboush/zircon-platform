@@ -135,7 +135,7 @@ $(document).ready(function (){
     }
     addDisabled();
 
-    $('.question_head,.').click(function (){
+    $('.question_head').click(function (){
         let flagType = $(this).find('i').attr('flag');
         let flagnum = $(this).find('i').attr('queNamber');
         flagnum = '#flagIcon_'+ flagnum;

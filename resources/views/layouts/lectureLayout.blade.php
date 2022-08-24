@@ -16,12 +16,13 @@
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="{{asset('lectureAssets/css/lectureviewer.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     {{--lecture name--}}
     <title>lecture Name</title>
 </head>
 <body>
     <input type="hidden" id="csrf_token" name="_token" value="{{csrf_token()}}">
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
     <header class=" lec_header square-box align-items-center">
         <div class="row" style="width: 100%;">
             <div class="col-lg-6 col-md-12 hd_2" style="margin: 0;padding: 0;">
