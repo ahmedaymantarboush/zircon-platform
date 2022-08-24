@@ -55,7 +55,7 @@ class SectionItemController extends Controller
             return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض العنصر'), [], 403);
         endif;
         $data = [
-            'title' => $sectionItem,
+            'title' => $sectionItem->title,
             'type' => $sectionItem->exam_id ? 'exam' : 'lesson',
         ];
         if ($sectionItem->lesson_id) :
