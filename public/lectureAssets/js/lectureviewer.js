@@ -212,10 +212,12 @@ $(document).on('click','.lesson_name',function (){
     xhttp.setRequestHeader('Accept', 'application/json');
     let tkn = window.csrf_token.value
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+    var datas
     xhttp.onreadystatechange = function (e) {
         data = JSON.parse(this.responseText)
         console.log(data)
+        datas= data;
     }
     xhttp.send(form);
-    alert(data.item['grade']);
+    alert(datas);
 });
