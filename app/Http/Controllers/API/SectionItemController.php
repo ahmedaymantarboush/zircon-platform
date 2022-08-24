@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Exam;
 use App\Models\Lesson;
 use App\Models\SectionItem;
+use App\Models\UserLesson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,8 +58,11 @@ class SectionItemController extends Controller
             'title' => $sectionItem,
             'type' => $sectionItem->exam_id ? 'exam' : 'lesson',
         ];
-
         if ($sectionItem->lesson_id) :
+            $userLesson = UserLesson::firstOrCreate([
+                'lesson_id'=>$sectionItem->lesson_id,
+                'usrt_id'=>$user->id,
+            ]);
             $lesson = $sectionItem->item;
             $urls = getVideoUrl(getVideoId($lesson->url));
             $item = [
