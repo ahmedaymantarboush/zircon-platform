@@ -231,10 +231,10 @@ class LectureController extends Controller
 
     public function fastEdit(){
         request()->validate([
-            'title'                    =>   ['required','string','max:50'],
-            'shortDescription'         =>   ['required','string','max:50'],
+            'title'                    =>   ['required','string'],
+            'shortDescription'         =>   ['required','string'],
             'description'              =>   ['required','string'],
-            'finalPrice'               =>   ['required_if:has_discount,on'],
+            'finalPrice'               =>   ['required'],
             // 'subject'                  =>   ['nullable','exists:subjects,id'],
             'grade'                    =>   ['required','exists:grades,id'],
             'parts'                     =>   ['required'],
@@ -250,7 +250,7 @@ class LectureController extends Controller
             'description.required' => 'وصف المحاضرة مطلوب',
             'description.string' => 'يجب أن يكون الوصف عبارة عن نص',
 
-            'finalPrice.required_if' => 'السعر بعد الخصم مطلوب',
+            'finalPrice.required' => 'السعر مطلوب',
             'finalPrice.numeric' => 'يجب أن يكون السعر بعد الخصم عبارة عن رقم',
 
             'subject.required' => 'المادة الدراسية مطلوبة',

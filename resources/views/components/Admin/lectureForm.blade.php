@@ -128,20 +128,20 @@
             <div class="base-item" id="select-part-parent">
                 <label for="">الجزئية الدراسية</label>
                 <div class="search-select-box">
-                    <select name="parts[]" multiple="multiple" name="" data-live-search="true"
-                        class="@error('part') is-invalid @enderror" tabindex="-98">
+                    <select name="parts[]" multiple="multiple" data-live-search="true"
+                        class="@error('parts') is-invalid @enderror" tabindex="-98">
                         <option value="">
                             اختر الجزئية الدراسية
                         </option>
                         @foreach (\App\Models\Part::all() as $part)
                             <option
-                                @if (isset($lecture)) {{ $lecture->parts->find($part->id) ? 'selected' : '' }} @endif
+                            @selected((isset($lecture)) && $lecture->parts->find($part->id) || old('parts')->find($part->id))
                                 value="{{ $part->id }}">
                                 {{ $part->name }}
                             </option>
                         @endforeach
                     </select>
-                    @error('part')
+                    @error('parts')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

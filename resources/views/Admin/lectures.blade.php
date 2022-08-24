@@ -411,8 +411,8 @@
                         <div class="less-item custome-item">
                             <label class="sec-name">الجزئية الدراسية</label>
                             <div class="search-select modify-select">
-                                <select name="parts[]" multiple id="" class="@error('part') is-invalid @enderror"
-                                    data-live-search="true">
+                                <select name="parts[]" multiple="multiple" id=""
+                                    class="@error('parts') is-invalid @enderror" data-live-search="true">
                                     <option value="">
                                         اختر الجزئية الدراسية
                                     </option>
@@ -422,12 +422,13 @@
                                             ->get();
                                     @endphp
                                     @foreach ($parts as $part)
-                                        <option @selected(old('part') == $part->id) value="{{ $part->id }}">
+                                        <option @selected(old('parts') ? in_array($part->id,old('parts')) : false)
+                                            value="{{ $part->id }}">
                                             {{ $part->name }}
                                         </option>
                                     @endforeach
                                 </select>
-                                @error('part')
+                                @error('parts')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
