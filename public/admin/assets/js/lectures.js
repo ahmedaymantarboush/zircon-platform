@@ -103,6 +103,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     console.log(objData);
     let lecAddress = document.querySelector("#quick-modify .lecAddress");
     let shortDes = document.querySelector("#quick-modify .shortDes");
+    let editPrice = document.querySelector("#quick-modify .editPrice");
     let selectLevelInner = document.querySelector(
         "#quick-modify .selectLevelParent .filter-option-inner-inner"
     );
@@ -111,7 +112,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     );
     lecAddress.value = objData.title;
     shortDes.innerHTML = objData.description;
-    lecAddress.value = objData.title;
+    editPrice.value = objData.price;
     let fillSelectFunction = function (options, selectInner, data) {
         options.forEach((ele) => {
             if (ele.value == data) {
