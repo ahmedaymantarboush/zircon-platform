@@ -30,14 +30,14 @@
 @section('sections')
     @foreach ($lecture->sections()->orderBy('order')->get() as $index => $section)
         <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapse{{ $section->id }}" aria-expanded="true" aria-controls="collapseOne">
+            <h2 class="accordion-header" id="heading{{ $section->id }}">
+                <button class="accordion-button {{$index ? 'collapsed' : ''}}" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse{{ $section->id }}" aria-expanded="{{$index ? 'false' : 'true'}}" aria-controls="collapse{{ $section->id }}">
                     <span class="collapse_sec_num">القسم {{ $index + 1 }} :</span>
                     <span>{{ $section->title }}</span>
                 </button>
             </h2>
-            <div id="collapse{{ $section->id }}" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            <div id="collapse{{ $section->id }}" class="accordion-collapse collapse {{$index ? '' : 'show'}}" aria-labelledby="heading{{ $section->id }}"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="row">
