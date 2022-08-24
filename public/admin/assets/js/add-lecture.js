@@ -174,7 +174,6 @@ function disabledSelect(btn, options, val) {
 ///////////
 let statusVid = document.querySelector(".status");
 let checkStatusInput = document.getElementById("status");
-checkStatusInput.disabled = true;
 function checkInStatus() {
 	statusVid.classList.toggle("stat-active");
 	if (statusVid.classList.contains("stat-active")) {
