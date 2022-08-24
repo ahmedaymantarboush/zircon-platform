@@ -123,8 +123,10 @@ class LessonController extends Controller
      * @param  \App\Models\Lesson  $lesson
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lesson $lesson)
+    public function destroy()
     {
+        $data = request()->all();
+        $id = $data['id'];
         Lesson::findOrFail($id)->delete();
         return redirect()->back();
     }

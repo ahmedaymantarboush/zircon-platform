@@ -35,6 +35,11 @@ class Lesson extends Model
         return $this->belongsTo(Part::class);
     }
 
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
+
     public function lecture()
     {
         return $this->belongsTo(Lecture::class);
