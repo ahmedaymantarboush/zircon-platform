@@ -333,6 +333,33 @@ class LectureController extends Controller
         endif;
         return redirect()->back()->withErrors(_("حدث خطأ أثناء الشراء يرجى المحاولة مرة أخرى"));
     }
+
+    public function hanging()
+    {
+        $data = request()->all();
+        $user = Auth::user();
+        if (!$user) :
+            return redirect(route('login'));
+        endif;
+        $slug = $data['slug'] ?? 0;
+        $lecture = Lecture::where('slug',$slug)->first();
+        if (!$lecture) :
+            return abort(404);
+
+        endif;
+        if ($user->role->number >= 4) :
+            return abort( 403);
+        endif;
+        if ($lecture->publisher->id != $user->id && $user->role->number > 1) :
+            return abort(403);
+        endif;
+
+        $lecture->published = !$lecture->published;
+        $lecture->save();
+        return redirect()->back();
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
