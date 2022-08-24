@@ -24,7 +24,6 @@
 </head>
 <body>
     <input type="hidden" id="csrf_token" name="_token" value="{{csrf_token()}}">
-
     <header class=" lec_header square-box align-items-center">
         <div class="row" style="width: 100%;">
             <div class="col-lg-6 col-md-12 hd_2" style="margin: 0;padding: 0;">
@@ -38,7 +37,8 @@
             </div>
             <div class="col-lg-6 col-md-12 hd_1"style="margin: 0;padding: 0;">
                 <div class="square-box d-flex justify-content-end align-items-center"style="height: 100px;">
-                    <span class="lec_name">@yield('lec_name')</span>
+                    {{-- <span class="lec_name">@yield('lec_name')</span> --}}
+                    <span class="lec_name">{{Auth::user()->email}}</span>
                     <img src="{{asset('lectureAssets/img/logo-white.png')}}" alt="logo">
                 </div>
             </div>
