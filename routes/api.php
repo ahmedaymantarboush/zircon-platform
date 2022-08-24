@@ -9,6 +9,7 @@ use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\LectureController;
 use App\Http\Controllers\API\PartController;
+use App\Http\Controllers\API\PassedExamController;
 use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\UserController;
@@ -67,6 +68,8 @@ Route::apiResource('/lessons',LessonController::class)->except(['show'])->names(
 //       EXAM ROUTES
 Route::apiResource('/exams',ExamController::class)->except(['show'])->names(['index'=>'api.exams.index','store'=>'api.exams.store','update'=>'api.exams.update','destroy'=>'api.exams.destroy']);
 // Route::post('exams/getExam',[ExamController::class, 'show'])->name('api.exams.show');
+Route::post('exams/passed',[PassedExamController::class, 'show'])->name('api.exams.passed');
+Route::post('exams/finish',[PassedExamController::class, 'finishExam'])->name('api.exams.finish');
 
 //       USER ROUTES
 Route::post('users/recharge',[BalanceCardController::class,'recharge']);
@@ -89,6 +92,7 @@ Route::post('questions',[QuestionController::class,'index']);
 Route::post('questions/getQuestion',[QuestionController::class,'show']);
 Route::post('questions/fastEdit',[QuestionController::class,'fastEdit']);
 Route::post('questions/sendAnswer',[AnswerdQuestionController::class,'update']);
+
 
 
 //       TESTIMONIAL ROUTES

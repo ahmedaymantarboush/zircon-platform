@@ -94,6 +94,7 @@ class SectionItemController extends Controller
                 $answerdQuestions[] = $answerdQuestion->id;
             endforeach;
             $item = [
+                'id' => $passedExam->id,
                 'questions' => $answerdQuestions,
                 'time' => $exam->time,
                 'examStartedAt' => $passedExam->exam_started_at,
