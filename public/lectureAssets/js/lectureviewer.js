@@ -219,5 +219,5 @@ $(document).on('click','.lesson_name',function (){
         datas= data;
     }
     xhttp.send(form);
-    alert(datas);
+    alert(datas.item.garde);
 });
