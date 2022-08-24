@@ -438,7 +438,8 @@
                         <label class="sec-name">السعر</label>
                         <div class="search-select modify-select">
                             <input name="finalPrice" value="{{ old('finalPrice') }}" id="" type="number" min="0"
-                                class="my-input @error('finalPrice') is-invalid @enderror" data-live-search="true">
+                                class="my-input editPrice @error('finalPrice') is-invalid @enderror"
+                                data-live-search="true">
                             @error('finalPrice')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
