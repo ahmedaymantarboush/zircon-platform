@@ -389,8 +389,8 @@ class LectureController extends Controller
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
-        $id = $data['id'] ?? 0;
-        $lecture = Lecture::find($id);
+        $slug = $data['slug'] ?? 0;
+        $lecture = Lecture::where('slug',$slug)->first();
         if (!$lecture) :
             return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 404);
         endif;
