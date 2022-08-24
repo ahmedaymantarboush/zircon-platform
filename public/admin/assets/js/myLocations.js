@@ -79,6 +79,7 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
 // ajax
+console.log("nسسo");
 let editFun = async function (url, myData, el = null) {
     try {
         let postData = await fetch(url, {
@@ -102,16 +103,13 @@ let editFun = async function (url, myData, el = null) {
     } catch (err) {}
 };
 
-console.log("no");
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("editCenter")) {
         return;
     }
     let dataId = e.target.closest("tr").querySelector(".number").textContent;
     console.log(dataId);
-    let sendObj = {
-        id: dataId,
-    };
+
     let inputId = document.querySelector("#editLocationModal #trId");
     inputId.value = dataId;
 
