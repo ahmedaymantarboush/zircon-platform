@@ -313,7 +313,7 @@
                         </div>
                         <p class="dis">
                             مقدار الخصم
-                            <span class="price-discount">{{number_format(($lecture->price - $lecture->final_price) * 100 / ($lecture->price))}}</span>
+                            <span class="price-discount">@isset($lecture){{number_format(($lecture->price - $lecture->final_price) * 100 / ($lecture->price))}} @else 0 @endisset</span>
                         </p>
                     </div>
                     <div class="dis-date">

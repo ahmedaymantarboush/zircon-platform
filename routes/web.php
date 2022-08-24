@@ -33,7 +33,7 @@ Route::post('user/update', [UserController::class, 'update'])->name('user.update
 
 Route::get('grades/grade{id}', [LectureController::class,'index'])->name('months.index');
 Route::resource('months', LectureController::class)->only(['show']);
-Route::post('month-viewer', [LectureController::class,'viewLecture'])->name('lecture.view');
+Route::post('month-viewer', [LectureController::class,'viewLecture'])->name('lectures.view');
 Route::get('month-viewer', function(){
     return redirect()->back();
 });

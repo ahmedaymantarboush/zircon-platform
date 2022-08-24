@@ -15,7 +15,7 @@
     </div>
     <div class="lectures-statistics row">
         <div class="col-lg-3 col-sm-6">
-            <a href="#" class="add-new-lec" style="width: 100%">
+            <a href="{{route('lectures.create')}}" class="add-new-lec" style="width: 100%">
                 <div class="stc-box">
                     <div class="stc-val-parent">
                         <span class="stc-value">
@@ -179,9 +179,9 @@
                     @php
                         $i = $index + 1;
                     @endphp
-                    <tr data-id={{$lecture->id}}>
+                    <tr data-id={{ $lecture->id }}>
                         <td class="number">
-                            {{$i}}
+                            {{ $i }}
                             <button class="open-tr" type="button">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -189,34 +189,38 @@
                         <td data-lable="العنوان :" class="address">
                             <div class="custome-parent">
                                 <div class="name-lesson">
-{{$lecture->title}}
+                                    {{ $lecture->title }}
                                 </div>
                                 <div class="name-teacher">
                                     <span class="job-teacher">:المدرس</span>
-                                    <span>{{$lecture->publisher->name}}</span>
+                                    <span>{{ $lecture->publisher->name }}</span>
                                 </div>
                             </div>
                         </td>
                         <td data-lable="المادة الدراسية :" class="table-level-parent">
-                            <span class="table-level">{{$lecture->grade->name}}</span>
+                            <span class="table-level">{{ $lecture->grade->name }}</span>
                         </td>
                         <td data-lable="الاقسام :" class="table-sections">
                             <div class="custome-parent">
-                                <div>مجموع الدروس {{count($lecture->lessons)}}</div>
-                                <div>مجموع الاسئلة {{$lecture->total_questions_count}}</div>
+                                <div>مجموع الدروس {{ count($lecture->lessons) }}</div>
+                                <div>مجموع الاسئلة {{ $lecture->total_questions_count }}</div>
                             </div>
                         </td>
                         <td data-lable="الطلاب الملتحقين :" class="students">
-                            عدد الطلاب : {{count($lecture->owners)}}
+                            عدد الطلاب : {{ count($lecture->owners) }}
                         </td>
                         <td data-lable="مشاهدة :" class="views">
-                            {{count($lecture->viewers ?? [])}}
+                            {{ count($lecture->viewers ?? []) }}
                         </td>
                         <td data-lable="الحالة :" class="table-stat-parent">
-                            <span class="table-stat not-active">معلق</span>
+                            <span
+                                class="table-stat {{ $lecture->published ? '' : 'not-' }}active">{{ $lecture->published ? 'منشور' : 'معلق' }}</span>
                         </td>
                         <td data-lable="السعر :" class="table-price-parent">
-                            <span class="table-price not-free">50</span>
+                            @php
+                                $price = getPrice($lecture);
+                            @endphp
+                            <span class="table-price {{ $price ? '' : 'not-' }}free">{{ $price }}</span>
                         </td>
                         <td class="features" data-lable="اجراءات :">
                             <div class="btn-group">
@@ -226,30 +230,32 @@
 
                                 <ul class="dropdown-menu feat-menu">
                                     <li>
-                                        <a class="dropdown-item" href="#">عرض صفحة
-                                            المحاضرة</a>
+                                        <a class="dropdown-item" href="{{ route('months.show', $lecture->slug) }}">عرض
+                                            صفحة المحاضرة</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">عرض صفحة تشغيل
-                                            المحاضرة</a>
+                                        <form action="{{ route('lectures.view') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name='slug' value="{{ $lecture->slug }}">
+                                            <button class="dropdown-item" type="submit">عرض صفحة تشغيل المحاضرة</button>
+                                        </form>
                                     </li>
                                     <li>
                                         <a data-bs-toggle="modal" data-bs-target="#quick-modify"
-                                            class="dropdown-item q-modify" href="#">تعديل سريع
+                                            class="dropdown-item q-modify" href="#">
+                                            تعديل سريع
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a class="dropdown-item" href="#">تعديل
-                                            المحاضرة</a>
+                                        <a class="dropdown-item" href="{{route('lectures.edit',$lecture->slug)}}">تعديل المحاضرة</a>
                                     </li>
+                                    {{-- <li>
+                                        <a class="dropdown-item" href="#">الأقسام و الدروس</a>
+                                    </li> --}}
                                     <li>
-                                        <a class="dropdown-item" href="#">الأقسام و
-                                            الدروس</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">تعليق نشر
-                                            المحاضرة</a>
+                                        <a class="dropdown-item"
+                                            href="#">{{ $lecture->published ? 'تعليق' : 'نشر' }} المحاضرة</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item delete-lec" href="#" data-bs-toggle="modal"
@@ -347,119 +353,110 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        إضافة درس
+                        تعديل المحاضرة
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="">
                     <div class="modal-body">
                         <div class="less-item custome-item">
-                            <label class="sec-name">عنوان الدرس</label>
-
+                            <label class="sec-name">عنوان المحاضرة</label>
                             <div class="input-parent">
-                                <input type="text" class="my-input is-invalid" placeholder=" ادخل عنوان الدرس"
-                                    id="address-lec" />
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                <input type="text" name="title" value="{{ old('title') }}"
+                                    class="my-input @error('title') is-invalid @enderror"
+                                    placeholder=" ادخل عنوان المحاضرة" id="address-lec" />
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="less-item custome-item">
-                            <label class="sec-name">عنوان الدرس</label>
-
+                            <label class="sec-name">الوصف القصير</label>
                             <div class="input-parent">
-                                <textarea name="" id="" class="my-input is-invalid"></textarea>
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                <textarea name="shortDescription" id="" class="my-input @error('shortDescription') is-invalid @enderror">{{ old('shortDescription') }}</textarea>
+                                @error('shortDescription')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="less-item custome-item">
-                            <label class="sec-name">القسم</label>
+                            <label class="sec-name">المرحلة الدراسية</label>
                             <div class="search-select modify-select">
-                                <select name="" id="" class="is-invalid" data-live-search="true">
+                                <select name="grade" id="" class="@error('grade') is-invalid @enderror"
+                                    data-live-search="true">
                                     <option value="">
-                                        اختر القسم الذي يتبعه هذا الدرس
+                                        اختر المرحلة الدراسية
                                     </option>
-                                    <option value="">
-                                        الصف الأول الثانوي
-                                    </option>
-                                    <option value="">
-                                        الصف الثاني الثانوي
-                                    </option>
-                                    <option value="">
-                                        الصف الثالث الثانوي
-                                    </option>
+                                    @foreach (\App\Models\Grade::all() as $grade)
+                                        <option @selected(old('grade') == $grade->id) value="{{ $grade->id }}">
+                                            {{ $grade->name }}</option>
+                                    @endforeach
                                 </select>
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                @error('grade')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="less-item custome-item">
-                            <label class="sec-name">القسم</label>
+                            <label class="sec-name">الجزئية الدراسية</label>
                             <div class="search-select modify-select">
-                                <select name="" id="" class="is-invalid" data-live-search="true">
+                                <select name="part" id="" class="@error('part') is-invalid @enderror"
+                                    data-live-search="true">
                                     <option value="">
-                                        اختر القسم الذي يتبعه هذا الدرس
+                                        اختر الجزئية الدراسية
                                     </option>
-                                    <option value="">
-                                        الصف الأول الثانوي
-                                    </option>
-                                    <option value="">
-                                        الصف الثاني الثانوي
-                                    </option>
-                                    <option value="">
-                                        الصف الثالث الثانوي
-                                    </option>
+                                    @php
+                                        $parts = \App\Models\Part::where(['user_id' => Auth::id()])
+                                            ->whereIn('subject_id', Auth::user()->subjects->pluck('id'))
+                                            ->get();
+                                    @endphp
+                                    @foreach ($parts as $part)
+                                        <option @selected(old('part') == $part->id) value="{{ $part->id }}">
+                                            {{ $part->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                @error('part')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="less-item custome-item">
-                            <label class="sec-name">القسم</label>
+                            <label class="sec-name">السعر</label>
                             <div class="search-select modify-select">
-                                <select name="" id="" class="is-invalid" data-live-search="true">
-                                    <option value="">
-                                        اختر القسم الذي يتبعه هذا الدرس
-                                    </option>
-                                    <option value="">
-                                        الصف الأول الثانوي
-                                    </option>
-                                    <option value="">
-                                        الصف الثاني الثانوي
-                                    </option>
-                                    <option value="">
-                                        الصف الثالث الثانوي
-                                    </option>
-                                </select>
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                <input name="finalPrice" value="{{ old('finalPrice') }}" id="" type="number"
+                                    min="0" class="@error('finalPrice') is-invalid @enderror"
+                                    data-live-search="true">
+                                @error('finalPrice')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="less-item">
-                            <label class="sec-name">وصف الدرس</label>
-                            <div class="text-editor2"></div>
+                            <label class="sec-name">وصف المحاضرة</label>
+                            <textarea name="description" class="text-editor2 @error('description') is-invalid @enderror">@php echo old('description'); @endphp</textarea>
+                            @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">
-                            إضافة
+                            تعديل
                         </button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             الغاء
@@ -474,7 +471,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        إضافة قسم
+                        مسح المحاضرة
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

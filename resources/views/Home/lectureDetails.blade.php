@@ -229,7 +229,7 @@
                                 $price = getPrice($lecture);
                             @endphp
                             @if (Auth::user() ? $lecture->owners->contains(Auth::user()) : false)
-                                <form action="{{ route('lecture.view') }}" method="post">
+                                <form action="{{ route('lectures.view') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="slug" value="{{ $lecture->slug }}">
                                     <button type="submit" class="buy-now">عرض الشهر</button>
