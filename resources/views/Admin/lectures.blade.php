@@ -258,7 +258,8 @@
                                 <form action="{{ route('admin.lectures.hanging') }}" method="post">
                                     @csrf
                                     <input type="hidden" name='slug' value="{{ $lecture->slug }}">
-                                    <button class="dropdown-item" type="submit">{{ $lecture->published ? 'تعليق' : 'نشر' }} المحاضرة</button>
+                                    <button class="dropdown-item"
+                                        type="submit">{{ $lecture->published ? 'تعليق' : 'نشر' }} المحاضرة</button>
                                 </form>
                             </li>
                             <li>
@@ -281,8 +282,11 @@
                     <td data-lable="العنوان :" class="address">
                         <div class="custome-parent">
                             <div class="name-lesson">
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+
                                 مراجعة عامة على الباب
                                 الثاني (الكهربية)
+                                    </button>
                             </div>
                             <div class="name-teacher">
                                 <span class="job-teacher">:المدرس</span>
