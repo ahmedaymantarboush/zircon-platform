@@ -89,13 +89,13 @@ let editFun = async function (url, myData, el = null) {
     } catch (err) {}
 };
 document.querySelector("table").addEventListener("click", async function (e) {
-    if (!e.target.classList.contains("editCenter")) return;
+    if (!e.target.classList.contains("editTesti")) return;
     let dataId = e.target.closest("tr").querySelector(".number").dataset.id;
     console.log(dataId);
     let sendObj = {
         id: dataId,
     };
-    let inputId = document.querySelector("#editLocationModal #trId");
+    let inputId = document.querySelector("#editCertificateModal #trId");
     inputId.value = dataId;
 
     form = new FormData();
@@ -107,15 +107,28 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     let objData = myResponse.data;
-    let nameOfCenter = document.querySelector(
-        ".editLocationModal .nameOfCenter"
+    let editStudentName = document.querySelector(
+        "#editCertificateModal .editStudentName"
     );
-    let urlOfCenter = document.querySelector(".editLocationModal .urlOfCenter");
-    let newGovernorateInner = document.querySelector(
-        ".editLocationModal .newGovernorateParent .filter-option-inner-inner"
+    let editStudentSum = document.querySelector(
+        "#editCertificateModal .editStudentSum"
     );
-    let newGovernorateOptions = document.querySelector(
-        ".editLocationModal .newGovernorateParent option"
+    //first select
+    let subjectParentInner = document.querySelector(
+        "#editCertificateModal .subjectParent .filter-option-inner-inner"
+    );
+    let subjectParentOptions = document.querySelector(
+        "#editCertificateModal .subjectParent option"
+    );
+    let subjectSum = document.querySelector(
+        "#editCertificateModal .subjectSum"
+    );
+    //second select
+    let levelsParentInner = document.querySelector(
+        "#editCertificateModal .levelsParent .filter-option-inner-inner"
+    );
+    let levelsParentOptions = document.querySelector(
+        "#editCertificateModal .levelsParent option"
     );
 });
 

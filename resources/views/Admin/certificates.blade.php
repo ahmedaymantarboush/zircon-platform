@@ -200,8 +200,8 @@
 
                         <ul class="dropdown-menu feat-menu">
                             <li>
-                                <a data-bs-toggle="modal" data-bs-target="#editCertificateModal" class="dropdown-item"
-                                    href="#">تعديل الشهادة
+                                <a data-bs-toggle="modal" data-bs-target="#editCertificateModal"
+                                    class="dropdown-item editTesti" href="#">تعديل الشهادة
                                 </a>
                             </li>
 
@@ -347,12 +347,13 @@
             </div>
             <form action="">
                 <div class="modal-body">
+                    <input type="text" id='trId'>
                     <div class="less-item custome-item">
                         <label class="sec-name">اسم الطالب</label>
 
                         <div class="input-parent">
-                            <input type="text" class="my-input is-invalid" placeholder=" ادخل اسم الطالب"
-                                id="address-lec" />
+                            <input type="text" class="my-input editStudentName is-invalid"
+                                placeholder=" ادخل اسم الطالب" id="address-lec" />
                             <span class="invalid-feedback" role="alert">
                                 @error('error')
                                 <strong>{{ $message }}</strong>
@@ -364,8 +365,8 @@
                         <label class="sec-name">مجموع الطالب</label>
 
                         <div class="input-parent">
-                            <input type="text" class="my-input is-invalid" placeholder=" ادخل مجموع الطالب"
-                                id="address-lec" />
+                            <input type="text" class="my-input editStudentSum is-invalid"
+                                placeholder=" ادخل مجموع الطالب" id="address-lec" />
                             <span class="invalid-feedback" role="alert">
                                 @error('error')
                                 <strong>{{ $message }}</strong>
@@ -376,7 +377,7 @@
 
                     <div class="less-item custome-item">
                         <label class="sec-name">المادة</label>
-                        <div class="search-select modify-select">
+                        <div class="search-select modify-select subjectParent">
                             <select name="" id="" class="is-invalid" data-live-search="true">
                                 <option value="">اختر المادة</option>
                                 <option value="">
@@ -397,11 +398,11 @@
                         </div>
                     </div>
                     <div class="less-item custome-item">
-                        <label class="sec-name">مجموع الطالي في المادة</label>
+                        <label class="sec-name">مجموع الطالب في المادة</label>
 
                         <div class="input-parent">
-                            <input type="text" class="my-input is-invalid" placeholder=" مجموع الطالي في المادة"
-                                id="address-lec" />
+                            <input type="text" class="my-input subjectSum is-invalid"
+                                placeholder=" مجموع الطالي في المادة" id="address-lec" />
                             <span class="invalid-feedback" role="alert">
                                 @error('error')
                                 <strong>{{ $message }}</strong>
@@ -411,7 +412,7 @@
                     </div>
                     <div class="less-item custome-item">
                         <label class="sec-name">المرحلة الدراسية</label>
-                        <div class="search-select modify-select">
+                        <div class="search-select levelsParent modify-select">
                             <select name="" id="" class="is-invalid" data-live-search="true">
                                 <option value="">
                                     اختر المرحلة الدراسية
