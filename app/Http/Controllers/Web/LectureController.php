@@ -277,7 +277,7 @@ class LectureController extends Controller
         $lecture->title = $data['title'];
         $lecture->short_description = $data['shortDescription'];
         $lecture->description = removeCustomTags($data['description']);
-        if ($data['finalPrice'] == $lecture->final_price):
+        if ($data['finalPrice'] != $lecture->final_price):
             $lecture->price = $data['finalPrice'];
             $lecture->final_price = $data['finalPrice'];
             $lecture->discount_expiry_date = null;

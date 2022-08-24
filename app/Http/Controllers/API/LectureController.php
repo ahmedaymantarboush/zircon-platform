@@ -183,7 +183,7 @@ class LectureController extends Controller
 
     public function canBuy(Request $request)
     {
-        $jsonRequest = json_decode(request()->data,true);
+        $jsonRequest = json_decode(request()->data, true);
         $slug = $jsonRequest['lecture'];
 
         $lecture = Lecture::where('slug', $slug)->first();
@@ -272,6 +272,34 @@ class LectureController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function hanging()
+    {
+        $data = json_decode(request()->data, true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $slug = $data['slug'] ?? 0;
+        $lecture = Lecture::where('slug',$slug)->first();
+        if (!$lecture) :
+            return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 404);
+        endif;
+        if ($user->role->number >= 4) :
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل المحاضرة'), [], 403);
+        endif;
+        if ($lecture->publisher->id != $user->id && $user->role->number > 1) :
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل المحاضرة'), [], 403);
+        endif;
+
+        $lecture->published = !$lecture->published;
+        $lecture->save();
+        return apiResponse(true, _('تم تعديل المحاضرة بنجاح'), [
+            'id' => $lecture->id,
+            'published' => $lecture->published,
+        ]);
+    }
+
+
     private function lectureData(Request $request, $fileName = 'poster', $oldFile = null)
     {
         $data = json_decode($request->data, true);
@@ -354,8 +382,9 @@ class LectureController extends Controller
         endif;
     }
 
-    public function fastEdit(){
-        $data = json_decode(request()->data,true);
+    public function fastEdit()
+    {
+        $data = json_decode(request()->data, true);
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
@@ -365,7 +394,7 @@ class LectureController extends Controller
         if (!$lecture) :
             return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 404);
         endif;
-        if ($lecture->publisher->id != $user->id  && $user->role->number != 1):
+        if ($lecture->publisher->id != $user->id  && $user->role->number > 1) :
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل المحاضرة'), [], 403);
         endif;
         return apiResponse(true, _('تم العثور على المحاضرة'), [
@@ -421,9 +450,9 @@ class LectureController extends Controller
                         $type = 'undefined';
                     endif;
                     $items[] = [
-                        'id'=>$item->id,
-                        'type'=>$type,
-                        'title'=>$item->item->title,
+                        'id' => $item->id,
+                        'type' => $type,
+                        'title' => $item->item->title,
                     ];
                 endforeach;
                 $sections[] = [
@@ -515,7 +544,7 @@ class LectureController extends Controller
         if (!$lecture) :
             return apiResponse(false, _('هذه المحاضرة غير موجوده'), [], 404);
         endif;
-        if ($lecture != $user->id && $user->role->number != 1) :
+        if ($lecture != $user->id && $user->role->number > 1) :
             return apiResponse(false, _('غير مصرح لهذا المستخدم بحذف المحاضرة'), [], 403);
         endif;
         if ($lecture->delete()) :
