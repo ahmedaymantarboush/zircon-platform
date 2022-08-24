@@ -197,6 +197,7 @@ $(document).ready(function (){
 
     });
 });
+//ajax
 $(document).on('click','.lesson_name',function (){
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", APP_URL+"/api/items/getItem");
@@ -205,6 +206,7 @@ $(document).on('click','.lesson_name',function (){
     form.append('data', JSON.stringify({
         'id': parseInt($(this).attr('id'))
     }))
+
     xhttp.setRequestHeader('Accept', 'application/json');
     let tkn = window.csrf_token.value
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
