@@ -61,7 +61,8 @@ Route::apiResource('/lessons',LessonController::class)->except(['show'])->names(
 Route::post('lessons/getLesson',[LessonController::class, 'show'])->name('api.lessons.show');
 
 //       EXAM ROUTES
-Route::apiResource('/exams',ExamController::class)->names(['index'=>'api.exams.index','store'=>'api.exams.store','update'=>'api.exams.update','destroy'=>'api.exams.destroy']);
+Route::apiResource('/exams',ExamController::class)->except(['show'])->names(['index'=>'api.exams.index','store'=>'api.exams.store','update'=>'api.exams.update','destroy'=>'api.exams.destroy']);
+Route::post('exams/getExam',[ExamController::class, 'show'])->name('api.exams.show');
 
 //       USER ROUTES
 Route::post('users/recharge',[BalanceCardController::class,'recharge']);
@@ -81,6 +82,7 @@ Route::post('parts',[PartController::class,'index']);
 
 //       QUESTION ROUTES
 Route::post('questions',[QuestionController::class,'index']);
+Route::post('questions/getQuestion',[QuestionController::class,'show']);
 Route::post('questions/fastEdit',[QuestionController::class,'fastEdit']);
 
 //       TESTIMONIAL ROUTES

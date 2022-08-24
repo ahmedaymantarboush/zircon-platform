@@ -28,7 +28,8 @@ class AnswerdQuestionFactory extends Factory
             "question_id" => $question->id,
             "exam_id" => fake()->randomElement(Exam::all()->pluck('id')),
             "answer" => $choice ? $choice->text : fake()->text(),
-            "correct" => $correct
+            "correct" => $correct,
+            'flagged'=>fake()->boolean(),
         ];
     }
 }

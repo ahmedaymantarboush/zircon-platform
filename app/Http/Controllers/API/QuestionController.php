@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\AnswerdQuestion;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -96,11 +97,38 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $answerdQuestion = AnswerdQuestion::find($id);
+        if (!$answerdQuestion) :
+            return apiResponse(false, _('لم يتم العثور على السؤال'), [], 404);
+        endif;
+        if ($answerdQuestion->user->id != $user->id):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض السؤال'), [], 403);
+        endif;
+        $question = $answerdQuestion->question;
+        $choices = [];
+        foreach ($question->choices as $choice):
+            $choices[] = $choice->text;
+        endforeach;
+        $filterdQuestion = [
+            'name' => $question->name,
+            'text' => $question->text,
+            'image' => $question->image,
+            'choices' => $choices,
+        ];
+        return apiResponse(true, _('تم العثور على السؤال'), [
+            'flagged' => $answerdQuestion->flagged,
+            'answer' => $answerdQuestion->answer,
+            'question' => $filterdQuestion,
+        ]);
     }
-
     /**
      * Update the specified resource in storage.
      *

@@ -78,6 +78,7 @@ class LessonController extends Controller
         $urls = getVideoUrl(getVideoId($lesson->url));
         return apiResponse(true, _('تم العثور على الدرس'), [
             'title' => $lesson->title,
+            'exam' => $lesson->exam_id,
             'grade' => $lesson->grade->name,
             'part' => $lesson->part->name,
             'description' => $lesson->description,

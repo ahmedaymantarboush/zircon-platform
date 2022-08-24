@@ -275,7 +275,7 @@
                                     </div>
                                 @endif
                                 {{-- <!-- <a href="#" class="buy-now">شراء الأن</a> --> --}}
-                                <a href="{{ Auth::user() ? '#' : route('loging') }}" type="button" class="buy-now" data-toggle="modal"
+                                <a href="{{ Auth::user() ? '#' : route('login') }}" type="button" class="buy-now" data-toggle="modal"
                                     data-target="#{{ Auth::user() ? (Auth::user()->balance >= $price ? 'sureBuy' : 'notEnough') : 'notEnough' }}">
                                     شراء الأن </a>
                                 <div class="coupon">
