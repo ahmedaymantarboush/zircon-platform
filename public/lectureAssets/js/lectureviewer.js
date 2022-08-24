@@ -1,5 +1,4 @@
 // questions tabs
-
 let tabBtns = [...document.querySelectorAll('.tab-item')]
 let questions = [...document.querySelectorAll('.question')]
 
