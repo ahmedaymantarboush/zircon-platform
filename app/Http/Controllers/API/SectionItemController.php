@@ -95,6 +95,7 @@ class SectionItemController extends Controller
             endforeach;
             $item = [
                 'questions' => $answerdQuestions,
+                'time' => $exam->time,
                 'examStartedAt' => $passedExam->exam_started_at,
                 'examEndedAt' => $passedExam->exam_ended_at,
                 'finished' => $passedExam->finished,
