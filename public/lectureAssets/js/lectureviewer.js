@@ -205,34 +205,17 @@ $(document).on('click','.lesson_name',function (){
     form.append('data', JSON.stringify({
         'id': parseInt($(this).attr('id'))
     }))
-    // var xhttp = new XMLHttpRequest();
-    // xhttp.open("POST", APP_URL+"/api/items/getItem");
-    //
-    //
-    //
-    // xhttp.setRequestHeader('Accept', 'application/json');
-    // let tkn = window.csrf_token.value
-    // xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-    // var datas
-    // xhttp.onreadystatechange = function (e) {
-    //     data = JSON.parse(this.responseText)
-    //     console.log(data)
-    //     datas= data;
-    // }
-    // xhttp.send(form);
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-   $.ajax({
-       url: APP_URL+"/api/items/getItem",
-       data: form,
-       type:"POST",
-       processData: false,
-       contentType: false,
-       success: function (r){
-           console.log(r.data.type);
-       },
-   });
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", APP_URL+"/api/items/getItem");
+    xhttp.setRequestHeader('Accept', 'application/json');
+    let tkn = window.csrf_token.value
+    xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+    var datas
+    xhttp.onreadystatechange = function (e) {
+        data = JSON.parse(this.responseText)
+        console.log(data)
+        datas= data;
+    }
+    xhttp.send(form);
+
 });
