@@ -46,24 +46,24 @@ sortForms.forEach(frm => {
 })
 
 
-let fileInput = document.getElementById("formFile");
-let fileOptions = document.querySelectorAll(".dropdown .type-lesson option");
-fileInput.setAttribute("disabled", "");
+// let fileInput = document.getElementById("formFile");
+// let fileOptions = document.querySelectorAll(".dropdown .type-lesson option");
+// fileInput.setAttribute("disabled", "");
 
-document.querySelector(".dropdown .type-lesson").addEventListener("change", () => {
-		let selVal = document.querySelector(".type-lesson select").value.trim();
+// document.querySelector(".dropdown .type-lesson").addEventListener("change", () => {
+// 		let selVal = document.querySelector(".type-lesson select").value.trim();
 
-        fileInput.removeAttribute("disabled");
-		if (selVal === "audio") {
-			fileInput.setAttribute("accept", "audio/mp3,audio/wav");
-		} else if (selVal === "video") {
-			fileInput.setAttribute("accept", "video/mp4");
-        } else if (selVal === "pdf") {
-			fileInput.setAttribute(
-				"accept",
-				"application/pdf,application/vnd.ms-excel"
-			);
-		}else{
-			fileInput.setAttribute("disabled", "");
-        }
-	});
+//         fileInput.removeAttribute("disabled");
+// 		if (selVal === "audio") {
+// 			fileInput.setAttribute("accept", "audio/mp3,audio/wav");
+// 		} else if (selVal === "video") {
+// 			fileInput.setAttribute("accept", "video/mp4");
+//         } else if (selVal === "pdf") {
+// 			fileInput.setAttribute(
+// 				"accept",
+// 				"application/pdf,application/vnd.ms-excel"
+// 			);
+// 		}else{
+// 			fileInput.setAttribute("disabled", "");
+//         }
+// 	});

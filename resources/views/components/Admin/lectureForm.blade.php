@@ -150,7 +150,8 @@
             </div>
             <div class="base-item">
                 <label for="">حالة المحاضرة</label>
-                <div class="status @if (isset($lecture)) {{ $lecture->published ? 'stat-active' : (old('shortDescription') ? 'stat-active' : '') }} @endif"
+                {{-- @if (isset($lecture))  @endif --}}
+                <div class="status {{isset($lecture) ? (old('published') || $lecture->published ? 'stat-active' : '') : (old('published') ? 'stat-active' : '' )}}"
                     id="status-parent">
                     <span class="round"></span>
                     <span class="status-active">مفعل</span>
@@ -158,7 +159,7 @@
                 </div>
                 <div class="input-parent">
                     <input class="@error('published') is-invalid @enderror" type="checkbox" id="status"
-                        @if (isset($lecture)) {{ $lecture->published ? 'checked' : (old('published') ? 'checked' : '') }} @endif
+                    @checked(isset($lecture) ? $lecture->published || old('published') : old('published') )
                         name="published" />
                     @error('published')
                         <span class="invalid-feedback" role="alert">
