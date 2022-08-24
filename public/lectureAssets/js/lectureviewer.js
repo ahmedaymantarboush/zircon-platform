@@ -213,8 +213,8 @@ $(document).on('click','.lesson_name',function (){
     let tkn = window.csrf_token.value
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
     xhttp.onreadystatechange = function (e) {
-        data = this.responseText
-        document.write(data)
+        data = JSON.parse(this.responseText)
+        console.log(data)
     }
     xhttp.send(form);
 });
