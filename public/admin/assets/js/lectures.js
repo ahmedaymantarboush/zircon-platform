@@ -2,7 +2,6 @@
 let tableParent = document.querySelector(".lectures-table");
 let trTable = document.querySelectorAll(".lectures-table tbody tr");
 let openBtn = document.querySelectorAll(".open-tr");
-console.log(openBtn);
 
 /// set even and odd class
 trTable.forEach((ele, index) => {
@@ -86,19 +85,17 @@ let editFun = async function (url, myData, el = null) {
 
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("fastModiBtn")) return;
-    let dataId = e.target.closest("tr").querySelector(".number").dataset.slug;
+    let dataId = e.target.closest("tr").dataset.slug;
     console.log(dataId);
     let sendObj = {
         id: dataId,
     };
-    let inputId = document.querySelector("#editLocationModal #trId");
-    inputId.value = 2;
 
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/centers/fastEdit`,
+        `${window.location.protocol}//${window.location.host}/api/lectures/fastEdit`,
         form,
         e
     );
