@@ -2,7 +2,6 @@
 let tableParent = document.querySelector(".lectures-table");
 let trTable = document.querySelectorAll(".lectures-table tbody tr");
 let openBtn = document.querySelectorAll(".open-tr");
-console.log(openBtn);
 
 /// set even and odd class
 trTable.forEach((ele, index) => {
