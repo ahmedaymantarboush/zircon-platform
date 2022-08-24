@@ -74,7 +74,7 @@ class SectionItemController extends Controller
             if (!$passedExam) :
                 $exam = Exam::find($id);
                 if (!$exam) :
-                    return apiResponse(false, _('الامتحان الذي طلبته غير موجود'), [], 401);
+                    return apiResponse(false, _('الامتحان الذي طلبته غير موجود'), [], 404);
                 endif;
                 $exam->startExam();
                 $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
