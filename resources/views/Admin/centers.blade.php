@@ -381,7 +381,7 @@
                         <label class="sec-name">اسم المكان</label>
 
                         <div class="input-parent">
-                            <input type="text" name='newName' value="{{old('newName')}}"
+                            <input type="text nameOfCenter" name='newName' value="{{old('newName')}}"
                                 class="my-input @error('newName') is-invalid @enderror" placeholder=" ادخل اسم المكان"
                                 id="address-lec" />
                             @error('newName')
@@ -396,8 +396,8 @@
 
                         <div class="input-parent">
                             <input type="text" name='newUrl' value="{{old('newUrl')}}"
-                                class="my-input @error('newUrl') is-invalid @enderror" placeholder=" ادخل لينك المكان"
-                                id="address-lec" />
+                                class="my-input urlOfCenter @error('newUrl') is-invalid @enderror"
+                                placeholder=" ادخل لينك المكان" id="address-lec" />
                             @error('newUrl')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -408,7 +408,7 @@
 
                     <div class="less-item custome-item">
                         <label class="sec-name">المحافظة</label>
-                        <div class="search-select modify-select">
+                        <div class="search-select modify-select newGovernorateParent">
                             <select name='newGovernorate' id="" class="@error('newGovernorate') is-invalid @enderror"
                                 data-live-search="true">
                                 <option value="">اختر المحافظة</option>
@@ -425,10 +425,10 @@
                         </div>
                     </div>
                     {{-- <div class="less-item custome-item">
-                            <label class="sec-name">مجموع الطالي في المادة</label>
+                            <label class="sec-name">مجموع الطالب في المادة</label>
 
                             <div class="input-parent">
-                                <input type="text" class="my-input @error('error') is-invalid @enderror"
+                                <input type="text" class="my-input subjectSum @error('error') is-invalid @enderror"
                                     placeholder=" مجموع الطالي في المادة" id="address-lec" />
                                 @error('error')
                                     <span class="invalid-feedback" role="alert">
