@@ -107,10 +107,10 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let dataId = e.target.closest("tr").querySelector(".number").dataset.id;
     console.log(dataId);
     let sendObj = {
-        id: dataId,
+        id: 2,
     };
     let inputId = document.querySelector("#editLocationModal #trId");
-    inputId.value = dataId;
+    inputId.value = 2;
 
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
