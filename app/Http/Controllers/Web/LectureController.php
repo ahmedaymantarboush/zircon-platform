@@ -303,7 +303,7 @@ class LectureController extends Controller
         $data['description'] = removeCustomTags($data['description'], ['iframe', 'link', 'script']);
         $poster = $lecture ? $lecture->poster : asset('admin/assets/imgs/lecture-holder.png');
         if (array_key_exists($fileName, $data)) {
-            if ($$request->hasFile($fileName)) :
+            if ($request->hasFile($fileName)) :
                 $poster = uploadFile($request, $fileName, $data['title'].Auth::id(), $lecture ? $lecture->poster : '');
                 if ($poster) {
                     if ($lecture) {

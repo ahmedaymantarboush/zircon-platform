@@ -92,7 +92,7 @@ if ($lecture->sections()->orderBy('order')->first()) {
             @section('main')
                 <div class="video_player" style="width: 100%;">
                     @include('components.videoplayer.player', [
-                        'videoSources' => getVideoUrl(getVideoId($firstItem->item->url))['videos'],
+                        'videoSources' => getVideoUrl(getVideoId($firstItem->item->url))['videos'] ?? [],
                     ])
                 </div>
                 <div dir="auto" class="lectures-des">
