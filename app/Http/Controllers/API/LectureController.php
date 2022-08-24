@@ -404,6 +404,7 @@ class LectureController extends Controller
             'parts' => $lecture->parts->pluck('id')->toArray(),
             'description' => $lecture->description,
             'free' => $lecture->price == 0,
+            'price' => getPrice($lecture),
         ]);
     }
     /**
