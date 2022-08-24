@@ -214,10 +214,22 @@ $(document).on('click','.lesson_name',function (){
     xhttp.onreadystatechange = function (e) {
         data = JSON.parse(this.responseText)
         console.log(data)
-        alertss(data);
+        ajaxready(data);
     }
     xhttp.send(form);
-    function alertss(data){
-        alert(data.message);
+    function ajaxready(data){
+        if (data.type== 'lesson'){
+
+            if(data.item.type=="video"){
+                $('main').html('');
+            }
+        }else if(data.type== 'exam'){
+
+            if(data.item.finished=="0"){
+                $('main').html('');
+            }else {
+                $('main').html('');
+            }
+        }
     }
 });
