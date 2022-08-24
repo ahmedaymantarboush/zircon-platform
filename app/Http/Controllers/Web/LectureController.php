@@ -230,9 +230,75 @@ class LectureController extends Controller
     }
 
     public function fastEdit(){
+        request()->validate([
+            'title'                    =>   ['required','string','max:50'],
+            'shortDescription'         =>   ['required','string','max:50'],
+            'description'              =>   ['required','string'],
+            'finalPrice'               =>   ['required_if:has_discount,on'],
+            // 'subject'                  =>   ['nullable','exists:subjects,id'],
+            'grade'                    =>   ['required','exists:grades,id'],
+            'parts'                     =>   ['required'],
+        ],[
+            'title.required' => 'عنوان المحاضرة مطلوب',
+            'title.string' => 'يجب أن يكون العنوان عبارة عن نص',
+            'title.max' => 'أكبر عدد من الحروف هو 50 حرف',
+
+            'shortDescription.required' => 'الوصف القصير مطلوب',
+            'shortDescription.string' => 'يجب أن يكون الوصف القصير عبارة عن نص',
+            'shortDescription.max' => 'أكبر عدد من الحروف هو 50 حرف',
+
+            'description.required' => 'وصف المحاضرة مطلوب',
+            'description.string' => 'يجب أن يكون الوصف عبارة عن نص',
+
+            'finalPrice.required_if' => 'السعر بعد الخصم مطلوب',
+            'finalPrice.numeric' => 'يجب أن يكون السعر بعد الخصم عبارة عن رقم',
+
+            'subject.required' => 'المادة الدراسية مطلوبة',
+            'subject.exists' => 'الرجاء إختيار مادة دراسية صحيحة',
+
+            'grade.required' => 'المرحلة الدراسية مطلوبة',
+            'grade.exists' => 'الرجاء اختيار مرحلة دراسية صحيحة',
+
+            'parts.required' => 'الجزئية الدراسية مطلوبة',
+        ]);
+
         $data = request()->all();
         $user = Auth::user();
-        if (!$user)
+        if (!$user):
+            return redirect('login');
+        endif;
+
+        $slug = $data['slug'];
+        $lecture = Lecture::where('slug', $slug)->first();
+        if (!$lecture) :
+            return abort(404);
+        endif;
+
+        $lecture->title = $data['title'];
+        $lecture->short_description = $data['shortDescription'];
+        $lecture->description = removeCustomTags($data['description']);
+        if ($data['finalPrice'] == $lecture->final_price):
+            $lecture->price = $data['finalPrice'];
+            $lecture->final_price = $data['finalPrice'];
+            $lecture->discount_expiry_date = null;
+        endif;
+        // $lecture->subject_id = $data['subject'];
+        $lecture->grade_id = $data['grade'];
+        foreach (LecturePart::where(['lecture_id' => $lecture->id])->get() as $part) {
+            if (!in_array($part->part_id, $data['parts'])) {
+                $part->delete();
+            }
+        }
+        foreach ($data['parts'] as $part) {
+            if (!empty($part)) {
+                LecturePart::firstOrCreate([
+                    'lecture_id' => $lecture->id,
+                    'part_id' => $part
+                ]);
+            }
+        }
+        $lecture->save();
+        return redirect()->back();
     }
 
     public function buy($slug)
