@@ -217,4 +217,5 @@ $(document).on('click','.lesson_name',function (){
         console.log(data)
     }
     xhttp.send(form);
+    alert(data.item['grade']);
 });
