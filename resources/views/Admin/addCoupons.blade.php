@@ -104,7 +104,7 @@
 
                             @foreach ($balanceCards as $index => $balanceCard)
                                 <div class="col-lg-4 col-sm-12" style="padding-top: 30px">
-                                    @include('components.admin.coupon-card', [
+                                    @include('components.Admin.coupon-card', [
                                         'counter' => $index + 1,
                                         'id' => $balanceCard->id,
                                         'start_date' => $balanceCard->created_at->format('d-m-y:H:i'),
