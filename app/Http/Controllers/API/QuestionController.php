@@ -114,7 +114,7 @@ class QuestionController extends Controller
         endif;
         $question = $answerdQuestion->question;
         $choices = [];
-        foreach ($question->choices as $choice):
+        foreach ($question->choices()->inRandomOrder()->get() as $choice):
             $choices[] = [
                 'id'=> $choice->id,
                 'text'=> $choice->text,
