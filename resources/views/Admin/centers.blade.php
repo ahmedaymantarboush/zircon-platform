@@ -12,7 +12,7 @@
 </div>
 
 <form action="" class="lec-filter">
-    <h3>لائحة اsdsadلاماكن</h3>
+    <h3>لائحة الاماكن</h3>
 
     <div class="search-field">
         <div class="field search-select-box">
