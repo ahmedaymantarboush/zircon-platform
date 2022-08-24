@@ -121,5 +121,14 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     let objData = myResponse.data;
-    console.log(objData);
+    let nameOfCenter = document.querySelector(
+        ".editLocationModal .nameOfCenter"
+    );
+    let urlOfCenter = document.querySelector(".editLocationModal .urlOfCenter");
+    let newGovernorateInner = document.querySelector(
+        ".editLocationModal .newGovernorateParent .filter-option-inner-inner"
+    );
+    let newGovernorateOptions = document.querySelector(
+        ".editLocationModal .newGovernorateParent option"
+    );
 });
