@@ -19,8 +19,8 @@
     @include('includes.appUrl')
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     {{--lecture name--}}
-    
-    <title>@yield('lec_name')</title>
+
+    <title>{{config('app.name')}} - @yield('lec_name')</title>
 </head>
 <body>
     <input type="hidden" id="csrf_token" name="_token" value="{{csrf_token()}}">
@@ -38,7 +38,7 @@
             </div>
             <div class="col-lg-6 col-md-12 hd_1"style="margin: 0;padding: 0;">
                 <div class="square-box d-flex justify-content-end align-items-center"style="height: 100px;">
-                    @yield('lec_name')
+                    <span class="lec_name">@yield('lec_name')</span>
                     <img src="{{asset('lectureAssets/img/logo-white.png')}}" alt="logo">
                 </div>
             </div>
