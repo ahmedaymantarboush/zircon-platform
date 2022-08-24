@@ -109,19 +109,20 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let selectLevelOptions = document.querySelector(
         "#quick-modify .selectLevelParent option"
     );
-    // nameOfCenter.value = null;
-    // urlOfCenter.value = null;
-    // let fillSelectFunction = function (options, selectInner, data) {
-    //     options.forEach((ele) => {
-    //         if (ele.value == data) {
-    //             ele.setAttribute("selected", "");
-    //             selectInner.textContent = ele.textContent;
-    //         } else {
-    //             ele.removeAttribute("selected");
-    //         }
-    //     });
-    // };
-    // fillSelectFunction(newGovernorateOptions, newGovernorateInner, null);
+    lecAddress.value = objData.title;
+    shortDes.innerHTML = objData.description;
+    lecAddress.value = objData.title;
+    let fillSelectFunction = function (options, selectInner, data) {
+        options.forEach((ele) => {
+            if (ele.value == data) {
+                ele.setAttribute("selected", "");
+                selectInner.textContent = ele.textContent;
+            } else {
+                ele.removeAttribute("selected");
+            }
+        });
+    };
+    fillSelectFunction(selectLevelOptions, selectLevelInner, objData.grade);
 });
 
 /**** delete lecture* */
