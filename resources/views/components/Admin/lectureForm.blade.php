@@ -135,7 +135,7 @@
                         </option>
                         @foreach (\App\Models\Part::all() as $part)
                             <option
-                            @selected((isset($lecture)) && $lecture->parts->pluck('id')->toArray()->find($part->id) || in_array(old('parts'),$part->id))
+                            @selected((isset($lecture)) && $lecture->parts->pluck('id')->toArray()->cintains($part->id) || in_array(old('parts'),$part->id))
                                 value="{{ $part->id }}">
                                 {{ $part->name }}
                             </option>
