@@ -241,15 +241,15 @@
                                 </form>
                             </li>
                             <li>
-                                <a data-bs-toggle="modal" data-bs-target="#quick-modify" class="dropdown-item q-modify"
-                                    href="#">
+                                <a data-bs-toggle="modal" data-bs-target="#quick-modify"
+                                    class="dropdown-item q-modify fastModiBtn" href="#">
                                     تعديل سريع
                                 </a>
                             </li>
 
                             <li>
-                                <a class="dropdown-item fastModiBtn"
-                                    href="{{ route('lectures.edit', $lecture->slug) }}">تعديل المحاضرة</a>
+                                <a class="dropdown-item " href="{{ route('lectures.edit', $lecture->slug) }}">تعديل
+                                    المحاضرة</a>
                             </li>
                             {{-- <li>
                                         <a class="dropdown-item" href="#">الأقسام و الدروس</a>
