@@ -42,7 +42,6 @@ class SectionItemController extends Controller
     {
         $data = json_decode(request()->data, true);
         $user = apiUser() ?? Auth::user();
-        return $user;
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
