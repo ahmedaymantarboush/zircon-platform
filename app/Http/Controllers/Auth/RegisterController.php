@@ -70,7 +70,7 @@ class RegisterController extends Controller
 
             'email.required' => "البريد الالكتروني مطلوب",
             'email.string' => "البريد الالكتروني يجب ان يكون حروف",
-            'email.email' => "البرجاء ادخال البريد الالكتروني بشكل صحيح",
+            'email.email' => "الرجاء ادخال البريد الالكتروني بشكل صحيح",
             'email.max' => "أكبر عدد ممكن من الحروف هو 255 حرف",
             'email.unique' => "البريد الالكتروني موجود مسبقا",
 

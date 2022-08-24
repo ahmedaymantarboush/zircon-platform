@@ -36,7 +36,7 @@ class LoginController extends Controller
         ],[
             "{$this->username()}.required" => "البريد الالكتروني مطلوب",
             "{$this->username()}.string" => "البريد الالكتروني يجب ان يكون حروف",
-            "{$this->username()}.email" => "البرجاء ادخال البريد الالكتروني بشكل صحيح",
+            "{$this->username()}.email" => "الرجاء ادخال البريد الالكتروني بشكل صحيح",
             "{$this->username()}.max" => "أكبر عدد ممكن من الحروف هو 255 حرف",
             "{$this->username()}.exists" => "هناك خطأ في البريد الالكتروني أو كلمة المرور",
 
