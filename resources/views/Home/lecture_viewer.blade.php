@@ -43,12 +43,12 @@
                     <div class="row">
                         @foreach ($section->items()->orderBy('order')->get() as $item)
                             @php
-                                $type = $item->exam_id ? 'question' : 'lesson';
+                                $type = $item->exam_id ? 'clipboard-question' : 'file-video';
                             @endphp
                             <div class="col-12">
                                 <div class="lesson_title">
                                     <i
-                                        class="fa-solid fa-file-{{ $type == 'question' ? 'question' : $item->item->type }}"></i>
+                                        class="fa-solid fa-{{ $type }}"></i>
                                     <a class="lesson_name" id="{{ $item->id }}"
                                         href="#lessonLink">{{ $item->title }}</a>
                                     @if ($item->exam_id)
