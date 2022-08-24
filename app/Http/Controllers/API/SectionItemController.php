@@ -59,11 +59,11 @@ class SectionItemController extends Controller
             'type' => $sectionItem->exam_id ? 'exam' : 'lesson',
         ];
         if ($sectionItem->lesson_id) :
+            $lesson = $sectionItem->item;
             $userLesson = UserLesson::firstOrCreate([
-                'lesson_id'=>$sectionItem->lesson_id,
+                'lesson_id'=>$lesson->id,
                 'user_id'=>$user->id,
             ]);
-            $lesson = $sectionItem->item;
             $urls = getVideoUrl(getVideoId($lesson->url));
             $item = [
                 'type' => $lesson->type,
