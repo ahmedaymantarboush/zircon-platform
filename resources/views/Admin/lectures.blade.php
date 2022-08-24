@@ -188,16 +188,9 @@
                 </td>
                 <td data-lable="العنوان :" class="address">
                     <div class="custome-parent">
-
                         <div class="name-lesson">
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip"
-                                data-bs-placement="top" title="Tooltip on top">
-
-                                {{ $lecture->title }}
-                            </button>
+                            {{ $lecture->title }}
                         </div>
-
-
                         <div class="name-teacher">
                             <span class="job-teacher">:المدرس</span>
                             <span>{{ $lecture->publisher->name }}</span>
