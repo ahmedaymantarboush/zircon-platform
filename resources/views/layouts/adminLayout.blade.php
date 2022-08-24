@@ -1,4 +1,5 @@
 @include('includes.admin.head')
+@include('includes.appUrl')
 <input type="hidden" name="token" id="csrf_token" value="{{ csrf_token() }}">
 <section class="main">
     <div class="container-fluid">

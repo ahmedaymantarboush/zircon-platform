@@ -28,7 +28,7 @@
     <!-- css file -->
     <link rel="stylesheet" href="{{ URL::asset('css/signup.css') }} " class="rel">
     <link rel="stylesheet" href="{{ URL::asset('css/signup-responsive.css') }} " class="rel">
-
+    @include('includes.appUrl')
 </head>
 
 <body>

@@ -23,7 +23,9 @@
 
     <!--bootstrap-->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-rtl.min.css') }}">
+    @include('includes.appUrl')
     @yield('css')
+
 </head>
 
 <body>
