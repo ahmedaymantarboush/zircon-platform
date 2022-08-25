@@ -114,7 +114,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let description = document.querySelector(
         "#quick-modify .ck-editor__editable "
     );
-    let multiSelectParentOptions = document.querySelector(
+    let multiSelectParentOptions = document.querySelectorAll(
         "#quick-modify .multiSelectParent option"
     );
     let multiSelectParentInner = document.querySelector(
@@ -136,7 +136,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     };
     let fillMultiSelectFunction = function (options, selectInner, data) {
         data.forEach((item) => {
-            return options.forEach((ele) => {
+            options.forEach((ele) => {
                 if (ele.value == item) {
                     ele.setAttribute("selected", "");
                     selectInner.textContent += ele.textContent;
