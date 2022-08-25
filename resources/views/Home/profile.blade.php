@@ -317,12 +317,12 @@
     @php
     $passedExams = $user
         ->passedExams()
-        ->orderBy('exam_ended_at')
+        ->orderBy('ended_at')
         ->get();
     @endphp
     <script>
         exams = {{ $passedExams->pluck('percentage') }};
-        dates = @php echo $passedExams->pluck('exam_ended_at'); @endphp
+        dates = @php echo $passedExams->pluck('ended_at'); @endphp
     </script>
     <script src="{{ URL::asset('js/profile.js') }}"></script>
 @endsection
