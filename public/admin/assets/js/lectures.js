@@ -121,6 +121,9 @@ document.querySelector("table").addEventListener("click", async function (e) {
         "#quick-modify .multiSelectParent .filter-option-inner-inner"
     );
     // multiSelectParentInner = "";
+    multiSelectParentOptions.forEach((ele) => {
+        ele.removeAttribute("selected");
+    });
     description.ckeditorInstance.setData(objData.description);
     lecAddress.value = objData.title;
     shortDes.innerHTML = objData.shortDescription;
