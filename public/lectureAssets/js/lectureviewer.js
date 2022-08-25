@@ -431,6 +431,7 @@ $(document).on('click','.takeExam',function (){
             '                <div class="exam-questions">\n' +
             '                    <div class="container">\n' +
             '                        <div class="row">';
+        mainDiv.innerHTML = examHTML;
         function addQue(Qdata,i){
             let active ='';
             if(i==1){active ='active-tab';}
@@ -462,7 +463,7 @@ $(document).on('click','.takeExam',function (){
             questionHTML+= '<div class="col-12">\n' +
                 '                                        <p class="question_text">'+Qdata.data.question.text+'</p>\n' +
                 '                                    </div>';
-            mainDiv.innerHTML = examHTML;
+
             /////////////////add question choices/////////////
             for(let i=1;i <= Qdata.data.question.choices.length;i++){
                 let addSelected ='';
