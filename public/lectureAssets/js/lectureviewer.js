@@ -217,7 +217,7 @@ $(document).on('click','.lesson_name',function (){
     }
     xhttp.send(form);
     function getItem(data){
-        alert(data.message);
+        alert(data.item);
         let mainDiv = document.querySelector('main');
         if (data.type== 'lesson'){
             //pages
