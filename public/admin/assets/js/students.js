@@ -182,6 +182,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
         form,
         e
     );
+    console.log(myResponse);
     let objData = myResponse.data;
     if (objData != null) {
         location.reload();
