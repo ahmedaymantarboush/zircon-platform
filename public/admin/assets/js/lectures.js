@@ -120,7 +120,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let multiSelectParentInner = document.querySelector(
         "#quick-modify .multiSelectParent .filter-option-inner-inner"
     );
-    multiSelectParentInner = "";
+
     multiSelectParentOptions.forEach((ele) => {
         ele.removeAttribute("selected");
     });
@@ -146,7 +146,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
                     ele.setAttribute("selected", "");
                     selectInner.textContent += ele.textContent + ", ";
                 } else {
-                    // ele.removeAttribute("selected");
+                    ele.removeAttribute("selected");
                 }
             });
         });
