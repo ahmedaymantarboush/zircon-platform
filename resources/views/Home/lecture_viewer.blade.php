@@ -106,13 +106,14 @@ if (
                         @php echo $lecture->description;@endphp
                     </div>
                 </div>
+
             @endsection
         @else
             @section('main')
                 <div class="take_exam d-flex justify-content-center">
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center">
-                            <img src="{{ asset('lectureAssets/img/examvector.png') }}" alt="">
+                            <img src="public/lectureAssets/img/examvector.png" alt="">
                         </div>
                         <div class="col-12 d-flex justify-content-center">
 
@@ -129,11 +130,11 @@ if (
                                 <p class="ex_red">لم يتبق لك أي من المحاولات</p>
                             </div>
                             <div class="col-12 d-flex justify-content-center">
-                                <a class="exam_btn d-flex justify-content-center" href="#">عرض</a>
+                                <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>
                             </div>
                         @else
                             <div class="col-12 d-flex justify-content-center">
-                                <a class="exam_btn d-flex justify-content-center" href="#"
+                                <a class="exam_btn startExam d-flex justify-content-center" href="#"
                                     style="margin-top: 20px;">ابدأ</a>
                             </div>
                         @endif

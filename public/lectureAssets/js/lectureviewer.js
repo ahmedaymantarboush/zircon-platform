@@ -210,18 +210,73 @@ $(document).on('click','.lesson_name',function (){
     xhttp.setRequestHeader('Accept', 'application/json');
     let tkn = window.csrf_token.value
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-    var datas
     xhttp.onreadystatechange = function (e) {
-        data = JSON.parse(this.responseText)
-        console.log(data)
-        ajaxready(data);
+        data = JSON.parse(this.responseText);
+        console.log(data);
+        getItem(data);
     }
     xhttp.send(form);
-    function ajaxready(data){
+    function getItem(data){
         if (data.type== 'lesson'){
+            //pages
+            let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">"+ mediaPlayer(data.item.urls) + "</div>\n" +
+                "                <div dir=\"auto\" class=\"lectures-des\">\n" +
+                "                    <h2>وصف المحاضرة :</h2>\n" +
+                "                    <div class=\"container\">"+data.item.description+"</div>\n" +
+                "                </div>";
+            let embedPlayer = "<div class=\"video_player\" style=\"width: 100%;\">"+"<iframe src='"+ data.item.urls +"' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"+
+                "</div>\n" +
+                "                <div dir=\"auto\" class=\"lectures-des\">\n" +
+                "                    <h2>وصف المحاضرة :</h2>\n" +
+                "                    <div class=\"container\">"+data.item.description+"</div>\n" +
+                "                </div>";
+            let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
+                "                    <div class=\"row\">\n" +
+                "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
+                "                            <img src=\"public/lectureAssets/img/examvector.png\" alt=\"\">\n" +
+                "                        </div>\n" +
+                "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
+                "\n" +
+                "                            <span class=\"ex_text\" style=\"margin-top: 20px;\">يجب انت تحصل على <span\n" +
+                "                                    class=\"prc\">"+ data.item.minPercentage +"%</span> على\n" +
+                "                                الاقل</span>\n" +
+                "\n" +
+                "                        </div>\n" +
+                "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
+                "                            <span class=\"ex_text\">في امتحان <span>("+ data.item.examName +")</span></span>\n" +
+                "                        </div>";
+            if(data.item.exam == null){
+                if(data.item.type=="video"){
+                    if(typeof data.item.urls === 'object'){
+                        $('main').html(mediaPlayerPage);
+                    }else if(typeof data.item.urls === 'string'){
+                        $('main').html(embedPlayer);
+                    }
+                }
+            }else {
+                if(data.item.finishedExam == false){
+                    passExam += '<div class="col-12 d-flex justify-content-center">\n' +
+                        '                                <a class="exam_btn startExam d-flex justify-content-center" href="#"\n' +
+                        '                                    style="margin-top: 20px;">ابدأ</a>\n' +
+                        '                            </div>';
+                }else {
+                    if(parseInt(data.item.percentage) < parseInt(data.item.minPercentage)){
+                        passExam += "<div class=\"col-12 d-flex justify-content-center\">\n" +
+                            "                                <p class=\"ex_red\">لم يتبق لك أي من المحاولات</p>\n" +
+                            "                            </div>\n" +
+                            "                            <div class=\"col-12 d-flex justify-content-center\">\n" +
+                            "                                <a class=\"exam_btn showExam d-flex justify-content-center\" href=\"#\">عرض</a>\n" +
+                            "                            </div>";
+                        $('main').html(passExam);
+                    }else {
+                        if(typeof data.item.urls === 'object'){
+                            $('main').html(mediaPlayerPage);
+                        }else if(typeof data.item.urls === 'string'){
+                            $('main').html(embedPlayer);
+                        }
+                    }
+                }
 
-            if(data.item.type=="video"){
-                $('main').html('');
             }
         }else if(data.type== 'exam'){
 
