@@ -400,6 +400,7 @@ $(document).on('click','.takeExam',function (){
     xhttp.onreadystatechange = function (e) {
         data = JSON.parse(this.responseText);
         console.log(data);
+        examID = data.data.item.id;
         addQuestions(data);
     }
     xhttp.send(form);
