@@ -314,7 +314,7 @@
                         <p class="dis">
                             مقدار الخصم
                             @php
-                                $discount = number_format(($lecture->price - $lecture->final_price) * 100 / ($lecture->price ?? 1));
+                                $discount = $lecture->price ? number_format( ($lecture->price - $lecture->final_price) * 100 / ($lecture->price ?? 1)) : 100;
                             @endphp
                             {{-- <span class="price-discount">@if(isset($lecture) && $lecture->price){{$discount >= 100 ? 100 : $discount}} @else 0 @endif</span> --}}
                         </p>
