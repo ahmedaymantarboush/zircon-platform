@@ -350,6 +350,7 @@ function getItem(data){
         }
     }else if(data.data.type == 'exam'){
         showTakeExam(data);
+        examID = data.data.item.id;
     }
 }
 $(document).on('click','.lesson_name',function (){
@@ -383,6 +384,7 @@ $(document).on('click','.startExam',function (){
         data = JSON.parse(this.responseText);
         console.log(data);
         showTakeExam(data);
+        examID = data.data.item.id;
     }
     xhttp.send(form);
 });
@@ -399,7 +401,7 @@ $(document).on('click','.takeExam',function (){
     xhttp.onreadystatechange = function (e) {
         data = JSON.parse(this.responseText);
         console.log(data);
-        addQuestions(data);
+        // addQuestions(data);
     }
     xhttp.send(form);
     function addQuestions(data){
