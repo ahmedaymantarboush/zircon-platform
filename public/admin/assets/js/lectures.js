@@ -134,8 +134,8 @@ document.querySelector("table").addEventListener("click", async function (e) {
             }
         });
     };
+    selectInner = "";
     let fillMultiSelectFunction = function (options, selectInner, data) {
-        selectInner = "";
         data.forEach((item) => {
             options.forEach((ele) => {
                 if (ele.value == item) {
