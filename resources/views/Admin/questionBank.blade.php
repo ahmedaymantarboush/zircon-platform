@@ -505,7 +505,7 @@
     </div>
 </div>
 
-<form action="{{route('admin.questions.update')}}" method="POST"  class='editModalForm' enctype="multipart/form-data">
+<form action="{{route('admin.questions.update')}}" method="POST" class='editModalForm' enctype="multipart/form-data">
     @csrf
     <div class="modal fade prevPopup" id="quick-modify" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -747,7 +747,7 @@
                                         اختر المرحلة الدراسية
                                     </option>
                                     @foreach (\App\Models\Grade::all() as $grade)
-                                    <option @selected(old('grade') == $grade->id) value="{{ $grade->id }}">
+                                    <option @selected(old('grade')==$grade->id) value="{{ $grade->id }}">
                                         {{ $grade->name }}
                                     </option>
                                     @endforeach
@@ -768,7 +768,7 @@
                                         اختر المادة
                                     </option>
                                     @foreach (\App\Models\Subject::all() as $subject)
-                                    <option @selected(old('subject') == $subject->id) value="{{ $subject->id }}">
+                                    <option @selected(old('subject')==$subject->id) value="{{ $subject->id }}">
                                         {{ $subject->name }}
                                     </option>
                                     @endforeach
@@ -789,7 +789,7 @@
                                         اختر الجزئية الدراسية
                                     </option>
                                     @foreach (\App\Models\Part::all() as $part)
-                                    <option @selected(old('part') == $part->id) value="{{ $part->id }}">
+                                    <option @selected(old('part')==$part->id) value="{{ $part->id }}">
                                         {{ $part->name }}
                                     </option>
                                     @endforeach
