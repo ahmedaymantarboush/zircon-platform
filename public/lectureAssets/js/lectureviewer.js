@@ -494,6 +494,7 @@ $(document).on('click','.takeExam',function (){
             xhttp.onreadystatechange = function (e) {
                 Qdata = JSON.parse(this.responseText);
                 examHTML += addQue(Qdata);
+                console.log(addQue(Qdata));
             }
             xhttp.send(form2);
         }
