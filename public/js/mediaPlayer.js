@@ -332,7 +332,7 @@ quality_li.forEach((event) => {
             if (event.getAttribute('size') == quality) {
                 let video_current_duration = mainVideo.currentTime;
                 let video_source = event.getAttribute('src');
-                mainVideo.src = video_source;
+                mainVideo.innerHTML = `<source src="${video_source}" type="video/mp4">`;
                 mainVideo.currentTime = video_current_duration;
                 playVideo();
             }
@@ -491,7 +491,7 @@ if (tracks.length == 0) {
 setInterval(() => {
     document.querySelector('#main-video').innerHTML = '';
     if (document.querySelector('#main-video').src) {
-        document.querySelector('#main-video').src = '';
+        document.querySelector('#main-video').removeAttribute('src');
     };
 
 }, 100);
