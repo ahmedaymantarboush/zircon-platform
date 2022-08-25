@@ -31,14 +31,14 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 Route::post('user/update', [UserController::class, 'update'])->name('user.update');
 
-Route::get('grades/grade{id}', [LectureController::class,'index'])->name('months.index');
+Route::get('grades/grade{id}', [LectureController::class,'index'])->name('lectures.index');
 Route::resource('months', LectureController::class)->only(['show']);
 Route::post('month-viewer', [LectureController::class,'viewLecture'])->name('lectures.view');
 Route::get('month-viewer', function(){
     return redirect()->back();
 });
 Route::get('search', [LectureController::class, 'search'])->name('search');
-Route::get('my-cources', [LectureController::class, 'myLectures'])->name('months.mycources');
+Route::get('my-cources', [LectureController::class, 'myLectures'])->name('lectures.ownedLectures');
 
 //  ADMIN ROUTES
 Route::get('dashboard', [HomeController::class, 'admin'])->name('admin.index');

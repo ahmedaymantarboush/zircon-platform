@@ -31,7 +31,7 @@
             <div class="col-lg-6 col-md-12 hd_2" style="margin: 0;padding: 0;">
                 <div class="square-box d-flex justify-content-start align-items-center" style="height: 100px;">
                     @yield('lec_link')
-                    <a href="#" class="lec_link" style="margin-left: 20px;">
+                    <a href="{{route('lectures.ownedLectures')}}" class="lec_link" style="margin-left: 20px;">
                         محاضراتي
                         <i class="fa-solid fa-chevron-right" style="margin-left: 5px"></i>
                     </a>
@@ -70,7 +70,7 @@
             videos = urls.videos
             SOURCES = ""
             Object.entries(videos).forEach(url => {
-                SOURCES += `<source src="${url[1]}" type="video/mp4">\n`
+                SOURCES += `<source src="${url[1]}" size="${url[0].replace('p','')}" type="video/mp4">\n`
             });
             return `
                 @include('components.videoplayer.player', [
