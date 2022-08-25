@@ -132,7 +132,7 @@ class ExamController extends Controller
             $answerdQuestions[] = $answerdQuestion->id;
         endforeach;
 
-        if ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at >= now() : false ) ):
+        if ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false ) ):
             if (!$passedExam->finished):
                 $passedExam->ended_at = now();
             endif;

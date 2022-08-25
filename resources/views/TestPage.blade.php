@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/mediaPlayer.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('css/mediaPlayer.css') }}">
 <script>
     function mediaPlayer(urls) {
         videos = urls.videos
@@ -13,7 +13,6 @@
         `;
     }
 </script>
-{{-- ////////////////////////////////////////////////////////////////// --}}
 <script>
     urls = {
         "videos": {
@@ -23,4 +22,8 @@
     }
     document.write(mediaPlayer(urls));
 </script>
-<script src="{{ asset('js/mediaPlayer.js') }}"></script>
+<script src="{{ asset('js/mediaPlayer.js') }}"></script> --}}
+@php
+    // echo 
+@endphp
+{{now()->addSeconds(1000)}}
