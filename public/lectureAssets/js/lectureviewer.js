@@ -462,6 +462,7 @@ $(document).on('click','.takeExam',function (){
             questionHTML+= '<div class="col-12">\n' +
                 '                                        <p class="question_text">'+Qdata.data.question.text+'</p>\n' +
                 '                                    </div>';
+            mainDiv.innerHTML = examHTML;
             /////////////////add question choices/////////////
             for(let i=1;i <= Qdata.data.question.choices.length;i++){
                 let addSelected ='';
@@ -495,7 +496,7 @@ $(document).on('click','.takeExam',function (){
             xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
             xhttp.onreadystatechange = function (e) {
                 Qdata = JSON.parse(this.responseText);
-                examHTML += addQue(Qdata,i);
+                mainDiv.innerHTML += addQue(Qdata,i);
                 console.log(addQue(Qdata,i));
             }
             xhttp.send(form2);
@@ -517,7 +518,7 @@ $(document).on('click','.takeExam',function (){
             '                </div>\n' +
             '\n' +
             '            </div>';
-        mainDiv.innerHTML = examHTML;
+        mainDiv.innerHTML += examHTML;
         onReadyFunExam();
     }
 });
