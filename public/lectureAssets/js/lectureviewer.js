@@ -401,7 +401,7 @@ $(document).on('click','.takeExam',function (){
     xhttp.onreadystatechange = function (e) {
         data = JSON.parse(this.responseText);
         console.log(data);
-        // addQuestions(data);
+        addQuestions(data);
     }
     xhttp.send(form);
     function addQuestions(data){
@@ -433,7 +433,6 @@ $(document).on('click','.takeExam',function (){
             '                        <div class="row">';
 
         for (let i=1;i <= data.data.item.questions.length;i++){
-            alert(data.data.item.questions[i]);
             let active = "active-tab";
             if(i != 1){active = "";}
             form = new FormData()
@@ -452,6 +451,7 @@ $(document).on('click','.takeExam',function (){
             }
             xhttp.send(form);
             function addQue(Qdata){
+
                 let flagclass="unflagQuestion";
                 let inputclass ="uncheckflag";
                 if(Qdata.data.item.flag == true){
@@ -480,6 +480,7 @@ $(document).on('click','.takeExam',function (){
                     '                                        <p class="question_text">'+Qdata.data.item.questionText+'</p>\n' +
                     '                                    </div>';
                 /////////////////add question choices/////////////
+
             }
         }
     }
