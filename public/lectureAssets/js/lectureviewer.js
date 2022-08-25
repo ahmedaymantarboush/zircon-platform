@@ -405,11 +405,10 @@ $(document).on('click','.takeExam',function (){
     }
     xhttp.send(form);
     function addQuestions(data){
-        alert(data.data.item.questions.length);
         let examHTML = ' <div class="exam-parent">\n' +
             '                <div class="exam-tab swiper mySwiper">\n' +
             '                    <div class="swiper-wrapper">';
-        for (let i=1;i <= data.data.item.questions.length;i++){
+        for (let i=1;i <= data.data.questions.length;i++){
             let active = "active-tab";
             if(i != 1){active = "";}
             examHTML += '<div class="swiper-slide">\n' +
@@ -432,12 +431,12 @@ $(document).on('click','.takeExam',function (){
             '                    <div class="container">\n' +
             '                        <div class="row">';
 
-        for (let i=1;i <= data.data.item.questions.length;i++){
+        for (let i=1;i <= data.data.questions.length;i++){
             let active = "active-tab";
             if(i != 1){active = "";}
             form = new FormData()
             form.append('data', JSON.stringify({
-                'id': data.data.item.questions[i]
+                'id': data.data.questions[i]
             }))
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
