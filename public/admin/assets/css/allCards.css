@@ -258,7 +258,6 @@
 .question-code-parent {
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 .lectures-table .question-mark {
     color: var(--main-color);
