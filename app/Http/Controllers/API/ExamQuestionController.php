@@ -28,7 +28,7 @@ class ExamQuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $data = json_decode(request()->data,true);
+        $data = json_decode(request()->data, true);
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
@@ -37,17 +37,17 @@ class ExamQuestionController extends Controller
             return apiResponse(false, _('غير مصرح لهذا المستخدم باضافة السؤال'), [], 401);
         endif;
 
-        Validator::make($data,[
-            'exam'=>['required','exists:exams,id'],
-            'question'=>['required','exists:questions,id']
+        Validator::make($data, [
+            'exam' => ['required', 'exists:exams,id'],
+            'question' => ['required', 'exists:questions,id']
         ]);
 
         $examQuestion = ExamQuestion::create([
-            'exam_id'=>$data['exam'],
-            'question_id'=>$data['question'],
+            'exam_id' => $data['exam'],
+            'question_id' => $data['question'],
         ]);
 
-        return apiResponse(true, _('تم اضافة السؤال بنجاح'),[]);
+        return apiResponse(true, _('تم اضافة السؤال بنجاح'), []);
     }
 
     /**
@@ -70,7 +70,7 @@ class ExamQuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = json_decode(request()->data,true);
+        $data = json_decode(request()->data, true);
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
@@ -79,23 +79,23 @@ class ExamQuestionController extends Controller
             return apiResponse(false, _('غير مصرح لهذا المستخدم بتعديل السؤال'), [], 401);
         endif;
 
-        Validator::make($data,[
-            'exam'=>['required','exists:exams,id'],
-            'question'=>['required','exists:questions,id']
+        Validator::make($data, [
+            'exam' => ['required', 'exists:exams,id'],
+            'question' => ['required', 'exists:questions,id']
         ]);
 
         $id = $data['id'];
         $questionId = $data['question'];
         $question = Question::find($questionId);
-        if (!$question):
-            return apiResponse(false,_('لم يتم العثور على السؤال'),[],404);
+        if (!$question) :
+            return apiResponse(false, _('لم يتم العثور على السؤال'), [], 404);
         endif;
 
         $examQuestion = ExamQuestion::find($id);
         $examQuestion->question_id = $question->id;
         $examQuestion->save();
 
-        return apiResponse(true, _('تم اضافة السؤال بنجاح'),[]);
+        return apiResponse(true, _('تم اضافة السؤال بنجاح'), []);
     }
 
     /**
@@ -106,7 +106,7 @@ class ExamQuestionController extends Controller
      */
     public function destroy($id)
     {
-        $data = json_decode(request()->data,true);
+        $data = json_decode(request()->data, true);
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
@@ -115,15 +115,11 @@ class ExamQuestionController extends Controller
             return apiResponse(false, _('غير مصرح لهذا المستخدم بحذف السؤال'), [], 401);
         endif;
 
-        Validator::make($data,[
-            'exam'=>['required','exists:exams,id'],
-            'question'=>['required','exists:questions,id']
-        ]);
-
         $id = $data['id'];
         $examQuestion = ExamQuestion::find($id);
-        $examQuestion->delete();
-
-        return apiResponse(true,_('تم حذف السؤال بنجاح'),[]);
+        if ($examQuestion) :
+            $examQuestion->delete();
+        endif;
+        return apiResponse(true, _('تم حذف السؤال بنجاح'), []);
     }
 }
