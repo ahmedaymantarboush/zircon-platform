@@ -490,9 +490,10 @@ if (tracks.length == 0) {
     captionsBtn.parentNode.remove();
 }
 setInterval(() => {
-    document.querySelector('#main-video').innerHTML = '';
-    if (document.querySelector('#main-video').src) {
-        document.querySelector('#main-video').removeAttribute('src');
-    };
-
+    if (document.querySelector('#main-video')) {
+        document.querySelector('#main-video').innerHTML = '';
+        if (document.querySelector('#main-video').src) {
+            document.querySelector('#main-video').removeAttribute('src');
+        };
+    }
 }, 100);
