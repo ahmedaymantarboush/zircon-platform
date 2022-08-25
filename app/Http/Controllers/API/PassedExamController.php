@@ -52,7 +52,7 @@ class PassedExamController extends Controller
         if ($passedExam->user->id != $user->id && $user->role->number >= 4) :
             return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض الامتحان'), [], 403);
         endif;
-        if (!$passedExam->finished || ($passedExam->exam_ended_at ? $passedExam->exam_ended_at < now() : false)) :
+        if (!$passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at < now() : false)) :
             return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض الامتحان'), [], 403);
         endif;
 
@@ -83,8 +83,8 @@ class PassedExamController extends Controller
         endforeach;
 
         return apiResponse(true, _('لم العثور على الامتحان'), [
-            'examstartedAt' => $passedExam->exam_started_at,
-            'examEndedAt' => $passedExam->exam_ended_at,
+            'examstartedAt' => $passedExam->started_at,
+            'examEndedAt' => $passedExam->ended_at,
             'percentage' => $passedExam->percentage,
             'correctAnswers' => $passedExam->answerdQuestions()->where(['correct' => 1])->count(),
             'wrongAnswers' => $passedExam->answerdQuestions()->where(['correct' => 0])->count(),
@@ -109,7 +109,7 @@ class PassedExamController extends Controller
             return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض الامتحان'), [], 403);
         endif;
         if (!$passedExam->finished) :
-            $passedExam->exam_ended_at = now();
+            $passedExam->ended_at = now();
         endif;
         $passedExam->finished = true;
         $passedExam->save();

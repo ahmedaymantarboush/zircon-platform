@@ -13,8 +13,8 @@ class PassedExam extends Model
         'user_id',
         'exam_id',
         'percentage',
-        'exam_started_at',
-        'exam_ended_at',
+        'started_at',
+        'ended_at',
     ];
 
     public function exam()

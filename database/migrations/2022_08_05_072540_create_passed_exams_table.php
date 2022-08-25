@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('exam_id')->constrained()->cascadeOnDelete();
             $table->float('percentage')->default(0);
-            $table->dateTime('exam_started_at');
-            $table->dateTime('exam_ended_at');
+            $table->dateTime('started_at');
+            $table->dateTime('ended_at')->nullable();
             $table->boolean('finished')->default(false);
             $table->timestamps();
         });

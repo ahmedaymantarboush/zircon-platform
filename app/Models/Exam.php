@@ -78,8 +78,8 @@ class Exam extends Model
                 $user->passedExams()->create([
                     'exam_id' => $this->id,
                     'percentage' => 0,
-                    'exam_started_at' => now(),
-                    'exam_ended_at' => $this->time ? now()->addSeconds($this->time) : null,
+                    'started_at' => now(),
+                    'ended_at' => $this->time ? now()->addSeconds($this->time) : null,
                     'finished' => false,
                 ]);
             else :
@@ -97,8 +97,8 @@ class Exam extends Model
                 $user->passedExams()->create([
                     'exam_id' => $this->id,
                     'percentage' => 0,
-                    'exam_started_at' => now(),
-                    'exam_ended_at' =>  $this->time ? now()->addSeconds($this->time) : null,
+                    'started_at' => now(),
+                    'ended_at' =>  $this->time ? now()->addSeconds($this->time) : null,
                     'finished' => false,
                 ]);
             endif;

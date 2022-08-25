@@ -74,8 +74,8 @@ class ExamController extends Controller
         endforeach;
         $data = [
             'questions' => $answerdQuestions,
-            'examStartedAt' => $passedExam->exam_started_at,
-            'examEndedAt' => $passedExam->exam_ended_at,
+            'examStartedAt' => $passedExam->started_at,
+            'examEndedAt' => $passedExam->ended_at,
             'finished' => $passedExam->finished,
         ];
         return apiResponse(true, _('الامتحان الذي طلبته موجود'), $data);
@@ -132,9 +132,9 @@ class ExamController extends Controller
             $answerdQuestions[] = $answerdQuestion->id;
         endforeach;
 
-        if ($passedExam->finished || ($passedExam->exam_ended_at ? $passedExam->exam_ended_at >= now() : false ) ):
+        if ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at >= now() : false ) ):
             if (!$passedExam->finished):
-                $passedExam->exam_ended_at = now();
+                $passedExam->ended_at = now();
             endif;
             $passedExam->finished = true;
             $passedExam->save();
@@ -144,8 +144,8 @@ class ExamController extends Controller
             'id' => $passedExam->id,
             'questions' => $answerdQuestions,
             'time' => $exam->time,
-            'examStartedAt' => $passedExam->exam_started_at,
-            'examEndedAt' => $passedExam->exam_ended_at,
+            'examStartedAt' => $passedExam->started_at,
+            'examEndedAt' => $passedExam->ended_at,
             'finished' => $passedExam->finished,
         ];
 
