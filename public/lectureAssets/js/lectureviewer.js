@@ -350,6 +350,7 @@ function getItem(data){
         }
     }else if(data.data.type == 'exam'){
         showTakeExam(data);
+        examID = data.data.item.id;
     }
 }
 $(document).on('click','.lesson_name',function (){
@@ -400,7 +401,6 @@ $(document).on('click','.takeExam',function (){
     xhttp.onreadystatechange = function (e) {
         data = JSON.parse(this.responseText);
         console.log(data);
-        examID = data.data.item.id;
         addQuestions(data);
     }
     xhttp.send(form);
