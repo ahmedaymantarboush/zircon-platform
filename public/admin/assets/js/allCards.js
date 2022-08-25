@@ -1,4 +1,8 @@
 /// run button
+let tableParent = document.querySelector(".lectures-table");
+let trTable = document.querySelectorAll(".lectures-table tbody tr");
+let openBtn = document.querySelectorAll(".open-tr");
+
 openBtn.forEach((ele) => {
     ele.addEventListener("click", function () {
         trTable.forEach((e) => {
