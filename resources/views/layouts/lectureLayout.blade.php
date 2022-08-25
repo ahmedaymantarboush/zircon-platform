@@ -70,7 +70,7 @@
             videos = urls.videos
             SOURCES = ""
             Object.entries(videos).forEach(url => {
-                SOURCES += `<source src="${url[1]}" size="${url[0].replace('p','')}" type="video/mp4">\n`
+                SOURCES += `<source src="${url[1]}" type="video/mp4">\n`
             });
             return `
                 @include('components.videoplayer.player', [
