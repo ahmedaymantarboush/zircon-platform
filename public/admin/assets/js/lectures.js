@@ -151,6 +151,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
         multiSelectParentInner,
         objData.parts
     );
+    console.log("lol");
     fillSelectFunction(selectLevelOptions, selectLevelInner, objData.grade);
 });
 
