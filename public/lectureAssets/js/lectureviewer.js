@@ -385,6 +385,9 @@ $(document).on('click','.startExam',function (){
     }
     xhttp.send(form);
 });
+let examHTML = ' <div class="exam-parent">\n' +
+    '                <div class="exam-tab swiper mySwiper">\n' +
+    '                    <div class="swiper-wrapper">';
 $(document).on('click','.takeExam',function (){
     form = new FormData()
     form.append('data', JSON.stringify({
@@ -402,9 +405,7 @@ $(document).on('click','.takeExam',function (){
     }
     xhttp.send(form);
     function addQuestions(data){
-        let examHTML = ' <div class="exam-parent">\n' +
-            '                <div class="exam-tab swiper mySwiper">\n' +
-            '                    <div class="swiper-wrapper">';
+
         for (let i=1;i <= data.data.questions.length;i++){
             let active = "active-tab";
             if(i != 1){active = "";}
