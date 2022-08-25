@@ -78,7 +78,7 @@ class SectionItemController extends Controller
                 'examName' => $exam ? $exam->title : null,
                 'finishedExam' => $finished,
                 'percentage' => $finished ? $passedExam->percentage : null,
-                'minPercentage' => $exam ? $lesson->min_pecentage : null,
+                'minPercentage' => $lesson->min_pecentage,
 
                 'grade' => $lesson->grade->name,
                 'part' => $lesson->part->name,
