@@ -250,7 +250,7 @@
     text-align: right;
     word-wrap: normal;
     font-weight: 600;
-    width: 18rem;
+    max-width: 18rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -258,6 +258,7 @@
 .question-code-parent {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .lectures-table .question-mark {
     color: var(--main-color);
