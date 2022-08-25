@@ -233,17 +233,16 @@
 
                             <ul class="dropdown-menu feat-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#">عرض لائحة
-                                        الطلاب</a>
+                                    <a class="dropdown-item" href="#">طباعة الكوبون</a>
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item q-modify" href="#">تعديل الامتحان
+                                    <a class="dropdown-item q-modify" href="#">تعليق الكارت
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item delete-lec" href="#">مسح الامتحان</a>
+                                    <a class="dropdown-item delete-lec" href="#">مسح الكارت</a>
                                 </li>
                             </ul>
                         </div>
@@ -296,17 +295,16 @@
 
                             <ul class="dropdown-menu feat-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#">عرض لائحة
-                                        الطلاب</a>
+                                    <a class="dropdown-item" href="#">طباعة الكوبون</a>
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item q-modify" href="#">تعديل الامتحان
+                                    <a class="dropdown-item q-modify" href="#">تعليق الكارت
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item delete-lec" href="#">مسح الامتحان</a>
+                                    <a class="dropdown-item delete-lec" href="#">مسح الكارت</a>
                                 </li>
                             </ul>
                         </div>
@@ -359,17 +357,16 @@
 
                             <ul class="dropdown-menu feat-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#">عرض لائحة
-                                        الطلاب</a>
+                                    <a class="dropdown-item" href="#">طباعة الكوبون</a>
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item q-modify" href="#">تعديل الامتحان
+                                    <a class="dropdown-item q-modify" href="#">تعليق الكارت
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item delete-lec" href="#">مسح الامتحان</a>
+                                    <a class="dropdown-item delete-lec" href="#">مسح الكارت</a>
                                 </li>
                             </ul>
                         </div>
