@@ -10,6 +10,7 @@ use App\Http\Resources\PassedExamResource;
 use App\Models\Exam;
 use App\Models\PassedExam;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExamController extends Controller
 {
@@ -99,6 +100,54 @@ class ExamController extends Controller
         return apiResponse(true, _('تم تعديل الامتحان بنجاح'), new ExamResource($exam));
     }
 
+    public function getExam()
+    {
+        $data = json_decode(request()->data, true);
+        $user = apiUser() ?? Auth::user();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $exam = Exam::find($id);
+        if (!$exam) :
+            return apiResponse(false, _('لم يتم العثور على الامتحان'), [], 404);
+        endif;
+
+        $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
+        if (!$passedExam) :
+            $exam = Exam::find($id);
+            if (!$exam) :
+                return apiResponse(false, _('الامتحان الذي طلبته غير موجود'), [], 404);
+            endif;
+            $exam->startExam();
+            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
+        endif;
+        if (!$passedExam) :
+            return apiResponse(false, _('عفوا حدث خطأ ما لذلك لم نتمكن من انشاء الامتحان الخاص بالطالب'), [], 500);
+        endif;
+
+        $exam = $passedExam->exam;
+        $answerdQuestions = [];
+        foreach ($exam->answerdQuestions()->inRandomOrder()->get() as $answerdQuestion) :
+            $answerdQuestions[] = $answerdQuestion->id;
+        endforeach;
+
+        if ($passedExam->finished || $passedExam->exam_ended_at >= now()) :
+            $passedExam->finished = true;
+            $passedExam->save();
+        endif;
+
+        $data = [
+            'id' => $passedExam->id,
+            'questions' => $answerdQuestions,
+            'time' => $exam->time,
+            'examStartedAt' => $passedExam->exam_started_at,
+            'examEndedAt' => $passedExam->exam_ended_at,
+            'finished' => $passedExam->finished,
+        ];
+
+        return apiResponse(true, _('تم العثور على العنصر'), $data);
+    }
     /**
      * Remove the specified resource from storage.
      *

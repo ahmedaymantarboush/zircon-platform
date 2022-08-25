@@ -65,9 +65,21 @@ class SectionItemController extends Controller
                 'user_id'=>$user->id,
             ]);
             $urls = getVideoUrl(getVideoId($lesson->url));
+            $exam = $lesson->exam;
+
+            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
+
+            $finished = $passedExam ? $passedExam->finished || $passedExam->exam_ended_at >= now() : false;
+
             $item = [
                 'type' => $lesson->type,
-                'exam' => $lesson->exam_id,
+
+                'exam' => $exam->id,
+                'examName' => $exam->title,
+                'minPercentage' => $exam->min_pecentage,
+                'finishedExam' => $finished,
+                'percentage' => $finished ? $passedExam->percentage : null,
+
                 'grade' => $lesson->grade->name,
                 'part' => $lesson->part->name,
                 'description' => $lesson->description,
@@ -75,40 +87,13 @@ class SectionItemController extends Controller
             ];
         else :
             $exam = $sectionItem->item;
-            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
-            if (!$passedExam) :
-                $exam = Exam::find($id);
-                if (!$exam) :
-                    return apiResponse(false, _('الامتحان الذي طلبته غير موجود'), [], 404);
-                endif;
-                $exam->startExam();
-                $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
-            endif;
-            if (!$passedExam) :
-                return apiResponse(false, _('عفوا حدث خطأ ما لذلك لم نتمكن من انشاء الامتحان الخاص بالطالب'), [], 500);
-            endif;
 
-            $exam = $passedExam->exam;
-            $answerdQuestions = [];
-            foreach ($exam->answerdQuestions()->inRandomOrder()->get() as $answerdQuestion) :
-                $answerdQuestions[] = $answerdQuestion->id;
-            endforeach;
             $item = [
-                'id' => $passedExam->id,
-                'questions' => $answerdQuestions,
-                'time' => $exam->time,
-                'examStartedAt' => $passedExam->exam_started_at,
-                'examEndedAt' => $passedExam->exam_ended_at,
-                'finished' => $passedExam->finished,
-                'correctAnswers' => 0,
-                'wrongAnswers' => 0,
+                'id' => $exam->id,
+                'questionsCount' => $exam->questions_count,
+                'examName' => $exam->title,
             ];
-            if ($passedExam->finished || $passedExam->exam_ended_at >= now()):
-                $passedExam->finished = true;
-                $passedExam->save();
-                $item['correctAnswers'] = $user->answerdQuestions()->where('correct',1)->count();
-                $item['wrongAnswers'] = $user->answerdQuestions()->where('correct',0)->count();
-            endif;
+
         endif;
         $data["item"] = $item;
 

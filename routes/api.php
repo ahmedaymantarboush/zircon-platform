@@ -67,7 +67,7 @@ Route::apiResource('/lessons',LessonController::class)->except(['show'])->names(
 
 //       EXAM ROUTES
 Route::apiResource('/exams',ExamController::class)->except(['show'])->names(['index'=>'api.exams.index','store'=>'api.exams.store','update'=>'api.exams.update','destroy'=>'api.exams.destroy']);
-// Route::post('exams/getExam',[ExamController::class, 'show'])->name('api.exams.show');
+Route::post('exams/getExam',[ExamController::class, 'getExam'])->name('api.exams.getExam');
 Route::post('exams/passed',[PassedExamController::class, 'show'])->name('api.exams.passed');
 Route::post('exams/finish',[PassedExamController::class, 'finishExam'])->name('api.exams.finish');
 
