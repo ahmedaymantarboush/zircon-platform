@@ -39,7 +39,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/test', function (){
     return view('TestPage',['questions'=>Question::all()]);
 });
-
+Route::get('/test1',function (){
+    return view('Admin.allCards');
+});
 
 // Route::get('/tt', function () {
 //     // $headers = ['Content-Type' => 'video/mp4', 'Accept-Ranges' => 'bytes'];
