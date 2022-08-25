@@ -431,7 +431,9 @@ $(document).on('click','.takeExam',function (){
             '                <div class="exam-questions">\n' +
             '                    <div class="container">\n' +
             '                        <div class="row">';
-        function addQue(Qdata){
+        function addQue(Qdata,i){
+            let active ='';
+            if(i==1){active ='active-tab';}
             let questionHTML ='';
             let flagclass="unflagQuestion";
             let inputclass ="uncheckflag";
@@ -493,8 +495,8 @@ $(document).on('click','.takeExam',function (){
             xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
             xhttp.onreadystatechange = function (e) {
                 Qdata = JSON.parse(this.responseText);
-                examHTML += addQue(Qdata);
-                console.log(addQue(Qdata));
+                examHTML += addQue(Qdata,i);
+                console.log(addQue(Qdata,i));
             }
             xhttp.send(form2);
         }
