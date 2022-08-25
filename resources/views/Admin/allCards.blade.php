@@ -211,25 +211,20 @@
                         </div>
                     </td>
                     <td data-lable="قيمة الكارت :" class="table-level-parent">
-                        <span class="table-level">الصف الثالث الثانوي</span>
+                        <span class="table-level">50ج.م</span>
+                    </td>
+                    <td data-lable="تاريخ التحرير :" class="students">
+                        27/7/2022:17:50
                     </td>
                     <td data-lable="المستخدم للكارت :" class="table-sections">
-                        <div class="custome-parent">
-                            الفيزياء
-                        </div>
+
+                        عبدالرحمن مصطفى محمود
+
                     </td>
                     <td data-lable="تاريخ الاستخدام :" class="students">
-                        العزوم
+                        31/7/2022:12:55
                     </td>
-                    <td data-lable="درجة الصعوبة :" class="views">
-                        5
-                    </td>
-                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                        <span class="table-stat not-active">530</span>
-                    </td>
-                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                        <span class="table-price not-free">1100</span>
-                    </td>
+
                     <td class="features" data-lable="اجراءات :">
                         <div class="btn-group">
                             <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
