@@ -18,8 +18,9 @@ class Teacher
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        if ($user ? $user->role->number > 3 : true ):
+        if ($user ? $user->role->number > 3 : true) :
             return abort(404);
         endif;
-        return $next($request);    }
+        return $next($request);
+    }
 }
