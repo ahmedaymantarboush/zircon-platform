@@ -200,6 +200,23 @@ $(document).ready(function (){
     });
 });
 //ajax
+function getExam(exam_id){
+    form = new FormData()
+    form.append('data', JSON.stringify({
+        'id': parseInt(exam_id)
+    }))
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", APP_URL+"/api/exams/getExam");
+    xhttp.setRequestHeader('Accept', 'application/json');
+    let tkn = window.csrf_token.value
+    xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+    xhttp.onreadystatechange = function (e) {
+        data = JSON.parse(this.responseText);
+        console.log(data);
+        getItem(data);
+    }
+    xhttp.send(form);
+}
 $(document).on('click','.lesson_name',function (){
     form = new FormData()
     form.append('data', JSON.stringify({
@@ -292,20 +309,4 @@ $(document).on('click','.lesson_name',function (){
         }
     }
 });
-function getExam(exam_id){
-    form = new FormData()
-    form.append('data', JSON.stringify({
-        'id': parseInt(exam_id)
-    }))
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", APP_URL+"/api/exams/getExam");
-    xhttp.setRequestHeader('Accept', 'application/json');
-    let tkn = window.csrf_token.value
-    xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-    xhttp.onreadystatechange = function (e) {
-        data = JSON.parse(this.responseText);
-        console.log(data);
-        getItem(data);
-    }
-    xhttp.send(form);
-}
+
