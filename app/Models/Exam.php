@@ -79,11 +79,10 @@ class Exam extends Model
                     'exam_id' => $this->id,
                     'percentage' => 0,
                     'exam_started_at' => now(),
-                    'exam_ended_at' => now()->addSeconds($this->time),
+                    'exam_ended_at' => $this->time ? now()->addSeconds($this->time) : null,
                     'finished' => false,
                 ]);
             else :
-
                 $questions = $this->questions;
                 foreach ($questions as $question) :
                     if ($question) :
@@ -99,7 +98,7 @@ class Exam extends Model
                     'exam_id' => $this->id,
                     'percentage' => 0,
                     'exam_started_at' => now(),
-                    'exam_ended_at' =>  now()->addSeconds($this->time),
+                    'exam_ended_at' =>  $this->time ? now()->addSeconds($this->time) : null,
                     'finished' => false,
                 ]);
             endif;

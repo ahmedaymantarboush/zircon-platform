@@ -64,8 +64,8 @@ class AnswerdQuestionController extends Controller
             return apiResponse(false, _('غير مصرح لهذا المسخدم تسجيل اجابة السؤال'), [], 403);
         endif;
         $examId = $answerdQuestion->exam_id;
-        $passedExams = $user->passedExams()->where(['exam_id'=>$examId])->first();
-        if ($passedExams->finished):
+        $passedExam = $user->passedExams()->where(['exam_id'=>$examId])->first();
+        if ($passedExam->finished || ( $passedExam->exam_ended_at ? $passedExam->exam_ended_at >= now() : false )):
             return apiResponse(false, _('غير مصرح لهذا المسخدم تسجيل اجابة السؤال'), [], 403);
         endif;
         $choiceId = $data['choiceId'] ?? null;
@@ -79,8 +79,8 @@ class AnswerdQuestionController extends Controller
 
         $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId])->count();
 
-        $passedExams->percentag = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId])->count()) * 100, 2);
-        $passedExams->save();
+        $passedExam->percentag = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId])->count()) * 100, 2);
+        $passedExam->save();
 
         return apiResponse(true, _('تم تسجيل اجابة السؤال'), []);
     }
