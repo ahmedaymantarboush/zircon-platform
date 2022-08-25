@@ -146,7 +146,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
                     ele.setAttribute("selected", "");
                     selectInner.textContent += ele.textContent + ", ";
                 } else {
-                    ele.removeAttribute("selected");
+                    // ele.removeAttribute("selected");
                 }
             });
         });
