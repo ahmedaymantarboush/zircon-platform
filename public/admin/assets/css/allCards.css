@@ -235,8 +235,8 @@
 .lectures-table tbody tr.greenBg {
     background-color: rgba(158, 214, 22, 0.1);
 }
-.lectures-table tbody tr.blueBg {
-    background-color: rgba(36, 132, 255, 0.13);
+.lectures-table tbody tr.yellowBg {
+    background-color: rgba(252, 225, 87, 0.39);
 }
 .lectures-table .address {
     min-width: 23rem;
