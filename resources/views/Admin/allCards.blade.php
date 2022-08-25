@@ -256,50 +256,38 @@
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </td>
-                    <td data-lable="السؤال :" class="address">
+                    <td data-lable="الكود :" class="address">
                         <div class="custome-parent">
                             <div class="question-code-parent">
-                                <span class="question-mark"><i class="fa-solid fa-question"></i></span>
-                                <!-- <span
-															class="question-code"
-														>
-															ما هو التيار الكهربي
-														</span> -->
+                                <span class="question-mark"><i class="fa-solid fa-receipt"></i></span>
+
                                 <button type="button" class="btn question-code" data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="ماهو التيار واين يوجد التيار والي متي سوف يتم تواجد التيار">
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
+                                    data-placement="top" title="15sad4fe#">
+                                    15sad4fe#
                                 </button>
                             </div>
                             <div class="name-teacher">
-                                <span class="job-teacher">:المدرس</span>
+                                <span class="job-teacher">:المحرر</span>
                                 <span>أ. محمد
                                     عبدالمعبود</span>
                             </div>
                         </div>
                     </td>
-                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                        <span class="table-level">الصف الثالث الثانوي</span>
+                    <td data-lable="قيمة الكارت :" class="table-level-parent">
+                        <span class="table-level">50ج.م</span>
                     </td>
-                    <td data-lable="المادة :" class="table-sections">
-                        <div class="custome-parent">
-                            الفيزياء
-                        </div>
+                    <td data-lable="تاريخ التحرير :" class="students">
+                        27/7/2022:17:50
                     </td>
-                    <td data-lable="الجزئية الدراسية :" class="students">
-                        العزوم
+                    <td data-lable="المستخدم للكارت :" class="table-sections">
+
+                        عبدالرحمن مصطفى محمود
+
                     </td>
-                    <td data-lable="درجة الصعوبة :" class="views">
-                        5
+                    <td data-lable="تاريخ الاستخدام :" class="students">
+                        31/7/2022:12:55
                     </td>
-                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                        <span class="table-stat not-active">530</span>
-                    </td>
-                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                        <span class="table-price not-free">1100</span>
-                    </td>
+
                     <td class="features" data-lable="اجراءات :">
                         <div class="btn-group">
                             <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
@@ -324,57 +312,45 @@
                         </div>
                     </td>
                 </tr>
-                <tr class="">
+                <tr class="yellowBg">
                     <td class="number">
                         1
                         <button class="open-tr" type="button">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </td>
-                    <td data-lable="السؤال :" class="address">
+                    <td data-lable="الكود :" class="address">
                         <div class="custome-parent">
                             <div class="question-code-parent">
-                                <span class="question-mark"><i class="fa-solid fa-question"></i></span>
-                                <!-- <span
-															class="question-code"
-														>
-															ما هو التيار الكهربي
-														</span> -->
+                                <span class="question-mark"><i class="fa-solid fa-receipt"></i></span>
+
                                 <button type="button" class="btn question-code" data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="ماهو التيار واين يوجد التيار والي متي سوف يتم تواجد التيار">
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
+                                    data-placement="top" title="15sad4fe#">
+                                    15sad4fe#
                                 </button>
                             </div>
                             <div class="name-teacher">
-                                <span class="job-teacher">:المدرس</span>
+                                <span class="job-teacher">:المحرر</span>
                                 <span>أ. محمد
                                     عبدالمعبود</span>
                             </div>
                         </div>
                     </td>
-                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                        <span class="table-level">الصف الثالث الثانوي</span>
+                    <td data-lable="قيمة الكارت :" class="table-level-parent">
+                        <span class="table-level">50ج.م</span>
                     </td>
-                    <td data-lable="المادة :" class="table-sections">
-                        <div class="custome-parent">
-                            الفيزياء
-                        </div>
+                    <td data-lable="تاريخ التحرير :" class="students">
+                        27/7/2022:17:50
                     </td>
-                    <td data-lable="الجزئية الدراسية :" class="students">
-                        العزوم
+                    <td data-lable="المستخدم للكارت :" class="table-sections">
+
+                        عبدالرحمن مصطفى محمود
+
                     </td>
-                    <td data-lable="درجة الصعوبة :" class="views">
-                        5
+                    <td data-lable="تاريخ الاستخدام :" class="students">
+                        31/7/2022:12:55
                     </td>
-                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                        <span class="table-stat not-active">530</span>
-                    </td>
-                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                        <span class="table-price not-free">1100</span>
-                    </td>
+
                     <td class="features" data-lable="اجراءات :">
                         <div class="btn-group">
                             <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
@@ -399,81 +375,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr class="blueBg">
-                    <td class="number">
-                        1
-                        <button class="open-tr" type="button">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    <td data-lable="السؤال :" class="address">
-                        <div class="custome-parent">
-                            <div class="question-code-parent">
-                                <span class="question-mark"><i class="fa-solid fa-question"></i></span>
-                                <!-- <span
-															class="question-code"
-														>
-															ما هو التيار الكهربي
-														</span> -->
-                                <button type="button" class="btn question-code" data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="ماهو التيار واين يوجد التيار والي متي سوف يتم تواجد التيار">
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
-                                </button>
-                            </div>
-                            <div class="name-teacher">
-                                <span class="job-teacher">:المدرس</span>
-                                <span>أ. محمد
-                                    عبدالمعبود</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                        <span class="table-level">الصف الثالث الثانوي</span>
-                    </td>
-                    <td data-lable="المادة :" class="table-sections">
-                        <div class="custome-parent">
-                            الفيزياء
-                        </div>
-                    </td>
-                    <td data-lable="الجزئية الدراسية :" class="students">
-                        العزوم
-                    </td>
-                    <td data-lable="درجة الصعوبة :" class="views">
-                        5
-                    </td>
-                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                        <span class="table-stat not-active">530</span>
-                    </td>
-                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                        <span class="table-price not-free">1100</span>
-                    </td>
-                    <td class="features" data-lable="اجراءات :">
-                        <div class="btn-group">
-                            <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </button>
 
-                            <ul class="dropdown-menu feat-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#">عرض لائحة
-                                        الطلاب</a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item q-modify" href="#">تعديل الامتحان
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item delete-lec" href="#">مسح الامتحان</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>
