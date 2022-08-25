@@ -81,10 +81,7 @@ Route::group(['middleware'=>'teacher'],function () {
 Route::post('lectures/{slug}/buy',[LectureController::class, 'buy'])->name('admin.lectures.buy');
 
 //  ADMIN ROUTES
-Route::get('profile',function(){
-    $user = Auth::user();
-    return view('Home.profile',compact('user'));
-});
+Route::get('profile',[UserController::class, 'profile'])->middleware('auth');
 
 //  ADMIN ROUTES
 Route::post('recharge',[BalanceCardController::class, 'recharge'])->name('balance.recharge');

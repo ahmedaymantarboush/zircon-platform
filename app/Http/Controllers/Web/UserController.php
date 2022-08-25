@@ -16,6 +16,11 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('Home.profile', compact('user'));
+    }
     public function index()
     {
         $user = Auth::user();
@@ -103,7 +108,7 @@ class UserController extends Controller
                 'governorate_id' => Governorate::where('name', $data['governorate'])->first()->id,
                 'center_id' => $data['center'] ? Center::where('name', $data['center'])->first()->id : 1,
             ]);
-        else:
+        else :
             return abort(404);
         endif;
         return redirect()->back();
