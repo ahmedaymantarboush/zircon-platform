@@ -431,7 +431,54 @@ $(document).on('click','.takeExam',function (){
             '                <div class="exam-questions">\n' +
             '                    <div class="container">\n' +
             '                        <div class="row">';
-
+        function addQue(Qdata){
+            let questionHTML ='';
+            let flagclass="unflagQuestion";
+            let inputclass ="uncheckflag";
+            if(parseInt(Qdata.data.flagged)){
+                flagclass="flagQuestion";
+                inputclass ="checkflag";
+            }
+            questionHTML += '<div class="question '+active+' col-12">\n' +
+                '                                    <div class="title_exam d-flex justify-content-between">\n' +
+                '                                        <div class="question_head">\n' +
+                '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="'+parseInt(Qdata.data.flagged)+'"\n' +
+                '                                                queNamber="'+i+'"></i>\n' +
+                '                                            <input type="checkbox" class="'+inputclass+'">\n' +
+                '                                            <span>السؤال رقم '+i+'</span>\n' +
+                '                                        </div>\n' +
+                '                                        <div class="all_questions">\n' +
+                '                                            <i class="fa-solid fa-calendar-days"></i>\n' +
+                '                                        </div>\n' +
+                '                                    </div>';
+            if(Qdata.data.question.image !=null){
+                questionHTMLL += '<div className="col-12">\n' +
+                    '                        <img className="question_img"\n' +
+                    '                             src="'+ Qdata.data.question.image +'">\n' +
+                    '                    </div>';
+            }
+            questionHTML+= '<div class="col-12">\n' +
+                '                                        <p class="question_text">'+Qdata.data.question.text+'</p>\n' +
+                '                                    </div>';
+            /////////////////add question choices/////////////
+            for(let i=1;i <= Qdata.data.question.choices.length;i++){
+                let addSelected ='';
+                let addChecked = '';
+                if(Qdata.data.question.choices[i-1].id == Qdata.data.question.choice){
+                    addSelected ='selectedAnser';
+                    addChecked = 'checked';
+                }
+                questionHTML += '<div class="col-12">\n' +
+                    '                                            <div class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
+                    '                                                queNamber="'+i+'">\n' +
+                    '                                                <input type="radio" choiceID="'+ Qdata.data.question.choices[i-1].id +'" name="anser'+i+'"\n' +
+                    '                                                    value="anser_database_id" '+ addChecked +'>\n' +
+                    '                                                <span class="anser_text">'+Qdata.data.question.choices[i-1].text+'</span>\n' +
+                    '                                            </div>\n' +
+                    '                                        </div>';
+            }
+            return questionHTML;
+        }
         for (let i=1;i <= data.data.questions.length;i++){
             let active = "active-tab";
             if(i != 1){active = "";}
@@ -446,56 +493,10 @@ $(document).on('click','.takeExam',function (){
             xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
             xhttp.onreadystatechange = function (e) {
                 Qdata = JSON.parse(this.responseText);
-                addQue(Qdata);
+                examHTML += addQue(Qdata);
+                console.log(addQue(Qdata));
             }
             xhttp.send(form2);
-        }
-        function addQue(Qdata){
-
-            let flagclass="unflagQuestion";
-            let inputclass ="uncheckflag";
-            if(parseInt(Qdata.data.flagged)){
-                flagclass="flagQuestion";
-                inputclass ="checkflag";
-            }
-            examHTML += '<div class="question '+active+' col-12">\n' +
-                '                                    <div class="title_exam d-flex justify-content-between">\n' +
-                '                                        <div class="question_head">\n' +
-                '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="'+parseInt(Qdata.data.flagged)+'"\n' +
-                '                                                queNamber="'+i+'"></i>\n' +
-                '                                            <input type="checkbox" class="'+inputclass+'">\n' +
-                '                                            <span>السؤال رقم '+i+'</span>\n' +
-                '                                        </div>\n' +
-                '                                        <div class="all_questions">\n' +
-                '                                            <i class="fa-solid fa-calendar-days"></i>\n' +
-                '                                        </div>\n' +
-                '                                    </div>';
-            if(Qdata.data.question.image !=null){
-                examHTML += '<div className="col-12">\n' +
-                    '                        <img className="question_img"\n' +
-                    '                             src="'+ Qdata.data.question.image +'">\n' +
-                    '                    </div>';
-            }
-            examHTML+= '<div class="col-12">\n' +
-                '                                        <p class="question_text">'+Qdata.data.question.text+'</p>\n' +
-                '                                    </div>';
-            /////////////////add question choices/////////////
-            for(let i=1;i <= Qdata.data.question.choices.length;i++){
-                let addSelected ='';
-                let addChecked = '';
-                if(Qdata.data.question.choices[i-1].id == Qdata.data.question.choice){
-                    addSelected ='selectedAnser';
-                    addChecked = 'checked';
-                }
-                examHTML += '<div class="col-12">\n' +
-                    '                                            <div class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
-                    '                                                queNamber="'+i+'">\n' +
-                    '                                                <input type="radio" choiceID="'+ Qdata.data.question.choices[i-1].id +'" name="anser'+i+'"\n' +
-                    '                                                    value="anser_database_id" '+ addChecked +'>\n' +
-                    '                                                <span class="anser_text">'+Qdata.data.question.choices[i-1].text+'</span>\n' +
-                    '                                            </div>\n' +
-                    '                                        </div>';
-            }
         }
         examHTML += '</div>';
         examHTML += '<div class="col-12">\n' +
