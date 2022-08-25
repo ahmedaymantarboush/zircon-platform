@@ -11,7 +11,7 @@
 @section('content')
 
 <div class="page-heading white-box">
-    <span class="page-icon"><i class="fa-solid fa-clipboard-question"></i></span>
+    <span class="page-icon"><i class="fa-solid fa-money-bill-transfer"></i></span>
     <h2 class="page-h">لائحة كروت الشحن</h2>
 </div>
 <div class="lectures-statistics row">
@@ -22,7 +22,7 @@
                     <span class="stc-value">
                         <i class="fa-solid fa-plus"></i>
                     </span>
-                    <span data-bs-toggle="modal" data-bs-target="#quick-modify" class="stc-name">اضافة امتحان
+                    <span data-bs-toggle="modal" data-bs-target="#quick-modify" class="stc-name">تحرير كروت جديدة
                     </span>
                 </div>
             </div>
@@ -32,11 +32,11 @@
         <a class="real-stc" style="width: 100%">
             <div class="stc-box second-stc">
                 <div class="stc-val-parent">
-                    <span class="stc-value"> 132 </span>
-                    <span class="stc-name">مرات الإجابة الصحيحة</span>
+                    <span class="stc-value"> 158ج.م </span>
+                    <span class="stc-name">رصيد معلق بالكروت</span>
                 </div>
                 <div class="stc-icon">
-                    <span class=""><i class="fa-solid fa-circle-check"></i></span>
+                    <span class=""><i class="fa-solid fa-circle-xmark"></i></span>
                 </div>
             </div>
         </a>
@@ -45,12 +45,12 @@
         <a class="real-stc" style="width: 100%">
             <div class="stc-box second-stc">
                 <div class="stc-val-parent">
-                    <span class="stc-value"> 132 </span>
-                    <span class="stc-name">مرات الإجابة الخاطئة</span>
+                    <span class="stc-value"> 3410ج.م </span>
+                    <span class="stc-name">رصيد تم ايداعه</span>
                 </div>
                 <div class="stc-icon">
                     <span class="">
-                        <i class="fa-solid fa-circle-xmark"></i></span>
+                        <i class="fa-solid fa-circle-check"></i></span>
                 </div>
             </div>
         </a>
@@ -60,9 +60,9 @@
             <div class="stc-box second-stc">
                 <div class="stc-val-parent">
                     <span class="stc-value">
-                        3410
+                        3410ج.م
                     </span>
-                    <span class="stc-name">امتحان</span>
+                    <span class="stc-name">الرصيد الكالي</span>
                 </div>
                 <div class="stc-icon">
                     <span class=""><i class="fa-solid fa-question"></i></span>
