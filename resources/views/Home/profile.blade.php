@@ -207,7 +207,7 @@
     <div class="modal fade editModal" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form method="POST" action="{{route('admin.user.update')}}" class="modal-content">
+            <form method="POST" action="{{route('user.update')}}" class="modal-content">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">تعديل الملف الشخصي</h5>
