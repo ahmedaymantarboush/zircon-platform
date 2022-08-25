@@ -428,8 +428,7 @@ $(document).on('click','.takeExam',function (){
             '                    <div class="container">\n' +
             '                        <div class="row">';
 
-        for (let i=1;i <= 1;i++){
-            //data.data.questions.length
+        for (let i=1;i <= data.data.questions.length;i++){
             let active = "active-tab";
             if(i != 1){active = "";}
             form = new FormData()
