@@ -258,19 +258,16 @@
             </li>
 
             <li>
-                <a class="dropdown-item" href="#">تعديل الطالب</a>
+                <a class="dropdown-item" href="{{route('admin.users.edit',$user->id)}}">تعديل الطالب</a>
             </li>
             <li>
                 <a class="dropdown-item handStudent" href="#">{{$user->hanging ? 'الغاء' : ''}} تعليق الطالب</a>
             </li>
             <li>
-                <a data-bs-toggle="modal" data-bs-target="#editCharge" class="dropdown-item editCharge" href="#">تعديل
-                    رصيد
-                    الطالب</a>
+                <a data-bs-toggle="modal" data-bs-target="#editCharge" class="dropdown-item editCharge" href="#">تعديل رصيد الطالب</a>
             </li>
             <li>
-                <a data-bs-toggle="modal" data-bs-target="#editCode" class="dropdown-item editCode" href="#">تعديل كود
-                    الطالب</a>
+                <a data-bs-toggle="modal" data-bs-target="#editCode" class="dropdown-item editCode" href="#">تعديل كود الطالب</a>
             </li>
             <li>
                 <a data-bs-toggle="modal" data-bs-target="#deleteStudent" class="dropdown-item" href="#">مسح الطالب</a>

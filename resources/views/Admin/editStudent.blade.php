@@ -56,12 +56,6 @@
                                                     {{ $governorate->name }}
                                                 </option>
                                             @endforeach
-                                            {{-- <option value="2">
-                                                ليبيا
-                                            </option>
-                                            <option value="3">
-                                                عين شمس
-                                            </option> --}}
                                         </select>
                                         @error('stu_gov')
                                             <p class='invalid-feedback'>{{ $message }}</p>

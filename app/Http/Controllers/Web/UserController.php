@@ -26,7 +26,15 @@ class UserController extends Controller
             return abort(404);
         }
     }
-
+    public function edit($id){
+        $user = Auth::user();
+        $student = User::find($id);
+        if ($user && $student && $user->role->number < 4):
+            return view('Admin.editStudent',['user'=>$user]);
+        else:
+            return abort(404);
+        endif;
+    }
     public function update(Request $request)
     {
         $user = Auth::user();
