@@ -309,7 +309,7 @@
 /*********lectures*************/
 @media (max-width: 576px) {
     .stc-value {
-        max-width: 60%;
+        max-width: 50%;
     }
     .stc-box {
         padding: 1.5rem 0;
