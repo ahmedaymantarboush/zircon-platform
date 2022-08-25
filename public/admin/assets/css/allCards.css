@@ -274,7 +274,9 @@
     color: #b1b1b1;
     margin-left: 0.5rem;
 }
-
+.name-teacher {
+    text-align: right;
+}
 .lectures-table .table-level-parent {
     min-width: 14rem;
 }
