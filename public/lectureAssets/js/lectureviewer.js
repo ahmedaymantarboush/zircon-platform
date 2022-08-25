@@ -432,6 +432,7 @@ $(document).on('click','.takeExam',function (){
             '                    <div class="container">\n' +
             '                        <div class="row">';
         mainDiv.innerHTML = examHTML;
+        examHTML='';
         function addQue(Qdata,i){
             let active ='';
             if(i==1){active ='active-tab';}
