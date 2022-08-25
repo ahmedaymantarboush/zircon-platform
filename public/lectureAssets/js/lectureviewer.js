@@ -217,7 +217,7 @@ $(document).on('click','.lesson_name',function (){
     }
     xhttp.send(form);
     function getItem(data){
-        alert(data.data.item.type);
+
         let mainDiv = document.querySelector('main');
         if (data.data.type== 'lesson'){
             //pages
@@ -281,13 +281,31 @@ $(document).on('click','.lesson_name',function (){
                 }
 
             }
-        }else if(data.data.type== 'exam'){
+        }else if(data.data.type == 'exam'){
 
-            if(data.data.item.finished=="0"){
+            if(1){
+                getExam(data.data.item.exam);
                 mainDiv.innerHTML = "";
             }else {
-                $mainDiv.innerHTML = "";
+                mainDiv.innerHTML = "";
             }
         }
     }
 });
+function getExam(exam_id){
+    form = new FormData()
+    form.append('data', JSON.stringify({
+        'id': parseInt(exam_id)
+    }))
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", APP_URL+"/api/exams/getExam");
+    xhttp.setRequestHeader('Accept', 'application/json');
+    let tkn = window.csrf_token.value
+    xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+    xhttp.onreadystatechange = function (e) {
+        data = JSON.parse(this.responseText);
+        console.log(data);
+        getItem(data);
+    }
+    xhttp.send(form);
+}
