@@ -83,7 +83,7 @@ Route::post('lectures/{slug}/buy',[LectureController::class, 'buy'])->name('admi
 //  ADMIN ROUTES
 Route::get('profile',function(){
     $user = Auth::user();
-    return view('home.profile',compact('user'));
+    return view('Home.Profile',compact('user'));
 });
 
 //  ADMIN ROUTES
