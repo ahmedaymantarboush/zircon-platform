@@ -6,7 +6,7 @@
 <!-- css file -->
 <link rel="stylesheet" href="{{ URL::asset('css/home.css') }} " class="rel">
 <link rel="stylesheet" href="{{ URL::asset('css/home-responsive.css') }} " class="rel">
-<script type='defer' src="{{ URL::asset('js/home.js') }}"></script>
+<script defer src="{{ URL::asset('js/home.js') }}"></script>
 
 @endsection
 
