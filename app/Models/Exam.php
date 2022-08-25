@@ -76,7 +76,7 @@ class Exam extends Model
                     endif;
                 endforeach;
                 $startedAt = now();
-                $endedAt = date('H:i:s', strtotime($startedAt. " +$this->time seconds"));
+                $endedAt = date('Y-m-d H:i:s', strtotime($startedAt. " +$this->time seconds"));
                 $user->passedExams()->create([
                     'exam_id' => $this->id,
                     'percentage' => 0,
@@ -97,7 +97,8 @@ class Exam extends Model
                     endif;
                 endforeach;
                 $startedAt = now();
-                $endedAt = date('H:i:s', strtotime($startedAt. " +$this->time seconds"));
+                // date("Y-m-d H:i:s", (strtotime(date($date_now)) + $seconds))
+                $endedAt = date('Y-m-d H:i:s', strtotime($startedAt. " +$this->time seconds"));
                 $user->passedExams()->create([
                     'exam_id' => $this->id,
                     'percentage' => 0,
