@@ -27,7 +27,7 @@ class PassedExam extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function examQuestions()
+    public function answers()
     {
         $user = apiUser();
         if ($user) :
