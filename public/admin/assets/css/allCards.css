@@ -260,16 +260,14 @@
     align-items: center;
 }
 .lectures-table .question-mark {
-    color: #fff;
-    background-color: var(--main-color);
-
+    color: var(--main-color);
+    font-size: 2.4rem;
     min-width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 1rem;
 }
 .lectures-table .job-teacher {
     margin-top: 0.5rem;
