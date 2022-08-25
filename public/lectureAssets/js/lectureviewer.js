@@ -383,6 +383,7 @@ $(document).on('click','.startExam',function (){
         data = JSON.parse(this.responseText);
         console.log(data);
         showTakeExam(data);
+        examID = data.data.item.id;
     }
     xhttp.send(form);
 });
