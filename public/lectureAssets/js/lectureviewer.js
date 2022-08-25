@@ -245,7 +245,7 @@ $(document).on('click','.lesson_name',function (){
                 "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
                 "                            <span class=\"ex_text\">في امتحان <span>("+ data.item.examName +")</span></span>\n" +
                 "                        </div>";
-            if(data.item.exam == null){
+            if(data.item.exam != null){
                 if(data.item.type=="video"){
                     if(typeof data.item.urls === 'object'){
                         $('main').html(mediaPlayerPage);

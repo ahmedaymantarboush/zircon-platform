@@ -22,7 +22,8 @@ const video_player = document.querySelector("#video_player"),
     caption_labels = video_player.querySelector("#captions ul"),
     playback = video_player.querySelectorAll(".playback li"),
     tracks = video_player.querySelectorAll("track"),
-    loader = video_player.querySelector(".loader");
+    loader = video_player.querySelector(".loader"),
+    captionsBtn = video_player.querySelector('.captionsBtn');
 
 // let thumbnail = video_player.querySelector(".thumbnail");
 if (tracks.length != 0) {
