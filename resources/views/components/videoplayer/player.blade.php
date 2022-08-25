@@ -79,12 +79,12 @@
                         arrow_forward_ios
                     </span>
                 </li>
-                {{-- <li data-label="quality">
+                <li data-label="quality">
                     <span> Quality </span>
                     <span class="material-symbols-outlined icon">
                         arrow_forward_ios
                     </span>
-                </li> --}}
+                </li>
             </ul>
         </div>
         <div class="playback" data-label="speed" hidden>
