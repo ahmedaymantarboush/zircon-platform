@@ -479,16 +479,16 @@ $(document).on('click','.takeExam',function (){
                 for(let i=1;i <= Qdata.data.question.choices.length;i++){
                     let addSelected ='';
                     let addChecked = '';
-                    if(Qdata.data.question.choices[i].id == Qdata.data.question.choice){
+                    if(Qdata.data.question.choices[i-1].id == Qdata.data.question.choice){
                         addSelected ='selectedAnser';
                         let addChecked = 'checked';
                     }
                     examHTML += '<div class="col-12">\n' +
                         '                                            <div class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
                         '                                                queNamber="'+i+'">\n' +
-                        '                                                <input type="radio" choiceID="'+ Qdata.data.question.choices[i].id +'" name="anser'+i+'"\n' +
+                        '                                                <input type="radio" choiceID="'+ Qdata.data.question.choices[i-1].id +'" name="anser'+i+'"\n' +
                         '                                                    value="anser_database_id" '+ addChecked +'>\n' +
-                        '                                                <span class="anser_text">'+Qdata.data.question.choices[i].text+'</span>\n' +
+                        '                                                <span class="anser_text">'+Qdata.data.question.choices[i-1].text+'</span>\n' +
                         '                                            </div>\n' +
                         '                                        </div>';
                 }
