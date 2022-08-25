@@ -165,7 +165,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
             }
         });
 });
-
+console.log("yse");
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("handStudent")) return;
     let dataId = e.target.closest("tr").dataset.id;
