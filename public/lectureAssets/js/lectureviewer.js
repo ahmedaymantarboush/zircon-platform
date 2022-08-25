@@ -405,7 +405,7 @@ $(document).on('click','.takeExam',function (){
     }
     xhttp.send(form);
     function addQuestions(data){
-
+        alert(data.data.item.questions.length);
         let examHTML = ' <div class="exam-parent">\n' +
             '                <div class="exam-tab swiper mySwiper">\n' +
             '                    <div class="swiper-wrapper">';
