@@ -131,7 +131,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem gs_reveal gs_reveal_fromRight" href="{{ route('months.index', 10) }}">
+                    <a class="levelItem gs_reveal gs_reveal_fromRight" href="{{ route('lectures.index', 10) }}">
                         <div class="l-image  ">
                             <img src="{{ URL::asset('imgs/physics1.png') }}" class='' alt="">
                         </div>
@@ -141,7 +141,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem gs_reveal gs_reveal_fromUp" href="{{ route('months.index', 11) }}">
+                    <a class="levelItem gs_reveal gs_reveal_fromUp" href="{{ route('lectures.index', 11) }}">
                         <div class="l-image ">
                             <img src="{{ URL::asset('imgs/physics2.png') }}" class='' alt="">
                         </div>
@@ -151,7 +151,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem gs_reveal gs_reveal_fromLeft" href="{{ route('months.index', 12) }}">
+                    <a class="levelItem gs_reveal gs_reveal_fromLeft" href="{{ route('lectures.index', 12) }}">
                         <div class="l-image ">
                             <img src="{{ URL::asset('imgs/physics3.png') }}" class='' alt="">
                         </div>
