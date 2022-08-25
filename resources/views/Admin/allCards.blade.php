@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
-                        <label for="">المرحلة الدراسية</label>
+                        <label for="">المحرر</label>
                         <div class="search-select-box">
                             <select name="" id="" data-live-search="true">
                                 <option value="">
@@ -93,7 +93,7 @@
 
                 <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
-                        <label for="">المادة</label>
+                        <label for="">السنة</label>
                         <div class="search-select-box">
                             <select name="" id="" data-live-search="true">
                                 <option value="">
@@ -107,7 +107,7 @@
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
-                        <label for="">نوع الامتحان</label>
+                        <label for="">الشهر</label>
                         <div class="search-select-box">
                             <select name="" id="" data-live-search="true">
                                 <option value="">
@@ -121,7 +121,7 @@
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
-                        <label for="">درجة الصعوبة</label>
+                        <label for="">اليوم</label>
                         <div class="search-select-box">
                             <select name="" id="" data-live-search="true">
                                 <option value="">
@@ -135,7 +135,7 @@
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
-                        <label for="">المحرر</label>
+                        <label for="">الحالة</label>
                         <div class="search-select-box">
                             <select name="" id="" data-live-search="true">
                                 <option value="">

@@ -33,7 +33,7 @@ Bold: 700
     outline: none;
     list-style: none;
     word-wrap: break-word;
-    word-break: break-all;
+
     text-transform: capitalize;
 
     font-family: "cairo";
@@ -879,4 +879,5 @@ th {
 }
 .stc-value {
     text-align: center;
+    word-break: break-all;
 }
