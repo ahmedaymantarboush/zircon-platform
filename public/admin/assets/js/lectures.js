@@ -120,7 +120,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let multiSelectParentInner = document.querySelector(
         "#quick-modify .multiSelectParent .filter-option-inner-inner"
     );
-    // multiSelectParentInner = "";
+    multiSelectParentInner = "";
     multiSelectParentOptions.forEach((ele) => {
         ele.removeAttribute("selected");
     });
