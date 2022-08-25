@@ -24,8 +24,8 @@ class AuthController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'grade' => ['required', 'string', 'exists:grades,name'],
-            'phoneNumber' => ['required', 'string', 'unique:users,phone_number', 'max:13', 'min:11'],
-            'parentPhoneNumber' => ['required', 'string', 'max:13', 'min:11'],
+            'phoneNumber' => ['required', 'string', 'unique:users,phone_number', 'size:11'],
+            'parentPhoneNumber' => ['required', 'string', 'size:11'],
             'governorate' => ['required', 'string', 'exists:governorates,name'],
             'center' => ['nullable', 'string', 'exists:centers,name'],
 
@@ -51,12 +51,12 @@ class AuthController extends Controller
 
             'phoneNumber.required' => "رقم الهاتف مطلوب",
             'phoneNumber.unique' => "رقم الهاتف موجود بالفعل",
-            'phoneNumber.max' => "يجب أن لا يزيد عدد الأرقام عن 13 رقم",
+            'phoneNumber.size' => "يجب أن يكون عدد الأرقام عن 11 رقم",
             'phoneNumber.min' => "يجب أن لا يقل عدد الأرقام عن 11 رقم",
             'phoneNumber.starts_with' => "يجب أن يبدأ رقم الهاتف بـ0",
 
             'parentPhoneNumber.required' => "رقم هاتف ولي الأمر مطلوب",
-            'parentPhoneNumber.max' => "يجب أن لا يزيد عدد الأرقام عن 13 رقم",
+            'parentPhoneNumber.size' => "يجب أن يكون عدد الأرقام عن 11 رقم",
             'parentPhoneNumber.min' => "يجب أن لا يقل عدد الأرقام عن 11 رقم",
             'parentPhoneNumber.starts_with' => "يجب أن يبدأ رقم الهاتف بـ0 أو +20",
 
