@@ -90,7 +90,8 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let sendObj = {
         slug: dataId,
     };
-
+    let slugInput = document.querySelector(".slugInput");
+    slugInput.value = dataId;
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
 
