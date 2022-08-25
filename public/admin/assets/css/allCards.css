@@ -260,9 +260,8 @@
     align-items: center;
 }
 .lectures-table .question-mark {
-    color: #fff;
-    background-color: var(--main-color);
-
+    color: var(--main-color);
+    font-size: 1.6rem;
     min-width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
