@@ -12,7 +12,6 @@
     <meta name="description" content="{{ $lecture->meta_description }}">
     {{-- lecture auther --}}
     <meta name="author" content="{{ $lecture->publisher->name }}">
-
 @endsection
 {{-- /////////////////////////////////////////////////////////////////////////////////////////////// --}}
 @section('lec_name')
@@ -22,27 +21,13 @@
 {{-- /////////////////////////////////////////////////////////////////////////////////////////////// --}}
 @section('lec_link')
     {{-- lecture link --}}
-    <a href="{{env('APP_URL')}}/months/{{$lecture->slug}}" class="lec_link" style="margin-left: 40px;">
+    <a href="{{ env('APP_URL') }}/months/{{ $lecture->slug }}" class="lec_link" style="margin-left: 40px;">
         <i class="fa-solid fa-chevron-left" style="margin-right: 5px"></i>
         تفاصيل المحاضرة
     </a>
 @endsection
 {{-- /////////////////////////////////////////////////////////////////////////////////////////////// --}}
 @section('sections')
-    <script>
-        function mediaPlayer(urls) {
-            videos = urls.videos
-            SOURCES = ""
-            Object.entries(videos).forEach(url => {
-                SOURCES += `<source src="${url[1]}" size="${url[0].replace('p','')}" type="video/mp4">\n`
-            });
-            return `
-            @include('components.videoplayer.player', [
-                'videoSources' => [],
-            ])
-        `;
-        }
-    </script>
     @foreach ($lecture->sections()->orderBy('order')->get() as $index => $section)
         <div class="accordion-item">
             <h2 class="accordion-header" id="heading{{ $section->id }}">
@@ -81,8 +66,6 @@
             </div>
         </div>
     @endforeach
-    <link rel="stylesheet" href="{{ asset('css/mediaPlayer.css') }}">
-    <script src="{{ asset('js/mediaPlayer.js') }}"></script>
 @endsection
 {{-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
 {{-- {{$lecture->sections()->orderBy('order')->first()->items()->orderBy('order')->first()}} --}}
