@@ -368,6 +368,7 @@
             <form action="{{ route('admin.lectures.fastEdit') }}" method="POST">
                 @csrf
                 <div class="modal-body">
+                    <input type="text" class='slugInput'>
                     <div class="less-item custome-item">
                         <label class="sec-name">عنوان المحاضرة</label>
                         <div class="input-parent">
