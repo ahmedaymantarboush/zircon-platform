@@ -385,9 +385,7 @@ $(document).on('click','.startExam',function (){
     }
     xhttp.send(form);
 });
-let examHTML = ' <div class="exam-parent">\n' +
-    '                <div class="exam-tab swiper mySwiper">\n' +
-    '                    <div class="swiper-wrapper">';
+let examHTML = '';
 $(document).on('click','.takeExam',function (){
     form1 = new FormData()
     form1.append('data', JSON.stringify({
@@ -404,7 +402,9 @@ $(document).on('click','.takeExam',function (){
     }
     xhttp.send(form1);
     function addQuestions(data){
-
+        examHTML = ' <div class="exam-parent">\n' +
+            '                <div class="exam-tab swiper mySwiper">\n' +
+            '                    <div class="swiper-wrapper">';
         for (let i=1;i <= data.data.questions.length;i++){
             let active = "active-tab";
             if(i != 1){active = "";}
@@ -481,7 +481,7 @@ $(document).on('click','.takeExam',function (){
                     let addChecked = '';
                     if(Qdata.data.question.choices[i-1].id == Qdata.data.question.choice){
                         addSelected ='selectedAnser';
-                        let addChecked = 'checked';
+                        addChecked = 'checked';
                     }
                     examHTML += '<div class="col-12">\n' +
                         '                                            <div class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
