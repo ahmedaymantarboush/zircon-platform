@@ -219,18 +219,18 @@ $(document).on('click','.lesson_name',function (){
     function getItem(data){
         alert(data.data.item.type);
         let mainDiv = document.querySelector('main');
-        if (data.type== 'lesson'){
+        if (data.data.type== 'lesson'){
             //pages
-            let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">"+ mediaPlayer(data.item.urls) + "</div>\n" +
+            let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">"+ mediaPlayer(data.data.item.urls) + "</div>\n" +
                 "                <div dir=\"auto\" class=\"lectures-des\">\n" +
                 "                    <h2>وصف المحاضرة :</h2>\n" +
-                "                    <div class=\"container\">"+data.item.description+"</div>\n" +
+                "                    <div class=\"container\">"+data.data.item.description+"</div>\n" +
                 "                </div>";
-            let embedPlayer = "<div class=\"video_player\" style=\"width: 100%;\">"+"<iframe src='"+ data.item.urls +"' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"+
+            let embedPlayer = "<div class=\"video_player\" style=\"width: 100%;\">"+"<iframe src='"+ data.data.item.urls +"' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"+
                 "</div>\n" +
                 "                <div dir=\"auto\" class=\"lectures-des\">\n" +
                 "                    <h2>وصف المحاضرة :</h2>\n" +
-                "                    <div class=\"container\">"+data.item.description+"</div>\n" +
+                "                    <div class=\"container\">"+data.data.item.description+"</div>\n" +
                 "                </div>";
             let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
                 "                    <div class=\"row\">\n" +
@@ -240,30 +240,30 @@ $(document).on('click','.lesson_name',function (){
                 "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
                 "\n" +
                 "                            <span class=\"ex_text\" style=\"margin-top: 20px;\">يجب انت تحصل على <span\n" +
-                "                                    class=\"prc\">"+ data.item.minPercentage +"%</span> على\n" +
+                "                                    class=\"prc\">"+ data.data.item.minPercentage +"%</span> على\n" +
                 "                                الاقل</span>\n" +
                 "\n" +
                 "                        </div>\n" +
                 "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
-                "                            <span class=\"ex_text\">في امتحان <span>("+ data.item.examName +")</span></span>\n" +
+                "                            <span class=\"ex_text\">في امتحان <span>("+ data.data.item.examName +")</span></span>\n" +
                 "                        </div>";
-            if(data.item.exam != null){
-                if(data.item.type=="video"){
-                    if(typeof data.item.urls === 'object'){
+            if(data.data.item.exam != null){
+                if(data.data.item.type=="video"){
+                    if(typeof data.data.item.urls === 'object'){
                         mainDiv.innerHTML =mediaPlayerPage;
-                    }else if(typeof data.item.urls === 'string'){
+                    }else if(typeof data.data.item.urls === 'string'){
                         mainDiv.innerHTML = embedPlayer;
                     }
                 }
             }else {
-                if(data.item.finishedExam == false){
+                if(data.data.item.finishedExam == false){
                     passExam += '<div class="col-12 d-flex justify-content-center">\n' +
                         '                                <a class="exam_btn startExam d-flex justify-content-center" href="#"\n' +
                         '                                    style="margin-top: 20px;">ابدأ</a>\n' +
                         '                            </div>';
                     mainDiv.innerHTML = passExam;
                 }else {
-                    if(parseInt(data.item.percentage) < parseInt(data.item.minPercentage)){
+                    if(parseInt(data.data.item.percentage) < parseInt(data.data.item.minPercentage)){
                         passExam += "<div class=\"col-12 d-flex justify-content-center\">\n" +
                             "                                <p class=\"ex_red\">لم يتبق لك أي من المحاولات</p>\n" +
                             "                            </div>\n" +
@@ -272,18 +272,18 @@ $(document).on('click','.lesson_name',function (){
                             "                            </div>";
                         mainDiv.innerHTML = passExam;
                     }else {
-                        if(typeof data.item.urls === 'object'){
+                        if(typeof data.data.item.urls === 'object'){
                             mainDiv.innerHTML =mediaPlayerPage;
-                        }else if(typeof data.item.urls === 'string'){
+                        }else if(typeof data.data.item.urls === 'string'){
                             mainDiv.innerHTML = embedPlayer;
                         }
                     }
                 }
 
             }
-        }else if(data.type== 'exam'){
+        }else if(data.data.type== 'exam'){
 
-            if(data.item.finished=="0"){
+            if(data.data.item.finished=="0"){
                 mainDiv.innerHTML = "";
             }else {
                 $mainDiv.innerHTML = "";
