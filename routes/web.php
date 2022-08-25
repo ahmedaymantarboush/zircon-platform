@@ -29,7 +29,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Auth::routes();
-Route::post('user/update', [UserController::class, 'update'])->name('user.update');
 
 Route::get('grades/grade{id}', [LectureController::class,'index'])->name('lectures.index');
 Route::resource('months', LectureController::class)->only(['show']);
@@ -41,8 +40,8 @@ Route::get('search', [LectureController::class, 'search'])->name('search');
 Route::get('my-cources', [LectureController::class, 'myLectures'])->name('lectures.ownedLectures');
 
 //  ADMIN ROUTES
-Route::get('dashboard', [HomeController::class, 'admin'])->name('admin.index');
-Route::prefix('admin')->group(function () {
+Route::get('dashboard', [HomeController::class, 'teacher'])->name('admin.index')->middleware('admin');
+Route::group(['middleware'=>'teacher'],function () {
     Route::resource('lectures',LectureController::class)->except(['show'])->names(['store'=>'admin.lectures.store','update'=>'admin.lectures.update']);
     Route::resource('lessons',LessonController::class)->except(['index'])->names(['store'=>'admin.lesson.store','update'=>'admin.lesson.update','show'=>'admin.lesson.show']);
     Route::resource('sections',SectionController::class)->except(['show']);
@@ -61,8 +60,7 @@ Route::prefix('admin')->group(function () {
     Route::post('users/update', [UserController::class,'update'])->name('admin.users.update');
 
     Route::get('lectures',[LectureController::class, 'allLectures'])->name('admin.lectures.index');
-    Route::post('lectures/{slug}/buy',[LectureController::class, 'buy'])->name('admin.lectures.buy');
-
+    
     Route::get('questions', [QuestionController::class,'index'])->name('admin.questions.index');
     Route::post('questions/filter', [QuestionController::class,'filter'])->name('admin.questions.filter');
     Route::post('questions/destroy', [QuestionController::class,'destroy'])->name('admin.questions.destroy');
@@ -75,10 +73,12 @@ Route::prefix('admin')->group(function () {
     Route::post('centers/update', [CenterController::class,'update'])->name('admin.centers.update');
     Route::post('centers/store', [CenterController::class,'store'])->name('admin.centers.store');
 
+    Route::get('balancecards', [BalanceCardController::class,'index'])->name('admin.balancecards.index');
     Route::get('balancecards/create', [BalanceCardController::class,'create'])->name('admin.balancecards.create');
     Route::post('balancecards/store', [BalanceCardController::class,'store'])->name('admin.balancecards.store');
 
 });
+Route::post('lectures/{slug}/buy',[LectureController::class, 'buy'])->name('admin.lectures.buy');
 
 //  ADMIN ROUTES
 Route::get('profile',function(){

@@ -129,7 +129,7 @@ class QuestionController extends Controller
         return apiResponse(true, _('تم العثور على السؤال'), [
             'flagged' => $answerdQuestion->flagged,
             'textAnswer' => $answerdQuestion->answer,
-            'choice' => $answerdQuestion->choice->id,
+            'choice' => $answerdQuestion->choice ? $answerdQuestion->choice->id : null,
             'question' => $filterdQuestion,
         ]);
     }
