@@ -6,8 +6,6 @@
 <!-- css file -->
 <link rel="stylesheet" href="{{ URL::asset('css/home.css') }} " class="rel">
 <link rel="stylesheet" href="{{ URL::asset('css/home-responsive.css') }} " class="rel">
-<script defer src="{{ URL::asset('js/home.js') }}"></script>
-
 @endsection
 
 @section('content')
@@ -301,4 +299,5 @@
 <!--swiper js-->
 <script src="{{ URL::asset('js/swiper.bundle.min.js') }}"></script>
 <!-- main js file -->
+<script src="{{ URL::asset('js/home.js') }}"></script>
 @endsection
