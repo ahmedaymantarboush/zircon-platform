@@ -177,13 +177,11 @@
                         #
                         <i class="fa-solid fa-sort"></i>
                     </th>
-                    <th>الامتحان</th>
-                    <th>المرحلة الدراسية</th>
-                    <th>المادة</th>
-                    <th>الجزئية الدراسية</th>
-                    <th>درجة الصعوبة</th>
-                    <th>نسبة الإجابة الصحيحة</th>
-                    <th>نسبة الإجابة الخاطئة</th>
+                    <th>الكود</th>
+                    <th>قيمة الكارت</th>
+                    <th>تاريخ التحرير</th>
+                    <th>المستخدم للكارت</th>
+                    <th>تاريخ الاستخدام</th>
                     <th class="features">اجراءات</th>
                 </tr>
             </thead>
@@ -195,39 +193,32 @@
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </td>
-                    <td data-lable="السؤال :" class="address">
+                    <td data-lable="الكود :" class="address">
                         <div class="custome-parent">
                             <div class="question-code-parent">
-                                <span class="question-mark"><i class="fa-solid fa-question"></i></span>
-                                <!-- <span
-															class="question-code"
-														>
-															ما هو التيار الكهربي
-														</span> -->
+                                <span class="question-mark"><i class="fa-solid fa-receipt"></i></span>
+
                                 <button type="button" class="btn question-code" data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="ماهو التيار واين يوجد التيار والي متي سوف يتم تواجد التيار">
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
+                                    data-placement="top" title="15sad4fe#">
+                                    15sad4fe#
                                 </button>
                             </div>
                             <div class="name-teacher">
-                                <span class="job-teacher">:المدرس</span>
+                                <span class="job-teacher">:المحرر</span>
                                 <span>أ. محمد
                                     عبدالمعبود</span>
                             </div>
                         </div>
                     </td>
-                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
+                    <td data-lable="قيمة الكارت :" class="table-level-parent">
                         <span class="table-level">الصف الثالث الثانوي</span>
                     </td>
-                    <td data-lable="المادة :" class="table-sections">
+                    <td data-lable="المستخدم للكارت :" class="table-sections">
                         <div class="custome-parent">
                             الفيزياء
                         </div>
                     </td>
-                    <td data-lable="الجزئية الدراسية :" class="students">
+                    <td data-lable="تاريخ الاستخدام :" class="students">
                         العزوم
                     </td>
                     <td data-lable="درجة الصعوبة :" class="views">
