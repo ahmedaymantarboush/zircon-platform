@@ -217,6 +217,7 @@ $(document).on('click','.lesson_name',function (){
     }
     xhttp.send(form);
     function getItem(data){
+        let mainDiv = document.querySelector('main');
         if (data.type== 'lesson'){
             //pages
             let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">"+ mediaPlayer(data.item.urls) + "</div>\n" +
@@ -248,9 +249,9 @@ $(document).on('click','.lesson_name',function (){
             if(data.item.exam != null){
                 if(data.item.type=="video"){
                     if(typeof data.item.urls === 'object'){
-                        $('main').html(mediaPlayerPage);
+                        mainDiv.innerHTML =mediaPlayerPage;
                     }else if(typeof data.item.urls === 'string'){
-                        $('main').html(embedPlayer);
+                        mainDiv.innerHTML = embedPlayer;
                     }
                 }
             }else {
@@ -259,6 +260,7 @@ $(document).on('click','.lesson_name',function (){
                         '                                <a class="exam_btn startExam d-flex justify-content-center" href="#"\n' +
                         '                                    style="margin-top: 20px;">ابدأ</a>\n' +
                         '                            </div>';
+                    mainDiv.innerHTML = passExam;
                 }else {
                     if(parseInt(data.item.percentage) < parseInt(data.item.minPercentage)){
                         passExam += "<div class=\"col-12 d-flex justify-content-center\">\n" +
@@ -267,12 +269,12 @@ $(document).on('click','.lesson_name',function (){
                             "                            <div class=\"col-12 d-flex justify-content-center\">\n" +
                             "                                <a class=\"exam_btn showExam d-flex justify-content-center\" href=\"#\">عرض</a>\n" +
                             "                            </div>";
-                        $('main').html(passExam);
+                        mainDiv.innerHTML = passExam;
                     }else {
                         if(typeof data.item.urls === 'object'){
-                            $('main').html(mediaPlayerPage);
+                            mainDiv.innerHTML =mediaPlayerPage;
                         }else if(typeof data.item.urls === 'string'){
-                            $('main').html(embedPlayer);
+                            mainDiv.innerHTML = embedPlayer;
                         }
                     }
                 }
@@ -281,9 +283,9 @@ $(document).on('click','.lesson_name',function (){
         }else if(data.type== 'exam'){
 
             if(data.item.finished=="0"){
-                $('main').html('');
+                mainDiv.innerHTML = "";
             }else {
-                $('main').html('');
+                $mainDiv.innerHTML = "";
             }
         }
     }
