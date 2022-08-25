@@ -120,6 +120,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let multiSelectParentInner = document.querySelector(
         "#quick-modify .multiSelectParent .filter-option-inner-inner"
     );
+    // multiSelectParentInner = "";
     description.ckeditorInstance.setData(objData.description);
     lecAddress.value = objData.title;
     shortDes.innerHTML = objData.shortDescription;
@@ -140,7 +141,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
             options.forEach((ele) => {
                 if (ele.value == item) {
                     ele.setAttribute("selected", "");
-                    selectInner.textContent += ele.textContent + ", ";
+                    // selectInner.textContent += ele.textContent + ", ";
                 } else {
                     // ele.removeAttribute("selected");
                 }
