@@ -401,15 +401,14 @@ $(document).on('click','.takeExam',function (){
     xhttp.onreadystatechange = function (e) {
         data = JSON.parse(this.responseText);
         console.log(data);
-        // addQuestions(data);
+        addQuestions(data);
     }
     xhttp.send(form);
     function addQuestions(data){
-
         let examHTML = ' <div class="exam-parent">\n' +
             '                <div class="exam-tab swiper mySwiper">\n' +
             '                    <div class="swiper-wrapper">';
-        for (let i=1;i <= data.data.item.questions.length;i++){
+        for (let i=1;i <= data.data.questions.length;i++){
             let active = "active-tab";
             if(i != 1){active = "";}
             examHTML += '<div class="swiper-slide">\n' +
@@ -432,13 +431,12 @@ $(document).on('click','.takeExam',function (){
             '                    <div class="container">\n' +
             '                        <div class="row">';
 
-        for (let i=1;i <= data.data.item.questions.length;i++){
-            alert(data.data.item.questions[i]);
+        for (let i=1;i <= data.data.questions.length;i++){
             let active = "active-tab";
             if(i != 1){active = "";}
             form = new FormData()
             form.append('data', JSON.stringify({
-                'id': data.data.item.questions[i]
+                'id': data.data.questions[i]
             }))
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
@@ -452,6 +450,7 @@ $(document).on('click','.takeExam',function (){
             }
             xhttp.send(form);
             function addQue(Qdata){
+
                 let flagclass="unflagQuestion";
                 let inputclass ="uncheckflag";
                 if(Qdata.data.item.flag == true){
@@ -480,6 +479,7 @@ $(document).on('click','.takeExam',function (){
                     '                                        <p class="question_text">'+Qdata.data.item.questionText+'</p>\n' +
                     '                                    </div>';
                 /////////////////add question choices/////////////
+
             }
         }
     }
