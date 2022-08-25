@@ -379,7 +379,7 @@ class LectureController extends Controller
         $slug = request()->slug;
         $user = Auth::user();
         if ($slug && $user) :
-            $lecture = Lecture::where(['slug' => $slug, 'published' => true])->first();
+            $lecture = Lecture::where(['slug' => $slug])->first();
             if ($lecture->owners->contains($user)) :
                 return view('Home.lecture_viewer', compact('lecture'));
             else :
