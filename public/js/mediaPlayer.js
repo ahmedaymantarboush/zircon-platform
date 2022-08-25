@@ -332,7 +332,7 @@ quality_li.forEach((event) => {
             if (event.getAttribute('size') == quality) {
                 let video_current_duration = mainVideo.currentTime;
                 let video_source = event.getAttribute('src');
-                mainVideo.innerHTML = `<source src="${video_source}" type="video/mp4">`;
+                mainVideo.src = video_source;
                 mainVideo.currentTime = video_current_duration;
                 playVideo();
             }
@@ -378,7 +378,7 @@ for (let i = 0; i < track.length; i++) {
     track[i].addEventListener("cuechange", () => {
         if (track[i].mode === "showing") {
             if (track[i].activeCues[0]) {
-                let span = `<span><mark>${track[i].activeCues[0].text}</mark></span>`;
+                let span = ` < span > < mark > $ { track[i].activeCues[0].text } < /mark></span > `;
                 caption_text.innerHTML = span;
             } else {
                 caption_text.innerHTML = "";

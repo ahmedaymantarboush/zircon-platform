@@ -3,7 +3,7 @@
     <video preload="metadata" id="main-video">
         @if (count($videoSources)):
             @foreach ($videoSources as $quality => $url)
-                <source src="{{ $url }}" size="{{ intval($quality) }}" type="video/mp4">
+                <source src="{{ $url }}" type="video/mp4">
             @endforeach
         @else
             ${SOURCES}
