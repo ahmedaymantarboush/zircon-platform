@@ -9,41 +9,10 @@
 <link rel="stylesheet" href="{{ asset('admin/assets/css/allCards.css') }}" />
 @endsection
 @section('content')
-<div class="admin-nav">
-    <p class="page-name">
-        <a href="#">لوحة التحكم</a> /
-    </p>
-    <div class="search">
-        <input type="search" />
-        <i class="fa-solid fa-magnifying-glass"></i>
-    </div>
-    <div class="admin-name">
-        <a href="#"><i class="fa-solid fa-user"></i></a>
-        <p>علي علاء الدين السيد</p>
-    </div>
-    <div class="open-signup">
-        <button class="open-signup-btn">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-    </div>
-    <div class="messages">
-        <div class="ntf">
-            <i class="fa-solid fa-bell"></i>
-            <span class="ntf-count">7</span>
-            <!-- <div class="ntf-menu">
-														<div></div>
-													</div> -->
-        </div>
-        <div class="msg">
-            <span class="msg-count">5</span>
-            <i class="fa-solid fa-message"></i>
-            <!-- <div class="msg-menu"></div> -->
-        </div>
-    </div>
-</div>
+
 <div class="page-heading white-box">
     <span class="page-icon"><i class="fa-solid fa-clipboard-question"></i></span>
-    <h2 class="page-h">الامتحانات</h2>
+    <h2 class="page-h">لائحة كروت الشحن</h2>
 </div>
 <div class="lectures-statistics row">
     <div class="col-lg-3 col-sm-6">
@@ -103,7 +72,7 @@
     </div>
 </div>
 <form action="" class="lec-filter">
-    <h3>لائحة الامتحانات</h3>
+    <h3>سجل الكروت</h3>
     <div class="custome-row">
         <div class="row">
             <div class="col-lg-2 col-sm-6">
