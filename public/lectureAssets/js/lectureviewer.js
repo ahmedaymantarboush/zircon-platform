@@ -201,6 +201,7 @@ $(document).ready(function (){
 });
 //ajax
 let examID =0;
+let mainDiv = document.querySelector('main');
 function getExam(exam_id){
     form = new FormData()
     form.append('data', JSON.stringify({
@@ -229,7 +230,7 @@ function showTakeExam(data){
         '                        <span class="ex_text" style="margin-top: 20px;">'+ data.data.item.examName +'</span>\n' +
         '                    </div>';
 
-    if(1){
+    if(data.data.item.finished == false){
         // if exam NOT finished
         take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
             '                            <p class="ex_main">\n' +
@@ -245,12 +246,12 @@ function showTakeExam(data){
     }else {
         //if exam finished
         // replace 8 with correct ansers count
-        let student_perc = (8/data.data.item.questionsCount)*100;
+        let student_perc = (data.data.item.correctAnswers/data.data.item.questionsCount)*100;
         student_perc.toFixed(2);
         if(student_perc > 50){
             take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
                 '                            <p class="ex_green">\n' +
-                '                                <span>8</span>\n' +
+                '                                <span>'+data.data.item.correctAnswers+'</span>\n' +
                 '                                سؤال صحيح من\n' +
                 '                                <span>'+data.data.item.questionsCount+'</span>\n' +
                 '                                سؤال\n' +
@@ -265,7 +266,7 @@ function showTakeExam(data){
         }else {
             take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
                 '                            <p class="ex_red">\n' +
-                '                                <span>8</span>\n' +
+                '                                <span>'+data.data.item.correctAnswers+'</span>\n' +
                 '                                سؤال صحيح من\n' +
                 '                                <span>'+ data.data.item.questionsCount +'</span>\n' +
                 '                                سؤال\n' +
@@ -283,7 +284,7 @@ function showTakeExam(data){
 }
 function getItem(data){
 
-    let mainDiv = document.querySelector('main');
+
     if (data.data.type== 'lesson'){
         //pages
         let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">"+ mediaPlayer(data.data.item.urls) + "</div>\n" +
@@ -444,7 +445,7 @@ $(document).on('click','.takeExam',function (){
             xhttp.onreadystatechange = function (e) {
                 Qdata = JSON.parse(this.responseText);
                 console.log(Qdata);
-                addQue(Qdata);
+                // addQue(Qdata);
             }
             xhttp.send(form);
             function addQue(Qdata){
@@ -458,7 +459,7 @@ $(document).on('click','.takeExam',function (){
                     '                                    <div class="title_exam d-flex justify-content-between">\n' +
                     '                                        <div class="question_head">\n' +
                     '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="'+parseInt(Qdata.data.item.flag)+'"\n' +
-                    '                                                queNamber="{{ $i }}"></i>\n' +
+                    '                                                queNamber="'+i+'"></i>\n' +
                     '                                            <input type="checkbox" class="'+inputclass+'">\n' +
                     '                                            <span>السؤال رقم '+i+'</span>\n' +
                     '                                        </div>\n' +
