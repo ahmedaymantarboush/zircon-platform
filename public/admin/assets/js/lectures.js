@@ -180,4 +180,6 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     console.log(myResponse);
+    let delLesson = document.querySelector(".del-lesson");
+    delLesson.innerHTML = myResponse.data.title;
 });
