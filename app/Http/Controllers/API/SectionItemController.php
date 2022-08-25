@@ -67,7 +67,7 @@ class SectionItemController extends Controller
             $urls = getVideoUrl(getVideoId($lesson->url));
             $exam = $lesson->exam ?? 0;
 
-            $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
+            $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : 0;
 
             $finished = $passedExam ? $passedExam->finished || $passedExam->exam_ended_at >= now() : false;
 
@@ -96,7 +96,7 @@ class SectionItemController extends Controller
                 'questionsCount' => $exam->questions_count,
                 'examName' => $exam->title,
                 'finished' => $finished,
-                'correctAnswers' =>  $finished ? $passedExam->answers()->where('correct',1)->count() : null,
+                'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where('correct',1)->count() : null,
             ];
 
         endif;
