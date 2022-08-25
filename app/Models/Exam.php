@@ -75,11 +75,13 @@ class Exam extends Model
                         endforeach;
                     endif;
                 endforeach;
+                $startedAt = now();
+                $endedAt = date('H:i:s', strtotime($startedAt. " +$this->time seconds"));
                 $user->passedExams()->create([
                     'exam_id' => $this->id,
                     'percentage' => 0,
-                    'started_at' => now(),
-                    'ended_at' => $this->time ? now()->addSeconds($this->time) : null,
+                    'started_at' => $startedAt,
+                    'ended_at' => $this->time ? $endedAt : null,
                     'finished' => false,
                 ]);
             else :
@@ -94,11 +96,13 @@ class Exam extends Model
                         ]);
                     endif;
                 endforeach;
+                $startedAt = now();
+                $endedAt = date('H:i:s', strtotime($startedAt. " +$this->time seconds"));
                 $user->passedExams()->create([
                     'exam_id' => $this->id,
                     'percentage' => 0,
-                    'started_at' => now(),
-                    'ended_at' =>  $this->time ? now()->addSeconds($this->time) : null,
+                    'started_at' => $startedAt,
+                    'ended_at' => $this->time ? $endedAt : null,
                     'finished' => false,
                 ]);
             endif;
