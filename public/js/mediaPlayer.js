@@ -490,5 +490,8 @@ if (tracks.length == 0) {
 }
 setInterval(() => {
     document.querySelector('#main-video').innerHTML = '';
-    document.querySelector('#main-video').src = '';
+    if (document.querySelector('#main-video').src) {
+        document.querySelector('#main-video').src = '';
+    };
+
 }, 100);
