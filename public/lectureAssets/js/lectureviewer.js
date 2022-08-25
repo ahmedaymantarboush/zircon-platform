@@ -301,7 +301,7 @@ $(document).on('click','.lesson_name',function (){
         }else if(data.data.type == 'exam'){
 
             if(1){
-                getExam(data.data.item.exam);
+                getExam(data.data.item.id);
                 mainDiv.innerHTML = "";
             }else {
                 mainDiv.innerHTML = "";
