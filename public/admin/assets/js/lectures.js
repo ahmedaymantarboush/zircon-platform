@@ -144,7 +144,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
             options.forEach((ele) => {
                 if (ele.value == item) {
                     ele.setAttribute("selected", "");
-                    // selectInner.textContent += ele.textContent + ", ";
+                    selectInner.textContent += ele.textContent + ", ";
                 } else {
                     // ele.removeAttribute("selected");
                 }
