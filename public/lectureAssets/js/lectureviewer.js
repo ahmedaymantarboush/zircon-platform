@@ -454,7 +454,7 @@ $(document).on('click','.takeExam',function (){
                 '                                        </div>\n' +
                 '                                    </div>';
             if(Qdata.data.question.image !=null){
-                questionHTMLL += '<div className="col-12">\n' +
+                questionHTML += '<div className="col-12">\n' +
                     '                        <img className="question_img"\n' +
                     '                             src="'+ Qdata.data.question.image +'">\n' +
                     '                    </div>';
