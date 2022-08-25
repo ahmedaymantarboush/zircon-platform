@@ -65,18 +65,18 @@ class SectionItemController extends Controller
                 'user_id'=>$user->id,
             ]);
             $urls = getVideoUrl(getVideoId($lesson->url));
-            $exam = $lesson->exam ?? 0;
+            $exam = $lesson->exam ?? null;
 
-            $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : 0;
+            $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
 
             $finished = $passedExam ? $passedExam->finished || $passedExam->exam_ended_at >= now() : false;
 
             $item = [
                 'type' => $lesson->type,
 
-                'exam' => $exam->id,
-                'examName' => $exam->title,
-                'minPercentage' => $exam->min_pecentage,
+                'exam' => $exam ? $exam->id : null,
+                'examName' => $exam ? $exam->title : null,
+                'minPercentage' => $exam ? $exam->min_pecentage : null,
                 'finishedExam' => $finished,
                 'percentage' => $finished ? $passedExam->percentage : null,
 
