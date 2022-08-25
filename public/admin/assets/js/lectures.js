@@ -151,7 +151,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
             });
         });
     };
-    console.log(multiSelectParentInner);
+    multiSelectParentInner.innerHTML = "";
     fillMultiSelectFunction(
         multiSelectParentOptions,
         multiSelectParentInner,
