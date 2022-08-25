@@ -136,7 +136,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     };
     let fillMultiSelectFunction = function (options, selectInner, data) {
         data.forEach((item) => {
-            options.forEach((ele) => {
+            return options.forEach((ele) => {
                 if (ele.value == item) {
                     ele.setAttribute("selected", "");
                     selectInner.textContent += ele.textContent;
