@@ -212,15 +212,15 @@
                                     </div>
                                     <div class="item">
                                         <span class='type'> المحافظة:</span>
-                                        <span class='info stu_gov'></span>
+                                        <span class='info stu_gov'>{{$user->governorate->name}}</span>
                                     </div>
                                     <div class="item">
                                         <span class='type'>مكان الحضور:</span>
-                                        <span class='info stu_place'></span>
+                                        <span class='info stu_place'>{{$user->grade->name}}</span>
                                     </div>
                                     <div class='barcodeBox'>
                                         <svg class="barcode" id='profileBarCode'></svg>
-                                        <span class='barcodeText stu_code'></span>
+                                        <span class='barcodeText stu_code'>{{$user->code}}</span>
                                     </div>
                                 </div>
 

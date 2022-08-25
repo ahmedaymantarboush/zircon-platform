@@ -56,12 +56,6 @@
                                                     {{ $governorate->name }}
                                                 </option>
                                             @endforeach
-                                            {{-- <option value="2">
-                                                ليبيا
-                                            </option>
-                                            <option value="3">
-                                                عين شمس
-                                            </option> --}}
                                         </select>
                                         @error('stu_gov')
                                             <p class='invalid-feedback'>{{ $message }}</p>
@@ -80,9 +74,6 @@
                                                 <option @selected(old('stu_place') == $center->id) value="{{ $center->id }}">
                                                     {{ $center->name }}</option>
                                             @endforeach
-
-                                            {{-- <option value="2">سنتر الاوائل</option>
-                                            <option value="3">سنتر نوبل"</option> --}}
                                         </select>
                                         @error('stu_place')
                                             <p class='invalid-feedback'>{{ $message }}</p>
@@ -101,8 +92,6 @@
                                                 <option @selected(old('stu_grade') == $grade->id) value="{{ $grade->id }}">
                                                     {{ $grade->name }}</option>
                                             @endforeach
-                                            {{-- <option value="2">الصف الثاني الثانوي</option>
-                                            <option value="3">الصف الثالث الثانوي "استغفر الله"</option> --}}
                                         </select>
                                         @error('stu_grade')
                                             <p class='invalid-feedback'>{{ $message }}</p>
@@ -163,7 +152,10 @@
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">كود الطالب :</label>
-                                        <input value="{{Str::random(16)}}" name="stu_code" type="text"
+                                            @php
+                                                $code = Str::random(16);
+                                            @endphp
+                                        <input value="{{$code}}" name="stu_code" type="text"
                                             class="@error('stu_code') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل كود الطالب"
                                             style="font-size: 15px;width: 95%;">
@@ -228,7 +220,7 @@
                                     </div>
                                     <div class='barcodeBox'>
                                         <svg class="barcode" id='profileBarCode'></svg>
-                                        <span class='barcodeText stu_code'></span>
+                                        <span class='barcodeText stu_code'>{{$code}}</span>
                                     </div>
                                 </div>
 
