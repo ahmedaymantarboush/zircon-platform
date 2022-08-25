@@ -114,6 +114,16 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let description = document.querySelector(
         "#quick-modify .ck-editor__editable "
     );
+    let multiSelectParentOptions = document.querySelectorAll(
+        "#quick-modify .multiSelectParent option"
+    );
+    let multiSelectParentInner = document.querySelector(
+        "#quick-modify .multiSelectParent .filter-option-inner-inner"
+    );
+
+    multiSelectParentOptions.forEach((ele) => {
+        ele.removeAttribute("selected");
+    });
     description.ckeditorInstance.setData(objData.description);
     lecAddress.value = objData.title;
     shortDes.innerHTML = objData.shortDescription;
@@ -128,18 +138,48 @@ document.querySelector("table").addEventListener("click", async function (e) {
             }
         });
     };
+
+    let fillMultiSelectFunction = function (options, selectInner, data) {
+        data.forEach((item) => {
+            options.forEach((ele) => {
+                if (ele.value == item) {
+                    ele.setAttribute("selected", "");
+                    selectInner.textContent += ele.textContent + ", ";
+                } else {
+                    // ele.removeAttribute("selected");
+                }
+            });
+        });
+    };
+    multiSelectParentInner.innerHTML = "";
+    fillMultiSelectFunction(
+        multiSelectParentOptions,
+        multiSelectParentInner,
+        objData.parts
+    );
+    console.log("lol");
     fillSelectFunction(selectLevelOptions, selectLevelInner, objData.grade);
 });
 
-/**** delete lecture* */
+/***ds */
+document.querySelector("table").addEventListener("click", async function (e) {
+    if (!e.target.classList.contains("delete-lec")) return;
+    let dataId = e.target.closest("tr").dataset.slug;
+    console.log(dataId);
+    let sendObj = {
+        slug: dataId,
+    };
+    let slugInput = document.querySelector(".slugInput");
+    slugInput.value = dataId;
+    form = new FormData();
+    form.append("data", JSON.stringify(sendObj));
 
-let delBtns = document.querySelectorAll(".delete-lec");
-let delPopupParagraph = document.querySelector(".del-lesson");
-
-delBtns.forEach((ele) => {
-    ele.addEventListener("click", function (e) {
-        delPopupParagraph.textContent = ele
-            .closest("tr")
-            .querySelector(".name-lesson").textContent;
-    });
+    let myResponse = await editFun(
+        `${window.location.protocol}//${window.location.host}/api/lectures/fastEdit`,
+        form,
+        e
+    );
+    console.log(myResponse);
+    let delLesson = document.querySelector(".del-lesson");
+    delLesson.innerHTML = myResponse.data.title;
 });

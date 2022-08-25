@@ -417,7 +417,7 @@
                     </div>
                     <div class="less-item custome-item">
                         <label class="sec-name">الجزئية الدراسية</label>
-                        <div class="search-select modify-select">
+                        <div class="search-select multiSelectParent modify-select">
                             <select name="parts[]" multiple="multiple" id=""
                                 class="@error('parts') is-invalid @enderror" data-live-search="true">
                                 <option value="">
@@ -489,11 +489,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="">
+                <input type="text" name='slug' class='slugInput'>
                 <div class="modal-body">
                     <p class="sure-to-del">
                         هل انت متأكد انك تريد مسح محاضرة
                         <span class="del-lesson">
-                            مراجعة عامة على الباب الأول (الكهربية)
+                            ...
                         </span>
                     </p>
                 </div>
