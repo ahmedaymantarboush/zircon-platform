@@ -1,103 +1,106 @@
-// questions tabs
-let tabBtns = [...document.querySelectorAll('.tab-item')]
-let questions = [...document.querySelectorAll('.question')]
+function onReadyFunExam(){
+    // questions tabs
+    let tabBtns = [...document.querySelectorAll('.tab-item')]
+    let questions = [...document.querySelectorAll('.question')]
 
-let leftBtn = document.querySelector('.leftBtn')
-let rightBtn = document.querySelector('.rightBtn')
-let currentIndex = 0;
+    let leftBtn = document.querySelector('.leftBtn')
+    let rightBtn = document.querySelector('.rightBtn')
+    let currentIndex = 0;
 // remove all active function
-function removeActive() {
-	tabBtns.forEach((e) => {
-		e.classList.remove("active-tab");
-	});
-	questions.forEach((ele) => {
-		ele.classList.remove("active-tab");
-	});
-}
+    function removeActive() {
+        tabBtns.forEach((e) => {
+            e.classList.remove("active-tab");
+        });
+        questions.forEach((ele) => {
+            ele.classList.remove("active-tab");
+        });
+    }
 // add active class
-function addActive(curr) {
-	tabBtns[curr].classList.add("active-tab");
-	questions[curr].classList.add("active-tab");
-}
+    function addActive(curr) {
+        tabBtns[curr].classList.add("active-tab");
+        questions[curr].classList.add("active-tab");
+    }
 
-let tabs = function () {
-	// while click on tabs
-    tabBtns.forEach((ele, i) => {
-        // set the number of question
-        ele.querySelector('.tab-num').textContent = i + 1;
-        // change tab while click
-		ele.addEventListener("click", function (e) {
-			e.preventDefault();
+    let tabs = function () {
+        // while click on tabs
+        tabBtns.forEach((ele, i) => {
+            // set the number of question
+            ele.querySelector('.tab-num').textContent = i + 1;
+            // change tab while click
+            ele.addEventListener("click", function (e) {
+                e.preventDefault();
 
-			// add active to tab
-			removeActive();
-			ele.classList.add("active-tab");
-
-			//add active to body
-			currentIndex = i;
-			questions[currentIndex].classList.add("active-tab");
-		});
-	});
-
-	try {
-        //while click to btn
-        rightBtn.addEventListener("click", function () {
-            if (currentIndex <= 0) {
-                currentIndex = tabBtns.length - 1;
+                // add active to tab
                 removeActive();
-                addActive(currentIndex);
-                return;
-            }
-            currentIndex--;
-            removeActive();
-            addActive(currentIndex);
-        });
-        leftBtn.addEventListener("click", function () {
-            if (currentIndex >= tabBtns.length - 1) {
-                currentIndex = 0;
-                removeActive();
-                addActive(currentIndex);
+                ele.classList.add("active-tab");
 
-                return;
-            }
-            currentIndex++;
-            removeActive();
-            addActive(currentIndex);
+                //add active to body
+                currentIndex = i;
+                questions[currentIndex].classList.add("active-tab");
+            });
         });
 
-    }catch (err){}
-};
-tabs();
+        try {
+            //while click to btn
+            rightBtn.addEventListener("click", function () {
+                if (currentIndex <= 0) {
+                    currentIndex = tabBtns.length - 1;
+                    removeActive();
+                    addActive(currentIndex);
+                    return;
+                }
+                currentIndex--;
+                removeActive();
+                addActive(currentIndex);
+            });
+            leftBtn.addEventListener("click", function () {
+                if (currentIndex >= tabBtns.length - 1) {
+                    currentIndex = 0;
+                    removeActive();
+                    addActive(currentIndex);
+
+                    return;
+                }
+                currentIndex++;
+                removeActive();
+                addActive(currentIndex);
+            });
+
+        }catch (err){}
+    };
+    tabs();
 /////////////exam swiper/////////////
-var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 12,
-    spaceBetween: 0,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    breakpoints: {
-        0: {
-            slidesPerView: 4,
-            spaceBetween: 0,
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 12,
+        spaceBetween: 0,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
         },
-        640: {
-            slidesPerView: 6,
-            spaceBetween: 0,
+        breakpoints: {
+            0: {
+                slidesPerView: 4,
+                spaceBetween: 0,
+            },
+            640: {
+                slidesPerView: 6,
+                spaceBetween: 0,
+            },
+            768: {
+                slidesPerView: 8,
+                spaceBetween: 0,
+            },
+            1024: {
+                slidesPerView: 12,
+                spaceBetween: 0,
+            },
         },
-        768: {
-            slidesPerView: 8,
-            spaceBetween: 0,
-        },
-        1024: {
-            slidesPerView: 12,
-            spaceBetween: 0,
-        },
-    },
-});
+    });
+}
 /////////////////add flag//////////////
 
 $(document).ready(function (){
+    onReadyFunExam();
     function addDisabled(){
         let correctAnsers = document.querySelectorAll('.correcrAnser');
         let wrongAnsers = document.querySelectorAll('.wrongAnser');
@@ -513,5 +516,6 @@ $(document).on('click','.takeExam',function (){
             '\n' +
             '            </div>';
         mainDiv.innerHTML = examHTML;
+        onReadyFunExam();
     }
 });
