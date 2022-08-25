@@ -389,8 +389,8 @@ let examHTML = ' <div class="exam-parent">\n' +
     '                <div class="exam-tab swiper mySwiper">\n' +
     '                    <div class="swiper-wrapper">';
 $(document).on('click','.takeExam',function (){
-    form = new FormData()
-    form.append('data', JSON.stringify({
+    form1 = new FormData()
+    form1.append('data', JSON.stringify({
         'id': parseInt(examID)
     }))
     var xhttp = new XMLHttpRequest();
@@ -400,10 +400,9 @@ $(document).on('click','.takeExam',function (){
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
     xhttp.onreadystatechange = function (e) {
         data = JSON.parse(this.responseText);
-
         addQuestions(data);
     }
-    xhttp.send(form);
+    xhttp.send(form1);
     function addQuestions(data){
 
         for (let i=1;i <= data.data.questions.length;i++){
@@ -432,9 +431,9 @@ $(document).on('click','.takeExam',function (){
         for (let i=1;i <= data.data.questions.length;i++){
             let active = "active-tab";
             if(i != 1){active = "";}
-            form = new FormData()
-            form.append('data', JSON.stringify({
-                'id': data.data.questions[i]
+            form2 = new FormData()
+            form2.append('data', JSON.stringify({
+                'id': data.data.questions[i-1]
             }))
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
@@ -446,7 +445,7 @@ $(document).on('click','.takeExam',function (){
                 console.log(Qdata);
                 addQue(Qdata);
             }
-            xhttp.send(form);
+            xhttp.send(form2);
             function addQue(Qdata){
 
                 let flagclass="unflagQuestion";
