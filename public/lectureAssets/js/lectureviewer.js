@@ -388,122 +388,139 @@ $(document).on('click','.startExam',function (){
     }
     xhttp.send(form);
 });
-let examHTML = '';
-$(document).on('click','.takeExam',function (){
+///////////////////////////////////////////////////////////////////////////
+/////////////////Exam view first time/////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+// Ajax Functions //
+function getExam(id){
+    let funData='';
     form1 = new FormData()
     form1.append('data', JSON.stringify({
-        'id': parseInt(examID)
+        'id': id
     }))
+    // parseInt(examID)
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", APP_URL+"/api/exams/getExam");
     xhttp.setRequestHeader('Accept', 'application/json');
     let tkn = window.csrf_token.value
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
     xhttp.onreadystatechange = function (e) {
-        data = JSON.parse(this.responseText);
-        console.log(data);
-        addQuestions(data);
+        if (this.readyState==4) {
+            data = JSON.parse(this.responseText);
+            funData = data;
+        }
+        // addQuestions(data);
     }
     xhttp.send(form1);
-    function addQuestions(data){
-        examHTML = ' <div class="exam-parent">\n' +
-            '                <div class="exam-tab swiper mySwiper">\n' +
-            '                    <div class="swiper-wrapper">';
-        for (let i=1;i <= data.data.questions.length;i++){
-            let active = "active-tab";
-            if(i != 1){active = "";}
-            examHTML += '<div class="swiper-slide">\n' +
-                '                                <button class="tab-item '+ active +'">\n' +
-                '                                    <span class="tab-num">'+ i +'</span>\n' +
-                '                                    <div class="tab-icon">\n' +
-                '                                        <span><i class="fa-solid fa-check hide_icon"\n' +
-                '                                                id="yesIcon_'+ i +'"></i></span>\n' +
-                '                                        <span><i\n' +
-                '                                                class="fa-solid fa-flag hide_icon"id="flagIcon_'+ i +'"></i></span>\n' +
-                '                                    </div>\n' +
-                '                                </button>\n' +
-                '                            </div>';
+    return funData;
+}
+function getQuestion(id){
+    let funData='';
+    form2 = new FormData()
+    form2.append('data', JSON.stringify({
+        'id': id
+    }))
+    // parseInt(data.data.questions[i-1])
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
+    xhttp.setRequestHeader('Accept', 'application/json');
+    let tkn = window.csrf_token.value
+    xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+    xhttp.onreadystatechange = function (e) {
+        if (this.readyState==4) {
+            Qdata = JSON.parse(this.responseText);
+            funData = Qdata;
         }
-        examHTML += '</div>\n' +
-            '\n' +
-            '\n' +
-            '                </div>\n' +
-            '                <div class="exam-questions">\n' +
-            '                    <div class="container">\n' +
-            '                        <div class="row">';
-        mainDiv.innerHTML = examHTML;
-        examHTML='';
-        function addQue(Qdata,i){
-            let active ='';
-            if(i==1){active ='active-tab';}
-            let questionHTML ='';
-            let flagclass="unflagQuestion";
-            let inputclass ="uncheckflag";
-            if(parseInt(Qdata.data.flagged)){
-                flagclass="flagQuestion";
-                inputclass ="checkflag";
-            }
-            questionHTML += '<div class="question '+active+' col-12">\n' +
-                '                                    <div class="title_exam d-flex justify-content-between">\n' +
-                '                                        <div class="question_head">\n' +
-                '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="'+parseInt(Qdata.data.flagged)+'"\n' +
-                '                                                queNamber="'+i+'"></i>\n' +
-                '                                            <input type="checkbox" class="'+inputclass+'">\n' +
-                '                                            <span>السؤال رقم '+i+'</span>\n' +
-                '                                        </div>\n' +
-                '                                        <div class="all_questions">\n' +
-                '                                            <i class="fa-solid fa-calendar-days"></i>\n' +
-                '                                        </div>\n' +
-                '                                    </div>';
-            if(Qdata.data.question.image !=null){
-                questionHTML += '<div className="col-12">\n' +
-                    '                        <img className="question_img"\n' +
-                    '                             src="'+ Qdata.data.question.image +'">\n' +
-                    '                    </div>';
-            }
-            questionHTML+= '<div class="col-12">\n' +
-                '                                        <p class="question_text">'+Qdata.data.question.text+'</p>\n' +
-                '                                    </div>';
+        // mainDiv.innerHTML += addQue(Qdata,i);
+        // console.log(addQue(Qdata,i));
+    }
+    xhttp.send(form2);
+    return funData;
+}
 
-            /////////////////add question choices/////////////
-            for(let i=1;i <= Qdata.data.question.choices.length;i++){
-                let addSelected ='';
-                let addChecked = '';
-                if(Qdata.data.question.choices[i-1].id == Qdata.data.question.choice){
-                    addSelected ='selectedAnser';
-                    addChecked = 'checked';
-                }
-                questionHTML += '<div class="col-12">\n' +
-                    '                                            <div class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
-                    '                                                queNamber="'+i+'">\n' +
-                    '                                                <input type="radio" choiceID="'+ Qdata.data.question.choices[i-1].id +'" name="anser'+i+'"\n' +
-                    '                                                    value="anser_database_id" '+ addChecked +'>\n' +
-                    '                                                <span class="anser_text">'+Qdata.data.question.choices[i-1].text+'</span>\n' +
-                    '                                            </div>\n' +
-                    '                                        </div>';
-            }
-            return questionHTML;
+
+let examHTML = '';
+$(document).on('click','.takeExam',function (){
+    examHTML='<div class="exam-parent">\n' +
+        '                <div class="exam-tab swiper mySwiper">\n' +
+        '                    <div class="swiper-wrapper">';
+    let getExam= getExam(parseInt(examID));
+    //Add Tabs
+    for (let i=1;i <= getExam.data.questions.length;i++){
+        let active = "active-tab";
+        if(i != 1){active = "";}
+        examHTML += '<div class="swiper-slide">\n' +
+            '                                <button class="tab-item '+active+'">\n' +
+            '                                    <span class="tab-num">'+ i +'</span>\n' +
+            '                                    <div class="tab-icon">\n' +
+            '                                        <span><i class="fa-solid fa-check hide_icon"\n' +
+            '                                                id="yesIcon_'+i+'"></i></span>\n' +
+            '                                        <span><i\n' +
+            '                                                class="fa-solid fa-flag hide_icon"id="flagIcon_'+i+'"></i></span>\n' +
+            '                                    </div>\n' +
+            '                                </button>\n' +
+            '                            </div>';
+    }
+    examHTML += '</div>\n' +
+        '\n' +
+        '\n' +
+        '                </div>\n' +
+        '                <div class="exam-questions">\n' +
+        '                    <div class="container">\n' +
+        '                        <div class="row">';
+    //Add questions
+    for (let i=1;i <= getExam.data.questions.length;i++){
+        let active = "active-tab";
+        if(i !== 1){active = "";}
+        let getQuestion = getQuestion(parseInt(getExam.data.questions[i-1]));
+        let flagclass="unflagQuestion";
+        let inputclass ="uncheckflag";
+        if(parseInt(getQuestion.data.flagged)){
+            flagclass="flagQuestion";
+            inputclass ="checkflag";
         }
-        for (let i=1;i <= data.data.questions.length;i++){
-            let active = "active-tab";
-            if(i != 1){active = "";}
-            form2 = new FormData()
-            form2.append('data', JSON.stringify({
-                'id': parseInt(data.data.questions[i-1])
-            }))
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
-            xhttp.setRequestHeader('Accept', 'application/json');
-            let tkn = window.csrf_token.value
-            xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-            xhttp.onreadystatechange = function (e) {
-                Qdata = JSON.parse(this.responseText);
-                mainDiv.innerHTML += addQue(Qdata,i);
-                console.log(addQue(Qdata,i));
-            }
-            xhttp.send(form2);
+        examHTML += '<div class="question '+active+' col-12">\n' +
+            '                                    <div class="title_exam d-flex justify-content-between">\n' +
+            '                                        <div class="question_head">\n' +
+            '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="0"\n' +
+            '                                                queNamber="'+i+'"></i>\n' +
+            '                                            <input type="checkbox" class="'+inputclass+'">\n' +
+            '                                            <span>السؤال رقم '+i+'</span>\n' +
+            '                                        </div>\n' +
+            '                                        <div class="all_questions">\n' +
+            '                                            <i class="fa-solid fa-calendar-days"></i>\n' +
+            '                                        </div>\n' +
+            '                                    </div>';
+        if(getQuestion.data.question.image !=null){
+            examHTML += '<div class="col-12">\n' +
+                '                                            <img class="question_img"\n' +
+                '                                                src="'+getQuestion.data.question.image+'">\n' +
+                '                                        </div>';
         }
-        examHTML += '</div>';
+        examHTML += '<div class="col-12">\n' +
+            '                                        <p class="question_text">'+getQuestion.data.question.text+'</p>\n' +
+            '                                    </div>';
+        //Add Choices
+        for (let j=1;j <= getQuestion.data.question.choices.length;j++){
+            let addSelected ='';
+            let addChecked = '';
+            if(getQuestion.data.question.choices[j-1].id == getQuestion.data.question.choice){
+                addSelected ='selectedAnser';
+                addChecked = 'checked';
+            }
+            examHTML += '<div class="col-12">\n' +
+                '                                            <div choiceID="'+ getQuestion.data.question.choices[i-1].id +' class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
+                '                                                queNamber="'+j+'" >\n' +
+                '                                                <input type="radio" name="anser'+j+'"\n' +
+                '                                                    value="anser_database_id" '+addChecked+'>\n' +
+                '                                                <span class="anser_text">getQuestion.data.question.choices[j-1].text</span>\n' +
+                '                                            </div>\n' +
+                '                                        </div>';
+        }
+        examHTML+= '</div>';
+    }
+    if(getExam.data.questions.length >=2){
         examHTML += '<div class="col-12">\n' +
             '                                    <div class="btn-control d-flex justify-content-center">\n' +
             '                                        <button class="rightBtn">\n' +
@@ -514,13 +531,12 @@ $(document).on('click','.takeExam',function (){
             '                                        </button>\n' +
             '                                    </div>\n' +
             '                                </div>';
-        examHTML +=' </div>\n' +
-            '                    </div>\n' +
-            '\n' +
-            '                </div>\n' +
-            '\n' +
-            '            </div>';
-        mainDiv.innerHTML += examHTML;
-        onReadyFunExam();
     }
+    examHTML +='</div>\n' +
+        '                    </div>\n' +
+        '\n' +
+        '                </div>\n' +
+        '\n' +
+        '            </div>';
+    onReadyFunExam();
 });
