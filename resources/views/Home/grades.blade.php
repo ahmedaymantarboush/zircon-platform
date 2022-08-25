@@ -35,7 +35,7 @@
                                         <div class="levelDetails">
                                             <div class="detailItem">
                                                 <span class='detailIcon'><i class="fa-solid fa-photo-film"></i></span>
-                                                <span class='detailContent'>{{$lecture->time}} من الفيديو</span>
+                                                <span class='detailContent'>{{decoratedTime($lecture->time)}} ساعة من الفيديو</span>
                                             </div>
                                             <div class="detailItem">
                                                 <span class='detailIcon'><i
