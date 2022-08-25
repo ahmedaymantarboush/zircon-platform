@@ -135,11 +135,12 @@ document.querySelector("table").addEventListener("click", async function (e) {
         });
     };
     let fillMultiSelectFunction = function (options, selectInner, data) {
+        selectInner = "";
         data.forEach((item) => {
             options.forEach((ele) => {
                 if (ele.value == item) {
                     ele.setAttribute("selected", "");
-                    selectInner.textContent += ele.textContent;
+                    selectInner.textContent += ele.textContent + ", ";
                 } else {
                     // ele.removeAttribute("selected");
                 }
