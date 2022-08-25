@@ -61,7 +61,9 @@ class DynamicQuestionController extends Controller
             'count' => $data['count'],
             'level' => $data['level'] ?? $exam->exam_hardness,
         ]);
-
+        $exam =$dynamicQuestion->exam;
+        $exam->questions_count -= $dynamicQuestion->count;
+        $exam->save();
         return apiResponse(true, _('تم اضافة السؤال بنجاح'), []);
     }
 
@@ -142,6 +144,9 @@ class DynamicQuestionController extends Controller
         $id = $data['id'];
         $dynamicQuestion = DynamicQuestion::find($id);
         if ($dynamicQuestion) :
+            $exam =$dynamicQuestion->exam;
+            $exam->questions_count -= $dynamicQuestion->count;
+            $exam->save();
             $dynamicQuestion->delete();
         endif;
         return apiResponse(true, _('تم حذف السؤال بنجاح'), []);

@@ -26,7 +26,7 @@ class ExamQuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         $data = json_decode(request()->data, true);
         $user = apiUser();
@@ -46,6 +46,10 @@ class ExamQuestionController extends Controller
             'exam_id' => $data['exam'],
             'question_id' => $data['question'],
         ]);
+
+        $exam =$examQuestion->exam;
+        $exam->questions_count -= 1;
+        $exam->save();
 
         return apiResponse(true, _('تم اضافة السؤال بنجاح'), []);
     }
@@ -118,6 +122,9 @@ class ExamQuestionController extends Controller
         $id = $data['id'];
         $examQuestion = ExamQuestion::find($id);
         if ($examQuestion) :
+            $exam =$examQuestion->exam;
+            $exam->questions_count -= 1;
+            $exam->save();
             $examQuestion->delete();
         endif;
         return apiResponse(true, _('تم حذف السؤال بنجاح'), []);
