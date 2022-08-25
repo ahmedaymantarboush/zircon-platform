@@ -401,6 +401,7 @@ $(document).on('click','.takeExam',function (){
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
     xhttp.onreadystatechange = function (e) {
         data = JSON.parse(this.responseText);
+        console.log(data);
         addQuestions(data);
     }
     xhttp.send(form1);
