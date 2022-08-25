@@ -84,9 +84,6 @@
     .signup-menu {
         width: 70%;
     }
-    .stc-value {
-        max-width: 50%;
-    }
 }
 @media (max-width: 720px) {
     .search {
@@ -311,6 +308,9 @@
 
 /*********lectures*************/
 @media (max-width: 576px) {
+    .stc-value {
+        max-width: 60%;
+    }
     .stc-box {
         padding: 1.5rem 0;
     }
