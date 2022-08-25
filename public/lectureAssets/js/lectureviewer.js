@@ -200,6 +200,7 @@ $(document).ready(function (){
     });
 });
 //ajax
+let examID =0;
 function getExam(exam_id){
     form = new FormData()
     form.append('data', JSON.stringify({
@@ -211,11 +212,144 @@ function getExam(exam_id){
     let tkn = window.csrf_token.value
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
     xhttp.onreadystatechange = function (e) {
-        data = JSON.parse(this.responseText);
-        console.log(data);
-        getItem(data);
+        getExamData = JSON.parse(this.responseText);
+        console.log(getExamData);
+        getItem(getExamData);
     }
     xhttp.send(form);
+    return getExamData;
+}
+function showTakeExam(data){
+    let take_exam ='<div class="take_exam d-flex justify-content-center">\n' +
+        '                <div class="row">\n' +
+        '                    <div class="col-12 d-flex justify-content-center">\n' +
+        '                        <i class="fa-solid fa-clipboard-question" id="clipboard-question"></i>\n' +
+        '                    </div>\n' +
+        '                    <div class="col-12 d-flex justify-content-center">\n' +
+        '                        <span class="ex_text" style="margin-top: 20px;">'+ data.data.item.examName +'</span>\n' +
+        '                    </div>';
+
+    if(1){
+        // if exam NOT finished
+        take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
+            '                            <p class="ex_main">\n' +
+            '                                <span>'+ data.data.item.questionsCount +'</span>\n' +
+            '                                سؤال\n' +
+            '                            </p>\n' +
+            '                        </div>\n' +
+            '                        <div class="col-12 d-flex justify-content-center">\n' +
+            '                            <a class="exam_btn takeExam d-flex justify-content-center" href="#"\n' +
+            '                                style="margin-top: 20px;">ابدأ</a>\n' +
+            '                        </div>';
+        mainDiv.innerHTML = take_exam;
+    }else {
+        //if exam finished
+        // replace 8 with correct ansers count
+        let student_perc = (8/data.data.item.questionsCount)*100;
+        student_perc.toFixed(2);
+        if(student_perc > 50){
+            take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
+                '                            <p class="ex_green">\n' +
+                '                                <span>8</span>\n' +
+                '                                سؤال صحيح من\n' +
+                '                                <span>'+data.data.item.questionsCount+'</span>\n' +
+                '                                سؤال\n' +
+                '                            </p>\n' +
+                '                        </div>\n' +
+                '                        <div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
+                '                            <p class="ex_green" style="font-weight: 700;margin-top: 0;">'+ student_perc +'%</p>\n' +
+                '                        </div>\n' +
+                '                        <div class="col-12 d-flex justify-content-center">\n' +
+                '                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>\n' +
+                '                        </div>';
+        }else {
+            take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
+                '                            <p class="ex_red">\n' +
+                '                                <span>8</span>\n' +
+                '                                سؤال صحيح من\n' +
+                '                                <span>'+ data.data.item.questionsCount +'</span>\n' +
+                '                                سؤال\n' +
+                '                            </p>\n' +
+                '                        </div>\n' +
+                '                        <div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
+                '                            <p class="ex_red" style="font-weight: 700;margin-top: 0;">'+student_perc+'%</p>\n' +
+                '                        </div>\n' +
+                '                        <div class="col-12 d-flex justify-content-center">\n' +
+                '                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>\n' +
+                '                        </div>';
+        }
+        mainDiv.innerHTML = take_exam;
+    }
+}
+function getItem(data){
+
+    let mainDiv = document.querySelector('main');
+    if (data.data.type== 'lesson'){
+        //pages
+        let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">"+ mediaPlayer(data.data.item.urls) + "</div>\n" +
+            "                <div dir=\"auto\" class=\"lectures-des\">\n" +
+            "                    <h2>وصف المحاضرة :</h2>\n" +
+            "                    <div class=\"container\">"+data.data.item.description+"</div>\n" +
+            "                </div>";
+        let embedPlayer = "<div class=\"video_player\" style=\"width: 100%;\">"+"<iframe src='"+ data.data.item.urls +"' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"+
+            "</div>\n" +
+            "                <div dir=\"auto\" class=\"lectures-des\">\n" +
+            "                    <h2>وصف المحاضرة :</h2>\n" +
+            "                    <div class=\"container\">"+data.data.item.description+"</div>\n" +
+            "                </div>";
+        let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
+            "                    <div class=\"row\">\n" +
+            "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
+            "                            <img src=\"public/lectureAssets/img/examvector.png\" alt=\"\">\n" +
+            "                        </div>\n" +
+            "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
+            "\n" +
+            "                            <span class=\"ex_text\" style=\"margin-top: 20px;\">يجب انت تحصل على <span\n" +
+            "                                    class=\"prc\">"+ data.data.item.minPercentage +"%</span> على\n" +
+            "                                الاقل</span>\n" +
+            "\n" +
+            "                        </div>\n" +
+            "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
+            "                            <span class=\"ex_text\">في امتحان <span>("+ data.data.item.examName +")</span></span>\n" +
+            "                        </div>";
+        if(data.data.item.exam == null){
+            if(data.data.item.type=="video"){
+                if(typeof data.data.item.urls === 'object'){
+                    mainDiv.innerHTML =mediaPlayerPage;
+                }else if(typeof data.data.item.urls === 'string'){
+                    mainDiv.innerHTML = embedPlayer;
+                }
+            }
+        }else {
+            examID = data.data.item.exam;
+            if(data.data.item.finishedExam == false){
+                passExam += '<div class="col-12 d-flex justify-content-center">\n' +
+                    '                                <a class="exam_btn startExam d-flex justify-content-center" href="#"\n' +
+                    '                                    style="margin-top: 20px;">ابدأ</a>\n' +
+                    '                            </div>';
+                mainDiv.innerHTML = passExam;
+            }else {
+                if(parseInt(data.data.item.percentage) < parseInt(data.data.item.minPercentage)){
+                    passExam += "<div class=\"col-12 d-flex justify-content-center\">\n" +
+                        "                                <p class=\"ex_red\">لم يتبق لك أي من المحاولات</p>\n" +
+                        "                            </div>\n" +
+                        "                            <div class=\"col-12 d-flex justify-content-center\">\n" +
+                        "                                <a class=\"exam_btn showExam d-flex justify-content-center\" href=\"#\">عرض</a>\n" +
+                        "                            </div>";
+                    mainDiv.innerHTML = passExam;
+                }else {
+                    if(typeof data.data.item.urls === 'object'){
+                        mainDiv.innerHTML =mediaPlayerPage;
+                    }else if(typeof data.data.item.urls === 'string'){
+                        mainDiv.innerHTML = embedPlayer;
+                    }
+                }
+            }
+
+        }
+    }else if(data.data.type == 'exam'){
+        showTakeExam(data);
+    }
 }
 $(document).on('click','.lesson_name',function (){
     form = new FormData()
@@ -233,80 +367,116 @@ $(document).on('click','.lesson_name',function (){
         getItem(data);
     }
     xhttp.send(form);
-    function getItem(data){
+});
+$(document).on('click','.startExam',function (){
+    form = new FormData()
+    form.append('data', JSON.stringify({
+        'id': parseInt(examID)
+    }))
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", APP_URL+"/api/items/getItem");
+    xhttp.setRequestHeader('Accept', 'application/json');
+    let tkn = window.csrf_token.value
+    xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+    xhttp.onreadystatechange = function (e) {
+        data = JSON.parse(this.responseText);
+        console.log(data);
+        showTakeExam(data);
+    }
+    xhttp.send(form);
+});
+$(document).on('click','.takeExam',function (){
+    form = new FormData()
+    form.append('data', JSON.stringify({
+        'id': parseInt(examID)
+    }))
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", APP_URL+"/api/exams/getExam");
+    xhttp.setRequestHeader('Accept', 'application/json');
+    let tkn = window.csrf_token.value
+    xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+    xhttp.onreadystatechange = function (e) {
+        data = JSON.parse(this.responseText);
+        console.log(data);
+        addQuestions(data);
+    }
+    xhttp.send(form);
+    function addQuestions(data){
 
-        let mainDiv = document.querySelector('main');
-        if (data.data.type== 'lesson'){
-            //pages
-            let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">"+ mediaPlayer(data.data.item.urls) + "</div>\n" +
-                "                <div dir=\"auto\" class=\"lectures-des\">\n" +
-                "                    <h2>وصف المحاضرة :</h2>\n" +
-                "                    <div class=\"container\">"+data.data.item.description+"</div>\n" +
-                "                </div>";
-            let embedPlayer = "<div class=\"video_player\" style=\"width: 100%;\">"+"<iframe src='"+ data.data.item.urls +"' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"+
-                "</div>\n" +
-                "                <div dir=\"auto\" class=\"lectures-des\">\n" +
-                "                    <h2>وصف المحاضرة :</h2>\n" +
-                "                    <div class=\"container\">"+data.data.item.description+"</div>\n" +
-                "                </div>";
-            let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
-                "                    <div class=\"row\">\n" +
-                "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
-                "                            <img src=\"public/lectureAssets/img/examvector.png\" alt=\"\">\n" +
-                "                        </div>\n" +
-                "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
-                "\n" +
-                "                            <span class=\"ex_text\" style=\"margin-top: 20px;\">يجب انت تحصل على <span\n" +
-                "                                    class=\"prc\">"+ data.data.item.minPercentage +"%</span> على\n" +
-                "                                الاقل</span>\n" +
-                "\n" +
-                "                        </div>\n" +
-                "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
-                "                            <span class=\"ex_text\">في امتحان <span>("+ data.data.item.examName +")</span></span>\n" +
-                "                        </div>";
-            if(data.data.item.exam != null){
-                if(data.data.item.type=="video"){
-                    if(typeof data.data.item.urls === 'object'){
-                        mainDiv.innerHTML =mediaPlayerPage;
-                    }else if(typeof data.data.item.urls === 'string'){
-                        mainDiv.innerHTML = embedPlayer;
-                    }
-                }
-            }else {
-                if(data.data.item.finishedExam == false){
-                    passExam += '<div class="col-12 d-flex justify-content-center">\n' +
-                        '                                <a class="exam_btn startExam d-flex justify-content-center" href="#"\n' +
-                        '                                    style="margin-top: 20px;">ابدأ</a>\n' +
-                        '                            </div>';
-                    mainDiv.innerHTML = passExam;
-                }else {
-                    if(parseInt(data.data.item.percentage) < parseInt(data.data.item.minPercentage)){
-                        passExam += "<div class=\"col-12 d-flex justify-content-center\">\n" +
-                            "                                <p class=\"ex_red\">لم يتبق لك أي من المحاولات</p>\n" +
-                            "                            </div>\n" +
-                            "                            <div class=\"col-12 d-flex justify-content-center\">\n" +
-                            "                                <a class=\"exam_btn showExam d-flex justify-content-center\" href=\"#\">عرض</a>\n" +
-                            "                            </div>";
-                        mainDiv.innerHTML = passExam;
-                    }else {
-                        if(typeof data.data.item.urls === 'object'){
-                            mainDiv.innerHTML =mediaPlayerPage;
-                        }else if(typeof data.data.item.urls === 'string'){
-                            mainDiv.innerHTML = embedPlayer;
-                        }
-                    }
-                }
+        let examHTML = ' <div class="exam-parent">\n' +
+            '                <div class="exam-tab swiper mySwiper">\n' +
+            '                    <div class="swiper-wrapper">';
+        for (let i=1;i <= data.data.item.questions.length;i++){
+            let active = "active-tab";
+            if(i != 1){active = "";}
+            examHTML += '<div class="swiper-slide">\n' +
+                '                                <button class="tab-item '+ active +'">\n' +
+                '                                    <span class="tab-num">'+ i +'</span>\n' +
+                '                                    <div class="tab-icon">\n' +
+                '                                        <span><i class="fa-solid fa-check hide_icon"\n' +
+                '                                                id="yesIcon_'+ i +'"></i></span>\n' +
+                '                                        <span><i\n' +
+                '                                                class="fa-solid fa-flag hide_icon"id="flagIcon_'+ i +'"></i></span>\n' +
+                '                                    </div>\n' +
+                '                                </button>\n' +
+                '                            </div>';
+        }
+        examHTML += '</div>\n' +
+            '\n' +
+            '\n' +
+            '                </div>\n' +
+            '                <div class="exam-questions">\n' +
+            '                    <div class="container">\n' +
+            '                        <div class="row">';
 
+        for (let i=1;i <= data.data.item.questions.length;i++){
+            let active = "active-tab";
+            if(i != 1){active = "";}
+            form = new FormData()
+            form.append('data', JSON.stringify({
+                'id': data.data.item.questions[i]
+            }))
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
+            xhttp.setRequestHeader('Accept', 'application/json');
+            let tkn = window.csrf_token.value
+            xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+            xhttp.onreadystatechange = function (e) {
+                Qdata = JSON.parse(this.responseText);
+                console.log(Qdata);
+                addQue(Qdata);
             }
-        }else if(data.data.type == 'exam'){
-
-            if(1){
-                getExam(data.data.item.id);
-                mainDiv.innerHTML = "";
-            }else {
-                mainDiv.innerHTML = "";
+            xhttp.send(form);
+            function addQue(Qdata){
+                let flagclass="unflagQuestion";
+                let inputclass ="uncheckflag";
+                if(Qdata.data.item.flag == true){
+                    flagclass="flagQuestion";
+                    inputclass ="checkflag";
+                }
+                examHTML += '<div class="question '+active+' col-12">\n' +
+                    '                                    <div class="title_exam d-flex justify-content-between">\n' +
+                    '                                        <div class="question_head">\n' +
+                    '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="'+parseInt(Qdata.data.item.flag)+'"\n' +
+                    '                                                queNamber="{{ $i }}"></i>\n' +
+                    '                                            <input type="checkbox" class="'+inputclass+'">\n' +
+                    '                                            <span>السؤال رقم '+i+'</span>\n' +
+                    '                                        </div>\n' +
+                    '                                        <div class="all_questions">\n' +
+                    '                                            <i class="fa-solid fa-calendar-days"></i>\n' +
+                    '                                        </div>\n' +
+                    '                                    </div>';
+                if(Qdata.data.item.questionImg !=null){
+                    examHTML += '<div className="col-12">\n' +
+                        '                        <img className="question_img"\n' +
+                        '                             src="'+ Qdata.data.item.questionImg +'">\n' +
+                        '                    </div>';
+                }
+                examHTML+= '<div class="col-12">\n' +
+                    '                                        <p class="question_text">'+Qdata.data.item.questionText+'</p>\n' +
+                    '                                    </div>';
+                /////////////////add question choices/////////////
             }
         }
     }
 });
-

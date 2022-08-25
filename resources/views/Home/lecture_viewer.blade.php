@@ -166,7 +166,7 @@ if (
                             <p class="ex_green" style="font-weight: 700;margin-top: 0;">80%</p>
                         </div>
                         <div class="col-12 d-flex justify-content-center">
-                            <a class="exam_btn d-flex justify-content-center" href="#">عرض</a>
+                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>
                         </div>
                     @elseif(0)
                         <div class="col-12 d-flex justify-content-center" dir="rtl">
@@ -181,7 +181,7 @@ if (
                             <p class="ex_red" style="font-weight: 700;margin-top: 0;">40%</p>
                         </div>
                         <div class="col-12 d-flex justify-content-center">
-                            <a class="exam_btn d-flex justify-content-center" href="#">عرض</a>
+                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>
                         </div>
                     @else
                         <div class="col-12 d-flex justify-content-center" dir="rtl">
@@ -191,7 +191,7 @@ if (
                             </p>
                         </div>
                         <div class="col-12 d-flex justify-content-center">
-                            <a class="exam_btn d-flex justify-content-center" href="#"
+                            <a class="exam_btn takeExam d-flex justify-content-center" href="#"
                                 style="margin-top: 20px;">ابدأ</a>
                         </div>
                     @endif
@@ -264,9 +264,7 @@ if (
                                         </div>
                                     @endif
                                     <div class="col-12">
-                                        <p class="question_text">
-                                            اوجد قراءة الاميتر الذي بالشكل
-                                        </p>
+                                        <p class="question_text">اوجد قراءة الاميتر الذي بالشكل</p>
                                     </div>
                                     @for ($j = 1; $j <= 4; $j++)
                                         <div class="col-12">
