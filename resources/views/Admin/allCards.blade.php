@@ -11,7 +11,7 @@
 @section('content')
 
 <div class="page-heading white-box">
-    <span class="page-icon"><i class="fa-solid fa-clipboard-question"></i></span>
+    <span class="page-icon"><i class="fa-solid fa-money-bill-transfer"></i></span>
     <h2 class="page-h">لائحة كروت الشحن</h2>
 </div>
 <div class="lectures-statistics row">
@@ -22,7 +22,7 @@
                     <span class="stc-value">
                         <i class="fa-solid fa-plus"></i>
                     </span>
-                    <span data-bs-toggle="modal" data-bs-target="#quick-modify" class="stc-name">اضافة امتحان
+                    <span data-bs-toggle="modal" data-bs-target="#quick-modify" class="stc-name">تحرير كروت جديدة
                     </span>
                 </div>
             </div>
@@ -32,11 +32,11 @@
         <a class="real-stc" style="width: 100%">
             <div class="stc-box second-stc">
                 <div class="stc-val-parent">
-                    <span class="stc-value"> 132 </span>
-                    <span class="stc-name">مرات الإجابة الصحيحة</span>
+                    <span class="stc-value"> 158ج.م </span>
+                    <span class="stc-name">رصيد معلق بالكروت</span>
                 </div>
                 <div class="stc-icon">
-                    <span class=""><i class="fa-solid fa-circle-check"></i></span>
+                    <span class=""><i class="fa-solid fa-circle-xmark"></i></span>
                 </div>
             </div>
         </a>
@@ -45,12 +45,12 @@
         <a class="real-stc" style="width: 100%">
             <div class="stc-box second-stc">
                 <div class="stc-val-parent">
-                    <span class="stc-value"> 132 </span>
-                    <span class="stc-name">مرات الإجابة الخاطئة</span>
+                    <span class="stc-value"> 3410ج.م </span>
+                    <span class="stc-name">رصيد تم ايداعه</span>
                 </div>
                 <div class="stc-icon">
                     <span class="">
-                        <i class="fa-solid fa-circle-xmark"></i></span>
+                        <i class="fa-solid fa-circle-check"></i></span>
                 </div>
             </div>
         </a>
@@ -60,9 +60,9 @@
             <div class="stc-box second-stc">
                 <div class="stc-val-parent">
                     <span class="stc-value">
-                        3410
+                        3410ج.م
                     </span>
-                    <span class="stc-name">امتحان</span>
+                    <span class="stc-name">الرصيد الكالي</span>
                 </div>
                 <div class="stc-icon">
                     <span class=""><i class="fa-solid fa-question"></i></span>
@@ -71,101 +71,104 @@
         </a>
     </div>
 </div>
-<form action="" class="lec-filter">
-    <h3>سجل الكروت</h3>
-    <div class="custome-row">
-        <div class="row">
-            <div class="col-lg-2 col-sm-6">
-                <div class="filter-item">
-                    <label for="">المرحلة الدراسية</label>
-                    <div class="search-select-box">
-                        <select name="" id="" data-live-search="true">
-                            <option value="">
-                                جميع المراحل الدراسية
-                            </option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                        </select>
+<div class="lectureTableParent">
+    <form action="" class="lec-filter">
+        <h3>سجل الكروت</h3>
+        <div class="custome-row">
+            <div class="row">
+                <div class="col-lg-2 col-sm-6">
+                    <div class="filter-item">
+                        <label for="">المرحلة الدراسية</label>
+                        <div class="search-select-box">
+                            <select name="" id="" data-live-search="true">
+                                <option value="">
+                                    جميع المراحل الدراسية
+                                </option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-2 col-sm-6">
-                <div class="filter-item">
-                    <label for="">المادة</label>
-                    <div class="search-select-box">
-                        <select name="" id="" data-live-search="true">
-                            <option value="">
-                                المادة
-                            </option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                        </select>
+                <div class="col-lg-2 col-sm-6">
+                    <div class="filter-item">
+                        <label for="">المادة</label>
+                        <div class="search-select-box">
+                            <select name="" id="" data-live-search="true">
+                                <option value="">
+                                    المادة
+                                </option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <div class="filter-item">
+                        <label for="">نوع الامتحان</label>
+                        <div class="search-select-box">
+                            <select name="" id="" data-live-search="true">
+                                <option value="">
+                                    الجزئية الدراسية
+                                </option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <div class="filter-item">
+                        <label for="">درجة الصعوبة</label>
+                        <div class="search-select-box">
+                            <select name="" id="" data-live-search="true">
+                                <option value="">
+                                    جميع المدرس
+                                </option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <div class="filter-item">
+                        <label for="">المحرر</label>
+                        <div class="search-select-box">
+                            <select name="" id="" data-live-search="true">
+                                <option value="">
+                                    جميع المدرس
+                                </option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-sm-6">
-                <div class="filter-item">
-                    <label for="">نوع الامتحان</label>
-                    <div class="search-select-box">
-                        <select name="" id="" data-live-search="true">
-                            <option value="">
-                                الجزئية الدراسية
-                            </option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-sm-6">
-                <div class="filter-item">
-                    <label for="">درجة الصعوبة</label>
-                    <div class="search-select-box">
-                        <select name="" id="" data-live-search="true">
-                            <option value="">
-                                جميع المدرس
-                            </option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-sm-6">
-                <div class="filter-item">
-                    <label for="">المحرر</label>
-                    <div class="search-select-box">
-                        <select name="" id="" data-live-search="true">
-                            <option value="">
-                                جميع المدرس
-                            </option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                        </select>
-                    </div>
-                </div>
+            <div class="filter-btn">
+                <input type="submit" class="filter-btn" value="فلترة" />
             </div>
         </div>
-        <div class="filter-btn">
-            <input type="submit" class="filter-btn" value="فلترة" />
+        <div class="search-field">
+            <div class="field search-select-box">
+                <span>اظهار</span>
+                <select name="" id="" data-live-search="true">
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3333</option>
+                </select>
+                <span>من الحقول</span>
+            </div>
+            <div class="filter-search">
+                <label for="">بحث :</label>
+                <input type="search" />
+            </div>
         </div>
-    </div>
-    <div class="search-field">
-        <div class="field search-select-box">
-            <span>اظهار</span>
-            <select name="" id="" data-live-search="true">
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3333</option>
-            </select>
-            <span>من الحقول</span>
-        </div>
-        <div class="filter-search">
-            <label for="">بحث :</label>
-            <input type="search" />
-        </div>
-    </div>
+
+    </form>
     <div class="lectures-table">
         <table class="">
             <thead>
@@ -488,7 +491,7 @@
             </tbody>
         </table>
     </div>
-</form>
+</div>
 <div class="modal fade" id="delete-lecture" tabindex="-1" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
