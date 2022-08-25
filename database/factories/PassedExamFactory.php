@@ -22,8 +22,8 @@ class PassedExamFactory extends Factory
             "user_id" => fake()->randomElement(User::all()->pluck('id')),
             "exam_id" => fake()->randomElement(Exam::all()->pluck('id')),
             "percentage" => fake()->numberBetween(0,100),
-            "exam_started_at" => fake()->dateTimeBetween('-1 year','-1 month'),
-            "exam_ended_at" => fake()->dateTimeBetween('-1 year','-1 month'),
+            "started_at" => fake()->dateTimeBetween('-1 year','-1 month'),
+            "ended_at" => fake()->dateTimeBetween('-1 year','-1 month'),
             "finished" => fake()->randomElement([true,false]),
         ];
     }
