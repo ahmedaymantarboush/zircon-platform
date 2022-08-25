@@ -19,6 +19,9 @@ class UserController extends Controller
     public function profile()
     {
         $user = Auth::user();
+        if (!$user):
+            return redirect(route('login'));
+        endif;
         return view('Home.profile', compact('user'));
     }
     public function index()

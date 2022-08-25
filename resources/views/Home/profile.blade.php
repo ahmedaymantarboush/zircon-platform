@@ -321,8 +321,8 @@
         ->get();
     @endphp
     <script>
-        exams = @php echo $passedExams->pluck('percentage'); @endphp
-        dates = @php echo $passedExams->pluck('ended_at'); @endphp
+        exams = @php echo $passedExams->pluck('percentage'); echo"\n"; @endphp;
+        dates = @php echo $passedExams->pluck('ended_at'); echo"\n"; @endphp;
     </script>
     <script src="{{ URL::asset('js/profile.js') }}"></script>
 @endsection
