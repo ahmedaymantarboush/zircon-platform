@@ -29,20 +29,20 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Auth::routes();
-Route::post('user/update', [UserController::class, 'update'])->name('user.update');
+Route::post('user/update', [UserController::class, 'update'])->middleware('auth')->name('user.update');
 
 Route::get('grades/grade{id}', [LectureController::class,'index'])->name('lectures.index');
 Route::resource('months', LectureController::class)->only(['show']);
-Route::post('month-viewer', [LectureController::class,'viewLecture'])->name('lectures.view');
+Route::post('month-viewer', [LectureController::class,'viewLecture'])->middleware('auth')->name('lectures.view');
 Route::get('month-viewer', function(){
     return redirect()->back();
-});
+})->middleware('auth');
 Route::get('search', [LectureController::class, 'search'])->name('search');
-Route::get('my-cources', [LectureController::class, 'myLectures'])->name('lectures.ownedLectures');
+Route::get('my-cources', [LectureController::class, 'myLectures'])->middleware('auth')->name('lectures.ownedLectures');
 
 //  ADMIN ROUTES
 Route::get('dashboard', [HomeController::class, 'teacher'])->name('admin.index')->middleware('admin');
-Route::group(['middleware'=>'teacher'],function () {
+Route::group(['middleware'=>['auth', 'teacher']],function () {
     Route::resource('lectures',LectureController::class)->except(['show'])->names(['store'=>'admin.lectures.store','update'=>'admin.lectures.update']);
     Route::resource('lessons',LessonController::class)->except(['index'])->names(['store'=>'admin.lesson.store','update'=>'admin.lesson.update','show'=>'admin.lesson.show']);
     Route::resource('sections',SectionController::class)->except(['show']);
@@ -78,10 +78,10 @@ Route::group(['middleware'=>'teacher'],function () {
     Route::post('balancecards/store', [BalanceCardController::class,'store'])->name('admin.balancecards.store');
     
 });
-Route::post('lectures/{slug}/buy',[LectureController::class, 'buy'])->name('admin.lectures.buy');
+Route::post('lectures/{slug}/buy',[LectureController::class, 'buy'])->middleware('auth')->name('admin.lectures.buy');
 
 //  ADMIN ROUTES
 Route::get('profile',[UserController::class, 'profile'])->middleware('auth');
 
 //  ADMIN ROUTES
-Route::post('recharge',[BalanceCardController::class, 'recharge'])->name('balance.recharge');
+Route::post('recharge',[BalanceCardController::class, 'recharge'])->middleware('auth')->name('balance.recharge');
