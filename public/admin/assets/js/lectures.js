@@ -161,15 +161,23 @@ document.querySelector("table").addEventListener("click", async function (e) {
     fillSelectFunction(selectLevelOptions, selectLevelInner, objData.grade);
 });
 
-/**** delete lecture* */
+/***ds */
+document.querySelector("table").addEventListener("click", async function (e) {
+    if (!e.target.classList.contains("delete-lec")) return;
+    let dataId = e.target.closest("tr").dataset.slug;
+    console.log(dataId);
+    let sendObj = {
+        slug: dataId,
+    };
+    let slugInput = document.querySelector(".slugInput");
+    slugInput.value = dataId;
+    form = new FormData();
+    form.append("data", JSON.stringify(sendObj));
 
-let delBtns = document.querySelectorAll(".delete-lec");
-let delPopupParagraph = document.querySelector(".del-lesson");
-
-delBtns.forEach((ele) => {
-    ele.addEventListener("click", function (e) {
-        delPopupParagraph.textContent = ele
-            .closest("tr")
-            .querySelector(".name-lesson").textContent;
-    });
+    let myResponse = await editFun(
+        `${window.location.protocol}//${window.location.host}/api/lectures/fastEdit`,
+        form,
+        e
+    );
+    console.log(myResponse);
 });

@@ -489,6 +489,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="">
+                <input type="text" name='slug' class='slugInput'>
                 <div class="modal-body">
                     <p class="sure-to-del">
                         هل انت متأكد انك تريد مسح محاضرة
