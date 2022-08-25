@@ -275,9 +275,13 @@
                                     </div>
                                 @endif
                                 {{-- <!-- <a href="#" class="buy-now">شراء الأن</a> --> --}}
-                                <a href="{{ Auth::user() ? '#' : route('login') }}" type="button" class="buy-now" data-toggle="modal"
-                                    data-target="#{{ Auth::user() ? (Auth::user()->balance >= $price ? 'sureBuy' : 'notEnough') : 'notEnough' }}">
-                                    شراء الأن </a>
+                                @auth
+                                    <a href="#" type="button" class="buy-now" data-toggle="modal"
+                                        data-target="#{{ Auth::user() ? (Auth::user()->balance >= $price ? 'sureBuy' : 'notEnough') : 'notEnough' }}">
+                                        شراء الأن </a>
+                                @else
+                                    <a href="{{ route('login') }}" class="buy-now">شراء الأن </a>
+                                @endauth
                                 <div class="coupon">
                                     <button class="add-coupon" id="couponBtn" data-toggle="modal"
                                         data-target="#chargeCoupon">
@@ -315,7 +319,8 @@
             <div class="modal fade sureBuyModal" id="sureBuy" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form method="POST" action="{{route('admin.lectures.buy',$lecture->slug)}}" class="modal-content">
+                    <form method="POST" action="{{ route('admin.lectures.buy', $lecture->slug) }}"
+                        class="modal-content">
                         @csrf
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">شراء الشهر</h5>
