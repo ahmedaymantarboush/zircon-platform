@@ -437,7 +437,7 @@ $(document).on('click','.takeExam',function (){
             if(i != 1){active = "";}
             form2 = new FormData()
             form2.append('data', JSON.stringify({
-                'id': data.data.questions[i-1]
+                'id': parseInt(data.data.questions[i-1])
             }))
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
