@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\ExamQuestion;
-use App\Models\Question;
+use App\Models\DynamicQuestion;
+use App\Models\Exam;
+use App\Models\Part;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ExamQuestionController extends Controller
+class DynamicQuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,12 +40,22 @@ class ExamQuestionController extends Controller
 
         Validator::make($data,[
             'exam'=>['required','exists:exams,id'],
-            'question'=>['required','exists:questions,id']
+            'part'=>['required','exists:parts,id'],
+            'count'=>['required'],
         ]);
 
-        $examQuestion = ExamQuestion::create([
-            'exam_id'=>$data['exam'],
-            'question_id'=>$data['question'],
+        $examId = $data['exam'];
+        $exam = Exam::find($examId);
+
+        if(!$exam):
+            return apiResponse(false,_(''));
+        endif;
+
+        $dynamicQuestion = DynamicQuestion::create([
+            'exam_id'=>$exam,
+            'part_id'=>$data['part'],
+            'count'=>$data['count'],
+            'level'=>$data['level'],
         ]);
 
         return apiResponse(true, _('تم اضافة السؤال بنجاح'),[]);
@@ -85,14 +96,14 @@ class ExamQuestionController extends Controller
         ]);
 
         $id = $data['id'];
-        $questionId = $data['question'];
-        $question = Question::find($questionId);
-        if (!$question):
-            return apiResponse(false,_('لم يتم العثور على السؤال'),[],404);
+        $partId = $data['part'];
+        $part = Part::find($partId);
+        if (!$part):
+            return apiResponse(false,_('لم يتم العثور على الجزئية الدراسية'),[],404);
         endif;
 
-        $examQuestion = ExamQuestion::find($id);
-        $examQuestion->question_id = $question->id;
+        $examQuestion = DynamicQuestion::find($id);
+        $examQuestion->part_id = $part->id;
         $examQuestion->save();
 
         return apiResponse(true, _('تم اضافة السؤال بنجاح'),[]);
@@ -106,24 +117,6 @@ class ExamQuestionController extends Controller
      */
     public function destroy($id)
     {
-        $data = json_decode(request()->data,true);
-        $user = apiUser();
-        if (!$user) :
-            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
-        endif;
-        if ($user->role->number >= 4) :
-            return apiResponse(false, _('غير مصرح لهذا المستخدم بحذف السؤال'), [], 401);
-        endif;
-
-        Validator::make($data,[
-            'exam'=>['required','exists:exams,id'],
-            'question'=>['required','exists:questions,id']
-        ]);
-
-        $id = $data['id'];
-        $examQuestion = ExamQuestion::find($id);
-        $examQuestion->delete();
-
-        return apiResponse(true,_('تم حذف السؤال بنجاح'),[]);
+        //
     }
 }

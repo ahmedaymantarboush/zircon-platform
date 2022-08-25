@@ -86,12 +86,17 @@ class SectionItemController extends Controller
                 'urls' => count($urls) ? $urls : $lesson->url
             ];
         else :
+
             $exam = $sectionItem->item;
+            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
+            $finished = $passedExam ? $passedExam->finished || $passedExam->exam_ended_at >= now() : false;
 
             $item = [
                 'id' => $exam->id,
                 'questionsCount' => $exam->questions_count,
                 'examName' => $exam->title,
+                'finished' => $finished,
+                'correctAnswers' =>  $finished ? $passedExam->answers()->where('correct',1)->count() : null,
             ];
 
         endif;

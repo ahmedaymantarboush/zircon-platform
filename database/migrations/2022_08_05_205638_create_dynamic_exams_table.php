@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dynamic_exams', function (Blueprint $table) {
+        Schema::create('dynamic_questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('exam_id')->constrained()->cascadeOnDelete();
             $table->foreignId('part_id')->constrained()->cascadeOnDelete();

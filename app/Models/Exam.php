@@ -27,9 +27,9 @@ class Exam extends Model
         return $this->belongsTo('App\Models\Subject');
     }
 
-    public function dynamicExams()
+    public function dynamicQuestions()
     {
-        return $this->hasMany(DynamicExam::class, 'exam_id', 'id');
+        return $this->hasMany(DynamicQuestion::class, 'exam_id', 'id');
     }
     public function questions()
     {
@@ -60,10 +60,10 @@ class Exam extends Model
         $user = User::find($userId) ?? apiUser();
         if ($user) :
             if ($this->dynamic) :
-                $dynamicExams = $this->dynamicExams;
-                foreach ($dynamicExams as $dynamicExam) :
-                    if ($dynamicExam) :
-                        foreach (Question::where(['level' => $dynamicExam->level, 'part_id' => $dynamicExam->part->id,'grade_id' => $user->grade->id])->inRandomOrder()->take($dynamicExam->count)->get() as $question) :
+                $dynamicQuestions = $this->dynamicQuestions;
+                foreach ($dynamicQuestions as $dynamicQuestion) :
+                    if ($dynamicQuestion) :
+                        foreach (Question::where(['level' => $dynamicQuestion->level, 'part_id' => $dynamicQuestion->part->id,'grade_id' => $user->grade->id])->inRandomOrder()->take($dynamicQuestion->count)->get() as $question) :
                             if ($question) :
                                 $user->answerdQuestions()->create([
                                     'question_id' => $question->id,
@@ -120,7 +120,7 @@ class Exam extends Model
     {
         return $this->hasMany(PassedExam::class, 'exam_id');
     }
-    
+
     public function students()
     {
         return $this->belongsToMany(User::class, 'passed_exams', 'exam_id', 'user_id');
