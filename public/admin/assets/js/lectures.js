@@ -114,6 +114,12 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let description = document.querySelector(
         "#quick-modify .ck-editor__editable "
     );
+    let multiSelectParentOptions = document.querySelector(
+        "#quick-modify .multiSelectParent option"
+    );
+    let multiSelectParentInner = document.querySelector(
+        "#quick-modify .multiSelectParent .filter-option-inner-inner"
+    );
     description.ckeditorInstance.setData(objData.description);
     lecAddress.value = objData.title;
     shortDes.innerHTML = objData.shortDescription;
@@ -128,6 +134,23 @@ document.querySelector("table").addEventListener("click", async function (e) {
             }
         });
     };
+    let fillMultiSelectFunction = function (options, selectInner, data) {
+        data.forEach((item) => {
+            options.forEach((ele) => {
+                if (ele.value == item) {
+                    ele.setAttribute("selected", "");
+                    selectInner.textContent += ele.textContent;
+                } else {
+                    // ele.removeAttribute("selected");
+                }
+            });
+        });
+    };
+    fillMultiSelectFunction(
+        multiSelectParentOptions,
+        multiSelectParentInner,
+        objData.parts
+    );
     fillSelectFunction(selectLevelOptions, selectLevelInner, objData.grade);
 });
 

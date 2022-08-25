@@ -417,7 +417,7 @@
                     </div>
                     <div class="less-item custome-item">
                         <label class="sec-name">الجزئية الدراسية</label>
-                        <div class="search-select modify-select">
+                        <div class="search-select multiSelectParent modify-select">
                             <select name="parts[]" multiple="multiple" id=""
                                 class="@error('parts') is-invalid @enderror" data-live-search="true">
                                 <option value="">
