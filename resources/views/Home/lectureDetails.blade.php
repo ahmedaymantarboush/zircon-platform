@@ -79,7 +79,7 @@
                                                     </a>
                                                     <span>
                                                         @if ($item->exam_id)
-                                                            {{ $item->questions_count }} سؤال
+                                                            {{ $item->item->questions_count }} سؤال
                                                         @else
                                                             {{ $item->item->time >= 3600 ? number_format($item->item->time / 3600, 2) . ' ساعة' : number_format($item->item->time / 60, 2) . ' دقيقة' }}
                                                         @endif
