@@ -488,6 +488,7 @@ if (tracks.length == 0) {
     captions.remove();
     captionsBtn.parentNode.remove();
 }
-setTimeout(() => {
+setInterval(() => {
     document.querySelector('#main-video').innerHTML = '';
+    document.querySelector('#main-video').src = '';
 }, 100);
