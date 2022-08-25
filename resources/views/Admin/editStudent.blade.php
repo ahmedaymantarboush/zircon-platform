@@ -71,7 +71,7 @@
                                             style="font-size: 15px;width: 95%;">
                                             {{-- <option value=''>ادخل مكان حضور الطالب</option> --}}
                                             @foreach (\App\Models\Center::all() as $center)
-                                                <option @selected(old('stu_place') == $center->id) value="{{ $center->id }}">
+                                                <option @selected(old('stu_place') ? old('stu_place') == $center->id : $user->center->id == $center->id) value="{{ $center->id }}">
                                                     {{ $center->name }}</option>
                                             @endforeach
 
@@ -90,13 +90,11 @@
                                             form-select form-select-lg"
                                             aria-label="Default select example" id="formGroupExampleInput"
                                             style="font-size: 15px;width: 95%;">
-                                            <option selected>ادخل مرحلة الطالب</option>
+                                            <option selected>اختر مرحلة الطالب</option>
                                             @foreach (\App\Models\Grade::all() as $grade)
-                                                <option @selected(old('stu_grade') == $grade->id) value="{{ $grade->id }}">
+                                                <option @selected(old('stu_grade') ? old('stu_grade') == $grade->id : $user->grade->id == $grade->id) value="{{ $grade->id }}">
                                                     {{ $grade->name }}</option>
                                             @endforeach
-                                            {{-- <option value="2">الصف الثاني الثانوي</option>
-                                            <option value="3">الصف الثالث الثانوي "استغفر الله"</option> --}}
                                         </select>
                                         @error('stu_grade')
                                             <p class='invalid-feedback'>{{ $message }}</p>
@@ -105,7 +103,7 @@
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">رقم هاتف الطالب :</label>
-                                        <input value="{{ old('stu_number') }}" name="stu_number" type="number"
+                                        <input value="{{ old('stu_number') ?? $user->phone_number }}" name="stu_number" type="number"
                                             class="@error('stu_number') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل رقم هاتف الطالب"
                                             style="font-size: 15px;width: 95%;">
@@ -116,7 +114,7 @@
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">رقم هاتف ولي امر الطالب :</label>
-                                        <input value="{{ old('stu_parent_number') }}" name="stu_parent_number"
+                                        <input value="{{ old('stu_parent_number') ?? $user->parent_phone_number }}" name="stu_parent_number"
                                             type="number"
                                             class="@error('stu_parent_number') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل رقم هاتف ولي امر الطالب"
@@ -128,7 +126,7 @@
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">البريد الالكتروني للطالب :</label>
-                                        <input value="{{ old('stu_email') }}" name="stu_email" type="email"
+                                        <input value="{{ old('stu_email') ?? $user->email }}" name="stu_email" type="email"
                                             class="@error('stu_email') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل البريد الالكتروني للطالب"
                                             style="font-size: 15px;width: 95%;">
@@ -136,7 +134,7 @@
                                             <p class='invalid-feedback'>{{ $message }}</p>
                                         @enderror
                                     </div>
-                                    <div class="col-12">
+                                    {{-- <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">كلمة مرور الطالب :</label>
                                         <input name="password" type="password"
@@ -153,11 +151,11 @@
                                         <input name="password_confirmation" type="password"
                                             class="form-control-lg form-control" id="formGroupExampleInput"
                                             placeholder="أعد إدخال كلمة مرور الطالب" style="font-size: 15px;width:95%;">
-                                    </div>
+                                    </div> --}}
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">كود الطالب :</label>
-                                        <input value="{{Str::random(16)}}" name="stu_code" type="text"
+                                        <input value="{{old('stu_code') ?? $user->code}}" name="stu_code" type="text"
                                             class="@error('stu_code') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل كود الطالب"
                                             style="font-size: 15px;width: 95%;">
