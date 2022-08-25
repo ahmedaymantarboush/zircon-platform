@@ -493,24 +493,25 @@ $(document).on('click','.takeExam',function (){
                         '                                        </div>';
                 }
             }
-            examHTML += '</div>';
-            examHTML += '<div class="col-12">\n' +
-                '                                    <div class="btn-control d-flex justify-content-center">\n' +
-                '                                        <button class="rightBtn">\n' +
-                '                                            <i class="fa-solid fa-angles-right"></i>\n' +
-                '                                        </button>\n' +
-                '                                        <button class="leftBtn">\n' +
-                '                                            <i class="fa-solid fa-angles-left"></i>\n' +
-                '                                        </button>\n' +
-                '                                    </div>\n' +
-                '                                </div>';
-            examHTML +=' </div>\n' +
-                '                    </div>\n' +
-                '\n' +
-                '                </div>\n' +
-                '\n' +
-                '            </div>';
-            mainDiv.innerHTML = examHTML;
+
         }
+        examHTML += '</div>';
+        examHTML += '<div class="col-12">\n' +
+            '                                    <div class="btn-control d-flex justify-content-center">\n' +
+            '                                        <button class="rightBtn">\n' +
+            '                                            <i class="fa-solid fa-angles-right"></i>\n' +
+            '                                        </button>\n' +
+            '                                        <button class="leftBtn">\n' +
+            '                                            <i class="fa-solid fa-angles-left"></i>\n' +
+            '                                        </button>\n' +
+            '                                    </div>\n' +
+            '                                </div>';
+        examHTML +=' </div>\n' +
+            '                    </div>\n' +
+            '\n' +
+            '                </div>\n' +
+            '\n' +
+            '            </div>';
+        mainDiv.innerHTML = examHTML;
     }
 });
