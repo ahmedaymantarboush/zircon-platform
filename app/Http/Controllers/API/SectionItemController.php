@@ -51,7 +51,7 @@ class SectionItemController extends Controller
         if (!$sectionItem) :
             return apiResponse(false, _('لم يتم العثور على العنصر'), [], 404);
         endif;
-        if (!$sectionItem->section->lecture->owners->contains($user) || $user->role->number <= 3 ) :
+        if (!$sectionItem->section->lecture->owners->contains($user) || $user->role->number >= 4 ) :
             return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض العنصر'), [], 403);
         endif;
         $data = [

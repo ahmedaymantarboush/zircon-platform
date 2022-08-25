@@ -48,14 +48,18 @@ class DynamicQuestionController extends Controller
         $exam = Exam::find($examId);
 
         if(!$exam):
-            return apiResponse(false,_(''));
+            return apiResponse(false,_('لم يتم العثور على الامتحان'),404);
+        endif;
+
+        if ($exam->publisher->id != $user->id || $user->role->number > 2):
+            return apiResponse(false,_('غير مصرح للمستخدم بتعديل السؤال'),[],403);
         endif;
 
         $dynamicQuestion = DynamicQuestion::create([
-            'exam_id'=>$exam,
+            'exam_id'=>$exam->id,
             'part_id'=>$data['part'],
             'count'=>$data['count'],
-            'level'=>$data['level'],
+            'level'=>$data['level'] ?? $exam->exam_hardness,
         ]);
 
         return apiResponse(true, _('تم اضافة السؤال بنجاح'),[]);
@@ -92,7 +96,7 @@ class DynamicQuestionController extends Controller
 
         Validator::make($data,[
             'exam'=>['required','exists:exams,id'],
-            'question'=>['required','exists:questions,id']
+            'part'=>['required','exists:parts,id']
         ]);
 
         $id = $data['id'];
@@ -103,6 +107,11 @@ class DynamicQuestionController extends Controller
         endif;
 
         $examQuestion = DynamicQuestion::find($id);
+
+        if (!$examQuestio):
+
+        endif;
+
         $examQuestion->part_id = $part->id;
         $examQuestion->save();
 
