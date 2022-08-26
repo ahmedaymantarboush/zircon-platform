@@ -166,7 +166,7 @@ $(document).on('click','.question_head',async function (){
             body: form3,
         })
         let resFlagData = await resFlag.json();
-        console.log(resFlag);
+        console.log(resFlagData);
     }else {
         $(this).find('i').attr('flag',0);
         $(this).find('i').removeClass('flagQuestion');
@@ -192,7 +192,7 @@ $(document).on('click','.question_head',async function (){
             body: form3,
         })
         let resFlagData = await resFlag.json();
-        console.log(resFlag);
+        console.log(resFlagData);
     }
 
 });
