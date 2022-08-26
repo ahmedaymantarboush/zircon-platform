@@ -293,6 +293,9 @@
             </form>
         </div>
     </div>
+    <div class="testPrintP" style="width: 500px;height:500px;">
+
+    </div>
 @endsection
 
 @section('javascript')
