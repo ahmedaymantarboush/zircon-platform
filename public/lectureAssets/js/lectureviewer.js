@@ -857,7 +857,6 @@ $(document).on('click','.showExam',async function (){
     mainDiv.innerHTML = examHTML;
     flagFun();
     onReadyFunExam();
-    timerFun()
     if(getExamVar.data.examEndedAt == null){
         $('.countdown').each(function (){
             this.innerHTML= 'وقت مفتوح';
