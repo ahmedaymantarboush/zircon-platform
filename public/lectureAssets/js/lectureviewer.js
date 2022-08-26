@@ -446,6 +446,7 @@ $(document).on('click','.takeExam',async function (){
         body: form1,
     })
     let getExamVar = await getExam.json();
+    console.log(getExamVar);
     //Add Tabs
     for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
@@ -476,6 +477,7 @@ $(document).on('click','.takeExam',async function (){
     //Add questions
     for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
+        alert(parseInt(getExamVar.data.questions[i-1].id));
         if(i !== 1){active = "";}
         form2 = new FormData()
         form2.append('data', JSON.stringify({
