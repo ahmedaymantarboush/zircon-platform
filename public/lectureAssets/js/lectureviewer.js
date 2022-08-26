@@ -848,9 +848,6 @@ $(document).on('click','.showExam',async function (){
         '\n' +
         '            </div>';
     mainDiv.innerHTML = examHTML;
-    flagFun();
-    onReadyFunExam();
-    console.log(getExamVar.data.examEndedAt);
     if(getExamVar.data.examEndedAt == null){
         alert('اشطا');
         $('.countdown').each(function (){
@@ -859,6 +856,10 @@ $(document).on('click','.showExam',async function (){
     }else {
         addTimer(getExamVar.data.examEndedAt);
     }
+    flagFun();
+    onReadyFunExam();
+
+
 
 });
 
