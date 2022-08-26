@@ -73,7 +73,7 @@
                 </a>
             </div>
         </div> --}}
-        <form class="search mainSearch">
+        <form class="search" action="{{ route('search') }}">
             <input type="search" name="q" value="{{ request()->q }}">
             <span><i class="fa-solid fa-magnifying-glass"></i></span>
         </form>
@@ -152,7 +152,7 @@
                     </a>
                 </div>
                 <h3 class='studentNameMob'>{{ Auth::user()->name }}</h3>
-                <form class="search mobSearch">
+                <form class="search mobSearch" action="{{ route('search') }}">
                     <input type="search" name="q" value="{{ request()->q }}">
                     <span><i class="fa-solid fa-magnifying-glass"></i></span>
                 </form>
