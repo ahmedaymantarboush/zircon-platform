@@ -149,23 +149,20 @@ function PrintElem(element, customStyles = "") {
 
 function Popup(data) {
     var myWindow = window.open("", "", "height=500, width=500");
-    while (!myWindow) {
-        myWindow.document.write(
-            `
-    <html lang="en">
-            <head>${
-                document.querySelector("head").innerHTML
-            }<style>${customStyles}</style></head><body>`
-        );
-        myWindow.document.write(data);
-        myWindow.document.write("</body></html>");
-        myWindow.document.close();
+    while (true) {
+        try {
+            myWindow.document.write(`<html lang="en"><head>${document.querySelector("head").innerHTML}<style>${customStyles}</style></head><body>`);
+            myWindow.document.write(data);
+            myWindow.document.write("</body></html>");
+            myWindow.document.close();
 
-        myWindow.onload = function() {
-            myWindow.focus();
-            myWindow.print();
-            myWindow.close();
-        };
+            myWindow.onload = function() {
+                myWindow.focus();
+                myWindow.print();
+                myWindow.close();
+            };
+            break
+        } catch (e) {}
     }
 }
 PrintElem(".profileDetails");
