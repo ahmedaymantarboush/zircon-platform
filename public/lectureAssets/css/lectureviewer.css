@@ -242,7 +242,7 @@ html,body{
     border-radius: 15px;
 }
 .tab-item2
-.tab-num2 span{
+.tab-num2{
     font-size: 25px;
 }
 .tab-item.active-tab{

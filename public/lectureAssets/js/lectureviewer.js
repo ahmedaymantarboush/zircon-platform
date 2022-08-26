@@ -482,6 +482,7 @@ $(document).on('click','.takeExam',async function (){
     })
     let getExamVar = await getExam.json();
     console.log(getExamVar);
+
     //Add Tabs
     for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
@@ -588,8 +589,8 @@ $(document).on('click','.takeExam',async function (){
                                         <div class="row">`;
     for(let r=1;r <= getExamVar.data.questions.length;r++){
         examHTML += `<div class="col-lg-1 col-md-4">
-                                                <button class="tab-item">
-                                                    <span class="tab-num">${r}</span>
+                                                <button class="tab-item2">
+                                                    <span class="tab-num2">${r}</span>
                                                     <div class="tab-icon">
                                                     <span><i class="fa-solid fa-check hide_icon" id="yesIcon_${r}"></i></span>
                                                         <span><i class="fa-solid fa-flag hide_icon"id="flagIcon_${r}"></i></span>
@@ -856,4 +857,36 @@ $(document).on('click','.showExam',async function (){
     mainDiv.innerHTML = examHTML;
     flagFun();
     onReadyFunExam();
+    timerFun()
+    setInterval(timerFun(getExamVar.data.examEndedAt),1000);
 });
+function timerFun(endDate){
+    if(endDate == null){
+        $('.countdown').each(function (){
+            this.innerHTML= 'وقت مفتوح';
+        });
+    }else {
+        let date= Math.abs((new Date().getTime()/1000).toFixed(0));
+        let date2= Math.abs((new Date(endDate).getTime()/1000).toFixed(0));
+        let diff = date2 -date;
+        let days = Math.floor(diff / 86400);
+        let hours = Math.floor(diff / 3600)%24;
+        let minutes = Math.floor(diff / 60)%60;
+        let seconds = diff %60;
+
+        if(minutes < 10){
+            minutes = '0'+ minutes;
+        }
+        if(seconds < 10){
+            seconds = '0'+ seconds;
+        }
+        $('.countdown').each(function (){
+            if (hours==0 && days==0 && parseInt(minutes) <= 10){
+                $(this).attr('style','color:#EA0606;');
+                this.innerHTML= hours+':'+minutes+':'+seconds;
+            }else {
+                this.innerHTML= hours+':'+minutes+':'+seconds;
+            }
+        });
+    }
+}
