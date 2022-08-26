@@ -607,7 +607,7 @@ $(document).on('click','.takeExam',async function (){
                                     </div>
                                 </div>`;
     examHTML+= `<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="rtl">
+<div class="modal fade modelFinish" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="rtl">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -661,7 +661,7 @@ $(document).on('click','.takeExam',async function (){
          body: form6,
      })
      let finishExamData = await finishExam.json();
-
+     $('.modelFinish').hide();
      form7 = new FormData()
      form7.append('data', JSON.stringify({
          'id': parseInt(itemID),
