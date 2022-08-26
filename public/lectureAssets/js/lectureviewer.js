@@ -458,7 +458,7 @@ $(document).on('click','.lesson_name',function (){
 $(document).on('click','.startExam',function (){
     form = new FormData()
     form.append('data', JSON.stringify({
-        'id': parseInt(examPassedID)
+        'id': parseInt(examID)
     }))
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", APP_URL+"/api/items/getItem");
@@ -702,7 +702,7 @@ $(document).on('click','.showExam',async function (){
         '                    <div class="swiper-wrapper">';
     form10 = new FormData()
     form10.append('data', JSON.stringify({
-        'id': parseInt(examID)
+        'id': parseInt(examPassedID)
     }))
     let getExamPassed = await fetch(APP_URL+"/api/exams/passed", {
         method: "POST",
