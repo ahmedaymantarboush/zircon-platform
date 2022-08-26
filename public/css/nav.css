@@ -259,10 +259,10 @@ nav .customeContainer {
     box-shadow: none;
 }
 .studentInfo button:hover {
-    color: var(--font-dark);
+    color: #ef8321;
 }
 .studentInfo button .line {
-    background: var(--green-color);
+    background: #ef8321;
 }
 .dropdown-menu {
     padding: 1rem 2rem;
