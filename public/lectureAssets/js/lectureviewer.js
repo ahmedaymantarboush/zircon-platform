@@ -594,7 +594,7 @@ $(document).on('click','.takeExam',async function (){
                                                 <p class="tab-num2"style="font-size: 25px;margin-top: 10px;">انهاء هذا الامتحان</p>
                                             </div>
                                             <div class="col-2 d-flex justify-content-center">
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%;margin-top: 15px;">
                                                     انهاء
                                                 </button>
                                             </div>
