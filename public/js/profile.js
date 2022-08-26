@@ -149,14 +149,14 @@ function PrintElem(element, customStyles = "") {
     Popup(document.querySelector(element).innerHTML, customStyles);
 }
 function Popup(data) {
-    let myWindow = window.open("", "", "height=400,width=600");
-    //     myWindow.document.write(
-    //         `
-    // <html lang="en">
-    //         <head>${
-    //             document.querySelector("head").innerHTML
-    //         }<style>${customStyles}</style></head><body>`
-    //     );
+    var myWindow = window.open("", "", "height=500, width=500");
+    myWindow.document.write(
+        `
+<html lang="en">
+        <head>${
+            document.querySelector("head").innerHTML
+        }<style>${customStyles}</style></head><body>`
+    );
     myWindow.document.write(data);
     myWindow.document.write("</body></html>");
     myWindow.document.close();
