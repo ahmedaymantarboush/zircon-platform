@@ -460,7 +460,7 @@ $(document).on('click','.takeExam',async function (){
                 Accept: "application/json",
                 "X-CSRF-TOKEN": window.csrf_token.value,
             },
-            body: form1,
+            body: form2,
         })
         let getQuestionVar = await getQuestion.json();
         console.log(getQuestionVar);
