@@ -274,7 +274,7 @@ nav .customeContainer {
     font-size: 1.6rem;
     color: var(--font-dark);
     padding: 0.5rem 0.8rem;
-    text-align: center;
+    text-align: right;
 }
 .navDropItem:hover {
     background: none;
