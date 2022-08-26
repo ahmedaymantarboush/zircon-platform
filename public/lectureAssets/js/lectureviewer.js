@@ -444,19 +444,7 @@ $(document).on('click','.takeExam',async function (){
         form2.append('data', JSON.stringify({
             'id': parseInt(getExamVar.data.questions[i-1])
         }))
-        // var xhttp = new XMLHttpRequest();
-        // xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
-        // xhttp.setRequestHeader('Accept', 'application/json');
-        // let tkn = window.csrf_token.value
-        // xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-        // xhttp.onreadystatechange = function (e) {
-        //     if(this.readyState ==4){
-        //         getQuestionVar = JSON.parse(this.responseText);
-        //         console.log(getQuestionVar);
-        //         add2(getQuestionVar);
-        //     }
-        // }
-        // xhttp.send(form2);
+
         let getQuestion = await fetch(APP_URL+"/api/questions/getQuestion", {
             method: "POST",
             headers: {
@@ -504,7 +492,7 @@ $(document).on('click','.takeExam',async function (){
             }
             examHTML += '<div class="col-12">\n' +
                 '                                            <div choiceID="'+ getQuestionVar.data.question.choices[j-1].id +'" class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
-                '                                                queNamber="'+j+'" >\n' +
+                '                                                queNamber="'+i+'" >\n' +
                 '                                                <input type="radio" name="anser'+i+'"\n' +
                 '                                                    value="anser_database_id" '+addChecked+'>\n' +
                 '                                                <span class="anser_text">'+getQuestionVar.data.question.choices[j-1].text+'</span>\n' +
