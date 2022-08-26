@@ -485,7 +485,7 @@ $(document).on('click', '.takeExam', async function() {
         body: form1,
     })
     let getExamVar = await getExam.json();
-    console.log(getExamVar.data);
+    console.log(getExamVar.data.examEndedAt);
 
     //Add Tabs
     for (let i = 1; i <= getExamVar.data.questions.length; i++) {
