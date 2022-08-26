@@ -321,8 +321,10 @@
         ->get();
     @endphp
     <script>
-        exams = @php echo $passedExams->pluck('percentage'); echo"\n"; @endphp;
-        dates = @php echo $passedExams->pluck('ended_at'); echo"\n"; @endphp;
+        exams = @php echo $passedExams->pluck('percentage'); echo";\n"; @endphp
+        dates = @php echo $passedExams->pluck('ended_at'); echo";\n"; @endphp
+        correctAnswers = {{ $user->answerdQuestions()->where('correct', 1)->count() }};
+        wrongAnswers = {{ $user->answerdQuestions()->where('correct', 0)->count() }};
     </script>
     <script src="{{ URL::asset('js/profile.js') }}"></script>
 @endsection

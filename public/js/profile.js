@@ -1,13 +1,13 @@
 ////////////////////////
 // main functions /////
 //////////////////////
-let toggleElement = function (ele, className) {
+let toggleElement = function(ele, className) {
     ele.classList.toggle(className);
 };
-let removeElemment = function (ele, className) {
+let removeElemment = function(ele, className) {
     ele.classList.remove(className);
 };
-let addElement = function (ele, className) {
+let addElement = function(ele, className) {
     ele.classList.add(className);
 };
 
@@ -15,27 +15,27 @@ let addElement = function (ele, className) {
 ///// start navbar /////////////////
 ///////////////////////////////////
 // [01- dark and light ]
-let funChangeImagesDark = function () {
+let funChangeImagesDark = function() {
     let paperImg1 = document.querySelector(".paper img");
     let paperImg2 = document.querySelector(".paper2 img");
     if (document.documentElement.classList.contains("dark")) {
-        if(window.innerWidth <=768){
+        if (window.innerWidth <= 768) {
             paperImg2.setAttribute("src", "public/imgs/mob_banner_dark.png");
-        }else {
+        } else {
             paperImg2.setAttribute("src", "public/imgs/profile_banner_dark.png");
         }
         paperImg1.setAttribute("src", "public/imgs/paper2_dark_p.png");
     } else {
-        if(window.innerWidth <=768){
+        if (window.innerWidth <= 768) {
             paperImg2.setAttribute("src", "public/imgs/mob_banner.png");
-        }else {
+        } else {
             paperImg2.setAttribute("src", "public/imgs/profile_banner.png");
         }
         paperImg1.setAttribute("src", "public/imgs/paper2.png");
     }
 };
 
-let addStyleToLocaleStorage = function () {
+let addStyleToLocaleStorage = function() {
     if (localStorage.getItem("style") === null) {
         localStorage.setItem("style", "dark");
     } else {
@@ -43,14 +43,14 @@ let addStyleToLocaleStorage = function () {
     }
 };
 
-let addDarkClassToHtml = function () {
+let addDarkClassToHtml = function() {
     if (localStorage.getItem("style") === null) {
         document.documentElement.classList.remove("dark");
     } else {
         document.documentElement.classList.add(localStorage.getItem("style"));
     }
 };
-let updateUI = function () {
+let updateUI = function() {
     addStyleToLocaleStorage();
     addDarkClassToHtml();
     funChangeImagesDark();
@@ -65,14 +65,14 @@ moon.addEventListener("click", updateUI);
 let toggleBarBtn = document.querySelector(".toggleBarBtn");
 let bigLeft = document.querySelector(".bigLeft");
 
-toggleBarBtn.addEventListener("click", function () {
+toggleBarBtn.addEventListener("click", function() {
     toggleElement(bigLeft, "activeNavMenu");
 });
 
 //[03- progress nav]
 let navBar = document.querySelector(".myNav");
 let progNav = document.querySelector(".navProgChild");
-let navProgFunction = function () {
+let navProgFunction = function() {
     let { scrollTop, scrollHeight } = document.documentElement;
     let myWidth = (scrollTop / (scrollHeight - window.innerHeight)) * 100;
 
@@ -86,12 +86,10 @@ window.addEventListener("scroll", navProgFunction);
 ////////////////////
 
 var options = {
-    series: [
-        {
-            name: "نتائج الامتحانات",
-            data: exams,
-        },
-    ],
+    series: [{
+        name: "نتائج الامتحانات",
+        data: exams,
+    }, ],
     chart: {
         height: 315,
         type: "area",
@@ -116,16 +114,13 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
 
-let totalAnswers = Number(
-    document.querySelector(".totalAnswers").textContent.trim()
-);
-let correctAnswers = Number(
-    document.querySelector(".correctAnswers").textContent.trim()
-);
+let totalAnswers = correctAnswers + wrongAnswers;
 let correctAnswersPrecentage =
     Math.round((correctAnswers * 10000) / totalAnswers) / 100;
+let wrongAnswersPrecentage =
+    Math.round((wrongAnswers * 10000) / totalAnswers) / 100;
 var options2 = {
-    series: [100 - correctAnswersPrecentage, correctAnswersPrecentage],
+    series: [wrongAnswersPrecentage, correctAnswersPrecentage],
     chart: {
         type: "donut",
         fontFamily: "poppins",
@@ -142,7 +137,7 @@ chart.render();
 //// print btn
 ////////////
 let printBtn = document.querySelector(".printBtn");
-printBtn.addEventListener("click", function () {
+printBtn.addEventListener("click", function() {
     window.print();
 });
 ////////// Barcode
