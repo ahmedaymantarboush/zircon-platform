@@ -90,10 +90,9 @@ class AnswerdQuestionController extends Controller
         
         $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId])->count();
         
-        
-        $passedExam->percentag = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId])->count()) * 100, 2);
+        $passedExam->percentage = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId])->count()) * 100, 2);
         $passedExam->save();
-        return $data;
+
         dd($data);
         
         return apiResponse(true, _('تم تسجيل اجابة السؤال'), []);
