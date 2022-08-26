@@ -852,9 +852,9 @@ $(document).on('click', '.showExam', async function() {
         '\n' +
         '            </div>';
     mainDiv.innerHTML = examHTML;
-    console.log('لحد هنا تمام');
 
     if (getExamVar.data.examEndedAt == null) {
+        console.log('لحد هنا تمام');
         alert('اشطا');
         $('.countdown').each(function() {
             this.innerHTML = 'وقت مفتوح';
