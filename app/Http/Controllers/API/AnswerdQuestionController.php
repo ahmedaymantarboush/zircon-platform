@@ -68,7 +68,7 @@ class AnswerdQuestionController extends Controller
         if (!$passedExam){
             return apiResponse(false, _('لم يتم العثور على الامتحان'), [], 404);
         }
-        if ($passedExam->finished || ( $passedExam->ended_at ? $passedExam->ended_at >= now() : false )):
+        if ($passedExam->finished || ( $passedExam->ended_at ? $passedExam->ended_at <= now() : false )):
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتسجيل اجابة السؤال'), [], 403);
         endif;
         $choiceId = $data['choiceId'] ?? null;
