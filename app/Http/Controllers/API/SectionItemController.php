@@ -90,6 +90,7 @@ class SectionItemController extends Controller
 
             $exam = $sectionItem->item;
             $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
+            return $passedExam->tpArray();
             $finished = $passedExam ? $passedExam->finished || ( $passedExam->ended_at ? $passedExam->ended_at >= now() : false ) : false;
 
             $item = [
