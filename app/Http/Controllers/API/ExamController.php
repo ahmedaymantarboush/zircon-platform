@@ -132,7 +132,10 @@ class ExamController extends Controller
         $exam = $passedExam->exam;
         $answerdQuestions = [];
         foreach ($exam->answerdQuestions()->inRandomOrder()->get() as $answerdQuestion) :
-            $answerdQuestions[] = $answerdQuestion->id;
+            $answerdQuestions[] = [
+                'id' => $answerdQuestion->id,
+                'flagged' => $answerdQuestion->flagged,
+            ];
         endforeach;
 
         if ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false ) ):
