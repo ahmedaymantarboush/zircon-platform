@@ -159,7 +159,7 @@ function Popup(data) {
 
 let printBtn = document.querySelector(".printBtn");
 printBtn.addEventListener("click", function() {
-    window.print();
+    // window.print();
     PrintElem(element)
 });
 
