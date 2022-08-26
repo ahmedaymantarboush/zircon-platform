@@ -78,7 +78,7 @@
 
                 </button>
                 <div class="left ">
-                    <form class="search mainSearch">
+                    <form class="search lol mainSearch">
                         <input type="search" name="navSearch">
                         <span><i class="fa-solid fa-magnifying-glass"></i></span>
 
