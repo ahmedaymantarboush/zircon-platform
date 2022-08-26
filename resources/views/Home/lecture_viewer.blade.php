@@ -228,6 +228,12 @@ if (
                                 </button>
                             </div>
                         @endfor
+                            <div class="swiper-slide">
+                                <button class="tab-item">
+                                    <span class="tab-num" style="display: none">{{ $i }}</span>
+                                    <span class="tab-num2" ><i class="fa-solid fa-calendar-days"></i></span>
+                                </button>
+                            </div>
                     </div>
 
 
@@ -254,6 +260,7 @@ if (
                                             <span>السؤال رقم {{ $i }}</span>
                                         </div>
                                         <div class="all_questions">
+                                            <span class="countdown">3:00:00</span>
                                             <i class="fa-solid fa-calendar-days"></i>
                                         </div>
                                     </div>
@@ -278,6 +285,24 @@ if (
                                     @endfor
                                 </div>
                             @endfor
+//s
+                                <div class="question col-12">
+                                    <div class="container">
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-12">
+                                                <i class="fa-solid fa-check-double tab-num2" style="font-size: 45px;"></i>
+                                            </div>
+                                            <div class="col-12">
+                                                <p class="tab-num2"style="font-size: 25px;">انهاء هذا الامتحان</p>
+                                            </div>
+                                            <div class="col-5">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    انهاء
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             @if ($exam->questions_count >= 2)
                                 <div class="col-12">
