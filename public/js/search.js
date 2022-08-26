@@ -7,7 +7,7 @@ let toggleElement = function (ele, className) {
 let removeEle = function (ele, className) {
     ele.classList.remove(className);
 };
-
+console.log("alo");
 /////////////////////////
 ///// fade animation ///
 ///////////////////////
@@ -76,16 +76,28 @@ document.addEventListener("DOMContentLoaded", function () {
 let funChangeImagesDark = function () {
     let headerImage = document.querySelector(".header");
     if (document.documentElement.classList.contains("dark")) {
-        if(window.innerWidth <= 765){
-            headerImage.setAttribute("style", "background: url(public/imgs/mob_banner_dark.png) no-repeat;");
-        }else{
-            headerImage.setAttribute("style", "background: url(public/imgs/lecture_banner_dark.png) no-repeat;");
+        if (window.innerWidth <= 765) {
+            headerImage.setAttribute(
+                "style",
+                "background: url(public/imgs/mob_banner_dark.png) no-repeat;"
+            );
+        } else {
+            headerImage.setAttribute(
+                "style",
+                "background: url(public/imgs/lecture_banner_dark.png) no-repeat;"
+            );
         }
     } else {
-        if(window.innerWidth <= 765){
-            headerImage.setAttribute("style", "background: url(public/imgs/mob_banner.png) no-repeat;");
-        }else{
-            headerImage.setAttribute("style", "background: url(public/imgs/lecture_banner.png) no-repeat;");
+        if (window.innerWidth <= 765) {
+            headerImage.setAttribute(
+                "style",
+                "background: url(public/imgs/mob_banner.png) no-repeat;"
+            );
+        } else {
+            headerImage.setAttribute(
+                "style",
+                "background: url(public/imgs/lecture_banner.png) no-repeat;"
+            );
         }
     }
 };
