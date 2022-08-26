@@ -392,56 +392,54 @@ $(document).on('click','.startExam',function (){
 /////////////////Exam view first time/////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 
-// Ajax Functions //
-function getExam(id){
-    let funData='';
-    form1 = new FormData()
-    form1.append('data', JSON.stringify({
-        'id': id
-    }))
-    // parseInt(examID)
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", APP_URL+"/api/exams/getExam");
-    xhttp.setRequestHeader('Accept', 'application/json');
-    let tkn = window.csrf_token.value
-    xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-    xhttp.onreadystatechange = function (e) {
-        if (this.readyState==4) {
-            data = JSON.parse(this.responseText);
-            funData = data;
-        }
-        // addQuestions(data);
-    }
-    xhttp.send(form1);
-    return funData;
-}
-function getQuestion(id){
-    let funData='';
-    form2 = new FormData()
-    form2.append('data', JSON.stringify({
-        'id': id
-    }))
-    // parseInt(data.data.questions[i-1])
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
-    xhttp.setRequestHeader('Accept', 'application/json');
-    let tkn = window.csrf_token.value
-    xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-    xhttp.onreadystatechange = function (e) {
-        if (this.readyState==4) {
-            Qdata = JSON.parse(this.responseText);
-            funData = Qdata;
-        }
-        // mainDiv.innerHTML += addQue(Qdata,i);
-        // console.log(addQue(Qdata,i));
-    }
-    xhttp.send(form2);
-    return funData;
-}
-
-
 let examHTML = '';
 $(document).on('click','.takeExam',function (){
+    // Ajax Functions //
+    function getExam(id){
+        let funData='';
+        form1 = new FormData()
+        form1.append('data', JSON.stringify({
+            'id': id
+        }))
+        // parseInt(examID)
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", APP_URL+"/api/exams/getExam");
+        xhttp.setRequestHeader('Accept', 'application/json');
+        let tkn = window.csrf_token.value
+        xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+        xhttp.onreadystatechange = function (e) {
+            if (this.readyState==4) {
+                data = JSON.parse(this.responseText);
+                funData = data;
+            }
+            // addQuestions(data);
+        }
+        xhttp.send(form1);
+        return funData;
+    }
+    function getQuestion(id){
+        let funData='';
+        form2 = new FormData()
+        form2.append('data', JSON.stringify({
+            'id': id
+        }))
+        // parseInt(data.data.questions[i-1])
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
+        xhttp.setRequestHeader('Accept', 'application/json');
+        let tkn = window.csrf_token.value
+        xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+        xhttp.onreadystatechange = function (e) {
+            if (this.readyState==4) {
+                Qdata = JSON.parse(this.responseText);
+                funData = Qdata;
+            }
+            // mainDiv.innerHTML += addQue(Qdata,i);
+            // console.log(addQue(Qdata,i));
+        }
+        xhttp.send(form2);
+        return funData;
+    }
     examHTML='<div class="exam-parent">\n' +
         '                <div class="exam-tab swiper mySwiper">\n' +
         '                    <div class="swiper-wrapper">';
