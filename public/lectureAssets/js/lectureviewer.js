@@ -397,41 +397,29 @@ let getExamVar;
 let examHTML = '';
 $(document).on('click','.takeExam',function (){
     // Ajax Functions //
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+    let getQuestionVar;
+    let getExamVar;
+    let examHTML = '';
+
     function getExam(id){
-        // form1 = new FormData()
-        // form1.append('data', JSON.stringify({
-        //     'id': id
-        // }))
-        // // parseInt(examID)
-        // var xhttp = new XMLHttpRequest();
-        // xhttp.open("POST", APP_URL+"/api/exams/getExam");
-        // xhttp.setRequestHeader('Accept', 'application/json');
-        // let tkn = window.csrf_token.value
-        // xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-        // xhttp.onreadystatechange = function (e) {
-        //     if(this.readyState ==4){
-        //         data = JSON.parse(this.responseText);
-        //         getExamVar = data;
-        //     }
-        // }
-        // xhttp.send(form1);
         form1 = new FormData()
         form1.append('data', JSON.stringify({
             'id': id
         }))
-        $.ajax({
-            url: String(APP_URL+"/api/exams/getExam"),
-            method: 'post',
-            data: form1,
-            success:function (r){
-                getExamVar = r;
-            },
-        });
+        // parseInt(examID)
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", APP_URL+"/api/exams/getExam");
+        xhttp.setRequestHeader('Accept', 'application/json');
+        let tkn = window.csrf_token.value
+        xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+        xhttp.onreadystatechange = function (e) {
+            if(this.readyState ==4){
+                data = JSON.parse(this.responseText);
+                getExamVar = data;
+            }
+        }
+        xhttp.send(form1);
+
     }
     function getQuestion(id){
         form2 = new FormData()
