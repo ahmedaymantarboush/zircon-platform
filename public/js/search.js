@@ -226,9 +226,9 @@ checkInputs.forEach((ele) => {
         checkInputs.forEach((item) => {
             if (item.checked == true) {
                 let objKey = item.closest(".card").dataset.name;
-                search.filters.grades[objKey].push(item.value);
+                search.filters[objKey].push(item.value);
             }
-            console.log(search.filters.grades);
         });
+        console.log(search.filters.grades);
     });
 });
