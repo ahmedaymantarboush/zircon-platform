@@ -204,7 +204,7 @@ closeFilter.addEventListener(
 //// Ajax///////
 ///////////////
 let checkInputs = document.querySelectorAll('input[type="checkbox"]');
-let qText = document.querySelector(".mainSearch input").textContent.trim();
+let qText = document.querySelector(".mainSearch input").value.trim();
 
 let search = {
     q: qText,
