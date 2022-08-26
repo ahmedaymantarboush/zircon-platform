@@ -86,7 +86,7 @@ class PassedExamController extends Controller
             'examstartedAt' => $passedExam->started_at,
             'examEndedAt' => $passedExam->ended_at,
             'percentage' => $passedExam->percentage,
-            'correctAnswers' => $passedExam->answers()->where('correct', 0)->count(),
+            'correctAnswers' => $passedExam->answers()->where('correct', 1)->count(),
             'wrongAnswers' => $passedExam->answers()->where('correct', 0)->count(),
             'questions' => $questions,
         ]);
