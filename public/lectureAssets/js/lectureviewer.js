@@ -797,27 +797,23 @@ $(document).on('click','.showExam',async function (){
         examHTML+= '</div>';
 
     }
-    examHTML += ` <div class="question col-12">
+    examHTML += `<div class="question col-12">
                                     <div class="container">
-                                        <div class="row">`;
-    for(let r=1;r <= getExamVar.data.questions.length;r++){
-        examHTML += `<div class="col-lg-1 col-md-4">
-                                                <button class="tab-item2">
-                                                    <span class="tab-num2">${r}</span>
-                                                    <div class="tab-icon">
-                                                    <span><i class="fa-solid fa-check hide_icon" id="yesIcon_${r}"></i></span>
-                                                        <span><i class="fa-solid fa-flag hide_icon"id="flagIcon_${r}"></i></span>
-                                                    </div>
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-12">
+                                                <i class="fa-solid fa-check-double tab-num2" style="font-size: 45px;"></i>
+                                            </div>
+                                            <div class="col-12">
+                                                <p class="tab-num2"style="font-size: 25px;">انهاء هذا الامتحان</p>
+                                            </div>
+                                            <div class="col-5">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    انهاء
                                                 </button>
-                                            </div>`;
-    }
-    examHTML+= `</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>`;
-    examHTML += `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  انهاء
-                </button>
-                `;
     examHTML+= `<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="rtl">
   <div class="modal-dialog">
@@ -857,41 +853,43 @@ $(document).on('click','.showExam',async function (){
     mainDiv.innerHTML = examHTML;
     flagFun();
     onReadyFunExam();
-    function timerFun(endDate){
-        if(endDate != null){
-            let date= Math.abs((new Date().getTime()/1000).toFixed(0));
-            let date2= Math.abs((new Date(endDate).getTime()/1000).toFixed(0));
-            let diff = date2 -date;
-            let days = Math.floor(diff / 86400);
-            let hours = Math.floor(diff / 3600)%24;
-            let minutes = Math.floor(diff / 60)%60;
-            let seconds = diff %60;
 
-            if(minutes < 10){
-                minutes = '0'+ minutes;
-            }
-            if(seconds < 10){
-                seconds = '0'+ seconds;
-            }
-            $('.countdown').each(function (){
-                if (hours==0 && days==0 && parseInt(minutes) <= 10){
-                    $(this).attr('style','color:#EA0606;');
-                    this.innerHTML= hours+':'+minutes+':'+seconds;
-                }else {
-                    this.innerHTML= hours+':'+minutes+':'+seconds;
-                }
-            });
-        }
-    }
     if(getExamVar.data.examEndedAt == null){
         $('.countdown').each(function (){
             this.innerHTML= 'وقت مفتوح';
         });
     }else {
-        timerFun(getExamVar.data.examEndedAt);
-        setInterval(timerFun(getExamVar.data.examEndedAt),1000);
+        addTimer(getExamVar.data.examEndedAt);
     }
 
 });
 
+function timerFun(endDate){
+    if(endDate != null){
+        let date= Math.abs((new Date().getTime()/1000).toFixed(0));
+        let date2= Math.abs((new Date(endDate).getTime()/1000).toFixed(0));
+        let diff = date2 -date;
+        let days = Math.floor(diff / 86400);
+        let hours = Math.floor(diff / 3600)%24;
+        let minutes = Math.floor(diff / 60)%60;
+        let seconds = diff %60;
 
+        if(minutes < 10){
+            minutes = '0'+ minutes;
+        }
+        if(seconds < 10){
+            seconds = '0'+ seconds;
+        }
+        $('.countdown').each(function (){
+            if (hours==0 && days==0 && parseInt(minutes) <= 10){
+                $(this).attr('style','color:#EA0606;');
+                this.innerHTML= hours+':'+minutes+':'+seconds;
+            }else {
+                this.innerHTML= hours+':'+minutes+':'+seconds;
+            }
+        });
+    }
+}
+function addTimer(dataEnd){
+    setInterval(timerFun(dataEnd),1000);
+}

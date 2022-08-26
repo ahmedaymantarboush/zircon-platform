@@ -254,9 +254,9 @@ html,body{
     margin-bottom: 5px;
 }
 .tab-num2{
-    font-size: 24px;
     font-weight: 600;
     margin-bottom: 5px;
+    color: var(--main-color2);
 }
 .tab-icon span{
     margin: 0 2px;
