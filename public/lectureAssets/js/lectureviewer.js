@@ -497,7 +497,7 @@ $(document).on('click','.takeExam',function (){
                         addChecked = 'checked';
                     }
                     examHTML += '<div class="col-12">\n' +
-                        '                                            <div choiceID="'+ getQuestionVar.data.question.choices[i-1].id +' class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
+                        '                                            <div choiceID="'+ getQuestionVar.data.question.choices[j-1].id +' class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
                         '                                                queNamber="'+j+'" >\n' +
                         '                                                <input type="radio" name="anser'+j+'"\n' +
                         '                                                    value="anser_database_id" '+addChecked+'>\n' +
