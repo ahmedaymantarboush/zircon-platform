@@ -92,8 +92,8 @@ class AnswerdQuestionController extends Controller
         
         
         $passedExam->percentag = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId])->count()) * 100, 2);
-        return $data;
         $passedExam->save();
+        return $data;
         dd($data);
         
         return apiResponse(true, _('تم تسجيل اجابة السؤال'), []);
