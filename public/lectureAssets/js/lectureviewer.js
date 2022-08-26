@@ -443,8 +443,7 @@ $(document).on('click','.takeExam',function (){
     examHTML='<div class="exam-parent">\n' +
         '                <div class="exam-tab swiper mySwiper">\n' +
         '                    <div class="swiper-wrapper">';
-    let getExamVar= '';
-    getExamVar = getExam(parseInt(examID));
+    var getExamVar = getExam(parseInt(examID));
     //Add Tabs
     for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
@@ -472,7 +471,7 @@ $(document).on('click','.takeExam',function (){
     for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
         if(i !== 1){active = "";}
-        let getQuestionVar = getQuestion(parseInt(getExamVar.data.questions[i-1]));
+        var getQuestionVar = getQuestion(parseInt(getExamVar.data.questions[i-1]));
         let flagclass="unflagQuestion";
         let inputclass ="uncheckflag";
         if(parseInt(getQuestionVar.data.flagged)){
