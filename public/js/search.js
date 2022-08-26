@@ -206,19 +206,19 @@ closeFilter.addEventListener(
 let checkInputs = document.querySelectorAll('input[type="checkbox"]');
 let qText = document.querySelector(".mainSearch").textContent.trim();
 
-checkInputs.forEach((ele) => {
-    let search = {
-        q: qText,
-        filters: {
-            grades: [],
-            parts: [],
-            price: {
-                free: false,
-                hasDiscount: false,
-                paid: false,
-            },
+let search = {
+    q: qText,
+    filters: {
+        grades: [],
+        parts: [],
+        price: {
+            free: false,
+            hasDiscount: false,
+            paid: false,
         },
-    };
+    },
+};
+checkInputs.forEach((ele) => {
     ele.addEventListener("change", function () {
         search.filters.grades = [];
         search.filters.parts = [];
