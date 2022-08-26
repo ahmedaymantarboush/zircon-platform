@@ -392,12 +392,12 @@ $(document).on('click','.startExam',function (){
 /////////////////Exam view first time/////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 
-
+let getQuestionVar ='';
+let getExamVar ='';
+let examHTML = '';
 $(document).on('click','.takeExam',function (){
     // Ajax Functions //
-    let getQuestionVar ='';
-    let getExamVar ='';
-    let examHTML = '';
+
     function getExam(id){
         form1 = new FormData()
         form1.append('data', JSON.stringify({
