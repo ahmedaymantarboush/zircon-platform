@@ -237,6 +237,6 @@ checkInputs.forEach((ele) => {
                 search.filters.price[priceProp] = false;
             }
         }
-        console.log(search.price);
+        console.log(search.filters.price);
     });
 });
