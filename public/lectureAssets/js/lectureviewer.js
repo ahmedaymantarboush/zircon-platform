@@ -169,6 +169,7 @@ $(document).on('click','.question_head',async function (){
             body: form3,
         })
         let resFlagData = await resFlag.json();
+        console.log(resFlagData);
     }else {
         $(this).find('i').attr('flag',0);
         $(this).find('i').removeClass('flagQuestion');
@@ -258,6 +259,7 @@ $(document).on('click','.anserBox',async function (){
             body: form4,
         })
         let addAnserData = await addAnser.json();
+        console.log(addAnserData);
         yesIcon.classList.remove("hide_icon");
         yesIcon.classList.add("show_icon");
         $(this).find('input').prop('checked',true);
@@ -284,8 +286,11 @@ function getExam(exam_id){
     let tkn = window.csrf_token.value
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
     xhttp.onreadystatechange = function (e) {
-        getExamData = JSON.parse(this.responseText);
-        getItem(getExamData);
+        if (xhttp.status == 200 && xhttp.readyState == 4){
+            getExamData = JSON.parse(this.responseText);
+            console.log(getExamData);
+            getItem(getExamData);
+        }
     }
     xhttp.send(form);
     return getExamData;
@@ -441,8 +446,12 @@ $(document).on('click','.lesson_name',function (){
     let tkn = window.csrf_token.value
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
     xhttp.onreadystatechange = function (e) {
-        data = JSON.parse(this.responseText);
-        getItem(data);
+        if (xhttp.status == 200 && xhttp.readyState == 4){
+            data = JSON.parse(this.responseText);
+            console.log(data);
+            getItem(data);
+        }
+
     }
     xhttp.send(form);
 });
@@ -457,10 +466,13 @@ $(document).on('click','.startExam',function (){
     let tkn = window.csrf_token.value
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
     xhttp.onreadystatechange = function (e) {
-        data = JSON.parse(this.responseText);
-        showTakeExam(data);
-        examID = data.data.item.id;
-        itemID = data.data.item.id;
+        if (xhttp.status == 200 && xhttp.readyState == 4){
+            data = JSON.parse(this.responseText);
+            console.log(data);
+            showTakeExam(data);
+            examID = data.data.item.id;
+            itemID = data.data.item.id;
+        }
     }
     xhttp.send(form);
 });
@@ -543,6 +555,7 @@ $(document).on('click','.takeExam',async function (){
             body: form2,
         })
         let getQuestionVar = await getQuestion.json();
+        console.log(getQuestionVar);
         let flagclass="unflagQuestion";
         let inputclass ="uncheckflag";
         if(parseInt(getQuestionVar.data.flagged)){
@@ -663,6 +676,7 @@ $(document).on('click','.takeExam',async function (){
          body: form6,
      })
      let finishExamData = await finishExam.json();
+     console.log(finishExamData);
      $('.closeModelBtn').click();
      form7 = new FormData()
      form7.append('data', JSON.stringify({
@@ -677,6 +691,7 @@ $(document).on('click','.takeExam',async function (){
          body: form6,
      })
      let showExamData = await showExam.json();
+     console.log(showExamData);
      showTakeExam(showExamData);
  });
  // show exam
