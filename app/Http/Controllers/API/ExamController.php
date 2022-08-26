@@ -73,6 +73,7 @@ class ExamController extends Controller
             $answerdQuestions[] = [
                 'id' => $answerdQuestion->id,
                 'flagged' => $answerdQuestion->flagged,
+                'answerd' => $answerdQuestion->answer || $answerdQuestion->choice_id,
             ];
         endforeach;
         $data = [
@@ -132,7 +133,11 @@ class ExamController extends Controller
         $exam = $passedExam->exam;
         $answerdQuestions = [];
         foreach ($exam->answerdQuestions()->inRandomOrder()->get() as $answerdQuestion) :
-            $answerdQuestions[] = $answerdQuestion->id;
+            $answerdQuestions[] = [
+                'id' => $answerdQuestion->id,
+                'flagged' => $answerdQuestion->flagged,
+                'answerd' => $answerdQuestion->answer || $answerdQuestion->choice_id,
+            ];
         endforeach;
 
         if ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false ) ):
