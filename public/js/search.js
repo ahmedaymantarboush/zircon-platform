@@ -204,4 +204,25 @@ closeFilter.addEventListener(
 //// Ajax///////
 ///////////////
 let checkInputs = document.querySelectorAll('input[type="checkbox"]');
-let q = document.querySelector(".main-search").textContent.trim();
+let qText = document.querySelector(".mainSearch").textContent.trim();
+checkInputs.forEach((ele) => {
+    let search = {
+        q: qText,
+        filters: {
+            grades: [],
+            parts: [],
+            price: {
+                free: true,
+                hasDiscount: false,
+                paid: true,
+            },
+        },
+    };
+    ele.addEventListener("change", function () {
+        if (ele.checked == true) {
+            console.log("yes");
+        } else {
+            console.log("no");
+        }
+    });
+});
