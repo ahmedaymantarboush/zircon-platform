@@ -60,12 +60,12 @@ class AnswerdQuestionController extends Controller
         if (!$answerdQuestion) :
             return apiResponse(false, _('لم يتم العثور على السؤال'), [], 404);
         endif;
-        dd($data);
         if ($answerdQuestion->user->id != $user->id):
             return apiResponse(false, _('غير مصرح لهذا المسخدم تسجيل اجابة السؤال'), [], 403);
         endif;
         $examId = $answerdQuestion->exam_id;
         $passedExam = $user->passedExams()->where(['exam_id'=>$examId])->first();
+        dd($data);
         if ($passedExam->finished || ( $passedExam->ended_at ? $passedExam->ended_at >= now() : false )):
             return apiResponse(false, _('غير مصرح لهذا المسخدم تسجيل اجابة السؤال'), [], 403);
         endif;
