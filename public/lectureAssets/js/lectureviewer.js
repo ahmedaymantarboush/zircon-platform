@@ -411,6 +411,7 @@ $(document).on('click','.takeExam',function (){
     xhttp.onreadystatechange = function (e) {
         if(this.readyState ==4){
             data = JSON.parse(this.responseText);
+            console.log(data);
             add1(data);
         }
     }
@@ -455,6 +456,7 @@ $(document).on('click','.takeExam',function (){
             xhttp.onreadystatechange = function (e) {
                 if(this.readyState ==4){
                     Qdata = JSON.parse(this.responseText);
+                    console.log(Qdata);
                     add2(Qdata);
                 }
             }
