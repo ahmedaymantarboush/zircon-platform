@@ -205,6 +205,7 @@ closeFilter.addEventListener(
 ///////////////
 let checkInputs = document.querySelectorAll('input[type="checkbox"]');
 let qText = document.querySelector(".mainSearch").textContent.trim();
+
 checkInputs.forEach((ele) => {
     let search = {
         q: qText,
@@ -219,10 +220,15 @@ checkInputs.forEach((ele) => {
         },
     };
     ele.addEventListener("change", function () {
-        if (ele.checked == true) {
-            console.log("yes");
-        } else {
-            console.log("no");
-        }
+        search.filters.grades = [];
+        search.filters.parts = [];
+
+        checkInputs.forEach((item) => {
+            if (item.checked == true) {
+                let objKey = item.closest("card").dataset.name;
+                search[objKey].push(item.value);
+            }
+            console.log(search.filters.grades);
+        });
     });
 });
