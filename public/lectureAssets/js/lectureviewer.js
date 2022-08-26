@@ -415,9 +415,9 @@ $(document).on('click','.takeExam',function (){
         }
     }
     xhttp.send(form1);
-    function add1(getExamVar){
+    function add1(data){
         //Add Tabs
-        for (let i=1;i <= getExamVar.data.questions.length;i++){
+        for (let i=1;i <= data.data.questions.length;i++){
             let active = "active-tab";
             if(i != 1){active = "";}
             examHTML += '<div class="swiper-slide">\n' +
@@ -440,7 +440,7 @@ $(document).on('click','.takeExam',function (){
             '                    <div class="container">\n' +
             '                        <div class="row">';
         //Add questions
-        for (let i=1;i <= getExamVar.data.questions.length;i++){
+        for (let i=1;i <= data.data.questions.length;i++){
             let active = "active-tab";
             if(i !== 1){active = "";}
             form2 = new FormData()
@@ -459,17 +459,17 @@ $(document).on('click','.takeExam',function (){
                 }
             }
             xhttp.send(form2);
-            function add2(getQuestionVar){
+            function add2(Qdata){
                 let flagclass="unflagQuestion";
                 let inputclass ="uncheckflag";
-                if(parseInt(getQuestionVar.data.flagged)){
+                if(parseInt(Qdata.data.flagged)){
                     flagclass="flagQuestion";
                     inputclass ="checkflag";
                 }
                 examHTML += '<div class="question '+active+' col-12">\n' +
                     '                                    <div class="title_exam d-flex justify-content-between">\n' +
                     '                                        <div class="question_head">\n' +
-                    '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="0"\n' +
+                    '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="'+parseInt(Qdata.data.flagged)+'"\n' +
                     '                                                queNamber="'+i+'"></i>\n' +
                     '                                            <input type="checkbox" class="'+inputclass+'">\n' +
                     '                                            <span>السؤال رقم '+i+'</span>\n' +
@@ -478,29 +478,29 @@ $(document).on('click','.takeExam',function (){
                     '                                            <i class="fa-solid fa-calendar-days"></i>\n' +
                     '                                        </div>\n' +
                     '                                    </div>';
-                if(getQuestionVar.data.question.image !=null){
+                if(Qdata.data.question.image !=null){
                     examHTML += '<div class="col-12">\n' +
                         '                                            <img class="question_img"\n' +
-                        '                                                src="'+getQuestionVar.data.question.image+'">\n' +
+                        '                                                src="'+Qdata.data.question.image+'">\n' +
                         '                                        </div>';
                 }
                 examHTML += '<div class="col-12">\n' +
-                    '                                        <p class="question_text">'+getQuestionVar.data.question.text+'</p>\n' +
+                    '                                        <p class="question_text">'+Qdata.data.question.text+'</p>\n' +
                     '                                    </div>';
                 //Add Choices
-                for (let j=1;j <= getQuestionVar.data.question.choices.length;j++){
+                for (let j=1;j <= Qdata.data.question.choices.length;j++){
                     let addSelected ='';
                     let addChecked = '';
-                    if(getQuestionVar.data.question.choices[j-1].id == getQuestionVar.data.question.choice){
+                    if(Qdata.data.question.choices[j-1].id == Qdata.data.question.choice){
                         addSelected ='selectedAnser';
                         addChecked = 'checked';
                     }
                     examHTML += '<div class="col-12">\n' +
-                        '                                            <div choiceID="'+ getQuestionVar.data.question.choices[j-1].id +' class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
+                        '                                            <div choiceID="'+ Qdata.data.question.choices[j-1].id +' class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
                         '                                                queNamber="'+j+'" >\n' +
                         '                                                <input type="radio" name="anser'+j+'"\n' +
                         '                                                    value="anser_database_id" '+addChecked+'>\n' +
-                        '                                                <span class="anser_text">getQuestionVar.data.question.choices[j-1].text</span>\n' +
+                        '                                                <span class="anser_text">Qdata.data.question.choices[j-1].text</span>\n' +
                         '                                            </div>\n' +
                         '                                        </div>';
                 }
@@ -511,7 +511,7 @@ $(document).on('click','.takeExam',function (){
 
     }
 
-    if(getExamVar.data.questions.length >=2){
+    if(data.data.questions.length >=2){
         examHTML += '<div class="col-12">\n' +
             '                                    <div class="btn-control d-flex justify-content-center">\n' +
             '                                        <button class="rightBtn">\n' +
