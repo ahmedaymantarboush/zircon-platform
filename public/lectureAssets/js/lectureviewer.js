@@ -485,7 +485,7 @@ $(document).on('click', '.takeExam', async function() {
         body: form1,
     })
     let getExamVar = await getExam.json();
-    console.log(getExamVar);
+    console.log(getExamVar.data);
 
     //Add Tabs
     for (let i = 1; i <= getExamVar.data.questions.length; i++) {
@@ -851,7 +851,6 @@ $(document).on('click', '.showExam', async function() {
         '                </div>\n' +
         '\n' +
         '            </div>';
-    console.log(getExamVar.data);
     mainDiv.innerHTML = examHTML;
     flagFun();
     onReadyFunExam();
