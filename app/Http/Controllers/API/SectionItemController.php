@@ -51,7 +51,7 @@ class SectionItemController extends Controller
         if (!$sectionItem) :
             return apiResponse(false, _('لم يتم العثور على العنصر'), [], 404);
         endif;
-        if (!$sectionItem->section->lecture->owners->contains($user) && $user->role->number >= 4 ) :
+        if (!$sectionItem->section->lecture->owners->contains($user) && $user->role->number >= 4) :
             return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض العنصر'), [], 403);
         endif;
         $data = [
@@ -61,20 +61,23 @@ class SectionItemController extends Controller
         if ($sectionItem->lesson_id) :
             $lesson = $sectionItem->item;
             $userLesson = UserLesson::firstOrCreate([
-                'lesson_id'=>$lesson->id,
-                'user_id'=>$user->id,
+                'lesson_id' => $lesson->id,
+                'user_id' => $user->id,
             ]);
             $urls = getVideoUrl(getVideoId($lesson->url));
             $exam = $lesson->exam ?? null;
 
             $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
 
-            $finished = $passedExam ? $passedExam->finished || ( $passedExam->ended_at ? $passedExam->ended_at <= now() : false ) : false;
-            if (!$passedExam->finished && $finished):
+            $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
+            if ($passedExam) :            
+            if (!$passedExam->finished && $finished) :
                 $passedExam->ended_at = now();
             endif;
             $passedExam->finished = true;
             $passedExam->save();
+        endif;
+
             $item = [
                 'type' => $lesson->type,
 
@@ -94,21 +97,23 @@ class SectionItemController extends Controller
 
             $exam = $sectionItem->item;
             $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
-            $finished = $passedExam ? $passedExam->finished || ( $passedExam->ended_at ? $passedExam->ended_at <= now() : false ) : false;
+            $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
             
-            if (!$passedExam->finished && $finished):
-                $passedExam->ended_at = now();
+            if ($passedExam) :
+                if (!$passedExam->finished && $finished) :
+                    $passedExam->ended_at = now();
+                endif;
+                $passedExam->finished = true;
+                $passedExam->save();
             endif;
-            $passedExam->finished = true;
-            $passedExam->save();
-
+            
             $item = [
                 'id' => $exam->id,
                 'questionsCount' => $exam->questions_count,
                 'examName' => $exam->title,
                 'finished' => $finished,
                 'passedExamId' => $passedExam ? $passedExam->id : null,
-                'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where('correct',1)->count() : null,
+                'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where('correct', 1)->count() : null,
             ];
 
         endif;
