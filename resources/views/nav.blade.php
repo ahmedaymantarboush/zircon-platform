@@ -91,7 +91,7 @@
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class='studentIcon'>
-                                    <i class='fa fa-user'></i>
+                                    <i class="fa-solid fa-user-graduate"></i>
                                 </span>
                                 <span class='studentName'>علي علاء الدين السيد</span>
                             </button>
@@ -104,7 +104,7 @@
                                         <span class="line"></span>
                                         <span class="line"></span>
                                         <span class='navDropIcon'>
-                                            <i class='fa fa-user'></i>
+                                            <i class="fa-solid fa-house-chimney-user"></i>
                                         </span>
                                         الصفحة الرئيسية
                                     </a>
@@ -117,7 +117,7 @@
                                         <span class="line"></span>
                                         <span class="line"></span>
                                         <span class='navDropIcon'>
-                                            <i class='fa fa-user'></i>
+                                            <i class="fa-solid fa-graduation-cap"></i>
                                         </span>
                                         محاضراتي
                                     </a>
