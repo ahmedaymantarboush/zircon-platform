@@ -526,7 +526,7 @@ $(document).on('click','.takeExam',async function (){
         for (let j=1;j <= getQuestionVar.data.question.choices.length;j++){
             let addSelected ='';
             let addChecked = '';
-            if(getQuestionVar.data.question.choices[j-1].id == getQuestionVar.data.question.choice){
+            if(getQuestionVar.data.question.choices[j-1].id == getQuestionVar.data.choice){
                 alert('تمم');
                 addSelected ='selectedAnser';
                 addChecked = 'checked';
