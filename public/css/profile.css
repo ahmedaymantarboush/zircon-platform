@@ -1128,6 +1128,7 @@ div.waves {
         /* height: 33cm !important;
         width: 20.7cm !important; */
         page-break-after: always;
+        display: inline-block;
     }
     .printable {
         page-break-after: always;
