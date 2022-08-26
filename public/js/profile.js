@@ -149,9 +149,9 @@ function PrintElem(element, customStyles = "") {
     Popup(document.querySelector(element).innerHTML, customStyles);
 }
 function Popup(data) {
-    var myWindow = window.open("", "my div", "height=400,width=600");
+    let myWindow = window.open("", "my div", "height=400,width=600");
     myWindow.document.write(
-        `<!DOCTYPE html>
+        `
 <html lang="en">
         <head>${
             document.querySelector("head").innerHTML
