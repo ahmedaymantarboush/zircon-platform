@@ -229,7 +229,7 @@ checkInputs.forEach((ele) => {
                 search.filters[objKey].push(item.value);
             }
             if (objKey == "price") {
-                let priceProp = search.filters.price[ele.name];
+                let priceProp = ele.name;
                 if (ele.checked) {
                     search.filters.price[priceProp] = true;
                 } else {
