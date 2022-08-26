@@ -618,7 +618,7 @@ $(document).on('click','.takeExam',async function (){
         هل انت متأكد انك تريد انهاء الامتحان؟
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+        <button type="button" class="btn btn-secondary closeModelBtn" data-bs-dismiss="modal">الغاء</button>
         <button type="button" class="btn btn-primary finishBtn">انهاء</button>
       </div>
     </div>
@@ -661,7 +661,7 @@ $(document).on('click','.takeExam',async function (){
          body: form6,
      })
      let finishExamData = await finishExam.json();
-     $('.modelFinish').toggle();
+     $('.closeModelBtn').click();
      form7 = new FormData()
      form7.append('data', JSON.stringify({
          'id': parseInt(itemID),
