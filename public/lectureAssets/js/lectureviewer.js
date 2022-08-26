@@ -392,12 +392,11 @@ $(document).on('click','.startExam',function (){
 /////////////////Exam view first time/////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 
-let getQuestionVar ='';
-let getExamVar ='';
+let getQuestionVar;
+let getExamVar;
 let examHTML = '';
 $(document).on('click','.takeExam',function (){
     // Ajax Functions //
-
     function getExam(id){
         form1 = new FormData()
         form1.append('data', JSON.stringify({
@@ -410,8 +409,10 @@ $(document).on('click','.takeExam',function (){
         let tkn = window.csrf_token.value
         xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
         xhttp.onreadystatechange = function (e) {
-            data = JSON.parse(this.responseText);
-            getExamVar = data;
+            if(this.readyState ==4){
+                data = JSON.parse(this.responseText);
+                getExamVar = data;
+            }
         }
         xhttp.send(form1);
     }
@@ -427,8 +428,10 @@ $(document).on('click','.takeExam',function (){
         let tkn = window.csrf_token.value
         xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
         xhttp.onreadystatechange = function (e) {
-            Qdata = JSON.parse(this.responseText);
-            getQuestionVar = Qdata;
+            if(this.readyState ==4){
+                Qdata = JSON.parse(this.responseText);
+                getQuestionVar = Qdata;
+            }
         }
         xhttp.send(form2);
 
