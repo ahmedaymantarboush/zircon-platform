@@ -70,11 +70,19 @@ class AnswerdQuestionController extends Controller
         endif;
         $choiceId = $data['choiceId'] ?? null;
         $answer = $data['answer'] ?? null;
+        $flagged = $data['flagged'] ?? null;
         $choice = Choice::where(['id'=>$choiceId,'question_id'=>$answerdQuestion->question->id])->first();
 
-        $answerdQuestion->choice_id = $choice->id;
-        $answerdQuestion->answer = $answer;
-        $answerdQuestion->correct = $choice->correct;
+        if ($choiceId){
+            $answerdQuestion->choice_id = $choice->id;
+            $answerdQuestion->correct = $choice->correct;
+        }
+        if ($answer){
+            $answerdQuestion->answer = $answer;
+        }
+        if (is_null($flagged)){
+            $answerdQuestion->flagged = $flagged;
+        }
         $answerdQuestion->save();
 
         $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId])->count();
