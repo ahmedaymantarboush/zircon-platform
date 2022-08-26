@@ -238,6 +238,6 @@ checkInputs.forEach((ele) => {
             }
             console.log(ele);
         }
-        console.log(search.filters.price);
+        console.log(search.filters);
     });
 });
