@@ -664,15 +664,6 @@ $(document).on('click', '.takeExam', async function() {
     mainDiv.innerHTML = examHTML;
     flagFun();
     onReadyFunExam();
-    if(getExamVar.data.examEndedAt ==null){
-        $('.countdown').each(function (){
-            $(this).html('وقت مفتوح');
-        });
-    }else {
-        timerFun(getExamVar.data.examEndedAt);
-        setInterval(timerFun(getExamVar.data.examEndedAt),1000);
-    }
-
 });
 $(document).on('click', '.finishBtn', async function() {
     //Ajax
@@ -758,7 +749,9 @@ function timerFun(endDate) {
 }
 
 function addTimer(dataEnd) {
-    setInterval(timerFun(dataEnd), 1000);
+    setInterval(() => {
+        timerFun(dataEnd)
+    }, 1000);
 }
 $(document).ready(function() {
     let lesson_name = document.querySelectorAll('.lesson_name')[0];
