@@ -684,6 +684,9 @@ nav .customeContainer {
 .barcodeText {
     display: none;
 }
+text {
+    display: none;
+}
 /******  start swiper cards **********/
 .myCourses {
     padding: 2rem 1rem;
