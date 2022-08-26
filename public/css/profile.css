@@ -597,6 +597,8 @@ nav .customeContainer {
 .profileDetails {
     position: relative;
     padding: 0;
+
+    page-break-after: always;
 }
 .profileImg {
     width: 10rem;
