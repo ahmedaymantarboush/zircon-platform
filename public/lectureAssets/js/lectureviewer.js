@@ -289,7 +289,6 @@ function getExam(exam_id){
     return getExamData;
 }
 function showTakeExam(data){
-    console.log(data);
     let take_exam ='<div class="take_exam d-flex justify-content-center">\n' +
         '                <div class="row">\n' +
         '                    <div class="col-12 d-flex justify-content-center">\n' +
@@ -312,7 +311,7 @@ function showTakeExam(data){
             '                                style="margin-top: 20px;">ابدأ</a>\n' +
             '                        </div>';
         mainDiv.innerHTML = take_exam;
-
+        examPassedID = data.data.item.passedExamId;
     }else {
         examPassedID = data.data.item.passedExamId;
         //if exam finished
@@ -651,7 +650,7 @@ $(document).on('click','.takeExam',async function (){
      //Ajax
      form6 = new FormData()
      form6.append('data', JSON.stringify({
-         'id': parseInt(examID),
+         'id': parseInt(examPassedID),
      }))
      let finishExam = await fetch(APP_URL+"/api/exams/finish", {
          method: "POST",
