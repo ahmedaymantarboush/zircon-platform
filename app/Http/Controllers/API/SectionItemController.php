@@ -69,11 +69,7 @@ class SectionItemController extends Controller
 
             $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
 
-            if ($passedExam) :
-                if ($passedExam->finished || $passedExam->ended_at <= now()) :
-                    $finished =  true;
-                endif;
-            endif;
+            $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
 
             if ($finished) :
                 if (!$passedExam->finished) :
@@ -103,12 +99,7 @@ class SectionItemController extends Controller
 
             $exam = $sectionItem->item;
             $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
-     
-            if ($passedExam) :
-                if ($passedExam->finished || $passedExam->ended_at <= now()) :
-                    $finished =  true;
-                endif;
-            endif;
+            $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
 
             if ($finished) :
                 if (!$passedExam->finished) :
