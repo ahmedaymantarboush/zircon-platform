@@ -81,7 +81,7 @@ Route::group(['middleware'=>['auth', 'teacher'],'prefix'=>'admin'],function () {
 Route::post('lectures/{slug}/buy',[LectureController::class, 'buy'])->middleware('auth')->name('admin.lectures.buy');
 
 //  ADMIN ROUTES
-Route::get('profile',[UserController::class, 'profile'])->middleware('auth');
+Route::get('profile',[UserController::class, 'profile'])->name('user.profile')->middleware('auth');
 
 //  ADMIN ROUTES
 Route::post('recharge',[BalanceCardController::class, 'recharge'])->middleware('auth')->name('balance.recharge');

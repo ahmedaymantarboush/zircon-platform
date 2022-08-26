@@ -19,16 +19,19 @@ let funChangeImagesDark = function () {
     let paperImg1 = document.querySelector(".paper img");
     let paperImg2 = document.querySelector(".paper2 img");
     if (document.documentElement.classList.contains("dark")) {
-        if(window.innerWidth <=768){
+        if (window.innerWidth <= 768) {
             paperImg2.setAttribute("src", "public/imgs/mob_banner_dark.png");
-        }else {
-            paperImg2.setAttribute("src", "public/imgs/profile_banner_dark.png");
+        } else {
+            paperImg2.setAttribute(
+                "src",
+                "public/imgs/profile_banner_dark.png"
+            );
         }
         paperImg1.setAttribute("src", "public/imgs/paper2_dark_p.png");
     } else {
-        if(window.innerWidth <=768){
+        if (window.innerWidth <= 768) {
             paperImg2.setAttribute("src", "public/imgs/mob_banner.png");
-        }else {
+        } else {
             paperImg2.setAttribute("src", "public/imgs/profile_banner.png");
         }
         paperImg1.setAttribute("src", "public/imgs/paper2.png");
@@ -116,16 +119,13 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
 
-let totalAnswers = Number(
-    document.querySelector(".totalAnswers").textContent.trim()
-);
-let correctAnswers = Number(
-    document.querySelector(".correctAnswers").textContent.trim()
-);
+let totalAnswers = correctAnswers + wrongAnswers;
 let correctAnswersPrecentage =
     Math.round((correctAnswers * 10000) / totalAnswers) / 100;
+let wrongAnswersPrecentage =
+    Math.round((wrongAnswers * 10000) / totalAnswers) / 100;
 var options2 = {
-    series: [100 - correctAnswersPrecentage, correctAnswersPrecentage],
+    series: [correctAnswersPrecentage, wrongAnswersPrecentage],
     chart: {
         type: "donut",
         fontFamily: "poppins",
@@ -141,10 +141,30 @@ chart.render();
 /////////////
 //// print btn
 ////////////
+printPage = document.querySelector("#printPage");
+printPage.style.display = "none";
+
+function PrintElement(selector, customStyles = "") {
+    Popup(document.querySelector(selector).outerHTML, customStyles);
+}
+
+function Popup(data, customStyles = "") {
+    const printPageWindow = printPage.contentWindow;
+
+    const printPageDocument = printPageWindow.document;
+    printPageDocument.querySelector(
+        "body"
+    ).innerHTML = `<style>${customStyles}</style>${data}`;
+    printPageWindow.focus();
+    printPageWindow.print();
+    printPageWindow.close();
+}
+
 let printBtn = document.querySelector(".printBtn");
 printBtn.addEventListener("click", function () {
-    window.print();
+    PrintElement(".profileDetails");
 });
+
 ////////// Barcode
 let barcodeText = document.querySelector(".barcodeText");
 JsBarcode("#profileBarCode", barcodeText.textContent);

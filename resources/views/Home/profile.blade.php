@@ -209,6 +209,7 @@
         <div class="modal-dialog" role="document">
             <form method="POST" action="{{route('user.update')}}" class="modal-content">
                 @csrf
+                <input type="text" name="id" value="{{$user->id}}">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">تعديل الملف الشخصي</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -292,6 +293,7 @@
             </form>
         </div>
     </div>
+    <iframe src="#" hidden style="display: none" id="printPage" frameborder="0"></iframe>
 @endsection
 
 @section('javascript')
@@ -321,8 +323,10 @@
         ->get();
     @endphp
     <script>
-        exams = @php echo $passedExams->pluck('percentage'); echo"\n"; @endphp;
-        dates = @php echo $passedExams->pluck('ended_at'); echo"\n"; @endphp;
+        exams = @php echo $passedExams->pluck('percentage'); echo";\n"; @endphp
+        dates = @php echo $passedExams->pluck('ended_at'); echo";\n"; @endphp
+        correctAnswers = {{ $user->answerdQuestions()->where('correct', 1)->count() }};
+        wrongAnswers = {{ $user->answerdQuestions()->where('correct', 0)->count() }};
     </script>
     <script src="{{ URL::asset('js/profile.js') }}"></script>
 @endsection

@@ -131,7 +131,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-7 nonePrint rightProfile">
+                <div class="col-lg-8 col-md-7  rightProfile">
                     <div class="row">
                         <div class="col-lg-4 col-sm-6 mb-30">
                             <div class="addCharge ">
@@ -187,7 +187,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5 mb-30 leftProfile ">
-                    <div class="whiteBox profileDetails ">
+                    <div class="whiteBox profileDetails printable ">
                         <div class="profileImg">
                             <img src="{{asset('imgs/user.png')}}" alt="">
                         </div>
@@ -229,10 +229,7 @@
                                     <span class='type'> المحافظة:</span>
                                     <span class='info'>القاهرة</span>
                                 </div>
-                                <div class="item">
-                                    <span class='type'>مكان الحضور:</span>
-                                    <span class='info'>المنصة</span>
-                                </div>
+
                                 <div class='barcodeBox'>
                                     <svg class="barcode" id='profileBarCode'></svg>
                                     <span class='barcodeText'>as4df5ef12as4df5ef1212345</span>

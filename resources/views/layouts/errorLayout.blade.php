@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-rtl.min.css') }}">
     @include('includes.appUrl')
     @yield('css')
-
+    <link rel="stylesheet" href="{{asset('css/nav.css')}}">
 </head>
 
 <body>

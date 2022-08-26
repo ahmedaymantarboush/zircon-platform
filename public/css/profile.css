@@ -39,6 +39,7 @@ Bold: 700
     box-sizing: border-box;
     outline: none;
     list-style: none;
+
     word-wrap: break-word;
 
     text-transform: capitalize;
@@ -597,6 +598,8 @@ nav .customeContainer {
 .profileDetails {
     position: relative;
     padding: 0;
+
+    page-break-after: always;
 }
 .profileImg {
     width: 10rem;
@@ -682,6 +685,9 @@ nav .customeContainer {
     margin-top: 2rem;
 }
 .barcodeText {
+    display: none;
+}
+text {
     display: none;
 }
 /******  start swiper cards **********/
@@ -811,6 +817,9 @@ nav .customeContainer {
 }
 .swiper-button-disabled {
     opacity: 0 !important;
+}
+option {
+    background: var(--second-bg);
 }
 /*****************************************
 ********** start footer ******************
@@ -1112,4 +1121,17 @@ div.waves {
 .dark footer .wave3 path {
     fill: rgba(64, 83, 104, 0.4);
     transition: 0.3s all ease;
+}
+@media print {
+    .profileDetails {
+        font-size: 8rem;
+        border: 2px solid #000;
+        /* height: 33cm !important;
+        width: 20.7cm !important; */
+    }
+    .printable {
+    }
+    .dark .someDetailsHeading {
+        color: red;
+    }
 }
