@@ -83,7 +83,6 @@ class AnswerdQuestionController extends Controller
         if ($answer){
             $answerdQuestion->answer = $answer;
         }
-        return $data;
         if (is_null($flagged)){
             $answerdQuestion->flagged = $flagged;
         }
@@ -91,7 +90,8 @@ class AnswerdQuestionController extends Controller
         
         $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId])->count();
         
-
+        
+        return $data;
         $passedExam->percentag = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId])->count()) * 100, 2);
         $passedExam->save();
         dd($data);
