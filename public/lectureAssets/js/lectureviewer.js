@@ -665,8 +665,8 @@ $(document).on('click','.takeExam',async function (){
             $(this).html('وقت مفتوح');
         });
     }else {
-        timerFun(getExamVar.data.examEndedAt);
-        setInterval(timerFun(getExamVar.data.examEndedAt),1000);
+
+        addTimer(getExamVar.data.examEndedAt);
     }
 
 });
