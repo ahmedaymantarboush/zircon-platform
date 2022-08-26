@@ -339,7 +339,8 @@ $(".add_question").click(function() {
 ////////////////////////////////////////////////////////////////////////
 $(document).on("change", ".select_part", function() {
     let question_box = $(this).parent().closest(".question-box");
-    var selectedValue = $(this).find("option[selectet]").text();
+    var selectedValue = $(this).val();
+    console.log(selectedValue);
     $(question_box).find(".que_title").text(selectedValue);
 });
 ///////////////////////////////////////////////////////////////////////

@@ -848,17 +848,18 @@ $(document).on('click','.showExam',async function (){
         '\n' +
         '            </div>';
     mainDiv.innerHTML = examHTML;
-    flagFun();
-    onReadyFunExam();
-    console.log(getExamVar.data.examEndedAt);
     if(getExamVar.data.examEndedAt == null){
-
+        alert('اشطا');
         $('.countdown').each(function (){
             this.innerHTML= 'وقت مفتوح';
         });
     }else {
         addTimer(getExamVar.data.examEndedAt);
     }
+    flagFun();
+    onReadyFunExam();
+
+
 
 });
 
@@ -891,3 +892,7 @@ function timerFun(endDate){
 function addTimer(dataEnd){
     setInterval(timerFun(dataEnd),1000);
 }
+$(document).ready(function (){
+    let lesson_name = document.querySelectorAll('.lesson_name')[0];
+    lesson_name.click();
+});
