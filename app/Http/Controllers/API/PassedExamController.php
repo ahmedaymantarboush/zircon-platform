@@ -59,7 +59,7 @@ class PassedExamController extends Controller
         $questions = [];
         foreach ($passedExam->answers() as $answerdQuestion) :
             $choices = [];
-            foreach ($answerdQuestion->choices as $choice) :
+            foreach ($answerdQuestion->question->choices as $choice) :
                 $choices[] = [
                     'id' => $choice->id,
                     'correct' => $choice->correct,
