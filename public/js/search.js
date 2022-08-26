@@ -219,7 +219,7 @@ let search = {
     },
 };
 checkInputs.forEach((ele) => {
-    ele.addEventListener("change", function () {
+    ele.addEventListener("change", async function () {
         search.filters.grades = [];
         search.filters.parts = [];
 
@@ -239,41 +239,40 @@ checkInputs.forEach((ele) => {
             console.log(ele);
         }
         console.log(search.filters);
-    });
+        let editFun = async function (url, myData, el = null) {
+            try {
+                let postData = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json",
+                        "X-CSRF-TOKEN": window.csrf_token.value,
+                    },
+                    body: myData,
+                });
 
-    let editFun = async function (url, myData, el = null) {
-        try {
-            let postData = await fetch(url, {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "X-CSRF-TOKEN": window.csrf_token.value,
-                },
-                body: myData,
-            });
+                let responseData = await postData.json();
 
-            let responseData = await postData.json();
-
-            if (postData.status == 200) {
-                return responseData;
-            }
-            if (postData.status == 404) {
+                if (postData.status == 200) {
+                    return responseData;
+                }
+                if (postData.status == 404) {
+                    return null;
+                }
                 return null;
-            }
-            return null;
-        } catch (err) {}
-    };
+            } catch (err) {}
+        };
 
-    let sendObj = {
-        search: search,
-    };
+        let sendObj = {
+            search: search,
+        };
 
-    form = new FormData();
-    form.append("data", JSON.stringify(sendObj));
+        form = new FormData();
+        form.append("data", JSON.stringify(sendObj));
 
-    let myResponse = editFun(
-        `${window.location.protocol}//${window.location.host}/api/search`,
-        form
-    );
-    console.log(myResponse);
+        let myResponse = await editFun(
+            `${window.location.protocol}//${window.location.host}/api/search`,
+            form
+        );
+        console.log(myResponse);
+    });
 });
