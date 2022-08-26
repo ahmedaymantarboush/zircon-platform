@@ -1120,8 +1120,8 @@ div.waves {
     .profileDetails {
         font-size: 8rem;
         border: 2px solid #000;
-        width: 43cm !important;
-        height: 27cm !important;
+        height: 43cm !important;
+        width: 27cm !important;
         overflow: hidden;
     }
     .dark .someDetailsHeading {
