@@ -273,8 +273,7 @@ checkInputs.forEach((ele) => {
 
     let myResponse = editFun(
         `${window.location.protocol}//${window.location.host}/api/search`,
-        form,
-        e
+        form
     );
     console.log(myResponse);
 });
