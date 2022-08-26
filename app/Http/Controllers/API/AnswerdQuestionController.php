@@ -71,9 +71,9 @@ class AnswerdQuestionController extends Controller
         $choiceId = $data['choiceId'] ?? null;
         $answer = $data['answer'] ?? null;
         $flagged = $data['flagged'] ?? null;
-        $choice = Choice::where(['id'=>$choiceId,'question_id'=>$answerdQuestion->question->id])->first();
-
+        
         if ($choiceId){
+            $choice = Choice::where(['id'=>$choiceId,'question_id'=>$answerdQuestion->question->id])->first();
             $answerdQuestion->choice_id = $choice->id;
             $answerdQuestion->correct = $choice->correct;
         }
