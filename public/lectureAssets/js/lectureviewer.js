@@ -137,7 +137,7 @@ function flagFun(){
         }
     }
 }
-$(document).on('click','.question_head',function (){
+$(document).on('click','.question_head',async function (){
     let flagType = $(this).find('i').attr('flag');
     let flagnum = $(this).find('i').attr('queNamber');
     flagnum = '#flagIcon_'+ flagnum;
@@ -151,6 +151,22 @@ $(document).on('click','.question_head',function (){
         let flagIcon = document.querySelector(flagnum);
         flagIcon.classList.remove("hide_icon");
         flagIcon.classList.add("show_icon");
+        //Ajax
+        form3 = new FormData()
+        form3.append('data', JSON.stringify({
+            'id': parseInt($(this).attr('queID')),
+            'flagged': true
+        }))
+        let resFlag = await fetch(APP_URL+"/api/questions/sendAnswer", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: form3,
+        })
+        let resFlagData = await resFlag.json();
+        console.log(resFlag);
     }else {
         $(this).find('i').attr('flag',0);
         $(this).find('i').removeClass('flagQuestion');
@@ -161,7 +177,24 @@ $(document).on('click','.question_head',function (){
         let flagIcon = document.querySelector(flagnum);
         flagIcon.classList.remove("show_icon");
         flagIcon.classList.add("hide_icon");
+        //Ajax
+        form3 = new FormData()
+        form3.append('data', JSON.stringify({
+            'id': parseInt($(this).attr('queID')),
+            'flagged': false
+        }))
+        let resFlag = await fetch(APP_URL+"/api/questions/sendAnswer", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: form3,
+        })
+        let resFlagData = await resFlag.json();
+        console.log(resFlag);
     }
+
 });
 $(document).on('click','.anserBox',function (){
     addDisabled();
@@ -463,7 +496,7 @@ $(document).on('click','.takeExam',async function (){
         }
         examHTML += '<div class="question '+active+' col-12">\n' +
             '                                    <div class="title_exam d-flex justify-content-between">\n' +
-            '                                        <div class="question_head">\n' +
+            '                                        <div class="question_head" queID="'+getExamVar.data.questions[i-1]+'">\n' +
             '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="'+parseInt(getQuestionVar.data.flagged)+'"\n' +
             '                                                queNamber="'+i+'"></i>\n' +
             '                                            <input type="checkbox" class="'+inputclass+'">\n' +
