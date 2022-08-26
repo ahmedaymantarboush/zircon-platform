@@ -96,34 +96,33 @@ function onReadyFunExam(){
             },
         },
     });
+
 }
 /////////////////add flag//////////////
-
-$(document).ready(function (){
-    onReadyFunExam();
-    function addDisabled(){
-        let correctAnsers = document.querySelectorAll('.correcrAnser');
-        let wrongAnsers = document.querySelectorAll('.wrongAnser');
-        let ansers = document.querySelectorAll('.anserBox');
-        for(let i=0;i< correctAnsers.length;i++){
-            let queNamber = correctAnsers[i].getAttribute('queNamber');
-            for(let j=0;j<ansers.length;j++){
-                if(ansers[j].getAttribute('queNamber')== queNamber){
-                    ansers[j].classList.add('disabledAnser');
-                }
+function addDisabled(){
+    let correctAnsers = document.querySelectorAll('.correcrAnser');
+    let wrongAnsers = document.querySelectorAll('.wrongAnser');
+    let ansers = document.querySelectorAll('.anserBox');
+    for(let i=0;i< correctAnsers.length;i++){
+        let queNamber = correctAnsers[i].getAttribute('queNamber');
+        for(let j=0;j<ansers.length;j++){
+            if(ansers[j].getAttribute('queNamber')== queNamber){
+                ansers[j].classList.add('disabledAnser');
             }
-
         }
-        for(let i=0;i< wrongAnsers.length;i++){
-            let queNamber = wrongAnsers[i].getAttribute('queNamber');
-            for(let j=0;j<ansers.length;j++){
-                if(ansers[j].getAttribute('queNamber')== queNamber){
-                    ansers[j].classList.add('disabledAnser');
-                }
-            }
 
-        }
     }
+    for(let i=0;i< wrongAnsers.length;i++){
+        let queNamber = wrongAnsers[i].getAttribute('queNamber');
+        for(let j=0;j<ansers.length;j++){
+            if(ansers[j].getAttribute('queNamber')== queNamber){
+                ansers[j].classList.add('disabledAnser');
+            }
+        }
+
+    }
+}
+function flagFun(){
     let allFlags= document.querySelectorAll('.unflagQuestion');
     for(let i=0;i < allFlags.length;i++){
         let flag =allFlags[i].getAttribute('flag');
@@ -137,70 +136,73 @@ $(document).ready(function (){
             flagIcon.classList.add("show_icon");
         }
     }
+}
+$(document).on('click','.question_head',function (){
+    let flagType = $(this).find('i').attr('flag');
+    let flagnum = $(this).find('i').attr('queNamber');
+    flagnum = '#flagIcon_'+ flagnum;
+    if(flagType == 0){
+        $(this).find('i').attr('flag',1);
+        $(this).find('i').removeClass('unflagQuestion');
+        $(this).find('i').addClass('flagQuestion');
+        $(this).find('input').prop('checked',true);
+        $(this).find('input').removeClass('uncheckflag');
+        $(this).find('input').addClass('checkflag');
+        let flagIcon = document.querySelector(flagnum);
+        flagIcon.classList.remove("hide_icon");
+        flagIcon.classList.add("show_icon");
+    }else {
+        $(this).find('i').attr('flag',0);
+        $(this).find('i').removeClass('flagQuestion');
+        $(this).find('i').addClass('unflagQuestion');
+        $(this).find('input').prop('checked',false);
+        $(this).find('input').removeClass('checkflag');
+        $(this).find('input').addClass('uncheckflag');
+        let flagIcon = document.querySelector(flagnum);
+        flagIcon.classList.remove("show_icon");
+        flagIcon.classList.add("hide_icon");
+    }
+});
+$(document).on('click','.anserBox',function (){
     addDisabled();
-
-    $('.question_head').click(function (){
-        let flagType = $(this).find('i').attr('flag');
-        let flagnum = $(this).find('i').attr('queNamber');
-        flagnum = '#flagIcon_'+ flagnum;
-        if(flagType == 0){
-            $(this).find('i').attr('flag',1);
-            $(this).find('i').removeClass('unflagQuestion');
-            $(this).find('i').addClass('flagQuestion');
-            $(this).find('input').prop('checked',true);
-            $(this).find('input').removeClass('uncheckflag');
-            $(this).find('input').addClass('checkflag');
-            let flagIcon = document.querySelector(flagnum);
-            flagIcon.classList.remove("hide_icon");
-            flagIcon.classList.add("show_icon");
-        }else {
-            $(this).find('i').attr('flag',0);
-            $(this).find('i').removeClass('flagQuestion');
-            $(this).find('i').addClass('unflagQuestion');
-            $(this).find('input').prop('checked',false);
-            $(this).find('input').removeClass('checkflag');
-            $(this).find('input').addClass('uncheckflag');
-            let flagIcon = document.querySelector(flagnum);
-            flagIcon.classList.remove("show_icon");
-            flagIcon.classList.add("hide_icon");
-        }
-    });
-    $('.anserBox').click(function (){
-        addDisabled();
-        let queNamber = $(this).attr('queNamber');
-        let ansers = document.querySelectorAll('.anserBox');
-        let disabledAnsers= document.querySelectorAll('.disabledAnser');
-        if(disabledAnsers.length !=0){
-            for(let k=0;k <disabledAnsers.length;k++){
-                if(disabledAnsers[k].getAttribute('queNamber') != queNamber){
-                    for(let i=0;i<ansers.length;i++){
-                        if(ansers[i].getAttribute('queNamber')==queNamber){
-                            ansers[i].classList.remove("selectedAnser");
-                        }
+    let queNamber = $(this).attr('queNamber');
+    let ansers = document.querySelectorAll('.anserBox');
+    let disabledAnsers= document.querySelectorAll('.disabledAnser');
+    if(disabledAnsers.length !=0){
+        for(let k=0;k <disabledAnsers.length;k++){
+            if(disabledAnsers[k].getAttribute('queNamber') != queNamber){
+                for(let i=0;i<ansers.length;i++){
+                    if(ansers[i].getAttribute('queNamber')==queNamber){
+                        ansers[i].classList.remove("selectedAnser");
                     }
-                    let yesId = '#yesIcon_'+ queNamber;
-                    let yesIcon = document.querySelector(yesId);
-                    yesIcon.classList.remove("hide_icon");
-                    yesIcon.classList.add("show_icon");
-                    $(this).find('input').prop('checked',true);
-                    $(this).addClass('selectedAnser');
                 }
+                let yesId = '#yesIcon_'+ queNamber;
+                let yesIcon = document.querySelector(yesId);
+                yesIcon.classList.remove("hide_icon");
+                yesIcon.classList.add("show_icon");
+                $(this).find('input').prop('checked',true);
+                $(this).addClass('selectedAnser');
             }
-        }else {
-            for(let i=0;i<ansers.length;i++){
-                if(ansers[i].getAttribute('queNamber')==queNamber){
-                    ansers[i].classList.remove("selectedAnser");
-                }
-            }
-            let yesId = '#yesIcon_'+ queNamber;
-            let yesIcon = document.querySelector(yesId);
-            yesIcon.classList.remove("hide_icon");
-            yesIcon.classList.add("show_icon");
-            $(this).find('input').prop('checked',true);
-            $(this).addClass('selectedAnser');
         }
+    }else {
+        for(let i=0;i<ansers.length;i++){
+            if(ansers[i].getAttribute('queNamber')==queNamber){
+                ansers[i].classList.remove("selectedAnser");
+            }
+        }
+        let yesId = '#yesIcon_'+ queNamber;
+        let yesIcon = document.querySelector(yesId);
+        yesIcon.classList.remove("hide_icon");
+        yesIcon.classList.add("show_icon");
+        $(this).find('input').prop('checked',true);
+        $(this).addClass('selectedAnser');
+    }
 
-    });
+});
+$(document).ready(function (){
+    onReadyFunExam();
+    flagFun();
+    addDisabled();
 });
 //ajax
 let examID =0;
@@ -349,6 +351,7 @@ function getItem(data){
             }
 
         }
+        loadMediaPlayerJs();
     }else if(data.data.type == 'exam'){
         showTakeExam(data);
         examID = data.data.item.id;
@@ -441,19 +444,7 @@ $(document).on('click','.takeExam',async function (){
         form2.append('data', JSON.stringify({
             'id': parseInt(getExamVar.data.questions[i-1])
         }))
-        // var xhttp = new XMLHttpRequest();
-        // xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
-        // xhttp.setRequestHeader('Accept', 'application/json');
-        // let tkn = window.csrf_token.value
-        // xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-        // xhttp.onreadystatechange = function (e) {
-        //     if(this.readyState ==4){
-        //         getQuestionVar = JSON.parse(this.responseText);
-        //         console.log(getQuestionVar);
-        //         add2(getQuestionVar);
-        //     }
-        // }
-        // xhttp.send(form2);
+
         let getQuestion = await fetch(APP_URL+"/api/questions/getQuestion", {
             method: "POST",
             headers: {
@@ -501,17 +492,16 @@ $(document).on('click','.takeExam',async function (){
             }
             examHTML += '<div class="col-12">\n' +
                 '                                            <div choiceID="'+ getQuestionVar.data.question.choices[j-1].id +'" class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
-                '                                                queNamber="'+j+'" >\n' +
+                '                                                queNamber="'+i+'" >\n' +
                 '                                                <input type="radio" name="anser'+i+'"\n' +
                 '                                                    value="anser_database_id" '+addChecked+'>\n' +
-                '                                                <span class="anser_text">getQuestionVar.data.question.choices[j-1].text</span>\n' +
+                '                                                <span class="anser_text">'+getQuestionVar.data.question.choices[j-1].text+'</span>\n' +
                 '                                            </div>\n' +
                 '                                        </div>';
         }
         examHTML+= '</div>';
 
     }
-
     if(getExamVar.data.questions.length >=2){
         examHTML += '<div class="col-12">\n' +
             '                                    <div class="btn-control d-flex justify-content-center">\n' +
@@ -531,5 +521,6 @@ $(document).on('click','.takeExam',async function (){
         '\n' +
         '            </div>';
     mainDiv.innerHTML = examHTML;
+    flagFun();
     onReadyFunExam();
 });
