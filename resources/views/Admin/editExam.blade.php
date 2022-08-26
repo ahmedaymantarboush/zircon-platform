@@ -55,10 +55,13 @@
                                         {{-- ///////////////////////////////////////////////////// Questions Loop //////////////////////////////////////////////////////////////////// --}}
                                         {{-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
                                         @if ($exam->dynamic)
-                                            @for ($i = 1; $i <= $exam->questions_count; $i++)
+                                            @foreach ($exam->dynamicQuestions as  $index => $dynamicQuestion)
+                                            @php
+                                                $i = $index + 1;
+                                            @endphp
                                                 {{-- ////////////// بدل الi ضيف counter /////////////////// --}}
                                                 <div class="col-12">
-                                                    <div class="question-box">
+                                                    <div class="question-box" data-id="{{$dynamicQuestion->id}}">
                                                         <div class="d-flex justify-content-between">
                                                             <div class="question_title">
                                                                 <span class="que_namber">السؤال <span
@@ -105,7 +108,7 @@
                                                                             اختر الجزئية التعليمية
                                                                         </option>
                                                                         @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $part)
-                                                                            <option value="{{ $part->id }}">
+                                                                            <option @selected($part->id == $dynamicQuestion->id) value="{{ $part->id }}">
                                                                                 {{ $part->name }}
                                                                             </option>
                                                                         @endforeach
@@ -121,7 +124,7 @@
                                                                         class="form-label input_label">عدد الأسئلة:
                                                                     </label>
                                                                     <input type="number" name='count_{{ $i }}'
-                                                                        value="{{ old("count_$i") }}"
+                                                                        value="{{ old("count_$i") ?? $dynamicQuestion->count }}"
                                                                         class="form-control-lg form-control"
                                                                         id="formGroupExampleInput"
                                                                         placeholder="ادخل عدد الأسئلة"
@@ -135,14 +138,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            @endfor
+                                            @endforeach
                                         @else
                                             @foreach ($exam->questions as $index => $question)
                                                 @php
                                                     $i = $index + 1;
                                                 @endphp
                                                 <div class="col-12">
-                                                    <div class="question-box">
+                                                    <div class="question-box" data-id="{{$question->id}}">
                                                         <div class="d-flex justify-content-between">
                                                             <div class="question_title">
                                                                 <span class="que_namber">السؤال <span
@@ -186,7 +189,7 @@
                                                                         name="part_{{ $i }}"
                                                                         id="formGroupExampleInput"
                                                                         data-live-search="true">
-                                                                        <option value="اختر الجزئية التعليمية" selected>
+                                                                        <option value="اختر الجزئية التعليمية">
                                                                             اختر الجزئية التعليمية
                                                                         </option>
                                                                         @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $part)
