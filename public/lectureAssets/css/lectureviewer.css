@@ -241,7 +241,10 @@ html,body{
     width: 100%;
     border-radius: 15px;
 }
-
+.tab-item2
+.tab-num2 span{
+    font-size: 25px;
+}
 .tab-item.active-tab{
     background-color: #2484FF;
     color: #fff;

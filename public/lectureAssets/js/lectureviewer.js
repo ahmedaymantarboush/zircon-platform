@@ -588,8 +588,8 @@ $(document).on('click','.takeExam',async function (){
                                         <div class="row">`;
     for(let r=1;r <= getExamVar.data.questions.length;r++){
         examHTML += `<div class="col-lg-1 col-md-4">
-                                                <button class="tab-item2">
-                                                    <span class="tab-num2">${r}</span>
+                                                <button class="tab-item">
+                                                    <span class="tab-num">${r}</span>
                                                     <div class="tab-icon">
                                                     <span><i class="fa-solid fa-check hide_icon" id="yesIcon_${r}"></i></span>
                                                         <span><i class="fa-solid fa-flag hide_icon"id="flagIcon_${r}"></i></span>
