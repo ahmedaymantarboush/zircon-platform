@@ -858,14 +858,17 @@ $(document).on('click','.showExam',async function (){
     flagFun();
     onReadyFunExam();
     timerFun()
-    setInterval(timerFun(getExamVar.data.examEndedAt),1000);
-});
-function timerFun(endDate){
-    if(endDate == null){
+    if(getExamVar.data.examEndedAt == null){
         $('.countdown').each(function (){
             this.innerHTML= 'وقت مفتوح';
         });
     }else {
+        setInterval(timerFun(getExamVar.data.examEndedAt),1000);
+    }
+
+});
+function timerFun(endDate){
+    if(endDate != null){
         let date= Math.abs((new Date().getTime()/1000).toFixed(0));
         let date2= Math.abs((new Date(endDate).getTime()/1000).toFixed(0));
         let diff = date2 -date;
