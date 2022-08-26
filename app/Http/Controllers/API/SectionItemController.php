@@ -69,15 +69,19 @@ class SectionItemController extends Controller
 
             $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
 
-            $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
             if ($passedExam) :
-                if ($finished):
-                    if (!$passedExam->finished):
-                        $passedExam->ended_at = now();
-                    endif;
-                    $passedExam->finished = true;
-                    $passedExam->save();
+                if ($passedExam->finished || $passedExam->ended_at <= now()) :
+                    $finished =  true;
                 endif;
+            endif;
+
+            if ($finished) :
+                if (!$passedExam->finished) :
+                    $passedExam->ended_at = now();
+                endif;
+
+                $passedExam->finished = true;
+                $passedExam->save();
             endif;
 
             $item = [
@@ -99,16 +103,20 @@ class SectionItemController extends Controller
 
             $exam = $sectionItem->item;
             $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
-            $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
-
+     
             if ($passedExam) :
-                if ($finished):
-                    if (!$passedExam->finished):
-                        $passedExam->ended_at = now();
-                    endif;
-                    $passedExam->finished = true;
-                    $passedExam->save();
+                if ($passedExam->finished || $passedExam->ended_at <= now()) :
+                    $finished =  true;
                 endif;
+            endif;
+
+            if ($finished) :
+                if (!$passedExam->finished) :
+                    $passedExam->ended_at = now();
+                endif;
+
+                $passedExam->finished = true;
+                $passedExam->save();
             endif;
 
             $item = [
