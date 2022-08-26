@@ -147,7 +147,7 @@ async function PrintElem(element, customStyles = "") {
     await Popup(document.querySelector(element).innerHTML, customStyles);
 }
 async function Popup(data) {
-    var myWindow = await window.open("", "", "height=500, width=500");
+    var myWindow = await window.open("", "Student Card", "height=500, width=500");
     myWindow.document.write(
         `
 <html lang="en">
