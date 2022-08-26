@@ -70,13 +70,15 @@ class SectionItemController extends Controller
             $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
 
             $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
-            if ($passedExam) :            
-            if (!$passedExam->finished && $finished) :
-                $passedExam->ended_at = now();
+            if ($passedExam) :
+                if ($finished):
+                    if (!$passedExam->finished):
+                        $passedExam->ended_at = now();
+                    endif;
+                    $passedExam->finished = true;
+                    $passedExam->save();
+                endif;
             endif;
-            $passedExam->finished = true;
-            $passedExam->save();
-        endif;
 
             $item = [
                 'type' => $lesson->type,
@@ -98,15 +100,17 @@ class SectionItemController extends Controller
             $exam = $sectionItem->item;
             $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
             $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
-            
+
             if ($passedExam) :
-                if (!$passedExam->finished && $finished) :
-                    $passedExam->ended_at = now();
+                if ($finished):
+                    if (!$passedExam->finished):
+                        $passedExam->ended_at = now();
+                    endif;
+                    $passedExam->finished = true;
+                    $passedExam->save();
                 endif;
-                $passedExam->finished = true;
-                $passedExam->save();
             endif;
-            
+
             $item = [
                 'id' => $exam->id,
                 'questionsCount' => $exam->questions_count,
