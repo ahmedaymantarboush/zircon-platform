@@ -187,7 +187,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5 mb-30 leftProfile ">
-                    <div class="whiteBox profileDetails ">
+                    <div class="whiteBox profileDetails printable ">
                         <div class="profileImg">
                             <img src="{{asset('imgs/user.png')}}" alt="">
                         </div>

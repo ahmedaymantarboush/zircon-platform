@@ -1126,6 +1126,9 @@ div.waves {
         /* height: 33cm !important;
         width: 20.7cm !important; */
     }
+    .printable {
+        page-break-after: always;
+    }
     .dark .someDetailsHeading {
         color: red;
     }
