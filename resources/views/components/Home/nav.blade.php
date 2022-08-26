@@ -97,7 +97,7 @@
                             <span class="line"></span>
                             <span class="line"></span>
                             <span class='navDropIcon'>
-                                <i class="fa-solid fa-house-chimney-user"></i>
+                                <i class="fa-solid fa-table-columns"></i>
                             </span>
                             الصفحة الرئيسية
                         </a>
@@ -109,7 +109,8 @@
                             <span class="line"></span>
                             <span class="line"></span>
                             <span class='navDropIcon'>
-                                <i class='fa fa-user'></i>
+                                <i class="fa-solid fa-house-chimney-user"></i>
+
                             </span>
                             الملف الشخصي
                         </a>
@@ -136,7 +137,7 @@
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class='navDropIcon'>
-                                    <i class='fa fa-user'></i>
+                                    <i class="fa-solid fa-right-from-bracket"></i>
                                 </span>
                                 <span class="">تسجيل الخروج</span>
                             </form>
