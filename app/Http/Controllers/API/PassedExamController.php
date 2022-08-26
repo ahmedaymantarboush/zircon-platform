@@ -52,14 +52,14 @@ class PassedExamController extends Controller
         if ($passedExam->user->id != $user->id && $user->role->number >= 4) :
             return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض الامتحان'), [], 403);
         endif;
-        if (!$passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at < now() : false)) :
+        if (!$passedExam->finished && ($passedExam->ended_at ? $passedExam->ended_at < now() : false)) :
             return apiResponse(false, _('يجب انهاء الامتحان أولا'), [], 403);
         endif;
 
         $questions = [];
-        foreach ($passedExam->answerdQuestions as $answerdQuestion) :
+        foreach ($passedExam->answers() as $answerdQuestion) :
             $choices = [];
-            foreach ($answerdQuestion->choices as $choice) :
+            foreach ($answerdQuestion->question->choices as $choice) :
                 $choices[] = [
                     'id' => $choice->id,
                     'correct' => $choice->correct,
@@ -75,19 +75,19 @@ class PassedExamController extends Controller
             ];
             $questions[] = [
                 'id' => $answerdQuestion->id,
-                'choice' => $answerdQuestion->choices->id,
+                'choice' => $answerdQuestion->choice ? $answerdQuestion->choice->id : null,
                 'flagged' => $answerdQuestion->flagged,
                 'textAnswer' => $answerdQuestion->answer,
                 'question' => $questionData,
             ];
         endforeach;
 
-        return apiResponse(true, _('لم العثور على الامتحان'), [
-            'examstartedAt' => $passedExam->started_at,
+        return apiResponse(true, _('تم العثور على الامتحان'), [
+            'examStartedAt' => $passedExam->started_at,
             'examEndedAt' => $passedExam->ended_at,
             'percentage' => $passedExam->percentage,
-            'correctAnswers' => $passedExam->answerdQuestions()->where(['correct' => 1])->count(),
-            'wrongAnswers' => $passedExam->answerdQuestions()->where(['correct' => 0])->count(),
+            'correctAnswers' => $passedExam->answers()->where('correct', 1)->count(),
+            'wrongAnswers' => $passedExam->answers()->where('correct', 0)->count(),
             'questions' => $questions,
         ]);
     }
