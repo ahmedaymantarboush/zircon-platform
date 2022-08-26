@@ -229,7 +229,7 @@ checkInputs.forEach((ele) => {
                 search.filters[objKey].push(item.value);
             }
         });
-        if (objKey == "price") {
+        if (ele.closest(".card").dataset.name == "price") {
             let priceProp = ele.name;
             if (ele.checked) {
                 search.filters.price[priceProp] = true;
