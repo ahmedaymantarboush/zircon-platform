@@ -226,6 +226,7 @@ checkInputs.forEach((ele) => {
         checkInputs.forEach((item) => {
             if (item.checked == true) {
                 let objKey = item.closest(".card").dataset.name;
+                console.log(search.filters[objKey]);
                 search.filters[objKey].push(item.value);
             }
         });
