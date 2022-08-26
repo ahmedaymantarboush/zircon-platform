@@ -77,10 +77,10 @@ class AnswerdQuestionController extends Controller
             $answerdQuestion->choice_id = $choice->id;
             $answerdQuestion->correct = $choice->correct;
         }
-        dd($data);
         if ($answer){
             $answerdQuestion->answer = $answer;
         }
+        dd($data);
         if (is_null($flagged)){
             $answerdQuestion->flagged = $flagged;
         }
