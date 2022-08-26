@@ -1,6 +1,20 @@
 /*********************************************
 *********** start navbar ********************
 *******************************************/
+:root {
+    --d-red-color: #fa5f5c;
+    --d-blue-color: #6d8dfe;
+    --d-yellow-color: #f3c83c;
+    --l-yellow-color: #fcd34d;
+    --l-red-color: #ff7675;
+    --l-blue-color: #71bdfc;
+    --green-color: #82dedd;
+    --main-bg: #e7f6fd;
+    --second-bg: #fff;
+    --font-dark: #1d212c;
+    --font-light: #959595;
+    --shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
+}
 nav {
     background: var(--second-bg);
     padding: 1.5rem 3rem;
@@ -8,7 +22,7 @@ nav {
     width: 100%;
     box-shadow: var(--shadow);
     transition: 0.3s all ease;
-    z-index: 999999;
+    z-index: 999;
 }
 
 .navProgress {
@@ -235,7 +249,7 @@ nav .customeContainer {
 
 .studentInfo button {
     font-size: 1.8rem;
-    color: var(--font-dark);
+    color: #ef8321;
     transition: 0.3s all ease;
     display: flex;
     padding: 0.8rem 1rem;
@@ -245,10 +259,10 @@ nav .customeContainer {
     box-shadow: none;
 }
 .studentInfo button:hover {
-    color: var(--font-dark);
+    color: #ef8321;
 }
 .studentInfo button .line {
-    background: var(--green-color);
+    background: #ef8321;
 }
 .dropdown-menu {
     padding: 1rem 2rem;
@@ -260,7 +274,7 @@ nav .customeContainer {
     font-size: 1.6rem;
     color: var(--font-dark);
     padding: 0.5rem 0.8rem;
-    text-align: center;
+    text-align: right;
 }
 .navDropItem:hover {
     background: none;
