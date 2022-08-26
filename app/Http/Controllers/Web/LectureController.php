@@ -383,7 +383,7 @@ class LectureController extends Controller
             if ($lecture->owners->contains($user) || $user->role->number < 4) :
                 return view('Home.lecture_viewer', compact('lecture'));
             else :
-                return abort(404);
+                return abort(403);
             endif;
         else :
             return abort(404);
