@@ -219,6 +219,10 @@ checkInputs.forEach((ele) => {
         },
     };
     ele.addEventListener("change", function () {
-        console.log("yse");
+        if (ele.checked == true) {
+            console.log("yes");
+        } else {
+            console.log("no");
+        }
     });
 });
