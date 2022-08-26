@@ -150,7 +150,7 @@ function Popup(data, customStyles = '') {
     myWindow.document.write("</body></html>");
     myWindow.document.close();
 
-    myWindow.onload = function() {
+    myWindow.document.onload = function() {
         myWindow.focus();
         myWindow.print();
         myWindow.close();
