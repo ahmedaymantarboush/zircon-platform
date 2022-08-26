@@ -72,10 +72,6 @@ class SectionItemController extends Controller
             $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
 
             if ($finished) :
-                if (!$passedExam->finished) :
-                    $passedExam->ended_at = now();
-                endif;
-
                 $passedExam->finished = true;
                 $passedExam->save();
             endif;
@@ -102,10 +98,6 @@ class SectionItemController extends Controller
             $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
 
             if ($finished) :
-                if (!$passedExam->finished) :
-                    $passedExam->ended_at = now();
-                endif;
-
                 $passedExam->finished = true;
                 $passedExam->save();
             endif;
