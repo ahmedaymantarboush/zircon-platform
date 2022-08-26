@@ -854,6 +854,7 @@ $(document).on('click', '.showExam', async function() {
     mainDiv.innerHTML = examHTML;
     flagFun();
     onReadyFunExam();
+    console.log(getExamVar);
     console.log(getExamVar.data.examEndedAt);
     if (getExamVar.data.examEndedAt == null) {
 
