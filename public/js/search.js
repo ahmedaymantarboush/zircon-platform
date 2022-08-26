@@ -226,8 +226,15 @@ checkInputs.forEach((ele) => {
         checkInputs.forEach((item) => {
             let objKey = item.closest(".card").dataset.name;
             if (item.checked == true && objKey != "price") {
-                console.log(search.filters[objKey]);
                 search.filters[objKey].push(item.value);
+            }
+            if (objKey == "price") {
+                let priceProp = search.filters.price[ele.name];
+                if (ele.checked) {
+                    search.filters.price[priceProp] = true;
+                } else {
+                    search.filters.price[priceProp] = false;
+                }
             }
         });
         console.log(search.filters);
