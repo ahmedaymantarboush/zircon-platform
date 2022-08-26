@@ -49,30 +49,31 @@
 
             </button>
             <div class="left ">
-                <form class="search" action="{{ route('search') }}">
-                    <input type="search" value="{{request()->q}}" name='q' name="navSearch">
-                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
-                </form>
                 @auth
-                    {{-- <div class="register">
-                        <div class="login">
-                            <a href="javascript:{}" onclick="window.logoutFrm.submit()" class="regItem">
-                                <form id="logoutFrm" action="{{ route('logout') }}" method="post">
-                                    @csrf
-                                    <span class="line"></span>
-                                    <span class="line"></span>
-                                    <span class="line"></span>
-                                    <span class="line"></span>
-                                    <span class="regIcon">
-                                        <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
-                                    </span>
-                                    <span class="regType">
-                                        تسجيل <span class='d-blueColor'>الخروج</span>
-                                    </span>
-                                </form>
-                            </a>
-                        </div>
-                    </div> --}}
+                {{-- <div class="register">
+                    <div class="login">
+                        <a href="javascript:{}" onclick="window.logoutFrm.submit()" class="regItem">
+                            <form id="logoutFrm" action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="regIcon">
+                                    <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
+                                </span>
+                                <span class="regType">
+                                    تسجيل <span class='d-blueColor'>الخروج</span>
+                                </span>
+                            </form>
+                        </a>
+                    </div>
+                </div> --}}
+                <form class="search mainSearch">
+                    <input type="search" name="navSearch">
+                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
+
+                </form>
                     <div class="studentInfo">
                         <div class="studentBtn">
                             <button role="button" type="button" class="btn ftu-btn lineParent" data-toggle="dropdown">
@@ -83,7 +84,7 @@
                                 <span class='studentIcon'>
                                     <i class='fa fa-user'></i>
                                 </span>
-                                <span class='studentName'>علي علاء الدين السيد</span>
+                                <span class='studentName'>{{Auth::user()->name}}</span>
                             </button>
                             <ul class="dropdown-menu navDrop">
                                 <li>
@@ -126,7 +127,6 @@
                                         محاضراتي
                                     </a>
                                 </li>
-
 
                                 <li>
                                     <a href="javascript:{}" onclick="window.logoutFrm.submit()"
@@ -210,6 +210,10 @@
                         </div>
                     </div>
                 @else
+                <form class="search" action="{{ route('search') }}">
+                    <input type="search" value="{{request()->q}}" name='q' name="navSearch">
+                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                </form>
                     <div class="register">
                         <div class="signup">
                             <a href="{{ route('register') }}" class="regItem">
