@@ -1,13 +1,13 @@
 ////////////////////////
 // main functions /////
 //////////////////////
-let toggleElement = function (ele, className) {
+let toggleElement = function(ele, className) {
     ele.classList.toggle(className);
 };
-let removeElemment = function (ele, className) {
+let removeElemment = function(ele, className) {
     ele.classList.remove(className);
 };
-let addElement = function (ele, className) {
+let addElement = function(ele, className) {
     ele.classList.add(className);
 };
 
@@ -15,7 +15,7 @@ let addElement = function (ele, className) {
 ///// start navbar /////////////////
 ///////////////////////////////////
 // [01- dark and light ]
-let funChangeImagesDark = function () {
+let funChangeImagesDark = function() {
     let paperImg1 = document.querySelector(".paper img");
     let paperImg2 = document.querySelector(".paper2 img");
     if (document.documentElement.classList.contains("dark")) {
@@ -38,7 +38,7 @@ let funChangeImagesDark = function () {
     }
 };
 
-let addStyleToLocaleStorage = function () {
+let addStyleToLocaleStorage = function() {
     if (localStorage.getItem("style") === null) {
         localStorage.setItem("style", "dark");
     } else {
@@ -46,14 +46,14 @@ let addStyleToLocaleStorage = function () {
     }
 };
 
-let addDarkClassToHtml = function () {
+let addDarkClassToHtml = function() {
     if (localStorage.getItem("style") === null) {
         document.documentElement.classList.remove("dark");
     } else {
         document.documentElement.classList.add(localStorage.getItem("style"));
     }
 };
-let updateUI = function () {
+let updateUI = function() {
     addStyleToLocaleStorage();
     addDarkClassToHtml();
     funChangeImagesDark();
@@ -68,14 +68,14 @@ moon.addEventListener("click", updateUI);
 let toggleBarBtn = document.querySelector(".toggleBarBtn");
 let bigLeft = document.querySelector(".bigLeft");
 
-toggleBarBtn.addEventListener("click", function () {
+toggleBarBtn.addEventListener("click", function() {
     toggleElement(bigLeft, "activeNavMenu");
 });
 
 //[03- progress nav]
 let navBar = document.querySelector(".myNav");
 let progNav = document.querySelector(".navProgChild");
-let navProgFunction = function () {
+let navProgFunction = function() {
     let { scrollTop, scrollHeight } = document.documentElement;
     let myWidth = (scrollTop / (scrollHeight - window.innerHeight)) * 100;
 
@@ -89,12 +89,10 @@ window.addEventListener("scroll", navProgFunction);
 ////////////////////
 
 var options = {
-    series: [
-        {
-            name: "نتائج الامتحانات",
-            data: exams,
-        },
-    ],
+    series: [{
+        name: "نتائج الامتحانات",
+        data: exams,
+    }, ],
     chart: {
         height: 315,
         type: "area",
@@ -145,11 +143,11 @@ chart.render();
 // printBtn.addEventListener("click", function () {
 //     window.print();
 // });
-function PrintElem(element, customStyles = "") {
-    Popup(document.querySelector(element).innerHTML, customStyles);
+async function PrintElem(element, customStyles = "") {
+    await Popup(document.querySelector(element).innerHTML, customStyles);
 }
-function Popup(data) {
-    var myWindow = window.open("", "", "height=500, width=500");
+async function Popup(data) {
+    var myWindow = await window.open("", "", "height=500, width=500");
     myWindow.document.write(
         `
 <html lang="en">
@@ -161,7 +159,7 @@ function Popup(data) {
     myWindow.document.write("</body></html>");
     myWindow.document.close();
 
-    myWindow.onload = function () {
+    myWindow.onload = function() {
         myWindow.focus();
         myWindow.print();
         myWindow.close();
