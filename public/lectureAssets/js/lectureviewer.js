@@ -538,5 +538,6 @@ $(document).on('click','.takeExam',function (){
         '                </div>\n' +
         '\n' +
         '            </div>';
+    mainDiv.innerHTML = examHTML;
     onReadyFunExam();
 });
