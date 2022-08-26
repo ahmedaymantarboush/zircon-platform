@@ -148,7 +148,7 @@ chart.render();
 function PrintElem(element, customStyles = "") {
     Popup(document.querySelector(element).innerHTML, customStyles);
 }
-function Popup(data) {
+function Popup(data, customStyles) {
     var myWindow = window.open("", "", "height=500, width=500");
     myWindow.document.write(
         `
