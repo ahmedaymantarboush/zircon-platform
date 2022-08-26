@@ -449,7 +449,7 @@ $(document).on('click','.takeExam',async function (){
     //Add Tabs
     for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
-        let showIcon ='';
+        let showIcon ='show_icon';
         if(getExamVar.data.questions[i-1].flagged == false){
             showIcon ='hide_icon';
         }
@@ -461,7 +461,7 @@ $(document).on('click','.takeExam',async function (){
             '                                        <span><i class="fa-solid fa-check hide_icon"\n' +
             '                                                id="yesIcon_'+i+'"></i></span>\n' +
             '                                        <span><i\n' +
-            '                                                class="fa-solid fa-flag '+ showIcon+'"id="flagIcon_'+i+'"></i></span>\n' +
+            '                                                class="fa-solid fa-flag  '+ showIcon+'"id="flagIcon_'+i+'"></i></span>\n' +
             '                                    </div>\n' +
             '                                </button>\n' +
             '                            </div>';
