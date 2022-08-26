@@ -150,9 +150,9 @@
                 <div class="ctg-menu">
                     <p class="menu-item">الأكثر شهرة</p>
                     <p class="menu-item">الشائعة</p>
-                    <p class="menu-item">الوالعة</p>
-                    <p class="menu-item">الوالعة</p>
-                    <p class="menu-item">الوالعة</p>
+                    <p class="menu-item">الشائعة</p>
+                    <p class="menu-item">الشائعة</p>
+                    <p class="menu-item">الشائعة</p>
                 </div>
             </div>
 
@@ -162,7 +162,7 @@
                 <span class='closeFilter'><i class="fa-solid fa-arrow-right-long"></i></span>
 
                 <div id="accordion" class="myaccordion">
-                    <div class="card">
+                    <div class="card" data-name='grades'>
                         <div class="card-header" id="headingOne">
                             <button class="d-flex align-items-center justify-content-between btn btn-link collapsed"
                                 data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
@@ -207,7 +207,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" data-name='price'>
                         <div class="card-header" id="headingTwo">
                             <button class="d-flex align-items-center justify-content-between btn btn-link collapsed"
                                 data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
@@ -252,7 +252,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" data-name='parts'>
                         <div class="card-header" id="headingThree">
                             <button class="d-flex align-items-center justify-content-between btn btn-link collapsed"
                                 data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
