@@ -10,7 +10,7 @@ xhttp.setRequestHeader('Accept', 'application/json');
 xhttp.setRequestHeader('Authorization', 'Bearer ' + token)
 let tkn = window.csrf_token.value
 xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-xhttp.onreadystatechange = function (e) {
+xhttp.onreadystatechange = function(e) {
     data = JSON.parse(this.responseText)
 }
 xhttp.send(form);
@@ -44,7 +44,7 @@ let gradeInp = document.querySelector("[name='grade']");
 let governorateInp = document.querySelector("[name='governorate']");
 let centerInp = document.querySelector("[name='center']");
 // Ajax function
-let regApi = async function (url, myData) {
+let regApi = async function(url, myData) {
     try {
         let postData = await fetch(url, {
             method: "POST",
@@ -65,7 +65,7 @@ let regApi = async function (url, myData) {
     }
 };
 // calling
-document.querySelector("#form").addEventListener('submit',function (e) {
+document.querySelector("#form").addEventListener('submit', function(e) {
     e.preventDefault();
     let register = {
         name: nameInp.value,
