@@ -83,7 +83,7 @@ class AnswerdQuestionController extends Controller
         if ($answer){
             $answerdQuestion->answer = $answer;
         }
-        if (is_null($flagged)){
+        if (!is_null($flagged)){
             $answerdQuestion->flagged = $flagged;
         }
         $answerdQuestion->save();
