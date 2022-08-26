@@ -519,7 +519,7 @@ $(document).on('click','.takeExam',async function (){
 
     }
 
-    if(data.data.questions.length >=2){
+    if(getExamVar.data.questions.length >=2){
         examHTML += '<div class="col-12">\n' +
             '                                    <div class="btn-control d-flex justify-content-center">\n' +
             '                                        <button class="rightBtn">\n' +
