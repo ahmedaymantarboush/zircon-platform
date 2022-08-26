@@ -154,9 +154,13 @@ function Popup(data, customStyles = "") {
     // printPageDocument.querySelector(
     //     "body"
     // ).innerHTML = `<style>${customStyles}</style>${data}`;
-    data.focus();
-    data.print();
-    data.close();
+    newWin = window.open("");
+
+    newWin.document.write(data);
+
+    newWin.focus();
+    newWin.print();
+    newWin.close();
 }
 
 let printBtn = document.querySelector(".printBtn");
