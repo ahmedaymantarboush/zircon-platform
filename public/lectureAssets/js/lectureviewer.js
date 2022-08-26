@@ -446,9 +446,14 @@ $(document).on('click','.takeExam',async function (){
         body: form1,
     })
     let getExamVar = await getExam.json();
+    console.log(getExamVar);
     //Add Tabs
     for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
+        let showIcon ='show_icon';
+        if(getExamVar.data.questions[i-1].flagged == false){
+            showIcon ='hide_icon';
+        }
         if(i != 1){active = "";}
         examHTML += '<div class="swiper-slide">\n' +
             '                                <button class="tab-item '+active+'">\n' +
@@ -457,7 +462,7 @@ $(document).on('click','.takeExam',async function (){
             '                                        <span><i class="fa-solid fa-check hide_icon"\n' +
             '                                                id="yesIcon_'+i+'"></i></span>\n' +
             '                                        <span><i\n' +
-            '                                                class="fa-solid fa-flag hide_icon"id="flagIcon_'+i+'"></i></span>\n' +
+            '                                                class="fa-solid fa-flag  '+ showIcon+'"id="flagIcon_'+i+'"></i></span>\n' +
             '                                    </div>\n' +
             '                                </button>\n' +
             '                            </div>';
@@ -472,10 +477,11 @@ $(document).on('click','.takeExam',async function (){
     //Add questions
     for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
+        alert(parseInt(getExamVar.data.questions[i-1].id));
         if(i !== 1){active = "";}
         form2 = new FormData()
         form2.append('data', JSON.stringify({
-            'id': parseInt(getExamVar.data.questions[i-1])
+            'id': parseInt(getExamVar.data.questions[i-1].id)
         }))
 
         let getQuestion = await fetch(APP_URL+"/api/questions/getQuestion", {
@@ -496,7 +502,7 @@ $(document).on('click','.takeExam',async function (){
         }
         examHTML += '<div class="question '+active+' col-12">\n' +
             '                                    <div class="title_exam d-flex justify-content-between">\n' +
-            '                                        <div class="question_head" queID="'+getExamVar.data.questions[i-1]+'">\n' +
+            '                                        <div class="question_head" queID="'+getExamVar.data.questions[i-1].id+'">\n' +
             '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="'+parseInt(getQuestionVar.data.flagged)+'"\n' +
             '                                                queNamber="'+i+'"></i>\n' +
             '                                            <input type="checkbox" class="'+inputclass+'">\n' +
