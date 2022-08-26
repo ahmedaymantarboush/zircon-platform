@@ -224,8 +224,8 @@ checkInputs.forEach((ele) => {
         search.filters.parts = [];
 
         checkInputs.forEach((item) => {
-            if (item.checked == true && item != "price") {
-                let objKey = item.closest(".card").dataset.name;
+            let objKey = item.closest(".card").dataset.name;
+            if (item.checked == true && objKey != "price") {
                 console.log(search.filters[objKey]);
                 search.filters[objKey].push(item.value);
             }
