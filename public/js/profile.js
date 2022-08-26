@@ -165,15 +165,7 @@ printBtn.addEventListener("click", function () {
 });
 
 ////////// Barcode
-let barcodeText = document.querySelector(
-    ".barcodeText",
-    `
-    @media print{
-        .profileDetails{font-size:8rem;;border:2px solid #000}
-    .dark .someDetailsHeading{color:red !important}
-    }
-    `
-);
+let barcodeText = document.querySelector(".barcodeText");
 JsBarcode("#profileBarCode", barcodeText.textContent);
 
 //////////////////////////
