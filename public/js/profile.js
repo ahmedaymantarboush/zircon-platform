@@ -149,7 +149,7 @@ function PrintElement(selector, customStyles = "") {
 }
 
 function Popup(data, customStyles = "") {
-    const printPageWindow = window.open("");
+    const printPageWindow = printPage.contentWindow;
 
     const printPageDocument = printPageWindow.document;
     printPageDocument.querySelector(
