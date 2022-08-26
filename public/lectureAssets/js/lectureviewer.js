@@ -1,4 +1,5 @@
 let examID =0;
+let examPassedID=0;
 
 function onReadyFunExam(){
     // questions tabs
@@ -313,7 +314,7 @@ function showTakeExam(data){
         mainDiv.innerHTML = take_exam;
 
     }else {
-        examID = data.data.item.passedExamId;
+        examPassedID = data.data.item.passedExamId;
         //if exam finished
         // replace 8 with correct ansers count
         let student_perc = (data.data.item.correctAnswers/data.data.item.questionsCount)*100;
@@ -447,7 +448,7 @@ $(document).on('click','.lesson_name',function (){
 $(document).on('click','.startExam',function (){
     form = new FormData()
     form.append('data', JSON.stringify({
-        'id': parseInt(examID)
+        'id': parseInt(examPassedID)
     }))
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", APP_URL+"/api/items/getItem");
