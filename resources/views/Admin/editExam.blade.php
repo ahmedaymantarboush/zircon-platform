@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/add_exam.css') }}" />
     <script>
         parts = [
-            @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get()->pluck('name') as $partName)
-                '{{ $partName }}',
+            @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $part)
+            ['{{ $part->id }}', '{{ $part->name }}'],
             @endforeach
         ];
         questions = [
@@ -105,8 +105,8 @@
                                                                             اختر الجزئية التعليمية
                                                                         </option>
                                                                         @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get()->pluck('name') as $partName)
-                                                                            <option value="{{ $partName }}">
-                                                                                {{ $partName }}
+                                                                            <option value="{{ $part->id }}">
+                                                                                {{ $part->name }}
                                                                             </option>
                                                                         @endforeach
                                                                         {{-- <option value="الصف الثاني الثانوي">
@@ -188,9 +188,9 @@
                                                                         <option value="اختر الجزئية التعليمية" selected>
                                                                             اختر الجزئية التعليمية
                                                                         </option>
-                                                                        @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get()->pluck('name') as $partName)
-                                                                            <option @selected($question->part->name == $partName) value="{{ $partName }}">
-                                                                                {{ $partName }}
+                                                                        @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $part)
+                                                                            <option @selected($question->part->id == $part->id) value="{{ $part->id }}">
+                                                                                {{ $part->name }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>

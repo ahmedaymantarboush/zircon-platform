@@ -15,6 +15,16 @@ xhttp.onreadystatechange = function(e) {
 }
 xhttp.send(form);
 
+form = new FormData()
+fetch("url", {
+        method: "POST",
+        body: form,
+        headers: { 'X-CSRF-TOKEN': tkn },
+        //credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(console.log)
+
 
 ///////////////////
 //// register api//
