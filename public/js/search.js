@@ -228,15 +228,15 @@ checkInputs.forEach((ele) => {
             if (item.checked == true && objKey != "price") {
                 search.filters[objKey].push(item.value);
             }
-            if (objKey == "price") {
-                let priceProp = ele.name;
-                if (ele.checked) {
-                    search.filters.price[priceProp] = true;
-                } else {
-                    search.filters.price[priceProp] = false;
-                }
-            }
         });
-        console.log(search.filters);
+        if (objKey == "price") {
+            let priceProp = ele.name;
+            if (ele.checked) {
+                search.filters.price[priceProp] = true;
+            } else {
+                search.filters.price[priceProp] = false;
+            }
+        }
+        console.log(search.price);
     });
 });
