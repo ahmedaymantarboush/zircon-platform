@@ -47,7 +47,15 @@ class PassedExamController extends Controller
         $id = $data['id'] ?? 0;
         $passedExam = PassedExam::find($id);
         if (!$passedExam) :
-            return apiResponse(false, _('لم يتم العثور على الامتحان'), [], 404);
+            $exam = Exam::find($id);
+            if (!$exam) :
+                return apiResponse(false, _('لم يتم العثور على الامتحان'), [], 404);
+            else :
+                $passedExam = $exam->passedExams()->where('user_id', $user->id)->first();
+                if (!$passedExam) :
+                    return apiResponse(false, _('لم يتم بدء هذا الامتحان'), [], 404);
+                endif;
+            endif;
         endif;
         if ($passedExam->user->id != $user->id && $user->role->number >= 4) :
             return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض الامتحان'), [], 403);
