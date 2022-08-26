@@ -101,6 +101,20 @@
                                 </li>
 
                                 <li>
+
+                                    <a class="dropdown-item navDropItem lineParent" href="{{route('user.profile')}}">
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class='navDropIcon'>
+                                            <i class='fa fa-user'></i>
+                                        </span>
+                                        الملف الشخصي
+                                    </a>
+                                </li>
+
+                                <li>
                                     <a class="dropdown-item navDropItem lineParent" href="#">
                                         <span class="line"></span>
                                         <span class="line"></span>
