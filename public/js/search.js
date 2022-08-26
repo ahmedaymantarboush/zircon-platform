@@ -1,10 +1,10 @@
 ////////////////////////
 // main functions /////
 //////////////////////
-let toggleElement = function (ele, className) {
+let toggleElement = function(ele, className) {
     ele.classList.toggle(className);
 };
-let removeEle = function (ele, className) {
+let removeEle = function(ele, className) {
     ele.classList.remove(className);
 };
 console.log("alo");
@@ -31,9 +31,7 @@ function animateFrom(elem, direction) {
     elem.style.transform = "translate(" + x + "px, " + y + "px)";
     elem.style.opacity = "0";
     gsap.fromTo(
-        elem,
-        { x: x, y: y, autoAlpha: 0 },
-        {
+        elem, { x: x, y: y, autoAlpha: 0 }, {
             duration: 2,
             x: 0,
             y: 0,
@@ -48,21 +46,21 @@ function hide(elem) {
     gsap.set(elem, { autoAlpha: 0 });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.utils.toArray(".gs_reveal").forEach(function (elem) {
+    gsap.utils.toArray(".gs_reveal").forEach(function(elem) {
         hide(elem); // assure that the element is hidden when scrolled into view
 
         ScrollTrigger.create({
             trigger: elem,
-            onEnter: function () {
+            onEnter: function() {
                 animateFrom(elem);
             },
-            onEnterBack: function () {
+            onEnterBack: function() {
                 animateFrom(elem, -1);
             },
-            onLeave: function () {
+            onLeave: function() {
                 hide(elem);
             }, // assure that the element is hidden when scrolled into view
         });
@@ -73,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 ///// start navbar /////////////////
 ///////////////////////////////////
 // [01- dark and light ]
-let funChangeImagesDark = function () {
+let funChangeImagesDark = function() {
     let headerImage = document.querySelector(".header");
     if (document.documentElement.classList.contains("dark")) {
         if (window.innerWidth <= 765) {
@@ -102,7 +100,7 @@ let funChangeImagesDark = function () {
     }
 };
 
-let addStyleToLocaleStorage = function () {
+let addStyleToLocaleStorage = function() {
     if (localStorage.getItem("style") === null) {
         localStorage.setItem("style", "dark");
     } else {
@@ -110,14 +108,14 @@ let addStyleToLocaleStorage = function () {
     }
 };
 
-let addDarkClassToHtml = function () {
+let addDarkClassToHtml = function() {
     if (localStorage.getItem("style") === null) {
         document.documentElement.classList.remove("dark");
     } else {
         document.documentElement.classList.add(localStorage.getItem("style"));
     }
 };
-let updateUI = function () {
+let updateUI = function() {
     addStyleToLocaleStorage();
     addDarkClassToHtml();
     funChangeImagesDark();
@@ -132,14 +130,14 @@ moon.addEventListener("click", updateUI);
 let toggleBarBtn = document.querySelector(".toggleBarBtn");
 let bigLeft = document.querySelector(".bigLeft");
 
-toggleBarBtn.addEventListener("click", function () {
+toggleBarBtn.addEventListener("click", function() {
     toggleElement(bigLeft, "activeNavMenu");
 });
 
 //[03- progress nav]
 let navBar = document.querySelector(".myNav");
 let progNav = document.querySelector(".navProgChild");
-let navProgFunction = function () {
+let navProgFunction = function() {
     let { scrollTop, scrollHeight } = document.documentElement;
     let myWidth = (scrollTop / (scrollHeight - window.innerHeight)) * 100;
 
@@ -153,7 +151,7 @@ let checking = document.querySelectorAll("input[type=checkbox]");
 let countFilter = document.querySelector(".count-filter");
 let filterBtn = document.querySelector(".filter-btn");
 let filterParent = document.querySelector(".filterParent");
-filterBtn.addEventListener("click", function () {
+filterBtn.addEventListener("click", function() {
     toggleElement(filterParent.parentElement, "active");
     toggleElement(filterParent, "activeMenu");
 });
@@ -179,12 +177,12 @@ let ctgList = document.querySelectorAll(".menu-item");
 let ctgName = document.querySelector(".ctg-name");
 let lay = document.querySelector(".lay");
 console.log(ctgBtn);
-ctgBtn.addEventListener("click", function (e) {
+ctgBtn.addEventListener("click", function(e) {
     ctgMenu.classList.toggle("active");
 });
 // هنا يا عبدالرحمن
 ctgList.forEach((ele) => {
-    ele.addEventListener("click", function () {
+    ele.addEventListener("click", function() {
         ctgName.textContent = ele.textContent;
         ctgMenu.classList.remove("active");
     });
@@ -219,7 +217,7 @@ let search = {
     },
 };
 checkInputs.forEach((ele) => {
-    ele.addEventListener("change", async function () {
+    ele.addEventListener("change", async function() {
         search.filters.grades = [];
         search.filters.parts = [];
 
@@ -238,7 +236,7 @@ checkInputs.forEach((ele) => {
             }
         }
         console.log(search);
-        let editFun = async function (url, myData, el = null) {
+        let editFun = async function(url, myData, el = null) {
             try {
                 let postData = await fetch(url, {
                     method: "POST",
@@ -261,15 +259,13 @@ checkInputs.forEach((ele) => {
             } catch (err) {}
         };
 
-        let sendObj = {
-            search: search,
-        };
+        let sendObj = search;
 
         form = new FormData();
         form.append("data", JSON.stringify(sendObj));
 
         let myResponse = await editFun(
-            `${window.location.protocol}//${window.location.host}/api/search`,
+            `${APP_URL}/api/search`,
             form
         );
         console.log(myResponse);
