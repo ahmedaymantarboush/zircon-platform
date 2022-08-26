@@ -287,6 +287,7 @@ function getExam(exam_id){
     return getExamData;
 }
 function showTakeExam(data){
+    console.log(data);
     let take_exam ='<div class="take_exam d-flex justify-content-center">\n' +
         '                <div class="row">\n' +
         '                    <div class="col-12 d-flex justify-content-center">\n' +
