@@ -199,3 +199,12 @@ closeFilter.addEventListener(
     "click",
     removeEle.bind(null, filterParent, "activeMenu")
 );
+
+/////////////////
+//// Ajax///////
+///////////////
+let checkInputs = document.querySelectorAll('input[type="checkbox"]');
+console.log(window.location.pathname);
+console.log(window.location.href);
+console.log(window.location.hostname);
+console.log(window.location.search);
