@@ -587,13 +587,13 @@ $(document).on('click','.takeExam',async function (){
     examHTML += `<div class="question col-12">
                                     <div class="container">
                                         <div class="row d-flex justify-content-center">
-                                            <div class="col-12">
+                                            <div class="col-12 d-flex justify-content-center">
                                                 <i class="fa-solid fa-check-double tab-num2" style="font-size: 45px;"></i>
                                             </div>
-                                            <div class="col-12">
-                                                <p class="tab-num2"style="font-size: 25px;">انهاء هذا الامتحان</p>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <p class="tab-num2"style="font-size: 25px;margin-top: 10px;">انهاء هذا الامتحان</p>
                                             </div>
-                                            <div class="col-5">
+                                            <div class="col-5 d-flex justify-content-center">
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                     انهاء
                                                 </button>
