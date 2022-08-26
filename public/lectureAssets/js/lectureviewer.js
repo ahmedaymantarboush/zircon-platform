@@ -593,8 +593,8 @@ $(document).on('click','.takeExam',async function (){
                                             <div class="col-12 d-flex justify-content-center">
                                                 <p class="tab-num2"style="font-size: 25px;margin-top: 10px;">انهاء هذا الامتحان</p>
                                             </div>
-                                            <div class="col-5 d-flex justify-content-center">
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <div class="col-2 d-flex justify-content-center">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%">
                                                     انهاء
                                                 </button>
                                             </div>
