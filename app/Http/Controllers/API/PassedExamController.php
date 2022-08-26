@@ -75,7 +75,7 @@ class PassedExamController extends Controller
             ];
             $questions[] = [
                 'id' => $answerdQuestion->id,
-                'choice' => $answerdQuestion->choices->id,
+                'choice' => $answerdQuestion->choice->id,
                 'flagged' => $answerdQuestion->flagged,
                 'textAnswer' => $answerdQuestion->answer,
                 'question' => $questionData,
