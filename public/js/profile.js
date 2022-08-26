@@ -125,7 +125,7 @@ let correctAnswersPrecentage =
 let wrongAnswersPrecentage =
     Math.round((wrongAnswers * 10000) / totalAnswers) / 100;
 var options2 = {
-    series: [wrongAnswersPrecentage, correctAnswersPrecentage],
+    series: [correctAnswersPrecentage, wrongAnswersPrecentage],
     chart: {
         type: "donut",
         fontFamily: "poppins",
