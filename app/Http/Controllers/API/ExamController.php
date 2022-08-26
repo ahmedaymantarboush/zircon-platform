@@ -73,6 +73,7 @@ class ExamController extends Controller
             $answerdQuestions[] = [
                 'id' => $answerdQuestion->id,
                 'flagged' => $answerdQuestion->flagged,
+                'answerd' => $answerdQuestion->answer || $answerdQuestion->choice_id,
             ];
         endforeach;
         $data = [
@@ -135,6 +136,7 @@ class ExamController extends Controller
             $answerdQuestions[] = [
                 'id' => $answerdQuestion->id,
                 'flagged' => $answerdQuestion->flagged,
+                'answerd' => $answerdQuestion->answer || $answerdQuestion->choice_id,
             ];
         endforeach;
 
