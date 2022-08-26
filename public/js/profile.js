@@ -165,7 +165,6 @@ function Popup(data) {
         } catch (e) {}
     }
 }
-PrintElem(".profileDetails");
 ////////// Barcode
 let barcodeText = document.querySelector(".barcodeText");
 JsBarcode("#profileBarCode", barcodeText.textContent);
