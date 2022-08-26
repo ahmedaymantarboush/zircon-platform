@@ -584,27 +584,23 @@ $(document).on('click','.takeExam',async function (){
         examHTML+= '</div>';
 
     }
-    examHTML += ` <div class="question col-12">
+    examHTML += `<div class="question col-12">
                                     <div class="container">
-                                        <div class="row">`;
-    for(let r=1;r <= getExamVar.data.questions.length;r++){
-        examHTML += `<div class="col-lg-1 col-md-4">
-                                                <button class="tab-item2">
-                                                    <span class="tab-num2">${r}</span>
-                                                    <div class="tab-icon">
-                                                    <span><i class="fa-solid fa-check hide_icon" id="yesIcon_${r}"></i></span>
-                                                        <span><i class="fa-solid fa-flag hide_icon"id="flagIcon_${r}"></i></span>
-                                                    </div>
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-12">
+                                                <i class="fa-solid fa-check-double tab-num2" style="font-size: 45px;"></i>
+                                            </div>
+                                            <div class="col-12">
+                                                <p class="tab-num2"style="font-size: 25px;">انهاء هذا الامتحان</p>
+                                            </div>
+                                            <div class="col-5">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    انهاء
                                                 </button>
-                                            </div>`;
-    }
-    examHTML+= `</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>`;
-    examHTML += `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  انهاء
-                </button>
-                `;
     examHTML+= `<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="rtl">
   <div class="modal-dialog">
