@@ -204,7 +204,7 @@ closeFilter.addEventListener(
 //// Ajax///////
 ///////////////
 let checkInputs = document.querySelectorAll('input[type="checkbox"]');
-let qText = document.querySelector(".mainSearch").textContent.trim();
+let qText = document.querySelector(".mainSearch input").value.trim();
 
 let search = {
     q: qText,
@@ -236,9 +236,8 @@ checkInputs.forEach((ele) => {
             } else {
                 search.filters.price[priceProp] = false;
             }
-            console.log(ele);
         }
-        console.log(search.filters);
+        console.log(search);
         let editFun = async function (url, myData, el = null) {
             try {
                 let postData = await fetch(url, {
