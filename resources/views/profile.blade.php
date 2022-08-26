@@ -229,30 +229,7 @@
                                     <span class='type'> المحافظة:</span>
                                     <span class='info'>القاهرة</span>
                                 </div>
-                                <div class="item">
-                                    <span class='type'>مكان الحضور:</span>
-                                    <span class='info'>المنصة</span>
-                                </div>
-                                <div class="item">
-                                    <span class='type'>مكان الحضور:</span>
-                                    <span class='info'>المنصة</span>
-                                </div>
-                                <div class="item">
-                                    <span class='type'>مكان الحضور:</span>
-                                    <span class='info'>المنصة</span>
-                                </div>
-                                <div class="item">
-                                    <span class='type'>مكان الحضور:</span>
-                                    <span class='info'>المنصة</span>
-                                </div>
-                                <div class="item">
-                                    <span class='type'>مكان الحضور:</span>
-                                    <span class='info'>المنصة</span>
-                                </div>
-                                <div class="item">
-                                    <span class='type'>مكان الحضور:</span>
-                                    <span class='info'>المنصة</span>
-                                </div>
+
                                 <div class='barcodeBox'>
                                     <svg class="barcode" id='profileBarCode'></svg>
                                     <span class='barcodeText'>as4df5ef12as4df5ef1212345</span>
