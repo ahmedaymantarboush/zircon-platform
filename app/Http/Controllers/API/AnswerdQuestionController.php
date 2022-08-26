@@ -65,7 +65,6 @@ class AnswerdQuestionController extends Controller
         endif;
         $examId = $answerdQuestion->exam_id;
         $passedExam = $user->passedExams()->where(['exam_id'=>$examId])->first();
-        dd($data);
         if ($passedExam->finished || ( $passedExam->ended_at ? $passedExam->ended_at >= now() : false )):
             return apiResponse(false, _('غير مصرح لهذا المسخدم تسجيل اجابة السؤال'), [], 403);
         endif;
@@ -78,6 +77,7 @@ class AnswerdQuestionController extends Controller
             $answerdQuestion->choice_id = $choice->id;
             $answerdQuestion->correct = $choice->correct;
         }
+        dd($data);
         if ($answer){
             $answerdQuestion->answer = $answer;
         }
