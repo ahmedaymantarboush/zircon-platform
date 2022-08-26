@@ -812,6 +812,9 @@ nav .customeContainer {
 .swiper-button-disabled {
     opacity: 0 !important;
 }
+option {
+    background: var(--second-bg);
+}
 /*****************************************
 ********** start footer ******************
 *****************************************/
