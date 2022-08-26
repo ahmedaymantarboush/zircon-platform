@@ -151,7 +151,8 @@ function PrintElem(element, customStyles = "") {
 function Popup(data) {
     var myWindow = window.open("", "my div", "height=400,width=600");
     myWindow.document.write(
-        `<head>${
+        `<html>
+        <head>${
             document.querySelector("head").innerHTML
         }<style>${customStyles}</style></head><body>`
     );
