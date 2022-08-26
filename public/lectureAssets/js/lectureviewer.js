@@ -575,7 +575,7 @@ $(document).on('click', '.takeExam', async function() {
             '                                            <span>السؤال رقم ' + i + '</span>\n' +
             '                                        </div>\n' +
             '                                        <div class="all_questions">\n' +
-            '                                            <span class="countdown">3:00:00</span>\n' +
+            '                                            <span class="countdown">00:00:00</span>\n' +
             '                                        </div>\n' +
             '                                    </div>';
         if (getQuestionVar.data.question.image != null) {
