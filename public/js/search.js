@@ -213,9 +213,9 @@ checkInputs.forEach((ele) => {
             grades: [],
             parts: [],
             price: {
-                free: true,
-                hasDiscount: false,
-                paid: true,
+                free: null,
+                hasDiscount: null,
+                paid: null,
             },
         },
     };
