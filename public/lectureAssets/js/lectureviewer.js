@@ -588,13 +588,14 @@ $(document).on('click','.takeExam',async function (){
                                     <div class="container">
                                         <div class="row d-flex justify-content-center">
                                             <div class="col-12 d-flex justify-content-center">
-                                                <i class="fa-solid fa-check-double tab-num2" style="font-size: 45px;"></i>
+
+                                                <i class="fa-solid fa-check-to-slot tab-num2" style="font-size: 70px;margin-top: 25px;"></i>
                                             </div>
                                             <div class="col-12 d-flex justify-content-center">
-                                                <p class="tab-num2"style="font-size: 25px;margin-top: 10px;">انهاء هذا الامتحان</p>
+                                                <p class="tab-num2"style="font-size: 25px;margin-top: 15px;">انهاء هذا الامتحان</p>
                                             </div>
                                             <div class="col-2 d-flex justify-content-center">
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%;margin-top: 15px;">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%;margin-top: 20px;">
                                                     انهاء
                                                 </button>
                                             </div>
