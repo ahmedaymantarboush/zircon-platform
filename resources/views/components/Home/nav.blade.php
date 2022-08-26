@@ -73,7 +73,7 @@
                 </a>
             </div>
         </div> --}}
-        <form class="search" action="{{ route('search') }}">
+        <form class="search mainSearch" action="{{ route('search') }}">
             <input type="search" name="q" value="{{ request()->q }}">
             <span><i class="fa-solid fa-magnifying-glass"></i></span>
         </form>

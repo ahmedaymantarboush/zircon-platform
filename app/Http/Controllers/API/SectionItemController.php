@@ -77,6 +77,7 @@ class SectionItemController extends Controller
                 'exam' => $exam ? $exam->id : null,
                 'examName' => $exam ? $exam->title : null,
                 'finishedExam' => $finished,
+                'passedExamId' => $passedExam ? $passedExam->id : null,
                 'percentage' => $finished ? $passedExam->percentage : null,
                 'minPercentage' => $lesson->min_percentage,
 
@@ -96,6 +97,7 @@ class SectionItemController extends Controller
                 'questionsCount' => $exam->questions_count,
                 'examName' => $exam->title,
                 'finished' => $finished,
+                'passedExamId' => $passedExam ? $passedExam->id : null,
                 'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where('correct',1)->count() : null,
             ];
 
