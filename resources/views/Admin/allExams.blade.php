@@ -253,13 +253,11 @@
 
                                 <ul class="dropdown-menu feat-menu">
                                     <li>
-                                        <a class="dropdown-item" href="#">عرض لائحة
-                                            الطلاب</a>
+                                        <a class="dropdown-item" href="#">عرض لائحة الطلاب</a>
                                     </li>
 
                                     <li>
-                                        <a class="dropdown-item q-modify" href="#">تعديل الامتحان
-                                        </a>
+                                        <a class="dropdown-item q-modify" href="{{route('exams.edit',$exam->id)}}">تعديل الامتحان</a>
                                     </li>
 
                                     <li>
