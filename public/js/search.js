@@ -236,9 +236,8 @@ checkInputs.forEach((ele) => {
             } else {
                 search.filters.price[priceProp] = false;
             }
-            console.log(ele);
         }
-        console.log(search.filters);
+        console.log(search);
         let editFun = async function (url, myData, el = null) {
             try {
                 let postData = await fetch(url, {
