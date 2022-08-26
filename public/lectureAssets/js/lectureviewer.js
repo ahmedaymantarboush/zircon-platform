@@ -852,6 +852,7 @@ $(document).on('click','.showExam',async function (){
     onReadyFunExam();
 
     if(getExamVar.data.examEndedAt == null){
+        console.log(getExamVar.data.examEndedAt == null);
         $('.countdown').each(function (){
             this.innerHTML= 'وقت مفتوح';
         });
