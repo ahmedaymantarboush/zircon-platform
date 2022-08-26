@@ -850,9 +850,9 @@ $(document).on('click','.showExam',async function (){
     mainDiv.innerHTML = examHTML;
     flagFun();
     onReadyFunExam();
-
+    console.log(getExamVar.data.examEndedAt == null);
     if(getExamVar.data.examEndedAt == null){
-        console.log(getExamVar.data.examEndedAt == null);
+
         $('.countdown').each(function (){
             this.innerHTML= 'وقت مفتوح';
         });
