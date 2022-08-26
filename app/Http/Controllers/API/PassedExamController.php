@@ -106,8 +106,14 @@ class PassedExamController extends Controller
             return apiResponse(false, _('لم يتم العثور على الامتحان'), [], 404);
         endif;
         if ($passedExam->user->id != $user->id && $user->role->number >= 4) :
-            return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض الامتحان'), [], 403);
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الامتحان'), [], 403);
         endif;
+        if ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at < now() : false)) :
+            $passedExam->finished = true;
+            $passedExam->save();
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الامتحان'), [], 403);
+        endif;
+
         if (!$passedExam->finished) :
             $passedExam->ended_at = now();
         endif;
