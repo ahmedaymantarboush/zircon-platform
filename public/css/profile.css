@@ -40,7 +40,7 @@ Bold: 700
     outline: none;
     list-style: none;
     page-break-after: always;
-
+    page-break-inside: auto;
     word-wrap: break-word;
 
     text-transform: capitalize;
