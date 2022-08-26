@@ -240,4 +240,42 @@ checkInputs.forEach((ele) => {
         }
         console.log(search.filters);
     });
+
+    let editFun = async function (url, myData, el = null) {
+        try {
+            let postData = await fetch(url, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "X-CSRF-TOKEN": window.csrf_token.value,
+                },
+                body: myData,
+            });
+
+            let responseData = await postData.json();
+
+            if (postData.status == 200) {
+                return responseData;
+            }
+            if (postData.status == 404) {
+                return null;
+            }
+            return null;
+        } catch (err) {}
+    };
+
+    let sendObj = {
+        search: search,
+    };
+
+    form = new FormData();
+    form.append("data", JSON.stringify(sendObj));
+
+    let myResponse = await editFun(
+        `${window.location.protocol}//${window.location.host}/api/search`,
+        form,
+        e
+    );
+    console.log(myResponse);
+        
 });
