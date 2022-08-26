@@ -204,4 +204,6 @@ closeFilter.addEventListener(
 //// Ajax///////
 ///////////////
 let checkInputs = document.querySelectorAll('input[type="checkbox"]');
-console.log(checkInputs);
+console.log(window.location.pathname);
+console.log(window.location.href);
+console.log(window.location.hostname);
