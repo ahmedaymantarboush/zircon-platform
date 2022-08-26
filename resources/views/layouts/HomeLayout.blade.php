@@ -27,6 +27,7 @@
 
     @yield('css')
 
+    <link rel="stylesheet" href="{{asset('css/nav.css')}}">
 </head>
 
 <body>
