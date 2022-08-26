@@ -455,7 +455,7 @@ $(document).on('click','.takeExam',async function (){
         if(getExamVar.data.questions[i-1].flagged == false){
             showIcon1 ='hide_icon';
         }
-        if(getExamVar.data.questions[i-1].answered == false){
+        if(getExamVar.data.questions[i-1].answerd == false){
             showIcon2 ='hide_icon';
         }
         if(i != 1){active = "";}
