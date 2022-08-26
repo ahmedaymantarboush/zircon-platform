@@ -508,7 +508,7 @@ $(document).on('click','.takeExam',async function (){
     }
     examHTML += `<div class="swiper-slide">
                                 <button class="tab-item">
-                                    <span class="tab-num" style="display: none">${i}</span>
+                                    <span class="tab-num" style="display: none"></span>
                                     <span class="tab-num2" ><i class="fa-solid fa-calendar-days"></i></span>
                                 </button>
                             </div>`;
