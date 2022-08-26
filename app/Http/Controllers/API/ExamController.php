@@ -141,9 +141,6 @@ class ExamController extends Controller
         endforeach;
 
         if ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false ) ):
-            if (!$passedExam->finished):
-                $passedExam->ended_at = now();
-            endif;
             $passedExam->finished = true;
             $passedExam->save();
         endif;
