@@ -1131,7 +1131,7 @@ div.waves {
         display: inline-block;
     }
     .printable {
-        page-break-after: always;
+        page-break-after: auto;
     }
     .dark .someDetailsHeading {
         color: red;
