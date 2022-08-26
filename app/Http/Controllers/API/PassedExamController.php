@@ -83,7 +83,7 @@ class PassedExamController extends Controller
         endforeach;
 
         return apiResponse(true, _('تم العثور على الامتحان'), [
-            'examstartedAt' => $passedExam->started_at,
+            'examStartedAt' => $passedExam->started_at,
             'examEndedAt' => $passedExam->ended_at,
             'percentage' => $passedExam->percentage,
             'correctAnswers' => $passedExam->answers()->where('correct', 1)->count(),
