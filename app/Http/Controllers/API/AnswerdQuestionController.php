@@ -84,13 +84,13 @@ class AnswerdQuestionController extends Controller
             $answerdQuestion->flagged = $flagged;
         }
         $answerdQuestion->save();
-        dd($data);
         
         $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId])->count();
-
+        
         $passedExam->percentag = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId])->count()) * 100, 2);
         $passedExam->save();
-
+        dd($data);
+        
         return apiResponse(true, _('تم تسجيل اجابة السؤال'), []);
     }
 
