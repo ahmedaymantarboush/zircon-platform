@@ -8,8 +8,9 @@ function autoSelect() {
         hardnessInputs[i].value = que_hardness;
     }
 }
+
 function closeAllActive() {
-    $(".question-box").each(function () {
+    $(".question-box").each(function() {
         if ($(this).hasClass("activeBox")) {
             $(this).removeClass("activeBox");
             if ($(this).find(".toggleBtn").hasClass("toggleActive")) {
@@ -28,24 +29,25 @@ function closeAllActive() {
         }
     });
 }
+
 function updataCounter() {
     let questionNamber = document.querySelectorAll(".question-box");
     questionNamber = "(" + questionNamber.length + ")";
     $("#que_counter").text(questionNamber);
     let counter = 1;
-    $(".title_num").each(function () {
+    $(".title_num").each(function() {
         $(this).text(counter);
         counter++;
     });
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
     autoSelect();
     closeAllActive();
     updataCounter();
-    $(".select_part").each(function () {
+    $(".select_part").each(function() {
         let question_box = $(this).parent().closest(".question-box");
-        let selectedValue = this.options[this.selectedIndex].text;
+        let selectedValue = $(".select_part option[selectet]").text;
         alert(selectedValue);
         $(question_box).find(".que_title").text(selectedValue);
     });
@@ -55,14 +57,14 @@ $(document).ready(function () {
 ///////////////////text editor///////////////////
 ////////////////////////////////////////////////
 ClassicEditor.create(document.querySelector(".text-editor-div"), {
-    language: {
-        // The UI will be English.
-        ui: "ar",
+        language: {
+            // The UI will be English.
+            ui: "ar",
 
-        // But the content will be edited in Arabic.
-        content: "ar",
-    },
-})
+            // But the content will be edited in Arabic.
+            content: "ar",
+        },
+    })
     .then((editor) => {
         const wordCountPlugin = editor.plugins.get("WordCount");
         const wordCountWrapper = document.getElementById("word-count");
@@ -79,13 +81,13 @@ $(".search-select-box").selectpicker();
 //////////////////////////////////////////////////
 ///////////Auto input hardness level/////////////
 ////////////////////////////////////////////////
-$("#question_hardness").change(function () {
+$("#question_hardness").change(function() {
     autoSelect();
 });
 /////////////////////////////////////////////////
 /////////////Toggle Questions Details///////////
 ///////////////////////////////////////////////
-$(document).on("click", ".toggleBtn", function () {
+$(document).on("click", ".toggleBtn", function() {
     let box = $(this).parent().closest(".question-box");
     if ($(box).hasClass("activeBox")) {
         closeAllActive();
@@ -104,7 +106,7 @@ $(document).on("click", ".toggleBtn", function () {
 //////////////////////////////////////////////////////////////////
 ////////////////////Add New Question/////////////////////////////
 ////////////////////////////////////////////////////////////////
-$(".add_question").click(function () {
+$(".add_question").click(function() {
     closeAllActive();
     let finalNamber = document.querySelectorAll(".que_namber");
     let temp = finalNamber.length;
@@ -328,8 +330,7 @@ $(".add_question").click(function () {
                                                 </div>
             `
         );
-    } else {
-    }
+    } else {}
     updataCounter();
     $(".search-select-box").selectpicker();
     autoSelect();
@@ -337,15 +338,15 @@ $(".add_question").click(function () {
 //////////////////////////////////////////////////////////////////////////
 /////////////////////Change Question Title //////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-$(document).on("change", ".select_part", function () {
+$(document).on("change", ".select_part", function() {
     let question_box = $(this).parent().closest(".question-box");
-    var selectedValue = this.options[this.selectedIndex].text;
+    var selectedValue = $(".select_part option[selectet]").text;
     $(question_box).find(".que_title").text(selectedValue);
 });
 ///////////////////////////////////////////////////////////////////////
 ////////////////////////Delete Question///////////////////////////////
 /////////////////////////////////////////////////////////////////////
-$(document).on("click", ".deleteBtn", function () {
+$(document).on("click", ".deleteBtn", function() {
     let question_box = $(this).parent().closest(".question-box");
     if (question_box.hasClass("deleteOpened")) {
         closeAllActive();
@@ -356,12 +357,12 @@ $(document).on("click", ".deleteBtn", function () {
         $(question_box).find(".delete-warning").slideDown(400);
     }
 });
-$(document).on("click", ".btn-danger", function () {
+$(document).on("click", ".btn-danger", function() {
     let question_box = $(this).parent().closest(".question-box");
     $(question_box).remove();
     updataCounter();
 });
-$(document).on("click", ".btn-outline-secondary", function () {
+$(document).on("click", ".btn-outline-secondary", function() {
     let question_box = $(this).parent().closest(".question-box");
     if (question_box.hasClass("deleteOpened")) {
         closeAllActive();
@@ -372,7 +373,7 @@ $(document).on("click", ".btn-outline-secondary", function () {
 /////////////////////////////////
 /////// Ajax///////////////////
 //////////////////////////////
-let editFun = async function (url, myData, el = null) {
+let editFun = async function(url, myData, el = null) {
     try {
         let postData = await fetch(url, {
             method: "POST",
@@ -395,7 +396,7 @@ let editFun = async function (url, myData, el = null) {
     } catch (err) {}
 };
 
-document.querySelector("table").addEventListener("click", async function (e) {
+document.querySelector("table").addEventListener("click", async function(e) {
     if (!e.target.classList.contains("editCenter")) return;
     let dataId = e.target.closest("tr").querySelector(".number").dataset.id;
     console.log(dataId);
