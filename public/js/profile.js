@@ -168,8 +168,10 @@ printBtn.addEventListener("click", function () {
 let barcodeText = document.querySelector(
     ".barcodeText",
     `
-    .profileDetails{font-size:8rem;;border:2px solid #000}
+    @media print{
+        .profileDetails{font-size:8rem;;border:2px solid #000}
     .dark .someDetailsHeading{color:red !important}
+    }
     `
 );
 JsBarcode("#profileBarCode", barcodeText.textContent);
