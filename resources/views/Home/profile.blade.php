@@ -293,9 +293,7 @@
             </form>
         </div>
     </div>
-    <div class="testPrintP" style="width: 500px;height:500px;">
-
-    </div>
+    <iframe src="#" hidden style="display: none" id="printPage" frameborder="0"></iframe>
 @endsection
 
 @section('javascript')

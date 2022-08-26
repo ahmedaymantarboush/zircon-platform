@@ -28,6 +28,7 @@
     @yield('css')
 
     <link rel="stylesheet" href="{{asset('css/nav.css')}}">
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 </head>
 
 <body>

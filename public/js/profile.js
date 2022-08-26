@@ -139,27 +139,24 @@ chart.render();
 /////////////
 //// print btn
 ////////////
+printPage = document.querySelector('#printPage')
+printPage.style.display = "none";
+
 function PrintElem(selector, customStyles = "") {
-    Popup(document.querySelector(selector).innerHTML, customStyles);
+    Popup(document.querySelector(selector).outerHTML, customStyles);
 }
 
 function Popup(data, customStyles = '') {
-    var myWindow = window.open("", ".testPrintP", "height=500, width=500");
-    myWindow.document.write(`<html lang="en"><head>${document.querySelector("head").innerHTML}<style>${customStyles}</style></head><body>`);
-    myWindow.document.write(data);
-    myWindow.document.write("</body></html>");
-    myWindow.document.close();
-
-    myWindow.document.onload = function() {
-        myWindow.focus();
-        myWindow.print();
-        myWindow.close();
-    };
+    const printPageWindow = printPage.contentWindow;
+    const printPageDocument = printPageWindow.document;
+    printPageDocument.querySelector('body').innerHTML = `<style>${customStyles}</style>${data}`
+    printPageWindow.focus();
+    printPageWindow.print();
+    printPageWindow.close();
 }
 
 let printBtn = document.querySelector(".printBtn");
 printBtn.addEventListener("click", function() {
-    // window.print();
     PrintElem('.profileDetails')
 });
 
