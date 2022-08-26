@@ -48,7 +48,6 @@ $(document).ready(function() {
     $(".select_part").each(function() {
         let question_box = $(this).parent().closest(".question-box");
         let selectedValue = $(".select_part option[selectet]").text;
-        alert(selectedValue);
         $(question_box).find(".que_title").text(selectedValue);
     });
 });
