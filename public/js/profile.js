@@ -139,11 +139,11 @@ chart.render();
 /////////////
 //// print btn
 ////////////
-function PrintElem(element, customStyles = "") {
-    Popup(document.querySelector(element).innerHTML, customStyles);
+function PrintElem(selector, customStyles = "") {
+    Popup(document.querySelector(selector).innerHTML, customStyles);
 }
 
-function Popup(data) {
+function Popup(data, customStyles = '') {
     var myWindow = window.open("", "", "height=500, width=500");
     myWindow.document.write(`<html lang="en"><head>${document.querySelector("head").innerHTML}<style>${customStyles}</style></head><body>`);
     myWindow.document.write(data);
@@ -160,7 +160,7 @@ function Popup(data) {
 let printBtn = document.querySelector(".printBtn");
 printBtn.addEventListener("click", function() {
     // window.print();
-    PrintElem(element)
+    PrintElem('.profileDetails')
 });
 
 ////////// Barcode
