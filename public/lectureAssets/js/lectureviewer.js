@@ -892,3 +892,7 @@ function timerFun(endDate){
 function addTimer(dataEnd){
     setInterval(timerFun(dataEnd),1000);
 }
+$(document).ready(function (){
+    let lesson_name = document.querySelectorAll('.lesson_name')[0];
+    lesson_name.click();
+});
