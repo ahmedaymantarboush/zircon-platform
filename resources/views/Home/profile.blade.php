@@ -209,6 +209,7 @@
         <div class="modal-dialog" role="document">
             <form method="POST" action="{{route('user.update')}}" class="modal-content">
                 @csrf
+                <input type="text" name="id" value="{{$user->id}}">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">تعديل الملف الشخصي</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
