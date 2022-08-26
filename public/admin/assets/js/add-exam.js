@@ -47,7 +47,7 @@ $(document).ready(function() {
     updataCounter();
     $(".select_part").each(function() {
         let question_box = $(this).parent().closest(".question-box");
-        let selectedValue = $(".select_part option[selectet]").text;
+        let selectedValue = $(this).find("option[selectet]").text;
         $(question_box).find(".que_title").text(selectedValue);
     });
 });
@@ -339,7 +339,7 @@ $(".add_question").click(function() {
 ////////////////////////////////////////////////////////////////////////
 $(document).on("change", ".select_part", function() {
     let question_box = $(this).parent().closest(".question-box");
-    var selectedValue = $(".select_part option[selectet]").text;
+    var selectedValue = $(this).find("option[selectet]").text();
     $(question_box).find(".que_title").text(selectedValue);
 });
 ///////////////////////////////////////////////////////////////////////
