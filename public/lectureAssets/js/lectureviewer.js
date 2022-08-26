@@ -283,7 +283,6 @@ function getExam(exam_id) {
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
     xhttp.onreadystatechange = function(e) {
         getExamData = JSON.parse(this.responseText);
-        console.log(getExamData);
         getItem(getExamData);
     }
     xhttp.send(form);
@@ -684,19 +683,19 @@ $(document).on('click', '.showExam', async function() {
     examHTML = '<div class="exam-parent">\n' +
         '                <div class="exam-tab swiper mySwiper">\n' +
         '                    <div class="swiper-wrapper">';
-    form10 = new FormData()
-    form10.append('data', JSON.stringify({
+    form1 = new FormData()
+    form1.append('data', JSON.stringify({
         'id': parseInt(examID)
     }))
-    let getExamPassed = await fetch(APP_URL + "/api/exams/passed", {
+    let getExam = await fetch(APP_URL + "/api/exams/passed", {
         method: "POST",
         headers: {
             Accept: "application/json",
             "X-CSRF-TOKEN": window.csrf_token.value,
         },
-        body: form10,
+        body: form1,
     })
-    let getExamVar = await getExamPassed.json();
+    let getExamVar = await getExam.json();
     console.log(getExamVar);
     //Add Tabs
     for (let i = 1; i <= getExamVar.data.questions.length; i++) {
@@ -853,6 +852,8 @@ $(document).on('click', '.showExam', async function() {
         '\n' +
         '            </div>';
     mainDiv.innerHTML = examHTML;
+
+    console.log('لحد هنا تمام');
     if (getExamVar.data.examEndedAt == null) {
         alert('اشطا');
         $('.countdown').each(function() {
@@ -863,6 +864,8 @@ $(document).on('click', '.showExam', async function() {
     }
     flagFun();
     onReadyFunExam();
+
+
 
 });
 
