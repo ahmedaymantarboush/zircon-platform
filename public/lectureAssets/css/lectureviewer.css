@@ -241,8 +241,7 @@ html,body{
     width: 100%;
     border-radius: 15px;
 }
-.tab-item2
-.tab-num2{
+.tab-item2 .tab-num2{
     font-size: 25px;
 }
 .tab-item.active-tab{
@@ -254,7 +253,7 @@ html,body{
     font-weight: 600;
     margin-bottom: 5px;
 }
-tab-num2{
+.tab-num2{
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 5px;
