@@ -52,7 +52,7 @@ class PassedExamController extends Controller
         if ($passedExam->user->id != $user->id && $user->role->number >= 4) :
             return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض الامتحان'), [], 403);
         endif;
-        if (!$passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at < now() : false)) :
+        if (!$passedExam->finished && ($passedExam->ended_at ? $passedExam->ended_at < now() : false)) :
             return apiResponse(false, _('يجب انهاء الامتحان أولا'), [], 403);
         endif;
 
