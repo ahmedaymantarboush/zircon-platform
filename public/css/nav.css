@@ -249,7 +249,7 @@ nav .customeContainer {
 
 .studentInfo button {
     font-size: 1.8rem;
-    color: var(--font-dark);
+    color: #ef8321;
     transition: 0.3s all ease;
     display: flex;
     padding: 0.8rem 1rem;
