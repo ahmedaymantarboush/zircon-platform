@@ -851,10 +851,10 @@ $(document).on('click', '.showExam', async function() {
         '                </div>\n' +
         '\n' +
         '            </div>';
+    console.log(getExamVar.data);
     mainDiv.innerHTML = examHTML;
     flagFun();
     onReadyFunExam();
-    console.log(getExamVar.data);
     if (getExamVar.data.examEndedAt == null) {
         alert('اشطا');
         $('.countdown').each(function() {
