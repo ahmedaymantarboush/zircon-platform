@@ -454,7 +454,7 @@ $(document).on('click','.takeExam',async function (){
         //     }
         // }
         // xhttp.send(form2);
-        let getExam = await fetch(APP_URL+"/api/questions/getQuestion", {
+        let getQuestion = await fetch(APP_URL+"/api/questions/getQuestion", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -462,7 +462,7 @@ $(document).on('click','.takeExam',async function (){
             },
             body: form1,
         })
-        let Qdata = await getExam.json();
+        let Qdata = await getQuestion.json();
         let flagclass="unflagQuestion";
         let inputclass ="uncheckflag";
         if(parseInt(Qdata.data.flagged)){
