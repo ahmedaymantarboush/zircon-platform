@@ -588,7 +588,6 @@ $(document).on('click', '.takeExam', async function() {
         examHTML += '</div>';
 
     }
-    console.log('لحد هنا تمام');
     examHTML += `<div class="question col-12">
                                     <div class="container">
                                         <div class="row d-flex justify-content-center">
@@ -853,6 +852,8 @@ $(document).on('click', '.showExam', async function() {
         '\n' +
         '            </div>';
     mainDiv.innerHTML = examHTML;
+    console.log('لحد هنا تمام');
+
     if (getExamVar.data.examEndedAt == null) {
         alert('اشطا');
         $('.countdown').each(function() {
