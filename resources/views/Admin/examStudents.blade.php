@@ -8,7 +8,7 @@
 @section('content')
     <div class="page-heading white-box">
         <span class="page-icon"><i class="fa-solid fa-clipboard-question"></i></span>
-        <h2 class="page-h">طلاب امتحان {{$exam->title}}</h2>
+        <h2 class="page-h">طلاب امتحان {{ $exam->title }}</h2>
     </div>
 
     <form action="" class="lec-filter">
@@ -92,82 +92,87 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($passedExams as $passedExam)
-                <tr class="redBg">
-                    <td class="number">
-                        1
-                        <button class="open-tr" type="button">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    <td data-lable="الاسم :" class="address">
-                        <div class="custome-parent">
-                            <div class="question-code-parent">
-                                <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
-                                <!-- <span
-                   class="question-code"
-                  >
-                   ما هو التيار الكهربي
-                  </span> -->
-                                <button type="button" class="btn question-code" data-toggle="tooltip"
-                                    data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
-                                    علي علاء الدين السيد
-                                    عبدالسلام البلتاجي
-                                    علي علاء
-                                </button>
-                            </div>
-                            <div class="name-teacher">
-                                <span class="job-teacher">:المدرس</span>
-                                <span>أ. محمد
-                                    عبدالمعبود</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                        <span class="table-level">الصف الثالث الثانوي</span>
-                    </td>
-                    <td data-lable="وقت الانتهاء :" class="table-sections">
-                        <div class="custome-parent">
-                            30:00
-                        </div>
-                    </td>
-                    <td data-lable="تاريخ البدأ :" class="students">
-                        27/7/2005
-                    </td>
-                    <td data-lable="النسبة :" class="views">
-                        50%
-                    </td>
-                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                        <span class="table-stat not-active">530</span>
-                    </td>
-                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                        <span class="table-price not-free">1100</span>
-                    </td>
-                    <td class="features" data-lable="اجراءات :">
-                        <div class="btn-group">
-                            <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                @foreach ($passedExams as $index => $passedExam)
+                    @php
+                        $i = $index + 1;
+                        $student = $passedExam->user;
+                        $correctAnswers = $passedExam
+                            ->answers()
+                            ->where('correct', 1)
+                            ->count();
+                        $wrongAnswers = $passedExam
+                            ->answers()
+                            ->where('correct', 0)
+                            ->count();
+                    @endphp
+                    <tr data-id="{{ $passedExam->id }}"
+                        class="@if ($correctAnswers || $wrongAnswers) @if ($correctAnswers > $wrongAnswers) greenBg @elseif($correctAnswers < $wrongAnswers) redBg @elseif($correctAnswers == $wrongAnswers) blueBg @endif @endif">
+
+                        <td class="number">
+                            {{ $i }}
+                            <button class="open-tr" type="button">
+                                <i class="fa-solid fa-plus"></i>
                             </button>
+                        </td>
+                        <td data-lable="الاسم :" class="address">
+                            <div class="custome-parent">
+                                <div class="question-code-parent">
+                                    <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
+                                    <button type="button" class="btn question-code" data-toggle="tooltip"
+                                        data-placement="top" title="{{ $student->name }}">
+                                        {{ $student->name }}
+                                    </button>
+                                </div>
+                                <div class="name-teacher">
+                                    <span class="job-teacher">:المدرس</span>
+                                    <span>{{ $exam->publisher->name }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-lable="المرحلة الدراسية :" class="table-level-parent">
+                            <span class="table-level">{{ $exam->grade->name }}</span>
+                        </td>
+                        <td data-lable="وقت الانتهاء :" class="table-sections">
+                            <div class="custome-parent">
+                                {{ decoratedTime(strtotime($passedExam->ended_at) - strtotime($passedExam->started_at)) }}
+                            </div>
+                        </td>
+                        <td data-lable="تاريخ البدأ :" class="students">
+                            {{ date('H:i:s d/m/Y', strtotime($passedExam->ended_at)) }}
+                        </td>
+                        <td data-lable="النسبة :" class="views">
+                            {{ $passedExam->percentage }}%
+                        </td>
+                        <td data-lable="إجابة صحيحة :" class="table-stat-parent">
+                            <span class="table-stat not-active">{{$correctAnswers}}</span>
+                        </td>
+                        <td data-lable="اجابه خاطئة :" class="table-price-parent">
+                            <span class="table-price not-free">{{$wrongAnswers}}</span>
+                        </td>
+                        <td class="features" data-lable="اجراءات :">
+                            <div class="btn-group">
+                                <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
 
-                            <ul class="dropdown-menu feat-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#">الملف الشخصي</a>
-                                </li>
+                                <ul class="dropdown-menu feat-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">الملف الشخصي</a>
+                                    </li>
 
-                                <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#studentCard" class="dropdown-item"
-                                        href="#">كارت الطالب
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a data-bs-toggle="modal" data-bs-target="#studentCard" class="dropdown-item"
+                                            href="#">كارت الطالب
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <a class="dropdown-item" href="#">تعديل الطالب</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                
+                                    <li>
+                                        <a class="dropdown-item" href="#">تعديل الطالب</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
                 @endforeach
                 <tr class="blueBg">
                     <td class="number">
@@ -181,10 +186,10 @@
                             <div class="question-code-parent">
                                 <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
                                 <!-- <span
-                   class="question-code"
-                  >
-                   ما هو التيار الكهربي
-                  </span> -->
+                           class="question-code"
+                          >
+                           ما هو التيار الكهربي
+                          </span> -->
                                 <button type="button" class="btn question-code" data-toggle="tooltip"
                                     data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
                                     علي علاء الدين السيد
@@ -255,10 +260,10 @@
                             <div class="question-code-parent">
                                 <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
                                 <!-- <span
-                   class="question-code"
-                  >
-                   ما هو التيار الكهربي
-                  </span> -->
+                           class="question-code"
+                          >
+                           ما هو التيار الكهربي
+                          </span> -->
                                 <button type="button" class="btn question-code" data-toggle="tooltip"
                                     data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
                                     علي علاء الدين السيد
@@ -329,10 +334,10 @@
                             <div class="question-code-parent">
                                 <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
                                 <!-- <span
-                   class="question-code"
-                  >
-                   ما هو التيار الكهربي
-                  </span> -->
+                           class="question-code"
+                          >
+                           ما هو التيار الكهربي
+                          </span> -->
                                 <button type="button" class="btn question-code" data-toggle="tooltip"
                                     data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
                                     علي علاء الدين السيد

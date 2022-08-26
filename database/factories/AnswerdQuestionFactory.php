@@ -22,7 +22,7 @@ class AnswerdQuestionFactory extends Factory
     {
         $question = Question::find(fake()->randomElement(Question::all()->pluck('id')));
         $choice = count($question->answers) ? Choice::find(fake()->randomElement($question->answers->pluck('id'))) : null;
-        $correct = count($question->answers) ?  $choice->correct : fake()->boolean();
+        $correct = count($question->answers) && $choice?  $choice->correct : fake()->boolean();
         return [
             "user_id" => fake()->randomElement(User::all()->pluck('id')),
             "question_id" => $question->id,

@@ -2,6 +2,7 @@
     class="exam-form">
     @if (isset($exam))
         @method('put')
+        <input type="hidden" name="id" value="{{$exam->id}}">
     @endif
     @csrf
     <div class="row">
