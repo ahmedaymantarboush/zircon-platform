@@ -225,7 +225,7 @@ checkInputs.forEach((ele) => {
 
         checkInputs.forEach((item) => {
             if (item.checked == true) {
-                let objKey = item.closest("card").dataset.name;
+                let objKey = item.closest(".card").dataset.name;
                 search[objKey].push(item.value);
             }
             console.log(search.filters.grades);
