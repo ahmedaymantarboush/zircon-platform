@@ -795,7 +795,7 @@ $(document).on('click','.showExam',async function (){
                 '                                        </div>';
         }
         examHTML+= '</div>';
-
+//s
     }
     examHTML += `<div class="question col-12">
                                     <div class="container">
