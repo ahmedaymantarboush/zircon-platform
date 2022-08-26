@@ -450,19 +450,23 @@ $(document).on('click','.takeExam',async function (){
     //Add Tabs
     for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
-        let showIcon ='show_icon';
+        let showIcon1 ='show_icon';
+        let showIcon2 ='show_icon';
         if(getExamVar.data.questions[i-1].flagged == false){
-            showIcon ='hide_icon';
+            showIcon1 ='hide_icon';
+        }
+        if(getExamVar.data.questions[i-1].answered == false){
+            showIcon2 ='hide_icon';
         }
         if(i != 1){active = "";}
         examHTML += '<div class="swiper-slide">\n' +
             '                                <button class="tab-item '+active+'">\n' +
             '                                    <span class="tab-num">'+ i +'</span>\n' +
             '                                    <div class="tab-icon">\n' +
-            '                                        <span><i class="fa-solid fa-check hide_icon"\n' +
+            '                                        <span><i class="fa-solid fa-check '+showIcon2+'"\n' +
             '                                                id="yesIcon_'+i+'"></i></span>\n' +
             '                                        <span><i\n' +
-            '                                                class="fa-solid fa-flag  '+ showIcon+'"id="flagIcon_'+i+'"></i></span>\n' +
+            '                                                class="fa-solid fa-flag  '+ showIcon1+'"id="flagIcon_'+i+'"></i></span>\n' +
             '                                    </div>\n' +
             '                                </button>\n' +
             '                            </div>';
@@ -477,13 +481,11 @@ $(document).on('click','.takeExam',async function (){
     //Add questions
     for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
-        alert(parseInt(getExamVar.data.questions[i-1].id));
         if(i !== 1){active = "";}
         form2 = new FormData()
         form2.append('data', JSON.stringify({
             'id': parseInt(getExamVar.data.questions[i-1].id)
         }))
-
         let getQuestion = await fetch(APP_URL+"/api/questions/getQuestion", {
             method: "POST",
             headers: {
@@ -493,7 +495,6 @@ $(document).on('click','.takeExam',async function (){
             body: form2,
         })
         let getQuestionVar = await getQuestion.json();
-        console.log(getQuestionVar);
         let flagclass="unflagQuestion";
         let inputclass ="uncheckflag";
         if(parseInt(getQuestionVar.data.flagged)){
