@@ -1,0 +1,447 @@
+/*********************************************
+*********** start navbar ********************
+*******************************************/
+nav {
+    background: var(--second-bg);
+    padding: 1.5rem 3rem;
+    position: fixed;
+    width: 100%;
+    box-shadow: var(--shadow);
+    transition: 0.3s all ease;
+    z-index: 999999;
+}
+
+.navProgress {
+    position: absolute;
+    bottom: 0;
+    transition: 0.4s all ease;
+    height: 4px;
+    border-radius: 3rem;
+    width: 100%;
+    right: 0;
+    background-color: #d1d5db;
+}
+
+.navProgress .navProgChild {
+    height: 100%;
+    background-color: var(--d-blue-color);
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    border-radius: 3rem;
+}
+nav .customeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.right,
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.navAtom img {
+    width: 50px;
+}
+.logoBrand {
+    font-size: 2.4rem;
+    margin: 0 0.8rem 0 1.5rem;
+    color: var(--font-dark);
+    font-weight: bold;
+}
+/*** light and dark svg ***/
+.sun,
+.moon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s all ease;
+}
+.sun {
+    z-index: 2;
+    opacity: 1;
+}
+.dark .sun {
+    opacity: 0;
+    z-index: 1;
+}
+.sun svg {
+    color: #feca57;
+    width: 35px;
+    transition: 0.3s all ease;
+    transform: rotate(90deg);
+}
+.dark .sun svg {
+    transform: rotate(0deg);
+}
+
+.dark .moon {
+    opacity: 1;
+    z-index: 2;
+}
+.moon svg {
+    width: 35px;
+    transform: rotate(180deg);
+    transition: 0.3s all ease;
+}
+.dark .moon svg {
+    transition: 0.3s all ease;
+    transform: rotate(45deg);
+}
+/** search **/
+.search {
+    position: relative;
+    width: 18rem;
+    margin-left: 3rem;
+}
+.search span {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #b4b4b4;
+}
+.search input {
+    width: 100%;
+    padding: 0.5rem 3rem 0.5rem 1.5rem;
+    border-radius: 3rem;
+    border: 1px solid #707070;
+    transition: 0.3s all ease;
+    background: var(--second-bg);
+    color: var(--font-dark);
+}
+.search input:focus {
+    box-shadow: var(--shadow);
+}
+/*** register ***/
+.left .register {
+    display: flex;
+}
+.signup {
+    margin-left: 2.5rem;
+}
+.regItem,
+.regItem:hover {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+}
+.signup .regItem,
+.login .regItem {
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    transition: 0.3s all ease;
+
+    position: relative;
+}
+.signup:hover .regItem,
+.login:hover .regItem {
+    transform: translateY(-0.5rem);
+}
+
+.signup .regIcon,
+.login .regIcon {
+    transition: 0.2s cubic-bezier(0.88, 0.58, 0.5, 2.72) all;
+}
+.signup:hover .regIcon,
+.login:hover .regIcon {
+    transform: translateY(-0.3rem) rotate(10deg);
+}
+.regIcon {
+    margin-left: 1rem;
+    width: 25px;
+}
+.line {
+    position: absolute;
+
+    background-color: transparent;
+}
+.signup .line {
+    background-color: var(--l-red-color);
+}
+.login .line {
+    background-color: var(--l-blue-color);
+}
+.lineParent {
+    position: relative;
+}
+.lineParent .line:nth-of-type(1) {
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 2px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.3s transform ease;
+}
+.lineParent:hover .line:nth-of-type(1) {
+    transform: scaleY(1.0001);
+    transform-origin: bottom;
+}
+.lineParent .line:nth-of-type(2) {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: 0.3s transform ease;
+}
+.lineParent:hover .line:nth-of-type(2) {
+    transform: scaleX(1.0001);
+    transform-origin: left;
+}
+.lineParent .line:nth-of-type(3) {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: 0.3s transform ease;
+    transition-delay: 0.3s;
+}
+.lineParent:hover .line:nth-of-type(3) {
+    transform: scaleX(1.0001);
+    transform-origin: left;
+    transition: 0.3s transform ease;
+}
+.lineParent .line:nth-of-type(4) {
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 2px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.3s transform ease;
+}
+.lineParent:hover .line:nth-of-type(4) {
+    transform: scaleY(1.0001);
+    transform-origin: bottom;
+    transition: 0.3s transform ease;
+}
+.toggleBarBtn {
+    display: none;
+}
+.mobDetails {
+    display: none;
+}
+
+/***********************************/
+/****** auth navbar **************/
+
+.studentInfo button {
+    font-size: 1.8rem;
+    color: var(--font-dark);
+    transition: 0.3s all ease;
+    display: flex;
+    padding: 0.8rem 1rem;
+    align-items: center;
+}
+.studentInfo button:focus {
+    box-shadow: none;
+}
+.studentInfo button:hover {
+    color: var(--font-dark);
+}
+.studentInfo button .line {
+    background: var(--green-color);
+}
+.dropdown-menu {
+    padding: 1rem 2rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    background: var(--second-bg);
+    border-radius: 1.2rem;
+}
+.navDropItem {
+    font-size: 1.6rem;
+    color: var(--font-dark);
+    padding: 0.5rem 0.8rem;
+    text-align: center;
+}
+.navDropItem:hover {
+    background: none;
+    color: var(--font-dark);
+}
+.navDrop li:first-of-type .navDropItem {
+    color: var(--l-blue-color);
+}
+.navDrop li:first-of-type .navDropItem .line {
+    background: var(--l-blue-color);
+}
+.navDrop li:nth-of-type(2) .navDropItem {
+    color: var(--l-red-color);
+}
+.navDrop li:nth-of-type(2) .navDropItem .line {
+    background-color: var(--l-red-color);
+}
+.navDrop li:nth-of-type(3) .navDropItem {
+    color: var(--font-dark);
+}
+.navDrop li:nth-of-type(3) .navDropItem .line {
+    background-color: var(--font-dark);
+}
+.navDrop li:nth-of-type(4) .navDropItem {
+    color: var(--l-yellow-color);
+}
+.navDrop li:nth-of-type(4) .navDropItem .line {
+    background-color: var(--l-yellow-color);
+}
+.studentIcon {
+    margin-left: 0.5rem;
+}
+
+/**** responsive *****/
+@media (max-width: 991.5px) {
+    html {
+        font-size: 60%;
+    }
+    /** start nav **/
+    .left {
+        position: fixed;
+        background-color: var(--second-bg);
+        flex-direction: column;
+        padding: 2rem 2rem;
+        border-radius: 2rem;
+        top: -60rem;
+        opacity: 0;
+        left: 50%;
+        z-index: -1;
+        transform: translateX(-50%);
+        transition: 0.9s all ease;
+        box-shadow: var(--shadow);
+    }
+    .activeNavMenu .left {
+        z-index: 9999999999;
+        opacity: 1;
+        top: 50%;
+        transform: translate(-50%, -80%);
+    }
+    .left .search {
+        width: 100%;
+        margin-left: 0;
+    }
+    .register {
+        flex-direction: column;
+        text-align: center;
+    }
+    .signup {
+        margin: 3rem 0 2rem;
+    }
+    .toggleBarBtn {
+        display: block;
+        position: relative;
+        width: 30px;
+        background: none;
+        border: none;
+        height: 30px;
+    }
+    .toggleBarBtn span {
+        width: 30px;
+        height: 4px;
+        background-color: var(--font-dark);
+        border-radius: 10rem;
+        margin: 0.25rem 0;
+        left: 0;
+        transition: 0.3s all ease;
+        position: absolute;
+    }
+    .toggleBarBtn .topLine {
+        top: 0;
+    }
+    .toggleBarBtn .middleLine {
+        top: 8px;
+    }
+    .toggleBarBtn .bottomLine {
+        top: 16px;
+    }
+    .activeNavMenu .topLine {
+        width: 30px;
+        transform: rotate(-45deg);
+
+        transform-origin: right;
+    }
+    .activeNavMenu .middleLine {
+        opacity: 0;
+    }
+    .activeNavMenu .bottomLine {
+        width: 30px;
+        transform: rotate(45deg);
+        transform-origin: right;
+        top: 21.5px;
+    }
+    /****** auth nav *********/
+
+    .mobDetails {
+        display: block;
+    }
+    .mainSearch {
+        display: none;
+    }
+    .studentBtn {
+        display: none;
+    }
+
+    .mobDetails .navDrop {
+        margin-top: 2rem;
+    }
+    .studentImage {
+        width: 8rem;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -55%);
+    }
+    .studentImage img {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        padding: 0.5rem;
+        background: var(--second-bg);
+        transition: 0.3s all ease;
+    }
+    .studentNameMob {
+        font-size: 2rem;
+        margin-top: 4rem;
+        text-align: center;
+    }
+    .mobSearch {
+        margin-top: 2rem;
+    }
+}
+@media (max-width: 767px) {
+    .activeNavMenu .left {
+        width: 40%;
+    }
+    .studentNameMob {
+        font-size: 1.8rem;
+    }
+    .levelsBox {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 600px) {
+    .activeNavMenu .left {
+        width: 50%;
+    }
+}
+@media (max-width: 500px) {
+    .activeNavMenu .left {
+        width: 65%;
+    }
+    html {
+        font-size: 58%;
+    }
+    .levelsBox {
+        width: 95%;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 400px) {
+    .activeNavMenu .left {
+        width: 70%;
+    }
+}
