@@ -83,10 +83,10 @@ class AnswerdQuestionController extends Controller
         if ($answer){
             $answerdQuestion->answer = $answer;
         }
+        return $data;
         if (is_null($flagged)){
             $answerdQuestion->flagged = $flagged;
         }
-        return $data;
         $answerdQuestion->save();
         
         $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId])->count();
