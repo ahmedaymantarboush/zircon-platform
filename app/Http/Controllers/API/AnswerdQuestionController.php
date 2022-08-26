@@ -57,10 +57,10 @@ class AnswerdQuestionController extends Controller
         endif;
         $id = $data['id'] ?? 0;
         $answerdQuestion = AnswerdQuestion::where(['id'=>$id,'user_id'=>$user->id])->first();
-        dd($data);
         if (!$answerdQuestion) :
             return apiResponse(false, _('لم يتم العثور على السؤال'), [], 404);
         endif;
+        dd($data);
         if ($answerdQuestion->user->id != $user->id):
             return apiResponse(false, _('غير مصرح لهذا المسخدم تسجيل اجابة السؤال'), [], 403);
         endif;
