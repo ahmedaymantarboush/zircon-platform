@@ -54,7 +54,7 @@
                     <span><i class="fa-solid fa-magnifying-glass"></i></span>
                 </form>
                 @auth
-                    <div class="register">
+                    {{-- <div class="register">
                         <div class="login">
                             <a href="javascript:{}" onclick="window.logoutFrm.submit()" class="regItem">
                                 <form id="logoutFrm" action="{{ route('logout') }}" method="post">
@@ -72,8 +72,8 @@
                                 </form>
                             </a>
                         </div>
-                    </div>
-                    {{-- <div class="studentInfo">
+                    </div> --}}
+                    <div class="studentInfo">
                         <div class="studentBtn">
                             <button role="button" type="button" class="btn ftu-btn lineParent" data-toggle="dropdown">
                                 <span class="line"></span>
@@ -194,7 +194,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div> --}}
+                    </div>
                 @else
                     <div class="register">
                         <div class="signup">
