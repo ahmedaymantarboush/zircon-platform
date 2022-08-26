@@ -57,7 +57,7 @@ class PassedExamController extends Controller
         endif;
 
         $questions = [];
-        foreach ($passedExam->answerdQuestions as $answerdQuestion) :
+        foreach ($passedExam->answers() as $answerdQuestion) :
             $choices = [];
             foreach ($answerdQuestion->choices as $choice) :
                 $choices[] = [
