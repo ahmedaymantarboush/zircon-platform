@@ -7,6 +7,7 @@ use App\Http\Requests\StoreExamRequest;
 use App\Http\Requests\UpdateExamRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Grade;
+use App\Models\PassedExam;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,9 +72,11 @@ class ExamController extends Controller
 
     public function students($id)
     {
+        $user = Auth::user();
         $exam = Exam::find($id);
-        if ($exam ? $exam->user_id == Auth::user()->id : false):
-            return view('Admin.examStudents', ['students' => $exam->students]);
+        $passedExams = $exam ? $exam->passedExams : null;
+        if ($passedExams && $user ? $exam->publisher->id == $user->id : false):
+            return view('Admin.examStudents', ['exam'=>$exam,'passedExams' => $passedExams]);
         else:
             return abort(404);
         endif;

@@ -209,7 +209,7 @@
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </td>
-                        <td data-lable="السؤال :" class="address">
+                        <td data-lable="الامتحان :" class="address">
                             <div class="custome-parent">
                                 <div class="question-code-parent">
                                     <span class="question-mark"><i class="fa-solid fa-question"></i></span>
@@ -253,7 +253,7 @@
 
                                 <ul class="dropdown-menu feat-menu">
                                     <li>
-                                        <a class="dropdown-item" href="#">عرض لائحة الطلاب</a>
+                                        <a class="dropdown-item" href="{{route('admin.exams.students',$exam->id)}}">عرض لائحة الطلاب</a>
                                     </li>
 
                                     <li>

@@ -8,7 +8,7 @@
 @section('content')
     <div class="page-heading white-box">
         <span class="page-icon"><i class="fa-solid fa-clipboard-question"></i></span>
-        <h2 class="page-h">طلاب امتحان s1asdaw</h2>
+        <h2 class="page-h">طلاب امتحان {{$exam->title}}</h2>
     </div>
 
     <form action="" class="lec-filter">
@@ -60,337 +60,340 @@
                 <span>من الحقول</span>
             </div>
             <div class="filterSearchParent">
-                <div class="addLocation">
+                {{-- <div class="addLocation">
                     <button class="addLocationBtn" data-bs-toggle="modal" data-bs-target="#addLocationModal" type="button">
                         <i class="fa-solid fa-plus"></i>
                         اضافة مكان جديد
                     </button>
-                </div>
+                </div> --}}
                 <div class="filter-search">
                     <label for="">بحث :</label>
                     <input type="search" />
                 </div>
             </div>
         </div>
-        <div class="lectures-table">
-            <table class="">
-                <thead>
-                    <tr>
-                        <th>
-                            #
-                            <i class="fa-solid fa-sort"></i>
-                        </th>
-                        <th>الاسم</th>
-                        <th>المرحلة الدراسية</th>
-                        <th>وقت الانتهاء</th>
-                        <th>تاريخ البدأ</th>
-                        <th>النسبة</th>
-                        <th>إجابة صحيحة</th>
-                        <th>إجابة خاطئة</th>
-                        <th class="features">اجراءات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="redBg">
-                        <td class="number">
-                            1
-                            <button class="open-tr" type="button">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </td>
-                        <td data-lable="الاسم :" class="address">
-                            <div class="custome-parent">
-                                <div class="question-code-parent">
-                                    <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
-                                    <!-- <span
-                       class="question-code"
-                      >
-                       ما هو التيار الكهربي
-                      </span> -->
-                                    <button type="button" class="btn question-code" data-toggle="tooltip"
-                                        data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
-                                        علي علاء الدين السيد
-                                        عبدالسلام البلتاجي
-                                        علي علاء
-                                    </button>
-                                </div>
-                                <div class="name-teacher">
-                                    <span class="job-teacher">:المدرس</span>
-                                    <span>أ. محمد
-                                        عبدالمعبود</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                            <span class="table-level">الصف الثالث الثانوي</span>
-                        </td>
-                        <td data-lable="وقت الانتهاء :" class="table-sections">
-                            <div class="custome-parent">
-                                30:00
-                            </div>
-                        </td>
-                        <td data-lable="تاريخ البدأ :" class="students">
-                            27/7/2005
-                        </td>
-                        <td data-lable="النسبة :" class="views">
-                            50%
-                        </td>
-                        <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                            <span class="table-stat not-active">530</span>
-                        </td>
-                        <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                            <span class="table-price not-free">1100</span>
-                        </td>
-                        <td class="features" data-lable="اجراءات :">
-                            <div class="btn-group">
-                                <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </button>
-
-                                <ul class="dropdown-menu feat-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#">الملف الشخصي</a>
-                                    </li>
-
-                                    <li>
-                                        <a data-bs-toggle="modal" data-bs-target="#studentCard" class="dropdown-item"
-                                            href="#">كارت الطالب
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="dropdown-item" href="#">تعديل الطالب</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="blueBg">
-                        <td class="number">
-                            1
-                            <button class="open-tr" type="button">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </td>
-                        <td data-lable="الاسم :" class="address">
-                            <div class="custome-parent">
-                                <div class="question-code-parent">
-                                    <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
-                                    <!-- <span
-                       class="question-code"
-                      >
-                       ما هو التيار الكهربي
-                      </span> -->
-                                    <button type="button" class="btn question-code" data-toggle="tooltip"
-                                        data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
-                                        علي علاء الدين السيد
-                                        عبدالسلام البلتاجي
-                                        علي علاء
-                                    </button>
-                                </div>
-                                <div class="name-teacher">
-                                    <span class="job-teacher">:المدرس</span>
-                                    <span>أ. محمد
-                                        عبدالمعبود</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                            <span class="table-level">الصف الثالث الثانوي</span>
-                        </td>
-                        <td data-lable="وقت الانتهاء :" class="table-sections">
-                            <div class="custome-parent">
-                                30:00
-                            </div>
-                        </td>
-                        <td data-lable="تاريخ البدأ :" class="students">
-                            27/7/2005
-                        </td>
-                        <td data-lable="النسبة :" class="views">
-                            50%
-                        </td>
-                        <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                            <span class="table-stat not-active">530</span>
-                        </td>
-                        <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                            <span class="table-price not-free">1100</span>
-                        </td>
-                        <td class="features" data-lable="اجراءات :">
-                            <div class="btn-group">
-                                <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </button>
-
-                                <ul class="dropdown-menu feat-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#">الملف الشخصي</a>
-                                    </li>
-
-                                    <li>
-                                        <a data-bs-toggle="modal" data-bs-target="#studentCard" class="dropdown-item"
-                                            href="#">كارت الطالب
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="dropdown-item" href="#">تعديل الطالب</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td class="number">
-                            1
-                            <button class="open-tr" type="button">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </td>
-                        <td data-lable="الاسم :" class="address">
-                            <div class="custome-parent">
-                                <div class="question-code-parent">
-                                    <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
-                                    <!-- <span
-                       class="question-code"
-                      >
-                       ما هو التيار الكهربي
-                      </span> -->
-                                    <button type="button" class="btn question-code" data-toggle="tooltip"
-                                        data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
-                                        علي علاء الدين السيد
-                                        عبدالسلام البلتاجي
-                                        علي علاء
-                                    </button>
-                                </div>
-                                <div class="name-teacher">
-                                    <span class="job-teacher">:المدرس</span>
-                                    <span>أ. محمد
-                                        عبدالمعبود</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                            <span class="table-level">الصف الثالث الثانوي</span>
-                        </td>
-                        <td data-lable="وقت الانتهاء :" class="table-sections">
-                            <div class="custome-parent">
-                                30:00
-                            </div>
-                        </td>
-                        <td data-lable="تاريخ البدأ :" class="students">
-                            27/7/2005
-                        </td>
-                        <td data-lable="النسبة :" class="views">
-                            50%
-                        </td>
-                        <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                            <span class="table-stat not-active">530</span>
-                        </td>
-                        <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                            <span class="table-price not-free">1100</span>
-                        </td>
-                        <td class="features" data-lable="اجراءات :">
-                            <div class="btn-group">
-                                <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </button>
-
-                                <ul class="dropdown-menu feat-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#">الملف الشخصي</a>
-                                    </li>
-
-                                    <li>
-                                        <a data-bs-toggle="modal" data-bs-target="#studentCard" class="dropdown-item"
-                                            href="#">كارت الطالب
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="dropdown-item" href="#">تعديل الطالب</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="greenBg">
-                        <td class="number">
-                            1
-                            <button class="open-tr" type="button">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </td>
-                        <td data-lable="الاسم :" class="address">
-                            <div class="custome-parent">
-                                <div class="question-code-parent">
-                                    <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
-                                    <!-- <span
-                       class="question-code"
-                      >
-                       ما هو التيار الكهربي
-                      </span> -->
-                                    <button type="button" class="btn question-code" data-toggle="tooltip"
-                                        data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
-                                        علي علاء الدين السيد
-                                        عبدالسلام البلتاجي
-                                        علي علاء
-                                    </button>
-                                </div>
-                                <div class="name-teacher">
-                                    <span class="job-teacher">:المدرس</span>
-                                    <span>أ. محمد
-                                        عبدالمعبود</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                            <span class="table-level">الصف الثالث الثانوي</span>
-                        </td>
-                        <td data-lable="وقت الانتهاء :" class="table-sections">
-                            <div class="custome-parent">
-                                30:00
-                            </div>
-                        </td>
-                        <td data-lable="تاريخ البدأ :" class="students">
-                            27/7/2005
-                        </td>
-                        <td data-lable="النسبة :" class="views">
-                            50%
-                        </td>
-                        <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                            <span class="table-stat not-active">530</span>
-                        </td>
-                        <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                            <span class="table-price not-free">1100</span>
-                        </td>
-                        <td class="features" data-lable="اجراءات :">
-                            <div class="btn-group">
-                                <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </button>
-
-                                <ul class="dropdown-menu feat-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#">الملف الشخصي</a>
-                                    </li>
-
-                                    <li>
-                                        <a data-bs-toggle="modal" data-bs-target="#studentCard" class="dropdown-item"
-                                            href="#">كارت الطالب
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="dropdown-item" href="#">تعديل الطالب</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </form>
+    <div class="lectures-table">
+        <table class="">
+            <thead>
+                <tr>
+                    <th>
+                        #
+                        <i class="fa-solid fa-sort"></i>
+                    </th>
+                    <th>الاسم</th>
+                    <th>المرحلة الدراسية</th>
+                    <th>وقت الانتهاء</th>
+                    <th>تاريخ البدأ</th>
+                    <th>النسبة</th>
+                    <th>إجابة صحيحة</th>
+                    <th>إجابة خاطئة</th>
+                    <th class="features">اجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($passedExams as $passedExam)
+                <tr class="redBg">
+                    <td class="number">
+                        1
+                        <button class="open-tr" type="button">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </td>
+                    <td data-lable="الاسم :" class="address">
+                        <div class="custome-parent">
+                            <div class="question-code-parent">
+                                <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
+                                <!-- <span
+                   class="question-code"
+                  >
+                   ما هو التيار الكهربي
+                  </span> -->
+                                <button type="button" class="btn question-code" data-toggle="tooltip"
+                                    data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
+                                    علي علاء الدين السيد
+                                    عبدالسلام البلتاجي
+                                    علي علاء
+                                </button>
+                            </div>
+                            <div class="name-teacher">
+                                <span class="job-teacher">:المدرس</span>
+                                <span>أ. محمد
+                                    عبدالمعبود</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
+                        <span class="table-level">الصف الثالث الثانوي</span>
+                    </td>
+                    <td data-lable="وقت الانتهاء :" class="table-sections">
+                        <div class="custome-parent">
+                            30:00
+                        </div>
+                    </td>
+                    <td data-lable="تاريخ البدأ :" class="students">
+                        27/7/2005
+                    </td>
+                    <td data-lable="النسبة :" class="views">
+                        50%
+                    </td>
+                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
+                        <span class="table-stat not-active">530</span>
+                    </td>
+                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
+                        <span class="table-price not-free">1100</span>
+                    </td>
+                    <td class="features" data-lable="اجراءات :">
+                        <div class="btn-group">
+                            <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
+
+                            <ul class="dropdown-menu feat-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">الملف الشخصي</a>
+                                </li>
+
+                                <li>
+                                    <a data-bs-toggle="modal" data-bs-target="#studentCard" class="dropdown-item"
+                                        href="#">كارت الطالب
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="#">تعديل الطالب</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                
+                @endforeach
+                <tr class="blueBg">
+                    <td class="number">
+                        1
+                        <button class="open-tr" type="button">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </td>
+                    <td data-lable="الاسم :" class="address">
+                        <div class="custome-parent">
+                            <div class="question-code-parent">
+                                <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
+                                <!-- <span
+                   class="question-code"
+                  >
+                   ما هو التيار الكهربي
+                  </span> -->
+                                <button type="button" class="btn question-code" data-toggle="tooltip"
+                                    data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
+                                    علي علاء الدين السيد
+                                    عبدالسلام البلتاجي
+                                    علي علاء
+                                </button>
+                            </div>
+                            <div class="name-teacher">
+                                <span class="job-teacher">:المدرس</span>
+                                <span>أ. محمد
+                                    عبدالمعبود</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
+                        <span class="table-level">الصف الثالث الثانوي</span>
+                    </td>
+                    <td data-lable="وقت الانتهاء :" class="table-sections">
+                        <div class="custome-parent">
+                            30:00
+                        </div>
+                    </td>
+                    <td data-lable="تاريخ البدأ :" class="students">
+                        27/7/2005
+                    </td>
+                    <td data-lable="النسبة :" class="views">
+                        50%
+                    </td>
+                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
+                        <span class="table-stat not-active">530</span>
+                    </td>
+                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
+                        <span class="table-price not-free">1100</span>
+                    </td>
+                    <td class="features" data-lable="اجراءات :">
+                        <div class="btn-group">
+                            <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
+
+                            <ul class="dropdown-menu feat-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">الملف الشخصي</a>
+                                </li>
+
+                                <li>
+                                    <a data-bs-toggle="modal" data-bs-target="#studentCard" class="dropdown-item"
+                                        href="#">كارت الطالب
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="#">تعديل الطالب</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="">
+                    <td class="number">
+                        1
+                        <button class="open-tr" type="button">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </td>
+                    <td data-lable="الاسم :" class="address">
+                        <div class="custome-parent">
+                            <div class="question-code-parent">
+                                <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
+                                <!-- <span
+                   class="question-code"
+                  >
+                   ما هو التيار الكهربي
+                  </span> -->
+                                <button type="button" class="btn question-code" data-toggle="tooltip"
+                                    data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
+                                    علي علاء الدين السيد
+                                    عبدالسلام البلتاجي
+                                    علي علاء
+                                </button>
+                            </div>
+                            <div class="name-teacher">
+                                <span class="job-teacher">:المدرس</span>
+                                <span>أ. محمد
+                                    عبدالمعبود</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
+                        <span class="table-level">الصف الثالث الثانوي</span>
+                    </td>
+                    <td data-lable="وقت الانتهاء :" class="table-sections">
+                        <div class="custome-parent">
+                            30:00
+                        </div>
+                    </td>
+                    <td data-lable="تاريخ البدأ :" class="students">
+                        27/7/2005
+                    </td>
+                    <td data-lable="النسبة :" class="views">
+                        50%
+                    </td>
+                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
+                        <span class="table-stat not-active">530</span>
+                    </td>
+                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
+                        <span class="table-price not-free">1100</span>
+                    </td>
+                    <td class="features" data-lable="اجراءات :">
+                        <div class="btn-group">
+                            <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
+
+                            <ul class="dropdown-menu feat-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">الملف الشخصي</a>
+                                </li>
+
+                                <li>
+                                    <a data-bs-toggle="modal" data-bs-target="#studentCard" class="dropdown-item"
+                                        href="#">كارت الطالب
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="#">تعديل الطالب</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="greenBg">
+                    <td class="number">
+                        1
+                        <button class="open-tr" type="button">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </td>
+                    <td data-lable="الاسم :" class="address">
+                        <div class="custome-parent">
+                            <div class="question-code-parent">
+                                <span class="cardClip"><i class="fa-solid fa-id-card-clip"></i></span>
+                                <!-- <span
+                   class="question-code"
+                  >
+                   ما هو التيار الكهربي
+                  </span> -->
+                                <button type="button" class="btn question-code" data-toggle="tooltip"
+                                    data-placement="top" title="علي علاء الدين السيد عبدالسلام البلتاجي علي علاء">
+                                    علي علاء الدين السيد
+                                    عبدالسلام البلتاجي
+                                    علي علاء
+                                </button>
+                            </div>
+                            <div class="name-teacher">
+                                <span class="job-teacher">:المدرس</span>
+                                <span>أ. محمد
+                                    عبدالمعبود</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
+                        <span class="table-level">الصف الثالث الثانوي</span>
+                    </td>
+                    <td data-lable="وقت الانتهاء :" class="table-sections">
+                        <div class="custome-parent">
+                            30:00
+                        </div>
+                    </td>
+                    <td data-lable="تاريخ البدأ :" class="students">
+                        27/7/2005
+                    </td>
+                    <td data-lable="النسبة :" class="views">
+                        50%
+                    </td>
+                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
+                        <span class="table-stat not-active">530</span>
+                    </td>
+                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
+                        <span class="table-price not-free">1100</span>
+                    </td>
+                    <td class="features" data-lable="اجراءات :">
+                        <div class="btn-group">
+                            <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
+
+                            <ul class="dropdown-menu feat-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">الملف الشخصي</a>
+                                </li>
+
+                                <li>
+                                    <a data-bs-toggle="modal" data-bs-target="#studentCard" class="dropdown-item"
+                                        href="#">كارت الطالب
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="#">تعديل الطالب</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="modal fade" id="studentCard" tabindex="-1" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
