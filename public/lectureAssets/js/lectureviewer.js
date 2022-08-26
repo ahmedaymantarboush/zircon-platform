@@ -194,6 +194,7 @@ $(document).on('click','.question_head',async function (){
             body: form3,
         })
         let resFlagData = await resFlag.json();
+        console.log(resFlagData);
     }
 
 });
@@ -225,6 +226,7 @@ $(document).on('click','.anserBox',async function (){
                     body: form4,
                 })
                 let addAnserData = await addAnser.json();
+                console.log(addAnserData);
                 let yesId = '#yesIcon_'+ queNamber;
                 let yesIcon = document.querySelector(yesId);
                 yesIcon.classList.remove("hide_icon");
