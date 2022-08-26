@@ -143,27 +143,30 @@ chart.render();
 // printBtn.addEventListener("click", function () {
 //     window.print();
 // });
-async function PrintElem(element, customStyles = "") {
-    await Popup(document.querySelector(element).innerHTML, customStyles);
+function PrintElem(element, customStyles = "") {
+    Popup(document.querySelector(element).innerHTML, customStyles);
 }
-async function Popup(data) {
-    var myWindow = await window.open("", "Student Card", "height=500, width=500");
-    myWindow.document.write(
-        `
-<html lang="en">
-        <head>${
-            document.querySelector("head").innerHTML
-        }<style>${customStyles}</style></head><body>`
-    );
-    myWindow.document.write(data);
-    myWindow.document.write("</body></html>");
-    myWindow.document.close();
 
-    myWindow.onload = function() {
-        myWindow.focus();
-        myWindow.print();
-        myWindow.close();
-    };
+function Popup(data) {
+    var myWindow = window.open("", "", "height=500, width=500");
+    while (!myWindow) {
+        myWindow.document.write(
+            `
+    <html lang="en">
+            <head>${
+                document.querySelector("head").innerHTML
+            }<style>${customStyles}</style></head><body>`
+        );
+        myWindow.document.write(data);
+        myWindow.document.write("</body></html>");
+        myWindow.document.close();
+
+        myWindow.onload = function() {
+            myWindow.focus();
+            myWindow.print();
+            myWindow.close();
+        };
+    }
 }
 PrintElem(".profileDetails");
 ////////// Barcode
