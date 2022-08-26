@@ -1,13 +1,13 @@
 ////////////////////////
 // main functions /////
 //////////////////////
-let toggleElement = function(ele, className) {
+let toggleElement = function (ele, className) {
     ele.classList.toggle(className);
 };
-let removeElemment = function(ele, className) {
+let removeElemment = function (ele, className) {
     ele.classList.remove(className);
 };
-let addElement = function(ele, className) {
+let addElement = function (ele, className) {
     ele.classList.add(className);
 };
 
@@ -15,7 +15,7 @@ let addElement = function(ele, className) {
 ///// start navbar /////////////////
 ///////////////////////////////////
 // [01- dark and light ]
-let funChangeImagesDark = function() {
+let funChangeImagesDark = function () {
     let paperImg1 = document.querySelector(".paper img");
     let paperImg2 = document.querySelector(".paper2 img");
     if (document.documentElement.classList.contains("dark")) {
@@ -38,7 +38,7 @@ let funChangeImagesDark = function() {
     }
 };
 
-let addStyleToLocaleStorage = function() {
+let addStyleToLocaleStorage = function () {
     if (localStorage.getItem("style") === null) {
         localStorage.setItem("style", "dark");
     } else {
@@ -46,14 +46,14 @@ let addStyleToLocaleStorage = function() {
     }
 };
 
-let addDarkClassToHtml = function() {
+let addDarkClassToHtml = function () {
     if (localStorage.getItem("style") === null) {
         document.documentElement.classList.remove("dark");
     } else {
         document.documentElement.classList.add(localStorage.getItem("style"));
     }
 };
-let updateUI = function() {
+let updateUI = function () {
     addStyleToLocaleStorage();
     addDarkClassToHtml();
     funChangeImagesDark();
@@ -68,14 +68,14 @@ moon.addEventListener("click", updateUI);
 let toggleBarBtn = document.querySelector(".toggleBarBtn");
 let bigLeft = document.querySelector(".bigLeft");
 
-toggleBarBtn.addEventListener("click", function() {
+toggleBarBtn.addEventListener("click", function () {
     toggleElement(bigLeft, "activeNavMenu");
 });
 
 //[03- progress nav]
 let navBar = document.querySelector(".myNav");
 let progNav = document.querySelector(".navProgChild");
-let navProgFunction = function() {
+let navProgFunction = function () {
     let { scrollTop, scrollHeight } = document.documentElement;
     let myWidth = (scrollTop / (scrollHeight - window.innerHeight)) * 100;
 
@@ -89,10 +89,12 @@ window.addEventListener("scroll", navProgFunction);
 ////////////////////
 
 var options = {
-    series: [{
-        name: "نتائج الامتحانات",
-        data: exams,
-    }, ],
+    series: [
+        {
+            name: "نتائج الامتحانات",
+            data: exams,
+        },
+    ],
     chart: {
         height: 315,
         type: "area",
@@ -139,29 +141,39 @@ chart.render();
 /////////////
 //// print btn
 ////////////
-printPage = document.querySelector('#printPage')
+printPage = document.querySelector("#printPage");
 printPage.style.display = "none";
 
 function PrintElement(selector, customStyles = "") {
     Popup(document.querySelector(selector).outerHTML, customStyles);
 }
 
-function Popup(data, customStyles = '') {
+function Popup(data, customStyles = "") {
     const printPageWindow = printPage.contentWindow;
     const printPageDocument = printPageWindow.document;
-    printPageDocument.querySelector('body').innerHTML = `<style>${customStyles}</style>${data}`
+    printPageDocument.querySelector(
+        "body"
+    ).innerHTML = `<style>${customStyles}</style>${data}`;
     printPageWindow.focus();
     printPageWindow.print();
     printPageWindow.close();
 }
 
 let printBtn = document.querySelector(".printBtn");
-printBtn.addEventListener("click", function() {
-    PrintElement('.profileDetails')
+printBtn.addEventListener("click", function () {
+    PrintElement(".profileDetails");
 });
 
 ////////// Barcode
-let barcodeText = document.querySelector(".barcodeText");
+let barcodeText = document.querySelector(
+    ".barcodeText",
+    `
+    @media print{
+        .profileDetails{font-size:8rem;;border:2px solid #000}
+    .dark .someDetailsHeading{color:red !important}
+    }
+    `
+);
 JsBarcode("#profileBarCode", barcodeText.textContent);
 
 //////////////////////////
