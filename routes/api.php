@@ -6,6 +6,7 @@ use App\Http\Controllers\API\BalanceCardController;
 use App\Http\Controllers\API\CenterController;
 use App\Http\Controllers\API\CouponController;
 use App\Http\Controllers\API\ExamController;
+use App\Http\Controllers\API\ExamQuestionController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\LectureController;
 use App\Http\Controllers\API\PartController;
@@ -92,6 +93,7 @@ Route::post('questions',[QuestionController::class,'index']);
 Route::post('questions/fastEdit',[QuestionController::class,'fastEdit']);
 Route::post('questions/getQuestion',[QuestionController::class,'show']);
 Route::post('questions/sendAnswer',[AnswerdQuestionController::class,'update']);
+Route::post('questions/store',[ExamQuestionController::class,'store']);
 
 
 

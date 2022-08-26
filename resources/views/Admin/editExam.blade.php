@@ -14,7 +14,7 @@
     <script>
         parts = [
             @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $part)
-            ['{{ $part->id }}', '{{ $part->name }}'],
+                ['{{ $part->id }}', '{{ $part->name }}'],
             @endforeach
         ];
         questions = [
@@ -104,7 +104,7 @@
                                                                         <option value="اختر الجزئية التعليمية" selected>
                                                                             اختر الجزئية التعليمية
                                                                         </option>
-                                                                        @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get()->pluck('name') as $partName)
+                                                                        @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $part)
                                                                             <option value="{{ $part->id }}">
                                                                                 {{ $part->name }}
                                                                             </option>
@@ -155,7 +155,8 @@
                                                             <div class="icons">
                                                                 <i class="fa-solid fa-circle-xmark deleteBtn"
                                                                     style="margin-left: 15px;"></i>
-                                                                <i class="fa-solid fa-chevron-down toggleBtn toggleNonActive"></i>
+                                                                <i
+                                                                    class="fa-solid fa-chevron-down toggleBtn toggleNonActive"></i>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex justify-content-center">
@@ -189,7 +190,8 @@
                                                                             اختر الجزئية التعليمية
                                                                         </option>
                                                                         @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $part)
-                                                                            <option @selected($question->part->id == $part->id) value="{{ $part->id }}">
+                                                                            <option @selected($question->part->id == $part->id)
+                                                                                value="{{ $part->id }}">
                                                                                 {{ $part->name }}
                                                                             </option>
                                                                         @endforeach
@@ -207,7 +209,8 @@
                                                                             اختر السؤال
                                                                         </option>
                                                                         @foreach (\App\Models\Question::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $questionOption)
-                                                                            <option @selected($question->id == $questionOption->id) value="{{ $questionOption->id }}">
+                                                                            <option @selected($question->id == $questionOption->id)
+                                                                                value="{{ $questionOption->id }}">
                                                                                 {{ $questionOption->name }}
                                                                             </option>
                                                                         @endforeach
