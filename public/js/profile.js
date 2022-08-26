@@ -149,18 +149,15 @@ function PrintElement(selector, customStyles = "") {
 }
 
 function Popup(data, customStyles = "") {
-    // const printPageWindow = printPage.contentWindow;
-    // const printPageDocument = printPageWindow.document;
-    // printPageDocument.querySelector(
-    //     "body"
-    // ).innerHTML = `<style>${customStyles}</style>${data}`;
-    newWin = window.open("");
+    const printPageWindow = window.open("");
 
-    newWin.document.write(data);
-
-    newWin.focus();
-    newWin.print();
-    newWin.close();
+    const printPageDocument = printPageWindow.document;
+    printPageDocument.querySelector(
+        "body"
+    ).innerHTML = `<style>${customStyles}</style>${data}`;
+    printPageWindow.focus();
+    printPageWindow.print();
+    printPageWindow.close();
 }
 
 let printBtn = document.querySelector(".printBtn");
