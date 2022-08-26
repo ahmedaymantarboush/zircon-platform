@@ -39,7 +39,7 @@ Bold: 700
     box-sizing: border-box;
     outline: none;
     list-style: none;
-    page-break-after: auto;
+    page-break-after: always;
 
     word-wrap: break-word;
 
