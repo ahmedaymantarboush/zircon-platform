@@ -852,7 +852,7 @@ $(document).on('click','.showExam',async function (){
     onReadyFunExam();
     console.log(getExamVar.data.examEndedAt);
     if(getExamVar.data.examEndedAt == null){
-
+        alert('اشطا');
         $('.countdown').each(function (){
             this.innerHTML= 'وقت مفتوح';
         });
