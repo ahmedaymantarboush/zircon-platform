@@ -1116,3 +1116,12 @@ div.waves {
     fill: rgba(64, 83, 104, 0.4);
     transition: 0.3s all ease;
 }
+@media print {
+    .profileDetails {
+        font-size: 8rem;
+        border: 2px solid #000;
+    }
+    .dark .someDetailsHeading {
+        color: red !important;
+    }
+}
