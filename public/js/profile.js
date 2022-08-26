@@ -165,7 +165,7 @@ function Popup(data) {
         myWindow.close();
     };
 }
-PrintElem("." + profileContent);
+PrintElem(".profileDetails");
 ////////// Barcode
 let barcodeText = document.querySelector(".barcodeText");
 JsBarcode("#profileBarCode", barcodeText.textContent);
