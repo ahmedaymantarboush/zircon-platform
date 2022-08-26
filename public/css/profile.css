@@ -1120,10 +1120,10 @@ div.waves {
     .profileDetails {
         font-size: 8rem;
         border: 2px solid #000;
-        width: 80px;
+        width: 80px !important;
         overflow: hidden;
     }
     .dark .someDetailsHeading {
-        color: red !important;
+        color: red;
     }
 }
