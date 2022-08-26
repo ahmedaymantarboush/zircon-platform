@@ -661,7 +661,7 @@ $(document).on('click','.takeExam',async function (){
          body: form6,
      })
      let finishExamData = await finishExam.json();
-     $('.modelFinish').hide();
+     $('.modelFinish').toggle();
      form7 = new FormData()
      form7.append('data', JSON.stringify({
          'id': parseInt(itemID),
