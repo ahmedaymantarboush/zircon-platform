@@ -39,8 +39,7 @@ Bold: 700
     box-sizing: border-box;
     outline: none;
     list-style: none;
-    page-break-after: always;
-    page-break-inside: auto;
+
     word-wrap: break-word;
 
     text-transform: capitalize;
@@ -1129,8 +1128,6 @@ div.waves {
         border: 2px solid #000;
         /* height: 33cm !important;
         width: 20.7cm !important; */
-        page-break-after: always;
-        display: inline-block;
     }
     .printable {
     }

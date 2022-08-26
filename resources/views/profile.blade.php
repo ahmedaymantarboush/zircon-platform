@@ -131,7 +131,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-7 nonePrint rightProfile">
+                <div class="col-lg-8 col-md-7  rightProfile">
                     <div class="row">
                         <div class="col-lg-4 col-sm-6 mb-30">
                             <div class="addCharge ">
@@ -228,6 +228,26 @@
                                 <div class="item">
                                     <span class='type'> المحافظة:</span>
                                     <span class='info'>القاهرة</span>
+                                </div>
+                                <div class="item">
+                                    <span class='type'>مكان الحضور:</span>
+                                    <span class='info'>المنصة</span>
+                                </div>
+                                <div class="item">
+                                    <span class='type'>مكان الحضور:</span>
+                                    <span class='info'>المنصة</span>
+                                </div>
+                                <div class="item">
+                                    <span class='type'>مكان الحضور:</span>
+                                    <span class='info'>المنصة</span>
+                                </div>
+                                <div class="item">
+                                    <span class='type'>مكان الحضور:</span>
+                                    <span class='info'>المنصة</span>
+                                </div>
+                                <div class="item">
+                                    <span class='type'>مكان الحضور:</span>
+                                    <span class='info'>المنصة</span>
                                 </div>
                                 <div class="item">
                                     <span class='type'>مكان الحضور:</span>
