@@ -51,13 +51,13 @@ class AnswerdQuestionController extends Controller
     public function update()
     {
         $data = json_decode(request()->data,true);
-        dd($data);
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
         $id = $data['id'] ?? 0;
         $answerdQuestion = AnswerdQuestion::where(['id'=>$id,'user_id'=>$user->id])->first();
+        dd($data);
         if (!$answerdQuestion) :
             return apiResponse(false, _('لم يتم العثور على السؤال'), [], 404);
         endif;
