@@ -443,9 +443,10 @@ $(document).on('click','.takeExam',function (){
     examHTML='<div class="exam-parent">\n' +
         '                <div class="exam-tab swiper mySwiper">\n' +
         '                    <div class="swiper-wrapper">';
-    let getExam= getExam(parseInt(examID));
+    let getExamVar= '';
+    getExamVar = getExam(parseInt(examID));
     //Add Tabs
-    for (let i=1;i <= getExam.data.questions.length;i++){
+    for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
         if(i != 1){active = "";}
         examHTML += '<div class="swiper-slide">\n' +
@@ -468,13 +469,13 @@ $(document).on('click','.takeExam',function (){
         '                    <div class="container">\n' +
         '                        <div class="row">';
     //Add questions
-    for (let i=1;i <= getExam.data.questions.length;i++){
+    for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
         if(i !== 1){active = "";}
-        let getQuestion = getQuestion(parseInt(getExam.data.questions[i-1]));
+        let getQuestionVar = getQuestion(parseInt(getExamVar.data.questions[i-1]));
         let flagclass="unflagQuestion";
         let inputclass ="uncheckflag";
-        if(parseInt(getQuestion.data.flagged)){
+        if(parseInt(getQuestionVar.data.flagged)){
             flagclass="flagQuestion";
             inputclass ="checkflag";
         }
@@ -490,35 +491,35 @@ $(document).on('click','.takeExam',function (){
             '                                            <i class="fa-solid fa-calendar-days"></i>\n' +
             '                                        </div>\n' +
             '                                    </div>';
-        if(getQuestion.data.question.image !=null){
+        if(getQuestionVar.data.question.image !=null){
             examHTML += '<div class="col-12">\n' +
                 '                                            <img class="question_img"\n' +
-                '                                                src="'+getQuestion.data.question.image+'">\n' +
+                '                                                src="'+getQuestionVar.data.question.image+'">\n' +
                 '                                        </div>';
         }
         examHTML += '<div class="col-12">\n' +
-            '                                        <p class="question_text">'+getQuestion.data.question.text+'</p>\n' +
+            '                                        <p class="question_text">'+getQuestionVar.data.question.text+'</p>\n' +
             '                                    </div>';
         //Add Choices
-        for (let j=1;j <= getQuestion.data.question.choices.length;j++){
+        for (let j=1;j <= getQuestionVar.data.question.choices.length;j++){
             let addSelected ='';
             let addChecked = '';
-            if(getQuestion.data.question.choices[j-1].id == getQuestion.data.question.choice){
+            if(getQuestionVar.data.question.choices[j-1].id == getQuestionVar.data.question.choice){
                 addSelected ='selectedAnser';
                 addChecked = 'checked';
             }
             examHTML += '<div class="col-12">\n' +
-                '                                            <div choiceID="'+ getQuestion.data.question.choices[i-1].id +' class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
+                '                                            <div choiceID="'+ getQuestionVar.data.question.choices[i-1].id +' class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
                 '                                                queNamber="'+j+'" >\n' +
                 '                                                <input type="radio" name="anser'+j+'"\n' +
                 '                                                    value="anser_database_id" '+addChecked+'>\n' +
-                '                                                <span class="anser_text">getQuestion.data.question.choices[j-1].text</span>\n' +
+                '                                                <span class="anser_text">getQuestionVar.data.question.choices[j-1].text</span>\n' +
                 '                                            </div>\n' +
                 '                                        </div>';
         }
         examHTML+= '</div>';
     }
-    if(getExam.data.questions.length >=2){
+    if(getExamVar.data.questions.length >=2){
         examHTML += '<div class="col-12">\n' +
             '                                    <div class="btn-control d-flex justify-content-center">\n' +
             '                                        <button class="rightBtn">\n' +
