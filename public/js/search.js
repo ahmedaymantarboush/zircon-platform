@@ -271,11 +271,10 @@ checkInputs.forEach((ele) => {
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
 
-    let myResponse = await editFun(
+    let myResponse = editFun(
         `${window.location.protocol}//${window.location.host}/api/search`,
         form,
         e
     );
     console.log(myResponse);
-        
 });
