@@ -327,7 +327,7 @@ function showTakeExam(data) {
         //if exam finished
         // replace 8 with correct ansers count
         let student_perc = (data.data.item.correctAnswers / data.data.item.questionsCount) * 100;
-        student_perc.toFixed(2);
+        student_perc = student_perc.toFixed(2);
         if (student_perc > 50) {
             take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
                 '                            <p class="ex_green">\n' +
@@ -462,7 +462,7 @@ $(document).on('click', '.lesson_name', function() {
 $(document).on('click', '.startExam', function() {
     form = new FormData()
     form.append('data', JSON.stringify({
-        'id': parseInt(examPassedID)
+        'id': parseInt(examID)
     }))
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", APP_URL + "/api/items/getItem");
@@ -664,6 +664,15 @@ $(document).on('click', '.takeExam', async function() {
     mainDiv.innerHTML = examHTML;
     flagFun();
     onReadyFunExam();
+    if (getExamVar.data.examEndedAt == null) {
+        $('.countdown').each(function() {
+            $(this).html('وقت مفتوح');
+        });
+    } else {
+
+        addTimer(getExamVar.data.examEndedAt);
+    }
+
 });
 $(document).on('click', '.finishBtn', async function() {
     //Ajax
@@ -706,7 +715,7 @@ $(document).on('click', '.showExam', async function() {
         '                    <div class="swiper-wrapper">';
     form10 = new FormData()
     form10.append('data', JSON.stringify({
-        'id': parseInt(examID)
+        'id': parseInt(examPassedID)
     }))
     let getExamPassed = await fetch(APP_URL + "/api/exams/passed", {
         method: "POST",
