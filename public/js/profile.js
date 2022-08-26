@@ -139,10 +139,6 @@ chart.render();
 /////////////
 //// print btn
 ////////////
-// let printBtn = document.querySelector(".printBtn");
-// printBtn.addEventListener("click", function () {
-//     window.print();
-// });
 function PrintElem(element, customStyles = "") {
     Popup(document.querySelector(element).innerHTML, customStyles);
 }
@@ -165,6 +161,13 @@ function Popup(data) {
         } catch (e) {}
     }
 }
+
+let printBtn = document.querySelector(".printBtn");
+printBtn.addEventListener("click", function() {
+    window.print();
+    PrintElem(element)
+});
+
 ////////// Barcode
 let barcodeText = document.querySelector(".barcodeText");
 JsBarcode("#profileBarCode", barcodeText.textContent);
