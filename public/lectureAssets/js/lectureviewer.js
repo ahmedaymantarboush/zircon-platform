@@ -286,7 +286,6 @@ function showTakeExam(data){
 }
 function getItem(data){
 
-
     if (data.data.type== 'lesson'){
         //pages
         let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">"+ mediaPlayer(data.data.item.urls) + "</div>\n" +
@@ -393,59 +392,26 @@ $(document).on('click','.startExam',function (){
 /////////////////////////////////////////////////////////////////////////
 
 let examHTML = '';
-$(document).on('click','.takeExam',function (){
+$(document).on('click','.takeExam',async function (){
     // Ajax Functions //
-    function getExam(id){
-        let funData='';
-        form1 = new FormData()
-        form1.append('data', JSON.stringify({
-            'id': id
-        }))
-        // parseInt(examID)
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", APP_URL+"/api/exams/getExam");
-        xhttp.setRequestHeader('Accept', 'application/json');
-        let tkn = window.csrf_token.value
-        xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-        xhttp.onreadystatechange = function (e) {
-            if (this.readyState==4) {
-                data = JSON.parse(this.responseText);
-                funData = data;
-            }
-            // addQuestions(data);
-        }
-        xhttp.send(form1);
-        return funData;
-    }
-    function getQuestion(id){
-        let funData='';
-        form2 = new FormData()
-        form2.append('data', JSON.stringify({
-            'id': id
-        }))
-        // parseInt(data.data.questions[i-1])
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
-        xhttp.setRequestHeader('Accept', 'application/json');
-        let tkn = window.csrf_token.value
-        xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
-        xhttp.onreadystatechange = function (e) {
-            if (this.readyState==4) {
-                Qdata = JSON.parse(this.responseText);
-                funData = Qdata;
-            }
-            // mainDiv.innerHTML += addQue(Qdata,i);
-            // console.log(addQue(Qdata,i));
-        }
-        xhttp.send(form2);
-        return funData;
-    }
     examHTML='<div class="exam-parent">\n' +
         '                <div class="exam-tab swiper mySwiper">\n' +
         '                    <div class="swiper-wrapper">';
-    let getExam= getExam(parseInt(examID));
+    form1 = new FormData()
+    form1.append('data', JSON.stringify({
+        'id': parseInt(examID)
+    }))
+    let getExam = await fetch(APP_URL+"/api/exams/getExam", {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "X-CSRF-TOKEN": window.csrf_token.value,
+        },
+        body: form1,
+    })
+    let getExamVar = await getExam.json();
     //Add Tabs
-    for (let i=1;i <= getExam.data.questions.length;i++){
+    for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
         if(i != 1){active = "";}
         examHTML += '<div class="swiper-slide">\n' +
@@ -468,20 +434,46 @@ $(document).on('click','.takeExam',function (){
         '                    <div class="container">\n' +
         '                        <div class="row">';
     //Add questions
-    for (let i=1;i <= getExam.data.questions.length;i++){
+    for (let i=1;i <= getExamVar.data.questions.length;i++){
         let active = "active-tab";
         if(i !== 1){active = "";}
-        let getQuestion = getQuestion(parseInt(getExam.data.questions[i-1]));
+        form2 = new FormData()
+        form2.append('data', JSON.stringify({
+            'id': parseInt(getExamVar.data.questions[i-1])
+        }))
+        // var xhttp = new XMLHttpRequest();
+        // xhttp.open("POST", APP_URL+"/api/questions/getQuestion");
+        // xhttp.setRequestHeader('Accept', 'application/json');
+        // let tkn = window.csrf_token.value
+        // xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
+        // xhttp.onreadystatechange = function (e) {
+        //     if(this.readyState ==4){
+        //         getQuestionVar = JSON.parse(this.responseText);
+        //         console.log(getQuestionVar);
+        //         add2(getQuestionVar);
+        //     }
+        // }
+        // xhttp.send(form2);
+        let getQuestion = await fetch(APP_URL+"/api/questions/getQuestion", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: form2,
+        })
+        let getQuestionVar = await getQuestion.json();
+        console.log(getQuestionVar);
         let flagclass="unflagQuestion";
         let inputclass ="uncheckflag";
-        if(parseInt(getQuestion.data.flagged)){
+        if(parseInt(getQuestionVar.data.flagged)){
             flagclass="flagQuestion";
             inputclass ="checkflag";
         }
         examHTML += '<div class="question '+active+' col-12">\n' +
             '                                    <div class="title_exam d-flex justify-content-between">\n' +
             '                                        <div class="question_head">\n' +
-            '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="0"\n' +
+            '                                            <i class="fa-solid fa-font-awesome '+flagclass+'" flag="'+parseInt(getQuestionVar.data.flagged)+'"\n' +
             '                                                queNamber="'+i+'"></i>\n' +
             '                                            <input type="checkbox" class="'+inputclass+'">\n' +
             '                                            <span>السؤال رقم '+i+'</span>\n' +
@@ -490,35 +482,37 @@ $(document).on('click','.takeExam',function (){
             '                                            <i class="fa-solid fa-calendar-days"></i>\n' +
             '                                        </div>\n' +
             '                                    </div>';
-        if(getQuestion.data.question.image !=null){
+        if(getQuestionVar.data.question.image !=null){
             examHTML += '<div class="col-12">\n' +
                 '                                            <img class="question_img"\n' +
-                '                                                src="'+getQuestion.data.question.image+'">\n' +
+                '                                                src="'+getQuestionVar.data.question.image+'">\n' +
                 '                                        </div>';
         }
         examHTML += '<div class="col-12">\n' +
-            '                                        <p class="question_text">'+getQuestion.data.question.text+'</p>\n' +
+            '                                        <p class="question_text">'+getQuestionVar.data.question.text+'</p>\n' +
             '                                    </div>';
         //Add Choices
-        for (let j=1;j <= getQuestion.data.question.choices.length;j++){
+        for (let j=1;j <= getQuestionVar.data.question.choices.length;j++){
             let addSelected ='';
             let addChecked = '';
-            if(getQuestion.data.question.choices[j-1].id == getQuestion.data.question.choice){
+            if(getQuestionVar.data.question.choices[j-1].id == getQuestionVar.data.question.choice){
                 addSelected ='selectedAnser';
                 addChecked = 'checked';
             }
             examHTML += '<div class="col-12">\n' +
-                '                                            <div choiceID="'+ getQuestion.data.question.choices[i-1].id +' class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
+                '                                            <div choiceID="'+ getQuestionVar.data.question.choices[j-1].id +'" class="anserBox '+ addSelected +' d-flex justify-content-start"\n' +
                 '                                                queNamber="'+j+'" >\n' +
-                '                                                <input type="radio" name="anser'+j+'"\n' +
+                '                                                <input type="radio" name="anser'+i+'"\n' +
                 '                                                    value="anser_database_id" '+addChecked+'>\n' +
-                '                                                <span class="anser_text">getQuestion.data.question.choices[j-1].text</span>\n' +
+                '                                                <span class="anser_text">getQuestionVar.data.question.choices[j-1].text</span>\n' +
                 '                                            </div>\n' +
                 '                                        </div>';
         }
         examHTML+= '</div>';
+
     }
-    if(getExam.data.questions.length >=2){
+
+    if(getExamVar.data.questions.length >=2){
         examHTML += '<div class="col-12">\n' +
             '                                    <div class="btn-control d-flex justify-content-center">\n' +
             '                                        <button class="rightBtn">\n' +
