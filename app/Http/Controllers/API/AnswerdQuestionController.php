@@ -65,6 +65,9 @@ class AnswerdQuestionController extends Controller
         endif;
         $examId = $answerdQuestion->exam_id;
         $passedExam = $user->passedExams()->where(['exam_id'=>$examId])->first();
+        if (!$passedExam){
+            return apiResponse(false, _('لم يتم العثور على الامتحان'), [], 404);
+        }
         if ($passedExam->finished || ( $passedExam->ended_at ? $passedExam->ended_at >= now() : false )):
             return apiResponse(false, _('غير مصرح لهذا المسخدم تسجيل اجابة السؤال'), [], 403);
         endif;
@@ -87,6 +90,8 @@ class AnswerdQuestionController extends Controller
         
         $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId])->count();
         
+
+
         $passedExam->percentag = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId])->count()) * 100, 2);
         $passedExam->save();
         dd($data);
