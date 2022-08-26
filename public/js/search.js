@@ -206,20 +206,20 @@ closeFilter.addEventListener(
 let checkInputs = document.querySelectorAll('input[type="checkbox"]');
 let qText = document.querySelector(".mainSearch").textContent.trim();
 
-checkInputs.forEach((ele) => {
-    let search = {
-        q: qText,
-        filters: {
-            grades: [],
-            parts: [],
-            price: {
-                free: null,
-                hasDiscount: null,
-                paid: null,
-            },
+let search = {
+    q: qText,
+    filters: {
+        grades: [],
+        parts: [],
+        price: {
+            free: false,
+            hasDiscount: false,
+            paid: false,
         },
-    };
-    ele.addEventListener("change", function () {
+    },
+};
+checkInputs.forEach((ele) => {
+    ele.addEventListener("change", async function () {
         search.filters.grades = [];
         search.filters.parts = [];
 
@@ -228,15 +228,51 @@ checkInputs.forEach((ele) => {
             if (item.checked == true && objKey != "price") {
                 search.filters[objKey].push(item.value);
             }
-            if (objKey == "price") {
-                let priceProp = search.filters.price[ele.name];
-                if (ele.checked) {
-                    search.filters.price[priceProp] = true;
-                } else {
-                    search.filters.price[priceProp] = false;
-                }
-            }
         });
+        if (ele.closest(".card").dataset.name == "price") {
+            let priceProp = ele.name;
+            if (ele.checked) {
+                search.filters.price[priceProp] = true;
+            } else {
+                search.filters.price[priceProp] = false;
+            }
+            console.log(ele);
+        }
         console.log(search.filters);
+        let editFun = async function (url, myData, el = null) {
+            try {
+                let postData = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json",
+                        "X-CSRF-TOKEN": window.csrf_token.value,
+                    },
+                    body: myData,
+                });
+
+                let responseData = await postData.json();
+
+                if (postData.status == 200) {
+                    return responseData;
+                }
+                if (postData.status == 404) {
+                    return null;
+                }
+                return null;
+            } catch (err) {}
+        };
+
+        let sendObj = {
+            search: search,
+        };
+
+        form = new FormData();
+        form.append("data", JSON.stringify(sendObj));
+
+        let myResponse = await editFun(
+            `${window.location.protocol}//${window.location.host}/api/search`,
+            form
+        );
+        console.log(myResponse);
     });
 });
