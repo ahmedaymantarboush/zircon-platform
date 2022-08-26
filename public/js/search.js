@@ -230,6 +230,6 @@ checkInputs.forEach((ele) => {
                 search.filters[objKey].push(item.value);
             }
         });
-        console.log(search.filters.grades);
+        console.log(search.filters);
     });
 });
