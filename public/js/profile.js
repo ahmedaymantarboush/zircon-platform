@@ -149,18 +149,20 @@ function PrintElem(element, customStyles = "") {
     Popup(document.querySelector(element).innerHTML, customStyles);
 }
 function Popup(data) {
-    var myWindow = window.open("", "my div", "height=400,width=600");
-    myWindow.document.write("<html><head><title>my div</title>");
-    /*optional stylesheet*/ //myWindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
-    myWindow.document.write("</head><body >");
+    var myWindow = window.open("", "", "height=500, width=500");
+    myWindow.document.write(
+        `
+<html lang="en">
+        <head>${
+            document.querySelector("head").innerHTML
+        }<style>${customStyles}</style></head><body>`
+    );
     myWindow.document.write(data);
     myWindow.document.write("</body></html>");
-    myWindow.document.close(); // necessary for IE >= 10
+    myWindow.document.close();
 
     myWindow.onload = function () {
-        // necessary if the div contain images
-
-        myWindow.focus(); // necessary for IE >= 10
+        myWindow.focus();
         myWindow.print();
         myWindow.close();
     };
