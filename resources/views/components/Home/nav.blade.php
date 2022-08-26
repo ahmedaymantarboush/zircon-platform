@@ -76,7 +76,6 @@
                     <form class="search mainSearch">
                         <input type="search" name="q" value="{{ request()->q }}" >
                         <span><i class="fa-solid fa-magnifying-glass"></i></span>
-
                     </form>
                     <div class="studentInfo">
                         <div class="studentBtn">
