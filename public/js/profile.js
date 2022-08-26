@@ -142,7 +142,7 @@ chart.render();
 printPage = document.querySelector('#printPage')
 printPage.style.display = "none";
 
-function PrintElem(selector, customStyles = "") {
+function PrintElement(selector, customStyles = "") {
     Popup(document.querySelector(selector).outerHTML, customStyles);
 }
 
@@ -157,7 +157,7 @@ function Popup(data, customStyles = '') {
 
 let printBtn = document.querySelector(".printBtn");
 printBtn.addEventListener("click", function() {
-    PrintElem('.profileDetails')
+    PrintElement('.profileDetails')
 });
 
 ////////// Barcode
