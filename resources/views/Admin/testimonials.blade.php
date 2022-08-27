@@ -340,7 +340,8 @@
         </div>
         <div class="file">
             <label for="">رفع صورة الطالب</label>
-            <input type="file" class="@error('image') is-invalid @enderror" name="image" class="form-control" />
+            <input type="file" class="@error('image') form-control is-invalid @enderror" name="image"
+                class="form-control" />
             @error('image')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -468,7 +469,8 @@
         </div>
         <div class="file">
             <label for="">رفع صورة الطالب</label>
-            <input type="file" class="@error('newImage') is-invalid @enderror" name="newImage" class="form-control" />
+            <input type="file" class="@error('newImage') form-control is-invalid @enderror" name="newImage"
+                class="form-control" />
             @error('newImage')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
