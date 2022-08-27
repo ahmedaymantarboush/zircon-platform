@@ -276,22 +276,22 @@ checkInputs.forEach((ele) => {
         let { lastPage, currentPage } = pagination || 0;
 
         for (let i = 1; i <= lastPage; i++) {
-            let cla = null;
+            let cla = "";
             if (i == currentPage) {
                 cla = "active";
             }
             let text = `
             
-                  <a class="card-btn ${cla}" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
+                <a class="card-btn ${cla}" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
             `;
             paginationBtnParent.insertAdjacentHTML("beforeend", text);
-            // if (i === lastPage) {
-            //     console.log("yes");
-            //     let nextPag = `
-            //          <a class="card-btn" href="${APP_URL}/search?page=${pagination.nextPageUrl}${pagination.query}"><i class="fa-solid fa-angles-left"></i></a>
-            //     `;
-            //     paginationBtnParent.insertAdjacentHTML("beforeend", nextPag);
-            // }
+            if (i === lastPage) {
+                console.log("yes");
+                let nextPag = `
+                    <a class="card-btn" href="${pagination.nextPageUrl}"><i class="fa-solid fa-user"></i></a>
+                `;
+                paginationBtnParent.insertAdjacentHTML("beforeend", nextPag);
+            }
         }
 
         for (let i = 0; i < lectures.length; i++) {
