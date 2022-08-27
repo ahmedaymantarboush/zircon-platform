@@ -147,7 +147,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let ques = e.target.closest("tr").querySelector(".question-code")[
         "data-bs-original-title"
     ];
-    console.log(ques.getAttribute("title"));
+    console.log(ques);
     let sendObj = {
         id: dataId,
     };
