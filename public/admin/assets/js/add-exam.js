@@ -409,7 +409,7 @@ $(document).on("click", ".btn-outline-secondary", function() {
 //////////////////////////////////////////////////////////////////////////
 $(document).on('change','.staticQuestion',async function (){
     let examID = $("input[name='id']").attr('value');
-    if($(this).attr('data-id')==0){
+    if($(this).parent().closest(".question-box").attr('data-id')==0){
         let queID = $(this).val();
         //Ajax
         form3 = new FormData()
