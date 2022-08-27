@@ -84,6 +84,8 @@ h4,
 h5,
 h6 {
     margin: 0;
+    line-height: 1.6;
+
     padding: 0;
     color: var(--font-dark);
 }
