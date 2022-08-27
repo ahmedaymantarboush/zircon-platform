@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreTestimonialRequest extends FormRequest
 {
@@ -13,7 +14,8 @@ class StoreTestimonialRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $user = Auth::user();
+        return $user ?: false;
     }
 
     /**

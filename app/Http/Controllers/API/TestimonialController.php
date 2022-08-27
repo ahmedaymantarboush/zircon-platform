@@ -38,6 +38,8 @@ class TestimonialController extends Controller
         return apiResponse(true, _('تم العثور على الشهادة'), [
             'studentName' => $testimonial->student_name,
             'degree' => $testimonial->degree,
+            'subjectDegree' => $testimonial->degree,
+            'grade' =>  $testimonial->grade,
             'image' => $testimonial->image,
             'content' => $testimonial->content,
         ]);
@@ -104,9 +106,6 @@ class TestimonialController extends Controller
         $testimonial = Testimonial::find($id);
         if (!$testimonial) :
             return apiResponse(false, _('لم يتم العثور على الشهادة'), [], 404);
-        endif;
-        if ($testimonial->publisher->id != $user->id):
-            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الشهادة'), [], 403);
         endif;
         $testimonial->delete();
         return apiResponse(true,_('تم حذف الشهادة بنجاح'),[]);
