@@ -43,12 +43,12 @@ class CenterController extends Controller
         $id = $data['id'] ?? 0;
         $center = Center::find($id);
         if (!$center) :
-            return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 404);
+            return apiResponse(false, _('لم يتم العثور على السنتر'), [], 404);
         endif;
-        if ($user->role->number < 4):
-            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
-        endif;
-        return apiResponse(true, _('تم العثور على المحاضرة'), [
+        // if ($user->role->number < 4):
+        //     return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل السنتر'), [], 403);
+        // endif;
+        return apiResponse(true, _('تم العثور على السنتر'), [
             'name' => $center->name,
             'url' => $center->url,
             'governorate' => $center->governorate->id,
@@ -105,11 +105,11 @@ class CenterController extends Controller
         $id = $data['id'] ?? 0;
         $center = Center::find($id);
         if (!$center) :
-            return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 404);
+            return apiResponse(false, _('لم يتم العثور على السنتر'), [], 404);
         endif;
-        if ($user->role->number < 4):
-            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
-        endif;
+        // if ($user->role->number < 4):
+        //     return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل السنتر'), [], 403);
+        // endif;
         $center->delete();
         return apiResponse(true,_('تم حذف السنتر بنجاح'),[]);
     }
