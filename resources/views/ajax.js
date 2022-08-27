@@ -14,7 +14,33 @@ xhttp.onreadystatechange = function(e) {
     data = JSON.parse(this.responseText)
 }
 xhttp.send(form);
-
+let paination = `<div class="btns">`
+paination += response.pagination.prevPageUrl ? `
+    <a href="${response.pagination.firsPageUrl}${response.pagination.query}" class="card-btn" data-ur1313m3t="true">
+        <span class="btn-arrow"><i class="fa-solid fa-angles-right"></i>/span>
+    </a>
+    <a class="card-btn" href="${response.pagination.nextPageUrl}${response.pagination.query}"
+        data-ur1313m3t="true">
+        <span class="btn-arrow"><i class="fa-solid fa-angle-right"></i>/span>
+    </a>` : ``
+for (let i = 1; i <= response.pagination.lastPage; i++) {
+    let link = `${APP_URL}/search?page=${i}${response.pagination.query}`
+    paination += `
+        <a class="card-btn " href="${link}"
+            data-ur1313m3t="true">3</a>
+    `
+}
+paination += response.pagination.prevPageUrl ? `<a class="card-btn" href="${response.pagination.nextPageUrl}${response.pagination.query}"
+        data-ur1313m3t="true">
+        <span class="btn-arrow"><i class="fa-solid fa-angle-left"></i>/span>
+    </a>
+    <a class="card-btn" href="${response.pagination.nextPageUrl}${response.pagination.query}"
+        data-ur1313m3t="true">
+        <span class="btn-arrow"><i class="fa-solid fa-angles-left"></i>/span>
+    </a>
+    
+</div>
+` : ``
 form = new FormData()
 fetch("url", {
         method: "POST",
