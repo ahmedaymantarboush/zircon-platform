@@ -90,7 +90,7 @@ let editFun = async function (url, myData, el = null) {
 };
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("editTesti")) return;
-    let dataId = e.target.closest("tr")dataset.id;
+    let dataId = e.target.closest("tr").dataset.id;
     console.log(dataId);
     let sendObj = {
         id: dataId,
