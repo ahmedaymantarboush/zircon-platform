@@ -383,6 +383,7 @@
             </div>
             <form action="{{ route('admin.testimonials.update') }}">
                 <div class="modal-body">
+                    <input type="text" name='id' id='trId'>
                     <div class="less-item custome-item">
                         <label class="sec-name">اسم الطالب</label>
 
