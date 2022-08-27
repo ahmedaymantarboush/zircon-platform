@@ -388,6 +388,8 @@ function getItem(data) {
             }
             loadMediaPlayerJs();
         } else {
+            examID = data.data.item.exam;
+            console.log(examID);
             let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
                 "                    <div class=\"row\">\n" +
                 "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
@@ -403,7 +405,7 @@ function getItem(data) {
                 "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
                 "                            <span class=\"ex_text\">في امتحان <span>(" + data.data.item.examName + ")</span></span>\n" +
                 "                        </div>";
-            examID = data.data.item.exam;
+
             if (data.data.item.finished == false) {
                 passExam += '<div class="col-12 d-flex justify-content-center">\n' +
                     '                                <a class="exam_btn startExam d-flex justify-content-center" href="#"\n' +
@@ -486,7 +488,11 @@ $(document).on('click', '.startExam', function() {
             data = JSON.parse(this.responseText);
             console.log(data);
             showTakeExam(data);
-            examID = data.data.item.id;
+            if(data.data.type=='lesson'){
+                examID = data.data.item.exam;
+            }else {
+                examID = data.data.item.id;
+            }
             itemID = data.data.item.id;
         }
     }
