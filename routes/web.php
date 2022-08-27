@@ -68,7 +68,7 @@ Route::group(['middleware'=>['auth', 'teacher'],'prefix'=>'admin'],function () {
     Route::post('questions/store', [QuestionController::class,'store'])->name('admin.questions.store');
     Route::post('questions/update', [QuestionController::class,'update'])->name('admin.questions.update');
 
-    Route::get('certificates', [TestimonialController::class,'index'])->name('admin.certificates.index');
+    Route::get('testimonials', [TestimonialController::class,'index'])->name('admin.certificates.index');
 
     Route::get('centers', [CenterController::class,'index'])->name('admin.centers.index');
     Route::post('centers/update', [CenterController::class,'update'])->name('admin.centers.update');
