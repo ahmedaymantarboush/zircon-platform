@@ -411,7 +411,7 @@
                 <div class="modal-body">
                     <div class="profileDetails" id="profileCard">
                         <div class="profileImg">
-                            <!-- <img src="{{ asset('admin/assets/imgs/user.png') }}" alt="" /> -->
+                            <img src="{{ asset('imgs/user.png') }}" alt="" />
                         </div>
                         <div class="profileContent">
                             <div class="personalInformation">
@@ -421,7 +421,7 @@
                                 <span class="profileType">طالب</span>
                             </div>
                             <div class="paper">
-                                <!-- <img src="{{ asset('admin/assets/imgs/paper2.png') }}" alt="" /> -->
+                                <img src="{{ asset('imgs/paper2.png') }}" alt="" />
                             </div>
                             <div class="someDetails">
                                 <div class="control">
