@@ -9,7 +9,7 @@ class ExamQuestion extends Model
 {
     use HasFactory;
 
-    protected $filable = [
+    protected $fillable = [
         'exam_id',
         'question_id',
     ];

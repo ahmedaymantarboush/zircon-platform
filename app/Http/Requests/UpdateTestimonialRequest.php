@@ -16,7 +16,7 @@ class UpdateTestimonialRequest extends FormRequest
     {
         $user = Auth::user();
         return $user ? $user->role->numeber < 4  : false;
-        }
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -26,7 +26,14 @@ class UpdateTestimonialRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'student_name' => ['required','string'],
+            'image' => ['nullable'],
+            'degree' => ['required'],
+            'content' => ['required'],
+            'subject_degree' => ['required'],
+            'subject' => ['required'],
+            'grade' => ['required'],
+            'student_id' => ['nullable'],
         ];
     }
 }
