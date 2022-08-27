@@ -239,11 +239,13 @@
 
                             <ul class="dropdown-menu feat-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#">طباعة الكارت</a>
+                                    <a class="dropdown-item printCardBtn" data-bs-toggle="modal"
+                                        data-bs-target="#printCard" href="#">طباعة الكارت</a>
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item q-modify" href="#">تعليق الكارت
+                                    <a class="dropdown-item handingCardBtn" data-bs-toggle="modal"
+                                        data-bs-target="#handingCard" href="#">تعليق الكارت
                                     </a>
                                 </li>
 
