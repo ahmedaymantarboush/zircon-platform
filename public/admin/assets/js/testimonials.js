@@ -65,20 +65,7 @@ ClassicEditor.create(document.querySelector(".text-editor1"), {
         // But the content will be edited in Arabic.
         content: "ar",
     },
-})
-    .then((editor) => {
-        const wordCountPlugin = editor.plugins.get("WordCount");
-        const wordCountWrapper = document.getElementById("word-count");
-
-        wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
-        window.editor = editor;
-    })
-    .catch((err) => {});
-
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip();
 });
-// ajax
 let editFun = async function (url, myData, el = null) {
     try {
         let postData = await fetch(url, {
@@ -101,39 +88,52 @@ let editFun = async function (url, myData, el = null) {
         return null;
     } catch (err) {}
 };
-
 document.querySelector("table").addEventListener("click", async function (e) {
-    if (!e.target.classList.contains("editCenter")) return;
-    console.log("yes");
-    let dataId = e.target.closest("tr").dataset.id;
+    if (!e.target.classList.contains("editTesti")) return;
+    let dataId = e.target.closest("tr").querySelector(".number").dataset.id;
     console.log(dataId);
     let sendObj = {
-        id: dataId,
+        id: 2,
     };
-    let inputId = document.querySelector("#editLocationModal #trId");
-    inputId.value = dataId;
+    let inputId = document.querySelector("#editCertificateModal #trId");
+    inputId.value = 2;
 
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/centers/fastEdit`,
+        `${window.location.protocol}//${window.location.host}/api/testimonials/fastEdit`,
         form,
         e
     );
     let objData = myResponse.data;
-    let nameOfCenter = document.querySelector(
-        ".editLocationModal .nameOfCenter"
+    let editStudentName = document.querySelector(
+        "#editCertificateModal .editStudentName"
     );
-    let urlOfCenter = document.querySelector(".editLocationModal .urlOfCenter");
-    let newGovernorateInner = document.querySelector(
-        ".editLocationModal .newGovernorateParent .filter-option-inner-inner"
+    let editStudentSum = document.querySelector(
+        "#editCertificateModal .editStudentSum"
     );
-    let newGovernorateOptions = document.querySelector(
-        ".editLocationModal .newGovernorateParent option"
+    //first select
+    let subjectParentInner = document.querySelector(
+        "#editCertificateModal .subjectParent .filter-option-inner-inner"
     );
-    nameOfCenter.value = null;
-    urlOfCenter.value = null;
+    let subjectParentOptions = document.querySelector(
+        "#editCertificateModal .subjectParent option"
+    );
+    let subjectSum = document.querySelector(
+        "#editCertificateModal .subjectSum"
+    );
+    //second select
+    let levelsParentInner = document.querySelector(
+        "#editCertificateModal .levelsParent .filter-option-inner-inner"
+    );
+    let levelsParentOptions = document.querySelector(
+        "#editCertificateModal .levelsParent option"
+    );
+    let description = document.querySelector(
+        "#editCertificateModal .ck-editor__editable"
+    );
+
     let fillSelectFunction = function (options, selectInner, data) {
         options.forEach((ele) => {
             if (ele.value == data) {
@@ -144,5 +144,20 @@ document.querySelector("table").addEventListener("click", async function (e) {
             }
         });
     };
-    fillSelectFunction(newGovernorateOptions, newGovernorateInner, null);
+    // fillSelectFunction(subjectParentOptions, subjectParentInner, objData.grade);
+    // fillSelectFunction(levelsParentOptions, levelsParentInner, objData.grade);
+    // description.ckeditorInstance.setData(objData.text);
+});
+
+/**** delete lecture* */
+
+let delBtns = document.querySelectorAll(".delete-lec");
+let delPopupParagraph = document.querySelector(".del-lesson");
+
+delBtns.forEach((ele) => {
+    ele.addEventListener("click", function (e) {
+        delPopupParagraph.textContent = ele
+            .closest("tr")
+            .querySelector(".name-lesson").textContent;
+    });
 });

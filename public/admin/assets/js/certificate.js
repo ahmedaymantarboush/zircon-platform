@@ -90,13 +90,13 @@ let editFun = async function (url, myData, el = null) {
 };
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("editTesti")) return;
-    let dataId = e.target.closest("tr").querySelector(".number").dataset.id;
+    let dataId = e.target.closest("tr").dataset.id;
     console.log(dataId);
     let sendObj = {
-        id: 2,
+        id: dataId,
     };
     let inputId = document.querySelector("#editCertificateModal #trId");
-    inputId.value = 2;
+    inputId.value = dataId;
 
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
@@ -130,6 +130,23 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let levelsParentOptions = document.querySelector(
         "#editCertificateModal .levelsParent option"
     );
+    let description = document.querySelector(
+        "#editCertificateModal .ck-editor__editable"
+    );
+
+    let fillSelectFunction = function (options, selectInner, data) {
+        options.forEach((ele) => {
+            if (ele.value == data) {
+                ele.setAttribute("selected", "");
+                selectInner.textContent = ele.textContent;
+            } else {
+                ele.removeAttribute("selected");
+            }
+        });
+    };
+    // fillSelectFunction(subjectParentOptions, subjectParentInner, objData.grade);
+    // fillSelectFunction(levelsParentOptions, levelsParentInner, objData.grade);
+    // description.ckeditorInstance.setData(objData.text);
 });
 
 /**** delete lecture* */

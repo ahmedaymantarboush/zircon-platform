@@ -244,7 +244,7 @@
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item handingCardBtn" href="#">تعليق الكارت
+                                    <a class="dropdown-item handingCardBtn" href="#">{{$cart->hanging ? 'الغاء' : ''}} تعليق الكارت
                                     </a>
                                 </li>
 
