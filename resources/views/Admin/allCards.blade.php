@@ -425,14 +425,11 @@
             </div>
             <form action="">
                 <div class="modal-body">
-                    <p class="sure-to-del">
-                        لول
-                        <span class="del-lesson"> ..... </span>
-                    </p>
+                    
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger">
-                        مسح
+                    <button type="button" class="btn btn-primary">
+                        طباعة
                     </button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         الغاء
