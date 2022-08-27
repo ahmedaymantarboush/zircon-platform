@@ -124,29 +124,33 @@ document.querySelector("table").addEventListener("click", async function (e) {
     );
     let objData = myResponse.data;
     console.log(objData);
-    // let nameOfCenter = document.querySelector(
-    //     ".editLocationModal .nameOfCenter"
-    // );
-    // let urlOfCenter = document.querySelector(".editLocationModal .urlOfCenter");
-    // let newGovernorateInner = document.querySelector(
-    //     ".editLocationModal .newGovernorateParent .filter-option-inner-inner"
-    // );
-    // let newGovernorateOptions = document.querySelector(
-    //     ".editLocationModal .newGovernorateParent option"
-    // );
-    // nameOfCenter.value = null;
-    // urlOfCenter.value = null;
-    // let fillSelectFunction = function (options, selectInner, data) {
-    //     options.forEach((ele) => {
-    //         if (ele.value == data) {
-    //             ele.setAttribute("selected", "");
-    //             selectInner.textContent = ele.textContent;
-    //         } else {
-    //             ele.removeAttribute("selected");
-    //         }
-    //     });
-    // };
-    // fillSelectFunction(newGovernorateOptions, newGovernorateInner, null);
+    let nameOfCenter = document.querySelector(
+        ".editLocationModal .nameOfCenter"
+    );
+    let urlOfCenter = document.querySelector(".editLocationModal .urlOfCenter");
+    let newGovernorateInner = document.querySelector(
+        ".editLocationModal .newGovernorateParent .filter-option-inner-inner"
+    );
+    let newGovernorateOptions = document.querySelector(
+        ".editLocationModal .newGovernorateParent option"
+    );
+    nameOfCenter.value = objData.name;
+    urlOfCenter.value = objData.url;
+    let fillSelectFunction = function (options, selectInner, data) {
+        options.forEach((ele) => {
+            if (ele.value == data) {
+                ele.setAttribute("selected", "");
+                selectInner.textContent = ele.textContent;
+            } else {
+                ele.removeAttribute("selected");
+            }
+        });
+    };
+    fillSelectFunction(
+        newGovernorateOptions,
+        newGovernorateInner,
+        objData.governorate
+    );
 });
 
 ////// delete
