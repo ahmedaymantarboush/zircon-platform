@@ -144,7 +144,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("deletCardBtn")) return;
     let dataId = e.target.closest("tr").dataset.id;
-    let ques = e.target.closest("tr").querySelector(".question-code").title;
+    let ques = e.target.closest("tr").querySelector(".question-code");
     console.log(ques);
     let sendObj = {
         id: dataId,
