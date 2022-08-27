@@ -47,4 +47,3 @@ ClassicEditor.create(document.querySelector(".text-editor2"), {
         window.editor = editor;
     })
     .catch((err) => {});
-card(1, 1, 1, 1, 1);
