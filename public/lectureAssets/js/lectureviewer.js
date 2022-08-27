@@ -366,46 +366,43 @@ function showTakeExam(data) {
 function getItem(data) {
 
     if (data.data.type == 'lesson') {
-        let urls='';
-        if(data.data.item.urls!=null){
-            urls =data.data.item.urls;
-        }
-        let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">" + mediaPlayer(urls) + "</div>\n" +
-            "                <div dir=\"auto\" class=\"lectures-des\">\n" +
-            "                    <h2>وصف المحاضرة :</h2>\n" +
-            "                    <div class=\"container\">" + data.data.item.description + "</div>\n" +
-            "                </div>";
-        let embedPlayer = "<div class=\"video_player\" style=\"width: 100%;\">" + "<iframe src='" + urls + "' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>" +
-            "</div>\n" +
-            "                <div dir=\"auto\" class=\"lectures-des\">\n" +
-            "                    <h2>وصف المحاضرة :</h2>\n" +
-            "                    <div class=\"container\">" + data.data.item.description + "</div>\n" +
-            "                </div>";
-        let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
-            "                    <div class=\"row\">\n" +
-            "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
-            "                            <img src=\"public/lectureAssets/img/examvector.png\" alt=\"\">\n" +
-            "                        </div>\n" +
-            "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
-            "\n" +
-            "                            <span class=\"ex_text\" style=\"margin-top: 20px;\">يجب انت تحصل على <span\n" +
-            "                                    class=\"prc\">" + data.data.item.minPercentage + "%</span> على\n" +
-            "                                الاقل</span>\n" +
-            "\n" +
-            "                        </div>\n" +
-            "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
-            "                            <span class=\"ex_text\">في امتحان <span>(" + data.data.item.examName + ")</span></span>\n" +
-            "                        </div>";
-        if (data.data.item.exam == null && data.data.item.urls !=null) {
-            if (data.data.item.type == "video") {
+
+        if (data.data.item.exam == null ) {
+            if (data.data.item.type == "video" && data.data.item.urls !=null) {
                 if (typeof data.data.item.urls === 'object') {
+                    let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">" + mediaPlayer(data.data.item.urls) + "</div>\n" +
+                        "                <div dir=\"auto\" class=\"lectures-des\">\n" +
+                        "                    <h2>وصف المحاضرة :</h2>\n" +
+                        "                    <div class=\"container\">" + data.data.item.description + "</div>\n" +
+                        "                </div>";
                     mainDiv.innerHTML = mediaPlayerPage;
                 } else if (typeof data.data.item.urls === 'string') {
+                    let embedPlayer = "<div class=\"video_player\" style=\"width: 100%;\">" + "<iframe src='" + data.data.item.urls + "' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>" +
+                        "</div>\n" +
+                        "                <div dir=\"auto\" class=\"lectures-des\">\n" +
+                        "                    <h2>وصف المحاضرة :</h2>\n" +
+                        "                    <div class=\"container\">" + data.data.item.description + "</div>\n" +
+                        "                </div>";
                     mainDiv.innerHTML = embedPlayer;
                 }
             }
             loadMediaPlayerJs();
         } else {
+            let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
+                "                    <div class=\"row\">\n" +
+                "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
+                "                            <img src=\"public/lectureAssets/img/examvector.png\" alt=\"\">\n" +
+                "                        </div>\n" +
+                "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
+                "\n" +
+                "                            <span class=\"ex_text\" style=\"margin-top: 20px;\">يجب انت تحصل على <span\n" +
+                "                                    class=\"prc\">" + data.data.item.minPercentage + "%</span> على\n" +
+                "                                الاقل</span>\n" +
+                "\n" +
+                "                        </div>\n" +
+                "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
+                "                            <span class=\"ex_text\">في امتحان <span>(" + data.data.item.examName + ")</span></span>\n" +
+                "                        </div>";
             examID = data.data.item.exam;
             if (data.data.item.finishedExam == false) {
                 passExam += '<div class="col-12 d-flex justify-content-center">\n' +
