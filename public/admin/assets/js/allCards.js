@@ -48,7 +48,6 @@ ClassicEditor.create(document.querySelector(".text-editor2"), {
     })
     .catch((err) => {});
 let printCardParent = document.querySelector("#printCard .modal-body");
-console.log(printCardParent);
 // printCardParent.innerHTML = card(1, 1, 1, 1, 1);
 // console.log(card(1, 1, 1, 1, 1));
 let editFun = async function (url, myData, el = null) {
@@ -91,5 +90,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     let objData = myResponse.data;
-    console.log(objData);
+    let { end_date, code, id, start_date, value } = objData;
+    printCardParent.innerHTML = card(id, code, value, start_date, end_date);
+    createQr(id, code, value);
 });
