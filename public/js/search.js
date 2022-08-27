@@ -277,7 +277,7 @@ checkInputs.forEach((ele) => {
             
                   <a class="card-btn" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
             `;
-            paginationBtnParent.insertAdjacentHTML("afterend", text);
+            paginationBtnParent.insertAdjacentHTML("beforeend", text);
         }
     });
 });
