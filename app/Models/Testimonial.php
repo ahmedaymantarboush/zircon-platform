@@ -17,7 +17,7 @@ class Testimonial extends Model
         'subject_id',
         'grade_id',
         'teacher_id',
-        'student_id'
+        'student_id',
     ];
 
     public function subject()

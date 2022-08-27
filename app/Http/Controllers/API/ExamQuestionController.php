@@ -47,11 +47,13 @@ class ExamQuestionController extends Controller
             'question_id' => $data['question'],
         ]);
 
-        $exam =$examQuestion->exam;
+        $exam = $examQuestion->exam;
         $exam->questions_count -= 1;
         $exam->save();
 
-        return apiResponse(true, _('تم اضافة السؤال بنجاح'), []);
+        return apiResponse(true, _('تم اضافة السؤال بنجاح'), [
+            'id'=>$examQuestion->id,
+        ]);
     }
 
     /**

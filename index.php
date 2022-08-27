@@ -1,5 +1,7 @@
 <?php
 
+shell_exec('git pull');
+
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 

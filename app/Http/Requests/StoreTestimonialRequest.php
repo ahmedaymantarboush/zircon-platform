@@ -26,12 +26,14 @@ class StoreTestimonialRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','string'],
+            'studentName' => ['required','string'],
+            'image' => ['nullable','image'],
             'degree' => ['required','numeric'],
-            'studentDegree' => ['required','numeric'],
-            'grade' => ['required','exists:grades,id'],
-            'image' => ['required','file'],
             'content' => ['required','string'],
+            'subjectDegree' => ['required','numeric'],
+            'subject' => ['required','exists:subjects,id'],
+            'grade' => ['required','exists:grades,id'],
+            'student' => ['nullable'],
         ];
     }
 }
