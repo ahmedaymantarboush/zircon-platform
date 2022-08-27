@@ -33,11 +33,12 @@
                                 $fromDate = '01/07/' . date('Y', strtotime(now()));
                                 $toDate = '01/07/' . (date('Y', strtotime(now())) + 1);
                             else:
-                                $fromDate = '01/07/' . (date('Y', strtotime(now())) -1);
+                                $fromDate = '01/07/' . (date('Y', strtotime(now())) - 1);
                                 $toDate = '01/07/' . date('Y', strtotime(now()));
                             endif;
                         @endphp
-                        <span class="stc-value"> {{ \App\Models\Testimonial::whereBetween('created_at',[$fromDate,$toDate])->count() }} </span>
+                        <span class="stc-value">
+                            {{ \App\Models\Testimonial::whereBetween('created_at', [$fromDate, $toDate])->count() }} </span>
                         <span class="stc-name">أوائل العام الماضي</span>
                     </div>
                     <div class="stc-icon">
@@ -51,7 +52,8 @@
                 <div class="stc-box second-stc">
                     <div class="stc-val-parent">
                         <span class="stc-value">
-                            {{ count($testimonials) ? array_sum($testimonials->pluck('degree')->toArray()) / count($testimonials) : 0 }} </span>
+                            {{ count($testimonials) ? array_sum($testimonials->pluck('degree')->toArray()) / count($testimonials) : 0 }}
+                        </span>
                         <span class="stc-name">متوسط المجموع</span>
                     </div>
                     <div class="stc-icon">
@@ -151,10 +153,11 @@
                         #
                         <i class="fa-solid fa-sort"></i>
                     </th>
+                    <th>الصورة</th>
                     <th>الاسم</th>
                     <th>المرحلة الدراسية</th>
                     <th>المجموع</th>
-                    <th>المادة</th>
+                    {{-- <th>المادة</th> --}}
                     <th>مجموع المادة</th>
                     <th>التاريخ</th>
 
@@ -173,32 +176,45 @@
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </td>
+                        <td class="imageLocation" data-lable="الصورة :">
+                            <div class="imageBox">
+                                <img src="{{ $testimonial->image }}" alt="" />
+                            </div>
+                        </td>
                         <td data-lable="الاسم :" class="address">
                             <div class="custome-parent">
                                 <button type="button" class="btn name-lesson" data-toggle="tooltip"
-                                    data-placement="top" title="{{$testimonial->student_name}}">
-                                    {{$testimonial->student_name}}
+                                    data-placement="top" title="{{ $testimonial->student_name }}">
+                                    {{ $testimonial->student_name }}
                                 </button>
                                 <div class="name-teacher">
                                     <span class="job-teacher">:المدرس</span>
-                                    <span>أ. محمد
-                                        عبدالمعبود</span>
+                                    <span>{{ $testimonial->teacher->nam }}</span>
                                 </div>
                             </div>
                         </td>
                         <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                            <span class="table-level">الصف الثالث الثانوي</span>
+                            <span class="table-level">{{ $testimonial->grade->name }}</span>
                         </td>
-                        <td data-lable="المجموع :">500</td>
+                        <td data-lable="المجموع :">{{ $testimonial->degree }}</td>
 
-                        <td data-lable="المادة :">
-                            الفيزياء
-                        </td>
+                        {{-- <td data-lable="المادة :">
+                            {{$testimonial->subject->name}}
+                        </td> --}}
                         <td data-lable="مجموع المادة :">
-                            50
+                            {{ $testimonial->subject_degree }}
                         </td>
                         <td data-lable="التاريخ :">
-                            22/7/2022
+                            {{ date('d/m/Y', strtotime($testimonial->created_at)) }}
+                            {{-- 22/7/2022 --}}
+                        </td>
+                        <td data-lable="المحتوى :" class="address">
+                            <div class="custome-parent">
+                                <button type="button" class="btn name-lesson" data-toggle="tooltip"
+                                    data-placement="top" title="{{ $testimonial->content }}">
+                                    {{ $testimonial->content }}
+                                </button>
+                            </div>
                         </td>
                         <td class="features" data-lable="اجراءات :">
                             <div class="btn-group">
@@ -235,36 +251,38 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="">
+                <form action="{{ route('admin.testimonials.store') }}">
                     <div class="modal-body">
                         <div class="less-item custome-item">
                             <label class="sec-name">اسم الطالب</label>
 
                             <div class="input-parent">
-                                <input type="text" class="my-input is-invalid" placeholder=" ادخل اسم الطالب"
+                                <input type="text" name="name" value="{{ old('name') }}"
+                                    class="my-input @error('name') is-invalid @enderror" placeholder=" ادخل اسم الطالب"
                                     id="address-lec" />
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="less-item custome-item">
                             <label class="sec-name">مجموع الطالب</label>
 
                             <div class="input-parent">
-                                <input type="text" class="my-input is-invalid" placeholder=" ادخل مجموع الطالب"
-                                    id="address-lec" />
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                <input type="text" name="degree" value="{{ old('degree') }}"
+                                    class="my-input @error('degree') is-invalid @enderror"
+                                    placeholder=" ادخل مجموع الطالب" id="address-lec" />
+                                @error('degree')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
-                        <div class="less-item custome-item">
+                        {{-- <div class="less-item custome-item">
                             <label class="sec-name">المادة</label>
                             <div class="search-select modify-select">
                                 <select name="" id="" class="is-invalid" data-live-search="true">
@@ -279,57 +297,65 @@
                                         الصف الثالث الثانوي
                                     </option>
                                 </select>
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                @error('error')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="less-item custome-item">
-                            <label class="sec-name">مجموع الطالي في المادة</label>
+                            <label class="sec-name">مجموع الطالب في المادة</label>
 
                             <div class="input-parent">
-                                <input type="text" class="my-input is-invalid" placeholder=" مجموع الطالي في المادة"
-                                    id="address-lec" />
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                <input type="text" name="subjectDegree" value="{{ old('subjectDegree') }}"
+                                    class="my-input @error('subjectDegree') is-invalid @enderror"
+                                    placeholder=" مجموع الطالي في المادة" id="address-lec" />
+                                @error('subjectDegree')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="less-item custome-item">
                             <label class="sec-name">المرحلة الدراسية</label>
                             <div class="search-select modify-select">
-                                <select name="" id="" class="is-invalid" data-live-search="true">
+                                <select name="grade" id="" class="@error('grade') is-invalid @enderror"
+                                    data-live-search="true">
                                     <option value="">
                                         اختر المرحلة الدراسية
                                     </option>
-                                    <option value="">
-                                        الصف الأول الثانوي
-                                    </option>
-                                    <option value="">
-                                        الصف الثاني الثانوي
-                                    </option>
-                                    <option value="">
-                                        الصف الثالث الثانوي
-                                    </option>
+                                    @foreach (\App\Models\Grade::all() as $grade)
+                                        <option @selected(old('grade') == $grade->id) value="{{ $grade->id }}">
+                                            {{ $grade->name }}</option>
+                                    @endforeach
                                 </select>
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                @error('grade')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="file">
-                            <label for="">رفع صورة المكان</label>
-                            <input type="file" class="form-control" />
+                            <label for="">رفع صورة الطالب</label>
+                            <input type="file" class="@error('image') is-invalid @enderror" name="image"
+                                class="form-control" />
+                            @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="less-item">
-                            <label class="sec-name">وصف الدرس</label>
-                            <div class="text-editor2"></div>
+                            <label class="sec-name">المحتوى</label>
+                            <textarea name="content" class="text-editor2 @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
+                            @error('content')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -344,7 +370,136 @@
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="editCertificateModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        تعديل شهادة
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('admin.testimonials.update') }}">
+                    <div class="modal-body">
+                        <div class="less-item custome-item">
+                            <label class="sec-name">اسم الطالب</label>
+
+                            <div class="input-parent">
+                                <input type="text" name="newName" value="{{ old('newName') }}"
+                                    class="my-input @error('newName') is-invalid @enderror" placeholder=" ادخل اسم الطالب"
+                                    id="address-lec" />
+                                @error('newName')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="less-item custome-item">
+                            <label class="sec-name">مجموع الطالب</label>
+
+                            <div class="input-parent">
+                                <input type="text" name="newDegree" value="{{ old('newDegree') }}"
+                                    class="my-input @error('newDegree') is-invalid @enderror"
+                                    placeholder=" ادخل مجموع الطالب" id="address-lec" />
+                                @error('newDegree')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- <div class="less-item custome-item">
+                            <label class="sec-name">المادة</label>
+                            <div class="search-select modify-select">
+                                <select name="" id="" class="is-invalid" data-live-search="true">
+                                    <option value="">اختر المادة</option>
+                                    <option value="">
+                                        الصف الأول الثانوي
+                                    </option>
+                                    <option value="">
+                                        الصف الثاني الثانوي
+                                    </option>
+                                    <option value="">
+                                        الصف الثالث الثانوي
+                                    </option>
+                                </select>
+                                @error('error')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div> --}}
+                        <div class="less-item custome-item">
+                            <label class="sec-name">مجموع الطالب في المادة</label>
+
+                            <div class="input-parent">
+                                <input type="text" name="newSubjectDegree" value="{{ old('newSubjectDegree') }}"
+                                    class="my-input @error('newSubjectDegree') is-invalid @enderror"
+                                    placeholder=" مجموع الطالي في المادة" id="address-lec" />
+                                @error('newSubjectDegree')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="less-item custome-item">
+                            <label class="sec-name">المرحلة الدراسية</label>
+                            <div class="search-select modify-select">
+                                <select name="newGrade" id="" class="@error('newGrade') is-invalid @enderror"
+                                    data-live-search="true">
+                                    <option value="">
+                                        اختر المرحلة الدراسية
+                                    </option>
+                                    @foreach (\App\Models\Grade::all() as $grade)
+                                        <option @selected(old('newGrade') == $grade->id) value="{{ $grade->id }}">
+                                            {{ $grade->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('newGrade')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="file">
+                            <label for="">رفع صورة الطالب</label>
+                            <input type="file" class="@error('newImage') is-invalid @enderror" name="newImage"
+                                class="form-control" />
+                            @error('newImage')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="less-item">
+                            <label class="sec-name">المحتوى</label>
+                            <textarea name="newContent" class="text-editor2 @error('newContent') is-invalid @enderror">{{ old('newContent') }}</textarea>
+                            @error('newContent')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            إضافة
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            الغاء
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- <div class="modal fade" id="editCertificateModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -362,11 +517,11 @@
                             <div class="input-parent">
                                 <input type="text" class="my-input editStudentName is-invalid"
                                     placeholder=" ادخل اسم الطالب" id="address-lec" />
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                @error('error')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="less-item custome-item">
@@ -375,11 +530,11 @@
                             <div class="input-parent">
                                 <input type="text" class="my-input editStudentSum is-invalid"
                                     placeholder=" ادخل مجموع الطالب" id="address-lec" />
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                @error('error')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -398,11 +553,11 @@
                                         الصف الثالث الثانوي
                                     </option>
                                 </select>
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                @error('error')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="less-item custome-item">
@@ -411,11 +566,11 @@
                             <div class="input-parent">
                                 <input type="text" class="my-input subjectSum is-invalid"
                                     placeholder=" مجموع الطالي في المادة" id="address-lec" />
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                @error('error')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="less-item custome-item">
@@ -435,11 +590,11 @@
                                         الصف الثالث الثانوي
                                     </option>
                                 </select>
-                                <span class="invalid-feedback" role="alert">
-                                    @error('error')
+                                @error('error')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    @enderror
-                                </span>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="file">
@@ -462,7 +617,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="modal fade" id="delete-certificate" tabindex="-1" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

@@ -154,7 +154,7 @@
                                 <a class="h-l-item swiper-slide" href='{{ $center->url }}'>
                                     <div class="h-l-content">
                                         <h3 class="h-l-heading">{{ $center->name }} -
-                                            {{ $center->govenrnorate->name }}</h3>
+                                            {{ $center->governorate->name }}</h3>
                                     </div>
                                     <div class="h-l-image">
                                         <img src="{{ $center->image }}" alt="">
