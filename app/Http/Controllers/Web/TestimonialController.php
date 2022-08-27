@@ -95,6 +95,7 @@ class TestimonialController extends Controller
      */
     public function update(UpdateTestimonialRequest $request, $id)
     {
+        dd($request);
         $user = Auth::user();
         if ($user->role->number >= 4):
             return abort(403);
