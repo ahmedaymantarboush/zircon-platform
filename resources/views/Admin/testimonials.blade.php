@@ -51,7 +51,7 @@
                 <div class="stc-box second-stc">
                     <div class="stc-val-parent">
                         <span class="stc-value">
-                            {{ array_sum($testimonials->pluck('degree')->toArray()) / count($testimonials) }} </span>
+                            {{ count($testimonials) ? array_sum($testimonials->pluck('degree')->toArray()) / count($testimonials) : 0 }} </span>
                         <span class="stc-name">متوسط المجموع</span>
                     </div>
                     <div class="stc-icon">

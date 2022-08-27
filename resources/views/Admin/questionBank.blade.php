@@ -759,7 +759,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="less-item custome-item">
+                        {{-- <div class="less-item custome-item">
                             <label class="sec-name">المادة</label>
                             <div class="search-select modify-select" id="select-subject-parent">
                                 <select name="subject" id="" class="@error('subject') is-invalid @enderror"
@@ -779,7 +779,7 @@
                                 </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="less-item custome-item">
                             <label class="sec-name">الجزئية الدراسية</label>
                             <div class="search-select modify-select" id="select-part-parent">
