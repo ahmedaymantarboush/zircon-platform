@@ -147,3 +147,26 @@ document.querySelector("table").addEventListener("click", async function (e) {
     };
     fillSelectFunction(newGovernorateOptions, newGovernorateInner, null);
 });
+
+////// delete
+document.querySelector("table").addEventListener("click", async function (e) {
+    if (!e.target.classList.contains("delete-lec")) return;
+    console.log("yes");
+    let dataId = e.target.closest("tr").dataset.id;
+    console.log(dataId);
+    let sendObj = {
+        id: dataId,
+    };
+    let inputId = document.querySelector("#editLocationModal #trId");
+    inputId.value = dataId;
+
+    form = new FormData();
+    form.append("data", JSON.stringify(sendObj));
+
+    let myResponse = await editFun(
+        `${window.location.protocol}//${window.location.host}/api/centers/fastEdit`,
+        form,
+        e
+    );
+    console.log(myResponse);
+});
