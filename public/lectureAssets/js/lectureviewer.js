@@ -366,13 +366,16 @@ function showTakeExam(data) {
 function getItem(data) {
 
     if (data.data.type == 'lesson') {
-        //pages
-        let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">" + mediaPlayer(data.data.item.urls) + "</div>\n" +
+        let urls='';
+        if(data.data.item.urls!=null){
+            urls =data.data.item.urls;
+        }
+        let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">" + mediaPlayer(urls) + "</div>\n" +
             "                <div dir=\"auto\" class=\"lectures-des\">\n" +
             "                    <h2>وصف المحاضرة :</h2>\n" +
             "                    <div class=\"container\">" + data.data.item.description + "</div>\n" +
             "                </div>";
-        let embedPlayer = "<div class=\"video_player\" style=\"width: 100%;\">" + "<iframe src='" + data.data.item.urls + "' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>" +
+        let embedPlayer = "<div class=\"video_player\" style=\"width: 100%;\">" + "<iframe src='" + urls + "' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>" +
             "</div>\n" +
             "                <div dir=\"auto\" class=\"lectures-des\">\n" +
             "                    <h2>وصف المحاضرة :</h2>\n" +
