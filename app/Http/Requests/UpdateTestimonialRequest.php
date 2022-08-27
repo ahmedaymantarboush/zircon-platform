@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateTestimonialRequest extends FormRequest
 {
@@ -13,8 +14,9 @@ class UpdateTestimonialRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
-    }
+        $user = Auth::user();
+        return $user ? $user->role->numeber < 4  : false;
+        }
 
     /**
      * Get the validation rules that apply to the request.
