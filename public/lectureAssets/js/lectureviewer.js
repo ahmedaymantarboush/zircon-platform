@@ -290,6 +290,7 @@ function getExam(exam_id) {
     xhttp.onreadystatechange = function(e) {
         if (xhttp.status == 200 && xhttp.readyState == 4) {
             getExamData = JSON.parse(this.responseText);
+            examPassedID = getExamData.data.id;
             console.log(getExamData);
             getItem(getExamData);
         }
@@ -490,8 +491,14 @@ $(document).on('click', '.startExam', function() {
             showTakeExam(data);
             if(data.data.type=='lesson'){
                 examID = data.data.item.exam;
+                if(data.data.item.examPassedId!=null){
+                    examPassedID = data.data.item.examPassedId;
+                }
             }else {
                 examID = data.data.item.id;
+                if(data.data.item.examPassedId!=null){
+                    examPassedID = data.data.item.examPassedId;
+                }
             }
             itemID = data.data.item.id;
         }
@@ -521,6 +528,7 @@ $(document).on('click', '.takeExam', async function() {
         body: form1,
     })
     let getExamVar = await getExam.json();
+    examPassedID = getExamVar.data.id;
     console.log(getExamVar);
 
     //Add Tabs
