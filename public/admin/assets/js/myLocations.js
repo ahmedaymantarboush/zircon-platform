@@ -95,11 +95,12 @@ let editFun = async function (url, myData, el = null) {
         if (postData.status == 200) {
             return responseData;
         }
-        if (postData.status == 404) {
-            return null;
-        }
-        return null;
-    } catch (err) {}
+
+        console.log(responseData);
+        throw new Error(responseData);
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 document.querySelector("table").addEventListener("click", async function (e) {
