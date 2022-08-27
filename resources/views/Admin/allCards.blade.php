@@ -243,12 +243,8 @@
                                         </li>
 
                                         <li>
-                                            <form action="{{route('api.balancecards.hanging')}}"></form>
-                                            <button class="dropdown-item q-modify">
-                                                تعليق الكارت
-                                            </button>
-                                            {{-- <a class="dropdown-item q-modify" href="#">تعليق الكارت
-                                            </a> --}}
+                                            <a class="dropdown-item q-modify" href="#">تعليق الكارت
+                                            </a>
                                         </li>
 
                                         <li>
