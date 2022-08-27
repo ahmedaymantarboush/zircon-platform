@@ -794,13 +794,15 @@ $(document).on('click', '.showExam', async function() {
         for (let j = 1; j <= getExamVar.data.questions[i-1].question.choices.length; j++) {
             let addSelected = '';
             let addChecked = '';
-            let correctAnser = 'correctAnser';
-            if (getExamVar.data.questions[i-1].question.choices[j - 1].id == getExamVar.data.questions[i-1].choice) {
-                addSelected = 'selectedAnser';
+            let correctAnser = '';
+            if (getExamVar.data.questions[i-1].question.choices[j - 1].id == getExamVar.data.questions[i-1].choice && getExamVar.data.questions[i-1].question.choices[j - 1].correct==1) {
+                addSelected = 'correctAnser';
                 addChecked = 'checked';
+            }else if(getExamVar.data.questions[i-1].question.choices[j - 1].id == getExamVar.data.questions[i-1].choice && getExamVar.data.questions[i-1].question.choices[j - 1].correct!=1){
+                addSelected = 'wrongAnser';
             }
-            if(getExamVar.data.questions[i-1].question.choices[j - 1].correct!=1){
-                correctAnser='wrongAnser';
+            if(getExamVar.data.questions[i-1].question.choices[j - 1].correct==1){
+               correctAnser = 'correctAnser';
             }
             examHTML += '<div class="col-12">\n' +
                 '                                            <div queID="' + getExamVar.data.questions[i - 1].id + '" class="anserBox ' + addSelected + ' '+correctAnser+'  d-flex justify-content-start"\n' +
