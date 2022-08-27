@@ -489,14 +489,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    حذف سؤال
+                    حذف امتحان
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="">
+                <input type="hidden" name='id'>
                 <div class="modal-body">
                     <p class="sure-to-del">
-                        هل انت متأكد انك تريد مسح السؤال
+                        هل انت متأكد انك تريد مسح امتحان
                         <span class="del-lesson"> ..... </span>
                     </p>
                 </div>

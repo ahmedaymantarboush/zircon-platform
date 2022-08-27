@@ -40,4 +40,5 @@ document.querySelector("table").addEventListener("click", function (e) {
         .closest("tr")
         .querySelector(".question-code")
         .getAttribute("data-bs-original-title");
+    console.log(e.target.closest("tr").querySelector(".question-code"));
 });
