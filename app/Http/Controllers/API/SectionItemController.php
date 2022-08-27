@@ -63,7 +63,6 @@ class SectionItemController extends Controller
             $exam = $lesson->exam ?? null;
             
             $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
-            // return $passedExam->toArray();
             
             $openable = !$exam || ($exam ? ($passedExam ? $passedExam->percentage >= $lesson->min_percentage : false)  : false );
             if ($openable):

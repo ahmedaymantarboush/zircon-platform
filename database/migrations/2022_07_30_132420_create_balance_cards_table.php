@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('code',16);
             $table->float('value');
+            $table->boolean('hanging')->default(false);
             $table->foreignId('center_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('publisher_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->date('expiry_date')->nullable();

@@ -105,3 +105,6 @@ Route::post('centers/fastEdit',[CenterController::class,'fastEdit']);
 
 //       SECTIONITEM ROUTES
 Route::post('items/getItem',[SectionItemController::class,'show']);
+
+//       BALANCECARD ROUTES
+Route::post('balancecards/hanging',[BalanceCardController::class,'hanging'])->name('api.balancecards.hanging');

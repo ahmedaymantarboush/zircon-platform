@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/add_exam.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/add_coupons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/couponCard.css') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 @endsection
 {{-- ////////////////////////////////////////////////////////////////////// --}}
@@ -123,10 +124,6 @@
         </div>
     </div>
 @endsection
-
-
-
-
 @section('javascript')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
@@ -141,4 +138,24 @@
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>
     <script src="{{ asset('admin/assets/js/add-coupons.js') }}"></script>
     <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="{{ asset('admin/assets/js/couponCard.js') }}"></script>
+    @if (Session::has('balanceCards'))
+        @php
+            $balanceCards = Session::get('balanceCards');
+        @endphp
+        @isset($balanceCards)
+            @foreach ($balanceCards as $index => $balanceCard)
+                <div class="col-lg-4 col-sm-12" style="padding-top: 30px">
+                    <script>
+                        createQr({{$balanceCard->id}}, "{{$balanceCard->code}}", {{$balanceCard->value}}, {{ $index + 1 }})
+                    </script>
+                </div>
+            @endforeach
+            {{-- @for ($i = 1; $i <= count($balanceCards); $i++)
+                <script>
+                    createQr({{ $i }});
+                </script>
+            @endfor --}}
+        @endisset
+    @endif
 @endsection

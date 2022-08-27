@@ -18,6 +18,22 @@ class BalanceCardController extends Controller
         //
     }
 
+    public function hanging()
+    {
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
+        endif;
+        $data = json_decode(request()->data, true);
+        $id = $data['id'];
+        $card = BalanceCard::find($id);
+        if (!$card) :
+            return apiResponse(false, _('لم يتم العثوؤ على الكارت'), [], 404);
+        endif;
+        $card->hanging = !$card->hanging;
+        $card->save();
+        return apiResponse(true,_('تم حفظ الكارت بنجاح'),[]);
+    }
     /**
      * Store a newly created resource in storage.
      *
