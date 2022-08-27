@@ -394,7 +394,7 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="">
+            <form action="" class='delForm'>
                 <div class="modal-body">
                     <p class="sure-to-del">
                         هل انت متأكد انك تريد مسح كارت
@@ -402,7 +402,7 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger">
+                    <button type="submit" class="btn btn-danger delCard">
                         مسح
                     </button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
