@@ -1237,10 +1237,10 @@ div.waves {
         transform: translate(-50%, -50%) rotate(-270deg) scale(1);
     }
     87.5% {
-        transform: rotate(-315deg) scale(0.9);
+        transform: translate(-50%, -50%) rotate(-315deg) scale(0.9);
     }
     100% {
-        transform: rotate(-360deg) scale(1);
+        transform: translate(-50%, -50%) rotate(-360deg) scale(1);
     }
 }
 
