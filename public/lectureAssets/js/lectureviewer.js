@@ -719,7 +719,7 @@ $(document).on('click', '.finishBtn', async function() {
     $('.closeModelBtn').click();
     form7 = new FormData()
     form7.append('data', JSON.stringify({
-        'id': parseInt(currentItemId),
+        'id': parseInt(itemID),
     }))
     let showExam = await fetch(APP_URL + "/api/items/getItem", {
         method: "POST",
