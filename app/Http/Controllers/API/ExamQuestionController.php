@@ -97,7 +97,7 @@ class ExamQuestionController extends Controller
             return apiResponse(false, _('لم يتم العثور على السؤال'), [], 404);
         endif;
 
-        $examQuestion = ExamQuestion::where($id);
+        $examQuestion = ExamQuestion::find($id);
         if (!$examQuestion):
             return apiResponse(false, _('لم يتم العثور على السؤال في الامتحان'), [], 404);
         endif;
