@@ -109,7 +109,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let dataId = e.target.closest("tr").dataset.id;
     console.log(dataId);
     let sendObj = {
-        id: dataId,
+        id: 2,
     };
     let inputId = document.querySelector("#editLocationModal #trId");
     inputId.value = dataId;
