@@ -140,3 +140,22 @@ document.querySelector("table").addEventListener("click", async function (e) {
     console.log(myResponse);
     // location.reload();
 });
+// delete card
+document.querySelector("table").addEventListener("click", async function (e) {
+    if (!e.target.classList.contains("deletCardBtn")) return;
+    let dataId = e.target.closest("tr").dataset.id;
+    let sendObj = {
+        id: dataId,
+    };
+
+    form = new FormData();
+    form.append("data", JSON.stringify(sendObj));
+
+    let myResponse = await editFun(
+        `${window.location.protocol}//${window.location.host}/api/balancecards/delete`,
+        form,
+        e
+    );
+    console.log(myResponse);
+    // location.reload();
+});

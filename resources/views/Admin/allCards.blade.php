@@ -390,14 +390,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    حذف سؤال
+                    حذف كارت
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="">
                 <div class="modal-body">
                     <p class="sure-to-del">
-                        هل انت متأكد انك تريد مسح السؤال
+                        هل انت متأكد انك تريد مسح كارت
                         <span class="del-lesson"> ..... </span>
                     </p>
                 </div>
@@ -418,13 +418,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    حذف سؤال
+                    طباعة الكارت
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="">
                 <div class="modal-body">
-
+                    ...
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary submitPrintBtn">
