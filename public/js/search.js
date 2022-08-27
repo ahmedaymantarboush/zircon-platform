@@ -267,6 +267,7 @@ checkInputs.forEach((ele) => {
         form.append("data", JSON.stringify(sendObj));
 
         let myResponse = await editFun(`${APP_URL}/api/search`, form);
+        console.log(myResponse);
         let { pagination, lectures } = myResponse.data;
         let paginationBtnParent = document.querySelector(".btns");
         paginationBtnParent.innerHTML = "";
