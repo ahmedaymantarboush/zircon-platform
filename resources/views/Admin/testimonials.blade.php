@@ -170,7 +170,7 @@
             @php
             $i = $key + 1;
             @endphp
-            <tr data-id="{{ $testimonial }}">
+            <tr data-id="{{ $testimonial->id }}">
                 <td class="number">
                     {{ $i }}
                     <button class="open-tr" type="button">
