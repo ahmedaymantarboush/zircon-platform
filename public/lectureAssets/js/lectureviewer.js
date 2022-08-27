@@ -451,6 +451,7 @@ function getItem(data) {
 }
 $(document).on('click', '.lesson_name', function() {
     itemID = parseInt($(this).attr('id'));
+    currentItemId = parseInt($(this).attr('id'));
     form = new FormData()
     form.append('data', JSON.stringify({
         'id': parseInt($(this).attr('id'))
@@ -704,7 +705,7 @@ $(document).on('click', '.finishBtn', async function() {
     $('.closeModelBtn').click();
     form7 = new FormData()
     form7.append('data', JSON.stringify({
-        'id': parseInt(itemID),
+        'id': parseInt(currentItemId),
     }))
     let showExam = await fetch(APP_URL + "/api/items/getItem", {
         method: "POST",
@@ -712,7 +713,7 @@ $(document).on('click', '.finishBtn', async function() {
             Accept: "application/json",
             "X-CSRF-TOKEN": window.csrf_token.value,
         },
-        body: form6,
+        body: form7,
     })
     let showExamData = await showExam.json();
     console.log(showExamData);
