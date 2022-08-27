@@ -95,9 +95,7 @@ let editFun = async function (url, myData, el = null) {
         if (postData.status == 200) {
             return responseData;
         }
-        if (postData.status == 404) {
-            return null;
-        }
+
         console.log(responseData);
         throw new Error(responseData);
     } catch (err) {
