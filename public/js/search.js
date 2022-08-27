@@ -271,11 +271,15 @@ checkInputs.forEach((ele) => {
         let { pagination, lectures } = myResponse.data;
         let paginationBtnParent = document.querySelector(".btns");
         paginationBtnParent.innerHTML = "";
-        let { lastPage } = pagination || 0;
+        let { lastPage, currentPage } = pagination || 0;
         for (let i = 1; i <= lastPage; i++) {
+            let cla = null;
+            if (i == currentPage) {
+                cla = active;
+            }
             let text = `
             
-                  <a class="card-btn" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
+                  <a class="card-btn ${cla}" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
             `;
             paginationBtnParent.insertAdjacentHTML("beforeend", text);
         }
