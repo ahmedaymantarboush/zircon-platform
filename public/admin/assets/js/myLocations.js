@@ -164,14 +164,17 @@ document.querySelector("table").addEventListener("click", async function (e) {
     };
     let inputId = document.querySelector("#editLocationModal #trId");
     inputId.value = dataId;
+    document
+        .querySelector(".delCenter")
+        .addEventListener("submit", async function () {
+            form = new FormData();
+            form.append("data", JSON.stringify(sendObj));
 
-    form = new FormData();
-    form.append("data", JSON.stringify(sendObj));
-
-    let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/centers/delete`,
-        form,
-        e
-    );
-    console.log(myResponse);
+            let myResponse = await editFun(
+                `${window.location.protocol}//${window.location.host}/api/centers/delete`,
+                form,
+                e
+            );
+            console.log(myResponse);
+        });
 });
