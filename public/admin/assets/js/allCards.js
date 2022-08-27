@@ -49,5 +49,5 @@ ClassicEditor.create(document.querySelector(".text-editor2"), {
     .catch((err) => {});
 let printCardParent = document.querySelector("#printCard .modal-body");
 console.log(printCardParent);
-// printCardParent.innerHTML = card(1, 1, 1, 1, 1);
+printCardParent.innerHTML = card(1, 1, 1, 1, 1);
 console.log(card(1, 1, 1, 1, 1));
