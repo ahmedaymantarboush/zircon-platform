@@ -421,9 +421,20 @@ function getItem(data) {
                     mainDiv.innerHTML = passExam;
                 } else {
                     if (typeof data.data.item.urls === 'object') {
+                        let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">" + mediaPlayer(data.data.item.urls) + "</div>\n" +
+                            "                <div dir=\"auto\" class=\"lectures-des\">\n" +
+                            "                    <h2>وصف المحاضرة :</h2>\n" +
+                            "                    <div class=\"container\">" + data.data.item.description + "</div>\n" +
+                            "                </div>";
                         mainDiv.innerHTML = mediaPlayerPage;
                         loadMediaPlayerJs();
                     } else if (typeof data.data.item.urls === 'string') {
+                        let embedPlayer = "<div class=\"video_player\" style=\"width: 100%;\">" + "<iframe src='" + data.data.item.urls + "' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>" +
+                            "</div>\n" +
+                            "                <div dir=\"auto\" class=\"lectures-des\">\n" +
+                            "                    <h2>وصف المحاضرة :</h2>\n" +
+                            "                    <div class=\"container\">" + data.data.item.description + "</div>\n" +
+                            "                </div>";
                         mainDiv.innerHTML = embedPlayer;
                     }
                 }
