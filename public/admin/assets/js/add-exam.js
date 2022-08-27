@@ -435,8 +435,8 @@ $(document).on('change','.staticQuestion',async function (){
         form3 = new FormData()
         form3.append('data', JSON.stringify({
             'exam': examID,
-            'question': queID,
-            'id': queSelect
+            'question': queSelect,
+            'id': queID
         }))
         let addQuestion = await fetch(APP_URL + "/api/questions/UpdateInExam", {
             method: "POST",
