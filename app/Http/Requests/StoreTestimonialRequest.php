@@ -15,7 +15,7 @@ class StoreTestimonialRequest extends FormRequest
     public function authorize()
     {
         $user = Auth::user();
-        return $user ?: false;
+        return $user ? $user->role->numeber < 4  : false;
     }
 
     /**
@@ -26,7 +26,12 @@ class StoreTestimonialRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required','string'],
+            'degree' => ['required','numeric'],
+            'studentDegree' => ['required','numeric'],
+            'grade' => ['required','exists:grades,id'],
+            'image' => ['required','file'],
+            'content' => ['required','string'],
         ];
     }
 }
