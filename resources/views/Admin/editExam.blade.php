@@ -152,7 +152,7 @@
                                                                         class="title_num">{{ $i }}</span>
                                                                     :</span>
                                                                 <span class="que_title">
-                                                                    اختر الجزئية الدراسية
+                                                                    اختر السؤال
                                                                 </span>
                                                             </div>
                                                             <div class="icons">
@@ -180,7 +180,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="question-details"style="display: none;">
-                                                                    <label for="formGroupExampleInput"
+                                                                    {{-- <label for="formGroupExampleInput"
                                                                         class="form-label input_label"
                                                                         style="margin:0;">الجزئية
                                                                         الدراسية للسؤال :</label>
@@ -198,13 +198,13 @@
                                                                                 {{ $part->name }}
                                                                             </option>
                                                                         @endforeach
-                                                                    </select>
+                                                                    </select> --}}
                                                                     <label for="formGroupExampleInput"
                                                                         class="form-label input_label"
                                                                         style="margin:0;">اختر
                                                                         السؤال :</label>
                                                                     <select
-                                                                        class="form-select form-select-lg search-select-box "
+                                                                        class="form-select form-select-lg search-select-box staticQuestion"
                                                                         name="question_{{ $i }}"
                                                                         id="formGroupExampleInput"
                                                                         data-live-search="true">

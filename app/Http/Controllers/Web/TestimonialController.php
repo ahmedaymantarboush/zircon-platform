@@ -44,7 +44,24 @@ class TestimonialController extends Controller
     public function store(StoreTestimonialRequest $request)
     {
         $user = Auth::user();
-        
+        if ($user->role->number >= 4):
+            return abort(403);
+        endif;
+        $data = $request->all();
+        $testimonial = Testimonial::create([
+            'student_name' => $data['studentName'],
+            'degree' => $data['degree'],
+            'subject_degree' => $data['subjectDegree'],
+            'content' => removeCustomTags($data['content']),
+            'subject_id' => env('DEFAULT_SUBJECT_ID'),
+            'grade_id' => $data['grade'],
+            'teacher_id' => $user->id,
+        ]);
+        if ($request->hasFile('image')):
+            $testimonial->image = uploadFile($request,'image',$data['studentName'].$testimonial->id);
+            $testimonial->save();
+        endif;
+        return redirect()->back();
     }
 
     /**
@@ -76,9 +93,31 @@ class TestimonialController extends Controller
      * @param  \App\Models\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTestimonialRequest $request, Testimonial $testimonial)
+    public function update(UpdateTestimonialRequest $request, $id)
     {
-        //
+        $user = Auth::user();
+        if ($user->role->number >= 4):
+            return abort(403);
+        endif;
+        $data = $request->all();
+        $testimonial = Testimonial::find($id);
+        if (!$testimonial):
+            return abort(404);
+        endif;
+        $testimonial->update([
+            'student_name' => $data['studentName'],
+            'degree' => $data['degree'],
+            'subject_degree' => $data['subjectDegree'],
+            'content' => removeCustomTags($data['content']),
+            'subject_id' => env('DEFAULT_SUBJECT_ID'),
+            'grade_id' => $data['grade'],
+            'teacher_id' => $user->id,
+        ]);
+        if ($request->hasFile('image')):
+            $testimonial->image = uploadFile($request,'image',$data['studentName'].$testimonial->id,$testimonial->image);
+            $testimonial->save();
+        endif;
+        return redirect()->back();
     }
 
     /**

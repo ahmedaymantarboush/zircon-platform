@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateTestimonialRequest extends FormRequest
 {
@@ -13,7 +14,8 @@ class UpdateTestimonialRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $user = Auth::user();
+        return $user ? $user->role->numeber < 4  : false;
     }
 
     /**
@@ -24,7 +26,14 @@ class UpdateTestimonialRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'studentName' => ['required','string'],
+            'image' => ['nullable','image'],
+            'degree' => ['required','numeric'],
+            'content' => ['required','string'],
+            'subjectDegree' => ['required','numeric'],
+            'subject' => ['required','exists:subjects,id'],
+            'grade' => ['required','exists:grades,id'],
+            'student' => ['nullable'],
         ];
     }
 }

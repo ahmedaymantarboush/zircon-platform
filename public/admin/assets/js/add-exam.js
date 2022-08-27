@@ -262,7 +262,7 @@ $(".add_question").click(function() {
                                                                         class="title_num">${finalNamber}</span>
                                                                     :</span>
                                                                 <span class="que_title">
-                                                                    اختر الجزئية الدراسية
+                                                                    اختر السؤال
                                                                 </span>
                                                             </div>
                                                             <div class="icons">
@@ -290,28 +290,16 @@ $(".add_question").click(function() {
                                                                     </div>
                                                                 </div>
                                                                 <div class="question-details"style="display: none;">
-                                                                    <label for="formGroupExampleInput"
-                                                                        class="form-label input_label"
-                                                                        style="margin:0;">الجزئية
-                                                                        الدراسية للسؤال :</label>
-                                                                    <select
-                                                                        class="form-select form-select-lg search-select-box select_part"
-                                                                        name="part_${finalNamber}"
-                                                                        id="formGroupExampleInput"
-                                                                        data-live-search="true">
-                                                                        <option value="اختر الجزئية التعليمية" selected>
-                                                                            اختر الجزئية التعليمية
-                                                                        </option>
-                                                                        ${partOptions}
-                                                                    </select>
+
                                                                         <label for="formGroupExampleInput"
                                                                             class="form-label input_label"
                                                                             style="margin:0;">اختر
                                                                             السؤال :</label>
                                                                         <select
-                                                                            class="form-select form-select-lg search-select-box "
+                                                                            class="staticQuestion form-select form-select-lg search-select-box "
                                                                             name="question_${finalNamber}"
                                                                             id="formGroupExampleInput"
+                                                                            data-id="0"
                                                                             data-live-search="true">
                                                                             <option value="" selected>
                                                                                 اختر السؤال
@@ -373,46 +361,94 @@ $(document).on("click", ".btn-outline-secondary", function() {
 /////////////////////////////////
 /////// Ajax///////////////////
 //////////////////////////////
-let editFun = async function(url, myData, el = null) {
-    try {
-        let postData = await fetch(url, {
+// let editFun = async function(url, myData, el = null) {
+//     try {
+//         let postData = await fetch(url, {
+//             method: "POST",
+//             headers: {
+//                 Accept: "application/json",
+//                 "X-CSRF-TOKEN": window.csrf_token.value,
+//             },
+//             body: myData,
+//         });
+//
+//         let responseData = await postData.json();
+//
+//         if (postData.status == 200) {
+//             return responseData;
+//         }
+//         if (postData.status == 404) {
+//             return null;
+//         }
+//         return null;
+//     } catch (err) {}
+// };
+//
+// document.querySelector("table").addEventListener("click", async function(e) {
+//     if (!e.target.classList.contains("editCenter")) return;
+//     let dataId = e.target.closest("tr").querySelector(".number").dataset.id;
+//     console.log(dataId);
+//     let sendObj = {
+//         id: 2,
+//     };
+//     let inputId = document.querySelector("#editLocationModal #trId");
+//     inputId.value = 2;
+//
+//     form = new FormData();
+//     form.append("data", JSON.stringify(sendObj));
+//
+//     let myResponse = await editFun(
+//         `${window.location.protocol}//${window.location.host}/api/questions/store`,
+//         form,
+//         e
+//     );
+//     let objData = myResponse.data;
+// });
+////////////////////////////////////////////////////////////////////////////
+//////////////////// Add Static Question With Ajax ////////////////////////
+//////////////////////////////////////////////////////////////////////////
+$(document).on('change','select.staticQuestion',async function (){
+    let examID = $("input[name='id']").attr('value');
+    if($(this).parent().closest(".question-box").attr('data-id')==0){
+        let queID = $(this).val();
+        //Ajax
+        form3 = new FormData()
+        form3.append('data', JSON.stringify({
+            'exam': examID,
+            'question': queID
+        }))
+        let addQuestion = await fetch(APP_URL + "/api/questions/addToExam", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "X-CSRF-TOKEN": window.csrf_token.value,
             },
-            body: myData,
-        });
-
-        let responseData = await postData.json();
-
-        if (postData.status == 200) {
-            return responseData;
-        }
-        if (postData.status == 404) {
-            return null;
-        }
-        return null;
-    } catch (err) {}
-};
-
-document.querySelector("table").addEventListener("click", async function(e) {
-    if (!e.target.classList.contains("editCenter")) return;
-    let dataId = e.target.closest("tr").querySelector(".number").dataset.id;
-    console.log(dataId);
-    let sendObj = {
-        id: 2,
-    };
-    let inputId = document.querySelector("#editLocationModal #trId");
-    inputId.value = 2;
-
-    form = new FormData();
-    form.append("data", JSON.stringify(sendObj));
-
-    let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/questions/store`,
-        form,
-        e
-    );
-    let objData = myResponse.data;
+            body: form3,
+        })
+        let addQuestionData = await addQuestion.json();
+        console.log(addQuestionData);
+        console.log(this);
+        $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
+    }else {
+        let queID = $(this).parent().closest(".question-box").attr('data-id');
+        let queSelect = $(this).val();
+        //Ajax
+        form3 = new FormData()
+        form3.append('data', JSON.stringify({
+            'exam': examID,
+            'question': queSelect,
+            'id': queID
+        }))
+        let addQuestion = await fetch(APP_URL + "/api/questions/UpdateInExam", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: form3,
+        })
+        let addQuestionData = await addQuestion.json();
+        console.log(addQuestionData);
+        console.log(this);
+    }
 });
