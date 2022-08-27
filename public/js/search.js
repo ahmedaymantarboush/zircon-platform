@@ -294,7 +294,7 @@ checkInputs.forEach((ele) => {
                 lectures[i].gradeId
             }">
                                 <span class='typeGrade'>${
-                                    lectures[i].grades
+                                    lectures[i].grade
                                 }</span>
 
                                 <div class="levelContentParent">
