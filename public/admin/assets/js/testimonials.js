@@ -163,3 +163,12 @@ delBtns.forEach((ele) => {
             .querySelector(".name-lesson").textContent;
     });
 });
+
+document.querySelector("table").addEventListener("click", function (e) {
+    if (!e.target.classList.contains("delTesti")) return;
+    let testi = document.querySelector(".del-lesson");
+    testi.innerHTML = e.target
+        .closest("tr")
+        .querySelector(".name-lesson")
+        .getAttribute("data-bs-original-title");
+});

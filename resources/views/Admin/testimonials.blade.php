@@ -231,7 +231,7 @@
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                <a class="dropdown-item delTesti" href="#" data-bs-toggle="modal"
                                     data-bs-target="#delete-certificate">مسح الشهادة</a>
                             </li>
                         </ul>
