@@ -133,5 +133,5 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     console.log(myResponse);
-    location.reload();
+    // location.reload();
 });
