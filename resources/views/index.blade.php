@@ -222,6 +222,7 @@
                     $direction = ['Right', 'Down', 'Up', 'Left'];
                 @endphp
                 @foreach ($lectures as $index => $lecture)
+                @if ($lecture)
                     <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_from{{ $direction[$index - 1] }}">
                         <a class="latestCard grade{{ $lecture->grade->id }}"
                             href='{{ route('months.show', $lecture->slug) }}'>
@@ -250,6 +251,7 @@
                             </div>
                         </a>
                     </div>
+                    @endif
                 @endforeach
                 {{-- <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromDown">
                     <a class="latestCard " href='#'>
