@@ -1153,7 +1153,7 @@ div.waves {
     }
 }
 .preloader svg {
-    position: absolute;
+    position: relative;
     width: 240px;
     height: 120px;
     top: 0;
@@ -1179,7 +1179,7 @@ div.waves {
 }
 
 .preloader .credit {
-    position: absolute;
+    position: relative;
     bottom: 50px;
     width: 100%;
     text-align: center;
