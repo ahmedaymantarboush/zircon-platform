@@ -60,7 +60,12 @@ class SectionItemController extends Controller
         ];
         if ($sectionItem->lesson_id) :
             $lesson = $sectionItem->item;
-            $openable = !$lesson->exam_id || ($lesson->exam_id ? $user->passedExams()->where('exam_id', $lesson->exam->id)->first()->percentage >= $lesson->min_percentage  : false );
+            
+            $exam = $lesson->exam ?? null;
+            
+            $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
+            
+            $openable = !$exam || ($exam ? ($passedExam ? $passedExam->percentage >= $lesson->min_percentage : false)  : false );
             if ($openable):
                 $userLesson = UserLesson::firstOrCreate([
                     'lesson_id' => $lesson->id,
@@ -68,10 +73,8 @@ class SectionItemController extends Controller
                 ]);
             endif;
             $urls = getVideoUrl(getVideoId($lesson->url));
-            $exam = $lesson->exam ?? null;
-
-            $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
-
+            
+            
             $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
 
             if ($finished) :
