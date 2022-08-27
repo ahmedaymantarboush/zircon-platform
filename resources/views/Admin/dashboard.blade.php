@@ -12,8 +12,15 @@
                 <div class="daily-content">
                     <h3 class="daily-name">دخل الشهر</h3>
                     <p class="daily-p">
-                        352,120 ج.م
-                        <span class="percent">65</span>
+                        @php
+                            $currentMonth = date('Y-m',strtotime(now()));
+                            $lastMonth = date('Y-m',strtotime(strtotime("first day of previous month")));
+                            $currentMonthEncomme = array_sum(\App\Models\BalanceCard::where('user_id', '!=', null)->where('used_at','LIKE',"%$currentMonth%")->get()->pluck('value')->toArray());
+                            $lastMonthEncomme = array_sum(\App\Models\BalanceCard::where('user_id', '!=', null)->where('used_at','LIKE',"%$lastMonth%")->get()->pluck('value')->toArray());
+                            $monthpercentage = $lastMonthEncomme ? (($currentMonthEncomme - $lastMonthEncomme) * 100 / $lastMonthEncomme ) : 100;
+                        @endphp
+                        {{$currentMonthEncomme}} ج.م
+                        <span class="percent">{{$monthpercentage }}</span>
                     </p>
                 </div>
                 <div class="daily-icon">
