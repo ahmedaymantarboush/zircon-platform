@@ -15,6 +15,6 @@ class ExamQuestion extends Model
     ];
 
     public function exam(){
-        return $this->hasOne(Exam::class);
+        return $this->belongsTo(Exam::class);
     }
 }
