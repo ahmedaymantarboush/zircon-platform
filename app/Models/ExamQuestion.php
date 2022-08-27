@@ -13,4 +13,8 @@ class ExamQuestion extends Model
         'exam_id',
         'question_id',
     ];
+
+    public function exam(){
+        return $this->hasOne(Exam::class);
+    }
 }
