@@ -131,7 +131,7 @@
                 <div class="col-lg-6 headerRightSide">
                     <div class="teacherContent ">
                         <h1 class="bigHeading gs_reveal gs_reveal_fromRight ">
-                            <span class="customeSquareLine t-name">أ. ssssss البري</span>
+                            <span class="customeSquareLine t-name">أ. محمد البري</span>
                             في
                             <span class="headingSubject">الفيزياء</span>
                         </h1>
