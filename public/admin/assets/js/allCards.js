@@ -138,24 +138,26 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     console.log(myResponse);
-    // location.reload();
+    location.reload();
 });
 // delete card
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("deletCardBtn")) return;
     let dataId = e.target.closest("tr").dataset.id;
+    let ques = document.querySelector(".question-code").title;
     let sendObj = {
         id: dataId,
     };
-
+    let delLesson = document.querySelector('.del-lesson')
+    delLesson.innerHTML=ques
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
-
-    let myResponse = await editFun(
+    document.querySelector("delForm").addEventListener("submit", function () {
+        let myResponse = await editFun(
         `${window.location.protocol}//${window.location.host}/api/balancecards/delete`,
         form,
         e
     );
     console.log(myResponse);
-    // location.reload();
+    });
 });
