@@ -132,5 +132,6 @@ document.querySelector("table").addEventListener("click", async function (e) {
         form,
         e
     );
+    console.log(myResponse);
     location.reload();
 });
