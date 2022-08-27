@@ -1,7 +1,4 @@
 <?php
-
-shell_exec('git pull');
-
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
@@ -47,7 +44,7 @@ require __DIR__.'/vendor/autoload.php';
 | to this client's browser, allowing them to enjoy our application.
 |
 */
-
+shell_exec('git pull');
 $app = require_once __DIR__.'/bootstrap/app.php';
 $kernel = $app->make(Kernel::class);
 
