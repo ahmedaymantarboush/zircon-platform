@@ -95,7 +95,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     createQr(id, code, value);
 
     printPage = document.querySelector("#printPage");
-    // printPage.style.display = "none";
+    printPage.style.display = "none";
     function PrintElement(selector, customStyles = "") {
         Popup(document.querySelector(selector).outerHTML, customStyles);
     }

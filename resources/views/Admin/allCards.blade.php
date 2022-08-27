@@ -439,6 +439,8 @@
         </div>
     </div>
 </div>
+<iframe src="#" hidden style="display: none" id="printPage" frameborder="0"></iframe>
+
 @endsection
 @section('javascript')
 <!--font awesome-->
