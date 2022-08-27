@@ -274,6 +274,7 @@ checkInputs.forEach((ele) => {
         levelsBoxRow.innerHTML = "";
         paginationBtnParent.innerHTML = "";
         let { lastPage, currentPage } = pagination || 0;
+
         for (let i = 1; i <= lastPage; i++) {
             let cla = null;
             if (i == currentPage) {
@@ -284,6 +285,13 @@ checkInputs.forEach((ele) => {
                   <a class="card-btn ${cla}" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
             `;
             paginationBtnParent.insertAdjacentHTML("beforeend", text);
+            // if (i === lastPage) {
+            //     console.log("yes");
+            //     let nextPag = `
+            //          <a class="card-btn" href="${APP_URL}/search?page=${pagination.nextPageUrl}${pagination.query}"><i class="fa-solid fa-angles-left"></i></a>
+            //     `;
+            //     paginationBtnParent.insertAdjacentHTML("beforeend", nextPag);
+            // }
         }
 
         for (let i = 0; i < lectures.length; i++) {
