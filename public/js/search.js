@@ -288,9 +288,9 @@ checkInputs.forEach((ele) => {
             if (i === lastPage) {
                 console.log("yes");
                 let nextPag = `
-                     <a class="card-btn" href="${APP_URL}/search?page=${pagination.nextPageUrl}${pagination.query}">${i}</a>
+                     <a class="card-btn" href="${APP_URL}/search?page=${pagination.nextPageUrl}${pagination.query}"><i class="fa-solid fa-angles-left"></i></a>
                 `;
-                paginationBtnParent.insertAdjacentHTML("afterend", nextPag);
+                paginationBtnParent.insertAdjacentHTML("beforeend", nextPag);
             }
         }
 
