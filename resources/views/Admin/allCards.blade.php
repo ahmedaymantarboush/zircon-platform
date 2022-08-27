@@ -248,8 +248,8 @@
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item " data-bs-toggle="modal" data-bs-target="#deleteCard"
-                                        href="#">مسح الكارت</a>
+                                    <a class="dropdown-item deletCardBtn " data-bs-toggle="modal"
+                                        data-bs-target="#deleteCard" href="#">مسح الكارت</a>
                                 </li>
                             </ul>
                         </div>
