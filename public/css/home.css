@@ -766,7 +766,7 @@ header .row {
 }
 .paper {
     background: url(../public/imgs/paper.png);
-    padding: 10% 0 0;
+    padding: 11% 0 0;
     transition: 0.3s all ease;
 }
 .paper2 {
