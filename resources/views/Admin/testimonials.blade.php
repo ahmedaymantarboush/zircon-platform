@@ -350,7 +350,7 @@
         <div class="less-item">
             <label class="sec-name">المحتوى</label>
             <textarea name="content"
-                class="text-editor2 @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
+                class="text-editor1 @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
             @error('content')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
