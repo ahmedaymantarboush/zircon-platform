@@ -328,7 +328,6 @@ $(".add_question").click(function() {
 $(document).on("change", ".select_part", function() {
     let question_box = $(this).parent().closest(".question-box");
     var selectedValue = $(this).val();
-    console.log(selectedValue);
     $(question_box).find(".que_title").text(selectedValue);
 });
 ///////////////////////////////////////////////////////////////////////
@@ -449,4 +448,7 @@ $(document).on('change','select.staticQuestion',async function (){
         let addQuestionData = await addQuestion.json();
         console.log(addQuestionData);
     }
+    let question_box = $(this).parent().closest(".question-box");
+    var selectedValue = $(this).val();
+    $(question_box).find(".que_title").text(selectedValue);
 });
