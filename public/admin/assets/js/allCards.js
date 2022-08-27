@@ -93,6 +93,9 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let { end_date, code, id, start_date, value } = objData;
     printCardParent.innerHTML = card(id, code, value, start_date, end_date);
     createQr(id, code, value);
+
+    printPage = document.querySelector("#printPage");
+    printPage.style.display = "none";
     function PrintElement(selector, customStyles = "") {
         Popup(document.querySelector(selector).outerHTML, customStyles);
     }
