@@ -68,8 +68,11 @@ let editFun = async function (url, myData, el = null) {
         if (postData.status == 404) {
             return null;
         }
-        return null;
-    } catch (err) {}
+
+        // return null;
+    } catch (err) {
+        console.log(err);
+    }
 };
 // print card
 document.querySelector("table").addEventListener("click", async function (e) {
