@@ -276,7 +276,7 @@ checkInputs.forEach((ele) => {
         let { lastPage, currentPage } = pagination || 0;
 
         for (let i = 1; i <= lastPage; i++) {
-            let cla = null;
+            let cla = "";
             if (i == currentPage) {
                 cla = "active";
             }
