@@ -240,17 +240,17 @@
                             <ul class="dropdown-menu feat-menu">
                                 <li>
                                     <a class="dropdown-item printCardBtn" data-bs-toggle="modal"
-                                        data-bs-target="#printCard" href="#">طباعة الكارت</a>
+                                        data-bs-target="#printCard">طباعة الكارت</a>
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item handingCardBtn" href="#">تعليق الكارت
+                                    <a class="dropdown-item handingCardBtn">تعليق الكارت
                                     </a>
                                 </li>
 
                                 <li>
                                     <a class="dropdown-item deletCardBtn " data-bs-toggle="modal"
-                                        data-bs-target="#deleteCard" href="#">مسح الكارت</a>
+                                        data-bs-target="#deleteCard">مسح الكارت</a>
                                 </li>
                             </ul>
                         </div>
