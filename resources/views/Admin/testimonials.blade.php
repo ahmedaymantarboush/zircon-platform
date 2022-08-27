@@ -389,8 +389,8 @@
 
                         <div class="input-parent">
                             <input type="text" name="newName" value="{{ old('newName') }}"
-                                class="my-input @error('newName') is-invalid @enderror" placeholder=" ادخل اسم الطالب"
-                                id="address-lec" />
+                                class="editStudentName my-input @error('newName') is-invalid @enderror"
+                                placeholder=" ادخل اسم الطالب" id="address-lec" />
                             @error('newName')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -403,7 +403,7 @@
 
                         <div class="input-parent">
                             <input type="text" name="newDegree" value="{{ old('newDegree') }}"
-                                class="my-input @error('newDegree') is-invalid @enderror"
+                                class="editStudentSum my-input @error('newDegree') is-invalid @enderror"
                                 placeholder=" ادخل مجموع الطالب" id="address-lec" />
                             @error('newDegree')
                             <span class="invalid-feedback" role="alert">
@@ -440,7 +440,7 @@
 
             <div class="input-parent">
                 <input type="text" name="newSubjectDegree" value="{{ old('newSubjectDegree') }}"
-                    class="my-input @error('newSubjectDegree') is-invalid @enderror"
+                    class="subjectSum my-input @error('newSubjectDegree') is-invalid @enderror"
                     placeholder=" مجموع الطالي في المادة" id="address-lec" />
                 @error('newSubjectDegree')
                 <span class="invalid-feedback" role="alert">
@@ -451,7 +451,7 @@
         </div>
         <div class="less-item custome-item">
             <label class="sec-name">المرحلة الدراسية</label>
-            <div class="search-select modify-select">
+            <div class="search-select modify-select levelsParent">
                 <select name="newGrade" id="" class="@error('newGrade') is-invalid @enderror" data-live-search="true">
                     <option value="">
                         اختر المرحلة الدراسية
