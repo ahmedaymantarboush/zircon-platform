@@ -99,9 +99,11 @@ Route::post('questions/store',[ExamQuestionController::class,'store']);
 
 //       TESTIMONIAL ROUTES
 Route::post('testimonials/fastEdit',[TestimonialController::class,'fastEdit']);
+Route::post('testimonials/delete',[BalanceCardController::class,'destroy'])->name('api.balancecards.delete');
 
 //       CENTER ROUTES
 Route::post('centers/fastEdit',[CenterController::class,'fastEdit']);
+Route::post('centers/delete',[BalanceCardController::class,'destroy'])->name('api.balancecards.delete');
 
 //       SECTIONITEM ROUTES
 Route::post('items/getItem',[SectionItemController::class,'show']);
