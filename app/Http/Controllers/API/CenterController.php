@@ -97,6 +97,20 @@ class CenterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $center = Center::find($id);
+        if (!$center) :
+            return apiResponse(false, _('لم يتم العثور على المحاضرة'), [], 404);
+        endif;
+        if ($user->role->number < 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
+        endif;
+        $center->delete();
+        return apiResponse(true,_('تم حذف السنتر بنجاح'),[]);
     }
 }

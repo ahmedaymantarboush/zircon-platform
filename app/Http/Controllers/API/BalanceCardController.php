@@ -108,9 +108,9 @@ class BalanceCardController extends Controller
         endif;
         $data = [
             'code' => $card->code,
-            'start_date' => $card->created_at,
+            'start_date' => date('d/m/Y:H:i',strtotime($card->created_at)),
             'value' => $card->value,
-            'end_date' => $card->expiry_date,
+            'end_date' => date('d/m/Y:H:i',strtotime($card->expiry_date)),
             'id' => $card->id,
         ];
         return apiResponse(true, _('تم العثور على الكارت بنجاح'),$data);

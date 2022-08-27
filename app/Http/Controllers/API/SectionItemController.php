@@ -86,10 +86,12 @@ class SectionItemController extends Controller
 
                 'exam' => $exam ? $exam->id : null,
                 'examName' => $exam ? $exam->title : null,
-                'finishedExam' => $finished,
+                'finished' => $finished,
                 'passedExamId' => $passedExam ? $passedExam->id : null,
                 'percentage' => $finished ? $passedExam->percentage : null,
                 'minPercentage' => $lesson->min_percentage,
+                'questionsCount' => $exam ? $exam->questions_count : null,
+                'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where('correct', 1)->count() : null,
 
                 'grade' => $lesson->grade->name,
                 'part' => $lesson->part->name,
