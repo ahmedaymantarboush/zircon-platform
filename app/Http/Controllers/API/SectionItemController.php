@@ -82,6 +82,7 @@ class SectionItemController extends Controller
             endif;
 
             $item = [
+                'id' => $lesson->id,
                 'type' => $lesson->type,
 
                 'exam' => $exam ? $exam->id : null,

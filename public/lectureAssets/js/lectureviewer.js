@@ -451,7 +451,7 @@ function getItem(data) {
 }
 $(document).on('click', '.lesson_name', function() {
     itemID = parseInt($(this).attr('id'));
-    currentItemId = parseInt($(this).attr('id'));
+    itemID = parseInt($(this).attr('id'));
     form = new FormData()
     form.append('data', JSON.stringify({
         'id': parseInt($(this).attr('id'))
