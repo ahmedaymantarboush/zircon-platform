@@ -1099,7 +1099,7 @@ div.waves {
     height: 100%;
     background: var(--green-color);
     z-index: 9999999999999;
-    /* transition: 0.3s all ease; */
+    transition: 0.3s all ease;
 }
 .preloader svg {
     position: absolute;
