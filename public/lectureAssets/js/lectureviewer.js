@@ -1,6 +1,5 @@
 let examID = 0;
 let examPassedID = 0;
-let activeItemId = 0
 
 function onReadyFunExam() {
     // questions tabs
@@ -452,7 +451,6 @@ function getItem(data) {
 }
 $(document).on('click', '.lesson_name', function() {
     itemID = parseInt($(this).attr('id'));
-    activeItemId = parseInt($(this).attr('id'));
     form = new FormData()
     form.append('data', JSON.stringify({
         'id': parseInt($(this).attr('id'))
@@ -693,7 +691,6 @@ $(document).on('click', '.finishBtn', async function() {
     form6.append('data', JSON.stringify({
         'id': parseInt(examPassedID),
     }))
-    console.log(examPassedID)
     let finishExam = await fetch(APP_URL + "/api/exams/finish", {
         method: "POST",
         headers: {
@@ -707,7 +704,7 @@ $(document).on('click', '.finishBtn', async function() {
     $('.closeModelBtn').click();
     form7 = new FormData()
     form7.append('data', JSON.stringify({
-        'id': parseInt(activeItemId),
+        'id': parseInt(itemID),
     }))
     let showExam = await fetch(APP_URL + "/api/items/getItem", {
         method: "POST",
