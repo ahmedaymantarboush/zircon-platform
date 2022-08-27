@@ -80,7 +80,7 @@
                     </button>
                 </td>
                 <td data-lable="المحافظة :">
-                    {{ $center->govenrnorate->name }}
+                    {{ $center->governorate->name }}
                 </td>
                 <td data-lable="عدد الطلاب :" class="table-sections">
                     {{ $center->students->count() }}

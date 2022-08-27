@@ -15,7 +15,7 @@ class Center extends Model
         'governorate_id'
     ];
 
-    public function govenrnorate(){
+    public function governorate(){
         return $this->belongsTo(Governorate::class,'governorate_id');
     }
 

@@ -45,9 +45,9 @@ class CenterController extends Controller
         if (!$center) :
             return apiResponse(false, _('لم يتم العثور على السنتر'), [], 404);
         endif;
-        // if ($user->role->number < 4):
-        //     return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل السنتر'), [], 403);
-        // endif;
+        if ($user->role->number >= 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل السنتر'), [], 403);
+        endif;
         return apiResponse(true, _('تم العثور على السنتر'), [
             'name' => $center->name,
             'url' => $center->url,
@@ -95,7 +95,7 @@ class CenterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
         $data = json_decode(request()->data,true);
         $user = apiUser();
@@ -107,9 +107,9 @@ class CenterController extends Controller
         if (!$center) :
             return apiResponse(false, _('لم يتم العثور على السنتر'), [], 404);
         endif;
-        // if ($user->role->number < 4):
-        //     return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل السنتر'), [], 403);
-        // endif;
+        if ($user->role->number >= 4):
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل السنتر'), [], 403);
+        endif;
         $center->delete();
         return apiResponse(true,_('تم حذف السنتر بنجاح'),[]);
     }
