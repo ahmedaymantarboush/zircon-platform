@@ -449,6 +449,6 @@ $(document).on('change','select.staticQuestion',async function (){
         console.log(addQuestionData);
     }
     let question_box = $(this).parent().closest(".question-box");
-    var selectedValue = $(this).val();
+    var selectedValue = $(this).find("option:selected").text();
     $(question_box).find(".que_title").text(selectedValue);
 });
