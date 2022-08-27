@@ -427,7 +427,6 @@ $(document).on('change','select.staticQuestion',async function (){
         })
         let addQuestionData = await addQuestion.json();
         console.log(addQuestionData);
-        console.log(this);
         $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
     }else {
         let queID = $(this).parent().closest(".question-box").attr('data-id');
@@ -449,6 +448,5 @@ $(document).on('change','select.staticQuestion',async function (){
         })
         let addQuestionData = await addQuestion.json();
         console.log(addQuestionData);
-        console.log(this);
     }
 });
