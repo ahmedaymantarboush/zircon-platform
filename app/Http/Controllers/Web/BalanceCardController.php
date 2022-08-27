@@ -34,6 +34,8 @@ class BalanceCardController extends Controller
 
             if (!$balanceCard) :
                 return redirect()->back()->with(['msg' => "الكود الذي أدخلته غير صحيح رصيدك الحالي $user->balance ج.م", 'success' => false]);
+            elseif ($balanceCard->hanging) :
+                return redirect()->back()->with(['msg' => "لا يمكن شحن هذا الكارت", 'success' => false]);
             elseif ($balanceCard->used_at) :
                 return redirect()->back()->with(['msg' => "هذا الكارت مستخدم بالفعل", 'success' => false]);
             elseif ($balanceCard->expiry_date < now()) :
