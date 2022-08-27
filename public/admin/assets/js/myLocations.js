@@ -144,4 +144,5 @@ document.querySelector("table").addEventListener("click", async function (e) {
         });
     };
     fillSelectFunction(newGovernorateOptions, newGovernorateInner, null);
+    console.log("yes");
 });
