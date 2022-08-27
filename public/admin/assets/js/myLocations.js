@@ -123,29 +123,30 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     let objData = myResponse.data;
-    let nameOfCenter = document.querySelector(
-        ".editLocationModal .nameOfCenter"
-    );
-    let urlOfCenter = document.querySelector(".editLocationModal .urlOfCenter");
-    let newGovernorateInner = document.querySelector(
-        ".editLocationModal .newGovernorateParent .filter-option-inner-inner"
-    );
-    let newGovernorateOptions = document.querySelector(
-        ".editLocationModal .newGovernorateParent option"
-    );
-    nameOfCenter.value = null;
-    urlOfCenter.value = null;
-    let fillSelectFunction = function (options, selectInner, data) {
-        options.forEach((ele) => {
-            if (ele.value == data) {
-                ele.setAttribute("selected", "");
-                selectInner.textContent = ele.textContent;
-            } else {
-                ele.removeAttribute("selected");
-            }
-        });
-    };
-    fillSelectFunction(newGovernorateOptions, newGovernorateInner, null);
+    console.log(objData);
+    // let nameOfCenter = document.querySelector(
+    //     ".editLocationModal .nameOfCenter"
+    // );
+    // let urlOfCenter = document.querySelector(".editLocationModal .urlOfCenter");
+    // let newGovernorateInner = document.querySelector(
+    //     ".editLocationModal .newGovernorateParent .filter-option-inner-inner"
+    // );
+    // let newGovernorateOptions = document.querySelector(
+    //     ".editLocationModal .newGovernorateParent option"
+    // );
+    // nameOfCenter.value = null;
+    // urlOfCenter.value = null;
+    // let fillSelectFunction = function (options, selectInner, data) {
+    //     options.forEach((ele) => {
+    //         if (ele.value == data) {
+    //             ele.setAttribute("selected", "");
+    //             selectInner.textContent = ele.textContent;
+    //         } else {
+    //             ele.removeAttribute("selected");
+    //         }
+    //     });
+    // };
+    // fillSelectFunction(newGovernorateOptions, newGovernorateInner, null);
 });
 
 ////// delete
