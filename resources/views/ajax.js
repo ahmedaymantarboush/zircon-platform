@@ -34,7 +34,7 @@ paination += response.pagination.prevPageUrl ? `<a class="card-btn" href="${resp
         data-ur1313m3t="true">
         <span class="btn-arrow"><i class="fa-solid fa-angle-left"></i>/span>
     </a>
-    <a class="card-btn" href="${response.pagination.nextPageUrl}${response.pagination.query}"
+    <a class="card-btn" href="${response.pagination.lastPageUrl}${response.pagination.query}"
         data-ur1313m3t="true">
         <span class="btn-arrow"><i class="fa-solid fa-angles-left"></i>/span>
     </a>

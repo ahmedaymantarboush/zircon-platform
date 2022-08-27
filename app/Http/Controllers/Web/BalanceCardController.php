@@ -17,7 +17,13 @@ class BalanceCardController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $cards = BalanceCard::all();
+        if ($user) :
+            return view('Admin.allCards', ['cards' => $cards]);
+        else :
+            return abort(404);
+        endif;
     }
     public function recharge()
     {

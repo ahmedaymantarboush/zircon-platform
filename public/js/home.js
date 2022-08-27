@@ -1,3 +1,9 @@
+window.addEventListener("load", function () {
+    setTimeout(function () {
+        document.getElementsByClassName("preloader")[0].style.opacity = "0";
+        document.getElementsByClassName("preloader")[0].style.zIndex = "-1";
+    }, 1000);
+});
 // let toggleBtn = function (firstEle, secondEle, classActive) {
 //     firstEle.addEventListener("click", function () {
 //         firstEle.classList.toggle(classActive);
@@ -81,18 +87,44 @@ document.addEventListener("DOMContentLoaded", function () {
 ///////////////////////////////////
 // [01- dark and light ]
 let funChangeImagesDark = function () {
-    let paperImg1 = document.querySelector(".paper img");
+    let paperImg1 = document.querySelector(".paper ");
 
-    let paperImg2 = document.querySelector(".paper2 img");
-    if (document.documentElement.classList.contains("dark")) {
-        paperImg1.setAttribute("src", "public/imgs/paperdark.png");
-        paperImg2.setAttribute("src", "public/imgs/paper2_dark.png");
+    let paperImg2 = document.querySelector(".paper2");
+    if (!document.documentElement.classList.contains("dark")) {
+        paperImg1.setAttribute(
+            "style",
+            "background: url(../public/imgs/paper.png) no-repeat; background-size:cover;"
+        );
+        paperImg2.setAttribute(
+            "style",
+            "background: url(../public/imgs/paper2.png) no-repeat; background-size:cover;"
+        );
     } else {
-        paperImg1.setAttribute("src", "public/imgs/paper.png");
-        paperImg2.setAttribute("src", "public/imgs/paper2.png");
+        paperImg1.setAttribute(
+            "style",
+            "background: url(../public/imgs/paperdark.png) no-repeat; background-size:cover;"
+        );
+        paperImg2.setAttribute(
+            "style",
+            "background: url(../public/imgs/paper2_dark.png) no-repeat; background-size:cover;"
+        );
     }
 };
 
+// let funChangeImagesDark = function () {
+//     let headerImage = document.querySelector(".header");
+//     if (document.documentElement.classList.contains("dark")) {
+//         headerImage.setAttribute(
+//             "style",
+//             "background: url(../public/imgs/lecture_banner_dark.png) no-repeat; background-size:cover;"
+//         );
+//     } else {
+//         headerImage.setAttribute(
+//             "style",
+//             "background: url(../public/imgs/lecture_banner.png) no-repeat; background-size:cover;"
+//         );
+//     }
+// };
 let addStyleToLocaleStorage = function () {
     if (localStorage.getItem("style") === null) {
         localStorage.setItem("style", "dark");

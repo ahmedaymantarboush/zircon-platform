@@ -367,8 +367,8 @@ function getItem(data) {
 
     if (data.data.type == 'lesson') {
 
-        if (data.data.item.exam == null ) {
-            if (data.data.item.type == "video" && data.data.item.urls !=null) {
+        if (data.data.item.exam == null) {
+            if (data.data.item.type == "video" && data.data.item.urls != null) {
                 if (typeof data.data.item.urls === 'object') {
                     let mediaPlayerPage = "<div class=\"video_player\" style=\"width: 100%;\">" + mediaPlayer(data.data.item.urls) + "</div>\n" +
                         "                <div dir=\"auto\" class=\"lectures-des\">\n" +
@@ -776,14 +776,14 @@ $(document).on('click', '.showExam', async function() {
         if (i !== 1) { active = ""; }
         let flagclass = "unflagQuestion";
         let inputclass = "uncheckflag";
-        if (parseInt(getExamVar.data.questions[i-1].flagged)) {
+        if (parseInt(getExamVar.data.questions[i - 1].flagged)) {
             flagclass = "flagQuestion";
             inputclass = "checkflag";
         }
         examHTML += '<div class="question ' + active + ' col-12">\n' +
             '                                    <div class="title_exam d-flex justify-content-between">\n' +
             '                                        <div class="question_head" >\n' +
-            '                                            <i class="fa-solid fa-font-awesome ' + flagclass + '" flag="' + parseInt(getExamVar.data.questions[i-1].flagged) + '"\n' +
+            '                                            <i class="fa-solid fa-font-awesome ' + flagclass + '" flag="' + parseInt(getExamVar.data.questions[i - 1].flagged) + '"\n' +
             '                                                queNamber="' + i + '"></i>\n' +
             '                                            <input type="checkbox" class="' + inputclass + '">\n' +
             '                                            <span>السؤال رقم ' + i + '</span>\n' +
@@ -792,35 +792,35 @@ $(document).on('click', '.showExam', async function() {
             '                                            <span class="countdown">00:00:00</span>\n' +
             '                                        </div>\n' +
             '                                    </div>';
-        if (getExamVar.data.questions[i-1].question.image != null) {
+        if (getExamVar.data.questions[i - 1].question.image != null) {
             examHTML += '<div class="col-12">\n' +
                 '                                            <img class="question_img"\n' +
-                '                                                src="' + getExamVar.data.questions[i-1].question.image + '">\n' +
+                '                                                src="' + getExamVar.data.questions[i - 1].question.image + '">\n' +
                 '                                        </div>';
         }
         examHTML += '<div class="col-12">\n' +
-            '                                        <p class="question_text">' + getExamVar.data.questions[i-1].question.text + '</p>\n' +
+            '                                        <p class="question_text">' + getExamVar.data.questions[i - 1].question.text + '</p>\n' +
             '                                    </div>';
         //Add Choices
-        for (let j = 1; j <= getExamVar.data.questions[i-1].question.choices.length; j++) {
+        for (let j = 1; j <= getExamVar.data.questions[i - 1].question.choices.length; j++) {
             let addSelected = '';
             let addChecked = '';
             let correctAnser = '';
-            if (getExamVar.data.questions[i-1].question.choices[j - 1].id == getExamVar.data.questions[i-1].choice && getExamVar.data.questions[i-1].question.choices[j - 1].correct==1) {
+            if (getExamVar.data.questions[i - 1].question.choices[j - 1].id == getExamVar.data.questions[i - 1].choice && getExamVar.data.questions[i - 1].question.choices[j - 1].correct == 1) {
                 addSelected = 'correctAnser';
                 addChecked = 'checked';
-            }else if(getExamVar.data.questions[i-1].question.choices[j - 1].id == getExamVar.data.questions[i-1].choice && getExamVar.data.questions[i-1].question.choices[j - 1].correct!=1){
+            } else if (getExamVar.data.questions[i - 1].question.choices[j - 1].id == getExamVar.data.questions[i - 1].choice && getExamVar.data.questions[i - 1].question.choices[j - 1].correct != 1) {
                 addSelected = 'wrongAnser';
             }
-            if(getExamVar.data.questions[i-1].question.choices[j - 1].correct==1){
-               correctAnser = 'correctAnser';
+            if (getExamVar.data.questions[i - 1].question.choices[j - 1].correct == 1) {
+                correctAnser = 'correctAnser';
             }
             examHTML += '<div class="col-12">\n' +
-                '                                            <div queID="' + getExamVar.data.questions[i - 1].id + '" class="anserBox ' + addSelected + ' '+correctAnser+'  d-flex justify-content-start"\n' +
+                '                                            <div queID="' + getExamVar.data.questions[i - 1].id + '" class="anserBox ' + addSelected + ' ' + correctAnser + '  d-flex justify-content-start"\n' +
                 '                                                queNamber="' + i + '" >\n' +
                 '                                                <input type="radio" name="anser' + i + '"\n' +
                 '                                                    value="anser_database_id" ' + addChecked + '>\n' +
-                '                                                <span class="anser_text">' + getExamVar.data.questions[i-1].question.choices[j - 1].text + '</span>\n' +
+                '                                                <span class="anser_text">' + getExamVar.data.questions[i - 1].question.choices[j - 1].text + '</span>\n' +
                 '                                            </div>\n' +
                 '                                        </div>';
         }
@@ -869,10 +869,10 @@ function timerFun(endDate) {
         let hours = Math.floor(diff / 3600) % 24;
         let minutes = Math.floor(diff / 60) % 60;
         let seconds = diff % 60;
-        if (diff==0 || date2 < date){
+        if (diff == 0 || date2 < date) {
             $(this).attr('style', 'color:#EA0606;');
             this.innerHTML = 'انتهى الوقت';
-        }else {
+        } else {
             if (minutes < 10) {
                 minutes = '0' + minutes;
             }

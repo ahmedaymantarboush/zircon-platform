@@ -85,6 +85,8 @@ h5,
 h6 {
     margin: 0;
     padding: 0;
+    line-height: 1.6;
+
     color: var(--font-dark);
 }
 
@@ -383,7 +385,7 @@ nav .customeContainer {
 *********** start header ********************
 *******************************************/
 .header {
-    padding: 17rem 0 18rem;
+    padding: 15rem 0 14rem;
     background: url(../imgs/lecture_banner.png) no-repeat;
     background-position: center;
     background-size: cover;
@@ -415,7 +417,7 @@ nav .customeContainer {
 }
 .searchParent {
     min-height: 50vh;
-    padding: 6rem 4rem;
+    padding: 2rem 4rem;
 }
 .filter-control {
     display: flex;

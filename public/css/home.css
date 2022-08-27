@@ -83,6 +83,8 @@ h4,
 h5,
 h6 {
     margin: 0;
+    line-height: 1.6;
+
     padding: 0;
     color: var(--font-dark);
 }
@@ -736,9 +738,9 @@ header .row {
 *****************************************/
 
 .levels {
-    margin-top: -14%;
+    /* margin-top: -14%; */
     overflow: hidden;
-    padding: 5rem 0 7rem 0;
+    padding: 10rem 0 7rem 0;
 }
 .levelItem,
 .levelItem:hover {
@@ -762,21 +764,21 @@ header .row {
 .l-content h4 span {
     font-weight: 700;
 }
-/* .paper {
-    /* background: url(../imgs/paper.png);
-    height: 300px;
+.paper {
+    background: url(../public/imgs/paper.png);
+    padding: 11% 0 0;
+    transition: 0.3s all ease;
     background-position: center;
     background-size: cover;
 }
 .paper2 {
-    /* margin-bottom: -10%;
-    height: 50vh;
-    background: url(../imgs/paper2.png);
-    background-position: center;
-    background-size: cover;
-} */
-.dark .paper2{
-    margin-bottom: -10rem;
+    background: url(../public/imgs/paper2.png);
+
+    padding: 6% 0;
+    transition: 0.3s all ease;
+}
+.dark .paper2 {
+    /* margin-bottom: -10rem; */
 }
 /* .f {
     padding: 4rem;
@@ -1071,3 +1073,326 @@ div.waves {
     fill: rgba(64, 83, 104, 0.4);
     transition: 0.3s all ease;
 }
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    10% {
+        width: 6.25em;
+        height: 6.25em;
+    }
+    66% {
+        width: 2.4em;
+        height: 2.4em;
+    }
+    100% {
+        transform: rotate(360deg);
+        width: 6.25em;
+        height: 6.25em;
+    }
+}
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2d3946;
+    z-index: 9999999999999;
+    transition: 0.3s all ease;
+}
+
+.load {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*change these sizes to fit into your project*/
+    width: 100px;
+    height: 100px;
+}
+.load hr {
+    border: 0;
+    margin: 0;
+    width: 40%;
+    height: 40%;
+    position: absolute;
+    border-radius: 50%;
+    animation: spin 2s ease infinite;
+}
+
+.load :first-child {
+    background: #19a68c;
+    animation-delay: -1.5s;
+}
+.load :nth-child(2) {
+    background: #f63d3a;
+    animation-delay: -1s;
+}
+.load :nth-child(3) {
+    background: #fda543;
+    animation-delay: -0.5s;
+}
+.load :last-child {
+    background: #193b48;
+}
+
+@keyframes spin {
+    0%,
+    100% {
+        transform: translate(0);
+    }
+    25% {
+        transform: translate(160%);
+    }
+    50% {
+        transform: translate(160%, 160%);
+    }
+    75% {
+        transform: translate(0, 160%);
+    }
+}
+.preloader svg {
+    position: relative;
+    width: 240px;
+    height: 120px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.preloader svg #plug,
+.preloader svg #socket {
+    fill: #fdb515;
+}
+
+.preloader svg #loop-normal {
+    fill: none;
+    stroke: #fdb515;
+    stroke-width: 12;
+}
+
+.preloader svg #loop-offset {
+    display: none;
+}
+
+.preloader .credit {
+    position: relative;
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.preloader .credit a {
+    color: #fdb515;
+    font: 800 75% "Open Sans", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+:root {
+    --atom-size: 180px;
+    --atom-color-hex: #00d8ff;
+    --atom-color-rgb: 0, 216, 255;
+    --nucleus-size: calc(var(--atom-size) / 5);
+    --electron-color-hex: #99f8ff;
+    --electron-size: calc(var(--atom-size) / 25);
+    --electron-orbit-size: calc(var(--atom-size) / 2.5);
+    --electron-speed: 1.2s;
+    --electron-speed-alpha: 1s;
+    --electron-speed-omega: 0.8s;
+}
+
+/* Atom */
+.preloader .atom {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: var(--atom-size);
+    height: var(--atom-size);
+    animation: 8s atom infinite cubic-bezier(1, 0.25, 0, 0.75);
+}
+@keyframes atom {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+    12.5% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(0.9);
+    }
+    25% {
+        transform: translate(-50%, -50%) rotate(-90deg) scale(1);
+    }
+    37.5% {
+        transform: translate(-50%, -50%) rotate(-135deg) scale(0.9);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(-180deg) scale(1);
+    }
+    62.5% {
+        transform: translate(-50%, -50%) rotate(-225deg) scale(0.9);
+    }
+    75% {
+        transform: translate(-50%, -50%) rotate(-270deg) scale(1);
+    }
+    87.5% {
+        transform: translate(-50%, -50%) rotate(-315deg) scale(0.9);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(-360deg) scale(1);
+    }
+}
+
+/* Nucleus */
+.preloader .atom::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--nucleus-size);
+    height: var(--nucleus-size);
+    margin-top: calc(var(--nucleus-size) / -2);
+    margin-left: calc(var(--nucleus-size) / -2);
+    background: var(--electron-color-hex); /* var(--atom-color-hex); */
+    border-radius: 100%;
+    box-shadow: 0 0 3px 0 var(--atom-color-hex);
+    animation: 2s nucleus infinite cubic-bezier(0.65, 0, 0.35, 1);
+}
+@keyframes nucleus {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(0.85);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Electron Orbit */
+.preloader .atom > [class^="electron"] {
+    border-top: solid rgba(var(--atom-color-rgb), 0.5) 1px;
+    border-right: solid rgba(var(--atom-color-rgb), 0.35) 2px;
+    border-bottom: solid rgba(var(--atom-color-rgb), 0.2) 4px;
+    border-left: solid rgba(var(--atom-color-rgb), 0) 2px;
+    border-radius: 100%;
+    width: 100%;
+    height: var(--electron-orbit-size);
+    position: absolute;
+    top: 50%;
+    margin-top: calc(var(--electron-orbit-size) / -2);
+    animation: var(--electron-speed) electron-orbit infinite linear;
+}
+.preloader .atom > .electron-alpha {
+    transform: rotate(60deg);
+    animation: var(--electron-speed-alpha) electron-orbit infinite linear;
+}
+.preloader .atom > .electron-omega {
+    transform: rotate(-60deg);
+    animation: var(--electron-speed-omega) electron-orbit infinite linear;
+}
+@keyframes electron-orbit {
+    0% {
+        border-top: solid rgba(var(--atom-color-rgb), 0.5) 1px;
+        border-right: solid rgba(var(--atom-color-rgb), 0.35) 2px;
+        border-bottom: solid rgba(var(--atom-color-rgb), 0.2) 4px;
+        border-left: solid rgba(var(--atom-color-rgb), 0) 2px;
+    }
+    25% {
+        border-top: solid rgba(var(--atom-color-rgb), 0.35) 1px;
+        border-right: solid rgba(var(--atom-color-rgb), 0.2) 2px;
+        border-bottom: solid rgba(var(--atom-color-rgb), 0) 4px;
+        border-left: solid rgba(var(--atom-color-rgb), 0.5) 2px;
+    }
+    50% {
+        border-top: solid rgba(var(--atom-color-rgb), 0.2) 1px;
+        border-right: solid rgba(var(--atom-color-rgb), 0) 2px;
+        border-bottom: solid rgba(var(--atom-color-rgb), 0.5) 4px;
+        border-left: solid rgba(var(--atom-color-rgb), 0.35) 2px;
+    }
+    75% {
+        border-top: solid rgba(var(--atom-color-rgb), 0) 1px;
+        border-right: solid rgba(var(--atom-color-rgb), 0.5) 2px;
+        border-bottom: solid rgba(var(--atom-color-rgb), 0.35) 4px;
+        border-left: solid rgba(var(--atom-color-rgb), 0.2) 2px;
+    }
+    100% {
+        border-top: solid rgba(var(--atom-color-rgb), 0.5) 1px;
+        border-right: solid rgba(var(--atom-color-rgb), 0.35) 2px;
+        border-bottom: solid rgba(var(--atom-color-rgb), 0.2) 4px;
+        border-left: solid rgba(var(--atom-color-rgb), 0) 2px;
+    }
+}
+
+/* Electron Unit */
+.preloader .atom [class^="electron"]::after {
+    content: "";
+    display: block;
+    width: var(--electron-size);
+    height: var(--electron-size);
+    background: var(--electron-color-hex);
+    border-radius: 50%;
+    margin-top: calc(var(--electron-size) / -2);
+    position: absolute;
+    top: 50%;
+    left: calc(var(--electron-size) / -1);
+    transform: scale(1);
+    animation: calc(var(--electron-speed) * 2) electron infinite ease-in-out;
+}
+.preloader .atom .electron-alpha::after {
+    animation: calc(var(--electron-speed-alpha) * 2) electron infinite
+        ease-in-out;
+}
+.preloader .atom .electron-omega::after {
+    animation: calc(var(--electron-speed-omega) * 2) electron infinite
+        ease-in-out;
+}
+@keyframes electron {
+    0% {
+        left: calc(var(--electron-size) / -1);
+        transform: scale(1);
+    }
+    12.5% {
+        top: 100%;
+        transform: scale(1.5);
+    }
+    25% {
+        left: 100%;
+        transform: scale(1);
+    }
+    37.5% {
+        top: 0%;
+        transform: scale(0.25);
+    }
+    50% {
+        left: calc(var(--electron-size) / -1);
+        transform: scale(1);
+    }
+    62.5% {
+        top: 100%;
+        transform: scale(1.5);
+    }
+    75% {
+        left: 100%;
+        transform: scale(1);
+    }
+    87.5% {
+        top: 0%;
+        transform: scale(0.25);
+    }
+    100% {
+        left: calc(var(--electron-size) / -1);
+        transform: scale(1);
+    }
+}
+
+/* Shadow */

@@ -76,31 +76,46 @@ document.addEventListener("DOMContentLoaded", function () {
 let funChangeImagesDark = function () {
     let headerImage = document.querySelector(".header");
     if (document.documentElement.classList.contains("dark")) {
-        if (window.innerWidth <= 765) {
-            headerImage.setAttribute(
-                "style",
-                "background: url(public/imgs/mob_banner_dark.png) no-repeat;"
-            );
-        } else {
-            headerImage.setAttribute(
-                "style",
-                "background: url(public/imgs/lecture_banner_dark.png) no-repeat;"
-            );
-        }
+        headerImage.setAttribute(
+            "style",
+            "background: url(../public/imgs/lecture_banner_dark.png) no-repeat; background-size:cover;"
+        );
     } else {
-        if (window.innerWidth <= 765) {
-            headerImage.setAttribute(
-                "style",
-                "background: url(public/imgs/mob_banner.png) no-repeat;"
-            );
-        } else {
-            headerImage.setAttribute(
-                "style",
-                "background: url(public/imgs/lecture_banner.png) no-repeat;"
-            );
-        }
+        headerImage.setAttribute(
+            "style",
+            "background: url(../public/imgs/lecture_banner.png) no-repeat; background-size:cover;"
+        );
     }
 };
+
+// let funChangeImagesDark = function () {
+//     let headerImage = document.querySelector(".header");
+//     if (document.documentElement.classList.contains("dark")) {
+//         if (window.innerWidth <= 765) {
+//             headerImage.setAttribute(
+//                 "style",
+//                 "background: url(public/imgs/mob_banner_dark.png) no-repeat;"
+//             );
+//         } else {
+//             headerImage.setAttribute(
+//                 "style",
+//                 "background: url(public/imgs/lecture_banner_dark.png) no-repeat;"
+//             );
+//         }
+//     } else {
+//         if (window.innerWidth <= 765) {
+//             headerImage.setAttribute(
+//                 "style",
+//                 "background: url(public/imgs/mob_banner.png) no-repeat;"
+//             );
+//         } else {
+//             headerImage.setAttribute(
+//                 "style",
+//                 "background: url(public/imgs/lecture_banner.png) no-repeat;"
+//             );
+//         }
+//     }
+// };
 
 let addStyleToLocaleStorage = function () {
     if (localStorage.getItem("style") === null) {
@@ -285,13 +300,13 @@ checkInputs.forEach((ele) => {
                 <a class="card-btn ${cla}" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
             `;
             paginationBtnParent.insertAdjacentHTML("beforeend", text);
-            if (i === lastPage) {
-                console.log("yes");
-                let nextPag = `
-                    <a class="card-btn" href="${pagination.nextPageUrl}"><i class="fa-solid fa-user"></i></a>
-                `;
-                paginationBtnParent.insertAdjacentHTML("beforeend", nextPag);
-            }
+            // if (i === lastPage) {
+            //     console.log("yes");
+            //     let nextPag = `
+            //         <a class="card-btn" href="${pagination.lastPageUrl}${pagination.query}"><i class="fa-solid fa-user"></i></a>
+            //     `;
+            //     paginationBtnParent.insertAdjacentHTML("beforeend", nextPag);
+            // }
         }
 
         for (let i = 0; i < lectures.length; i++) {

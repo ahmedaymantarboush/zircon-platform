@@ -7,9 +7,9 @@
 <!-- css file -->
 <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}" />
 <link rel="stylesheet" href="{{ asset('admin/assets/css/allCards.css') }}" />
+<link rel="stylesheet" href="{{ asset('admin/assets/css/couponCard.css') }}" />
 @endsection
 @section('content')
-
 <div class="page-heading white-box">
     <span class="page-icon"><i class="fa-solid fa-money-bill-transfer"></i></span>
     <h2 class="page-h">لائحة كروت الشحن</h2>
@@ -32,7 +32,8 @@
         <a class="real-stc" style="width: 100%">
             <div class="stc-box second-stc">
                 <div class="stc-val-parent">
-                    <span class="stc-value"> 158ج.م </span>
+                    <span class="stc-value">
+                        {{ array_sum($cards->where('user_id', null)->pluck('value')->toArray()) }}ج.م </span>
                     <span class="stc-name">رصيد معلق بالكروت</span>
                 </div>
                 <div class="stc-icon">
@@ -45,7 +46,8 @@
         <a class="real-stc" style="width: 100%">
             <div class="stc-box second-stc">
                 <div class="stc-val-parent">
-                    <span class="stc-value"> 3410ج.م </span>
+                    <span class="stc-value">
+                        {{ array_sum($cards->where('user_id', '!=', null)->pluck('value')->toArray()) }}ج.م </span>
                     <span class="stc-name">رصيد تم ايداعه</span>
                 </div>
                 <div class="stc-icon">
@@ -60,7 +62,7 @@
             <div class="stc-box second-stc">
                 <div class="stc-val-parent">
                     <span class="stc-value">
-                        3410ج.م
+                        {{ array_sum($cards->pluck('value')->toArray()) }}ج.م
                     </span>
                     <span class="stc-name">الرصيد الكالي</span>
                 </div>
@@ -167,7 +169,6 @@
                 <input type="search" />
             </div>
         </div>
-
     </form>
     <div class="lectures-table">
         <table class="">
@@ -186,9 +187,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="redBg">
+                @foreach ($cards as $index => $card)
+                @php
+                $i = $index + 1;
+                @endphp
+                <tr data-id="{{$card->id}}"
+                    class="{{$card->user ? 'greenBg' : ($card->expiry_date < now() ? 'redBg' : ($card->hanging ? 'yellowBg' : '') ) }}">
                     <td class="number">
-                        1
+                        {{ $i }}
                         <button class="open-tr" type="button">
                             <i class="fa-solid fa-plus"></i>
                         </button>
@@ -197,32 +203,32 @@
                         <div class="custome-parent">
                             <div class="question-code-parent">
                                 <span class="question-mark"><i class="fa-solid fa-receipt"></i></span>
-
                                 <button type="button" class="btn question-code" data-toggle="tooltip"
-                                    data-placement="top" title="15sad4fe#">
-                                    15sad4fe#
+                                    data-placement="top" title="{{ $card->code }}">
+                                    {{ $card->code }}
                                 </button>
                             </div>
+                            @if ($card->publisher)
                             <div class="name-teacher">
                                 <span class="job-teacher">:المحرر</span>
-                                <span>أ. محمد
-                                    عبدالمعبود</span>
+                                <span>{{ $card->publisher->name }}</span>
                             </div>
+                            @endif
                         </div>
                     </td>
                     <td data-lable="قيمة الكارت :" class="table-level-parent">
-                        <span class="table-level">50ج.م</span>
+                        <span class="table-level">{{ $card->value }}ج.م</span>
                     </td>
                     <td data-lable="تاريخ التحرير :" class="students">
-                        27/7/2022:17:50
+                        {{ date('d/m/Y:H:i', strtotime($card->created_at)) }}
+                        {{-- 27/7/2022:17:50 --}}
                     </td>
                     <td data-lable="المستخدم للكارت :" class="table-sections">
-
-                        عبدالرحمن مصطفى محمود
-
+                        {{ $card->user->name ?? 'لا يوجد' }}
                     </td>
                     <td data-lable="تاريخ الاستخدام :" class="students">
-                        31/7/2022:12:55
+                        {{ $card->user ? date('d/m/Y:H:i', strtotime($card->used_at)) : 'لا يوجد' }}
+                        {{-- 31/7/2022:12:55 --}}
                     </td>
 
                     <td class="features" data-lable="اجراءات :">
@@ -233,22 +239,26 @@
 
                             <ul class="dropdown-menu feat-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#">طباعة الكوبون</a>
+                                    <a class="dropdown-item printCardBtn" data-bs-toggle="modal"
+                                        data-bs-target="#printCard" href="#">طباعة الكارت</a>
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item q-modify" href="#">تعليق الكارت
+                                    <a class="dropdown-item handingCardBtn" data-bs-toggle="modal"
+                                        data-bs-target="#handingCard" href="#">تعليق الكارت
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item delete-lec" href="#">مسح الكارت</a>
+                                    <a class="dropdown-item deletCardBtn " data-bs-toggle="modal"
+                                        data-bs-target="#deleteCard" href="#">مسح الكارت</a>
                                 </li>
                             </ul>
                         </div>
                     </td>
                 </tr>
-                <tr class="greenBg">
+                @endforeach
+                {{-- <tr class="greenBg">
                     <td class="number">
                         1
                         <button class="open-tr" type="button">
@@ -366,18 +376,17 @@
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item delete-lec" href="#">مسح الكارت</a>
+                                    <a class="dropdown-item deleteCard" href="#">مسح الكارت</a>
                                 </li>
                             </ul>
                         </div>
                     </td>
-                </tr>
-
+                </tr> --}}
             </tbody>
         </table>
     </div>
 </div>
-<div class="modal fade" id="delete-lecture" tabindex="-1" aria-labelledby="" aria-hidden="true">
+<div class="modal fade" id="deleteCard" tabindex="-1" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -405,6 +414,33 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="printCard" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    حذف سؤال
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="">
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary submitPrintBtn">
+                        طباعة
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        الغاء
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<iframe src="#" hidden style="display: none" id="printPage" frameborder="0"></iframe>
+
 @endsection
 @section('javascript')
 <!--font awesome-->
@@ -431,5 +467,24 @@
 
 <!-- main js file -->
 <script src="{{ asset('admin/assets/js/main.js') }}"></script>
+<script>
+function card(id, code, value, startDate, endDate) {
+    return `
+                @include('components.Admin.coupon-card', [
+                        'app_name' => config('app.name'),
+                        'code' => '${code}',
+                        'start_date' => '${startDate}',
+                        'value' => '${value}',
+                        'end_date' => '${endDate}',
+                        'id' => '${id}',
+                        'counter' => 1,
+                    ])
+                `;
+    // بعدها نادي الفانكشن دي
+    // createQr(id, code, value)
+}
+</script>
+<script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+<script src="{{asset('admin/assets/js/couponCard.js')}}"></script>
 <script src="{{ asset('admin/assets/js/allCards.js') }}"></script>
 @endsection

@@ -86,6 +86,7 @@ h6 {
     margin: 0;
     padding: 0;
     color: var(--font-dark);
+    line-height: 1.6;
 }
 
 p {
@@ -383,7 +384,7 @@ nav .customeContainer {
 *********** start header ********************
 *******************************************/
 .header {
-    padding: 17rem 0 18rem;
+    padding: 15rem 0 14rem;
     background: url(../imgs/lecture_banner.png) no-repeat;
     background-position: center;
     background-size: cover;

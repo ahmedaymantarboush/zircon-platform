@@ -47,3 +47,73 @@ ClassicEditor.create(document.querySelector(".text-editor2"), {
         window.editor = editor;
     })
     .catch((err) => {});
+let printCardParent = document.querySelector("#printCard .modal-body");
+// printCardParent.innerHTML = card(1, 1, 1, 1, 1);
+// console.log(card(1, 1, 1, 1, 1));
+let editFun = async function (url, myData, el = null) {
+    try {
+        let postData = await fetch(url, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: myData,
+        });
+
+        let responseData = await postData.json();
+
+        if (postData.status == 200) {
+            return responseData;
+        }
+        if (postData.status == 404) {
+            return null;
+        }
+        return null;
+    } catch (err) {}
+};
+
+document.querySelector("table").addEventListener("click", async function (e) {
+    if (!e.target.classList.contains("printCardBtn")) return;
+    let dataId = e.target.closest("tr").dataset.id;
+    let sendObj = {
+        id: dataId,
+    };
+
+    form = new FormData();
+    form.append("data", JSON.stringify(sendObj));
+
+    let myResponse = await editFun(
+        `${window.location.protocol}//${window.location.host}/api/balancecards/show
+`,
+        form,
+        e
+    );
+    let objData = myResponse.data;
+    let { end_date, code, id, start_date, value } = objData;
+    printCardParent.innerHTML = card(id, code, value, start_date, end_date);
+    createQr(id, code, value);
+
+    printPage = document.querySelector("#printPage");
+    printPage.style.display = "none";
+    function PrintElement(selector, customStyles = "") {
+        Popup(document.querySelector(selector).outerHTML, customStyles);
+    }
+
+    function Popup(data, customStyles = "") {
+        const printPageWindow = printPage.contentWindow;
+
+        const printPageDocument = printPageWindow.document;
+        printPageDocument.querySelector(
+            "body"
+        ).innerHTML = `<style>${customStyles}</style>${data}`;
+        printPageWindow.focus();
+        printPageWindow.print();
+        printPageWindow.close();
+    }
+
+    let printBtn = document.querySelector(".submitPrintBtn");
+    printBtn.addEventListener("click", function () {
+        PrintElement(".coupon-card");
+    });
+});
