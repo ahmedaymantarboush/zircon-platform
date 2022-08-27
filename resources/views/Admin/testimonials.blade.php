@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css" />
     <!-- css file -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/certificate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/testimonials.css') }}" />
 @endsection
 @section('content')
     <div class="page-heading white-box">
@@ -37,7 +37,7 @@
                                 $toDate = '01/07/' . date('Y', strtotime(now()));
                             endif;
                         @endphp
-                        <span class="stc-value"> {{ \App\Models\Testimonial::whereBetween('created_at',[$fromDate,$toDate]) }} </span>
+                        <span class="stc-value"> {{ \App\Models\Testimonial::whereBetween('created_at',[$fromDate,$toDate])->count() }} </span>
                         <span class="stc-name">أوائل العام الماضي</span>
                     </div>
                     <div class="stc-icon">
@@ -51,7 +51,7 @@
                 <div class="stc-box second-stc">
                     <div class="stc-val-parent">
                         <span class="stc-value">
-                            {{ array_sum($certificates->pluck('degree')->toArray()) / count($certificates) }} </span>
+                            {{ array_sum($testimonials->pluck('degree')->toArray()) / count($testimonials) }} </span>
                         <span class="stc-name">متوسط المجموع</span>
                     </div>
                     <div class="stc-icon">
@@ -65,7 +65,7 @@
             <a class="real-stc" style="width: 100%">
                 <div class="stc-box second-stc">
                     <div class="stc-val-parent">
-                        <span class="stc-value"> {{ count($certificates) }} </span>
+                        <span class="stc-value"> {{ count($testimonials) }} </span>
                         <span class="stc-name">عدد الشهادات</span>
                     </div>
                     <div class="stc-icon">
@@ -162,11 +162,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($certificates as $key => $certificate)
+                @foreach ($testimonials as $key => $testimonial)
                     @php
                         $i = $key + 1;
                     @endphp
-                    <tr data-id="{{ $certificate }}">
+                    <tr data-id="{{ $testimonial }}">
                         <td class="number">
                             {{ $i }}
                             <button class="open-tr" type="button">
@@ -176,8 +176,8 @@
                         <td data-lable="الاسم :" class="address">
                             <div class="custome-parent">
                                 <button type="button" class="btn name-lesson" data-toggle="tooltip"
-                                    data-placement="top" title="{{$certificate->student_name}}">
-                                    {{$certificate->student_name}}
+                                    data-placement="top" title="{{$testimonial->student_name}}">
+                                    {{$testimonial->student_name}}
                                 </button>
                                 <div class="name-teacher">
                                     <span class="job-teacher">:المدرس</span>
@@ -515,5 +515,5 @@
 
     <!-- main js file -->
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/certificate.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/testimonials.js') }}"></script>
 @endsection
