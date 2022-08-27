@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{URL::asset('css/bootstrap-rtl.min.css')}}">
 
     <!-- css file -->
-    <link rel="stylesheet" href="{{URL::asset('css/searchNotFound.css')}} " class="rel">
+    <link rel="stylesheet" href="{{URL::asset('public/css/searchNotFound.css')}} " class="rel">
 
 </head>
 
