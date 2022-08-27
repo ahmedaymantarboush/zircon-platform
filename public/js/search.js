@@ -78,12 +78,12 @@ let funChangeImagesDark = function () {
     if (document.documentElement.classList.contains("dark")) {
         headerImage.setAttribute(
             "style",
-            "background: url(public/imgs/lecture_banner_dark.png) no-repeat;"
+            "background: url(../public/imgs/lecture_banner_dark.png) no-repeat; background-size:cover;"
         );
     } else {
         headerImage.setAttribute(
             "style",
-            "background: url(public/imgs/lecture_banner.png) no-repeat;"
+            "background: url(../public/imgs/lecture_banner.png) no-repeat; background-size:cover;"
         );
     }
 };

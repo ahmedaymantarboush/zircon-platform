@@ -15,20 +15,34 @@ let addElement = function (ele, className) {
 ///// start navbar /////////////////
 ///////////////////////////////////
 // [01- dark and light ]
+// let funChangeImagesDark = function () {
+//     let headerImage = document.querySelector(".header");
+//     if (document.documentElement.classList.contains("dark")) {
+//         if(window.innerWidth <= 765){
+//             headerImage.setAttribute("style", "background: url(../public/imgs/mob_banner_dark.png) no-repeat;");
+//         }else{
+//             headerImage.setAttribute("style", "background: url(../public/imgs/lecture_banner_dark.png) no-repeat;");
+//         }
+//     } else {
+//         if(window.innerWidth <= 765){
+//             headerImage.setAttribute("style", "background: url(../public/imgs/mob_banner.png) no-repeat;");
+//         }else{
+//             headerImage.setAttribute("style", "background: url(../public/imgs/lecture_banner.png) no-repeat;");
+//         }
+//     }
+// };
 let funChangeImagesDark = function () {
     let headerImage = document.querySelector(".header");
     if (document.documentElement.classList.contains("dark")) {
-        if(window.innerWidth <= 765){
-            headerImage.setAttribute("style", "background: url(../public/imgs/mob_banner_dark.png) no-repeat;");
-        }else{
-            headerImage.setAttribute("style", "background: url(../public/imgs/lecture_banner_dark.png) no-repeat;");
-        }
+        headerImage.setAttribute(
+            "style",
+            "background: url(../public/imgs/lecture_banner_dark.png) no-repeat; background-size:cover;"
+        );
     } else {
-        if(window.innerWidth <= 765){
-            headerImage.setAttribute("style", "background: url(../public/imgs/mob_banner.png) no-repeat;");
-        }else{
-            headerImage.setAttribute("style", "background: url(../public/imgs/lecture_banner.png) no-repeat;");
-        }
+        headerImage.setAttribute(
+            "style",
+            "background: url(../public/imgs/lecture_banner.png) no-repeat; background-size:cover;"
+        );
     }
 };
 
