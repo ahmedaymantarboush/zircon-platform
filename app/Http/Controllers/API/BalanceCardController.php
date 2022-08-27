@@ -33,7 +33,7 @@ class BalanceCardController extends Controller
         endif;
         $card->hanging = !$card->hanging;
         $card->save();
-        return apiResponse(true,_('تم حفظ الكارت بنجاح'),[]);
+        return apiResponse(true,_('تم تعديل الكارت بنجاح'),[]);
     }
     /**
      * Store a newly created resource in storage.
@@ -134,7 +134,7 @@ class BalanceCardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
         $user = apiUser();
         if (!$user) :
