@@ -148,16 +148,18 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let sendObj = {
         id: dataId,
     };
-    let delLesson = document.querySelector('.del-lesson')
-    delLesson.innerHTML=ques
+    let delLesson = document.querySelector(".del-lesson");
+    delLesson.innerHTML = ques;
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
-    document.querySelector("delForm").addEventListener("submit", function () {
-        let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/balancecards/delete`,
-        form,
-        e
-    );
-    console.log(myResponse);
-    });
+    document
+        .querySelector("delForm")
+        .addEventListener("submit", async function () {
+            let myResponse = await editFun(
+                `${window.location.protocol}//${window.location.host}/api/balancecards/delete`,
+                form,
+                e
+            );
+            console.log(myResponse);
+        });
 });
