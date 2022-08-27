@@ -477,11 +477,10 @@
 @section('javsscript')
 <script src="{{ asset('admin/assets/js/jsBarCode.all') }}.min.js"></script>
 <!--font awesome-->
+<!--font awesome-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
     integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!--jquery-->
-
 <!-- bootstrap 4  -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
@@ -497,7 +496,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 <!-- text editor  -->
 <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
-
 <!-- main js file -->
 <script src="{{ asset('admin/assets/js/main.js') }}"></script>
 <script src="{{ asset('admin/assets/js/examsStudents.js') }}"></script>
