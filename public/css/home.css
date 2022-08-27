@@ -1209,7 +1209,7 @@ div.waves {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) !important;
     width: var(--atom-size);
     height: var(--atom-size);
     animation: 8s atom infinite cubic-bezier(1, 0.25, 0, 0.75);
