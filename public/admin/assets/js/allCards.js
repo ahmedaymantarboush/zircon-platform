@@ -145,6 +145,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("deletCardBtn")) return;
     let dataId = e.target.closest("tr").dataset.id;
     let ques = e.target.closest("tr").querySelector(".question-code").title;
+    console.log(ques);
     let sendObj = {
         id: dataId,
     };
@@ -161,5 +162,6 @@ document.querySelector("table").addEventListener("click", async function (e) {
                 e
             );
             console.log(myResponse);
+            location.reload();
         });
 });
