@@ -76,25 +76,6 @@ let editFun = async function (url, myData, el = null) {
         console.log(err);
     }
 };
-// handing card
-document.querySelector("table").addEventListener("click", async function (e) {
-    if (!e.target.classList.contains("handingCardBtn")) return;
-    let dataId = e.target.closest("tr").dataset.id;
-    let sendObj = {
-        id: dataId,
-    };
-
-    form = new FormData();
-    form.append("data", JSON.stringify(sendObj));
-
-    let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/balancecards/hanging`,
-        form,
-        e
-    );
-    console.log(myResponse);
-    // location.reload();
-});
 // print card
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("printCardBtn")) return;
@@ -140,7 +121,25 @@ document.querySelector("table").addEventListener("click", async function (e) {
         PrintElement(".coupon-card");
     });
 });
+// handing card
+document.querySelector("table").addEventListener("click", async function (e) {
+    if (!e.target.classList.contains("handingCardBtn")) return;
+    let dataId = e.target.closest("tr").dataset.id;
+    let sendObj = {
+        id: dataId,
+    };
 
+    form = new FormData();
+    form.append("data", JSON.stringify(sendObj));
+
+    let myResponse = await editFun(
+        `${window.location.protocol}//${window.location.host}/api/balancecards/hanging`,
+        form,
+        e
+    );
+    console.log(myResponse);
+    // location.reload();
+});
 // delete card
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("deletCardBtn")) return;
