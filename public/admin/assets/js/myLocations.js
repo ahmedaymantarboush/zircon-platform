@@ -104,13 +104,14 @@ let editFun = async function (url, myData, el = null) {
 
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("editCenter")) return;
-    let dataId = e.target.closest("tr").querySelector(".number").dataset.id;
+    console.log("yes");
+    let dataId = e.target.closest("tr").dataset.id;
     console.log(dataId);
     let sendObj = {
-        id: 2,
+        id: dataId,
     };
     let inputId = document.querySelector("#editLocationModal #trId");
-    inputId.value = 2;
+    inputId.value = dataId;
 
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
@@ -144,5 +145,4 @@ document.querySelector("table").addEventListener("click", async function (e) {
         });
     };
     fillSelectFunction(newGovernorateOptions, newGovernorateInner, null);
-    console.log("yes");
 });
