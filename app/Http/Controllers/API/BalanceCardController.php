@@ -33,7 +33,7 @@ class BalanceCardController extends Controller
         endif;
         $card->hanging = !$card->hanging;
         $card->save();
-        return apiResponse(true,_('تم حفظ الكارت بنجاح'),[]);
+        return apiResponse(true, _('تم تعديل الكارت بنجاح'), []);
     }
     /**
      * Store a newly created resource in storage.
@@ -61,6 +61,8 @@ class BalanceCardController extends Controller
 
         if (!$balanceCard) :
             return apiResponse(false, _("الكود الذي أدخلته غير صحيح رصيدك الحالي $user->balance ج.م"), [], 404);
+        elseif ($balanceCard->hanging) :
+            return redirect()->back()->with(['msg' => "لا يمكن شحن هذا الكارت", 'success' => false]);
         elseif ($balanceCard->used_at) :
             return apiResponse(false, _("هذا الكارت مستخدم بالفعل"), [], 401);
         elseif ($balanceCard->expiry_date < now()) :
@@ -108,12 +110,12 @@ class BalanceCardController extends Controller
         endif;
         $data = [
             'code' => $card->code,
-            'start_date' => date('d/m/Y:H:i',strtotime($card->created_at)),
+            'start_date' => date('d/m/Y:H:i', strtotime($card->created_at)),
             'value' => $card->value,
-            'end_date' => date('d/m/Y:H:i',strtotime($card->expiry_date)),
+            'end_date' => date('d/m/Y:H:i', strtotime($card->expiry_date)),
             'id' => $card->id,
         ];
-        return apiResponse(true, _('تم العثور على الكارت بنجاح'),$data);
+        return apiResponse(true, _('تم العثور على الكارت بنجاح'), $data);
     }
 
     /**
@@ -134,7 +136,7 @@ class BalanceCardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
         $user = apiUser();
         if (!$user) :
@@ -147,6 +149,6 @@ class BalanceCardController extends Controller
             return apiResponse(false, _('لم يتم العثوؤ على الكارت'), [], 404);
         endif;
         $card->delete();
-        return apiResponse(true, _('تم حذف على الكارت بنجاح'),[]);
+        return apiResponse(true, _('تم حذف على الكارت بنجاح'), []);
     }
 }
