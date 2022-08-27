@@ -36,7 +36,10 @@ class QuestionController extends Controller
         if (!count($questions)) :
             return apiResponse(false, _('لم يتم العثور على أسئلة'), [], 404);
         endif;
-        return apiResponse(true, _('تم العثور على أسئلة'), $questions);
+        return apiResponse(true, _('تم العثور على أسئلة'), [
+            'name' => $questions->name,
+            'id' => $questions->id,
+        ]);
     }
 
     public function fastEdit()

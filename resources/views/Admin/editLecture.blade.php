@@ -16,7 +16,7 @@
     <section class="add-lecture white-box">
         <div class="add-lec-heading">
             <h3>اضافة محاضرة</h3>
-            <a href="#" class="go-to-lectures">
+            <a href="{{route('admin.lectures.index')}}" class="go-to-lectures">
                 الرجوع الي قائمة المحاضرات
                 <span><i class="fa-solid fa-arrow-left-long"></i></span></a>
         </div>
