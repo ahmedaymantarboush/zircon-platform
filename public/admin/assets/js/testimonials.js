@@ -114,13 +114,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let editStudentSum = document.querySelector(
         "#editCertificateModal .editStudentSum"
     );
-    //first select
-    let subjectParentInner = document.querySelector(
-        "#editCertificateModal .subjectParent .filter-option-inner-inner"
-    );
-    let subjectParentOptions = document.querySelector(
-        "#editCertificateModal .subjectParent option"
-    );
+
     let subjectSum = document.querySelector(
         "#editCertificateModal .subjectSum"
     );
@@ -128,13 +122,15 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let levelsParentInner = document.querySelector(
         "#editCertificateModal .levelsParent .filter-option-inner-inner"
     );
-    let levelsParentOptions = document.querySelector(
+    let levelsParentOptions = document.querySelectorAll(
         "#editCertificateModal .levelsParent option"
     );
     let description = document.querySelector(
         "#editCertificateModal .ck-editor__editable"
     );
-
+    editStudentName.value = objData.studentName;
+    editStudentSum.value = objData.degree;
+    subjectSum.value = objData.subjectDegree;
     let fillSelectFunction = function (options, selectInner, data) {
         options.forEach((ele) => {
             if (ele.value == data) {
@@ -145,7 +141,12 @@ document.querySelector("table").addEventListener("click", async function (e) {
             }
         });
     };
-    // fillSelectFunction(subjectParentOptions, subjectParentInner, objData.grade);
+    fillSelectFunction(
+        levelsParentOptions,
+        levelsParentInner,
+        objData.grade.id
+    );
+    description.ckeditorInstance.setData(objData.content);
     // fillSelectFunction(levelsParentOptions, levelsParentInner, objData.grade);
     // description.ckeditorInstance.setData(objData.text);
 });
@@ -161,4 +162,13 @@ delBtns.forEach((ele) => {
             .closest("tr")
             .querySelector(".name-lesson").textContent;
     });
+});
+
+document.querySelector("table").addEventListener("click", function (e) {
+    if (!e.target.classList.contains("delTesti")) return;
+    let testi = document.querySelector(".del-lesson");
+    testi.innerHTML = e.target
+        .closest("tr")
+        .querySelector(".name-lesson")
+        .getAttribute("data-bs-original-title");
 });
