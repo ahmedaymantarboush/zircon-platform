@@ -86,7 +86,8 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/centers/fastEdit`,
+        `${window.location.protocol}//${window.location.host}/api/balancecards/show
+`,
         form,
         e
     );
