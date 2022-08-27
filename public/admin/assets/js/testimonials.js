@@ -114,13 +114,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let editStudentSum = document.querySelector(
         "#editCertificateModal .editStudentSum"
     );
-    //first select
-    let subjectParentInner = document.querySelector(
-        "#editCertificateModal .subjectParent .filter-option-inner-inner"
-    );
-    let subjectParentOptions = document.querySelector(
-        "#editCertificateModal .subjectParent option"
-    );
+
     let subjectSum = document.querySelector(
         "#editCertificateModal .subjectSum"
     );
@@ -136,7 +130,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     );
     editStudentName.value = objData.studentName;
     editStudentSum.value = objData.degree;
-    subjectSum.value = objData.degree;
+    subjectSum.value = objData.subjectDegree;
     let fillSelectFunction = function (options, selectInner, data) {
         options.forEach((ele) => {
             if (ele.value == data) {
@@ -147,7 +141,12 @@ document.querySelector("table").addEventListener("click", async function (e) {
             }
         });
     };
-    fillSelectFunction(levelsParentOptions, levelsParentInner, objData.grade);
+    fillSelectFunction(
+        levelsParentOptions,
+        levelsParentInner,
+        objData.grade.id
+    );
+    description.ckeditorInstance.setData(objData.content);
     // fillSelectFunction(levelsParentOptions, levelsParentInner, objData.grade);
     // description.ckeditorInstance.setData(objData.text);
 });
