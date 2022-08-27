@@ -107,6 +107,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     let objData = myResponse.data;
+    console.log(objData);
     let editStudentName = document.querySelector(
         "#editCertificateModal .editStudentName"
     );
