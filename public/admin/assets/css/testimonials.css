@@ -382,3 +382,9 @@
 .imageBox {
     width: 80%;
 }
+input[type="file"] {
+    font-size: 1.6rem;
+}
+.file {
+    margin-bottom: 1.5rem;
+}
