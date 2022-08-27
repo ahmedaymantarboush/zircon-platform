@@ -270,7 +270,8 @@ checkInputs.forEach((ele) => {
         console.log(myResponse);
         let { pagination, lectures } = myResponse.data;
         let paginationBtnParent = document.querySelector(".btns");
-        paginationBtnParent.innerHTML = "";
-        console.log(pagination);
+        // paginationBtnParent.innerHTML = "";
+        let { lastPage } = pagination;
+        for (let i = 1; i <= lastPage; i++) {}
     });
 });
