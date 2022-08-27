@@ -43,7 +43,8 @@ class TestimonialController extends Controller
      */
     public function store(StoreTestimonialRequest $request)
     {
-        //
+        $user = Auth::user();
+        
     }
 
     /**
@@ -54,7 +55,7 @@ class TestimonialController extends Controller
      */
     public function show()
     {
-        
+        //
     }
 
     /**

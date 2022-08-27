@@ -26,4 +26,5 @@
 @php
     // echo 
 @endphp
-{{now()->addSeconds(1000)}}
+{{-- {{now()->addSeconds(1000)}} --}}
+{{true ?:"Ffffffffff"}}
