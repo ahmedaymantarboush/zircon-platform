@@ -767,7 +767,7 @@ header .row {
 .paper {
     background: url(../public/imgs/paper.png);
     padding: 11% 0 0;
-    transition: 0.4s all ease;
+    transition: 0.3s all ease;
     background-position: center;
     background-size: cover;
 }
@@ -775,7 +775,7 @@ header .row {
     background: url(../public/imgs/paper2.png);
 
     padding: 6% 0;
-    transition: 0.4s all ease;
+    transition: 0.3s all ease;
 }
 .dark .paper2 {
     /* margin-bottom: -10rem; */
