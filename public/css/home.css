@@ -1193,7 +1193,7 @@ div.waves {
 }
 :root {
     --atom-size: 180px;
-    --atom-color-hex: #00d8ff;
+    --atom-color-hex: #f00;
     --atom-color-rgb: 0, 216, 255;
     --nucleus-size: calc(var(--atom-size) / 5);
     --electron-color-hex: #99f8ff;
