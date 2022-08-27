@@ -130,6 +130,23 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let levelsParentOptions = document.querySelector(
         "#editCertificateModal .levelsParent option"
     );
+    let description = document.querySelector(
+        "#editCertificateModal .ck-editor__editable"
+    );
+
+    let fillSelectFunction = function (options, selectInner, data) {
+        options.forEach((ele) => {
+            if (ele.value == data) {
+                ele.setAttribute("selected", "");
+                selectInner.textContent = ele.textContent;
+            } else {
+                ele.removeAttribute("selected");
+            }
+        });
+    };
+    // fillSelectFunction(subjectParentOptions, subjectParentInner, objData.grade);
+    // fillSelectFunction(levelsParentOptions, levelsParentInner, objData.grade);
+    // description.ckeditorInstance.setData(objData.text);
 });
 
 /**** delete lecture* */
