@@ -479,7 +479,6 @@ $(document).on('click', '.startExam', function() {
     }))
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", APP_URL + "/api/items/getItem");
-    // xhttp.open("POST", APP_URL + "/api/items/getExam");
     xhttp.setRequestHeader('Accept', 'application/json');
     let tkn = window.csrf_token.value
     xhttp.setRequestHeader('X-CSRF-TOKEN', tkn);
@@ -490,8 +489,6 @@ $(document).on('click', '.startExam', function() {
             showTakeExam(data);
             examID = data.data.item.id;
             itemID = data.data.item.id;
-            // examID = data.data.id;
-            // itemID = data.data.id;
         }
     }
     xhttp.send(form);
@@ -519,7 +516,6 @@ $(document).on('click', '.takeExam', async function() {
         body: form1,
     })
     let getExamVar = await getExam.json();
-    console.log(getExamVar.data.id)
     console.log(getExamVar);
 
     //Add Tabs
@@ -719,7 +715,7 @@ $(document).on('click', '.finishBtn', async function() {
             Accept: "application/json",
             "X-CSRF-TOKEN": window.csrf_token.value,
         },
-        body: form7,
+        body: form6,
     })
     let showExamData = await showExam.json();
     console.log(showExamData);
