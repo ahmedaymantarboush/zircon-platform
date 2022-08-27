@@ -105,9 +105,6 @@ class TestimonialController extends Controller
         if (!$testimonial) :
             return apiResponse(false, _('لم يتم العثور على الشهادة'), [], 404);
         endif;
-        if ($testimonial->publisher->id != $user->id):
-            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الشهادة'), [], 403);
-        endif;
         $testimonial->delete();
         return apiResponse(true,_('تم حذف الشهادة بنجاح'),[]);
     }
