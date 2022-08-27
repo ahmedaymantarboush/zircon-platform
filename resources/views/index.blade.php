@@ -6,6 +6,14 @@
 <!-- css file -->
 <link rel="stylesheet" href="{{ URL::asset('css/home.css') }} " class="rel">
 <link rel="stylesheet" href="{{ URL::asset('css/home-responsive.css') }} " class="rel">
+<script>
+window.addEventListener("load", function() {
+    setTimeout(function() {
+        document.getElementsByClassName("preloader")[0].style.opacity = "0";
+        document.getElementsByClassName("preloader")[0].style.zIndex = "-1";
+    }, 2000);
+});
+</script>
 @endsection
 
 @section('content')
