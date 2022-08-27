@@ -191,7 +191,7 @@
                 @php
                 $i = $index + 1;
                 @endphp
-                <tr
+                <tr data-id="{{$card->id}}"
                     class="{{$card->user ? 'greenBg' : ($card->expiry_date < now() ? 'redBg' : ($card->hanging ? 'yellowBg' : '') ) }}">
                     <td class="number">
                         {{ $i }}
@@ -425,7 +425,7 @@
             </div>
             <form action="">
                 <div class="modal-body">
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">
