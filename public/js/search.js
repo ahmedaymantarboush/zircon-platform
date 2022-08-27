@@ -285,13 +285,13 @@ checkInputs.forEach((ele) => {
                 <a class="card-btn ${cla}" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
             `;
             paginationBtnParent.insertAdjacentHTML("beforeend", text);
-            if (i === lastPage) {
-                console.log("yes");
-                let nextPag = `
-                    <a class="card-btn" href="${pagination.lastPageUrl}${pagination.query}"><i class="fa-solid fa-user"></i></a>
-                `;
-                paginationBtnParent.insertAdjacentHTML("beforeend", nextPag);
-            }
+            // if (i === lastPage) {
+            //     console.log("yes");
+            //     let nextPag = `
+            //         <a class="card-btn" href="${pagination.lastPageUrl}${pagination.query}"><i class="fa-solid fa-user"></i></a>
+            //     `;
+            //     paginationBtnParent.insertAdjacentHTML("beforeend", nextPag);
+            // }
         }
 
         for (let i = 0; i < lectures.length; i++) {
