@@ -34,6 +34,7 @@ let delBtns = document.querySelectorAll(".delete-lec");
 let delPopupParagraph = document.querySelector(".del-lesson");
 
 document.querySelector("table").addEventListener("click", function (e) {
+    console.log(e.target.closest("tr").querySelector(".question-code"));
     if (!e.target.classList.contains("delete-lec")) return;
     let testi = document.querySelector(".del-lesson");
     testi.innerHTML = e.target
