@@ -340,7 +340,7 @@
         </div>
         <div class="file">
             <label for="">رفع صورة الطالب</label>
-            <input type="file" class="@error('image') form-control is-invalid @enderror" name="image"
+            <input type="file" class="form-control @error('image')  is-invalid @enderror" name="image"
                 class="form-control" />
             @error('image')
             <span class="invalid-feedback" role="alert">
@@ -469,7 +469,7 @@
         </div>
         <div class="file">
             <label for="">رفع صورة الطالب</label>
-            <input type="file" class="@error('newImage') form-control is-invalid @enderror" name="newImage"
+            <input type="file" class="form-control @error('newImage')  is-invalid @enderror" name="newImage"
                 class="form-control" />
             @error('newImage')
             <span class="invalid-feedback" role="alert">
