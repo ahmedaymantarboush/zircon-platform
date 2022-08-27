@@ -249,7 +249,7 @@
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item delete-lec" href="#">مسح الكارت</a>
+                                    <a class="dropdown-item deleteCard" href="#">مسح الكارت</a>
                                 </li>
                             </ul>
                         </div>
