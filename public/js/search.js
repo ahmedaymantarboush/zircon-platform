@@ -269,5 +269,7 @@ checkInputs.forEach((ele) => {
         let myResponse = await editFun(`${APP_URL}/api/search`, form);
         let { pagination, lectures } = myResponse.data;
         let paginationBtnParent = document.querySelector(".btns");
+        paginationBtnParent.innerHTML = "";
+        console.log(pagination);
     });
 });
