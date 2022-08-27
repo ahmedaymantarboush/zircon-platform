@@ -454,7 +454,7 @@ nav .customeContainer {
     font-weight: bold;
 }
 .errorImage {
-    width: 50%;
+    width: 20% !important;
 
     margin: 3rem auto;
 }
