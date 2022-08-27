@@ -272,6 +272,12 @@ checkInputs.forEach((ele) => {
         let paginationBtnParent = document.querySelector(".btns");
         // paginationBtnParent.innerHTML = "";
         let { lastPage } = pagination;
-        for (let i = 1; i <= lastPage; i++) {}
+        for (let i = 1; i <= lastPage; i++) {
+            let text = `
+            
+                  <a class="card-btn" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
+            `;
+            paginationBtnParent.insertAdjacentElement("afterend", text);
+        }
     });
 });
