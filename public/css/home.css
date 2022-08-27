@@ -1091,7 +1091,9 @@ div.waves {
         height: 6.25em;
     }
 }
-
+.dot {
+    background: red;
+}
 @keyframes dotsY {
     66% {
         opacity: 0.1;
