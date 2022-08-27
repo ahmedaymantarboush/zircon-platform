@@ -740,7 +740,7 @@ header .row {
 .levels {
     /* margin-top: -14%; */
     overflow: hidden;
-    padding: 5rem 0 7rem 0;
+    padding: 10rem 0 7rem 0;
 }
 .levelItem,
 .levelItem:hover {
@@ -766,14 +766,14 @@ header .row {
 }
 .paper {
     background: url(../public/imgs/paper.png);
-    padding: 0rem 0 6rem 0;
+    padding: 10%;
     transition: 0.3s all ease;
 }
 .paper2 {
     background: url(../public/imgs/paper2.png);
     background-position: center;
     background-size: cover;
-    padding: 6rem;
+    padding: 6%;
     transition: 0.3s all ease;
 }
 .dark .paper2 {
