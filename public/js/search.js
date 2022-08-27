@@ -272,6 +272,7 @@ checkInputs.forEach((ele) => {
             `${window.location.protocol}//${window.location.host}/api/search`,
             form
         );
-        console.log(myResponse);
+        let { pagination, lectures } = myResponse.data;
+        console.log(pagination, lectures);
     });
 });
