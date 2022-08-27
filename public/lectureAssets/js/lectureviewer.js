@@ -478,7 +478,7 @@ $(document).on('click', '.startExam', function() {
         'id': parseInt(examID)
     }))
     var xhttp = new XMLHttpRequest();
-    // xhttp.open("POST", APP_URL + "/api/items/getItem");
+    xhttp.open("POST", APP_URL + "/api/items/getItem");
     // xhttp.open("POST", APP_URL + "/api/items/getExam");
     xhttp.setRequestHeader('Accept', 'application/json');
     let tkn = window.csrf_token.value
