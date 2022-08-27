@@ -128,7 +128,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/balancecards/hanging`,
+        `${window.location.protocol}//${window.location.host}/api/balancecards/handing`,
         form,
         e
     );
