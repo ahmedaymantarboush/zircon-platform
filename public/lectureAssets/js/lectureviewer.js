@@ -393,7 +393,7 @@ function getItem(data) {
             "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
             "                            <span class=\"ex_text\">في امتحان <span>(" + data.data.item.examName + ")</span></span>\n" +
             "                        </div>";
-        if (data.data.item.exam == null) {
+        if (data.data.item.exam == null && data.data.item.urls !=null) {
             if (data.data.item.type == "video") {
                 if (typeof data.data.item.urls === 'object') {
                     mainDiv.innerHTML = mediaPlayerPage;
