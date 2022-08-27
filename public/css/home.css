@@ -1097,7 +1097,7 @@ div.waves {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--main-bg);
+    background: #2d3946;
     z-index: 9999999999999;
     transition: 0.3s all ease;
 }
@@ -1206,7 +1206,10 @@ div.waves {
 
 /* Atom */
 .preloader .atom {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: var(--atom-size);
     height: var(--atom-size);
     animation: 8s atom infinite cubic-bezier(1, 0.25, 0, 0.75);
