@@ -48,8 +48,7 @@ ClassicEditor.create(document.querySelector(".text-editor2"), {
     })
     .catch((err) => {});
 let printCardParent = document.querySelector("#printCard .modal-body");
-// printCardParent.innerHTML = card(1, 1, 1, 1, 1);
-// console.log(card(1, 1, 1, 1, 1));
+
 let editFun = async function (url, myData, el = null) {
     try {
         let postData = await fetch(url, {
@@ -72,7 +71,7 @@ let editFun = async function (url, myData, el = null) {
         return null;
     } catch (err) {}
 };
-
+// print card
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("printCardBtn")) return;
     let dataId = e.target.closest("tr").dataset.id;
@@ -116,4 +115,22 @@ document.querySelector("table").addEventListener("click", async function (e) {
     printBtn.addEventListener("click", function () {
         PrintElement(".coupon-card");
     });
+});
+// handing card
+document.querySelector("table").addEventListener("click", async function (e) {
+    if (!e.target.classList.contains("handingCardBtn")) return;
+    let dataId = e.target.closest("tr").dataset.id;
+    let sendObj = {
+        id: dataId,
+    };
+
+    form = new FormData();
+    form.append("data", JSON.stringify(sendObj));
+
+    let myResponse = await editFun(
+        `${window.location.protocol}//${window.location.host}/api/balancecards/hanging`,
+        form,
+        e
+    );
+    location.reload();
 });
