@@ -131,7 +131,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let newGovernorateInner = document.querySelector(
         "#editLocationModal .newGovernorateParent .filter-option-inner-inner"
     );
-    let newGovernorateOptions = document.querySelector(
+    let newGovernorateOptions = document.querySelectorAll(
         "#editLocationModal .newGovernorateParent option"
     );
     nameOfCenter.value = objData.name;
