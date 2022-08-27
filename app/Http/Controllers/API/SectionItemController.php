@@ -60,15 +60,21 @@ class SectionItemController extends Controller
         ];
         if ($sectionItem->lesson_id) :
             $lesson = $sectionItem->item;
-            $userLesson = UserLesson::firstOrCreate([
-                'lesson_id' => $lesson->id,
-                'user_id' => $user->id,
-            ]);
-            $urls = getVideoUrl(getVideoId($lesson->url));
+            
             $exam = $lesson->exam ?? null;
-
+            
             $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
-
+            
+            $openable = !$exam || ($exam ? ($passedExam ? $passedExam->percentage >= $lesson->min_percentage : false)  : false );
+            if ($openable):
+                $userLesson = UserLesson::firstOrCreate([
+                    'lesson_id' => $lesson->id,
+                    'user_id' => $user->id,
+                ]);
+            endif;
+            $urls = getVideoUrl(getVideoId($lesson->url));
+            
+            
             $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
 
             if ($finished) :
@@ -89,7 +95,7 @@ class SectionItemController extends Controller
                 'grade' => $lesson->grade->name,
                 'part' => $lesson->part->name,
                 'description' => $lesson->description,
-                'urls' => count($urls) ? $urls : $lesson->url
+                'urls' => $openable ? (count($urls) ? $urls : $lesson->url) : null,
             ];
         else :
 

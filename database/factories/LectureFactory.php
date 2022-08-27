@@ -23,7 +23,7 @@ class LectureFactory extends Factory
             'title' => $this->faker->name(),
             'semester' => "الفصل الدراسي الأول",
             'short_description' => $this->faker->words(12, true),
-            'description' => removeCustomTags($this->faker->words(100, true),['script','style',]),
+            'description' => $this->faker->words(100, true),
             'published' => $this->faker->numberBetween(0, 1),
             'promotinal_video_url' => $this->faker->url(),
             'poster' => asset("imgs/thumbnail_$grade.png"),

@@ -270,14 +270,78 @@ checkInputs.forEach((ele) => {
         console.log(myResponse);
         let { pagination, lectures } = myResponse.data;
         let paginationBtnParent = document.querySelector(".btns");
+        let levelsBoxRow = document.querySelector(".levelsBox .row");
+        levelsBoxRow.innerHTML = "";
         paginationBtnParent.innerHTML = "";
-        let { lastPage } = pagination || 0;
+        let { lastPage, currentPage } = pagination || 0;
         for (let i = 1; i <= lastPage; i++) {
+            let cla = null;
+            if (i == currentPage) {
+                cla = "active";
+            }
             let text = `
             
-                  <a class="card-btn" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
+                  <a class="card-btn ${cla}" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
             `;
-            paginationBtnParent.insertAdjacentHTML("afterend", text);
+            paginationBtnParent.insertAdjacentHTML("beforeend", text);
+        }
+
+        for (let i = 0; i < lectures.length; i++) {
+            let text = `
+            
+                 <div class="  col-xl-4 col-md-6 levelItemParent">
+                            <a href=${lectures[i].slug} class="levelItem grade${
+                lectures[i].gradeId
+            }">
+                                <span class='typeGrade'>${
+                                    lectures[i].grade
+                                }</span>
+
+                                <div class="levelContentParent">
+                                    <div class="levelImage">
+                                        <img src="${lectures[i].poster}" alt="">
+                                    </div>
+
+
+                                    <div class="levelContent">
+                                        <h3 class='levelName'>${
+                                            lectures[i].title
+                                        }</h3>
+                                        <p class='levelDescription'>
+                                        ${lectures[i].shortDescription}
+                                        </p>
+                                        <div class="levelDetails">
+                                            <div class="detailItem">
+                                                <span class='detailIcon'><i class="fa-solid fa-photo-film"></i></span>
+                                                <span class='detailContent'>${
+                                                    +lectures[i].time / 60 / 60
+                                                } ساعة من الفيديو</span>
+                                            </div>
+                                            <div class="detailItem">
+                                                <span class='detailIcon'><i
+                                                        class="fa-solid fa-clipboard-question"></i></span>
+                                                <span class='detailContent'>${
+                                                    lectures[i]
+                                                        .totalQuestionsCount
+                                                } من الاسئلة</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="levelPrice">
+                                    <span class='iconPrice'><i class="fa-solid fa-tags"></i></span>
+                                    <span class='price'>${
+                                        lectures[i].finalPrice
+                                    }</span>
+                                    <span class='priceUnit'>ج.م</span>
+                                </div>
+
+
+                            </a>
+                        </div>
+            `;
+            levelsBoxRow.insertAdjacentHTML("beforeend", text);
         }
     });
 });
