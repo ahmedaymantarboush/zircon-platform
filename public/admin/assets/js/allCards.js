@@ -153,7 +153,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
     document
-        .querySelector("delForm")
+        .querySelector(".delForm")
         .addEventListener("submit", async function () {
             let myResponse = await editFun(
                 `${window.location.protocol}//${window.location.host}/api/balancecards/delete`,
