@@ -93,7 +93,9 @@ Route::post('questions',[QuestionController::class,'index']);
 Route::post('questions/fastEdit',[QuestionController::class,'fastEdit']);
 Route::post('questions/getQuestion',[QuestionController::class,'show']);
 Route::post('questions/sendAnswer',[AnswerdQuestionController::class,'update']);
-Route::post('questions/store',[ExamQuestionController::class,'store']);
+Route::post('questions/addToExam',[ExamQuestionController::class,'store']);
+Route::post('questions/UpdateInExam',[ExamQuestionController::class,'update']);
+Route::post('questions/deleteFromExam',[ExamQuestionController::class,'destroy']);
 
 
 

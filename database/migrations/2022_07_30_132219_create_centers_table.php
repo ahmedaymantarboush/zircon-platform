@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image')->default(asset('imgs/center1.png'));
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->foreignId('governorate_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
