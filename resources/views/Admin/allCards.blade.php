@@ -239,8 +239,7 @@
 
                             <ul class="dropdown-menu feat-menu">
                                 <li>
-                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#studentCard"
-                                        href="#">طباعة الكارت</a>
+                                    <a class="dropdown-item" href="#">طباعة الكارت</a>
                                 </li>
 
                                 <li>
@@ -249,7 +248,8 @@
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item deleteCard" href="#">مسح الكارت</a>
+                                    <a class="dropdown-item " data-bs-toggle="modal" data-bs-target="#deleteCard"
+                                        href="#">مسح الكارت</a>
                                 </li>
                             </ul>
                         </div>
