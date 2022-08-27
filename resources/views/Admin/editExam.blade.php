@@ -145,7 +145,7 @@
                                                     $i = $index + 1;
                                                 @endphp
                                                 <div class="col-12">
-                                                    <div class="question-box" data-id="{{$question->id}}">
+                                                    <div class="question-box" data-id="{{\App\Models\ExamQuestion::where(['question_id'=>$question->id,'exam_id'=>$exam->id])}}">
                                                         <div class="d-flex justify-content-between">
                                                             <div class="question_title">
                                                                 <span class="que_namber">السؤال <span
