@@ -311,7 +311,7 @@
         </path>
 
         <path id="socket" d="M7.5,0c0,8.28-6.72,15-15,15l0-30C0.78-15,7.5-8.28,7.5,0z">
-            <animateMotion dur="2s" repeatCount="indefinite" rotate="auto" keyTimes="0;1"
+            <animateMotion dur="2s" repeatCount="indefinite" rotate="auto" keyTimes="0"
                 keySplines="0.42, 0.0, 0.58, 1.0">
                 <mpath xlink:href="#loop-offset" />
             </animateMotion>
