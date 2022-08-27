@@ -244,8 +244,7 @@
                                 </li>
 
                                 <li>
-                                    <a class="dropdown-item handingCardBtn" data-bs-toggle="modal"
-                                        data-bs-target="#handingCard" href="#">تعليق الكارت
+                                    <a class="dropdown-item handingCardBtn" href="#">تعليق الكارت
                                     </a>
                                 </li>
 
