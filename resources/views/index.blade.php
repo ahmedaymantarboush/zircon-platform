@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="{{ URL::asset('css/home-responsive.css') }} " class="rel">
 <script></script>
 @endsection
+@section('content')
 <div class="preloader">
     <!-- <svg id="preloader" width="240px" height="120px" viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -51,7 +52,6 @@
     </div>
 
 </div>
-@section('content')
 
 <header class="">
     <div class="container">
