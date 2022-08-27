@@ -123,18 +123,19 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     let objData = myResponse.data;
+    console.log(objData);
     let nameOfCenter = document.querySelector(
-        ".editLocationModal .nameOfCenter"
+        "#editLocationModal .nameOfCenter"
     );
-    let urlOfCenter = document.querySelector(".editLocationModal .urlOfCenter");
+    let urlOfCenter = document.querySelector("#editLocationModal .urlOfCenter");
     let newGovernorateInner = document.querySelector(
-        ".editLocationModal .newGovernorateParent .filter-option-inner-inner"
+        "#editLocationModal .newGovernorateParent .filter-option-inner-inner"
     );
-    let newGovernorateOptions = document.querySelector(
-        ".editLocationModal .newGovernorateParent option"
+    let newGovernorateOptions = document.querySelectorAll(
+        "#editLocationModal .newGovernorateParent option"
     );
-    nameOfCenter.value = null;
-    urlOfCenter.value = null;
+    nameOfCenter.value = objData.name;
+    urlOfCenter.value = objData.url;
     let fillSelectFunction = function (options, selectInner, data) {
         options.forEach((ele) => {
             if (ele.value == data) {
@@ -145,7 +146,11 @@ document.querySelector("table").addEventListener("click", async function (e) {
             }
         });
     };
-    fillSelectFunction(newGovernorateOptions, newGovernorateInner, null);
+    fillSelectFunction(
+        newGovernorateOptions,
+        newGovernorateInner,
+        objData.governorate
+    );
 });
 
 ////// delete
@@ -159,14 +164,17 @@ document.querySelector("table").addEventListener("click", async function (e) {
     };
     let inputId = document.querySelector("#editLocationModal #trId");
     inputId.value = dataId;
+    document
+        .querySelector(".delCenter")
+        .addEventListener("submit", async function () {
+            form = new FormData();
+            form.append("data", JSON.stringify(sendObj));
 
-    form = new FormData();
-    form.append("data", JSON.stringify(sendObj));
-
-    let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/centers/delete`,
-        form,
-        e
-    );
-    console.log(myResponse);
+            let myResponse = await editFun(
+                `${window.location.protocol}//${window.location.host}/api/centers/delete`,
+                form,
+                e
+            );
+            console.log(myResponse);
+        });
 });

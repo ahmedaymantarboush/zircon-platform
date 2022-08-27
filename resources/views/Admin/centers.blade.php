@@ -360,9 +360,9 @@
                         <label class="sec-name">اسم المكان</label>
 
                         <div class="input-parent">
-                            <input type="text nameOfCenter" name='newName' value="{{ old('newName') }}"
-                                class="my-input @error('newName') is-invalid @enderror" placeholder=" ادخل اسم المكان"
-                                id="address-lec" />
+                            <input type="text " name='newName' value="{{ old('newName') }}"
+                                class="my-input nameOfCenter @error('newName') is-invalid @enderror"
+                                placeholder=" ادخل اسم المكان" id="address-lec" />
                             @error('newName')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -436,7 +436,7 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="">
+            <form action="" class='delCenter'>
                 <div class="modal-body">
                     <p class="sure-to-del">
                         هل انت متأكد انك تريد مسح
