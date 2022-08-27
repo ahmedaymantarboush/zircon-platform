@@ -426,7 +426,7 @@ $(document).on('change','.staticQuestion',async function (){
             body: form3,
         })
         let addQuestionData = await addQuestion.json();
-
+        console.log(addQuestionData);
         $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
     }else {
         let queID = $(this).parent().closest(".question-box").attr('data-id');
