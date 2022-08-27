@@ -94,8 +94,8 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let sendObj = {
         id: 2,
     };
-    let inputId = document.querySelector("#editCertificateModal #trId");
-    inputId.value = 2;
+    // let inputId = document.querySelector("#editCertificateModal #trId");
+    // inputId.value = 2;
 
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
