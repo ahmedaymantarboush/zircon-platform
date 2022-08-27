@@ -84,7 +84,7 @@ let funChangeImagesDark = function () {
     let paperImg1 = document.querySelector(".paper ");
 
     let paperImg2 = document.querySelector(".paper2");
-    if (document.documentElement.classList.contains("dark")) {
+    if (!document.documentElement.classList.contains("dark")) {
         paperImg1.setAttribute(
             "style",
             "background: url(../public/imgs/paper.png) no-repeat; background-size:cover;"
