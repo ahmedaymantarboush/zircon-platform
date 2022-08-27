@@ -126,7 +126,7 @@
     </div>
 </header>
 <div class="paper">
-    <img src="{{ URL::asset('imgs/paper.png') }}" alt="">
+    <!-- <img src="{{ URL::asset('imgs/paper.png') }}" alt=""> -->
 </div>
 <section class="levels">
     <div class="container">
@@ -165,7 +165,7 @@
     </div>
 </section>
 <div class="paper2">
-    <img src="{{ URL::asset('imgs/paper2.png') }}" alt="">
+    <!-- <img src="{{ URL::asset('imgs/paper2.png') }}" alt=""> -->
 </div>
 <section class="latestMonths">
     <div class="container">
