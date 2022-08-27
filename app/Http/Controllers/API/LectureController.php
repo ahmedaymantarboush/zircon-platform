@@ -90,9 +90,9 @@ class LectureController extends Controller
                     $hasDiscount = array_key_exists('hasDiscount', $filters['price']) ? $filters['price']['hasDiscount'] : false;
                     $Paid = array_key_exists('paid', $filters['price']) ? $filters['price']['paid'] : false;
                 endif;
-                $subjectsFilter = $filters['subjects'] ?? "";
-                $partsFilter = $filters['parts'] ?? "";
-                $usersFilter = $filters['users'] ?? "";
+                $subjectsFilter = $filters['subjects'] ?? [];
+                $partsFilter = $filters['parts'] ?? [];
+                $usersFilter = $filters['users'] ?? [];
 
                 if (count($gradesFilter)) :
                     $lectures->whereIn('grade_id', $gradesFilter);
