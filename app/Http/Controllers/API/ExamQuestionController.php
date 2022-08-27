@@ -101,10 +101,9 @@ class ExamQuestionController extends Controller
         if (!$examQuestion):
             return apiResponse(false, _('لم يتم العثور على السؤال في الامتحان'), [], 404);
         endif;
-        $examQuestion->question_id = $question->id;
-        $examQuestion->save();
+        $examQuestion->update(['question_id'=>$questionId]);
 
-        return apiResponse(true, _('تم اضافة السؤال بنجاح'), []);
+        return apiResponse(true, _('تم تعديل السؤال بنجاح'), [$examQuestion->toArray()]);
     }
 
     /**

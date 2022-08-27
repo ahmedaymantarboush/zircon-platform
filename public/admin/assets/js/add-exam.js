@@ -328,7 +328,6 @@ $(".add_question").click(function() {
 $(document).on("change", ".select_part", function() {
     let question_box = $(this).parent().closest(".question-box");
     var selectedValue = $(this).val();
-    console.log(selectedValue);
     $(question_box).find(".que_title").text(selectedValue);
 });
 ///////////////////////////////////////////////////////////////////////
@@ -409,13 +408,13 @@ $(document).on("click", ".btn-outline-secondary", function() {
 //////////////////////////////////////////////////////////////////////////
 $(document).on('change','select.staticQuestion',async function (){
     let examID = $("input[name='id']").attr('value');
-    if($(this).parent().closest(".question-box").attr('data-id')==0){
-        let queID = $(this).val();
+    if(!$(this).parent().closest(".question-box").attr('data-id')){
+        let queSelect = $(this).val();
         //Ajax
         form3 = new FormData()
         form3.append('data', JSON.stringify({
             'exam': examID,
-            'question': queID
+            'question': queSelect
         }))
         let addQuestion = await fetch(APP_URL + "/api/questions/addToExam", {
             method: "POST",
@@ -427,7 +426,6 @@ $(document).on('change','select.staticQuestion',async function (){
         })
         let addQuestionData = await addQuestion.json();
         console.log(addQuestionData);
-        console.log(this);
         $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
     }else {
         let queID = $(this).parent().closest(".question-box").attr('data-id');
@@ -449,6 +447,8 @@ $(document).on('change','select.staticQuestion',async function (){
         })
         let addQuestionData = await addQuestion.json();
         console.log(addQuestionData);
-        console.log(this);
     }
+    let question_box = $(this).parent().closest(".question-box");
+    var selectedValue = $(this).val();
+    $(question_box).find(".que_title").text(selectedValue);
 });
