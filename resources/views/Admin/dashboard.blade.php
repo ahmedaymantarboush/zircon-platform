@@ -13,14 +13,26 @@
                     <h3 class="daily-name">دخل الشهر</h3>
                     <p class="daily-p">
                         @php
-                            $currentMonth = date('Y-m',strtotime(now()));
-                            $lastMonth = date('Y-m',strtotime(strtotime("first day of previous month")));
-                            $currentMonthEncomme = array_sum(\App\Models\BalanceCard::where('user_id', '!=', null)->where('used_at','LIKE',"%$currentMonth%")->get()->pluck('value')->toArray());
-                            $lastMonthEncomme = array_sum(\App\Models\BalanceCard::where('user_id', '!=', null)->where('used_at','LIKE',"%$lastMonth%")->get()->pluck('value')->toArray());
-                            $monthpercentage = $lastMonthEncomme ? (($currentMonthEncomme - $lastMonthEncomme) * 100 / $lastMonthEncomme ) : 100;
+                            $currentMonth = date('Y-m', strtotime(now()));
+                            $lastMonth = date('Y-m', strtotime(strtotime('first day of previous month')));
+                            $currentMonthEncomme = array_sum(
+                                \App\Models\BalanceCard::where('user_id', '!=', null)
+                                    ->where('used_at', 'LIKE', "%$currentMonth%")
+                                    ->get()
+                                    ->pluck('value')
+                                    ->toArray(),
+                            );
+                            $lastMonthEncomme = array_sum(
+                                \App\Models\BalanceCard::where('user_id', '!=', null)
+                                    ->where('used_at', 'LIKE', "%$lastMonth%")
+                                    ->get()
+                                    ->pluck('value')
+                                    ->toArray(),
+                            );
+                            $monthpercentage = $lastMonthEncomme ? (($currentMonthEncomme - $lastMonthEncomme) * 100) / $lastMonthEncomme : 100;
                         @endphp
-                        {{$currentMonthEncomme}} ج.م
-                        <span class="percent">{{$monthpercentage }}</span>
+                        {{ $currentMonthEncomme }} ج.م
+                        <span class="percent">{{ $monthpercentage }}</span>
                     </p>
                 </div>
                 <div class="daily-icon">
@@ -33,8 +45,29 @@
                 <div class="daily-content">
                     <h3 class="daily-name">حضور اليوم</h3>
                     <p class="daily-p">
-                        355 طالب
-                        <span class="percent">-56</span>
+                        @php
+                            $count = 0;
+                            $currentDay = date('Y-m-d', strtotime(now()));
+                            $yesterday = date('Y-m-d', strtotime(strtotime('-1 day')));
+                            
+                            $currentDayAttend = \App\Models\UserLesson::where('user_id', '!=', null)
+                                ->where('created_at', 'LIKE', "%$currentDay%")
+                                ->count();
+                            $currentDayAttend += \App\Models\PassedExam::where('user_id', '!=', null)
+                                ->where('created_at', 'LIKE', "%$currentDay%")
+                                ->count();
+                            
+                            $yesterdayAttend = \App\Models\UserLesson::where('user_id', '!=', null)
+                                ->where('created_at', 'LIKE', "%$yesterday%")
+                                ->count();
+                            $yesterdayAttend += \App\Models\PassedExam::where('user_id', '!=', null)
+                                ->where('created_at', 'LIKE', "%$yesterday%")
+                                ->count();
+                            
+                            $AttentPercentage = $yesterdayAttend ? (($currentDayAttend - $yesterdayAttend) * 100) / $yesterdayAttend : 100;
+                        @endphp
+                        {{ $currentDayAttend }} طالب
+                        <span class="percent">{{ $AttentPercentage }}</span>
                     </p>
                 </div>
                 <div class="daily-icon">
@@ -47,8 +80,19 @@
                 <div class="daily-content">
                     <h3 class="daily-name">الطلاب الحاليين</h3>
                     <p class="daily-p">
-                        2150 طالب
-                        <span class="percent">11</span>
+                        @php
+                            $studentsCount = \App\Models\User::where('role_num', '>=', 4)->count();
+                            $currentMonthCount = \App\Models\User::where('id', '!=', null)
+                                ->where('created_at', 'LIKE', "%$currentMonth%")
+                                ->count();
+                            $lastMonthCount = \App\Models\User::where('id', '!=', null)
+                                ->where('created_at', 'LIKE', "%$lastMonth%")
+                                ->count();
+                            
+                            $countPercentage = $lastMonthCount ? (($currentMonthCount - $lastMonthCount) * 100) / $lastMonthCount : 100;
+                        @endphp
+                        {{ $studentsCount }} طالب
+                        <span class="percent">{{ $countPercentage }}</span>
                     </p>
                 </div>
                 <div class="daily-icon">
@@ -61,8 +105,27 @@
                 <div class="daily-content">
                     <h3 class="daily-name">دخل اليوم</h3>
                     <p class="daily-p">
-                        352,120 ج.م
-                        <span class="percent">-32</span>
+                        @php
+                            $currentDay = date('Y-m-d', strtotime(now()));
+                            $lastDay = date('Y-m-d', strtotime(strtotime('-1 day')));
+                            $currentDayEncomme = array_sum(
+                                \App\Models\BalanceCard::where('user_id', '!=', null)
+                                    ->where('used_at', 'LIKE', "%$currentDay%")
+                                    ->get()
+                                    ->pluck('value')
+                                    ->toArray(),
+                            );
+                            $lastDayEncomme = array_sum(
+                                \App\Models\BalanceCard::where('user_id', '!=', null)
+                                    ->where('used_at', 'LIKE', "%$lastDay%")
+                                    ->get()
+                                    ->pluck('value')
+                                    ->toArray(),
+                            );
+                            $monthpercentage = $lastDayEncomme ? (($currentDayEncomme - $lastDayEncomme) * 100) / $lastDayEncomme : 100;
+                        @endphp
+                        {{ $currentDayEncomme }} ج.م
+                        <span class="percent">{{ $monthpercentage }}</span>
                     </p>
                 </div>
                 <div class="daily-icon">
