@@ -407,7 +407,7 @@ $(document).on("click", ".btn-outline-secondary", function() {
 ////////////////////////////////////////////////////////////////////////////
 //////////////////// Add Static Question With Ajax ////////////////////////
 //////////////////////////////////////////////////////////////////////////
-$(document).on('change','.staticQuestion',async function (){
+$(document).on('change','select.staticQuestion',async function (){
     let examID = $("input[name='id']").attr('value');
     if($(this).parent().closest(".question-box").attr('data-id')==0){
         let queID = $(this).val();
