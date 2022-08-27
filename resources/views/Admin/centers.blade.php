@@ -440,7 +440,7 @@
                 <div class="modal-body">
                     <p class="sure-to-del">
                         هل انت متأكد انك تريد مسح
-                        <span class="del-lesson"> سنتر علي علاء</span>
+                        <span class="del-lesson"> ....</span>
                     </p>
                 </div>
                 <div class="modal-footer">

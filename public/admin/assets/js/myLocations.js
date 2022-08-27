@@ -176,5 +176,10 @@ document.querySelector("table").addEventListener("click", async function (e) {
                 e
             );
             console.log(myResponse);
+            let delCenter = document.querySelector(".del-lesson");
+            delCenter.innerHTML = e.target
+                .closest("tr")
+                .querySelector(".question-code")
+                .getAttribute("data-bs-original-title");
         });
 });
