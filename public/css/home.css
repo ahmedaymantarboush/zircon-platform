@@ -1091,40 +1091,42 @@ div.waves {
         height: 6.25em;
     }
 }
-.dot {
-    background: red;
-}
-@keyframes dotsY {
-    66% {
-        opacity: 0.1;
-        width: 2.4em;
-    }
-    77% {
-        opacity: 1;
-        width: 0;
-    }
-}
-@keyframes dotsX {
-    66% {
-        opacity: 0.1;
-        height: 2.4em;
-    }
-    77% {
-        opacity: 1;
-        height: 0;
-    }
+.preloader svg {
+    position: absolute;
+    width: 240px;
+    height: 120px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
 }
 
-@keyframes flash {
-    33% {
-        opacity: 0;
-        border-radius: 0%;
-    }
-    55% {
-        opacity: 0.6;
-        border-radius: 100%;
-    }
-    66% {
-        opacity: 0;
-    }
+.preloader svg #plug,
+.preloader svg #socket {
+    fill: #fdb515;
+}
+
+.preloader svg #loop-normal {
+    fill: none;
+    stroke: #fdb515;
+    stroke-width: 12;
+}
+
+.preloader svg #loop-offset {
+    display: none;
+}
+
+.preloader .credit {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.preloader .credit a {
+    color: #fdb515;
+    font: 800 75% "Open Sans", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
 }
