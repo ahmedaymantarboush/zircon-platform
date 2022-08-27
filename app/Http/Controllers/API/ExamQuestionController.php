@@ -74,7 +74,7 @@ class ExamQuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
         $data = json_decode(request()->data, true);
         $user = apiUser();
@@ -98,6 +98,9 @@ class ExamQuestionController extends Controller
         endif;
 
         $examQuestion = ExamQuestion::find($id);
+        if (!$examQuestion):
+            return apiResponse(false, _('لم يتم العثور على السؤال في الامتحان'), [], 404);
+        endif;
         $examQuestion->question_id = $question->id;
         $examQuestion->save();
 
