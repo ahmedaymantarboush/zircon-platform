@@ -252,7 +252,8 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('admin.testimonials.store') }}">
+            <form action="{{ route('admin.testimonials.store') }}" method="POST">
+                @csrf
                 <div class="modal-body">
                     <div class="less-item custome-item">
                         <label class="sec-name">اسم الطالب</label>
@@ -381,7 +382,8 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('admin.testimonials.update') }}">
+            <form action="{{ route('admin.testimonials.update') }}" method="POST">
+                @csrf
                 <div class="modal-body">
                     <input type="hidden" name='id' id='trId'>
                     <div class="less-item custome-item">
