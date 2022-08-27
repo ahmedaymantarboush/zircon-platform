@@ -410,12 +410,12 @@ $(document).on("click", ".btn-outline-secondary", function() {
 $(document).on('change','select.staticQuestion',async function (){
     let examID = $("input[name='id']").attr('value');
     if($(this).parent().closest(".question-box").attr('data-id')==0){
-        let queID = $(this).val();
+        let queSelect = $(this).val();
         //Ajax
         form3 = new FormData()
         form3.append('data', JSON.stringify({
             'exam': examID,
-            'question': queID
+            'question': queSelect
         }))
         let addQuestion = await fetch(APP_URL + "/api/questions/addToExam", {
             method: "POST",
