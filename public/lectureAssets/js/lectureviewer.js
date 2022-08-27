@@ -709,10 +709,7 @@ $(document).on('click', '.finishBtn', async function() {
 });
 // show exam
 $(document).on('click', '.showExam', async function() {
-    // Ajax Functions //
-    examHTML = '<div class="exam-parent">\n' +
-        '                <div class="exam-tab swiper mySwiper">\n' +
-        '                    <div class="swiper-wrapper">';
+
     form10 = new FormData()
     form10.append('data', JSON.stringify({
         'id': parseInt(examPassedID)
@@ -728,6 +725,126 @@ $(document).on('click', '.showExam', async function() {
     let getExamVar = await getExamPassed.json();
     console.log(getExamVar);
     //Add Tabs
+    // Ajax Functions //
+    examHTML = '<div class="exam-parent">\n' +
+        '                <div class="exam-tab swiper mySwiper">\n' +
+        '                    <div class="swiper-wrapper">';
+    //Add Tabs
+    for (let i = 1; i <= getExamVar.data.questions.length; i++) {
+        let active = "active-tab";
+        let showIcon1 = 'show_icon';
+        let showIcon2 = 'show_icon';
+        if (getExamVar.data.questions[i - 1].flagged == false) {
+            showIcon1 = 'hide_icon';
+        }
+
+        if (i != 1) { active = ""; }
+        examHTML += '<div class="swiper-slide">\n' +
+            '                                <button class="tab-item ' + active + '">\n' +
+            '                                    <span class="tab-num">' + i + '</span>\n' +
+            '                                    <div class="tab-icon">\n' +
+            '                                        <span><i class="fa-solid fa-check ' + showIcon2 + '"\n' +
+            '                                                id="yesIcon_' + i + '"></i></span>\n' +
+            '                                        <span><i\n' +
+            '                                                class="fa-solid fa-flag  ' + showIcon1 + '"id="flagIcon_' + i + '"></i></span>\n' +
+            '                                    </div>\n' +
+            '                                </button>\n' +
+            '                            </div>';
+    }
+
+    examHTML += '</div>\n' +
+        '\n' +
+        '\n' +
+        '                </div>\n' +
+        '                <div class="exam-questions">\n' +
+        '                    <div class="container">\n' +
+        '                        <div class="row">';
+    //Add questions
+    for (let i = 1; i <= getExamVar.data.questions.length; i++) {
+        let active = "active-tab";
+        if (i !== 1) { active = ""; }
+        let flagclass = "unflagQuestion";
+        let inputclass = "uncheckflag";
+        if (parseInt(getExamVar.data.questions[i-1].flagged)) {
+            flagclass = "flagQuestion";
+            inputclass = "checkflag";
+        }
+        examHTML += '<div class="question ' + active + ' col-12">\n' +
+            '                                    <div class="title_exam d-flex justify-content-between">\n' +
+            '                                        <div class="question_head" >\n' +
+            '                                            <i class="fa-solid fa-font-awesome ' + flagclass + '" flag="' + parseInt(getExamVar.data.questions[i-1].flagged) + '"\n' +
+            '                                                queNamber="' + i + '"></i>\n' +
+            '                                            <input type="checkbox" class="' + inputclass + '">\n' +
+            '                                            <span>السؤال رقم ' + i + '</span>\n' +
+            '                                        </div>\n' +
+            '                                        <div class="all_questions">\n' +
+            '                                            <span class="countdown">00:00:00</span>\n' +
+            '                                        </div>\n' +
+            '                                    </div>';
+        if (getExamVar.data.questions[i-1].question.image != null) {
+            examHTML += '<div class="col-12">\n' +
+                '                                            <img class="question_img"\n' +
+                '                                                src="' + getExamVar.data.questions[i-1].question.image + '">\n' +
+                '                                        </div>';
+        }
+        examHTML += '<div class="col-12">\n' +
+            '                                        <p class="question_text">' + getExamVar.data.questions[i-1].question.text + '</p>\n' +
+            '                                    </div>';
+        //Add Choices
+        for (let j = 1; j <= getExamVar.data.questions[i-1].question.choices.length; j++) {
+            let addSelected = '';
+            let addChecked = '';
+            let correctAnser = 'correctAnser';
+            if (getExamVar.data.questions[i-1].question.choices[j - 1].id == getExamVar.data.questions[i-1].choice) {
+                addSelected = 'selectedAnser';
+                addChecked = 'checked';
+            }
+            if(getExamVar.data.questions[i-1].question.choices[j - 1].correct!=1){
+                correctAnser='wrongAnser';
+            }
+            examHTML += '<div class="col-12">\n' +
+                '                                            <div queID="' + getExamVar.data.questions[i - 1].id + '" class="anserBox ' + addSelected + ' '+correctAnser+'  d-flex justify-content-start"\n' +
+                '                                                queNamber="' + i + '" >\n' +
+                '                                                <input type="radio" name="anser' + i + '"\n' +
+                '                                                    value="anser_database_id" ' + addChecked + '>\n' +
+                '                                                <span class="anser_text">' + getExamVar.data.questions[i-1].question.choices[j - 1].text + '</span>\n' +
+                '                                            </div>\n' +
+                '                                        </div>';
+        }
+        examHTML += '</div>';
+
+    }
+
+    if (getExamVar.data.questions.length >= 2) {
+        examHTML += '<div class="col-12">\n' +
+            '                                    <div class="btn-control d-flex justify-content-center">\n' +
+            '                                        <button class="rightBtn">\n' +
+            '                                            <i class="fa-solid fa-angles-right"></i>\n' +
+            '                                        </button>\n' +
+            '                                        <button class="leftBtn">\n' +
+            '                                            <i class="fa-solid fa-angles-left"></i>\n' +
+            '                                        </button>\n' +
+            '                                    </div>\n' +
+            '                                </div>';
+    }
+    examHTML += '</div>\n' +
+        '                    </div>\n' +
+        '\n' +
+        '                </div>\n' +
+        '\n' +
+        '            </div>';
+    mainDiv.innerHTML = examHTML;
+    flagFun();
+    onReadyFunExam();
+    if (getExamVar.data.examEndedAt == null) {
+        $('.countdown').each(function() {
+            $(this).html('وقت مفتوح');
+        });
+    } else {
+
+        addTimer(getExamVar.data.examEndedAt);
+    }
+    addDisabled();
 });
 
 function timerFun(endDate) {
@@ -739,21 +856,25 @@ function timerFun(endDate) {
         let hours = Math.floor(diff / 3600) % 24;
         let minutes = Math.floor(diff / 60) % 60;
         let seconds = diff % 60;
-
-        if (minutes < 10) {
-            minutes = '0' + minutes;
-        }
-        if (seconds < 10) {
-            seconds = '0' + seconds;
-        }
-        $('.countdown').each(function() {
-            if (hours == 0 && days == 0 && parseInt(minutes) <= 10) {
-                $(this).attr('style', 'color:#EA0606;');
-                this.innerHTML = hours + ':' + minutes + ':' + seconds;
-            } else {
-                this.innerHTML = hours + ':' + minutes + ':' + seconds;
+        if (diff==0 || date2 < date){
+            $(this).attr('style', 'color:#EA0606;');
+            this.innerHTML = 'انتهى الوقت';
+        }else {
+            if (minutes < 10) {
+                minutes = '0' + minutes;
             }
-        });
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
+            $('.countdown').each(function() {
+                if (hours == 0 && days == 0 && parseInt(minutes) <= 10) {
+                    $(this).attr('style', 'color:#EA0606;');
+                    this.innerHTML = hours + ':' + minutes + ':' + seconds;
+                } else {
+                    this.innerHTML = hours + ':' + minutes + ':' + seconds;
+                }
+            });
+        }
     }
 }
 
