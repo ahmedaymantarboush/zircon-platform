@@ -768,11 +768,12 @@ header .row {
     background: url(../public/imgs/paper.png);
     padding: 11% 0 0;
     transition: 0.3s all ease;
+    background-position: center;
+    background-size: cover;
 }
 .paper2 {
     background: url(../public/imgs/paper2.png);
-    background-position: center;
-    background-size: cover;
+
     padding: 6% 0;
     transition: 0.3s all ease;
 }
