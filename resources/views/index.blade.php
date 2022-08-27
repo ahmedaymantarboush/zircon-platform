@@ -6,14 +6,7 @@
 <!-- css file -->
 <link rel="stylesheet" href="{{ URL::asset('css/home.css') }} " class="rel">
 <link rel="stylesheet" href="{{ URL::asset('css/home-responsive.css') }} " class="rel">
-<script>
-window.addEventListener("load", function() {
-    setTimeout(function() {
-        document.getElementsByClassName("preloader")[0].style.opacity = "0";
-        document.getElementsByClassName("preloader")[0].style.zIndex = "-1";
-    }, 2000);
-});
-</script>
+<script></script>
 @endsection
 
 @section('content')
@@ -302,7 +295,7 @@ window.addEventListener("load", function() {
     </div>
 </section>
 <div class="preloader">
-    <svg id="preloader" width="240px" height="120px" viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg"
+    <!-- <svg id="preloader" width="240px" height="120px" viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink">
 
         <path id="loop-normal" class="st1" d="M120.5,60.5L146.48,87.02c14.64,14.64,38.39,14.65,53.03,0s14.64-38.39,0-53.03s-38.39-14.65-53.03,0L120.5,60.5
@@ -330,12 +323,14 @@ window.addEventListener("load", function() {
             </animateMotion>
         </path>
 
-    </svg>
-
-    <div class="credit">
-        <a href="https://thenounproject.com/search/?q=energy&i=2064" target="_blank">Original Sustainable Energy Icon by
-            Iconathon</a>
+    </svg> -->
+    <div class="load">
+        <hr />
+        <hr />
+        <hr />
+        <hr />
     </div>
+
 </div>
 @endsection
 

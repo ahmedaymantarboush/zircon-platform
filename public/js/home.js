@@ -1,3 +1,9 @@
+window.addEventListener("load", function () {
+    setTimeout(function () {
+        document.getElementsByClassName("preloader")[0].style.opacity = "0";
+        document.getElementsByClassName("preloader")[0].style.zIndex = "-1";
+    }, 2000);
+});
 // let toggleBtn = function (firstEle, secondEle, classActive) {
 //     firstEle.addEventListener("click", function () {
 //         firstEle.classList.toggle(classActive);
