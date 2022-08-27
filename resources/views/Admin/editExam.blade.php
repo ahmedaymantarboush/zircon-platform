@@ -204,9 +204,10 @@
                                                                         style="margin:0;">اختر
                                                                         السؤال :</label>
                                                                     <select
-                                                                        class="form-select form-select-lg search-select-box "
+                                                                        class="form-select form-select-lg search-select-box staticQuestion"
                                                                         name="question_{{ $i }}"
                                                                         id="formGroupExampleInput"
+                                                                        data-id="0"
                                                                         data-live-search="true">
                                                                         <option value="" selected>
                                                                             اختر السؤال

@@ -296,9 +296,10 @@ $(".add_question").click(function() {
                                                                             style="margin:0;">اختر
                                                                             السؤال :</label>
                                                                         <select
-                                                                            class="form-select form-select-lg search-select-box "
+                                                                            class="staticQuestion form-select form-select-lg search-select-box "
                                                                             name="question_${finalNamber}"
                                                                             id="formGroupExampleInput"
+                                                                            data-id="0"
                                                                             data-live-search="true">
                                                                             <option value="" selected>
                                                                                 اختر السؤال
@@ -402,4 +403,30 @@ document.querySelector("table").addEventListener("click", async function(e) {
         e
     );
     let objData = myResponse.data;
+});
+////////////////////////////////////////////////////////////////////////////
+//////////////////// Add Static Question With Ajax ////////////////////////
+//////////////////////////////////////////////////////////////////////////
+$(document).on('change','.staticQuestion',async function (){
+    if($(this).attr('data-id')==0){
+        let examID = $("input[name='id']").attr('value');
+        let queID = $(this).val();
+        //Ajax
+        form3 = new FormData()
+        form3.append('data', JSON.stringify({
+            'exam': examID,
+            'question': queID
+        }))
+        let addQuestion = await fetch(APP_URL + "/api/questions/addToExam", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: form3,
+        })
+        let addQuestionData = await addQuestion.json();
+        console.log(addQuestionData);
+    }
+
 });
