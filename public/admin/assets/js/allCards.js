@@ -49,5 +49,47 @@ ClassicEditor.create(document.querySelector(".text-editor2"), {
     .catch((err) => {});
 let printCardParent = document.querySelector("#printCard .modal-body");
 console.log(printCardParent);
-printCardParent.innerHTML = card(1, 1, 1, 1, 1);
-console.log(card(1, 1, 1, 1, 1));
+// printCardParent.innerHTML = card(1, 1, 1, 1, 1);
+// console.log(card(1, 1, 1, 1, 1));
+let editFun = async function (url, myData, el = null) {
+    try {
+        let postData = await fetch(url, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: myData,
+        });
+
+        let responseData = await postData.json();
+
+        if (postData.status == 200) {
+            return responseData;
+        }
+        if (postData.status == 404) {
+            return null;
+        }
+        return null;
+    } catch (err) {}
+};
+
+document.querySelector("table").addEventListener("click", async function (e) {
+    if (!e.target.classList.contains("printCardBtn")) return;
+    let dataId = e.target.closest("tr").querySelector(".number").dataset.id;
+    console.log(dataId);
+    let sendObj = {
+        id: 2,
+    };
+
+    form = new FormData();
+    form.append("data", JSON.stringify(sendObj));
+
+    let myResponse = await editFun(
+        `${window.location.protocol}//${window.location.host}/api/centers/fastEdit`,
+        form,
+        e
+    );
+    let objData = myResponse.data;
+    console.log(objData);
+});
