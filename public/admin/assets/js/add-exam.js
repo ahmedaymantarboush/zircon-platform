@@ -262,7 +262,7 @@ $(".add_question").click(function() {
                                                                         class="title_num">${finalNamber}</span>
                                                                     :</span>
                                                                 <span class="que_title">
-                                                                    اختر الجزئية الدراسية
+                                                                    اختر السؤال
                                                                 </span>
                                                             </div>
                                                             <div class="icons">
@@ -290,20 +290,7 @@ $(".add_question").click(function() {
                                                                     </div>
                                                                 </div>
                                                                 <div class="question-details"style="display: none;">
-                                                                    <label for="formGroupExampleInput"
-                                                                        class="form-label input_label"
-                                                                        style="margin:0;">الجزئية
-                                                                        الدراسية للسؤال :</label>
-                                                                    <select
-                                                                        class="form-select form-select-lg search-select-box select_part"
-                                                                        name="part_${finalNamber}"
-                                                                        id="formGroupExampleInput"
-                                                                        data-live-search="true">
-                                                                        <option value="اختر الجزئية التعليمية" selected>
-                                                                            اختر الجزئية التعليمية
-                                                                        </option>
-                                                                        ${partOptions}
-                                                                    </select>
+
                                                                         <label for="formGroupExampleInput"
                                                                             class="form-label input_label"
                                                                             style="margin:0;">اختر
