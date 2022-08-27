@@ -407,9 +407,9 @@ $(document).on("click", ".btn-outline-secondary", function() {
 ////////////////////////////////////////////////////////////////////////////
 //////////////////// Add Static Question With Ajax ////////////////////////
 //////////////////////////////////////////////////////////////////////////
-$(document).on('change','.staticQuestion',async function (){
+$(document).on('change','select.staticQuestion',async function (){
     let examID = $("input[name='id']").attr('value');
-    if($(this).attr('data-id')==0){
+    if($(this).parent().closest(".question-box").attr('data-id')==0){
         let queID = $(this).val();
         //Ajax
         form3 = new FormData()
@@ -426,7 +426,8 @@ $(document).on('change','.staticQuestion',async function (){
             body: form3,
         })
         let addQuestionData = await addQuestion.json();
-
+        console.log(addQuestionData);
+        console.log(this);
         $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
     }else {
         let queID = $(this).parent().closest(".question-box").attr('data-id');
@@ -435,8 +436,8 @@ $(document).on('change','.staticQuestion',async function (){
         form3 = new FormData()
         form3.append('data', JSON.stringify({
             'exam': examID,
-            'question': queID,
-            'id': queSelect
+            'question': queSelect,
+            'id': queID
         }))
         let addQuestion = await fetch(APP_URL + "/api/questions/UpdateInExam", {
             method: "POST",
@@ -448,5 +449,6 @@ $(document).on('change','.staticQuestion',async function (){
         })
         let addQuestionData = await addQuestion.json();
         console.log(addQuestionData);
+        console.log(this);
     }
 });
