@@ -164,6 +164,11 @@ document.querySelector("table").addEventListener("click", async function (e) {
     };
     let inputId = document.querySelector("#editLocationModal #trId");
     inputId.value = dataId;
+    let delCenter = document.querySelector(".del-lesson");
+    delCenter.innerHTML = e.target
+        .closest("tr")
+        .querySelector(".question-code")
+        .getAttribute("data-bs-original-title");
     document
         .querySelector(".delCenter")
         .addEventListener("submit", async function () {
