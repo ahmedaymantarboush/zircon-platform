@@ -108,3 +108,5 @@ Route::post('items/getItem',[SectionItemController::class,'show']);
 
 //       BALANCECARD ROUTES
 Route::post('balancecards/hanging',[BalanceCardController::class,'hanging'])->name('api.balancecards.hanging');
+Route::post('balancecards/show',[BalanceCardController::class,'show'])->name('api.balancecards.show');
+Route::post('balancecards/delete',[BalanceCardController::class,'destroy'])->name('api.balancecards.delete');

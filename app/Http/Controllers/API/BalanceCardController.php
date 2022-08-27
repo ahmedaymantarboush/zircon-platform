@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\BalanceCard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BalanceCardController extends Controller
 {
@@ -93,9 +94,26 @@ class BalanceCardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
+        endif;
+        $data = json_decode(request()->data, true);
+        $id = $data['id'];
+        $card = BalanceCard::find($id);
+        if (!$card) :
+            return apiResponse(false, _('لم يتم العثوؤ على الكارت'), [], 404);
+        endif;
+        $data = [
+            'code' => $card->code,
+            'start_date' => $card->created_at,
+            'value' => $card->value,
+            'end_date' => $card->expiry_date,
+            'id' => $card->id,
+        ];
+        return apiResponse(true, _('تم العثور على الكارت بنجاح'),$data);
     }
 
     /**
@@ -118,6 +136,17 @@ class BalanceCardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
+        endif;
+        $data = json_decode(request()->data, true);
+        $id = $data['id'];
+        $card = BalanceCard::find($id);
+        if (!$card) :
+            return apiResponse(false, _('لم يتم العثوؤ على الكارت'), [], 404);
+        endif;
+        $card->delete();
+        return apiResponse(true, _('تم حذف على الكارت بنجاح'),[]);
     }
 }
