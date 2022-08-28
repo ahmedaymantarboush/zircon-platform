@@ -221,6 +221,7 @@
                 @php
                     $direction = ['Right', 'Down', 'Up', 'Left'];
                 @endphp
+                @if (count($lectures))
                 @foreach ($lectures as $index => $lecture)
                 @if ($lecture)
                     <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_from{{ $direction[$index] }}">
@@ -253,6 +254,9 @@
                     </div>
                     @endif
                 @endforeach
+                @else
+                    <p class='no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
+                @endif
                 {{-- <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromDown">
                     <a class="latestCard " href='#'>
                         <div class="cardGrade">
