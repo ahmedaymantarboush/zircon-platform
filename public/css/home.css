@@ -1396,3 +1396,10 @@ div.waves {
 }
 
 /* Shadow */
+.no-lectures {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 2.4rem;
+    color: #60d069;
+}
