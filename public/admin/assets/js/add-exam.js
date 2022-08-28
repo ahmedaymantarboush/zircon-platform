@@ -120,7 +120,7 @@ $(".add_question").click(function() {
         //////// Dynamic question //////////
         partOptions = "";
         parts.forEach((part) => {
-            partOptions += `<option value='${part}'>${part}</option>\n`;
+            partOptions += `<option value='${part[0]}'>${part[1]}</option>\n`;
         });
         $(".Que-boxs").append(`<div class="col-12">
                                     <div class="question-box activeBox">
