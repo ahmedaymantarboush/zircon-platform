@@ -63,7 +63,10 @@
                         </div>
                     @endforeach
                 @else
-                    <p class='no-lectures'>لا يوجد محاضرات</p>
+                <p class='gs_reveal no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
+                <div class='gs_reveal noLecImg'>
+                    <img src="{{ URL::asset('imgs/no-result-search.png') }}" alt="">
+                </div>
                 @endif
                 {{-- <div class="col-lg-12 col-md-6">
                     <a href='#' class="levelItem grade{{$lecture->grade->id}}">
