@@ -436,7 +436,7 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class='delCenter'>
+            <form action="" class='delCenter'>
                 <div class="modal-body">
                     <p class="sure-to-del">
                         هل انت متأكد انك تريد مسح
@@ -451,7 +451,7 @@
                         الغاء
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
