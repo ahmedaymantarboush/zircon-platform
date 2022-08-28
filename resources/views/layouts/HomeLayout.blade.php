@@ -5,6 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @yield('seo')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name') }}</title>
     <link
@@ -253,12 +254,29 @@
     @yield('javascript')
     <script>
         $(document).ready(function() {
-            $('body').bind('cut copy paste', function(e) {
-                e.preventDefault();
-            })
+            // $('body').bind('cut copy paste', function(e) {
+            //     e.preventDefault();
+            // })
             $("body").on("contextmenu", function(e) {
                 return false;
             })
+            document.onkeydown = function(e) {
+                if (event.keyCode == 123) {
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                    return false;
+                }
+                if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                    return false;
+                }
+            }
         })
     </script>
 </body>

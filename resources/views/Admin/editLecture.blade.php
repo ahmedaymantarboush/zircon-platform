@@ -494,12 +494,12 @@
                                                                 </span> :
                                                                 <span class="type-less-name">{{ $section->title }}</span>
                                                             </h5>
-                                                            {{-- <!-- <button --}}
+                                                            {{-- <!-- <button
                                                                                         type="submit"
                                                                                         class="btn btn-primary"
                                                                                     >
                                                                                         تحديث الترتيب
-                                                                                    </button> -->
+                                                                                    </button> --> --}}
                                                             <input type="submit" class="custome-btn"
                                                                 value="تحديث الترتيب" />
                                                         </div>

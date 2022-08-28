@@ -1,4 +1,9 @@
 @extends('layouts.HomeLayout')
+@section('seo')
+    <meta name="keywords" content="أستاذ محمد البري, أ/ محمد البري, محمد البري, الصف الثالث الثانوي, الصف الثاني الثانوي, الصف الأول الثانوي, ثانوية عامة, فيزياء ثانوية عامة">
+    <meta name="description" content="منصة أستاذ محمد البري لتدريس منهج الفيزياء للصفوف الثانوية العامة">
+    <meta name="author" content="Developer & Designer : Zircon Tech">
+@endsection
 @section('css')
     {{-- <!-- css file --> --}}
     <link rel="stylesheet" href="{{ URL::asset('css/levels.css') }} " class="rel">
@@ -12,7 +17,7 @@
                 '2' => 'الثاني الثانوي',
                 '3' => 'الثالث الثانوي',
             ];
-            
+
         @endphp
         <h2 class='pageName'>شهور الصف <span>{{ $grades[$gradeId] }}</span></h2>
     </section>
