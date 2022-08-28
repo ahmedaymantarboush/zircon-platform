@@ -12,6 +12,7 @@
     '2' => "الثاني الثانوي",
     '3' => "الثالث الثانوي",
     ]
+    
     @endphp
     <h2 class='pageName'>شهور الصف <span>{{$grades[$lectures[0]->grade->id]}}</span></h2>
 </section>
