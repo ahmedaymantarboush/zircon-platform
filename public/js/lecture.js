@@ -204,6 +204,7 @@ let editFun = async function (url, myData, el = null) {
 document
     .querySelector(".chargeForm")
     .addEventListener("submit", async function (e) {
+        console.log('yes');
         e.preventDefault();
         let dataCode = document.querySelector(".chargeField input ").value;
         let sendObj = {
