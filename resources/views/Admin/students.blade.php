@@ -574,7 +574,7 @@
                         <div class="profileContent">
                             <div class="personalInformation">
                                 <h3 class="profileName">
-                                    عبدالرحمن مصطفى محمود
+                                    ....
                                 </h3>
                                 <span class="profileType">طالب</span>
                             </div>
@@ -645,7 +645,7 @@
                 <div class="modal-body">
                     <p class="sure-to-del">
                         هل انت متأكد انك تريد مسح
-                        <span class="del-lesson"> علي علاء</span>
+                        <span class="del-lesson"> ....</span>
                     </p>
                 </div>
                 <div class="modal-footer">
