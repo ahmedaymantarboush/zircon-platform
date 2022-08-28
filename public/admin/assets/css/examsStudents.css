@@ -520,3 +520,6 @@ input[type="file"] {
 .barcodeText {
 	display: none;
 }
+text {
+    display: none;
+}
