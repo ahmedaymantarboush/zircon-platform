@@ -1,18 +1,10 @@
 @extends('layouts.HomeLayout')
 @section('css')
-<<<<<<< HEAD
     {{-- <!--swiper--> --}}
     <link rel="stylesheet" href="{{ URL::asset('css/swiper.bundle.min.css') }}">
     {{-- <!-- css file --> --}}
     <link rel="stylesheet" href="{{ URL::asset('css/profile.css') }} " class="rel">
     <link rel="stylesheet" href="{{ URL::asset('css/profile-responsive.css') }} " class="rel">
-=======
-<!--swiper-->
-<link rel="stylesheet" href="{{ URL::asset('css/swiper.bundle.min.css') }}">
-<!-- css file -->
-<link rel="stylesheet" href="{{ URL::asset('css/profile.css') }} " class="rel">
-<link rel="stylesheet" href="{{ URL::asset('css/profile-responsive.css') }} " class="rel">
->>>>>>> 440e7bc31d6cde2fef34dbdde94c1924ae871e04
 @endsection
 
 @section('content')
@@ -179,7 +171,6 @@
                 </span>
             </div>
         </div>
-<<<<<<< HEAD
     </section>
     {{-- <!-- Modals --> --}}
     {{-- <!-- هنا بقا الفورم الي هيشحن فيها رصيد   --> --}}
@@ -207,27 +198,7 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn myButton">شحن رصيد</button>
                     <button type="button" class="btn secBtn" data-dismiss="modal">إغلاق</button>
-=======
-    </div>
-</section>
-<!-- Modals -->
-<!-- هنا بقا الفورم الي هيشحن فيها رصيد   -->
-<div class="modal fade chargeModal" id="charge" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form method="POST" action="{{ route('balance.recharge') }}" class="modal-content chargeForm">
-            @csrf
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">شحن رصيد</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="chargeField">
-                    <label for="">كود الشحن</label>
-                    <input type="text" name="code" placeholder='ادخل كود الشحن'>
->>>>>>> 440e7bc31d6cde2fef34dbdde94c1924ae871e04
+
                 </div>
                 <!-- @if (request()->session()->has('success') &&
                 !request()->session()->get('success'))
@@ -350,8 +321,6 @@ document.querySelector('.editBtn').click();
 document.querySelector('.addChargeBtn').click();
 </script>
 @endif
-
-<<<<<<< HEAD
     {{-- <!-- هنا و الهوم  --> --}}
     <script src="{{ URL::asset('js/swiper.bundle.min.js') }}"></script>
     {{-- <!-- هنا بس  --> --}}
@@ -374,39 +343,3 @@ document.querySelector('.addChargeBtn').click();
     </script>
     <script src="{{ URL::asset('js/profile.js') }}"></script>
 @endsection
-=======
-<!-- هنا و الهوم  -->
-<script src="{{ URL::asset('js/swiper.bundle.min.js') }}"></script>
-<!-- هنا بس  -->
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<!-- barcode  -->
-<!-- هنا بس  -->
-<script src="{{ URL::asset('js/jsBarCode.all.min.js') }}"></script>
-<!-- main js file -->
-@php
-$passedExams = $user
-->passedExams()
-->orderBy('ended_at')
-->get();
-@endphp
-<script>
-exams = @php echo $passedExams - > pluck('percentage');
-echo ";\n";
-@endphp
-dates = @php echo $passedExams - > pluck('ended_at');
-echo ";\n";
-@endphp
-correctAnswers = {
-    {
-        $user - > answerdQuestions() - > where('correct', 1) - > count()
-    }
-};
-wrongAnswers = {
-    {
-        $user - > answerdQuestions() - > where('correct', 0) - > count()
-    }
-};
-</script>
-<script src="{{ URL::asset('js/profile.js') }}"></script>
-@endsection
->>>>>>> 440e7bc31d6cde2fef34dbdde94c1924ae871e04
