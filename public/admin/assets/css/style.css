@@ -881,3 +881,6 @@ th {
     text-align: center;
     word-break: break-all;
 }
+.dropdown-item {
+    cursor: pointer;
+}
