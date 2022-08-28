@@ -98,6 +98,7 @@ class CenterController extends Controller
     public function update(UpdateCenterRequest $request)
     {
         $data = $request->all();
+        dd($data);
         $center = Center::find($data['id']);
         $user = Auth::user();
         if (!$user) :

@@ -26,7 +26,9 @@ class UpdateCenterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'newName' => ['required','string'],
+            'newUrl' => ['nullable'],
+            'newGovernorate' =>  ['required','exists:governorates,id'],
         ];
     }
 }
