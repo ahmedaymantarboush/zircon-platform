@@ -101,7 +101,7 @@
                                                                         style="margin:0;">الجزئية
                                                                         الدراسية للسؤال :</label>
                                                                     <select
-                                                                        class="form-select form-select-lg search-select-box select_part"
+                                                                        class="form-select form-select-lg search-select-box select_part dynamicQuestion"
                                                                         name="part_{{ $i }}"
                                                                         id="formGroupExampleInput" data-live-search="true">
                                                                         <option value="اختر الجزئية التعليمية" selected>
@@ -125,7 +125,7 @@
                                                                     </label>
                                                                     <input type="number" name='count_{{ $i }}'
                                                                         value="{{ old("count_$i") ?? $dynamicQuestion->count }}"
-                                                                        class="form-control-lg form-control"
+                                                                        class="form-control-lg form-control countInput"
                                                                         id="formGroupExampleInput"
                                                                         placeholder="ادخل عدد الأسئلة"
                                                                         style="font-size: 15px">
