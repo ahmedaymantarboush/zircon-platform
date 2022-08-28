@@ -620,7 +620,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary printBtn">
                         طباعة
                     </button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -725,6 +725,8 @@
         </div>
     </div>
 </div>
+<iframe src="#" hidden style="display: none" id="printPage" frameborder="0"></iframe>
+
 @endsection
 @section('javascript')
 <script src="{{ asset('admin/assets/js/jsBarCode.all') }}.min.js"></script>
