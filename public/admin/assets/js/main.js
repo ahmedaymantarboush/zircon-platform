@@ -1,6 +1,5 @@
-if($(" select")){
+if(location.href!=`${APP_URL}/dashboard`){
     $(" select").selectpicker();
-
 }
 
 /////////////////////
