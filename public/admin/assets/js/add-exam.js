@@ -482,7 +482,6 @@ $(document).on('change','select.dynamicQuestion',async function (){
     let partSelect = $(this).val();
     let question_box = $(this).parent().closest(".question-box");
     let countValue = $(question_box).find(".countInput").val();
-    alert($(".countInput").val());
     if(!$(this).parent().closest(".question-box").attr('data-id')){
         //Ajax
         form3 = new FormData()
