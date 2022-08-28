@@ -473,6 +473,8 @@
         </div>
     </div>
 </div>
+<iframe src="#" hidden style="display: none" id="printPage" frameborder="0"></iframe>
+
 @endsection
 @section('javascript')
 <script src="{{ asset('admin/assets/js/jsBarCode.all') }}.min.js"></script>
