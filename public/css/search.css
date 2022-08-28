@@ -930,5 +930,6 @@ div.waves {
     transition: 0.3s all ease;
 }
 .errorImage {
-    width: 60%;
+    width: 40%;
+    margin: 0 auto;
 }
