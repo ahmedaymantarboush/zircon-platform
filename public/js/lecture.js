@@ -196,11 +196,8 @@ let editFun = async function (url, myData, el = null) {
             setTimeout(function () {
                 location.reload();
             }, 500);
-        } else {
         }
         return responseData;
-
-        throw new Error(responseData);
     } catch (err) {}
 };
 
@@ -228,5 +225,4 @@ document
         finishText.innerHTML = myResponse.message;
 
         // let objData = myResponse.data;
-        console.log(myResponse);
     });

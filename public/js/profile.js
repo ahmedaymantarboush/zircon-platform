@@ -1,13 +1,13 @@
 ////////////////////////
 // main functions /////
 //////////////////////
-let toggleElement = function(ele, className) {
+let toggleElement = function (ele, className) {
     ele.classList.toggle(className);
 };
-let removeElemment = function(ele, className) {
+let removeElemment = function (ele, className) {
     ele.classList.remove(className);
 };
-let addElement = function(ele, className) {
+let addElement = function (ele, className) {
     ele.classList.add(className);
 };
 
@@ -15,30 +15,42 @@ let addElement = function(ele, className) {
 ///// start navbar /////////////////
 ///////////////////////////////////
 // [01- dark and light ]
-let funChangeImagesDark = function() {
+let funChangeImagesDark = function () {
     let paperImg1 = document.querySelector(".paper img");
     let paperImg2 = document.querySelector(".paper2 img");
     if (document.documentElement.classList.contains("dark")) {
         if (window.innerWidth <= 768) {
-            paperImg2.setAttribute("src", APP_URL + "/public/imgs/mob_banner_dark.png");
+            paperImg2.setAttribute(
+                "src",
+                APP_URL + "/public/imgs/mob_banner_dark.png"
+            );
         } else {
             paperImg2.setAttribute(
                 "src",
                 APP_URL + "/public/imgs/profile_banner_dark.png"
             );
         }
-        paperImg1.setAttribute("src", APP_URL + "/public/imgs/paper2_dark_p.png");
+        paperImg1.setAttribute(
+            "src",
+            APP_URL + "/public/imgs/paper2_dark_p.png"
+        );
     } else {
         if (window.innerWidth <= 768) {
-            paperImg2.setAttribute("src", APP_URL + "/public/imgs/mob_banner.png");
+            paperImg2.setAttribute(
+                "src",
+                APP_URL + "/public/imgs/mob_banner.png"
+            );
         } else {
-            paperImg2.setAttribute("src", APP_URL + "/public/imgs/profile_banner.png");
+            paperImg2.setAttribute(
+                "src",
+                APP_URL + "/public/imgs/profile_banner.png"
+            );
         }
         paperImg1.setAttribute("src", APP_URL + "/public/imgs/paper2.png");
     }
 };
 
-let addStyleToLocaleStorage = function() {
+let addStyleToLocaleStorage = function () {
     if (localStorage.getItem("style") === null) {
         localStorage.setItem("style", "dark");
     } else {
@@ -46,14 +58,14 @@ let addStyleToLocaleStorage = function() {
     }
 };
 
-let addDarkClassToHtml = function() {
+let addDarkClassToHtml = function () {
     if (localStorage.getItem("style") === null) {
         document.documentElement.classList.remove("dark");
     } else {
         document.documentElement.classList.add(localStorage.getItem("style"));
     }
 };
-let updateUI = function() {
+let updateUI = function () {
     addStyleToLocaleStorage();
     addDarkClassToHtml();
     funChangeImagesDark();
@@ -68,14 +80,14 @@ moon.addEventListener("click", updateUI);
 let toggleBarBtn = document.querySelector(".toggleBarBtn");
 let bigLeft = document.querySelector(".bigLeft");
 
-toggleBarBtn.addEventListener("click", function() {
+toggleBarBtn.addEventListener("click", function () {
     toggleElement(bigLeft, "activeNavMenu");
 });
 
 //[03- progress nav]
 let navBar = document.querySelector(".myNav");
 let progNav = document.querySelector(".navProgChild");
-let navProgFunction = function() {
+let navProgFunction = function () {
     let { scrollTop, scrollHeight } = document.documentElement;
     let myWidth = (scrollTop / (scrollHeight - window.innerHeight)) * 100;
 
@@ -89,10 +101,12 @@ window.addEventListener("scroll", navProgFunction);
 ////////////////////
 
 var options = {
-    series: [{
-        name: "نتائج الامتحانات",
-        data: exams,
-    }, ],
+    series: [
+        {
+            name: "نتائج الامتحانات",
+            data: exams,
+        },
+    ],
     chart: {
         height: 315,
         type: "area",
@@ -152,14 +166,17 @@ function Popup(data, customStyles = "") {
     const printPageDocument = printPageWindow.document;
     printPageDocument.querySelector(
         "body"
-    ).innerHTML = `<style>${customStyles}</style>${data.replace("paper2_dark_p.png","paper2.png")}`;
+    ).innerHTML = `<style>${customStyles}</style>${data.replace(
+        "paper2_dark_p.png",
+        "paper2.png"
+    )}`;
     printPageWindow.focus();
     printPageWindow.print();
     printPageWindow.close();
 }
 
 let printBtn = document.querySelector(".printBtn");
-printBtn.addEventListener("click", function() {
+printBtn.addEventListener("click", function () {
     PrintElement(".profileDetails");
 });
 
@@ -207,3 +224,51 @@ var swiper = new Swiper(".myCourses", {
         },
     },
 });
+
+let editFun = async function (url, myData, el = null) {
+    try {
+        let postData = await fetch(url, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: myData,
+        });
+
+        let responseData = await postData.json();
+
+        if (postData.status == 200) {
+            setTimeout(function () {
+                location.reload();
+            }, 500);
+        }
+        return responseData;
+    } catch (err) {}
+};
+
+document
+    .querySelector(".chargeForm")
+    .addEventListener("submit", async function (e) {
+        e.preventDefault();
+        let dataCode = document.querySelector(".chargeField input ").value;
+        let sendObj = {
+            code: dataCode,
+        };
+
+        form = new FormData();
+        form.append("data", JSON.stringify(sendObj));
+
+        let myResponse = await editFun(
+            `${APP_URL}/api/users/recharge`,
+            form,
+            e
+        );
+        let finishText = document.querySelector(".finishText");
+        myResponse.success
+            ? finishText.classList.add("success")
+            : finishText.classList.add("danger");
+        finishText.innerHTML = myResponse.message;
+
+        // let objData = myResponse.data;
+    });
