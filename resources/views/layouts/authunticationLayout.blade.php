@@ -745,7 +745,14 @@
 
     <script src="{{ URL::asset('js/signup.js') }}"></script>
     <script>
-        $(document).ready(function() {$('body').bind('cut copy paste',function(e){e.preventDefault();})$("body").on("contextmenu", function(e){return false;})})
+        $(document).ready(function() {
+            $('body').bind('cut copy paste', function(e) {
+                e.preventDefault();
+            })
+            $("body").on("contextmenu", function(e) {
+                return false;
+            })
+        })
     </script>
 </body>
 
