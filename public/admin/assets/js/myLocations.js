@@ -2,7 +2,6 @@
 let tableParent = document.querySelector(".lectures-table");
 let trTable = document.querySelectorAll(".lectures-table tbody tr");
 let openBtn = document.querySelectorAll(".open-tr");
-console.log(openBtn);
 
 /// set even and odd class
 trTable.forEach((ele, index) => {
@@ -15,7 +14,7 @@ trTable.forEach((ele, index) => {
 
 /// run button
 openBtn.forEach((ele) => {
-    ele.addEventListener("click", function() {
+    ele.addEventListener("click", function () {
         trTable.forEach((e) => {
             let myElement = ele.parentElement.parentElement;
             if (e == ele.parentElement.parentElement) {
@@ -40,14 +39,14 @@ openBtn.forEach((ele) => {
 
 /**text editor */
 ClassicEditor.create(document.querySelector(".text-editor2"), {
-        language: {
-            // The UI will be English.
-            ui: "en",
+    language: {
+        // The UI will be English.
+        ui: "en",
 
-            // But the content will be edited in Arabic.
-            content: "ar",
-        },
-    })
+        // But the content will be edited in Arabic.
+        content: "ar",
+    },
+})
     .then((editor) => {
         const wordCountPlugin = editor.plugins.get("WordCount");
         const wordCountWrapper = document.getElementById("word-count");
@@ -58,14 +57,14 @@ ClassicEditor.create(document.querySelector(".text-editor2"), {
     .catch((err) => {});
 
 ClassicEditor.create(document.querySelector(".text-editor1"), {
-        language: {
-            // The UI will be English.
-            ui: "en",
+    language: {
+        // The UI will be English.
+        ui: "en",
 
-            // But the content will be edited in Arabic.
-            content: "ar",
-        },
-    })
+        // But the content will be edited in Arabic.
+        content: "ar",
+    },
+})
     .then((editor) => {
         const wordCountPlugin = editor.plugins.get("WordCount");
         const wordCountWrapper = document.getElementById("word-count");
@@ -75,11 +74,11 @@ ClassicEditor.create(document.querySelector(".text-editor1"), {
     })
     .catch((err) => {});
 
-$(function() {
+$(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
 // ajax
-let editFun = async function(url, myData, el = null) {
+let editFun = async function (url, myData, el = null) {
     try {
         let postData = await fetch(url, {
             method: "POST",
@@ -96,18 +95,13 @@ let editFun = async function(url, myData, el = null) {
             return responseData;
         }
 
-        console.log(responseData);
         throw new Error(responseData);
-    } catch (err) {
-        console.log(err);
-    }
+    } catch (err) {}
 };
 
-document.querySelector("table").addEventListener("click", async function(e) {
+document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("editCenter")) return;
-    console.log("yes");
     let dataId = e.target.closest("tr").dataset.id;
-    console.log(dataId);
     let sendObj = {
         id: dataId,
     };
@@ -117,13 +111,8 @@ document.querySelector("table").addEventListener("click", async function(e) {
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
 
-    let myResponse = await editFun(
-        `${APP_URL}/api/centers/fastEdit`,
-        form,
-        e
-    );
+    let myResponse = await editFun(`${APP_URL}/api/centers/fastEdit`, form, e);
     let objData = myResponse.data;
-    console.log(objData);
     let nameOfCenter = document.querySelector(
         "#editLocationModal .nameOfCenter"
     );
@@ -136,7 +125,7 @@ document.querySelector("table").addEventListener("click", async function(e) {
     );
     nameOfCenter.value = objData.name;
     urlOfCenter.value = objData.url;
-    let fillSelectFunction = function(options, selectInner, data) {
+    let fillSelectFunction = function (options, selectInner, data) {
         options.forEach((ele) => {
             if (ele.value == data) {
                 ele.setAttribute("selected", "");
@@ -154,11 +143,9 @@ document.querySelector("table").addEventListener("click", async function(e) {
 });
 
 ////// delete
-document.querySelector("table").addEventListener("click", async function(e) {
+document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("delete-lec")) return;
-    console.log("yes");
     let dataId = e.target.closest("tr").dataset.id;
-    console.log(dataId);
     let sendObj = {
         id: dataId,
     };
@@ -171,7 +158,7 @@ document.querySelector("table").addEventListener("click", async function(e) {
         .getAttribute("data-bs-original-title");
     document
         .querySelector(".delCenter")
-        .addEventListener("submit", async function() {
+        .addEventListener("submit", async function () {
             form = new FormData();
             form.append("data", JSON.stringify(sendObj));
 
@@ -180,6 +167,5 @@ document.querySelector("table").addEventListener("click", async function(e) {
                 form,
                 e
             );
-            console.log(myResponse);
         });
 });
