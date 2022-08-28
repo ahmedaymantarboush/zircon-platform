@@ -152,7 +152,7 @@ function Popup(data, customStyles = "") {
     const printPageDocument = printPageWindow.document;
     printPageDocument.querySelector(
         "body"
-    ).innerHTML = `<style>${customStyles}</style>${data}`;
+    ).innerHTML = `<style>${customStyles}</style>${data.replave("paper2_dark_p.png","paper2.png")}`;
     printPageWindow.focus();
     printPageWindow.print();
     printPageWindow.close();
