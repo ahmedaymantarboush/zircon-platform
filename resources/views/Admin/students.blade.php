@@ -609,7 +609,7 @@
                                 </div>
                                 <div class="item">
                                     <span class="type">مكان الحضور:</span>
-                                    <span class="info">....</span>
+                                    <span class="info">المنصة</span>
                                 </div>
                                 <div class="barcodeBox">
                                     <svg class="barcode" id="profileBarCode"></svg>
