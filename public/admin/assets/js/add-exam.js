@@ -346,11 +346,15 @@ $(document).on("click", ".deleteBtn", function() {
 });
 $(document).on("click", ".btn-danger",async function() {
     let queID = $(this).parent().closest(".question-box").attr('data-id');
+    let apiURL='/api/questions/deleteFromExam';
+    if($('select.exam_type').val()==1){
+        apiURL = '/api/questions/zircon/deleteFromExam';
+    }
     form3 = new FormData()
     form3.append('data', JSON.stringify({
         'id': queID
     }))
-    let delQuestion = await fetch(APP_URL + "/api/questions/deleteFromExam", {
+    let delQuestion = await fetch(APP_URL + apiURL, {
         method: "POST",
         headers: {
             Accept: "application/json",
