@@ -129,7 +129,7 @@
         </div>
     </nav>
     <div class="header">
-        <div class="container"style="margin-top: -10px;">
+        <div class="container" style="margin-top: -10px;">
             <div class="headerContent">
                 <div class="lec-hero-image ontop">
                     <div class="lec-image-content">
@@ -361,9 +361,8 @@
                                 شراء الأن </button>
                             <div class="coupon">
 
-                                <button class="add-coupon" id="couponBtn" data-toggle="modal"
-                                    data-target="#chargeCoupon">
-                                    أدخل الكوبون
+                                <button class="add-coupon" id="couponBtn" data-toggle="modal" data-target="#charge">
+                                    شحن رصيد
                                 </button>
                                 <!-- <form class="have-coupon">
                                     <div class="dis-coupon">
