@@ -188,15 +188,15 @@ checking.forEach((ele) => {
 });
 
 ////////////////
-let ctgBtn = document.querySelector(".category-btn");
+// let ctgBtn = document.querySelector(".category-btn");
 let ctgMenu = document.querySelector(".ctg-menu");
 let ctgList = document.querySelectorAll(".menu-item");
 let ctgName = document.querySelector(".ctg-name");
 let lay = document.querySelector(".lay");
 console.log(ctgBtn);
-ctgBtn.addEventListener("click", function (e) {
-    ctgMenu.classList.toggle("active");
-});
+// ctgBtn.addEventListener("click", function (e) {
+//     ctgMenu.classList.toggle("active");
+// });
 // هنا يا عبدالرحمن
 ctgList.forEach((ele) => {
     ele.addEventListener("click", function () {
@@ -296,7 +296,7 @@ checkInputs.forEach((ele) => {
                 cla = "active";
             }
             let text = `
-            
+
                 <a class="card-btn ${cla}" href="${APP_URL}/search?page=${i}${pagination.query}">${i}</a>
             `;
             paginationBtnParent.insertAdjacentHTML("beforeend", text);
@@ -311,7 +311,7 @@ checkInputs.forEach((ele) => {
 
         for (let i = 0; i < lectures.length; i++) {
             let text = `
-            
+
                  <div class="  col-xl-4 col-md-6 levelItemParent">
                             <a href=${lectures[i].slug} class="levelItem grade${
                 lectures[i].gradeId
