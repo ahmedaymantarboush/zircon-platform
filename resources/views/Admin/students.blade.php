@@ -673,7 +673,7 @@
                 <div class="modal-body">
                     <div class="studentNameParent">
                         <span class="studentType">اسم الطالب :</span>
-                        <span class="studentName">علي علاء الدين</span>
+                        <span class="studentName">....</span>
                     </div>
                     <div class="editInput">
                         <label for="">الرصيد</label>
@@ -705,7 +705,7 @@
                 <div class="modal-body">
                     <div class="studentNameParent">
                         <span class="studentType">اسم الطالب :</span>
-                        <span class="studentName">علي علاء الدين</span>
+                        <span class="studentName">....</span>
                     </div>
                     <div class="editInput">
                         <label for="">الكود</label>
