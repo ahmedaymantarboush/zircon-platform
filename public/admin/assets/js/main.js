@@ -1,4 +1,4 @@
-if(location.href.indexOf("dashboard") != -1){
+if(location.href.indexOf("dashboard") == -1){
     $(" select").selectpicker();
 }
 
