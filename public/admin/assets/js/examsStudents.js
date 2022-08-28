@@ -1,6 +1,7 @@
 let tableParent = document.querySelector(".lectures-table");
 let trTable = document.querySelectorAll(".lectures-table tbody tr");
 let openBtn = document.querySelectorAll(".open-tr");
+console.log("lol");
 /// run button
 openBtn.forEach((ele) => {
     ele.addEventListener("click", function () {
