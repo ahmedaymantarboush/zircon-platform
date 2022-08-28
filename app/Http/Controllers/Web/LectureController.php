@@ -27,7 +27,7 @@ class LectureController extends Controller
         $gradeId = $id - 9;
         $lectures = Lecture::where(['published' => true, 'grade_id' => $gradeId])->orderBy('id', 'desc')->get();
         if (Grade::find($gradeId)) :
-            return view("Home.grades", compact('lectures'));
+            return view("Home.grades", ['lectures'=>$lectures,'gradeId'=>$gradeId]);
         else :
             return abort(404);
         endif;

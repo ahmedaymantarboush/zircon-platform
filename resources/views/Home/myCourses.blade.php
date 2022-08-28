@@ -10,6 +10,7 @@
     <section class='levelsBox'>
         <div class="container">
             <div class='row'>
+                @if (count($lectures))
                 @foreach ($lectures->paginate(6) as $lecture)
                     <div class="col-lg-12 col-md-6">
                         <a href='{{ route('months.show', $lecture->slug) }}'
@@ -43,6 +44,12 @@
                         </a>
                     </div>
                 @endforeach
+                @else
+                <p class='gs_reveal no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
+                <div class='gs_reveal noLecImg'>
+                    <img src="{{ URL::asset('imgs/no-result-search.png') }}" alt="">
+                </div>
+                @endif
             </div>
             @include('components.Home.pagination', ['paginator' => $lectures->paginate(6)])
         </div>
