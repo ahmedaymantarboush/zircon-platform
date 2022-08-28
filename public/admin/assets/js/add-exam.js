@@ -477,7 +477,7 @@ $(document).ready(function (){
 ////////////////////////////////////////////////////////////////////////////
 //////////////////////// Dynamic Question With Ajax ///////////////////////
 //////////////////////////////////////////////////////////////////////////
-$(document).on('change','select.dynamicQuestion',async function (){
+$(document).on('change','select.dynamicQuestion .countInput',async function (){
     let examID = $("input[name='id']").attr('value');
     let partSelect = $(this).val();
     let question_box = $(this).parent().closest(".question-box");
