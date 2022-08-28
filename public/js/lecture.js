@@ -193,6 +193,10 @@ let editFun = async function (url, myData, el = null) {
         let responseData = await postData.json();
 
         if (postData.status == 200) {
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        } else {
         }
         return responseData;
 
