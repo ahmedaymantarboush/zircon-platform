@@ -105,7 +105,7 @@
                             ->where('correct', 0)
                             ->count();
                     @endphp
-                    <tr data-id="{{ $passedExam->user->id }}"
+                    <tr data-id="{{ $student->id }}"
                         class="@if ($correctAnswers || $wrongAnswers) @if ($correctAnswers > $wrongAnswers) greenBg @elseif($correctAnswers < $wrongAnswers) redBg @elseif($correctAnswers == $wrongAnswers) blueBg @endif @endif">
                         <td class="number">
                             {{ $i }}
@@ -166,7 +166,7 @@
                                     </li>
 
                                     <li>
-                                        <a class="dropdown-item" href="{{route(admin.users.edit)}}">تعديل الطالب</a>
+                                        <a class="dropdown-item" href="{{route('admin.users.edit',$student->id)}}">تعديل الطالب</a>
                                     </li>
                                 </ul>
                             </div>
