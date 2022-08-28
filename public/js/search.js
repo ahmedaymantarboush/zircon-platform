@@ -7,7 +7,7 @@ let toggleElement = function (ele, className) {
 let removeEle = function (ele, className) {
     ele.classList.remove(className);
 };
-console.log("alo");
+// console.log("alo");
 /////////////////////////
 ///// fade animation ///
 ///////////////////////
@@ -193,6 +193,7 @@ let ctgMenu = document.querySelector(".ctg-menu");
 let ctgList = document.querySelectorAll(".menu-item");
 let ctgName = document.querySelector(".ctg-name");
 let lay = document.querySelector(".lay");
+// // console.log(ctgBtn);
 // ctgBtn.addEventListener("click", function (e) {
 //     ctgMenu.classList.toggle("active");
 // });
@@ -251,7 +252,7 @@ checkInputs.forEach((ele) => {
                 search.filters.price[priceProp] = false;
             }
         }
-        console.log(search);
+        // console.log(search);
         let editFun = async function (url, myData, el = null) {
             try {
                 let postData = await fetch(url, {
@@ -281,7 +282,7 @@ checkInputs.forEach((ele) => {
         form.append("data", JSON.stringify(sendObj));
 
         let myResponse = await editFun(`${APP_URL}/api/search`, form);
-        console.log(myResponse);
+        // console.log(myResponse);
         let { pagination, lectures } = myResponse.data;
         let paginationBtnParent = document.querySelector(".btns");
         let levelsBoxRow = document.querySelector(".levelsBox .row");
@@ -300,7 +301,7 @@ checkInputs.forEach((ele) => {
             `;
             paginationBtnParent.insertAdjacentHTML("beforeend", text);
             // if (i === lastPage) {
-            //     console.log("yes");
+            //     // console.log("yes");
             //     let nextPag = `
             //         <a class="card-btn" href="${pagination.lastPageUrl}${pagination.query}"><i class="fa-solid fa-user"></i></a>
             //     `;
