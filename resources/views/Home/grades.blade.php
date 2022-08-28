@@ -63,7 +63,7 @@
                         </div>
                     @endforeach
                 @else
-                    <p class='no-lectures'>حط هنا أي ماسدج</p>
+                    <p class='no-lectures'>لا يوجد محاضرات</p>
                 @endif
                 {{-- <div class="col-lg-12 col-md-6">
                     <a href='#' class="levelItem grade{{$lecture->grade->id}}">
