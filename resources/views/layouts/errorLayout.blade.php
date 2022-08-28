@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <!--fonts-->
+    <title>{{ config('app.name') }}</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;500;600;800;900&family=Montserrat:wght@100;200;300;400;500;600&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -15,13 +13,9 @@
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600&display=swap"
         rel="stylesheet" />
 
-
-    <!-- font awesome -->
     <link rel="stylesheet" href="{{ URL::asset('css/all.min.css') }}">
 
 
-
-    <!--bootstrap-->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-rtl.min.css') }}">
     @include('includes.appUrl')
     @yield('css')
@@ -250,20 +244,22 @@
 
 
 
-
-    <!--font awesome-->
     <script src="{{ URL::asset('js/all.min.js') }}"></script>
 
-
-    <!--jquery js-->
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-
-    <!--bootstrap js-->
     <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
 
-
-    <!-- main js file -->
     @yield('javascript')
+    <script>
+        $(document).ready(function() {
+            $('body').bind('cut copy paste', function(e) {
+                e.preventDefault();
+            })
+            $("body").on("contextmenu", function(e) {
+                return false;
+            })
+        })
+    </script>
 </body>
 
 </html>
