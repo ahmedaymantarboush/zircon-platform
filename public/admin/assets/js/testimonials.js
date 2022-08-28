@@ -14,7 +14,7 @@ trTable.forEach((ele, index) => {
 
 /// run button
 openBtn.forEach((ele) => {
-    ele.addEventListener("click", function() {
+    ele.addEventListener("click", function () {
         trTable.forEach((e) => {
             let myElement = ele.parentElement.parentElement;
             if (e == ele.parentElement.parentElement) {
@@ -39,14 +39,14 @@ openBtn.forEach((ele) => {
 
 /**text editor */
 ClassicEditor.create(document.querySelector(".text-editor2"), {
-        language: {
-            // The UI will be English.
-            ui: "en",
+    language: {
+        // The UI will be English.
+        ui: "en",
 
-            // But the content will be edited in Arabic.
-            content: "ar",
-        },
-    })
+        // But the content will be edited in Arabic.
+        content: "ar",
+    },
+})
     .then((editor) => {
         const wordCountPlugin = editor.plugins.get("WordCount");
         const wordCountWrapper = document.getElementById("word-count");
@@ -65,7 +65,7 @@ ClassicEditor.create(document.querySelector(".text-editor1"), {
         content: "ar",
     },
 });
-let editFun = async function(url, myData, el = null) {
+let editFun = async function (url, myData, el = null) {
     try {
         let postData = await fetch(url, {
             method: "POST",
@@ -88,7 +88,7 @@ let editFun = async function(url, myData, el = null) {
         return null;
     } catch (err) {}
 };
-document.querySelector("table").addEventListener("click", async function(e) {
+document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("editTesti")) return;
     let dataId = e.target.closest("tr").dataset.id;
     console.log(dataId);
@@ -131,7 +131,7 @@ document.querySelector("table").addEventListener("click", async function(e) {
     editStudentName.value = objData.studentName;
     editStudentSum.value = objData.degree;
     subjectSum.value = objData.subjectDegree;
-    let fillSelectFunction = function(options, selectInner, data) {
+    let fillSelectFunction = function (options, selectInner, data) {
         options.forEach((ele) => {
             if (ele.value == data) {
                 ele.setAttribute("selected", "");
@@ -153,18 +153,7 @@ document.querySelector("table").addEventListener("click", async function(e) {
 
 /**** delete lecture* */
 
-let delBtns = document.querySelectorAll(".delete-lec");
-let delPopupParagraph = document.querySelector(".del-lesson");
-
-delBtns.forEach((ele) => {
-    ele.addEventListener("click", function(e) {
-        delPopupParagraph.textContent = ele
-            .closest("tr")
-            .querySelector(".name-lesson").textContent;
-    });
-});
-
-document.querySelector("table").addEventListener("click", function(e) {
+document.querySelector("table").addEventListener("click", function (e) {
     if (!e.target.classList.contains("delTesti")) return;
     let testi = document.querySelector(".del-lesson");
     testi.innerHTML = e.target
