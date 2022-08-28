@@ -160,4 +160,9 @@ document.querySelector("table").addEventListener("click", function (e) {
         .closest("tr")
         .querySelector(".name-lesson")
         .getAttribute("data-bs-original-title");
+    let inputId = document.querySelector(
+        '#delete-certificate input[name="id"]'
+    );
+    inputId.value = e.target.closest("tr").dataset.id;
+    console.log(inputId);
 });
