@@ -474,7 +474,7 @@
     </div>
 </div>
 @endsection
-@section('javscript')
+@section('javascript')
 <script src="{{ asset('admin/assets/js/jsBarCode.all') }}.min.js"></script>
 <!--font awesome-->
 <!--font awesome-->
