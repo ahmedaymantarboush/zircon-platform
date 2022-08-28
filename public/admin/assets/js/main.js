@@ -1,4 +1,4 @@
-if(location.href.contains(`${APP_URL}/dashboard`)){
+if(location.href.indexOf("dashboard") != -1){
     $(" select").selectpicker();
 }
 
