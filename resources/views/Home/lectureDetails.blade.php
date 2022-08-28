@@ -273,7 +273,7 @@
                         </div>
                         @endif
                         {{-- <!-- <a href="#" class="buy-now">شراء الأن</a> --> --}}
-                        @auth
+                        {{-- @auth --}}
                         <a href="#" type="button" class="buy-now" data-toggle="modal"
                             data-target="#{{ Auth::user() ? (Auth::user()->balance >= $price ? 'sureBuy' : 'notEnough') : 'notEnough' }}">
                             شراء الأن </a>
@@ -281,6 +281,7 @@
                         <a href="{{ route('login') }}" class="buy-now">شراء الأن </a>
                         @endauth
                         <div class="coupon">
+
                             <button class="add-coupon" id="couponBtn" data-toggle="modal" data-target="#charge">
                                 شحن رصيد
                             </button>
@@ -310,9 +311,8 @@
 </div>
 
 @if (Auth::check())
-<!-- Modals -->
-@if (Auth::user()->balance >= $price)
-<!-- هنا لو رصيده يكفي وهيأكد الشراء  -->
+{{-- <!-- Modals --> --}}
+{{-- <!-- هنا لو رصيده يكفي وهيأكد الشراء  --> --}}
 <div class="modal fade sureBuyModal" id="sureBuy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -334,8 +334,7 @@
         </form>
     </div>
 </div>
-@else
-<!-- هنا لو رصيده ميكفيش وعايز يشحن يضغط علي الزرار يوديه للفورم الي جاية   -->
+{{-- <!-- هنا لو رصيده ميكفيش وعايز يشحن يضغط علي الزرار يوديه للفورم الي جاية   --> --}}
 <div class="modal fade notEnoughModal" id="notEnough" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -357,7 +356,7 @@
         </div>
     </div>
 </div>
-<!-- هنا بقا الفورم الي هيشحن فيها رصيد   -->
+{{-- <!-- هنا بقا الفورم الي هيشحن فيها رصيد   --> --}}
 <div class="modal fade chargeModal" id="charge" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -388,9 +387,8 @@
         </form>
     </div>
 </div>
-@endif  
 @endif
-<!-- هنا بقا الفورم الي هيشحن فيها كوبون   -->
+{{-- <!-- هنا بقا الفورم الي هيشحن فيها كوبون   --> --}}
 <div class="modal fade chargeCouponModal" id="chargeCoupon" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
