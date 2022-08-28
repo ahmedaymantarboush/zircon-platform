@@ -64,7 +64,9 @@ class DynamicQuestionController extends Controller
         $exam =$dynamicQuestion->exam;
         $exam->questions_count -= $dynamicQuestion->count;
         $exam->save();
-        return apiResponse(true, _('تم اضافة السؤال بنجاح'), []);
+        return apiResponse(true, _('تم اضافة السؤال بنجاح'), [
+            'id'=>$dynamicQuestion->id,
+        ]);
     }
 
     /**
@@ -98,7 +100,8 @@ class DynamicQuestionController extends Controller
 
         Validator::make($data, [
             'exam' => ['required', 'exists:exams,id'],
-            'part' => ['required', 'exists:parts,id']
+            'part' => ['required', 'exists:parts,id'],
+            'count' => ['required'],
         ]);
 
         $id = $data['id'];
@@ -118,6 +121,7 @@ class DynamicQuestionController extends Controller
         endif;
 
         $examQuestion->part_id = $part->id;
+        $examQuestion->count = $data['count'];
         $examQuestion->save();
 
         return apiResponse(true, _('تم اضافة السؤال بنجاح'), []);
