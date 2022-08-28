@@ -29,36 +29,24 @@
                             <span class="box-icon">
                                 <i class="fa-solid fa-gauge-high"></i>
                             </span>
-                            <span class="box-name"> الطلاب </span>
+                            <span class="box-name"> المحاضرات </span>
                             <span class="parent-arrow">
                                 <i class="fa-solid fa-angle-down"></i></span>
                         </div>
 
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">الطالب رقم1</a>
-                                {{-- <span class="child-arrow">
-                                    <i class="fa-solid fa-angle-down"></i></span> --}}
+                                <a href="#" class="child-name">كل المحاضرات</a>
                             </div>
-                            {{-- <div class="grand-child">
-                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
-                                <a href="#" class="grand-child-name">مقبول</a>
-                            </div> --}}
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">الطالب رقم 2</a>
-                                {{-- <span class="child-arrow">
-                                    <i class="fa-solid fa-angle-down"></i></span> --}}
+                                <a href="#" class="child-name">إضافة محاضرة</a>
                             </div>
-                            {{-- <div class="grand-child">
-                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
-                                <a href="#" class="grand-child-name">مقبول</a>
-                            </div> --}}
                         </div>
                     </div>
 
-                    {{-- <div class="side-bar-item">
+                    <div class="side-bar-item">
                         <div class="box">
                             <span class="box-icon">
                                 <i class="fa-solid fa-gauge-high"></i>
@@ -70,27 +58,15 @@
 
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">الطالب رقم1</a>
-                                <span class="child-arrow">
-                                    <i class="fa-solid fa-angle-down"></i></span>
-                            </div>
-                            <div class="grand-child">
-                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
-                                <a href="#" class="grand-child-name">مقبول</a>
+                                <a href="#" class="child-name">كل الطلاب</a>
                             </div>
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">الطالب رقم 2</a>
-                                <span class="child-arrow">
-                                    <i class="fa-solid fa-angle-down"></i></span>
-                            </div>
-                            <div class="grand-child">
-                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
-                                <a href="#" class="grand-child-name">مقبول</a>
+                                <a href="#" class="child-name">إضافة طالب</a>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
 
                     <div class="side-bar-item">
                         <div class="box">
@@ -104,96 +80,146 @@
 
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">الطالب رقم1</a>
-                                <span class="child-arrow">
-                                    <i class="fa-solid fa-angle-down"></i></span>
-                            </div>
-                            <div class="grand-child">
-                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
-                                <a href="#" class="grand-child-name">مقبول</a>
+                                <a href="#" class="child-name">كل الامتحانات</a>
                             </div>
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">الطالب رقم 2</a>
-                                <span class="child-arrow">
-                                    <i class="fa-solid fa-angle-down"></i></span>
+                                <a href="#" class="child-name">اضافة امتاحان</a>
                             </div>
-                            <div class="grand-child">
-                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
-                                <a href="#" class="grand-child-name">مقبول</a>
+                        </div>
+                        <div class="elements">
+                            <div class="ele-child">
+                                <a href="#" class="child-name">بنك الأسئلة</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="side-bar-item">
-                        <div class="box">
-                            <span class="box-icon">
-                                <i class="fa-solid fa-gauge-high"></i>
-                            </span>
-                            <span class="box-name"> الأسئلة </span>
-                            <span class="parent-arrow">
-                                <i class="fa-solid fa-angle-down"></i></span>
-                        </div>
+{{--                    <div class="side-bar-item">--}}
+{{--                        <div class="box">--}}
+{{--                            <span class="box-icon">--}}
+{{--                                <i class="fa-solid fa-gauge-high"></i>--}}
+{{--                            </span>--}}
+{{--                            <span class="box-name"> المحاضرات </span>--}}
+{{--                            <span class="parent-arrow">--}}
+{{--                                <i class="fa-solid fa-angle-down"></i></span>--}}
+{{--                        </div>--}}
 
-                        <div class="elements">
-                            <div class="ele-child">
-                                <a href="#" class="child-name">الطالب رقم1</a>
-                                <span class="child-arrow">
-                                    <i class="fa-solid fa-angle-down"></i></span>
-                            </div>
-                            <div class="grand-child">
-                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
-                                <a href="#" class="grand-child-name">مقبول</a>
-                            </div>
-                        </div>
-                        <div class="elements">
-                            <div class="ele-child">
-                                <a href="#" class="child-name">الطالب رقم 2</a>
-                                <span class="child-arrow">
-                                    <i class="fa-solid fa-angle-down"></i></span>
-                            </div>
-                            <div class="grand-child">
-                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
-                                <a href="#" class="grand-child-name">مقبول</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="side-bar-item">
-                        <div class="box">
-                            <span class="box-icon">
-                                <i class="fa-solid fa-gauge-high"></i>
-                            </span>
-                            <span class="box-name"> كروت الشحن </span>
-                            <span class="parent-arrow">
-                                <i class="fa-solid fa-angle-down"></i></span>
-                        </div>
+{{--                        <div class="elements">--}}
+{{--                            <div class="ele-child">--}}
+{{--                                <a href="#" class="child-name">الطالب رقم1</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="elements">--}}
+{{--                            <div class="ele-child">--}}
+{{--                                <a href="#" class="child-name">الطالب رقم 2</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
-                        <div class="elements">
-                            <div class="ele-child">
-                                <a href="#" class="child-name">الطالب رقم1</a>
-                                <span class="child-arrow">
-                                    <i class="fa-solid fa-angle-down"></i></span>
-                            </div>
-                            <div class="grand-child">
-                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
-                                <a href="#" class="grand-child-name">مقبول</a>
-                            </div>
-                        </div>
-                        <div class="elements">
-                            <div class="ele-child">
-                                <a href="#" class="child-name">الطالب رقم 2</a>
-                                <span class="child-arrow">
-                                    <i class="fa-solid fa-angle-down"></i></span>
-                            </div>
-                            <div class="grand-child">
-                                <a href="#" class="grand-child-name">ساقط مرتفع</a>
-                                <a href="#" class="grand-child-name">مقبول</a>
-                            </div>
-                        </div>
-                    </div>
-                    
+                    {{--                    --}}
+{{--                    <div class="side-bar-item">--}}
+{{--                        <div class="box">--}}
+{{--                            <span class="box-icon">--}}
+{{--                                <i class="fa-solid fa-gauge-high"></i>--}}
+{{--                            </span>--}}
+{{--                            <span class="box-name"> الامتحانات </span>--}}
+{{--                            <span class="parent-arrow">--}}
+{{--                                <i class="fa-solid fa-angle-down"></i></span>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="elements">--}}
+{{--                            <div class="ele-child">--}}
+{{--                                <a href="#" class="child-name">الطالب رقم1</a>--}}
+{{--                                <span class="child-arrow">--}}
+{{--                                    <i class="fa-solid fa-angle-down"></i></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="grand-child">--}}
+{{--                                <a href="#" class="grand-child-name">ساقط مرتفع</a>--}}
+{{--                                <a href="#" class="grand-child-name">مقبول</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="elements">--}}
+{{--                            <div class="ele-child">--}}
+{{--                                <a href="#" class="child-name">الطالب رقم 2</a>--}}
+{{--                                <span class="child-arrow">--}}
+{{--                                    <i class="fa-solid fa-angle-down"></i></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="grand-child">--}}
+{{--                                <a href="#" class="grand-child-name">ساقط مرتفع</a>--}}
+{{--                                <a href="#" class="grand-child-name">مقبول</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="side-bar-item">--}}
+{{--                        <div class="box">--}}
+{{--                            <span class="box-icon">--}}
+{{--                                <i class="fa-solid fa-gauge-high"></i>--}}
+{{--                            </span>--}}
+{{--                            <span class="box-name"> الأسئلة </span>--}}
+{{--                            <span class="parent-arrow">--}}
+{{--                                <i class="fa-solid fa-angle-down"></i></span>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="elements">--}}
+{{--                            <div class="ele-child">--}}
+{{--                                <a href="#" class="child-name">الطالب رقم1</a>--}}
+{{--                                <span class="child-arrow">--}}
+{{--                                    <i class="fa-solid fa-angle-down"></i></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="grand-child">--}}
+{{--                                <a href="#" class="grand-child-name">ساقط مرتفع</a>--}}
+{{--                                <a href="#" class="grand-child-name">مقبول</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="elements">--}}
+{{--                            <div class="ele-child">--}}
+{{--                                <a href="#" class="child-name">الطالب رقم 2</a>--}}
+{{--                                <span class="child-arrow">--}}
+{{--                                    <i class="fa-solid fa-angle-down"></i></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="grand-child">--}}
+{{--                                <a href="#" class="grand-child-name">ساقط مرتفع</a>--}}
+{{--                                <a href="#" class="grand-child-name">مقبول</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    --}}
+{{--                    <div class="side-bar-item">--}}
+{{--                        <div class="box">--}}
+{{--                            <span class="box-icon">--}}
+{{--                                <i class="fa-solid fa-gauge-high"></i>--}}
+{{--                            </span>--}}
+{{--                            <span class="box-name"> كروت الشحن </span>--}}
+{{--                            <span class="parent-arrow">--}}
+{{--                                <i class="fa-solid fa-angle-down"></i></span>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="elements">--}}
+{{--                            <div class="ele-child">--}}
+{{--                                <a href="#" class="child-name">الطالب رقم1</a>--}}
+{{--                                <span class="child-arrow">--}}
+{{--                                    <i class="fa-solid fa-angle-down"></i></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="grand-child">--}}
+{{--                                <a href="#" class="grand-child-name">ساقط مرتفع</a>--}}
+{{--                                <a href="#" class="grand-child-name">مقبول</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="elements">--}}
+{{--                            <div class="ele-child">--}}
+{{--                                <a href="#" class="child-name">الطالب رقم 2</a>--}}
+{{--                                <span class="child-arrow">--}}
+{{--                                    <i class="fa-solid fa-angle-down"></i></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="grand-child">--}}
+{{--                                <a href="#" class="grand-child-name">ساقط مرتفع</a>--}}
+{{--                                <a href="#" class="grand-child-name">مقبول</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    --}}
                     <div class="logout">
                         <div class="box">
                             <span class="box-icon">
