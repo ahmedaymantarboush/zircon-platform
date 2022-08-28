@@ -195,7 +195,7 @@ let editFun = async function (url, myData, el = null) {
         if (postData.status == 200) {
             setTimeout(function () {
                 location.reload();
-            }, 1500);
+            }, 1000);
         } else {
         }
         return responseData;
