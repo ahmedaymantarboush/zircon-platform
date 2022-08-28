@@ -1,5 +1,6 @@
 if($(" select")){
     $(" select").selectpicker();
+
 }
 
 /////////////////////
