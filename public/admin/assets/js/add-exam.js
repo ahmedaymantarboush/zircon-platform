@@ -344,7 +344,22 @@ $(document).on("click", ".deleteBtn", function() {
         $(question_box).find(".delete-warning").slideDown(400);
     }
 });
-$(document).on("click", ".btn-danger", function() {
+$(document).on("click", ".btn-danger",async function() {
+    let queID = $(this).parent().closest(".question-box").attr('data-id');
+    form3 = new FormData()
+    form3.append('data', JSON.stringify({
+        'id': queID
+    }))
+    let delQuestion = await fetch(APP_URL + "/api/questions/deleteFromExam", {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "X-CSRF-TOKEN": window.csrf_token.value,
+        },
+        body: form3,
+    })
+    let delQuestionData = await delQuestion.json();
+    console.log(delQuestionData);
     let question_box = $(this).parent().closest(".question-box");
     $(question_box).remove();
     updataCounter();
@@ -425,7 +440,7 @@ $(document).on('change','select.staticQuestion',async function (){
             body: form3,
         })
         let addQuestionData = await addQuestion.json();
-        console.log(addQuestionData);
+
         $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
     }else {
         let queID = $(this).parent().closest(".question-box").attr('data-id');
@@ -446,7 +461,7 @@ $(document).on('change','select.staticQuestion',async function (){
             body: form3,
         })
         let addQuestionData = await addQuestion.json();
-        console.log(addQuestionData);
+
     }
     let question_box = $(this).parent().closest(".question-box");
     var selectedValue = $(this).find("option:selected").text();
