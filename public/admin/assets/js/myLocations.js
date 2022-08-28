@@ -151,7 +151,6 @@ document.querySelector("table").addEventListener("click", async function (e) {
     };
     let inputId = document.querySelector("#delete-location #trId");
     inputId.value = dataId;
-    console.log(inputId);
     let delCenter = document.querySelector(".del-lesson");
     delCenter.innerHTML = e.target
         .closest("tr")
