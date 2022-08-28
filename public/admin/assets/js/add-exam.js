@@ -174,7 +174,7 @@ $(".add_question").click(function() {
     } else if ($("select.exam_type").val() == 0) {
         partOptions = "";
         parts.forEach((part) => {
-            partOptions += `<option value='${part}'>${part}</option>\n`;
+            partOptions += `<option value='${part[0]}'>${part[1]}</option>\n`;
         });
         questionOptions = "";
         questions.forEach((question) => {
@@ -524,6 +524,7 @@ $(document).on('change','select.dynamicQuestion',async function (){
     var selectedValue = $(this).find("option:selected").text();
     $(question_box).find(".que_title").text(selectedValue);
 });
+$(document).on('');
 $(document).ready(function (){
     $('select.dynamicQuestion').each(function (){
         let question_box = $(this).parent().closest(".question-box");
