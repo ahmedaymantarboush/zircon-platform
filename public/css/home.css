@@ -1400,10 +1400,10 @@ div.waves {
     display: flex;
     justify-content: center;
     width: 100%;
-    font-size: 4.2rem;
+    font-size: 4.6rem;
     color: #60d069;
 }
 .noLecImg {
-    width: 80%;
+    width: 50%;
     margin: 2rem auto 0;
 }
