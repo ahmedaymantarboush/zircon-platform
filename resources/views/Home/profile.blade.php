@@ -194,7 +194,7 @@
                 <p class='finishText'></p>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn myButton">شحن رصيد</button>
+                <button type="button" class="btn myButton">شحن رصيد</button>
                 <button type="button" class="btn secBtn" data-dismiss="modal">إغلاق</button>
             </div>
         </form>
@@ -323,20 +323,20 @@ $passedExams = $user
 ->get();
 @endphp
 <script>
-exams = @php echo $passedExams->pluck('percentage');
+exams = @php echo $passedExams - > pluck('percentage');
 echo ";\n";
 @endphp
-dates = @php echo $passedExams->pluck('ended_at');
+dates = @php echo $passedExams - > pluck('ended_at');
 echo ";\n";
 @endphp
 correctAnswers = {
     {
-        $user->answerdQuestions()->where('correct', 1)->count()
+        $user - > answerdQuestions() - > where('correct', 1) - > count()
     }
 };
 wrongAnswers = {
     {
-        $user->answerdQuestions()->where('correct', 0)->count()
+        $user - > answerdQuestions() - > where('correct', 0) - > count()
     }
 };
 </script>
