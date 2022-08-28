@@ -376,7 +376,7 @@
                 </div>
                 @if (request()->session()->has('success') &&
                 !request()->session()->get('success'))
-                <p class="{{ request()->session()->get('success')? 'finishChargeText': 'wrongChargeText' }}">
+                <p class="finishText {{ request()->session()->get('success')? 'finishChargeText': 'wrongChargeText' }}">
                     {{ request()->session()->get('msg') }}</p>
                 @endif
             </div>

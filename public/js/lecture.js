@@ -217,6 +217,8 @@ document
             form,
             e
         );
+        let finishText = document.querySelector(".finishText");
+        finishText.innerHTML = myResponse.message;
         // let objData = myResponse.data;
         console.log(myResponse);
     });
