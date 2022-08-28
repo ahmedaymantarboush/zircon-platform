@@ -25,6 +25,7 @@ class StoreTestimonialRequest extends FormRequest
      */
     public function rules()
     {
+        dd(request());
         return [
             'name' => ['required','string'],
             'image' => ['nullable','image'],
