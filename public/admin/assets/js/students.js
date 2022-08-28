@@ -236,3 +236,26 @@ document.querySelector("table").addEventListener("click", function (e) {
         .querySelector(".question-code")
         .getAttribute("data-bs-original-title");
 });
+printPage = document.querySelector("#printPage");
+printPage.style.display = "none";
+
+function PrintElement(selector, customStyles = "") {
+    Popup(document.querySelector(selector).outerHTML, customStyles);
+}
+
+function Popup(data, customStyles = "") {
+    const printPageWindow = printPage.contentWindow;
+
+    const printPageDocument = printPageWindow.document;
+    printPageDocument.querySelector(
+        "body"
+    ).innerHTML = `<style>${customStyles}</style>${data}`;
+    printPageWindow.focus();
+    printPageWindow.print();
+    printPageWindow.close();
+}
+
+let printBtn = document.querySelector(".printBtn");
+printBtn.addEventListener("click", function () {
+    PrintElement(".profileDetails");
+});
