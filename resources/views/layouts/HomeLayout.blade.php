@@ -240,12 +240,13 @@
         </div>
 
     </footer>
+
     <script src="{{ URL::asset('js/all.min.js') }}"></script>
-    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
     <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
 
+    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.min.js"
         integrity="sha512-+VS2+Nl1Qit71a/lbncmVsWOZ0BmPDkopw5sXAS2W+OfeceCEd9OGTQWjgVgP5QaMV4ddqOIW9XLW7UVFzkMAw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

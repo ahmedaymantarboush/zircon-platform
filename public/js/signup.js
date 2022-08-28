@@ -37,7 +37,7 @@ let errorPopup = function (errorMessage) {
     <div class='errorMessageModal'>
     ${errorMessage}
     </div>
-    
+
     `;
     document.body.insertAdjacentHTML("afterbegin", html);
     removePopup(document.querySelector(".errorMessageModal"));
@@ -70,22 +70,22 @@ let regApi = async function (url, myData, el = null) {
     }
 };
 // calling
-document.querySelector("#form").addEventListener("submit", function (e) {
-    // e.preventDefault();
-    let register = {
-        name: nameInp.value,
-        email: emailInp.value,
-        password: passwordInp.value,
-        password_confirmation: passwordConfirmationInp.value,
-        phoneNumber: phoneNumberInp.value,
-        parentPhoneNumber: parentPhoneNumberInp.value,
-        grade: gradeInp.value,
-        governorate: governorateInp.value,
-        center: centerInp.value,
-    };
+// document.querySelector("#form").addEventListener("submit", function (e) {
+//     // e.preventDefault();
+//     let register = {
+//         name: nameInp.value,
+//         email: emailInp.value,
+//         password: passwordInp.value,
+//         password_confirmation: passwordConfirmationInp.value,
+//         phoneNumber: phoneNumberInp.value,
+//         parentPhoneNumber: parentPhoneNumberInp.value,
+//         grade: gradeInp.value,
+//         governorate: governorateInp.value,
+//         center: centerInp.value,
+//     };
 
-    form = new FormData();
-    form.append("data", JSON.stringify(register));
+//     form = new FormData();
+//     form.append("data", JSON.stringify(register));
 
-    regApi("http://127.0.0.1:8000/api/register/", form, e);
-});
+//     regApi("http://127.0.0.1:8000/api/register/", form, e);
+// });
