@@ -203,6 +203,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     let objData = myResponse.data;
+    console.log(objData);
     let cardImage = document.querySelector("#studentCard .profileImg img");
     let profileName = document.querySelector("#studentCard .profileName");
     let profileType = document.querySelector("#studentCard .profileType");
