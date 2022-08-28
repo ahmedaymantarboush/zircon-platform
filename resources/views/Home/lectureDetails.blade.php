@@ -1,4 +1,10 @@
 @extends('layouts.HomeLayout')
+@section('seo')
+    <meta name="keywords" content="{{$lecture->meta_keywords}}">
+    <meta name="description" content="{{$lecture->meta_description}}">
+    {{-- <meta name="author" content="{{$lecture->publisher->name}}"> --}}
+    <meta name="author" content="Developer & Designer : Zircon Tech">
+@endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/lecture.css') }} " class="rel">
     <link rel="stylesheet" href="{{ asset('css/lecture-responsive.css') }} " class="rel">
