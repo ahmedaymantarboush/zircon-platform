@@ -1,4 +1,6 @@
-$(" select").selectpicker();
+if($(" select")){
+    $(" select").selectpicker();
+}
 
 /////////////////////
 ////////////////////
