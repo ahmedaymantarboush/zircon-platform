@@ -271,7 +271,8 @@
                 <a data-bs-toggle="modal" data-bs-target="#editCode" class="dropdown-item editCode">تعديل كود الطالب</a>
             </li>
             <li>
-                <a data-bs-toggle="modal" data-bs-target="#deleteStudent" class="dropdown-item">مسح الطالب</a>
+                <a data-bs-toggle="modal" data-bs-target="#deleteStudent" class="dropdown-item delete-lec">مسح
+                    الطالب</a>
             </li>
         </ul>
     </div>
