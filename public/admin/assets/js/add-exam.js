@@ -533,23 +533,44 @@ $(document).on('change keyup paste','.countInput',async function (){
     let countValue = $(this).val();
     let question_box = $(this).parent().closest(".question-box");
     let partSelect = $(question_box).find("select.dynamicQuestion").val();
-    form3 = new FormData()
-    form3.append('data', JSON.stringify({
-        'exam': examID,
-        'part': partSelect,
-        'count': parseInt(countValue),
-        'id': queID
-    }))
-    let addQuestion = await fetch(APP_URL + "/api/questions/zircon/UpdateInExam", {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "X-CSRF-TOKEN": window.csrf_token.value,
-        },
-        body: form3,
-    })
-    let addQuestionData = await addQuestion.json();
-    console.log(addQuestionData);
+    if(!$(this).parent().closest(".question-box").attr('data-id')){
+        //Ajax
+        form3 = new FormData()
+        form3.append('data', JSON.stringify({
+            'exam': examID,
+            'part': partSelect,
+            'count': parseInt(countValue)
+        }))
+        let addQuestion = await fetch(APP_URL + "/api/questions/zircon/addToExam", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: form3,
+        })
+        let addQuestionData = await addQuestion.json();
+        console.log(addQuestionData);
+        $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
+    }else {
+        form3 = new FormData()
+        form3.append('data', JSON.stringify({
+            'exam': examID,
+            'part': partSelect,
+            'count': parseInt(countValue),
+            'id': queID
+        }))
+        let addQuestion = await fetch(APP_URL + "/api/questions/zircon/UpdateInExam", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: form3,
+        })
+        let addQuestionData = await addQuestion.json();
+        console.log(addQuestionData);
+    }
 });
 $(document).ready(function (){
     $('select.dynamicQuestion').each(function (){
