@@ -1137,3 +1137,10 @@ div.waves {
         color: red;
     }
 }
+.danger {
+    color: #ea0606;
+}
+
+.success {
+    color: #9ed616;
+}
