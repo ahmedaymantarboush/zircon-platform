@@ -26,7 +26,7 @@ class UpdateTestimonialRequest extends FormRequest
     public function rules()
     {
         return [
-            'newStudentName' => ['required','string'],
+            'newName' => ['required','string'],
             'newImage' => ['nullable','image'],
             'newDegree' => ['required','numeric'],
             'newContent' => ['required','string'],
