@@ -269,31 +269,9 @@ document
             ? finishText.classList.add("success")
             : finishText.classList.add("danger");
         finishText.innerHTML = myResponse.message;
+        console.log(myResponse);
         // let objData = myResponse.data;
     });
-
-    document
-    .querySelector(".chargeForm")
-    .addEventListener("submit", async function (e) {
-        e.preventDefault();
-        let dataCode = document.querySelector(".chargeField input ").value;
-        let sendObj = {
-            code: dataCode,
-        };
-
-        form = new FormData();
-        form.append("data", JSON.stringify(sendObj));
-
-        let myResponse = await editFun(
-            `${APP_URL}/api/users/recharge`,
-            form,
-            e
-        );
-        let finishText = document.querySelector(".finishText");
-        myResponse.success
-            ? finishText.classList.add("success")
-            : finishText.classList.add("danger");
-        finishText.innerHTML = myResponse.message;
-
-        // let objData = myResponse.data;
-    });
+    
+    console.log(88888);
+    
