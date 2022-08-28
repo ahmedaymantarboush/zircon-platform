@@ -482,6 +482,9 @@ $(document).on('change','select.dynamicQuestion',async function (){
     let partSelect = $(this).val();
     let question_box = $(this).parent().closest(".question-box");
     let countValue = $(question_box).find(".countInput").val();
+    if(countValue==null){
+        return 0;
+    }
     if(!$(this).parent().closest(".question-box").attr('data-id')){
         //Ajax
         form3 = new FormData()
@@ -524,7 +527,12 @@ $(document).on('change','select.dynamicQuestion',async function (){
     var selectedValue = $(this).find("option:selected").text();
     $(question_box).find(".que_title").text(selectedValue);
 });
-$(document).on('');
+$(document).on('change input','.countInput',function (){
+    let question_box = $(this).parent().closest(".question-box");
+    let selectBoxx =$(question_box).find('select.dynamicQuestion');
+    let selectVal= $(selectBoxx).find("option:selected").val();
+    $(selectBoxx).val(selectVal);
+});
 $(document).ready(function (){
     $('select.dynamicQuestion').each(function (){
         let question_box = $(this).parent().closest(".question-box");
