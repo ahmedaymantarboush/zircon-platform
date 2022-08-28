@@ -31,3 +31,14 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
 /**text editor */
+
+document.querySelector("table").addEventListener("click", function (e) {
+    console.log(e.target.closest("tr").querySelector(".question-code"));
+    if (!e.target.classList.contains("delete-lec")) return;
+    let testi = document.querySelector(".del-lesson");
+    testi.innerHTML = e.target
+        .closest("tr")
+        .querySelector(".question-code")
+        .getAttribute("data-bs-original-title");
+    console.log(e.target.closest("tr").querySelector(".question-code"));
+});

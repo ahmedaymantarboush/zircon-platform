@@ -32,13 +32,3 @@ let barcodeText = document.querySelector(".barcodeText");
 JsBarcode("#profileBarCode", barcodeText.textContent);
 let delBtns = document.querySelectorAll(".delete-lec");
 let delPopupParagraph = document.querySelector(".del-lesson");
-
-document.querySelector("table").addEventListener("click", function (e) {
-    if (!e.target.classList.contains("delete-lec")) return;
-    let testi = document.querySelector(".del-lesson");
-    testi.innerHTML = e.target
-        .closest("tr")
-        .querySelector(".question-code")
-        .getAttribute("data-bs-original-title");
-    console.log(e.target.closest("tr").querySelector(".question-code"));
-});

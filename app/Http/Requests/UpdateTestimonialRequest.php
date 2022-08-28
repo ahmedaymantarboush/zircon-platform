@@ -26,14 +26,14 @@ class UpdateTestimonialRequest extends FormRequest
     public function rules()
     {
         return [
-            'studentName' => ['required','string'],
-            'image' => ['nullable','image'],
-            'degree' => ['required','numeric'],
-            'content' => ['required','string'],
-            'subjectDegree' => ['required','numeric'],
-            'subject' => ['required','exists:subjects,id'],
-            'grade' => ['required','exists:grades,id'],
-            'student' => ['nullable'],
+            'newName' => ['required','string'],
+            'newImage' => ['nullable','image'],
+            'newDegree' => ['required','numeric'],
+            'newContent' => ['required','string'],
+            'newSubjectDegree' => ['required','numeric'],
+            'newSubject' => ['required','exists:subjects,id'],
+            'newHrade' => ['required','exists:grades,id'],
+            'newStudent' => ['nullable'],
         ];
     }
 }

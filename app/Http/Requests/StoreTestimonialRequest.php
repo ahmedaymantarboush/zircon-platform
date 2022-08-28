@@ -26,7 +26,7 @@ class StoreTestimonialRequest extends FormRequest
     public function rules()
     {
         return [
-            'studentName' => ['required','string'],
+            'name' => ['required','string'],
             'image' => ['nullable','image'],
             'degree' => ['required','numeric'],
             'content' => ['required','string'],
