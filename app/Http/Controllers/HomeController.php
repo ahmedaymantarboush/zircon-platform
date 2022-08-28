@@ -24,13 +24,21 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $grage1 = Lecture::where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 1])->first();
+        $grage2 = Lecture::where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 2])->first();
         $grade3 = Lecture::where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 3])->get();
-        $lectures = [
-            1 => Lecture::where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 1])->first(),
-            2 => Lecture::where('published', true)->orderBy('id', 'desc')->where(['grade_id' => 2])->first(),
-            3 => $grade3[0] ?? null,
-            4 => count($grade3) > 1 ? $grade3[1] : null,
-        ];
+        $lectures = [];
+        if ($grage1):
+            $lectures[] = $grage1;
+        endif;
+        if ($grage2):
+            $lectures[] = $grage2;
+        endif;
+        for ($i = 0; $i < 2;$i++):
+            if (isset($grage3[$i])):
+                $lectures[] = $grage1;
+            endif;
+        endfor;
         return view('index',compact('lectures'));
     }
 
