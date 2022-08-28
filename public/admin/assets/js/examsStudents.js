@@ -66,7 +66,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/users/getStudentCardData`,
+        `${APP_URL}/api/users/getStudentCardData`,
         form,
         e
     );

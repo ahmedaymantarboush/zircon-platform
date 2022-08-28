@@ -437,6 +437,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{route('admin.centers.delete')}}" method="POST" class='delCenter'>
+                <input type="hidden" name="id" id='trId'>
+
                 @csrf
                 <div class="modal-body">
                     <p class="sure-to-del">
