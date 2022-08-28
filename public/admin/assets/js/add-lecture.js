@@ -13,6 +13,7 @@ let rightBtn = document.querySelector(".right-btn");
 let leftBtn = document.querySelector(".left-btn");
 let itemBody = document.querySelectorAll(".item-body");
 let currentIndex = 0;
+
 function removeActive() {
     tabsBtn.forEach((e) => {
         e.classList.remove("active");
@@ -21,15 +22,16 @@ function removeActive() {
         ele.classList.remove("active");
     });
 }
+
 function addActive(curr) {
     tabsBtn[curr].classList.add("active");
     itemBody[curr].classList.add("active");
 }
 
-let tabs = function () {
+let tabs = function() {
     // while click on tabs
     tabsBtn.forEach((ele) => {
-        ele.addEventListener("click", function (e) {
+        ele.addEventListener("click", function(e) {
             e.preventDefault();
 
             // add active to tab
@@ -43,7 +45,7 @@ let tabs = function () {
     });
 
     //while click to btn
-    rightBtn.addEventListener("click", function () {
+    rightBtn.addEventListener("click", function() {
         if (currentIndex <= 0) {
             currentIndex = tabsBtn.length - 1;
             removeActive();
@@ -54,7 +56,7 @@ let tabs = function () {
         removeActive();
         addActive(currentIndex);
     });
-    leftBtn.addEventListener("click", function () {
+    leftBtn.addEventListener("click", function() {
         if (currentIndex >= tabsBtn.length - 1) {
             currentIndex = 0;
             removeActive();
@@ -70,7 +72,7 @@ let tabs = function () {
 tabs();
 
 document.querySelectorAll("input").forEach((ele) => {
-    ele.addEventListener("keypress", function (e) {
+    ele.addEventListener("keypress", function(e) {
         let key = e.charCode || e.keyCode || 0;
         if (key == 13) {
             e.preventDefault();
@@ -79,14 +81,14 @@ document.querySelectorAll("input").forEach((ele) => {
 });
 // text editor
 ClassicEditor.create(document.querySelector(".text-editor"), {
-    language: {
-        // The UI will be English.
-        ui: "en",
+        language: {
+            // The UI will be English.
+            ui: "en",
 
-        // But the content will be edited in Arabic.
-        content: "ar",
-    },
-})
+            // But the content will be edited in Arabic.
+            content: "ar",
+        },
+    })
     .then((editor) => {
         const wordCountPlugin = editor.plugins.get("WordCount");
         const wordCountWrapper = document.getElementById("word-count");
@@ -94,16 +96,16 @@ ClassicEditor.create(document.querySelector(".text-editor"), {
         wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
         window.editor = editor;
     })
-    .catch((err) => { });
+    .catch((err) => {});
 ClassicEditor.create(document.querySelector(".text-editor2"), {
-    language: {
-        // The UI will be English.
-        ui: "en",
+        language: {
+            // The UI will be English.
+            ui: "en",
 
-        // But the content will be edited in Arabic.
-        content: "ar",
-    },
-})
+            // But the content will be edited in Arabic.
+            content: "ar",
+        },
+    })
     .then((editor) => {
         const wordCountPlugin = editor.plugins.get("WordCount");
         const wordCountWrapper = document.getElementById("word-count");
@@ -111,7 +113,7 @@ ClassicEditor.create(document.querySelector(".text-editor2"), {
         wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
         window.editor = editor;
     })
-    .catch((err) => { });
+    .catch((err) => {});
 
 //////////////
 //////////////
@@ -120,7 +122,7 @@ ClassicEditor.create(document.querySelector(".text-editor2"), {
 
 $("select")
     .selectpicker()
-    .ready(function () {
+    .ready(function() {
         $(".search-select-box select").selectpicker();
     });
 
@@ -143,7 +145,7 @@ let threeValue = document.querySelector(
 let optionThree = document.querySelectorAll(
     "#select-subject-parent select option"
 );
-seletBoxTwo.addEventListener("change", function () {
+seletBoxTwo.addEventListener("change", function() {
     let content = twoValue.textContent;
     if (content == "Nothing selected") {
         twoValue.textContent = optionTwo[0].textContent.trim();
@@ -176,10 +178,10 @@ let statusVid = document.querySelector(".status");
 let checkStatusInput = document.getElementById("status");
 if (checkStatusInput.checked) {
     statusVid.classList.add("stat-active");
-}
-else {
+} else {
     statusVid.classList.remove("stat-active");
 }
+
 function checkInStatus() {
     statusVid.classList.toggle("stat-active");
     if (statusVid.classList.contains("stat-active")) {
@@ -193,7 +195,7 @@ statusVid.addEventListener("click", checkInStatus);
 
 // add image in means
 
-var loadFile = function (event) {
+var loadFile = function(event) {
     var image = document.getElementById("output");
     image.src = URL.createObjectURL(event.target.files[0]);
 };
@@ -207,7 +209,7 @@ const ul = document.querySelector(".tags-ul"),
     input = document.querySelector(".tag-input"),
     inputTags = document.getElementById("input-tags");
 let tags = inputTags.value ? inputTags.value.split(",") : [];
-let tagsInInput = function () {
+let tagsInInput = function() {
     inputTags.value = tags.reverse().join(",");
 };
 createTag();
@@ -222,12 +224,14 @@ function createTag(e) {
         });
     tagsInInput();
 }
+
 function remove(element, tag) {
     let index = tags.indexOf(tag);
     tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
     element.parentElement.remove();
     tagsInInput();
 }
+
 function addTag(e) {
     if (e.key == "Enter") {
         let tag = e.target.value.replace(/\s+/g, " ");
@@ -264,7 +268,7 @@ let lecPrice = document.querySelector(".lec-price"),
     lecDis = document.querySelector(".lec-dis"),
     disText = document.querySelector(".price-discount");
 
-let maxPrice = function () {
+let maxPrice = function() {
     lecDis.max = Number(lecPrice.value);
     if (Number(lecDis.value) < 0) {
         lecDis.value = 0;

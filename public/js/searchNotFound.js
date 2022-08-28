@@ -1,13 +1,13 @@
 ////////////////////////
 // main functions /////
 //////////////////////
-let toggleElement = function (ele, className) {
+let toggleElement = function(ele, className) {
     ele.classList.toggle(className);
 };
-let removeElemment = function (ele, className) {
+let removeElemment = function(ele, className) {
     ele.classList.remove(className);
 };
-let addElement = function (ele, className) {
+let addElement = function(ele, className) {
     ele.classList.add(className);
 };
 
@@ -15,16 +15,16 @@ let addElement = function (ele, className) {
 ///// start navbar /////////////////
 ///////////////////////////////////
 // [01- dark and light ]
-let funChangeImagesDark = function () {
+let funChangeImagesDark = function() {
     let errorImage = document.querySelector(".errorImage img");
     if (document.documentElement.classList.contains("dark")) {
-        errorImage.setAttribute("src", "public/imgs/no-result-search_dark.png");
+        errorImage.setAttribute("src", APP_URL + "/public/imgs/no-result-search_dark.png");
     } else {
-        errorImage.setAttribute("src", "public/imgs/no-result-search.png");
+        errorImage.setAttribute("src", APP_URL + "/public/imgs/no-result-search.png");
     }
 };
 
-let addStyleToLocaleStorage = function () {
+let addStyleToLocaleStorage = function() {
     if (localStorage.getItem("style") === null) {
         localStorage.setItem("style", "dark");
     } else {
@@ -32,14 +32,14 @@ let addStyleToLocaleStorage = function () {
     }
 };
 
-let addDarkClassToHtml = function () {
+let addDarkClassToHtml = function() {
     if (localStorage.getItem("style") === null) {
         document.documentElement.classList.remove("dark");
     } else {
         document.documentElement.classList.add(localStorage.getItem("style"));
     }
 };
-let updateUI = function () {
+let updateUI = function() {
     addStyleToLocaleStorage();
     addDarkClassToHtml();
     funChangeImagesDark();
@@ -54,14 +54,14 @@ moon.addEventListener("click", updateUI);
 let toggleBarBtn = document.querySelector(".toggleBarBtn");
 let bigLeft = document.querySelector(".bigLeft");
 
-toggleBarBtn.addEventListener("click", function () {
+toggleBarBtn.addEventListener("click", function() {
     toggleElement(bigLeft, "activeNavMenu");
 });
 
 //[03- progress nav]
 let navBar = document.querySelector(".myNav");
 let progNav = document.querySelector(".navProgChild");
-let navProgFunction = function () {
+let navProgFunction = function() {
     let { scrollTop, scrollHeight } = document.documentElement;
     let myWidth = (scrollTop / (scrollHeight - window.innerHeight)) * 100;
 
