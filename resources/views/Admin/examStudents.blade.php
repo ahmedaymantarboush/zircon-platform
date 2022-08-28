@@ -473,6 +473,8 @@
         </div>
     </div>
 </div>
+@endsection
+@section('javsscript')
 <script src="{{ asset('admin/assets/js/jsBarCode.all') }}.min.js"></script>
 <!--font awesome-->
 <!--font awesome-->
@@ -497,7 +499,4 @@
 <!-- main js file -->
 
 <script src="{{ asset('admin/assets/js/examsStudents.js') }}"></script>
-@endsection
-@section('javsscript')
-
 @endsection
