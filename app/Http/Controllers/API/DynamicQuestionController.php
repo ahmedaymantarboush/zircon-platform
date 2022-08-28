@@ -56,7 +56,7 @@ class DynamicQuestionController extends Controller
         endif;
 
         $dynamicQuestion = DynamicQuestion::create([
-            'exam_id' => $exam->id,
+            'exam_id' => $examId,
             'part_id' => $data['part'],
             'count' => $data['count'],
             'level' => $data['level'] ?? $exam->exam_hardness,
