@@ -489,7 +489,7 @@ $(document).on('change','select.dynamicQuestion',async function (){
         form3.append('data', JSON.stringify({
             'exam': examID,
             'part': partSelect,
-            'count': countValue
+            'count': parseInt(countValue)
         }))
         let addQuestion = await fetch(APP_URL + "/api/questions/zircon/addToExam", {
             method: "POST",
@@ -508,7 +508,7 @@ $(document).on('change','select.dynamicQuestion',async function (){
         form3.append('data', JSON.stringify({
             'exam': examID,
             'part': partSelect,
-            'count': countValue,
+            'count': parseInt(countValue),
             'id': queID
         }))
         let addQuestion = await fetch(APP_URL + "/api/questions/zircon/UpdateInExam", {
