@@ -32,6 +32,9 @@
     }
 }
 @media (max-width: 991.5px) {
+    .errorImage {
+        width: 50%;
+    }
     html {
         font-size: 60%;
     }
@@ -165,6 +168,9 @@
     }
 }
 @media (max-width: 767px) {
+    .errorImage {
+        width: 60%;
+    }
     .filterParent {
         width: 50%;
     }
@@ -183,6 +189,9 @@
     }
 }
 @media (max-width: 500px) {
+    .errorImage {
+        width: 80%;
+    }
     .filterParent {
         width: 65%;
     }
