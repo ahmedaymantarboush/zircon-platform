@@ -361,7 +361,7 @@
 <div class="modal fade chargeModal" id="charge" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form method="POST" action="{{ route('balance.recharge') }}" class="modal-content">
+        <form method="POST" action="{{ route('balance.recharge') }}" class="modal-content" class='chargeForm'>
             @csrf
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">شحن رصيد</h5>

@@ -176,3 +176,47 @@ $(document).ready(function () {
         $("#notEnough").modal("hide");
     });
 });
+
+//////// Ajax
+
+let editFun = async function (url, myData, el = null) {
+    try {
+        let postData = await fetch(url, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: myData,
+        });
+
+        let responseData = await postData.json();
+
+        if (postData.status == 200) {
+        }
+        return responseData;
+
+        throw new Error(responseData);
+    } catch (err) {}
+};
+
+document
+    .querySelector("chargeForm")
+    .addEventListener("submit", async function (e) {
+        e.preventDefault();
+        let dataCode = document.querySelector(".chargeField input ").value;
+        let sendObj = {
+            code: dataCode,
+        };
+
+        form = new FormData();
+        form.append("data", JSON.stringify(sendObj));
+
+        let myResponse = await editFun(
+            `${APP_URL}/api/users/recharge`,
+            form,
+            e
+        );
+        let objData = myResponse.data;
+        console.log(objData);
+    });
