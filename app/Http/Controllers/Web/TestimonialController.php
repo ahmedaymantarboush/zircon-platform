@@ -134,7 +134,6 @@ class TestimonialController extends Controller
             return abort(403);
         endif;
         $data = request()->all();
-        dd($data);
         $testimonial = Testimonial::find($data['id']);
         if (!$testimonial):
             return abort(404);
