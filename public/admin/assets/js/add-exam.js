@@ -116,7 +116,7 @@ $(".add_question").click(function() {
     } else {
         finalNamber = 1;
     }
-    if ($(".exam_type").val() == 1) {
+    if ($("select.exam_type").val() == 1) {
         //////// Dynamic question //////////
         partOptions = "";
         parts.forEach((part) => {
@@ -171,7 +171,7 @@ $(".add_question").click(function() {
                                         </div>
                                     </div>
                                 </div>`);
-    } else if ($(".exam_type").val() == 0) {
+    } else if ($("select.exam_type").val() == 0) {
         partOptions = "";
         parts.forEach((part) => {
             partOptions += `<option value='${part}'>${part}</option>\n`;
