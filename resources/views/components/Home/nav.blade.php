@@ -261,3 +261,11 @@
     </div>
     </div>
 </nav>
+<script>
+window.addEventListener("load", function() {
+    setTimeout(function() {
+        document.getElementsByClassName("preloader")[0].style.opacity = "0";
+        document.getElementsByClassName("preloader")[0].style.zIndex = "-1";
+    }, 1000);
+});
+</script>
