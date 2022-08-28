@@ -151,7 +151,7 @@ $(".add_question").click(function() {
                                                 </div>
                                                 <div class="question-details">
                                                     <label for="formGroupExampleInput" class="form-label input_label" style="margin:0;">الجزئية الدراسية للسؤال :</label>
-                                                    <select class="form-select form-select-lg search-select-box select_part " name="part_${finalNamber}" id="formGroupExampleInput" data-live-search="true">
+                                                    <select class="form-select form-select-lg search-select-box select_part dynamicQuestion" name="part_${finalNamber}" id="formGroupExampleInput" data-live-search="true">
                                                         <option value="" selected>
                                                             اختر الجزئية التعليمية
                                                         </option>
@@ -161,7 +161,7 @@ $(".add_question").click(function() {
                                             class="form-label input_label">عدد الأسئلة:
                                         </label>
                                         <input type="text" name='count_${finalNamber}'
-                                            class="form-control-lg form-control"
+                                            class="form-control-lg form-control countInput"
                                             id="formGroupExampleInput"
                                             placeholder="ادخل عدد الأسئلة"
                                             style="font-size: 15px">
@@ -419,7 +419,7 @@ $(document).on("click", ".btn-outline-secondary", function() {
 //     let objData = myResponse.data;
 // });
 ////////////////////////////////////////////////////////////////////////////
-//////////////////// Add Static Question With Ajax ////////////////////////
+//////////////////////// Static Question With Ajax ////////////////////////
 //////////////////////////////////////////////////////////////////////////
 $(document).on('change','select.staticQuestion',async function (){
     let examID = $("input[name='id']").attr('value');
@@ -469,6 +469,61 @@ $(document).on('change','select.staticQuestion',async function (){
 });
 $(document).ready(function (){
     $('select.staticQuestion').each(function (){
+        let question_box = $(this).parent().closest(".question-box");
+        var selectedValue = $(this).find("option:selected").text();
+        $(question_box).find(".que_title").text(selectedValue);
+    });
+});
+////////////////////////////////////////////////////////////////////////////
+//////////////////////// Dynamic Question With Ajax ///////////////////////
+//////////////////////////////////////////////////////////////////////////
+$(document).on('change','select.dynamicQuestion',async function (){
+    let examID = $("input[name='id']").attr('value');
+    let partSelect = $(this).val();
+    let question_box = $(this).parent().closest(".question-box");
+    let countValue = $(question_box).find(".countInput").val();
+    if(!$(this).parent().closest(".question-box").attr('data-id')){
+        //Ajax
+        form3 = new FormData()
+        form3.append('data', JSON.stringify({
+            'exam': examID,
+            'part': partSelect,
+            'count': countValue
+        }))
+        let addQuestion = await fetch(APP_URL + "/api/questions/zircon/addToExam", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: form3,
+        })
+        let addQuestionData = await addQuestion.json();
+        $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
+    }else {
+        let queID = $(this).parent().closest(".question-box").attr('data-id');
+        form3 = new FormData()
+        form3.append('data', JSON.stringify({
+            'exam': examID,
+            'part': partSelect,
+            'count': countValue,
+            'id': queID
+        }))
+        let addQuestion = await fetch(APP_URL + "/api/questions/UpdateInExam", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "X-CSRF-TOKEN": window.csrf_token.value,
+            },
+            body: form3,
+        })
+        let addQuestionData = await addQuestion.json();
+    }
+    var selectedValue = $(this).find("option:selected").text();
+    $(question_box).find(".que_title").text(selectedValue);
+});
+$(document).ready(function (){
+    $('select.dynamicQuestion').each(function (){
         let question_box = $(this).parent().closest(".question-box");
         var selectedValue = $(this).find("option:selected").text();
         $(question_box).find(".que_title").text(selectedValue);
