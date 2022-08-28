@@ -527,11 +527,29 @@ $(document).on('change','select.dynamicQuestion',async function (){
     var selectedValue = $(this).find("option:selected").text();
     $(question_box).find(".que_title").text(selectedValue);
 });
-$(document).on('change input','.countInput',function (){
+$(document).on('change keyup paste','.countInput',async function (){
+    let queID = $(this).parent().closest(".question-box").attr('data-id');
+    let examID = $("input[name='id']").attr('value');
+    let countValue = $(this).val();
     let question_box = $(this).parent().closest(".question-box");
-    let selectBoxx =$(question_box).find('select.dynamicQuestion');
-    let selectVal= $(selectBoxx).find("option:selected").val();
-    $(selectBoxx).val(selectVal);
+    let partSelect = $(question_box).find("select.dynamicQuestion").val();
+    form3 = new FormData()
+    form3.append('data', JSON.stringify({
+        'exam': examID,
+        'part': partSelect,
+        'count': parseInt(countValue),
+        'id': queID
+    }))
+    let addQuestion = await fetch(APP_URL + "/api/questions/zircon/UpdateInExam", {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "X-CSRF-TOKEN": window.csrf_token.value,
+        },
+        body: form3,
+    })
+    let addQuestionData = await addQuestion.json();
+    console.log(addQuestionData);
 });
 $(document).ready(function (){
     $('select.dynamicQuestion').each(function (){
