@@ -1,10 +1,10 @@
 @extends('layouts.adminLayout')
 
 @section('css')
-    <!-- موجود هنا بس  -->
+    {{-- <!-- موجود هنا بس  --> --}}
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/add-lecture.css') }}" />
-    <!-- موجود في هنا والايديت  -->
+    {{-- <!-- موجود في هنا والايديت  --> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css" />
 @endsection
 
@@ -20,7 +20,7 @@
                 الرجوع الي قائمة المحاضرات
                 <span><i class="fa-solid fa-arrow-left-long"></i></span></a>
         </div>
-        <!-- start tabs  -->
+        {{-- <!-- start tabs  --> --}}
         <div class="sections-tabs">
             <button class="base tab-item active" data-index="0">
                 <span><i class="fa-solid fa-pen-to-square"></i></span>
@@ -43,7 +43,7 @@
                 <span class="tab-name">الانهاء</span>
             </button>
         </div>
-        <!-- the first form in the add lecture page and it is have a 5 tabs -->
+        {{-- <!-- the first form in the add lecture page and it is have a 5 tabs --> --}}
 
         @include('components.Admin.lectureForm')
 

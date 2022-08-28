@@ -1,8 +1,8 @@
 @extends('layouts.HomeLayout')
 @section('css')
-    <!--swiper-->
+    {{-- <!--swiper--> --}}
     <link rel="stylesheet" href="{{ URL::asset('css/swiper.bundle.min.css') }}">
-    <!-- css file -->
+    {{-- <!-- css file --> --}}
     <link rel="stylesheet" href="{{ URL::asset('css/profile.css') }} " class="rel">
     <link rel="stylesheet" href="{{ URL::asset('css/profile-responsive.css') }} " class="rel">
 @endsection
@@ -173,8 +173,8 @@
             </div>
         </div>
     </section>
-    <!-- Modals -->
-    <!-- هنا بقا الفورم الي هيشحن فيها رصيد   -->
+    {{-- <!-- Modals --> --}}
+    {{-- <!-- هنا بقا الفورم الي هيشحن فيها رصيد   --> --}}
     <div class="modal fade chargeModal" id="charge" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -308,14 +308,14 @@
         </script>
     @endif
 
-    <!-- هنا و الهوم  -->
+    {{-- <!-- هنا و الهوم  --> --}}
     <script src="{{ URL::asset('js/swiper.bundle.min.js') }}"></script>
-    <!-- هنا بس  -->
+    {{-- <!-- هنا بس  --> --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <!-- barcode  -->
-    <!-- هنا بس  -->
+    {{-- <!-- barcode  --> --}}
+    {{-- <!-- هنا بس  --> --}}
     <script src="{{ URL::asset('js/jsBarCode.all.min.js') }}"></script>
-    <!-- main js file -->
+    {{-- <!-- main js file --> --}}
     @php
     $passedExams = $user
         ->passedExams()

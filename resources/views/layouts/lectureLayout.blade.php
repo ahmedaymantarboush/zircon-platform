@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
-    <!-- Link Swiper's CSS -->
+    {{-- <!-- Link Swiper's CSS --> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -32,7 +32,7 @@
             <div class="col-lg-6 col-md-12 hd_2" style="margin: 0;padding: 0;">
                 <div class="square-box d-flex justify-content-start align-items-center" style="height: 100px;">
                     @yield('lec_link')
-                    <a href="{{route('lectures.ownedLectures')}}" class="lec_link" style="margin-left: 20px;">
+                    <a href="{{ route('lectures.ownedLectures') }}" class="lec_link" style="margin-left: 20px;">
                         محاضراتي
                         <i class="fa-solid fa-chevron-right" style="margin-left: 5px"></i>
                     </a>
@@ -89,16 +89,16 @@
     </script>
 
     {{-- Prevent Rigth click ,copy ,cut and paste --}}
-    {{-- <script> --}}
-    {{-- $(document).ready(function (){ --}}
-    {{-- $('body').bind('cut copy paste', function (e){ --}}
-    {{-- e.preventDefault(); --}}
-    {{-- }) --}}
-    {{-- $("body").on("contextmenu", function (e){ --}}
-    {{-- return false; --}}
-    {{-- }) --}}
-    {{-- }) --}}
-    {{-- </script> --}}
+    <script>
+        $(document).ready(function() {
+            $('body').bind('cut copy paste', function(e) {
+                e.preventDefault();
+            })
+            $("body").on("contextmenu", function(e) {
+                return false;
+            })
+        })
+    </script>
 </body>
 
 </html>
