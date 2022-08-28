@@ -19,7 +19,7 @@
     <section class='levelsBox'>
         <div class="container">
             <div class="row">
-                @if ($lectures)
+                @if (count($lectures))
                     @foreach ($lectures as $lecture)
                         <div class="col-lg-12 col-md-6 gs_reveal ">
                             <a href='{{ route('months.show', $lecture->slug) }}'
