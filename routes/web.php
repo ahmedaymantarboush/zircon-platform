@@ -76,6 +76,7 @@ Route::group(['middleware'=>['auth', 'teacher'],'prefix'=>'admin'],function () {
     Route::get('centers', [CenterController::class,'index'])->name('admin.centers.index');
     Route::post('centers/update', [CenterController::class,'update'])->name('admin.centers.update');
     Route::post('centers/store', [CenterController::class,'store'])->name('admin.centers.store');
+    Route::post('centers/delete', [CenterController::class,'destroy'])->name('admin.centers.delete');
     
     Route::get('balancecards', [BalanceCardController::class,'index'])->name('admin.balancecards.index');
     Route::get('balancecards/create', [BalanceCardController::class,'create'])->name('admin.balancecards.create');

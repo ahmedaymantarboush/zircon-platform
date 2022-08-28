@@ -164,5 +164,4 @@ document.querySelector("table").addEventListener("click", function (e) {
         '#delete-certificate input[name="id"]'
     );
     inputId.value = e.target.closest("tr").dataset.id;
-    console.log(inputId);
 });

@@ -98,15 +98,16 @@ class CenterController extends Controller
     public function update(UpdateCenterRequest $request)
     {
         $data = $request->all();
-        dd($data);
         $center = Center::find($data['id']);
-        $data = $request->all();
         $user = Auth::user();
         if (!$user) :
             return abort(401);
         endif;
         if ($user->role->number >= 4) :
             return abort(403);
+        endif;
+        if (!$center):
+            return abort(404);
         endif;
 
         $center->name = $data['newName'];
@@ -127,17 +128,20 @@ class CenterController extends Controller
      */
     public function destroy()
     {
+        $data = request()->all();
+        $center = Center::find($data['id']);
         $user = Auth::user();
-        if ($user->role->number >= 4):
+        if (!$user) :
+            return abort(401);
+        endif;
+        if ($user->role->number >= 4) :
             return abort(403);
         endif;
-        $data = request()->all();
-        dd($data);
-        $testimonial = Testimonial::find($data['id']);
-        if (!$testimonial):
+        if (!$center):
             return abort(404);
         endif;
-        $testimonial->delate();
+
+        $center->delete();
         return redirect()->back();
     }
 }
