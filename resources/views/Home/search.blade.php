@@ -17,22 +17,22 @@
                 <span class="filter-name">فلاتر</span>(<span class="count-filter">0</span>)
             </button>
         </div>
-        <div class="categories-btn-parent">
-            <button class="category-btn">
-                <div class="ctg-right">
-                    <span class="ctg-by">تصنيف بواسطة</span>
-                    <span class="ctg-name">الأحدث</span>
-                </div>
-                <span class="ctg-arrow"><i class="fa-solid fa-angle-down"></i></span>
-            </button>
-            <div class="ctg-menu">
-                <p class="menu-item">الأكثر شهرة</p>
-                <p class="menu-item">الشائعة</p>
-                <p class="menu-item">الشائعة</p>
-                <p class="menu-item">الشائعة</p>
-                <p class="menu-item">الشائعة</p>
-            </div>
-        </div>
+{{--        <div class="categories-btn-parent">--}}
+{{--            <button class="category-btn">--}}
+{{--                <div class="ctg-right">--}}
+{{--                    <span class="ctg-by">تصنيف بواسطة</span>--}}
+{{--                    <span class="ctg-name">الأحدث</span>--}}
+{{--                </div>--}}
+{{--                <span class="ctg-arrow"><i class="fa-solid fa-angle-down"></i></span>--}}
+{{--            </button>--}}
+{{--            <div class="ctg-menu">--}}
+{{--                <p class="menu-item">الأكثر شهرة</p>--}}
+{{--                <p class="menu-item">الشائعة</p>--}}
+{{--                <p class="menu-item">الشائعة</p>--}}
+{{--                <p class="menu-item">الشائعة</p>--}}
+{{--                <p class="menu-item">الشائعة</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
     </div>
     <div class="row active bigRow">

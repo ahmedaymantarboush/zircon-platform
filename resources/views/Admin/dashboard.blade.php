@@ -49,21 +49,21 @@
                             $count = 0;
                             $currentDay = date('Y-m-d', strtotime(now()));
                             $yesterday = date('Y-m-d', strtotime(strtotime('-1 day')));
-                            
+
                             $currentDayAttend = \App\Models\UserLesson::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$currentDay%")
                                 ->count();
                             $currentDayAttend += \App\Models\PassedExam::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$currentDay%")
                                 ->count();
-                            
+
                             $yesterdayAttend = \App\Models\UserLesson::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$yesterday%")
                                 ->count();
                             $yesterdayAttend += \App\Models\PassedExam::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$yesterday%")
                                 ->count();
-                            
+
                             $AttentPercentage = $yesterdayAttend ? (($currentDayAttend - $yesterdayAttend) * 100) / $yesterdayAttend : 100;
                         @endphp
                         {{ $currentDayAttend }} طالب
@@ -88,7 +88,7 @@
                             $lastMonthCount = \App\Models\User::where('id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$lastMonth%")
                                 ->count();
-                            
+
                             $countPercentage = $lastMonthCount ? (($currentMonthCount - $lastMonthCount) * 100) / $lastMonthCount : 100;
                         @endphp
                         {{ $studentsCount }} طالب
@@ -191,31 +191,31 @@
         <div class="col-lg-8 g-praent-table">
             <div class="white-box table-parent">
                 <h2>دخل السناتر</h2>
-                <div class="display">
-                    <i class="fa-solid fa-check check"></i>
-                    <span class="content">عرض </span>
-                    <button class="display-date">
-                        <span class="active-date">هذا الاسبوع</span>
-                        <span class="display-arrow"><i class="fa-solid fa-caret-down"></i></span>
-                    </button>
-                    <ul class="display-list">
-                        <li class="this-week">
-                            <button class="added">
-                                هذا الاسبوع
-                            </button>
-                        </li>
-                        <li class="this-month">
-                            <button class="added">
-                                هذا الشهر
-                            </button>
-                        </li>
-                        <li class="this-year">
-                            <button class="added">
-                                هذه السنة
-                            </button>
-                        </li>
-                    </ul>
-                </div>
+{{--                <div class="display">--}}
+{{--                    <i class="fa-solid fa-check check"></i>--}}
+{{--                    <span class="content">عرض </span>--}}
+{{--                    <button class="display-date">--}}
+{{--                        <span class="active-date">هذا الاسبوع</span>--}}
+{{--                        <span class="display-arrow"><i class="fa-solid fa-caret-down"></i></span>--}}
+{{--                    </button>--}}
+{{--                    <ul class="display-list">--}}
+{{--                        <li class="this-week">--}}
+{{--                            <button class="added">--}}
+{{--                                هذا الاسبوع--}}
+{{--                            </button>--}}
+{{--                        </li>--}}
+{{--                        <li class="this-month">--}}
+{{--                            <button class="added">--}}
+{{--                                هذا الشهر--}}
+{{--                            </button>--}}
+{{--                        </li>--}}
+{{--                        <li class="this-year">--}}
+{{--                            <button class="added">--}}
+{{--                                هذه السنة--}}
+{{--                            </button>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
                 <table style="width: 100%;">
                     <thead>
                         <tr>
@@ -246,258 +246,259 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">25</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">40</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">70</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">90</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">100</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">50</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">50</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">50</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">50</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">50</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">50</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">50</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">50</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">50</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
+
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">25</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">40</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">70</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">90</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">100</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">50</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">50</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">50</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">50</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">50</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">50</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">50</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">50</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                        <tr>--}}
+{{--                            <td class="center-name">--}}
+{{--                                الاوائل--}}
+{{--                            </td>--}}
+{{--                            <td class="subject-table">--}}
+{{--                                الصف الثاني الثانوي - ب--}}
+{{--                            </td>--}}
+{{--                            <td class="member">465</td>--}}
+{{--                            <td class="money">1698 ج.م</td>--}}
+{{--                            <td class="date">18/7/2025</td>--}}
+{{--                            <td class="progress-parent">--}}
+{{--                                <span class="percentage-progress"><span class="num">50</span><span--}}
+{{--                                        class="per">%</span></span>--}}
+{{--                                <div class="progressbar">--}}
+{{--                                    <span class="progress-child"></span>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
                     </tbody>
                 </table>
             </div>
