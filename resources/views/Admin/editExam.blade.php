@@ -61,6 +61,7 @@
                                             @endphp
                                                 {{-- ////////////// بدل الi ضيف counter /////////////////// --}}
                                                 <div class="col-12">
+                                                    {{-- \App\Models\DynamicQuestion::where(['question_id'=>$question->id,'exam_id'=>$exam->id])->first()->id --}}
                                                     <div class="question-box" data-id="{{$dynamicQuestion->id}}">
                                                         <div class="d-flex justify-content-between">
                                                             <div class="question_title">
@@ -108,7 +109,7 @@
                                                                             اختر الجزئية التعليمية
                                                                         </option>
                                                                         @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $part)
-                                                                            <option @selected($part->id == $dynamicQuestion->id) value="{{ $part->id }}">
+                                                                            <option @selected($part->id == $dynamicQuestion->part_id) value="{{ $part->id }}">
                                                                                 {{ $part->name }}
                                                                             </option>
                                                                         @endforeach
