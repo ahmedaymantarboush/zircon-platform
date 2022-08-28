@@ -416,7 +416,7 @@
                         <div class="profileContent">
                             <div class="personalInformation">
                                 <h3 class="profileName">
-                                    عبدالرحمن مصطفى محمود
+                                    ....
                                 </h3>
                                 <span class="profileType">طالب</span>
                             </div>
@@ -431,23 +431,23 @@
                                 </div>
                                 <div class="item">
                                     <span class="type">الاسم:</span>
-                                    <span class="info">عبدالرحمن مصطفى محمود</span>
+                                    <span class="info cardName">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">المرحلة الدراسية:</span>
-                                    <span class="info">الصف الثالث الثانوي</span>
+                                    <span class="info cardGrade">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">الرقم:</span>
-                                    <span class="info">01234567891</span>
+                                    <span class="info cardNumber">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">رقم ولي الامر:</span>
-                                    <span class="info">01234567891</span>
+                                    <span class="info cardParentNumber">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type"> المحافظة:</span>
-                                    <span class="info">القاهرة</span>
+                                    <span class="info cardGovernorate">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">مكان الحضور:</span>
@@ -455,14 +455,14 @@
                                 </div>
                                 <div class="barcodeBox">
                                     <svg class="barcode" id="profileBarCode"></svg>
-                                    <span class="barcodeText">as4df5ef12as4df5ef1212345</span>
+                                    <span class="barcodeText">....</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary printBtn">
                         طباعة
                     </button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
