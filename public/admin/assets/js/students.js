@@ -238,7 +238,6 @@ document.querySelector("table").addEventListener("click", function (e) {
         .getAttribute("data-bs-original-title");
     let inputId = document.querySelector('#deleteStudent input[name="id"]');
     inputId.value = e.target.closest("tr").dataset.id;
-    console.log(inputId);
 });
 printPage = document.querySelector("#printPage");
 printPage.style.display = "none";
