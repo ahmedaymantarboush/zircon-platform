@@ -87,7 +87,7 @@ class DynamicQuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update()
     {
         $data = json_decode(request()->data, true);
         $user = apiUser();
@@ -120,7 +120,7 @@ class DynamicQuestionController extends Controller
             return apiResponse(false, _('لم يتم العثور على السؤال'), [], 404);
         endif;
 
-        $examQuestion->part_id = $part->id;
+        $examQuestion->part_id = $partId;
         $examQuestion->count = $data['count'];
         $examQuestion->save();
 

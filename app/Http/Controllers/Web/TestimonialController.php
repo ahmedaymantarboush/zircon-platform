@@ -94,14 +94,14 @@ class TestimonialController extends Controller
      * @param  \App\Models\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTestimonialRequest $request, $id)
+    public function update(UpdateTestimonialRequest $request)
     {
         $user = Auth::user();
         if ($user->role->number >= 4):
             return abort(403);
         endif;
         $data = $request->all();
-        $testimonial = Testimonial::find($id);
+        $testimonial = Testimonial::find($data['id']);
         if (!$testimonial):
             return abort(404);
         endif;
@@ -127,8 +127,30 @@ class TestimonialController extends Controller
      * @param  \App\Models\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testimonial $testimonial)
+    public function destroy($id)
     {
-        //
+        $user = Auth::user();
+        if ($user->role->number >= 4):
+            return abort(403);
+        endif;
+        $data = request()->all();
+        $testimonial = Testimonial::find($data['id']);
+        if (!$testimonial):
+            return abort(404);
+        endif;
+        $testimonial->update([
+            'student_name' => $data['newName'],
+            'degree' => $data['newDegree'],
+            'subject_degree' => $data['newSubjectDegree'],
+            'content' => removeCustomTags($data['newContent']),
+            'subject_id' => env('DEFAULT_SUBJECT_ID'),
+            'grade_id' => $data['newGrade'],
+            'teacher_id' => $user->id,
+        ]);
+        if (request()->hasFile('newImage')):
+            $testimonial->image = uploadFile(request(),'newImage',$data['newName'].$testimonial->id,$testimonial->image);
+            $testimonial->save();
+        endif;
+        return redirect()->back();
     }
 }
