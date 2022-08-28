@@ -178,7 +178,7 @@
 <div class="modal fade chargeModal" id="charge" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form method="POST" action="{{ route('balance.recharge') }}" class="modal-content chargeForm">
+        <form method="POST" action="{{ route('balance.recharge') }}" class="modal-content">
             @csrf
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">شحن رصيد</h5>
@@ -191,12 +191,10 @@
                     <label for="">كود الشحن</label>
                     <input type="text" name="code" placeholder='ادخل كود الشحن'>
                 </div>
-                <!-- @if (request()->session()->has('success') &&
-                !request()->session()->get('success'))
-                <p class=" {{ request()->session()->get('success')? 'finishChargeText': 'wrongChargeText' }}">
+                @if (request()->session()->has('success') && !request()->session()->get('success'))
+                <p class="{{ request()->session()->get('success') ? 'finishChargeText' : 'wrongChargeText' }}">
                     {{ request()->session()->get('msg') }}</p>
-                @endif -->
-                <p class='finishText'></p>
+                @endif
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn myButton">شحن رصيد</button>
