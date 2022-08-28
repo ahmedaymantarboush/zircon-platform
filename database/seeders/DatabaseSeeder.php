@@ -122,6 +122,8 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\ExamQuestion::factory(300)->create();
 
+        // \App\Models\PassedExam::factory(50)->create();
+        
         // \App\Models\AnswerdQuestion::factory(300)->create();
 
         \App\Models\Lesson::factory(50)->create();
