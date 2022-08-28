@@ -381,7 +381,7 @@
                 @endif
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn myButton">شحن رصيد</button>
+                <button type="submit" class="btn myButton">شحن رصيد</button>
                 <button type="button" class="btn secBtn" data-dismiss="modal">إغلاق</button>
             </div>
         </form>
