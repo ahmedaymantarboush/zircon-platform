@@ -193,7 +193,6 @@ let ctgMenu = document.querySelector(".ctg-menu");
 let ctgList = document.querySelectorAll(".menu-item");
 let ctgName = document.querySelector(".ctg-name");
 let lay = document.querySelector(".lay");
-console.log(ctgBtn);
 // ctgBtn.addEventListener("click", function (e) {
 //     ctgMenu.classList.toggle("active");
 // });
