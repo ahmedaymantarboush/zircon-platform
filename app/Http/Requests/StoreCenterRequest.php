@@ -26,7 +26,9 @@ class StoreCenterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required','string'],
+            'url' => ['nullable'],
+            'governorate' =>  ['required','exists:governorates,id'],
         ];
     }
 }
