@@ -59,7 +59,7 @@ class TestimonialController extends Controller
             'teacher_id' => $user->id,
         ]);
         if ($request->hasFile('image')):
-            $testimonial->image = uploadFile($request,'image',$data['studentName'].$testimonial->id);
+            $testimonial->image = uploadFile($request,'image',$data['name'].$testimonial->id);
             $testimonial->save();
         endif;
         return redirect()->back();
@@ -107,16 +107,16 @@ class TestimonialController extends Controller
             return abort(404);
         endif;
         $testimonial->update([
-            'student_name' => $data['name'],
-            'degree' => $data['degree'],
-            'subject_degree' => $data['subjectDegree'],
-            'content' => removeCustomTags($data['content']),
+            'student_name' => $data['newName'],
+            'degree' => $data['newDegree'],
+            'subject_degree' => $data['newSubjectDegree'],
+            'content' => removeCustomTags($data['newContent']),
             'subject_id' => env('DEFAULT_SUBJECT_ID'),
-            'grade_id' => $data['grade'],
+            'grade_id' => $data['newGrade'],
             'teacher_id' => $user->id,
         ]);
-        if ($request->hasFile('image')):
-            $testimonial->image = uploadFile($request,'image',$data['studentName'].$testimonial->id,$testimonial->image);
+        if ($request->hasFile('newImage')):
+            $testimonial->image = uploadFile($request,'newImage',$data['newName'].$testimonial->id,$testimonial->image);
             $testimonial->save();
         endif;
         return redirect()->back();

@@ -124,7 +124,7 @@ class DynamicQuestionController extends Controller
         $examQuestion->count = $data['count'];
         $examQuestion->save();
 
-        return apiResponse(true, _('تم اضافة السؤال بنجاح'), []);
+        return apiResponse(true, _('تم اضافة السؤال بنجاح'), [$examQuestion->toArray()]);
     }
 
     /**
