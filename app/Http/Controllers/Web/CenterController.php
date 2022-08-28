@@ -115,8 +115,8 @@ class CenterController extends Controller
         $center->governorate_id =  $data['newGovernorate'];
         if ($request->hasFile('newImage')) :
             $center->image = uploadFile($request, 'newImage', $center->name . $center->id,explode('/storage/',$center->image)[1] ?? '');
-            $center->save();
         endif;
+        $center->save();
         return redirect()->back();
     }
 
