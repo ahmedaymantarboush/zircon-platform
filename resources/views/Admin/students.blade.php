@@ -620,7 +620,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary">
                         طباعة
                     </button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
