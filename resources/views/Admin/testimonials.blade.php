@@ -513,7 +513,8 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="">
+                <form action="{{route('admin.testimonials.delete')}}" method="POST">
+                    @csrf
                     <input type="hidden" name='id'>
                     <div class="modal-body">
                         <p class="sure-to-del">

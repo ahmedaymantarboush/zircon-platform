@@ -127,7 +127,7 @@ class TestimonialController extends Controller
      * @param  \App\Models\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
         $user = Auth::user();
         if ($user->role->number >= 4):
