@@ -49,7 +49,7 @@ class TestimonialController extends Controller
         endif;
         $data = $request->all();
         $testimonial = Testimonial::create([
-            'student_name' => $data['studentName'],
+            'student_name' => $data['name'],
             'degree' => $data['degree'],
             'subject_degree' => $data['subjectDegree'],
             'content' => removeCustomTags($data['content']),
@@ -106,7 +106,7 @@ class TestimonialController extends Controller
             return abort(404);
         endif;
         $testimonial->update([
-            'student_name' => $data['studentName'],
+            'student_name' => $data['name'],
             'degree' => $data['degree'],
             'subject_degree' => $data['subjectDegree'],
             'content' => removeCustomTags($data['content']),

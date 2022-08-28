@@ -25,15 +25,6 @@ class StoreTestimonialRequest extends FormRequest
      */
     public function rules()
     {
-        // dd(request());
-        // [
-        //     "name" => "أحمد أيمن محمود طربوش",
-        //     "degree" => "500",
-        //     "subjectDegree" => "400",
-        //     "grade" => "3",
-        //     "image" => null,
-        //     "content" => null
-        // ];
         return [
             'name' => ['required', 'string'],
             'image' => ['nullable', 'image'],
