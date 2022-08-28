@@ -32,7 +32,7 @@ class UpdateTestimonialRequest extends FormRequest
             'newContent' => ['required','string'],
             'newSubjectDegree' => ['required','numeric'],
             'newSubject' => ['nullable','exists:subjects,id'],
-            'grade' => ['required','exists:grades,id'],
+            'newGrade' => ['required','exists:grades,id'],
             'newStudent' => ['nullable'],
         ];
     }
