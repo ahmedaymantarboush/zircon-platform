@@ -71,7 +71,7 @@ Route::group(['middleware'=>['auth', 'teacher'],'prefix'=>'admin'],function () {
     Route::get('testimonials', [TestimonialController::class,'index'])->name('admin.testimonials.index');
     Route::post('testimonials/store', [TestimonialController::class,'store'])->name('admin.testimonials.store');
     Route::post('testimonials/update', [TestimonialController::class,'update'])->name('admin.testimonials.update');
-    Route::post('testimonials/delete', [TestimonialController::class,'delete'])->name('admin.testimonials.delete');
+    Route::post('testimonials/delete', [TestimonialController::class,'destroy'])->name('admin.testimonials.delete');
     
     Route::get('centers', [CenterController::class,'index'])->name('admin.centers.index');
     Route::post('centers/update', [CenterController::class,'update'])->name('admin.centers.update');
