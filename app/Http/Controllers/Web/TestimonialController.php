@@ -50,6 +50,7 @@ class TestimonialController extends Controller
         $data = $request->all();
         $testimonial = Testimonial::create([
             'student_name' => $data['name'],
+            'image' => asset('imgs/user.png'),
             'degree' => $data['degree'],
             'subject_degree' => $data['subjectDegree'],
             'content' => removeCustomTags($data['content']),
