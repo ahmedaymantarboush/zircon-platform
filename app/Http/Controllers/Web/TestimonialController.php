@@ -134,23 +134,12 @@ class TestimonialController extends Controller
             return abort(403);
         endif;
         $data = request()->all();
+        dd($data);
         $testimonial = Testimonial::find($data['id']);
         if (!$testimonial):
             return abort(404);
         endif;
-        $testimonial->update([
-            'student_name' => $data['newName'],
-            'degree' => $data['newDegree'],
-            'subject_degree' => $data['newSubjectDegree'],
-            'content' => removeCustomTags($data['newContent']),
-            'subject_id' => env('DEFAULT_SUBJECT_ID'),
-            'grade_id' => $data['newGrade'],
-            'teacher_id' => $user->id,
-        ]);
-        if (request()->hasFile('newImage')):
-            $testimonial->image = uploadFile(request(),'newImage',$data['newName'].$testimonial->id,$testimonial->image);
-            $testimonial->save();
-        endif;
+        $testimonial->delate();
         return redirect()->back();
     }
 }
