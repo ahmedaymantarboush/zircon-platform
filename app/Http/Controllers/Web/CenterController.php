@@ -124,8 +124,19 @@ class CenterController extends Controller
      * @param  \App\Models\Center  $center
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Center $center)
+    public function destroy()
     {
-        //
+        $user = Auth::user();
+        if ($user->role->number >= 4):
+            return abort(403);
+        endif;
+        $data = request()->all();
+        dd($data);
+        $testimonial = Testimonial::find($data['id']);
+        if (!$testimonial):
+            return abort(404);
+        endif;
+        $testimonial->delate();
+        return redirect()->back();
     }
 }
