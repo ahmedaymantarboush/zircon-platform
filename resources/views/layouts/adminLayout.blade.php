@@ -36,12 +36,12 @@
 
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">كل الطلاب</a>
+                                <a href="{{route('admin.users.index')}}" class="child-name">كل الطلاب</a>
                             </div>
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">إضافة طالب</a>
+                                <a href="{{route('admin.users.create')}}" class="child-name">إضافة طالب</a>
                             </div>
                         </div>
                     </div>
@@ -58,12 +58,12 @@
 
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">كل المحاضرات</a>
+                                <a href="{{route('admin.lectures.index')}}" class="child-name">كل المحاضرات</a>
                             </div>
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">إضافة محاضرة</a>
+                                <a href="{{route('admin.lectures.create')}}" class="child-name">إضافة محاضرة</a>
                             </div>
                         </div>
                     </div>
@@ -80,17 +80,17 @@
 
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">كل الامتحانات</a>
+                                <a href="{{route('admin.exams.index')}}" class="child-name">كل الامتحانات</a>
                             </div>
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">اضافة امتاحان</a>
+                                <a href="{{route('admin.exams.create')}}" class="child-name">اضافة امتاحان</a>
                             </div>
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="#" class="child-name">بنك الأسئلة</a>
+                                <a href="{{route('admin.questions.index')}}" class="child-name">بنك الأسئلة</a>
                             </div>
                         </div>
                     </div>
