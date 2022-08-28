@@ -140,9 +140,8 @@ class CenterController extends Controller
         if (!$center):
             return abort(404);
         endif;
-        
 
-        $center->delate();
+        $center->delete();
         return redirect()->back();
     }
 }

@@ -138,7 +138,7 @@ class TestimonialController extends Controller
         if (!$testimonial):
             return abort(404);
         endif;
-        $testimonial->delate();
+        $testimonial->delete();
         return redirect()->back();
     }
 }
