@@ -63,7 +63,7 @@
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="{{route('admin.lectures.create')}}" class="child-name">إضافة محاضرة</a>
+                                <a href="{{route('lectures.create')}}" class="child-name">إضافة محاضرة</a>
                             </div>
                         </div>
                     </div>
