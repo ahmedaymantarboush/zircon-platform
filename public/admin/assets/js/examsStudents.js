@@ -55,28 +55,6 @@ let editFun = async function (url, myData, el = null) {
 };
 
 document.querySelector("table").addEventListener("click", async function (e) {
-    if (!e.target.classList.contains("handStudent")) return;
-    let dataId = e.target.closest("tr").dataset.id;
-
-    let sendObj = {
-        id: dataId,
-    };
-
-    form = new FormData();
-    form.append("data", JSON.stringify(sendObj));
-
-    let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/users/hanging`,
-        form,
-        e
-    );
-
-    let objData = myResponse.data;
-    if (objData != null) {
-        location.reload();
-    }
-});
-document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("studentCard")) return;
     let dataId = e.target.closest("tr").dataset.id;
 
