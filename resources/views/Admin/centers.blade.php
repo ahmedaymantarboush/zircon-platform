@@ -437,6 +437,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" class='delCenter'>
+                <input type="hidden" name="id" id='trId'>
+
                 <div class="modal-body">
                     <p class="sure-to-del">
                         هل انت متأكد انك تريد مسح

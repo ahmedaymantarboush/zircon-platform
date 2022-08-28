@@ -149,7 +149,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let sendObj = {
         id: dataId,
     };
-    let inputId = document.querySelector("#editLocationModal #trId");
+    let inputId = document.querySelector("#delete-location #trId");
     inputId.value = dataId;
     let delCenter = document.querySelector(".del-lesson");
     delCenter.innerHTML = e.target
