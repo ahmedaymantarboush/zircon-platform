@@ -10,7 +10,7 @@
     <section class='levelsBox'>
         <div class="container">
             <div class='row'>
-                @if (count($lectures))
+                @if ($lectures->count())
                 @foreach ($lectures->paginate(6) as $lecture)
                     <div class="col-lg-12 col-md-6">
                         <a href='{{ route('months.show', $lecture->slug) }}'
