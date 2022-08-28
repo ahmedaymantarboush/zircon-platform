@@ -16,7 +16,7 @@
 </div>
 <div class="lectures-statistics row">
     <div class="col-lg-3 col-sm-6">
-        <a href="#" class="add-new-lec" style="width: 100%">
+        <a href="{{route('admin.balancecards.create')}}" class="add-new-lec" style="width: 100%">
             <div class="stc-box" data-bs-toggle="modal" data-bs-target="#quick-modify" id="addNewQuestion">
                 <div class="stc-val-parent">
                     <span class="stc-value">
