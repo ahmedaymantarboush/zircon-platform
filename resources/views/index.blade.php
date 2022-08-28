@@ -223,7 +223,7 @@
                 @endphp
                 @foreach ($lectures as $index => $lecture)
                 @if ($lecture)
-                    <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_from{{ $direction[$index - 1] }}">
+                    <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_from{{ $direction[$index] }}">
                         <a class="latestCard grade{{ $lecture->grade->id }}"
                             href='{{ route('months.show', $lecture->slug) }}'>
                             <div class="cardGrade">
