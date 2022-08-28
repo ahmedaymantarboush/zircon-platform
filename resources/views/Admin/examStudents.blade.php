@@ -105,7 +105,7 @@
                             ->where('correct', 0)
                             ->count();
                     @endphp
-                    <tr data-id="{{ $passedExam->id }}"
+                    <tr data-id="{{ $passedExam->user->id }}"
                         class="@if ($correctAnswers || $wrongAnswers) @if ($correctAnswers > $wrongAnswers) greenBg @elseif($correctAnswers < $wrongAnswers) redBg @elseif($correctAnswers == $wrongAnswers) blueBg @endif @endif">
                         <td class="number">
                             {{ $i }}
