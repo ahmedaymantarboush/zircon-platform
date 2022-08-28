@@ -74,7 +74,6 @@ document.querySelector("table").addEventListener("click", async function (e) {
     );
     let objData = myResponse.data;
     let editCodeInput = document.querySelector("#editCodeInput");
-    console.log(objData);
     let studentName = document.querySelector("#editCode .studentName");
     studentName.innerHTML = objData.name;
     editCodeInput.value = objData.code;
@@ -165,7 +164,6 @@ document.querySelector("table").addEventListener("click", async function (e) {
             }
         });
 });
-console.log("yse");
 document.querySelector("table").addEventListener("click", async function (e) {
     if (!e.target.classList.contains("handStudent")) return;
     let dataId = e.target.closest("tr").dataset.id;
@@ -182,8 +180,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
         form,
         e
     );
-    console.log(myResponse);
-    console.log("yse");
+
     let objData = myResponse.data;
     if (objData != null) {
         location.reload();
@@ -206,7 +203,6 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
     let objData = myResponse.data;
-    console.log(objData);
     let cardImage = document.querySelector("#studentCard .profileImg img");
     let profileName = document.querySelector("#studentCard .profileName");
     let profileType = document.querySelector("#studentCard .profileType");
@@ -229,17 +225,14 @@ document.querySelector("table").addEventListener("click", async function (e) {
     cardGrade.innerHTML = objData.grade;
     cardGovernorate.innerHTML = objData.governorate;
     barcodeText.innerHTML = objData.code;
-    console.log(barcodeText);
     JsBarcode("#profileBarCode", barcodeText.innerHTML);
 });
 
 document.querySelector("table").addEventListener("click", function (e) {
-    console.log(e.target.closest("tr").querySelector(".question-code"));
     if (!e.target.classList.contains("delete-lec")) return;
     let testi = document.querySelector(".del-lesson");
     testi.innerHTML = e.target
         .closest("tr")
         .querySelector(".question-code")
         .getAttribute("data-bs-original-title");
-    console.log(e.target.closest("tr").querySelector(".question-code"));
 });
