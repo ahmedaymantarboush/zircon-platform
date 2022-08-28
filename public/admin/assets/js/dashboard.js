@@ -73,13 +73,13 @@ closeAll.forEach((ele) => {
 });
 overlay.addEventListener("click", funRemove);
 /******table******/
-let btnDate = document.querySelector(".display-date");
+// let btnDate = document.querySelector(".display-date");
 let tableList = document.querySelector(".display-list");
 let activeDate = document.querySelector(".active-date");
 let added = document.querySelectorAll(".added");
-btnDate.addEventListener("click", function () {
-	tableList.classList.toggle("active-list");
-});
+// btnDate.addEventListener("click", function () {
+// 	tableList.classList.toggle("active-list");
+// });
 added.forEach((ele) => {
 	ele.addEventListener("click", function () {
 		activeDate.textContent = this.textContent;
