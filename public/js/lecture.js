@@ -218,7 +218,11 @@ document
             e
         );
         let finishText = document.querySelector(".finishText");
+        myResponse.success
+            ? finishText.classList.add("success")
+            : finishText.classList.add("danger");
         finishText.innerHTML = myResponse.message;
+
         // let objData = myResponse.data;
         console.log(myResponse);
     });
