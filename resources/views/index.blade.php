@@ -250,8 +250,8 @@
             @endif
             @endforeach
             @else
-            <p class='no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
-            <div class='noLecImg'>
+            <p class='gs_reveal no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
+            <div class='gs_reveal noLecImg'>
                 <img src="{{ URL::asset('imgs/no-result-search.png') }}" alt="">
             </div>
             @endif
