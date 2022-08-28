@@ -499,6 +499,7 @@ $(document).on('change','select.dynamicQuestion',async function (){
             body: form3,
         })
         let addQuestionData = await addQuestion.json();
+        console.log(addQuestionData);
         $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
     }else {
         let queID = $(this).parent().closest(".question-box").attr('data-id');
@@ -509,7 +510,7 @@ $(document).on('change','select.dynamicQuestion',async function (){
             'count': countValue,
             'id': queID
         }))
-        let addQuestion = await fetch(APP_URL + "/api/questions/UpdateInExam", {
+        let addQuestion = await fetch(APP_URL + "/api/questions/zircon/UpdateInExam", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -518,6 +519,7 @@ $(document).on('change','select.dynamicQuestion',async function (){
             body: form3,
         })
         let addQuestionData = await addQuestion.json();
+        console.log(addQuestionData);
     }
     var selectedValue = $(this).find("option:selected").text();
     $(question_box).find(".que_title").text(selectedValue);

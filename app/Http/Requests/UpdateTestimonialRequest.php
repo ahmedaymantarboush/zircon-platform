@@ -27,7 +27,7 @@ class UpdateTestimonialRequest extends FormRequest
     {
         return [
             'newName' => ['required','string'],
-            'newImage' => ['nullable','image'],
+            'newImage' => ['nullable'],
             'newDegree' => ['required','numeric'],
             'newContent' => ['required','string'],
             'newSubjectDegree' => ['required','numeric'],
