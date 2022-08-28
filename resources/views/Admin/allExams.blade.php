@@ -45,7 +45,7 @@
         <a class="real-stc" style="width: 100%">
             <div class="stc-box second-stc">
                 <div class="stc-val-parent">
-                    <span class="stc-value"> {{ count(\App\Models\AnswerdQuestion::where('correct', 0)->get()) }}
+                    <span class="stc-value"> {{ number_format(count(\App\Models\AnswerdQuestion::where('correct', 0)->get()),2) }}
                     </span>
                     <span class="stc-name">مرات الإجابة الخاطئة</span>
                 </div>

@@ -103,7 +103,7 @@ class ExamQuestionController extends Controller
         endif;
         $examQuestion->update(['question_id'=>$questionId]);
 
-        return apiResponse(true, _('تم تعديل السؤال بنجاح'), [$examQuestion->toArray()]);
+        return apiResponse(true, _('تم تعديل السؤال بنجاح'), []);
     }
 
     /**
@@ -112,7 +112,7 @@ class ExamQuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
         $data = json_decode(request()->data, true);
         $user = apiUser();

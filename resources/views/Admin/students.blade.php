@@ -261,16 +261,18 @@
                 <a class="dropdown-item" href="{{route('admin.users.edit',$user->id)}}">تعديل الطالب</a>
             </li>
             <li>
-                <a class="dropdown-item handStudent" href="#">{{$user->hanging ? 'الغاء' : ''}} تعليق الطالب</a>
+                <a class="dropdown-item handStudent">{{$user->hanging ? 'الغاء' : ''}} تعليق الطالب</a>
             </li>
             <li>
-                <a data-bs-toggle="modal" data-bs-target="#editCharge" class="dropdown-item editCharge" href="#">تعديل رصيد الطالب</a>
+                <a data-bs-toggle="modal" data-bs-target="#editCharge" class="dropdown-item editCharge">تعديل رصيد
+                    الطالب</a>
             </li>
             <li>
-                <a data-bs-toggle="modal" data-bs-target="#editCode" class="dropdown-item editCode" href="#">تعديل كود الطالب</a>
+                <a data-bs-toggle="modal" data-bs-target="#editCode" class="dropdown-item editCode">تعديل كود الطالب</a>
             </li>
             <li>
-                <a data-bs-toggle="modal" data-bs-target="#deleteStudent" class="dropdown-item" href="#">مسح الطالب</a>
+                <a data-bs-toggle="modal" data-bs-target="#deleteStudent" class="dropdown-item delete-lec">مسح
+                    الطالب</a>
             </li>
         </ul>
     </div>
@@ -587,23 +589,23 @@
                                 </div>
                                 <div class="item">
                                     <span class="type">الاسم:</span>
-                                    <span class="info cardName">عبدالرحمن مصطفى محمود</span>
+                                    <span class="info cardName">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">المرحلة الدراسية:</span>
-                                    <span class="info cardGrade">الصف الثالث الثانوي</span>
+                                    <span class="info cardGrade">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">الرقم:</span>
-                                    <span class="info cardNumber">01234567891</span>
+                                    <span class="info cardNumber">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">رقم ولي الامر:</span>
-                                    <span class="info cardParentNumber">01234567891</span>
+                                    <span class="info cardParentNumber">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type"> المحافظة:</span>
-                                    <span class="info cardGovernorate">القاهرة</span>
+                                    <span class="info cardGovernorate">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">مكان الحضور:</span>
@@ -611,14 +613,14 @@
                                 </div>
                                 <div class="barcodeBox">
                                     <svg class="barcode" id="profileBarCode"></svg>
-                                    <span class="barcodeText">as4df5ef12as4df5ef1212345</span>
+                                    <span class="barcodeText">....</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary printBtn">
                         طباعة
                     </button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -639,6 +641,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="">
+                <input type="hidden" name='id'>
                 <div class="modal-body">
                     <p class="sure-to-del">
                         هل انت متأكد انك تريد مسح
@@ -722,6 +725,8 @@
         </div>
     </div>
 </div>
+<iframe src="#" hidden style="display: none" id="printPage" frameborder="0"></iframe>
+
 @endsection
 @section('javascript')
 <script src="{{ asset('admin/assets/js/jsBarCode.all') }}.min.js"></script>
