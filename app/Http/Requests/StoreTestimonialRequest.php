@@ -27,7 +27,7 @@ class StoreTestimonialRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'image' => ['nullable', 'image'],
+            'image' => ['nullable'],
             'degree' => ['required', 'numeric'],
             'subjectDegree' => ['required', 'numeric'],
             'content' => ['required', 'string'],
