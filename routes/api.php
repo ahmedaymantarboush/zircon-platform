@@ -83,7 +83,7 @@ Route::post('users/editCode',[UserController::class,'editCode']);
 Route::post('users/getStudentCardData',[UserController::class,'getStudentCardData']);
 Route::post('users/hanging',[UserController::class,'hanging']);
 
-//       USER ROUTES
+//       COUPON ROUTES
 Route::post('checkCoupon',[CouponController::class,'checkCoupon']);
 
 //       PART ROUTES
@@ -110,7 +110,7 @@ Route::post('testimonials/delete',[TestimonialController::class,'destroy'])->nam
 
 //       CENTER ROUTES
 Route::post('centers/fastEdit',[CenterController::class,'fastEdit']);
-Route::post('centers/delete',[CenterController::class,'destroy'])->name('api.balancecards.delete');
+Route::post('centers/delete',[CenterController::class,'destroy'])->name('api.center.delete');
 
 //       SECTIONITEM ROUTES
 Route::post('items/getItem',[SectionItemController::class,'show']);
