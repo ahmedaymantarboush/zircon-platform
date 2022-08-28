@@ -5,6 +5,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BalanceCardController;
 use App\Http\Controllers\API\CenterController;
 use App\Http\Controllers\API\CouponController;
+use App\Http\Controllers\API\DynamicQuestionController;
 use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\ExamQuestionController;
 use App\Http\Controllers\API\LessonController;
@@ -96,6 +97,10 @@ Route::post('questions/sendAnswer',[AnswerdQuestionController::class,'update']);
 Route::post('questions/addToExam',[ExamQuestionController::class,'store']);
 Route::post('questions/UpdateInExam',[ExamQuestionController::class,'update']);
 Route::post('questions/deleteFromExam',[ExamQuestionController::class,'destroy']);
+Route::post('questions/zircon/addToExam',[DynamicQuestionController::class,'store']);
+Route::post('questions/zircon/UpdateInExam',[DynamicQuestionController::class,'update']);
+Route::post('questions/zircon/deleteFromExam',[DynamicQuestionController::class,'destroy']);
+
 
 
 
