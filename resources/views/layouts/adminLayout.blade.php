@@ -80,7 +80,7 @@
 
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="{{route('admin.exams.index')}}" class="child-name">كل الامتحانات</a>
+                                <a href="{{route('exams.index')}}" class="child-name">كل الامتحانات</a>
                             </div>
                         </div>
                         <div class="elements">
