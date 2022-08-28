@@ -160,8 +160,8 @@
                             </li>
 
                             <li>
-                                <a data-bs-toggle="modal" data-bs-target="#studentCard" class="dropdown-item"
-                                    href="#">كارت الطالب
+                                <a data-bs-toggle="modal" data-bs-target="#studentCard"
+                                    class="dropdown-item studentCard" href="#">كارت الطالب
                                 </a>
                             </li>
 
