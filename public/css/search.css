@@ -929,3 +929,6 @@ div.waves {
     fill: rgba(64, 83, 104, 0.4);
     transition: 0.3s all ease;
 }
+.errorImage {
+    width: 60%;
+}
