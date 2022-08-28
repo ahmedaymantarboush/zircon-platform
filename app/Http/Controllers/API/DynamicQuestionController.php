@@ -61,7 +61,7 @@ class DynamicQuestionController extends Controller
             'count' => $data['count'],
             'level' => $data['level'] ?? $exam->exam_hardness,
         ]);
-        $exam =$dynamicQuestion->exam;
+        $exam = $dynamicQuestion->exam;
         $exam->questions_count -= $dynamicQuestion->count;
         $exam->save();
         return apiResponse(true, _('تم اضافة السؤال بنجاح'), [
@@ -115,16 +115,16 @@ class DynamicQuestionController extends Controller
             return apiResponse(false, _('غير مصرح لهذا المستخدم بحذف السؤال'), [], 401);
         endif;
 
-        $examQuestion = DynamicQuestion::find($id);
-        if (!$examQuestion) :
+        $dynamicQuestion = DynamicQuestion::find($id);
+        if (!$dynamicQuestion) :
             return apiResponse(false, _('لم يتم العثور على السؤال'), [], 404);
         endif;
 
-        $examQuestion->part_id = $partId;
-        $examQuestion->count = $data['count'];
-        $examQuestion->save();
+        $dynamicQuestion->part_id = $partId;
+        $dynamicQuestion->count = $data['count'];
+        $dynamicQuestion->save();
 
-        return apiResponse(true, _('تم اضافة السؤال بنجاح'), [$examQuestion->toArray()]);
+        return apiResponse(true, _('تم اضافة السؤال بنجاح'), [$dynamicQuestion->toArray()]);
     }
 
     /**
