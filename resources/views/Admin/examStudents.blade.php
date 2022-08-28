@@ -156,7 +156,7 @@
 
                                 <ul class="dropdown-menu feat-menu">
                                     <li>
-                                        <a class="dropdown-item" href="#">الملف الشخصي</a>
+                                        <a class="dropdown-item" href="{{rpute('admin.users.profile')}}">الملف الشخصي</a>
                                     </li>
 
                                     <li>
@@ -166,7 +166,7 @@
                                     </li>
 
                                     <li>
-                                        <a class="dropdown-item" href="#">تعديل الطالب</a>
+                                        <a class="dropdown-item" href="{{route(admin.users.edit)}}">تعديل الطالب</a>
                                     </li>
                                 </ul>
                             </div>

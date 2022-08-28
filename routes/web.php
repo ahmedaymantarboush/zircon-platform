@@ -59,6 +59,7 @@ Route::group(['middleware'=>['auth', 'teacher'],'prefix'=>'admin'],function () {
     Route::post('users/store', [UserController::class,'store'])->name('admin.users.store');
     Route::get('users/{id}/edit', [UserController::class,'edit'])->name('admin.users.edit');
     Route::post('users/update', [UserController::class,'update'])->name('admin.users.update');
+    Route::get('users/{id}/profile', [UserController::class,'profile'])->name('admin.users.profile');
 
     Route::get('lectures',[LectureController::class, 'allLectures'])->name('admin.lectures.index');
     

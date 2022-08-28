@@ -16,11 +16,18 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-    public function profile()
+    public function profile($id = null)
     {
-        $user = Auth::user();
-        if (!$user):
-            return redirect(route('login'));
+        if ($id) :
+            $user = User::find($id);
+            if (!$user) :
+                return abort(404);
+            endif;
+        else :
+            $user = Auth::user();
+            if (!$user) :
+                return redirect(route('login'));
+            endif;
         endif;
         return view('Home.profile', compact('user'));
     }
