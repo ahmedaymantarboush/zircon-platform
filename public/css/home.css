@@ -1403,3 +1403,7 @@ div.waves {
     font-size: 4.2rem;
     color: #60d069;
 }
+.noLecImg {
+    width: 80%;
+    margin: 2rem auto 0;
+}
