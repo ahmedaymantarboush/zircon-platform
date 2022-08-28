@@ -217,6 +217,6 @@ document
             form,
             e
         );
-        let objData = myResponse.data;
-        console.log(objData);
+        // let objData = myResponse.data;
+        console.log(myResponse);
     });
