@@ -250,7 +250,10 @@
             @endif
             @endforeach
             @else
-            <p class='no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
+            <p class='gs_reveal no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
+            <div class='gs_reveal noLecImg'>
+                <img src="{{ URL::asset('imgs/no-result-search.png') }}" alt="">
+            </div>
             @endif
             {{-- <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_fromDown">
                     <a class="latestCard " href='#'>
