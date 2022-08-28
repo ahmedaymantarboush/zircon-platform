@@ -486,7 +486,7 @@ nav .customeContainer {
 /**** start accordion*********/
 /****************************/
 .month {
-    padding: 7rem 0;
+    padding: 2rem 0 7rem;
 }
 .monthParts h2 {
     font-size: 2.4rem;
