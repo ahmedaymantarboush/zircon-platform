@@ -269,9 +269,7 @@ document
             ? finishText.classList.add("success")
             : finishText.classList.add("danger");
         finishText.innerHTML = myResponse.message;
-        console.log(myResponse);
         // let objData = myResponse.data;
     });
-    
-    console.log(88888);
-    
+
+
