@@ -436,7 +436,8 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" class='delCenter'>
+            <form action="{{route('admin.centers.delete')}}" method="POST" class='delCenter'>
+                @csrf
                 <div class="modal-body">
                     <p class="sure-to-del">
                         هل انت متأكد انك تريد مسح
