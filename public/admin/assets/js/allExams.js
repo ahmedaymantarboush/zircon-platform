@@ -42,5 +42,7 @@ document.querySelector("table").addEventListener("click", function (e) {
         .getAttribute("data-bs-original-title");
     console.log(e.target.closest("tr").querySelector(".question-code"));
     let inputId = document.querySelector('input[name="id"]');
+    inputId.value = e.target.closest("tr").dataset.id;
     console.log(inputId);
+    console.log(inputId.value);
 });
