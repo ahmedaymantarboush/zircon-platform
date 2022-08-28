@@ -589,31 +589,31 @@
                                 </div>
                                 <div class="item">
                                     <span class="type">الاسم:</span>
-                                    <span class="info cardName">عبدالرحمن مصطفى محمود</span>
+                                    <span class="info cardName">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">المرحلة الدراسية:</span>
-                                    <span class="info cardGrade">الصف الثالث الثانوي</span>
+                                    <span class="info cardGrade">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">الرقم:</span>
-                                    <span class="info cardNumber">01234567891</span>
+                                    <span class="info cardNumber">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">رقم ولي الامر:</span>
-                                    <span class="info cardParentNumber">01234567891</span>
+                                    <span class="info cardParentNumber">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type"> المحافظة:</span>
-                                    <span class="info cardGovernorate">القاهرة</span>
+                                    <span class="info cardGovernorate">....</span>
                                 </div>
                                 <div class="item">
                                     <span class="type">مكان الحضور:</span>
-                                    <span class="info">المنصة</span>
+                                    <span class="info">....</span>
                                 </div>
                                 <div class="barcodeBox">
                                     <svg class="barcode" id="profileBarCode"></svg>
-                                    <span class="barcodeText">as4df5ef12as4df5ef1212345</span>
+                                    <span class="barcodeText">....</span>
                                 </div>
                             </div>
                         </div>
