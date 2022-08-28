@@ -61,7 +61,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     let sendObj = {
         id: dataId,
     };
-
+    console.log(dataId);
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
 
