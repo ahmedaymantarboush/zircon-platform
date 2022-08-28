@@ -29,28 +29,6 @@
                             <span class="box-icon">
                                 <i class="fa-solid fa-gauge-high"></i>
                             </span>
-                            <span class="box-name"> المحاضرات </span>
-                            <span class="parent-arrow">
-                                <i class="fa-solid fa-angle-down"></i></span>
-                        </div>
-
-                        <div class="elements">
-                            <div class="ele-child">
-                                <a href="#" class="child-name">كل المحاضرات</a>
-                            </div>
-                        </div>
-                        <div class="elements">
-                            <div class="ele-child">
-                                <a href="#" class="child-name">إضافة محاضرة</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="side-bar-item">
-                        <div class="box">
-                            <span class="box-icon">
-                                <i class="fa-solid fa-gauge-high"></i>
-                            </span>
                             <span class="box-name"> الطلاب </span>
                             <span class="parent-arrow">
                                 <i class="fa-solid fa-angle-down"></i></span>
@@ -64,6 +42,28 @@
                         <div class="elements">
                             <div class="ele-child">
                                 <a href="#" class="child-name">إضافة طالب</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="side-bar-item">
+                        <div class="box">
+                            <span class="box-icon">
+                                <i class="fa-solid fa-gauge-high"></i>
+                            </span>
+                            <span class="box-name"> المحاضرات </span>
+                            <span class="parent-arrow">
+                                <i class="fa-solid fa-angle-down"></i></span>
+                        </div>
+
+                        <div class="elements">
+                            <div class="ele-child">
+                                <a href="#" class="child-name">كل المحاضرات</a>
+                            </div>
+                        </div>
+                        <div class="elements">
+                            <div class="ele-child">
+                                <a href="#" class="child-name">إضافة محاضرة</a>
                             </div>
                         </div>
                     </div>
