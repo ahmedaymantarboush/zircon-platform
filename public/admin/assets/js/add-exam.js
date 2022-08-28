@@ -527,7 +527,7 @@ $(document).on('change','select.dynamicQuestion',async function (){
     var selectedValue = $(this).find("option:selected").text();
     $(question_box).find(".que_title").text(selectedValue);
 });
-$('.countInput').on('change keyup paste',async function (){
+$(document).on('change keyup paste','.countInput',async function (){
     let queID = $(this).parent().closest(".question-box").attr('data-id');
     let examID = $("input[name='id']").attr('value');
     let countValue = $(this).val();
