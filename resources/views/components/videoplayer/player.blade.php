@@ -12,7 +12,7 @@
         <track id="track2" label="Urdu" kind="subtitles" src="./test.vtt" srclang="en">
     </video>
     <p class="caption_text"></p>
-    <!-- <div class="thumbnail"></div> -->
+    {{-- <!-- <div class="thumbnail"></div> --> --}}
 
     <div class="progressAreaTime">0:00</div>
 

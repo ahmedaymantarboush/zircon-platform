@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!--fonts-->
+    {{-- <!--fonts--> --}}
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;500;600;800;900&family=Montserrat:wght@100;200;300;400;500;600&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -16,15 +16,15 @@
         rel="stylesheet" />
 
 
-    <!-- font awesome -->
+    {{-- <!-- font awesome --> --}}
     <link rel="stylesheet" href="{{URL::asset('css/all.min.css')}}">
 
 
 
-    <!--bootstrap-->
+    {{-- <!--bootstrap--> --}}
     <link rel="stylesheet" href="{{URL::asset('css/bootstrap-rtl.min.css')}}">
 
-    <!-- css file -->
+    {{-- <!-- css file --> --}}
     <link rel="stylesheet" href="{{URL::asset('css/confirmEmail.css')}} " class="rel">
 
 </head>
@@ -342,18 +342,18 @@
 
 
 
-    <!--font awesome-->
+    {{-- <!--font awesome--> --}}
     <script src="{{URL::asset('js/all.min.js')}}"></script>
 
 
-    <!--jquery js-->
+    {{-- <!--jquery js--> --}}
     <script src="{{URL::asset('js/jquery.min.js')}}"></script>
 
-    <!--bootstrap js-->
+    {{-- <!--bootstrap js--> --}}
     <script src="{{URL::asset('js/bootstrap.bundle.min.js')}}"></script>
 
 
-    <!-- main js file -->
+    {{-- <!-- main js file --> --}}
     <script src="{{URL::asset('js/confirmEmail.js')}}"></script>
 </body>
 

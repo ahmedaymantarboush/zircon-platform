@@ -374,11 +374,11 @@
                     <label for="">كود الشحن</label>
                     <input type="text" name="code" placeholder='ادخل كود الشحن'>
                 </div>
-                <!-- @if (request()->session()->has('success') &&
+                {{-- <!-- @if (request()->session()->has('success') &&
                 !request()->session()->get('success'))
                 <p class=" {{ request()->session()->get('success')? 'finishChargeText': 'wrongChargeText' }}">
                     {{ request()->session()->get('msg') }}</p>
-                @endif -->
+                @endif --> --}}
                 <p class='finishText'></p>
             </div>
             <div class="modal-footer">

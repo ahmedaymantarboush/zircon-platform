@@ -258,8 +258,8 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
 
-    <!-- text editor  -->
-    <!-- موجود هنا والايديت  -->
+    {{-- <!-- text editor  --> --}}
+    {{-- <!-- موجود هنا والايديت  --> --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
 
     {{-- <!-- main js file --> --}}
@@ -273,10 +273,10 @@
             visibility: hidden;
         }
     </style>
-    <!-- Latest compiled and minified JavaScript -->
+    {{-- <!-- Latest compiled and minified JavaScript --> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-    <!-- bootstrap 5  -->
-    <!-- موجود في كل الصفحات  -->
+    {{-- <!-- bootstrap 5  --> --}}
+    {{-- <!-- موجود في كل الصفحات  --> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>

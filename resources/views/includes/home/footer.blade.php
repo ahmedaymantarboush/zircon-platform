@@ -1,4 +1,4 @@
-		<!-- start footer section  -->
+		{{-- <!-- start footer section  --> --}}
 		<footer>
 			@yield('footer')
 			<div class="footer-content">
@@ -46,18 +46,18 @@
 				</div>
 			</div>
 		</footer>
-		<!--font awesome-->
+		{{-- <!--font awesome--> --}}
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
 			integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ=="
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		></script>
-		<!--js plugins-->
+		{{-- <!--js plugins--> --}}
 
 
 		<script src="{{ asset('homeAssets/assets/js/bootstrap.bundle') }}.js"></script>
-		<!-- main js file -->
+		{{-- <!-- main js file --> --}}
 		<script src="{{ asset('homeAssets/assets/js/main.js') }}"></script>
 		@yield('javascript')
 	</body>

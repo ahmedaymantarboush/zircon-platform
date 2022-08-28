@@ -1,10 +1,10 @@
 @extends('layouts.adminLayout')
 
 @section('css')
-    <!-- موجود هنا بس  -->
+    {{-- <!-- موجود هنا بس  --> --}}
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/add-lecture.css') }}" />
-    <!-- موجود في هنا والايديت  -->
+    {{-- <!-- موجود في هنا والايديت  --> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css" />
 @endsection
 
@@ -20,7 +20,7 @@
                 الرجوع الي قائمة المحاضرات
                 <span><i class="fa-solid fa-arrow-left-long"></i></span></a>
         </div>
-        <!-- start tabs  -->
+        {{-- <!-- start tabs  --> --}}
         <div class="sections-tabs">
             <button class="sections tab-item active" data-index="0">
                 <span><i class="fa-solid fa-book"></i></span>
@@ -47,10 +47,10 @@
                 <span class="tab-name">الانهاء</span>
             </button>
         </div>
-        <!-- هنا التاب الي خاصة بالاقسام  -->
+        {{-- <!-- هنا التاب الي خاصة بالاقسام  --> --}}
         <div class="sections-body item-body active">
             <div class="btns">
-                <!-- add section btn  -->
+                {{-- <!-- add section btn  --> --}}
                 <div class="add-section">
                     <button type="button" class="btn custome-btn" data-bs-toggle="modal" data-bs-target="#add-sec">
                         اضافة قسم
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- add lesson btn  -->
+                {{-- <!-- add lesson btn  --> --}}
                 <div class="add-less">
                     <button type="button" class="btn custome-btn" data-bs-toggle="modal" data-bs-target="#add-less">
                         اضافة درس
@@ -254,7 +254,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- add  exam btn 	 -->
+                {{-- <!-- add  exam btn 	 --> --}}
                 <div class="add-section">
                     <button type="button" class="custome-btn" data-bs-toggle="modal" data-bs-target="#add-exam">
                         اضافة امتحان
@@ -337,7 +337,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- sort section btn  -->
+                {{-- <!-- sort section btn  --> --}}
                 <div class="add-section">
                     <button type="button" class="custome-btn" data-bs-toggle="modal" data-bs-target="#sort-sections">
                         ترتيب الاقسام
@@ -402,9 +402,9 @@
                     </div>
                 </div>
             </div>
-            <!-- هنا بقا يظهر الاقسام  -->
+            {{-- <!-- هنا بقا يظهر الاقسام  --> --}}
             <div class="sections-items">
-                <!-- ده الاب بتاع كل قسم  -->
+                {{-- <!-- ده الاب بتاع كل قسم  --> --}}
                 @foreach (\App\Models\Section::where(['lecture_id' => $lecture->id])->orderBy('order')->get() as $section)
                     <div class="section-item">
                         <div class="section-item-control">
@@ -414,7 +414,7 @@
                                 :
                                 <span class="section-item-name">{{ $section->title }}</span>
                             </div>
-                            <!-- هنا الزراير الخاصة بتعديلات السكشن  -->
+                            {{-- <!-- هنا الزراير الخاصة بتعديلات السكشن  --> --}}
                             <div class="section-item-btns">
                                 <button type="button" class="custome-btn modify-btn" data-bs-toggle="modal"
                                     data-bs-target="#modify-sec-{{ $section->id }}">
@@ -494,7 +494,7 @@
                                                                 </span> :
                                                                 <span class="type-less-name">{{ $section->title }}</span>
                                                             </h5>
-                                                            <!-- <button
+                                                            {{-- <!-- <button --}}
                                                                                         type="submit"
                                                                                         class="btn btn-primary"
                                                                                     >
@@ -605,7 +605,7 @@
 
             </div>
         </div>
-        <!-- the first form in the add lecture page and it is have a 5 tabs -->
+        {{-- <!-- the first form in the add lecture page and it is have a 5 tabs --> --}}
         @include('components.Admin.lectureForm', ['lecture' => $lecture])
 
         <div class="control">
@@ -619,36 +619,36 @@
 
 
 @section('javascript')
-    <!-- bootstrap 4  -->
-    <!-- موجود هنا والايديت  -->
+    {{-- <!-- bootstrap 4  --> --}}
+    {{-- <!-- موجود هنا والايديت  --> --}}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-    <!-- bootstrap 5  -->
-    <!-- موجود في كل الصفحات  -->
+    {{-- <!-- bootstrap 5  --> --}}
+    {{-- <!-- موجود في كل الصفحات  --> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
-    <!-- موجود هنا والايديت  -->
+    {{-- <!-- موجود هنا والايديت  --> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-    <!-- text editor  -->
-    <!-- موجود هنا والايديت  -->
+    {{-- <!-- text editor  --> --}}
+    {{-- <!-- موجود هنا والايديت  --> --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
 
-    <!-- sortable js  -->
-    <!-- موجود هنا والايديت  -->
+    {{-- <!-- sortable js  --> --}}
+    {{-- <!-- موجود هنا والايديت  --> --}}
     <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
 
-    <!-- main js file -->
-    <!-- موجود في كل الصفحات  -->
+    {{-- <!-- main js file --> --}}
+    {{-- <!-- موجود في كل الصفحات  --> --}}
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>
 
-    <!-- موجود هنا والايديت  -->
+    {{-- <!-- موجود هنا والايديت  --> --}}
     <script src="{{ asset('admin/assets/js/add-lecture.js') }}"></script>
-    <!-- موجود هنا بس  -->
+    {{-- <!-- موجود هنا بس  --> --}}
     <script src="{{ asset('admin/assets/js/edit-lecture.js') }}"></script>
 @endsection

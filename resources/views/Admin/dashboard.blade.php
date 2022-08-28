@@ -177,7 +177,7 @@
                 <div class="item3">عدد الطلاب</div>
             </div>
 
-            <!-- <div>radssad</div> -->
+            {{-- <!-- <div>radssad</div> --> --}}
         </div>
         <div class="col-lg-5 white-box spline-parent" style="overflow-x: scroll; overflow-y: hidden">
             <div class="spline" style="min-width: 150%; margin-right: -50%"></div>
@@ -892,20 +892,20 @@
     </script>
 
 
-    <!--font awesome-->
+    {{-- <!--font awesome--> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
         integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!--Apex Charts-->
+    {{-- <!--Apex Charts--> --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <!-- bootstrap 4  -->
+    {{-- <!-- bootstrap 4  --> --}}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-    <!-- bootstrap 5  -->
+    {{-- <!-- bootstrap 5  --> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>

@@ -1,6 +1,6 @@
 @extends('layouts.HomeLayout')
 @section('css')
-    <!-- css file -->
+    {{-- <!-- css file --> --}}
     <link rel="stylesheet" href="{{ URL::asset('css/levels.css') }} " class="rel">
     <link rel="stylesheet" href="{{ URL::asset('css/levels-responsive.css') }} " class="rel">
 @endsection

@@ -242,6 +242,6 @@
 @endif
 @endsection
 @section('javascript')
-<!-- main js file -->
+{{-- <!-- main js file --> --}}
 <script src="{{ asset('js/search.js') }}"></script>
 @endsection
