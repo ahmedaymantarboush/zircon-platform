@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\BalanceCard;
 use App\Models\User;
+use App\Models\UserSession;
 use Illuminate\Http\Request;
 use Illuminate\support\Str;
 
@@ -207,13 +208,40 @@ class UserController extends Controller
         if ($user->id == $student->id):
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الطالب'), [], 403);
         endif;
-        $student->hanging = !$student->hanging;
+        $student->banned = !$student->banned;
         $student->save();
         return apiResponse(true, _('تم تعديل الطالب بنجاح'), [
             'id' => $student->id,
-            'hanging' => $student->hanging,
+            'hanging' => $student->banned,
         ]);
     }
+
+    public function deleteSessions()
+    {
+        $data = json_decode(request()->data,true);
+        $user = apiUser();
+        if (!$user) :
+            return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
+        endif;
+        $id = $data['id'] ?? 0;
+        $student = User::find($id);
+        if (!$student) :
+            return apiResponse(false, _('لم يتم العثور على الطالب'), [], 404);
+        endif;
+        if ($user->role->number >= 4):
+            return apiResponse(false, _('غير مصرح لهذا بحذف جلسات الطالب'), [], 403);
+        endif;
+        if ($user->id == $student->id):
+            return apiResponse(false, _('غير مصرح لهذا بحذف جلسات الطالب'), [], 403);
+        endif;
+        UserSession::where('user_id',$user->id)->delete();
+        return apiResponse(true, _('تم حذف جلسات الطالب بنجاح'), [
+            'id' => $student->id,
+            'sessionsCount' => $student->loginSessions->count(),
+        ]);
+    }
+
+
 
     /**
      * Update the specified resource in storage.

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('platform')->default(config('app.name'));
             $table->string('code',50)->unique();
             $table->boolean('activated')->default(true);
-            $table->boolean('hanging')->default(false);
+            $table->boolean('banned')->default(false);
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
