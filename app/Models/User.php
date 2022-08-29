@@ -91,4 +91,8 @@ class User extends Authenticatable
     public function passedExams(){
         return $this->hasMany(PassedExam::class);
     }
+
+    public function devices(){
+        return $this->hasMany(Device::class);
+    }
 }

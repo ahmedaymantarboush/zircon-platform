@@ -18,7 +18,7 @@ class Student
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        if ($user ? $user->role->number > 4 : true ):
+        if ($user ? $user->role->number > 4 && !$user->hanging : true ):
             return abort(404);
         endif;
         return $next($request);    }
