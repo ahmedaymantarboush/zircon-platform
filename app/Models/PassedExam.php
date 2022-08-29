@@ -15,6 +15,7 @@ class PassedExam extends Model
         'percentage',
         'started_at',
         'ended_at',
+        'chance',
     ];
 
     public function exam()
@@ -36,7 +37,7 @@ class PassedExam extends Model
             return null;
         endif;
     }
-        
+
     public function answers(){
         return AnswerdQuestion::where(['exam_id'=>$this->exam_id,'user_id'=>$this->user_id])->get();
     }
