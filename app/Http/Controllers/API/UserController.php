@@ -237,7 +237,7 @@ class UserController extends Controller
         UserSession::where('user_id',$user->id)->delete();
         return apiResponse(true, _('تم حذف جلسات الطالب بنجاح'), [
             'id' => $student->id,
-            'sessionsCount' => $student->loginSessions->count(),
+            // 'sessionsCount' => $student->loginSessions->count(),
         ]);
     }
 
