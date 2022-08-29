@@ -43,7 +43,6 @@
                 <div class="teacherAbout">
                     <div class="headerImage gs_reveal gs_reveal_fromLeft">
                         <img class="ontop" src="{{ URL::asset('imgs/elbirry.png') }}" alt="">
-
                     </div>
                     <div class="headerAtom  ">
                         <div class="svg-container ">
@@ -54,8 +53,6 @@
                                         <ellipse cx="200" cy="200" rx="33" ry="88" fill="none" stroke="inherit" />
                                     </symbol>
                                 </defs>
-
-
                                 <use id="orbit-1" xlink:href="#e" />
                                 <use id="orbit-2" xlink:href="#e" transform="rotate(60 200 200)" />
                                 <use id="orbit-3" xlink:href="#e" transform="rotate(120 200 200)" />
@@ -91,7 +88,9 @@
                                             {{ $testimonial->student_name }} <span
                                                 class="h-t-grade">{{ $testimonial->degree }}</span> ~
                                         </h3>
-                                        <p class="h-t-text">{{ $testimonial->content }}</p>
+                                        <p class="h-t-text">@php
+                                            echo $testimonial->content;
+                                        @endphp</p>
                                     </div>
                                     <div class="h-t-image">
                                         <img src="{{ $testimonial->image }}" alt="">

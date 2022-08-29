@@ -19,7 +19,7 @@ return new class extends Migration
             $table->boolean('dynamic')->default(false);
             $table->text('description');
             $table->integer('questions_count')->default(0);
-            $table->integer('exam_hardness');
+            $table->integer('exam_hardness')->nullable();
             $table->integer('chances')->default(3);
             $table->float('min_pecentage')->default(50);
             $table->foreignId('user_id')->default(1)->constrained()->cascadeOnDelete();
