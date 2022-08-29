@@ -1,6 +1,6 @@
 @extends('layouts.HomeLayout')
 @section('seo')
-    <meta name="keywords" content="أستاذ محمد البري, أ/ محمد البري, محمد البري, الصف الثالث الثانوي, الصف الثاني الثانوي, الصف الأول الثانوي, ثانوية عامة, فيزياء ثانوية عامة">
+    <meta name="keywords" content="أستاذ محمد البري, أ/ محمد البري, محمد البري, الصف الثالث الثانوي, الصف الثاني الثانوي, الصف الأول الثانوي, ثانوية عامة, فيزياء الثانوية عامة">
     <meta name="description" content="منصة أستاذ محمد البري لتدريس منهج الفيزياء للصفوف الثانوية العامة">
     <meta name="author" content="Developer & Designer : Zircon Tech 2022">
 @endsection
