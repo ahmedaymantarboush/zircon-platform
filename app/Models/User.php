@@ -92,7 +92,11 @@ class User extends Authenticatable
         return $this->hasMany(PassedExam::class);
     }
 
-    public function devices(){
-        return $this->hasMany(Device::class);
+    public function sessions(){
+        return $this->hasMany(Session::class);
+    }
+
+    public function loginSessions(){
+        return $this->belongsToMany(Session::class,'user_sessions');
     }
 }

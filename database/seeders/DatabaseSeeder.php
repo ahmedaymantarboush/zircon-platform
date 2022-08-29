@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Governorate;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -107,11 +109,27 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory()->create([
-            'role_num' => 1,
+            'role_num' => 2,
+            'email' => 'elberry20@gmail.com',
+            'name' => 'أ/محمد البري',
+            'password' => '$2y$10$uNbYaAryeqy1TC4jejbdvuX/bbxmD1nvs2h7xQ1a963duwWUyWrKW',
+            'center_id' => 1,
+            'grade_id' => 3,
+            'governorate_id' => 20,
+            'phone_number' => '01006436766',
+            'parent_phone_number' => '01006436766',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'role_num' => 2,
             'email' => 'ahmedaymantarboush@gmail.com',
-            'name' => 'Ahmed Tarboush',
+            'name' => 'Ahmed Ayman Tarboush',
             'password' => Hash::make('123456789'),
-            'center_id' => 2,
+            'center_id' => 1,
+            'grade_id' => 3,
+            'governorate_id' => 20,
+            'phone_number' => '01069512633',
+            'parent_phone_number' => '01069512633',
         ]);
 
         \App\Models\UserSubject::factory()->create(['user_id' => 1, 'subject_id' => 1]);

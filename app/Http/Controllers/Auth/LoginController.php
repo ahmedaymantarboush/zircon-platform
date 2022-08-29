@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Device;
+use App\Models\UserSession;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -56,4 +59,17 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function authenticated($request, $user)
+    {
+        // if ($user->loginSessions->count())
+        // request()->session()
+        $userSession = UserSession::firstOrCreate([
+            'user_id'=>$user->id,
+            'session_id'=>Session::getId(),
+        ]);
+        if ($user->loginSessions->count() >= env('MAX_DEVICES_COUNT')):
+            Auth::logout();
+            return redirect()->back()->withInput()->withErrors([$this->username()=>['لقد وصلت للحد الأقصى من عدد تسجيلات الدخول']]);
+        endif;
+    }
 }
