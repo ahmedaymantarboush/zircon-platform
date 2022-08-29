@@ -61,19 +61,20 @@ class SectionItemController extends Controller
         if ($sectionItem->lesson_id) :
             $lesson = $sectionItem->item;
             $exam = $lesson->exam ?? null;
-            
+
             $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
-            
-            $openable = !$exam || ($exam ? ($passedExam ? $passedExam->percentage >= $lesson->min_percentage : false)  : false );
-            if ($openable):
+
+            $openable = !$exam || ($exam ? ($passedExam ? $passedExam->percentage >= $lesson->min_percentage : false)  : false);
+            if ($openable) :
                 $userLesson = UserLesson::firstOrCreate([
                     'lesson_id' => $lesson->id,
                     'user_id' => $user->id,
                 ]);
             endif;
             $urls = getVideoUrl(getVideoId($lesson->url));
-            
-            
+
+            $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false)) && $passedExam->chance < 3 : false;
+
             $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
 
             if ($finished) :

@@ -68,13 +68,21 @@ class AnswerdQuestionController extends Controller
         if (!$passedExam){
             return apiResponse(false, _('لم يتم العثور على الامتحان'), [], 404);
         }
+
+        $exam = $passedExam->exam;
+        if ($exam->starts_at > now() && $user->role->number >= 4):
+            return apiResponse(false, _('لم يبدأ هذا الامتحان بعد'), [], 404);
+        elseif ($exam->ends_at <= now() && $user->role->number >= 4):
+            return apiResponse(false, _('لم يعد هذا الامتحان صالح لاستقبال الاجابات'), [], 404);
+        endif;
+
         if ($passedExam->finished || ( $passedExam->ended_at ? $passedExam->ended_at <= now() : false )):
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتسجيل اجابة السؤال'), [], 403);
         endif;
         $choiceId = $data['choiceId'] ?? null;
         $answer = $data['answer'] ?? null;
         $flagged = $data['flagged'] ?? null;
-        
+
         if ($choiceId){
             $choice = Choice::where(['id'=>$choiceId,'question_id'=>$answerdQuestion->question->id])->first();
             $answerdQuestion->choice_id = $choice->id;
@@ -87,13 +95,13 @@ class AnswerdQuestionController extends Controller
             $answerdQuestion->flagged = $flagged;
         }
         $answerdQuestion->save();
-        
+
         $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId])->count();
-        
+
         $passedExam->percentage = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId])->count()) * 100, 2);
         $passedExam->save();
 
-        
+
         return apiResponse(true, _('تم تسجيل اجابة السؤال'), []);
     }
 

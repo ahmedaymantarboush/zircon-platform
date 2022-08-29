@@ -117,14 +117,21 @@ class ExamController extends Controller
             return apiResponse(false, _('لم يتم العثور على الامتحان'), [], 404);
         endif;
 
-        $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
-        if (!$passedExam) :
+        if ($exam->starts_at > now() && $user->role->number >= 4):
+            return apiResponse(false, _('لم يبدأ هذا الامتحان بعد'), [], 404);
+        elseif ($exam->ends_at <= now() && $user->role->number >= 4):
+            return apiResponse(false, _('لم يعد هذا الامتحان صالح لاستقبال الاجابات'), [], 404);
+        endif;
+
+        $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
+        $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false )) && $passedExam->chance < 3  : false;
+        if (!$passedExam || $hasChance) :
             $exam = Exam::find($id);
             if (!$exam) :
                 return apiResponse(false, _('الامتحان الذي طلبته غير موجود'), [], 404);
             endif;
             $exam->startExam();
-            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
+            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
         endif;
         if (!$passedExam) :
             return apiResponse(false, _('عفوا حدث خطأ ما لذلك لم نتمكن من انشاء الامتحان الخاص بالطالب'), [], 500);
@@ -152,6 +159,7 @@ class ExamController extends Controller
             'examStartedAt' => $passedExam->started_at,
             'examEndedAt' => $passedExam->ended_at,
             'finished' => $passedExam->finished,
+            'chance' => $passedExam->chance,
         ];
 
         return apiResponse(true, _('تم العثور على العنصر'), $data);
