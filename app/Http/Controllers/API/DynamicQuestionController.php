@@ -120,11 +120,11 @@ class DynamicQuestionController extends Controller
             return apiResponse(false, _('لم يتم العثور على السؤال'), [], 404);
         endif;
         $dynamicQuestion->part_id = $partId;
-        
+
         $exam = $dynamicQuestion->exam;
         $exam->questions_count -= $dynamicQuestion->count;
-        $dynamicQuestion->count = $data['count'];
-        $exam->questions_count += $data['count'];
+        $dynamicQuestion->count = $data['count'] ?? $dynamicQuestion->count;
+        $exam->questions_count += $dynamicQuestion->count;
         $exam->save();
         $dynamicQuestion->save();
 
