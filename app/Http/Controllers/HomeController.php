@@ -35,8 +35,8 @@ class HomeController extends Controller
             $lectures[] = $grage2;
         endif;
         for ($i = 0; $i < 2;$i++):
-            if (isset($grage3[$i])):
-                $lectures[] = $grage3[$i];
+            if (isset($grade3[$i])):
+                $lectures[] = $grade3[$i];
             endif;
         endfor;
         return view('index',compact('lectures'));
