@@ -118,7 +118,7 @@ class DatabaseSeeder extends Seeder
 
         // \App\Models\User::factory(50)->create();
 
-        // \App\Models\Lecture::factory(50)->create(['user_id' => 1]);
+        \App\Models\Lecture::factory(50)->create(['user_id' => 1]);
 
         // \App\Models\Part::factory(20)->create(['user_id' => 1]);
 

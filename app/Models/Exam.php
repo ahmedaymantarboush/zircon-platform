@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Exam extends Model
 {
@@ -57,13 +58,14 @@ class Exam extends Model
 
     public function startExam($userId = null)
     {
-        $user = User::find($userId) ?? apiUser();
+        $user = User::find($userId) ?? Auth::user();
         if ($user) :
             if ($this->dynamic) :
+                $chance = $this->passedExams()->where('user_id',$user->id)->count();
                 $dynamicQuestions = $this->dynamicQuestions;
                 foreach ($dynamicQuestions as $dynamicQuestion) :
                     if ($dynamicQuestion) :
-                        foreach (Question::where(['level' => $dynamicQuestion->level, 'part_id' => $dynamicQuestion->part->id,'grade_id' => $user->grade->id])->inRandomOrder()->take($dynamicQuestion->count)->get() as $question) :
+                        foreach (Question::where(['level' => $dynamicQuestion->level - ($chance - 1), 'part_id' => $dynamicQuestion->part->id,'grade_id' => $user->grade->id])->inRandomOrder()->take($dynamicQuestion->count)->get() as $question) :
                             if ($question) :
                                 $user->answerdQuestions()->create([
                                     'question_id' => $question->id,
@@ -81,6 +83,7 @@ class Exam extends Model
                     'started_at' => now(),
                     'ended_at' => $this->time ? now()->addSeconds($this->time) : null,
                     'finished' => false,
+                    'chance' => $chance,
                 ]);
             else :
                 $questions = $this->questions;
