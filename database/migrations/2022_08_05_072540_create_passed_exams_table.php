@@ -21,6 +21,7 @@ return new class extends Migration
             $table->dateTime('started_at');
             $table->dateTime('ended_at')->nullable();
             $table->boolean('finished')->default(false);
+            $table->integer('chance')->default(1);
             $table->timestamps();
         });
     }
