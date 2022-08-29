@@ -6,11 +6,10 @@
 @endsection
 @section('css')
 {{-- <!--swiper--> --}}
-<link rel="stylesheet" href="{{ URL::asset('css/swiper.bundle.min.css') }}">
+{{-- <link rel="stylesheet" href="{{ URL::asset('css/swiper.bundle.min.css') }}"> --}}
 {{-- <!-- css file --> --}}
 <link rel="stylesheet" href="{{ URL::asset('css/home.css') }} " class="rel">
 <link rel="stylesheet" href="{{ URL::asset('css/home-responsive.css') }} " class="rel">
-<script></script>
 @endsection
 @section('content')
 <header class="">
