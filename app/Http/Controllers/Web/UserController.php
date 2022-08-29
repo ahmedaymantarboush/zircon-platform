@@ -29,7 +29,7 @@ class UserController extends Controller
                 return redirect(route('login'));
             endif;
         endif;
-        return view('Home.profile', compact('user'));
+        return view('home.profile', compact('user'));
     }
     public function index()
     {

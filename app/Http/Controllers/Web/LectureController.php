@@ -27,7 +27,7 @@ class LectureController extends Controller
         $gradeId = $id - 9;
         $lectures = Lecture::where(['published' => true, 'grade_id' => $gradeId])->orderBy('id', 'desc')->get();
         if (Grade::find($gradeId)) :
-            return view("Home.grades", ['lectures'=>$lectures,'gradeId'=>$gradeId]);
+            return view("home.grades", ['lectures'=>$lectures,'gradeId'=>$gradeId]);
         else :
             return abort(404);
         endif;
@@ -213,10 +213,10 @@ class LectureController extends Controller
                     ],
                 ];
 
-                return view("Home.search", $data);
+                return view("home.search", $data);
             endif;
         endif;
-        return view("Home.search", $data);
+        return view("home.search", $data);
     }
 
     public function myLectures()
@@ -226,7 +226,7 @@ class LectureController extends Controller
             return redirect()->route('login');
         }
         $lectures = $user->ownedLectures();
-        return view("Home.myCourses", compact("lectures"));
+        return view("home.myCourses", compact("lectures"));
     }
 
     public function fastEdit(){
@@ -381,7 +381,7 @@ class LectureController extends Controller
         if ($slug && $user) :
             $lecture = Lecture::where(['slug' => $slug])->first();
             if ($lecture->owners->contains($user) || $user->role->number < 4) :
-                return view('Home.lecture_viewer', compact('lecture'));
+                return view('home.lecture_viewer', compact('lecture'));
             else :
                 return abort(403);
             endif;
@@ -474,7 +474,7 @@ class LectureController extends Controller
     {
         $lecture = Lecture::where(['slug' => $slug, 'published' => true])->first();
         if ($lecture) :
-            return view("Home.lectureDetails", compact('lecture'));
+            return view("home.lectureDetails", compact('lecture'));
         else :
             return abort(404);
         endif;
