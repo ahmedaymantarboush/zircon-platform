@@ -114,10 +114,10 @@ class LectureController extends Controller
 
                 $lectures->where(function ($q) use ($free, $hasDiscount, $Paid) {
                     if ($free) :
-                        $q->orWhere('price', 0);
+                        $q->orWhere('price', 0)->orWhere('final_price',0);
                     endif;
                     if ($hasDiscount) :
-                        $q->orWhere('discount_expiry_date', '>', now());
+                        $q->orWhere('discount_expiry_date', '<', now());
                     endif;
                     if ($Paid) :
                         $q->orWhere('price', '>', 0);
@@ -174,10 +174,41 @@ class LectureController extends Controller
                 endif;
                 return apiResponse(true, _('تم العثور على محاضرات'), $data);
             else :
-                return apiResponse(false, _('لا يوجد نتائج'), [], 404);
+                $paginatedLectures = clone $lectures;
+                $paginatedLectures = [];
+
+                $filtersUrl = '';
+                foreach ($filters as $key => $value) {
+                    if (!in_array($key, $unactivatedFilters)) :
+                        $filtersUrl .= $key . ':' . implode(',', $value) . ';';
+                    endif;
+                }
+                $data = [
+                    'lecturesCount' => count($lectures->get()),
+                    'lectures' => [],
+                    'queryString' => $search,
+                    'appliedFilters' => $filters,
+                    'appliedFiltersUrl' => $filtersUrl,
+                    'filters' => [
+                        'grades' => $grades->pluck('id'),
+                        'price' => [
+                            'free' => $free ?? false,
+                            'hasDiscount' => $hasDiscount ?? false,
+                            'Paid' => $Paid ?? false
+                        ],
+                        'parts' => $parts->pluck('id'),
+                        'subjects' => $subjects->pluck('id'),
+                        'users' => $users->pluck('id'),
+                    ],
+                ];
+
+                $query = "&q=$search";
+                $query .= $filtersUrl ? "&&filters=$filtersUrl" : "";
+
+                return apiResponse(true, _('لا يوجد نتائج'), []);
             endif;
         else :
-            return apiResponse(false, _('لا يوجد جملة بحث'), [], 404);
+            return apiResponse(false, _('لا يوجد جملة بحث'), [], 400);
         endif;
     }
 
