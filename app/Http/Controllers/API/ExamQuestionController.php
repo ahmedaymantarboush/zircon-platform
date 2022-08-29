@@ -48,7 +48,7 @@ class ExamQuestionController extends Controller
         ]);
 
         $exam = $examQuestion->exam;
-        $exam->questions_count -= 1;
+        $exam->questions_count += 1;
         $exam->save();
 
         return apiResponse(true, _('تم اضافة السؤال بنجاح'), [
