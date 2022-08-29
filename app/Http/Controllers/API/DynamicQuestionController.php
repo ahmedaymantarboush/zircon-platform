@@ -122,9 +122,9 @@ class DynamicQuestionController extends Controller
         $dynamicQuestion->part_id = $partId;
 
         $exam = $dynamicQuestion->exam;
-        $exam->questions_count -= $dynamicQuestion->count;
+        $exam->questions_count -= abs($dynamicQuestion->count);
         $dynamicQuestion->count = abs($data['count']) ?? $dynamicQuestion->count;
-        $exam->questions_count += $dynamicQuestion->count;
+        $exam->questions_count += abs($dynamicQuestion->count);
         $exam->save();
         $dynamicQuestion->save();
 
