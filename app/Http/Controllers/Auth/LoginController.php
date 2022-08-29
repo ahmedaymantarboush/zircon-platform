@@ -61,8 +61,6 @@ class LoginController extends Controller
 
     public function authenticated($request, $user)
     {
-        // if ($user->loginSessions->count())
-        // request()->session()
         $userSession = UserSession::firstOrCreate([
             'user_id'=>$user->id,
             'session_id'=>Session::getId(),
