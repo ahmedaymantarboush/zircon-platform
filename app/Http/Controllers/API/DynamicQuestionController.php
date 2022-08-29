@@ -65,7 +65,7 @@ class DynamicQuestionController extends Controller
         $exam->questions_count += $dynamicQuestion->count;
         $exam->save();
         return apiResponse(true, _('تم اضافة السؤال بنجاح'), [
-            'id' => $dynamicQuestion->id,
+            'id'=>$dynamicQuestion->id,
         ]);
     }
 
@@ -121,13 +121,11 @@ class DynamicQuestionController extends Controller
         endif;
         $dynamicQuestion->part_id = $partId;
 
-        if ($data['count'] > 0) :
-            $exam = $dynamicQuestion->exam;
-            $exam->questions_count -= $dynamicQuestion->count;
-            $dynamicQuestion->count = $data['count'];
-            $exam->questions_count += $dynamicQuestion->count;
-            $exam->save();
-        endif;
+        $exam = $dynamicQuestion->exam;
+        $exam->questions_count -= $dynamicQuestion->count;
+        $dynamicQuestion->count = abs($data['count']) ?? $dynamicQuestion->count;
+        $exam->questions_count += $dynamicQuestion->count;
+        $exam->save();
         $dynamicQuestion->save();
 
         return apiResponse(true, _('تم اضافة السؤال بنجاح'), [$dynamicQuestion->toArray()]);
@@ -154,7 +152,7 @@ class DynamicQuestionController extends Controller
         $id = $data['id'];
         $dynamicQuestion = DynamicQuestion::find($id);
         if ($dynamicQuestion) :
-            $exam = $dynamicQuestion->exam;
+            $exam =$dynamicQuestion->exam;
             $exam->questions_count -= $dynamicQuestion->count;
             $exam->save();
             $dynamicQuestion->delete();
