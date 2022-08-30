@@ -39,7 +39,7 @@
                     <span>تعديل الامتحان</span>
                 </div>
                 <div class="main_exam_info">
-                    @include('components.Admin.examForm', ['exam' => $exam])
+                    @include('components.admin.examForm', ['exam' => $exam])
                 </div>
                 <div class="add_questions" style="margin-bottom: 20px">
                     <div class="row">
