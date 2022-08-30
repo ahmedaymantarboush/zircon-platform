@@ -205,7 +205,7 @@ class LectureController extends Controller
                 $query = "&q=$search";
                 $query .= $filtersUrl ? "&&filters=$filtersUrl" : "";
 
-                return apiResponse(true, _('لا يوجد نتائج'), []);
+                return apiResponse(true, _('لا يوجد نتائج'), $data);
             endif;
         else :
             return apiResponse(false, _('لا يوجد جملة بحث'), [], 400);
