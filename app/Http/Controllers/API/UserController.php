@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\BalanceCard;
+use App\Models\Session;
 use App\Models\User;
 use App\Models\UserSession;
 use Illuminate\Http\Request;
@@ -234,7 +235,13 @@ class UserController extends Controller
         if ($user->id == $student->id):
             return apiResponse(false, _('غير مصرح لهذا بحذف جلسات الطالب'), [], 403);
         endif;
-        UserSession::where('user_id',$user->id)->delete();
+        foreach (UserSession::where('user_id',$user->id)->get() as $userSession):
+            $session = Session::find($userSession->session_id);
+            if ($session):
+                $session->delete();
+            endif;
+            $userSession->delete();
+        endforeach;
         return apiResponse(true, _('تم حذف جلسات الطالب بنجاح'), [
             'id' => $student->id,
             // 'sessionsCount' => $student->loginSessions->count(),

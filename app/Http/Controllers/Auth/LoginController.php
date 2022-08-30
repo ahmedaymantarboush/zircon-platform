@@ -68,9 +68,8 @@ class LoginController extends Controller
         ]);
 
         if ($user->loginSessions->count() >= env('MAX_DEVICES_COUNT')):
-            SessionModel::find($userSession->session_id)->delete();
             $userSession->delete();
-            // Auth::logout();
+            Auth::logout();
             return redirect()->back()->withInput()->withErrors([$this->username()=>['لقد وصلت للحد الأقصى من عدد تسجيلات الدخول']]);
         endif;
     }
