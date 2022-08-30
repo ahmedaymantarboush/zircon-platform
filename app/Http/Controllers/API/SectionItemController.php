@@ -62,7 +62,7 @@ class SectionItemController extends Controller
             $lesson = $sectionItem->item;
             $exam = $lesson->exam ?? null;
 
-            $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->first() : null;
+            $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first() : null;
 
             $openable = !$exam || ($exam ? ($passedExam ? $passedExam->percentage >= $lesson->min_percentage : false)  : false);
             if ($openable) :
@@ -73,7 +73,8 @@ class SectionItemController extends Controller
             endif;
             $urls = getVideoUrl(getVideoId($lesson->url));
 
-            $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false)) && $passedExam->chance < 3 : false;
+            $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false)) && $passedExam->chance < 3 : true;
+            $hasChance = $hasChance && ($exam ? $exam->dynamic : true);
 
             $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
 
@@ -93,7 +94,9 @@ class SectionItemController extends Controller
                 'percentage' => $finished ? $passedExam->percentage : null,
                 'minPercentage' => $lesson->min_percentage,
                 'questionsCount' => $exam ? $exam->questions_count : null,
-                'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where('correct', 1)->count() : null,
+                'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where(['correct'=> 1, 'chance'=>$passedExam->chance])->count() : null,
+                'chance' => $passedExam && $hasChance ? $passedExam->chance : null,
+                'chancesCount' => $exam && $hasChance ? $exam->chances : null,
 
                 'grade' => $lesson->grade->name,
                 'part' => $lesson->part->name,
@@ -103,7 +106,11 @@ class SectionItemController extends Controller
         else :
 
             $exam = $sectionItem->item;
-            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->first();
+            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
+
+            $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false)) && $passedExam->chance < 3 : true;
+            $hasChance = $hasChance && ($exam ? $exam->dynamic : true);
+
             $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
 
             if ($finished) :
@@ -117,7 +124,11 @@ class SectionItemController extends Controller
                 'examName' => $exam->title,
                 'finished' => $finished,
                 'passedExamId' => $passedExam ? $passedExam->id : null,
-                'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where('correct', 1)->count() : null,
+                'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where(['correct' => 1, 'chance' => $passedExam->chance])->count() : null,
+
+                'chance' => $passedExam && $hasChance ? $passedExam->chance : null,
+                'chancesCount' => $exam && $hasChance ? $exam->chances : null,
+
             ];
 
         endif;

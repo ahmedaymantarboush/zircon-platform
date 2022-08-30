@@ -39,7 +39,7 @@ class PassedExam extends Model
     }
 
     public function answers(){
-        return AnswerdQuestion::where(['exam_id'=>$this->exam_id,'user_id'=>$this->user_id])->get();
+        return AnswerdQuestion::where(['exam_id'=>$this->exam_id,'user_id'=>$this->user_id,'chance'=>$this->chance])->get();
     }
     public function examAnswers(){
         return $this->hasMany(AnswerdQuestion::class,'exam_id','exam_id');

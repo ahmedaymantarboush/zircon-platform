@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('answer')->nullable();
             $table->boolean('correct')->default(false);
             $table->boolean('flagged')->default(false);
+            $table->boolean('chance')->default(1);
             $table->timestamps();
         });
     }

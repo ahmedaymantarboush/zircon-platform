@@ -15,6 +15,7 @@ class AnswerdQuestion extends Model
         'answer',
         'correct',
         'flagged',
+        'chance',
     ];
 
     public function question()

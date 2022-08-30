@@ -124,7 +124,9 @@ class ExamController extends Controller
         endif;
 
         $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
-        $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false )) && $passedExam->chance < 3  : false;
+        $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false )) && $passedExam->chance < $exam->chances  : true;
+        $hasChance = $hasChance && ($exam ? $exam->dynamic : true);
+        
         if (!$passedExam || $hasChance) :
             $exam = Exam::find($id);
             if (!$exam) :
@@ -139,7 +141,7 @@ class ExamController extends Controller
 
         $exam = $passedExam->exam;
         $answerdQuestions = [];
-        foreach ($exam->answerdQuestions()->inRandomOrder()->get() as $answerdQuestion) :
+        foreach ($exam->answerdQuestions()->where('chance',$passedExam->chance)->inRandomOrder()->get() as $answerdQuestion) :
             $answerdQuestions[] = [
                 'id' => $answerdQuestion->id,
                 'flagged' => $answerdQuestion->flagged,
