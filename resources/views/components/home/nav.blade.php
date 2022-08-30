@@ -97,18 +97,20 @@
                     <span class='studentName'>{{ Auth::user()->name }}</span>
                 </button>
                 <ul class="dropdown-menu navDrop">
-                    <li>
-                        <a class="dropdown-item navDropItem lineParent" href="{{ route('home') }}">
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class='navDropIcon'>
-                                <i class="fa-solid fa-table-columns"></i>
-                            </span>
-                            الصفحة الرئيسية
-                        </a>
-                    </li>
+                    @if (Auth::user()->role->number < 4)
+                        <li>
+                            <a class="dropdown-item navDropItem lineParent" href="{{ route('admin.index') }}">
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class='navDropIcon'>
+                                    <i class="fa-solid fa-table-columns"></i>
+                                </span>
+                                الصفحة الرئيسية
+                            </a>
+                        </li>
+                    @endif
                     <li>
                         <a class="dropdown-item navDropItem lineParent" href="{{ route('user.profile') }}">
                             <span class="line"></span>
