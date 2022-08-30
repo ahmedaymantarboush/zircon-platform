@@ -46,6 +46,8 @@ class LessonController extends Controller
             'lessonTitle' => 'required|string|max:255',
             'description' => 'required|string',
             'url' => 'required|string|max:255|unique:lessons,url',
+        ],[
+            
         ]);
 
         $section = Section::findOrFail($data['section']);
