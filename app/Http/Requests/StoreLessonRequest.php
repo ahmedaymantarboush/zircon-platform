@@ -40,9 +40,9 @@ class StoreLessonRequest extends FormRequest
             'lessonTitle.string' => 'يجب أن يكون العنوان عبارة عن نص',
             'lessonTitle.max' => 'أكبر عدد من الحروف هو 50 حرف',
 
-            'file.required' => 'الرجاء التأكد من أنك قمت باختيار ملف صالح',
-            'file.url' => 'الرجاء التأكد من أنك قمت الرابط بشكل صحيح',
-            'file.max' => 'رجاءًا قم باختيار ملف أقل من 1 جيجا',
+            'url.required' => 'الرجاء التأكد من أنك قمت باختيار ملف صالح',
+            'url.url' => 'الرجاء التأكد من أنك قمت الرابط بشكل صحيح',
+            // 'url.max' => 'رجاءًا قم باختيار ملف أقل من 1 جيجا',
 
             'type.string' => 'يجب أن يكون نوع الملف عبارة عن نص',
             'type.in' => 'الرجاء إختيار نوع ملف صحيح',
@@ -56,8 +56,8 @@ class StoreLessonRequest extends FormRequest
             'section.required' => 'القسم التابع له الدرس مطلوب',
             'section.exists' => 'الرجاء إختيار قسم صحيح',
 
-            'part.required' => 'الجزئية الدراسية مطلوبة',
-            'part.exists' => 'الرجاء اختيار جزئية دراسية صحيحة',
+            'lessonPart.required' => 'الجزئية الدراسية مطلوبة',
+            'lessonPart.exists' => 'الرجاء اختيار جزئية دراسية صحيحة',
         ];
     }
 }
