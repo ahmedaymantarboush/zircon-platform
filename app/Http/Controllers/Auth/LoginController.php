@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Device;
 use App\Models\UserSession;
+use App\Models\Session as SessionModel;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -67,7 +68,7 @@ class LoginController extends Controller
         ]);
 
         if ($user->loginSessions->count() >= env('MAX_DEVICES_COUNT')):
-            Session::find($userSession->session_id)->delete();
+            SessionModel::find($userSession->session_id)->delete();
             $userSession->delete();
             // Auth::logout();
             return redirect()->back()->withInput()->withErrors([$this->username()=>['لقد وصلت للحد الأقصى من عدد تسجيلات الدخول']]);
