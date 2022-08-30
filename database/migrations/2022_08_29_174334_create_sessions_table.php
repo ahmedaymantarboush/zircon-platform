@@ -15,13 +15,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->id('counter');
+            $table->string('id');
             $table->foreignId('user_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
-            $table->timestamps();
+            // $table->timestamps();
             // $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             // $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
