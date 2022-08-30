@@ -185,7 +185,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/questions/fastEdit/`,
+        `${APP_URL}/api/questions/fastEdit/`,
         form,
         e
     );

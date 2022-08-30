@@ -416,7 +416,7 @@ $(document).on("click", ".btn-outline-secondary", function() {
 //     form.append("data", JSON.stringify(sendObj));
 //
 //     let myResponse = await editFun(
-//         `${window.location.protocol}//${window.location.host}/api/questions/store`,
+//         `${APP_URL}/api/questions/store`,
 //         form,
 //         e
 //     );

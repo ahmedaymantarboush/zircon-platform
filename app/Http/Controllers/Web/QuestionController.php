@@ -62,10 +62,10 @@ class QuestionController extends Controller
             endif;
 
             for ($i = 1; $i <= $data['choicesCount']; $i++) :
-                if ($data['choice' . $i]) :
+                if ($data['choice' . $i] || $data['choice' . $i]  == 0) :
                     $question->choices()->create([
                         'text' => $data['choice' . $i],
-                        'correct' => $i == $data['correctAnswer'],
+                        'correct' => isset($data['correctAnswer']) ? $i == $data['correctAnswer'] : 0 ,
                     ]);
                 endif;
             endfor;

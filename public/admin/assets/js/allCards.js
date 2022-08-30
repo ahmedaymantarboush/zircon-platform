@@ -88,7 +88,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/balancecards/show
+        `${APP_URL}/api/balancecards/show
 `,
         form,
         e
@@ -133,7 +133,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/balancecards/hanging`,
+        `${APP_URL}/api/balancecards/hanging`,
         form,
         e
     );
@@ -160,7 +160,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
         .querySelector(".delForm")
         .addEventListener("submit", async function () {
             let myResponse = await editFun(
-                `${window.location.protocol}//${window.location.host}/api/balancecards/delete`,
+                `${APP_URL}/api/balancecards/delete`,
                 form,
                 e
             );

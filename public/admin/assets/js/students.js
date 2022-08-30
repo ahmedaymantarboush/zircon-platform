@@ -68,7 +68,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/users/getCode`,
+        `${APP_URL}/api/users/getCode`,
         form,
         e
     );
@@ -89,7 +89,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
             saveForm = new FormData();
             saveForm.append("data", JSON.stringify(sendSaveObj));
             let mySaveResponse = await editFun(
-                `${window.location.protocol}//${window.location.host}/api/users/editCode`,
+                `${APP_URL}/api/users/editCode`,
                 saveForm,
                 event
             );
@@ -124,7 +124,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/users/getBalance`,
+        `${APP_URL}/api/users/getBalance`,
         form,
         e
     );
@@ -145,7 +145,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
             saveForm = new FormData();
             saveForm.append("data", JSON.stringify(sendSaveObj));
             let mySaveResponse = await editFun(
-                `${window.location.protocol}//${window.location.host}/api/users/editBalance`,
+                `${APP_URL}/api/users/editBalance`,
                 saveForm,
                 event
             );
@@ -176,7 +176,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/users/hanging`,
+        `${APP_URL}/api/users/hanging`,
         form,
         e
     );
@@ -198,7 +198,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form.append("data", JSON.stringify(sendObj));
 
     let myResponse = await editFun(
-        `${window.location.protocol}//${window.location.host}/api/users/getStudentCardData`,
+        `${APP_URL}/api/users/getStudentCardData`,
         form,
         e
     );
