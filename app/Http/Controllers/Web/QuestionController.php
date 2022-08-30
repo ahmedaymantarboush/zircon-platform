@@ -54,7 +54,7 @@ class QuestionController extends Controller
                 'grade_id' => $data['grade'],
                 'subject_id' => $data['subject'] ?? 1,
                 'part_id' => $data['part'],
-                'teacher_id' => $user->id,
+                'user_id' => $user->id,
             ]);
             if ($request->hasFile('image')) :
                 $question->image = uploadFile($request, 'image', $data['name'] . $question->id);
