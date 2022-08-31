@@ -123,7 +123,7 @@ class UserController extends Controller
             if (isset($data['password']) && $data['password'] != null) :
                 if ($student->role->number >=4):
                     if (!Hash::check($request->oldPassword, Auth::user()->password)):
-                        return redirect()->back()->with('errors', ['password'=>['كلمة المرور القديمة غير صحيحة']]);
+                        return redirect()->back()->with('errors', ['oldPassword'=>['كلمة المرور القديمة غير صحيحة']]);
                     endif;
                 endif;
                 $student->update([
