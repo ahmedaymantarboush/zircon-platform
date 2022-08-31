@@ -45,7 +45,7 @@
                     </div>
                 @endforeach
                 @else
-                <p class='gs_reveal no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
+                <p class='gs_reveal no-lectures'>لا يوجد شهور</p>
                 <div class='gs_reveal noLecImg'>
                     <img src="{{ URL::asset('imgs/no-result-search.png') }}" alt="">
                 </div>

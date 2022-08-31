@@ -57,9 +57,9 @@ class UserController extends Controller
         if (!$user) :
             return redirect(route('login'));
         endif;
-        if ($user->role->number >= 4) :
-            return abort(403);
-        endif;
+        // if ($user->role->number >= 4) :
+        //     return abort(403);
+        // endif;
 
         $data = $request->all();
         Validator::make($data, [
