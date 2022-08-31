@@ -1,10 +1,10 @@
-<div class="preloader">
+{{-- <div class="preloader">
     <div class="atom">
         <div class="electron"></div>
         <div class="electron-alpha"></div>
         <div class="electron-omega"></div>
     </div>
-</div>
+</div> --}}
 <nav class="myNav">
     <div class="navProgress">
         <span class='navProgChild'></span>
