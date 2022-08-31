@@ -9,6 +9,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
+
 
 class LoginController extends Controller
 {
@@ -47,6 +49,13 @@ class LoginController extends Controller
             'password.required' => "كلمة المرور مطلوبة",
             'password.string' => "يجب أن تكون كلمة المرور عبارة عن نص",
             'password.min' => "أقل عدد ممكن من الحروف هو 8 حروف",
+        ]);
+    }
+
+    protected function sendFailedLoginResponse($request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => ["هناك خطأ في البريد الالكتروني أو كلمة المرور"],
         ]);
     }
     /**
