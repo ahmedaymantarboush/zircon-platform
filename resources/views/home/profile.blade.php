@@ -280,6 +280,13 @@
                                 <span class='error'>{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class='inputParent @error('oldPassword') isInvalid @enderror'>
+                            <label for="">كلمة المرور القديمة</label>
+                            <input type="password" name="oldPassword" placeholder="أدخل كلمة المرور القديمة إن أردت تغييرها">
+                            @error('oldPassword')
+                                <span class='error'>{{ $message }}</span>
+                            @enderror
+                        </div>
                         <div class='inputParent @error('password') isInvalid @enderror'>
                             <label for="">كلمة المرور</label>
                             <input type="password" name="password" placeholder="أدخل كلمة المرور الجديدة إن أردت تغييرها">
