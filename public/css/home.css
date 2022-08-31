@@ -765,14 +765,14 @@ header .row {
     font-weight: 700;
 }
 .paper {
-    background: url(../public/imgs/paper.png);
+    /* background: url(../public/imgs/paper.png); */
     padding: 11% 0 0;
     transition: 0.3s all ease;
     background-position: center;
     background-size: cover;
 }
 .paper2 {
-    background: url(../public/imgs/paper2.png);
+    /* background: url(../public/imgs/paper2.png); */
 
     padding: 6% 0;
     transition: 0.3s all ease;
