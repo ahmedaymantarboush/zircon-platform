@@ -64,6 +64,8 @@ class UserController extends Controller
         $data = $request->all();
         Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'password_confirmation' => ['nullable', 'string', 'min:8'],
             'phoneNumber' => ['required', 'string', $data['phoneNumber'] != $user->phone_number ? 'unique:users,phone_number' : '', 'max:13', 'min:11'],
             'parentPhoneNumber' => ['required', 'string', 'max:13', 'min:11'],
             'grade' => ['required', 'string', 'exists:grades,name'],
@@ -118,6 +120,11 @@ class UserController extends Controller
                 'governorate_id' => Governorate::where('name', $data['governorate'])->first()->id,
                 'center_id' => $data['center'] ? Center::where('name', $data['center'])->first()->id : 1,
             ]);
+            if (isset($data['password']) && $data['password'] != null) :
+                $student->update([
+                    'password' => Hash::make($data['password']),
+                ]);
+            endif;
         else :
             return abort(404);
         endif;

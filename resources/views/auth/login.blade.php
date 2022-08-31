@@ -33,7 +33,7 @@
                     <input type="password" name='password' placeholder='&nbsp;'>
                     <label for="">كلمة المرور</label>
                 </div>
-                {{-- <a href="{{ route('password.request') }}" class='forgotPassword'>هل نسيت كلمة المرور ؟</a> --}}
+                <a href="{{ route('password.request') }}" class='forgotPassword'>هل نسيت كلمة المرور ؟</a>
                 <input type="submit" value='تسجيل' class='reg'>
                 <p class='haveAccount'>ليس لديك حساب؟ <a href="{{ route('register') }}">تسجيل جديد</a></p>
             </div>

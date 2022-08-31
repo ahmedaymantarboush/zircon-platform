@@ -134,9 +134,9 @@
                                             <p class='invalid-feedback'>{{ $message }}</p>
                                         @enderror
                                     </div>
-                                    {{-- <div class="col-12">
+                                    <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
-                                            style="margin-top: 40px">كلمة مرور الطالب :</label>
+                                            style="margin-top: 40px">كلمة المرور الجديدة :</label>
                                         <input name="password" type="password"
                                             class="@error('password') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل كلمة مرور الطالب"
@@ -147,11 +147,11 @@
                                     </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
-                                            style="margin-top: 40px">كلمة مرور الطالب :</label>
+                                            style="margin-top: 40px">كلمة المرور الجديدة :</label>
                                         <input name="password_confirmation" type="password"
                                             class="form-control-lg form-control" id="formGroupExampleInput"
                                             placeholder="أعد إدخال كلمة مرور الطالب" style="font-size: 15px;width:95%;">
-                                    </div> --}}
+                                    </div>
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">كود الطالب :</label>
