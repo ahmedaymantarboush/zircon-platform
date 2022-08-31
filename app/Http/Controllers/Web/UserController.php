@@ -121,11 +121,12 @@ class UserController extends Controller
                 'center_id' => $data['center'] ? Center::where('name', $data['center'])->first()->id : 1,
             ]);
             if (isset($data['password']) && $data['password'] != null) :
-                if ($student->role->number >=4):
-                    if(!$data['oldPassword']):
-                        return redirect()->back()->withErrors(['oldPassword'=>['كلمة المرور القديمة مطلوبة']]);
-                    if (!Hash::check($data['oldPassword'], Auth::user()->password)):
-                        return redirect()->back()->withErrors(['oldPassword'=>['كلمة المرور القديمة غير صحيحة']]);
+                if ($student->role->number >= 4) :
+                    if (!$data['oldPassword']) :
+                        return redirect()->back()->withErrors(['oldPassword' => ['كلمة المرور القديمة مطلوبة']]);
+                    endif;
+                    if (!Hash::check($data['oldPassword'], Auth::user()->password)) :
+                        return redirect()->back()->withErrors(['oldPassword' => ['كلمة المرور القديمة غير صحيحة']]);
                     endif;
                 endif;
                 $student->update([
