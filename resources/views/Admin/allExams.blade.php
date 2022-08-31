@@ -147,10 +147,9 @@
                                 <option value="all">
                                     ردجة الصعوبة
                                 </option>
-                                @for ($i = 1; $i <= 4; $i++)
+                                @for ($i = 1; $i <= 5; $i++)
                                     <option @selected(request()->exam_hardness == $i) value="{{ $i }}">{{ $i }}</option>
                                 @endfor
-                                <option value="5">للطالب الشكساوي</option>
                             </select>
                         </div>
                     </div>
@@ -164,11 +163,11 @@
             <div class="field search-select-box">
                 <span>اظهار</span>
                 <select name="count" id="" data-live-search="true">
-                    <option value="all">الكل</option>
-                    <option value="1">1</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
+                    <option @selected(request()->count == 'all') value="all">الكل</option>
+                    <option @selected(request()->count == '1') value="1">1</option>
+                    <option @selected(request()->count == '25') value="25">25</option>
+                    <option @selected(request()->count == '50') value="50">50</option>
+                    <option @selected(request()->count == '100') value="100">100</option>
                 </select>
                 <span>من الحقول</span>
             </div>

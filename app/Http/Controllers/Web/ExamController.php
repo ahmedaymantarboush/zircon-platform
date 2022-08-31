@@ -23,15 +23,6 @@ class ExamController extends Controller
         $data = request()->all();
 
         $exams = Exam::where('user_id', Auth::user()->id);
-        if (isset($data['count'])) {
-            if ($data['count'] != 'all') {
-                $exams = $exams->paginate($data['count']);
-            }else{
-                $exams = $exams->get();
-            }
-        }else{
-            $exams = $exams->get();
-        }
 
         if (isset($data['hasFilter'])) {
             foreach ($data as $key => $value) {
@@ -41,11 +32,23 @@ class ExamController extends Controller
                 if ($value == 'all') {
                     continue;
                 }
-                $exams = $exams->filter(function ($item) use ($key, $value) {
-                    return $item->$key == $value;
-                });
+
+                if ($key == 'q') {
+                    $exams = $exams->where('title', 'like', '%' . $value . '%');
+                    continue;
+                }
+
+                $exams = $exams->where($key, $value);
             }
-            // dd($data);
+        }
+        if (isset($data['count'])) {
+            if ($data['count'] != 'all') {
+                $exams = $exams->paginate($data['count']);
+            }else{
+                $exams = $exams->get();
+            }
+        }else{
+            $exams = $exams->get();
         }
         return view('Admin.allExams', ['exams' => $exams]);
     }
