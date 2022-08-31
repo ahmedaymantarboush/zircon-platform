@@ -252,7 +252,7 @@
         integrity="sha512-+VS2+Nl1Qit71a/lbncmVsWOZ0BmPDkopw5sXAS2W+OfeceCEd9OGTQWjgVgP5QaMV4ddqOIW9XLW7UVFzkMAw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @yield('javascript')
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             // $('body').bind('cut copy paste', function(e) {
             //     e.preventDefault();
@@ -278,7 +278,7 @@
                 }
             }
         })
-    </script>
+    </script> --}}
 </body>
 
 </html>
