@@ -132,17 +132,17 @@ class DatabaseSeeder extends Seeder
             'parent_phone_number' => '01069512633',
         ]);
 
-        \App\Models\UserSubject::factory()->create(['user_id' => 1, 'subject_id' => 1]);
+        \App\Models\UserSubject::factory()->create(['user_id' => 1, 'subject_id' => 2]);
 
         \App\Models\User::factory(50)->create();
 
-        \App\Models\Lecture::factory(50)->create(['user_id' => 1]);
+        \App\Models\Lecture::factory(50)->create(['user_id' => 2]);
 
-        \App\Models\Part::factory(20)->create(['user_id' => 1]);
+        \App\Models\Part::factory(20)->create(['user_id' => 2]);
 
-        \App\Models\Exam::factory(50)->create(['user_id' => 1]);
+        \App\Models\Exam::factory(50)->create(['user_id' => 2]);
 
-        \App\Models\Question::factory(150)->create(['user_id' => 1]);
+        \App\Models\Question::factory(150)->create(['user_id' => 2]);
 
         \App\Models\Choice::factory(150)->create();
 
@@ -160,7 +160,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\SectionItem::factory(50)->create();
 
-        \App\Models\Testimonial::factory(50)->create(['teacher_id' => 1]);
+        \App\Models\Testimonial::factory(50)->create(['teacher_id' => 2]);
 
         \App\Models\LectureUser::factory(25)->create();
 

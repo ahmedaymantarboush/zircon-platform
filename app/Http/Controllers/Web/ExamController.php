@@ -20,7 +20,34 @@ class ExamController extends Controller
      */
     public function index()
     {
-        return view('Admin.allExams', ['exams' => Exam::all()]);
+        $data = request()->all();
+
+        $exams = Exam::where('user_id', Auth::user()->id);
+        if (isset($data['count'])) {
+            if ($data['count'] != 'all') {
+                $exams = $exams->paginate($data['count']);
+            }else{
+                $exams = $exams->get();
+            }
+        }else{
+            $exams = $exams->get();
+        }
+
+        if (isset($data['hasFilter'])) {
+            foreach ($data as $key => $value) {
+                if ($key == 'hasFilter' || $key == 'page' || $key == 'count') {
+                    continue;
+                }
+                if ($value == 'all') {
+                    continue;
+                }
+                $exams = $exams->filter(function ($item) use ($key, $value) {
+                    return $item->$key == $value;
+                });
+            }
+            // dd($data);
+        }
+        return view('Admin.allExams', ['exams' => $exams]);
     }
 
     /**
