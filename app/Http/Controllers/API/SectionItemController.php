@@ -108,7 +108,7 @@ class SectionItemController extends Controller
             $exam = $sectionItem->item;
             $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
 
-            $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false)) && $passedExam->chance < 3 : true;
+            $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false)) && $passedExam->chance < $exam->chances : true;
             $hasChance = $hasChance && ($exam ? $exam->dynamic : true);
 
             $finished = $passedExam ? $passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false) : false;
@@ -126,8 +126,9 @@ class SectionItemController extends Controller
                 'passedExamId' => $passedExam ? $passedExam->id : null,
                 'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where(['correct' => 1, 'chance' => $passedExam->chance])->count() : null,
 
-                'chance' => $passedExam && $hasChance ? $passedExam->chance : null,
-                'chancesCount' => $exam && $hasChance ? $exam->chances : null,
+                'hasChance' => $hasChance,
+                'chance' => $passedExam ? $passedExam->chance : null,
+                'chancesCount' => $exam ? $exam->chances : null,
 
             ];
 
