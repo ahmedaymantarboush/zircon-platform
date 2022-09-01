@@ -19,13 +19,19 @@
                 <div class="col-lg-6 headerRightSide">
                     <div class="teacherContent ">
                         <h1 class="bigHeading  
-                         ">
+                         " data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <span class="customeSquareLine t-name">أ. محمد البري</span>
                             في
                             <span class="headingSubject">الفيزياء</span>
                         </h1>
                         <div class="swiper headerGrdeSwiper  
-                        ">
+                        " data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <div class="swiper-wrapper ">
                                 @foreach (\App\Models\Grade::all() as $grade)
                                     <div class="swiper-slide">
@@ -35,7 +41,11 @@
                             </div>
                         </div>
                         <div class="headerIcons  
-                        ">
+                        "
+                        data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <a class="facebook"><i class="fa-brands fa-facebook-f"></i></a>
                             <a class="youtube"><i class="fa-brands fa-youtube"></i></a>
                             <a class="telegram"><i class="fa-brands fa-telegram"></i></a>
@@ -47,10 +57,13 @@
                         <div class="headerImage  "  data-sal="slide-right"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
-  data-sal-duration="1500">
+  data-sal-duration="1800">
                             <img class="ontop" src="{{ URL::asset('imgs/elbirry.webp') }}" alt="">
                         </div>
-                        <div class="headerAtom  ">
+                        <div class="headerAtom  " data-sal="slide-right"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <div class="svg-container ">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     class=' ' viewBox="50 50 300 300">
@@ -72,7 +85,11 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="headerContents  ">
+                        <div class="headerContents  " data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800"
+  >
 
                             <h3 class="contentsHeading">المحتويات</h3>
                             <div class="headingLessonsParent">
@@ -85,7 +102,11 @@
                             </div>
                         </div>
                         <div class="headerTestimonial  
-                        ">
+                        " data-sal="slide-right"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800"
+  >
                             <div class="swiper headerTestimonialSwiper">
                                 <div class="swiper-wrapper">
                                     @foreach (\App\Models\Testimonial::orderBy('degree', 'desc')->take(4)->get() as $testimonial)
@@ -108,7 +129,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="headerLocation  _fromUp">
+                        <div class="headerLocation  " data-sal="slide-right"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800"
+  >
                             <span class="h-l-icon">
                                 <i class="fa-solid fa-map-location-dot"></i>
                             </span>
@@ -146,13 +171,13 @@
                         <div class="l-image  " data-sal="slide-left"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
-  data-sal-duration="1500">
+  data-sal-duration="1800">
                             <img src="{{ URL::asset('imgs/physics1.webp') }}" class='' alt="">
                         </div>
                         <div class="l-content " data-sal="slide-left"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
-  data-sal-duration="1500">
+  data-sal-duration="1800">
                             <h4>الصف <span class="d-redColor">الأول الثانوي</span></h4>
                         </div>
                     </a>
@@ -162,13 +187,13 @@
                         <div class="l-image " data-sal="slide-right"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
-  data-sal-duration="1500">
+  data-sal-duration="1800">
                             <img src="{{ URL::asset('imgs/physics2.webp') }}" class='' alt="">
                         </div>
                         <div class="l-content " data-sal="slide-left"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
-  data-sal-duration="1500">
+  data-sal-duration="1800">
                             <h4>الصف <span class="d-blueColor">الثاني الثانوي</span></h4>
                         </div>
                     </a>
@@ -178,13 +203,13 @@
                         <div class="l-image "data-sal="slide-left"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
-  data-sal-duration="1500">
+  data-sal-duration="1800">
                             <img src="{{ URL::asset('imgs/physics3.webp') }}" class='' alt="">
                         </div>
                         <div class="l-content "data-sal="slide-left"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
-  data-sal-duration="1500">
+  data-sal-duration="1800">
                             <h4>الصف <span class="d-yellowColor">الثالث الثانوي</span></h4>
                         </div>
                     </a>
