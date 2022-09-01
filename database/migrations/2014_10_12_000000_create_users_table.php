@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone_number',11)->unique();
             $table->string('parent_phone_number',11);
-            $table->string('image')->default(asset('imgs/user.png'));
+            $table->string('image')->default(asset('imgs/user.webp'));
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->float('balance')->default(0);

@@ -67,44 +67,44 @@ class DatabaseSeeder extends Seeder
         \App\Models\Center::factory()->create([
             'name' => 'المنصة',
             'url' => config('app.url'),
-            'image' => asset('imgs/center1.png'),
+            'image' => asset('imgs/center1.webp'),
             'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'مجموعات خاصة',
             'url' => config('app.url'),
-            'image' => asset('imgs/center1.png'),
+            'image' => asset('imgs/center1.webp'),
             'governorate_id' => 2,
         ]);
 
         \App\Models\Center::factory()->create([
             'name' => 'المركز الأول',
             'url' => fake()->url(),
-            'image' => asset('imgs/center1.png'),
+            'image' => asset('imgs/center1.webp'),
             'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثاني',
             'url' => fake()->url(),
-            'image' => asset('imgs/center1.png'),
+            'image' => asset('imgs/center1.webp'),
             'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الثالث',
             'url' => fake()->url(),
-            'image' => asset('imgs/center1.png'),
+            'image' => asset('imgs/center1.webp'),
             'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الرابع',
             'url' => fake()->url(),
-            'image' => asset('imgs/center1.png'),
+            'image' => asset('imgs/center1.webp'),
             'governorate_id' => 2,
         ]);
         \App\Models\Center::factory()->create([
             'name' => 'المركز الخامس',
             'url' => fake()->url(),
-            'image' => asset('imgs/center1.png'),
+            'image' => asset('imgs/center1.webp'),
             'governorate_id' => 2,
         ]);
 
