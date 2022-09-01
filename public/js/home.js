@@ -12,11 +12,7 @@
 // main functions /////
 //////////////////////
 
-// var trigger = new ScrollTrigger.default()
 
-// trigger.add('[data-trigger]')
-// // Add all html elements with attribute data-triggerAlways, these elements will always be triggered
-// trigger.add('[data-triggerAlways]', { once: false })
 
 sal(
     {
@@ -32,36 +28,8 @@ sal(
     }
 );
 
-// Now in your CSS add the following classes, this fades the [data-trigger] elements in and out
 
 
-// let toggleElement = function (ele, className) {
-//     ele.classList.toggle(className);
-// };
-// (function scrollReveal() {
-//     window.sr = ScrollReveal();
-    
-//     sr.reveal('.animate', {
-//       duration   : 1100,
-//       distance   : '100px',
-//       easing     : 'ease',
-//       origin     : 'bottom',
-//       reset      : true,
-//       scale      : 1,
-//       viewFactor : 0,
-//     }, 0);
-//     sr.reveal('.animate-bottom', {
-//       duration   : 1100,
-//       distance   : '100px',
-//       easing     : 'ease',
-//       origin     : 'top',
-//       reset      : true,
-//       scale      : 1,
-//       viewFactor : 0,
-//     }, 0);
-    
-      
-//   })();
   
 /////////////////////////
 ///// fade animation ///
@@ -206,28 +174,28 @@ window.addEventListener("scroll", navProgFunction);
 //   AOS.init();
 
 // [01-Atom]
-// $(document).ready(function () {
-//     var el1 = $("#electron-1");
-//     var el2 = $("#electron-2");
-//     var el3 = $("#electron-3");
+$(document).ready(function () {
+    var el1 = $("#electron-1");
+    var el2 = $("#electron-2");
+    var el3 = $("#electron-3");
 
-//     function anim(el, dur) {
-//         el.velocity({ "stroke-dashoffset": 0 }, 0).velocity(
-//             { "stroke-dashoffset": 399 },
-//             {
-//                 duration: dur,
-//                 easing: "linear",
-//                 complete: function () {
-//                     anim(el, dur);
-//                 },
-//             }
-//         );
-//     }
-//     /* using primes here gives us a cicada series */
-//     anim(el1, 1500);
-//     anim(el2, 1570);
-//     anim(el3, 1200);
-// });
+    function anim(el, dur) {
+        el.velocity({ "stroke-dashoffset": 0 }, 0).velocity(
+            { "stroke-dashoffset": 399 },
+            {
+                duration: dur,
+                easing: "linear",
+                complete: function () {
+                    anim(el, dur);
+                },
+            }
+        );
+    }
+    /* using primes here gives us a cicada series */
+    anim(el1, 1500);
+    anim(el2, 1570);
+    anim(el3, 1200);
+});
 
 // [02- level]
 var swiper = new Swiper(".headerGrdeSwiper", {
