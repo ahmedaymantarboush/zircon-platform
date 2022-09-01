@@ -172,6 +172,7 @@ window.addEventListener("scroll", navProgFunction);
 ///////////////////////////////////
 
   AOS.init();
+  wow.init();
   wow = new WOW(
     {
     boxClass:     'wow',      // default
@@ -181,7 +182,6 @@ window.addEventListener("scroll", navProgFunction);
     live:         true        // default
   }
   )
-  wow.init();
 
 //   $('div.animate > .card-reveal').parent().each(function(index){
 //     var card = this;
