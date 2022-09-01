@@ -132,7 +132,7 @@ class DatabaseSeeder extends Seeder
             'parent_phone_number' => '01069512633',
         ]);
 
-        \App\Models\UserSubject::factory()->create(['user_id' => 1, 'subject_id' => 2]);
+        \App\Models\UserSubject::factory()->create(['user_id' => 2, 'subject_id' => 1]);
 
         \App\Models\User::factory(50)->create();
 
