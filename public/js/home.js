@@ -35,7 +35,7 @@ let toggleElement = function (ele, className) {
       origin     : 'top',
       reset      : true,
       easing     : 'ease',
-      viewFactor : 1,
+      viewFactor : 0,
     }, 0);
   })();
   
