@@ -51,9 +51,9 @@ function animateFrom(elem, direction) {
     );
 }
 
-// function hide(elem) {
-//     gsap.set(elem, { autoAlpha: 0 });
-// }
+function hide(elem) {
+    gsap.set(elem, { autoAlpha: 0 });
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(ScrollTrigger);
