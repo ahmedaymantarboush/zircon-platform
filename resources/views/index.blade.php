@@ -154,7 +154,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem animate slideInLeft" data-wow-duration="2s" data-wow-delay="5s" href="{{ route('lectures.index', 11) }}">
+                    <a class="levelItem wow animate slideInLeft" data-wow-duration="2s" data-wow-delay="5s" href="{{ route('lectures.index', 11) }}">
                         <div class="l-image ">
                             <img src="{{ URL::asset('imgs/physics2.webp') }}" class='' alt="">
                         </div>

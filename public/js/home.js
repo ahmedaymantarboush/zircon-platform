@@ -172,7 +172,17 @@ window.addEventListener("scroll", navProgFunction);
 ///////////////////////////////////
 
   AOS.init();
-  new WOW().init();
+  wow = new WOW(
+    {
+    boxClass:     'wow',      // default
+    animateClass: 'animated', // default
+    offset:       0,          // default
+    mobile:       true,       // default
+    live:         true        // default
+  }
+  )
+  wow.init();
+
   $('div.animate > .card-reveal').parent().each(function(index){
     var card = this;
     // Attach listener to all activator triggers
