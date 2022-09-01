@@ -19,7 +19,7 @@ let toggleElement = function (ele, className) {
     
     sr.reveal('.animate', {
       duration   : 600,
-      distance   : '20px',
+      distance   : '120px',
       easing     : 'ease-out',
       origin     : 'bottom',
       reset      : true,
