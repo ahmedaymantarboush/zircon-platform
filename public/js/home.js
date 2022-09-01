@@ -26,7 +26,7 @@ let toggleElement = function (ele, className) {
       scale      : 1,
       viewFactor : 0,
       afterReveal  : revealChildren,
-    }, 150);
+    }, 0);
     
       var revealChildren = sr.reveal('.card-title, .card-text', {
       duration   : 500,
