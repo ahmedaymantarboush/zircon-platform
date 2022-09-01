@@ -326,6 +326,7 @@ function showTakeExam(data) {
         examPassedID = data.data.item.passedExamId;
     } else {
         examPassedID = data.data.item.passedExamId;
+        itemID = data.data.item.id;
         //if exam finished
         let student_perc = (data.data.item.correctAnswers / data.data.item.questionsCount) * 100;
         student_perc = student_perc.toFixed(2);
