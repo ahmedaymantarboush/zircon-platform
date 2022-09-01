@@ -141,8 +141,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a  class="levelItem  " data-sal="slide-up" data-aos="fade-up"
-  
+                    <a  class="levelItem  " data-sal="slide-up" 
   data-sal-easing="ease-out-back"
   data-sal-duration="2000" href="{{ route('lectures.index', 10) }}">
                         <div class="l-image  ">
