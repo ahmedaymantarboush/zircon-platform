@@ -11,6 +11,8 @@
 ////////////////////////
 // main functions /////
 //////////////////////
+import ScrollTrigger from '@terwanerik/scrolltrigger'
+
 const trigger = new ScrollTrigger()
 // Add all html elements with attribute data-trigger
 trigger.add('[data-trigger]')
