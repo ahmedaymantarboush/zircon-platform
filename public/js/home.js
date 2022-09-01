@@ -172,26 +172,7 @@ window.addEventListener("scroll", navProgFunction);
 ///////////////////////////////////
 
   AOS.init();
-//   wow.init();
-  wow = new WOW(
-    {
-    boxClass:     'wow',      // default
-    animateClass: 'animated', // default
-    offset:       100,          // default
-    mobile:       true,       // default
-    live:         true        // default
-  }
-  )
 
-//   $('div.animate > .card-reveal').parent().each(function(index){
-//     var card = this;
-//     // Attach listener to all activator triggers
-//     $(card).find('.activator').on('click',function(){
-//         $(card).find('.card-reveal .wow').each(function(){
-//             wow.show(this);
-//         });
-//     });
-// });
 // [01-Atom]
 $(document).ready(function () {
     var el1 = $("#electron-1");
