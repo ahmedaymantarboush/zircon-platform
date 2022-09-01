@@ -147,3 +147,16 @@ let navProgFunction = function () {
 };
 navProgFunction();
 window.addEventListener("scroll", navProgFunction);
+sal(
+    {
+        rootMargin: '0% 50%',
+        threshold: 0.6, // 50%
+        animateClassName: 'sal-animate',
+        disabledClassName: 'sal-disabled',
+        selector: '[data-sal]',
+        once: false, // run only once
+        disabled: false,
+        enterEventName: 'sal:in',
+        exitEventName: 'sal:out',
+    }
+);
