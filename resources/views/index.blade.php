@@ -18,12 +18,14 @@
             <div class="row">
                 <div class="col-lg-6 headerRightSide">
                     <div class="teacherContent ">
-                        <h1 class="bigHeading gs_reveal gs_reveal_fromRight ">
+                        <h1 class="bigHeading  
+                         ">
                             <span class="customeSquareLine t-name">أ. محمد البري</span>
                             في
                             <span class="headingSubject">الفيزياء</span>
                         </h1>
-                        <div class="swiper headerGrdeSwiper gs_reveal gs_reveal_fromRight">
+                        <div class="swiper headerGrdeSwiper  
+                        ">
                             <div class="swiper-wrapper ">
                                 @foreach (\App\Models\Grade::all() as $grade)
                                     <div class="swiper-slide">
@@ -32,7 +34,8 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="headerIcons gs_reveal gs_reveal_fromRight">
+                        <div class="headerIcons  
+                        ">
                             <a class="facebook"><i class="fa-brands fa-facebook-f"></i></a>
                             <a class="youtube"><i class="fa-brands fa-youtube"></i></a>
                             <a class="telegram"><i class="fa-brands fa-telegram"></i></a>
@@ -47,7 +50,7 @@
                         <div class="headerAtom  ">
                             <div class="svg-container ">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    class='gs_reveal gs_reveal_fromDown' viewBox="50 50 300 300">
+                                    class=' ' viewBox="50 50 300 300">
                                     <defs>
                                         <symbol id="e">
                                             <ellipse cx="200" cy="200" rx="33" ry="88"
@@ -66,7 +69,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="headerContents gs_reveal gs_reveal_fromDown">
+                        <div class="headerContents  ">
 
                             <h3 class="contentsHeading">المحتويات</h3>
                             <div class="headingLessonsParent">
@@ -78,7 +81,8 @@
                                 <span>سؤال و تدريب</span>
                             </div>
                         </div>
-                        <div class="headerTestimonial gs_reveal gs_reveal_fromRight">
+                        <div class="headerTestimonial  
+                        ">
                             <div class="swiper headerTestimonialSwiper">
                                 <div class="swiper-wrapper">
                                     @foreach (\App\Models\Testimonial::orderBy('degree', 'desc')->take(4)->get() as $testimonial)
@@ -101,7 +105,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="headerLocation gs_reveal gs_reveal_fromUp">
+                        <div class="headerLocation  _fromUp">
                             <span class="h-l-icon">
                                 <i class="fa-solid fa-map-location-dot"></i>
                             </span>
@@ -153,7 +157,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem gs_reveal gs_reveal_fromLeft" href="{{ route('lectures.index', 12) }}">
+                    <a class="levelItem  " href="{{ route('lectures.index', 12) }}">
                         <div class="l-image ">
                             <img src="{{ URL::asset('imgs/physics3.webp') }}" class='' alt="">
                         </div>
@@ -169,7 +173,7 @@
     </div>
     <section class="latestMonths">
         <div class="container">
-            <div class="monthsHeading gs_reveal gs_reveal_fromDown">
+            <div class="monthsHeading  ">
                 <h2 class="customeSquareLine">أخر الشهور لجميع المراحل</h2>
                 <p class="monthsText">جميع الأشهر الدراسية لمراحل الثانوية العامة</p>
             </div>
@@ -180,7 +184,7 @@
                 @if (count($lectures))
                     @foreach ($lectures as $index => $lecture)
                         @if ($lecture)
-                            <div class="col-lg-3 col-sm-6 gs_reveal gs_reveal_from{{ $direction[$index] }}">
+                            <div class="col-lg-3 col-sm-6  _from{{ $direction[$index] }}">
                                 <a class="latestCard grade{{ $lecture->grade->id }}"
                                     href='{{ route('months.show', $lecture->slug) }}'>
                                     <div class="cardGrade">
@@ -211,8 +215,8 @@
                         @endif
                     @endforeach
                 @else
-                    <p class='gs_reveal no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
-                    <div class='gs_reveal noLecImg'>
+                    <p class=' no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
+                    <div class=' noLecImg'>
                         <img src="{{ URL::asset('imgs/no-result-search.webp') }}" alt="">
                     </div>
                 @endif
