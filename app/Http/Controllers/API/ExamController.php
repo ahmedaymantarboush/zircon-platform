@@ -132,8 +132,7 @@ class ExamController extends Controller
                 //     return apiResponse(false, _('الامتحان الذي طلبته غير موجود'), [], 404);
                 // endif;
                 $exam->startExam();
-                return apiResponse(false,"",$exam->toArray());
-            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
+                $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
         endif;
         if (!$passedExam) :
             return apiResponse(false, _('عفوا حدث خطأ ما لذلك لم نتمكن من انشاء الامتحان الخاص بالطالب'), [], 500);
