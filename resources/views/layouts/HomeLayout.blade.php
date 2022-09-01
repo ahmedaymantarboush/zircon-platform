@@ -253,7 +253,6 @@
     <!-- <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script> -->
     
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-smoove/0.2.10/jquery.smoove.min.js"></script>
     <!-- <script src="{{ URL::asset('js/scrollTrigger.js') }}"></script> -->
     <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
 

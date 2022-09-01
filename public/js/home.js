@@ -17,10 +17,6 @@
 // trigger.add('[data-trigger]')
 // // Add all html elements with attribute data-triggerAlways, these elements will always be triggered
 // trigger.add('[data-triggerAlways]', { once: false })
-$(".foo, .bar").smoove({
-    // moveX is overridden to -200px for ".bar" object
-    moveY   : '100px',
-  });
 
 
 // Now in your CSS add the following classes, this fades the [data-trigger] elements in and out
