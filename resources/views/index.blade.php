@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-lg-6 headerLeftSide">
                     <div class="teacherAbout">
-                        <div class="headerImage  "   data-aos="fade-up" >
+                        <div class="headerImage  " data-aos-anchor-placement="top-center"  data-aos="fade-up" >
                             <img class="ontop" src="{{ URL::asset('imgs/elbirry.webp') }}" alt="">
                         </div>
                         <div class="headerAtom  ">
