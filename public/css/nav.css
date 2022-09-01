@@ -18,8 +18,8 @@
 [data-sal=slide-up]{
     transform: translateY(80%);
 }
-[data-sal|=slide].sal-animate, body.sal-disabled [data-sal|=slide]{
-    transform: none;
+.sal-animate{
+    transform: none !important;
     opacity: 1;
 
 }
