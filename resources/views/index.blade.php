@@ -41,11 +41,7 @@
                 </div>
                 <div class="col-lg-6 headerLeftSide">
                     <div class="teacherAbout">
-                        <div class="headerImage animate "    data-animate="bounceIn" 
-    data-duration="1s" 
-    data-delay="0.5s" 
-    data-offset="100" 
->
+                        <div class="headerImage  "   data-aos="fade-up" >
                             <img class="ontop" src="{{ URL::asset('imgs/elbirry.webp') }}" alt="">
                         </div>
                         <div class="headerAtom  ">
