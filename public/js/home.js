@@ -19,7 +19,7 @@ let toggleElement = function (ele, className) {
     
     sr.reveal('.animate', {
       duration   : 1100,
-      distance   : '100px',
+      distance   : '80px',
       easing     : 'ease',
       origin     : 'bottom',
       reset      : true,
@@ -31,12 +31,12 @@ let toggleElement = function (ele, className) {
       var revealChildren = sr.reveal('.animate-bottom, .card-text', {
       duration   : 1100,
       scale      : 1,
-      distance   : '100px',
+      distance   : '80px',
       origin     : 'top',
       reset      : true,
       easing     : 'ease',
       viewFactor : 1,
-    }, 75);
+    }, 0);
   })();
   
 /////////////////////////
