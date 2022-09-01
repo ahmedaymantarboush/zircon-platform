@@ -16,7 +16,12 @@
     --shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
 }
 [data-sal=slide-up]{
-    /* transform: translateY(80%); */
+    transform: translateY(80%);
+}
+[data-sal|=slide].sal-animate, body.sal-disabled [data-sal|=slide]{
+    transform: none;
+    opacity: 1;
+
 }
 nav {
     background: var(--second-bg);
