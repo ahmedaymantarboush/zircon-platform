@@ -139,7 +139,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a  class="levelItem  "  href="{{ route('lectures.index', 10) }}">
+                    <a  class="levelItem foo "  href="{{ route('lectures.index', 10) }}">
                         <div class="l-image  ">
                             <img src="{{ URL::asset('imgs/physics1.webp') }}" class='' alt="">
                         </div>
