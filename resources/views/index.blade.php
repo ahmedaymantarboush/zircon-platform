@@ -136,7 +136,6 @@
     </header>
     <div class="paper">
     </div>
-    <div  data-slideinbottoms>alialaa</div>
 
     <section class="levels">
         <div class="container">
