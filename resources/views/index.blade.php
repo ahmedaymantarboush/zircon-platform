@@ -141,9 +141,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a  class="levelItem  " data-sal="slide-up" 
-  data-sal-easing="ease-out-back"
-  data-sal-duration="2000" href="{{ route('lectures.index', 10) }}">
+                    <a  class="levelItem  " 
+ href="{{ route('lectures.index', 10) }}">
                         <div class="l-image  ">
                             <img src="{{ URL::asset('imgs/physics1.webp') }}" class='' alt="">
                         </div>
@@ -153,7 +152,9 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem animate-bottom" href="{{ route('lectures.index', 11) }}">
+                    <a class="levelItem " data-sal="slide-up"
+  data-sal-delay="300"
+  data-sal-easing="ease" href="{{ route('lectures.index', 11) }}">
                         <div class="l-image ">
                             <img src="{{ URL::asset('imgs/physics2.webp') }}" class='' alt="">
                         </div>
