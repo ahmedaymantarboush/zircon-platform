@@ -7,6 +7,20 @@ let toggleElement = function (ele, className) {
 let removeEle = function (ele, className) {
     ele.classList.remove(className);
 };
+sal(
+    {
+        rootMargin: '0% 50%',
+        threshold: 0.6, // 50%
+        animateClassName: 'sal-animate',
+        disabledClassName: 'sal-disabled',
+        selector: '[data-sal]',
+        once: false, // run only once
+        disabled: false,
+        enterEventName: 'sal:in',
+        exitEventName: 'sal:out',
+    }
+);
+
 // console.log("alo");
 /////////////////////////
 ///// fade animation ///
