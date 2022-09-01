@@ -25,18 +25,18 @@ let toggleElement = function (ele, className) {
       reset      : true,
       scale      : 1,
       viewFactor : 0,
-      afterReveal  : revealChildren,
     }, 0);
-    
-      var revealChildren = sr.reveal('.animate-bottom, .card-text', {
+    sr.reveal('.animate-bottom', {
       duration   : 1100,
-      scale      : 1,
       distance   : '100px',
+      easing     : 'ease',
       origin     : 'top',
       reset      : true,
-      easing     : 'ease',
+      scale      : 1,
       viewFactor : 0,
-    },0);
+    }, 0);
+    
+      
   })();
   
 /////////////////////////
