@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-lg-6 headerLeftSide">
                     <div class="teacherAbout">
-                        <div class="headerImage  " data-aos="fade-up" data-sal="slide-up"
+                        <div class="headerImage  "  data-sal="slide-up"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="2000">
