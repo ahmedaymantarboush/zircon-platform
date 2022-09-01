@@ -18,13 +18,13 @@
 .visible, .invisible {
     opacity: 0.0;
     transition: opacity 0.5s ease;
-    transform: translateY(0px);
-  }
-  .visible {
-    opacity: 1.0;
-  }
-  .visible{
     transform: translateY(-50px);
+}
+.visible {
+    opacity: 1.0;
+}
+.visible{
+    transform: translateY(0px);
   }
 nav {
     background: var(--second-bg);
