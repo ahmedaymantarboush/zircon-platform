@@ -154,6 +154,9 @@ window.addEventListener("scroll", navProgFunction);
 /////////////////////////////////////
 ///// start header /////////////////
 ///////////////////////////////////
+$(document).ready(function(){
+    $('.animate').scrolla();
+});
 
 // [01-Atom]
 $(document).ready(function () {
