@@ -155,14 +155,17 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem "data-sal="slide-down"
+                    <a class="levelItem " href="{{ route('lectures.index', 11) }}">
+                        <div class="l-image " data-sal="slide-down"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
-  data-sal-duration="1500" href="{{ route('lectures.index', 11) }}">
-                        <div class="l-image ">
+  data-sal-duration="1500">
                             <img src="{{ URL::asset('imgs/physics2.webp') }}" class='' alt="">
                         </div>
-                        <div class="l-content ">
+                        <div class="l-content " data-sal="slide-down"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1500">
                             <h4>الصف <span class="d-blueColor">الثاني الثانوي</span></h4>
                         </div>
                     </a>
