@@ -124,9 +124,9 @@ class ExamController extends Controller
         endif;
 
         $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
+        return apiResponse(false,"",$passedExam->toArray());
         $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false )) && $passedExam->chance < $exam->chances  : true;
         $hasChance = $hasChance && ($exam ? $exam->dynamic : true);
-        
         if (!$passedExam || $hasChance) :
             $exam = Exam::find($id);
             if (!$exam) :

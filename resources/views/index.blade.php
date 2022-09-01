@@ -19,13 +19,19 @@
                 <div class="col-lg-6 headerRightSide">
                     <div class="teacherContent ">
                         <h1 class="bigHeading  
-                         ">
+                         " data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <span class="customeSquareLine t-name">أ. محمد البري</span>
                             في
                             <span class="headingSubject">الفيزياء</span>
                         </h1>
                         <div class="swiper headerGrdeSwiper  
-                        ">
+                        " data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <div class="swiper-wrapper ">
                                 @foreach (\App\Models\Grade::all() as $grade)
                                     <div class="swiper-slide">
@@ -35,7 +41,11 @@
                             </div>
                         </div>
                         <div class="headerIcons  
-                        ">
+                        "
+                        data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <a class="facebook"><i class="fa-brands fa-facebook-f"></i></a>
                             <a class="youtube"><i class="fa-brands fa-youtube"></i></a>
                             <a class="telegram"><i class="fa-brands fa-telegram"></i></a>
@@ -50,7 +60,10 @@
   data-sal-duration="1800">
                             <img class="ontop" src="{{ URL::asset('imgs/elbirry.webp') }}" alt="">
                         </div>
-                        <div class="headerAtom  ">
+                        <div class="headerAtom  " data-sal="slide-right"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <div class="svg-container ">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     class=' ' viewBox="50 50 300 300">
@@ -116,7 +129,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="headerLocation  " data-sal="slide-up"
+                        <div class="headerLocation  " data-sal="slide-right"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1800"
@@ -209,8 +222,14 @@
     <section class="latestMonths">
         <div class="container">
             <div class="monthsHeading  ">
-                <h2 class="customeSquareLine">أخر الشهور لجميع المراحل</h2>
-                <p class="monthsText">جميع الأشهر الدراسية لمراحل الثانوية العامة</p>
+                <h2 class="customeSquareLine" data-sal="slide-down"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">أخر الشهور لجميع المراحل</h2>
+                <p class="monthsText" data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-up"
+  data-sal-duration="1800">جميع الأشهر الدراسية لمراحل الثانوية العامة</p>
             </div>
             <div class="row text-center" style='overflow:hidden'>
                 @php
@@ -219,7 +238,10 @@
                 @if (count($lectures))
                     @foreach ($lectures as $index => $lecture)
                         @if ($lecture)
-                            <div class="col-lg-3 col-sm-6  _from{{ $direction[$index] }}">
+                            <div class="col-lg-3 col-sm-6  _from{{ $direction[$index] }}" data-sal="fade"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                                 <a class="latestCard grade{{ $lecture->grade->id }}"
                                     href='{{ route('months.show', $lecture->slug) }}'>
                                     <div class="cardGrade">
