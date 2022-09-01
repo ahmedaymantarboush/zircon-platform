@@ -135,7 +135,7 @@
                 <div class="col-md-4 col-sm-6 levelItemParent">
                     <a class="levelItem gs_reveal gs_reveal_fromRight" href="{{ route('lectures.index', 10) }}">
                         <div class="l-image  ">
-                            <img src="{{ URL::asset('imgs/physics1.png') }}" class='' alt="">
+                            <img src="{{ URL::asset('imgs/physics1.webp') }}" class='' alt="">
                         </div>
                         <div class="l-content ">
                             <h4>الصف <span class="d-redColor">الأول الثانوي</span></h4>
@@ -145,7 +145,7 @@
                 <div class="col-md-4 col-sm-6 levelItemParent">
                     <a class="levelItem gs_reveal gs_reveal_fromUp" href="{{ route('lectures.index', 11) }}">
                         <div class="l-image ">
-                            <img src="{{ URL::asset('imgs/physics2.png') }}" class='' alt="">
+                            <img src="{{ URL::asset('imgs/physics2.webp') }}" class='' alt="">
                         </div>
                         <div class="l-content ">
                             <h4>الصف <span class="d-blueColor">الثاني الثانوي</span></h4>
@@ -155,7 +155,7 @@
                 <div class="col-md-4 col-sm-6 levelItemParent">
                     <a class="levelItem gs_reveal gs_reveal_fromLeft" href="{{ route('lectures.index', 12) }}">
                         <div class="l-image ">
-                            <img src="{{ URL::asset('imgs/physics3.png') }}" class='' alt="">
+                            <img src="{{ URL::asset('imgs/physics3.webp') }}" class='' alt="">
                         </div>
                         <div class="l-content ">
                             <h4>الصف <span class="d-yellowColor">الثالث الثانوي</span></h4>
@@ -213,7 +213,7 @@
                 @else
                     <p class='gs_reveal no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
                     <div class='gs_reveal noLecImg'>
-                        <img src="{{ URL::asset('imgs/no-result-search.png') }}" alt="">
+                        <img src="{{ URL::asset('imgs/no-result-search.webp') }}" alt="">
                     </div>
                 @endif
             </div>
