@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Auth::routes();
+Auth::routes(['password.request'=>false,'password.update'=>false]);
 Route::get('grades/grade{id}', [LectureController::class, 'index'])->name('lectures.index');
 Route::resource('months', LectureController::class)->only(['show']);
 Route::get('search', [LectureController::class, 'search'])->name('search');
