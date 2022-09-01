@@ -22,7 +22,7 @@ const scrollAnimations = sal();
 
 // Provide new options
 scrollAnimations.reset({
-  selector: 'animated-element',
+  selector: 'levelItem',
   once: true,
 });
 
