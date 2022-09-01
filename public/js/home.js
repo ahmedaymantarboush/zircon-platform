@@ -18,7 +18,7 @@
 // // Add all html elements with attribute data-triggerAlways, these elements will always be triggered
 // trigger.add('[data-triggerAlways]', { once: false })
 $(".foo, .bar").smoove({
-    offset  : '0',
+    offset  : '1%',
     // moveX is overridden to -200px for ".bar" object
     moveX   : '0',
     moveY   : '100px',
