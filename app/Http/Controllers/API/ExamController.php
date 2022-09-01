@@ -122,11 +122,11 @@ class ExamController extends Controller
         elseif ($exam->ends_at <= now() && $user->role->number >= 4):
             return apiResponse(false, _('لم يعد هذا الامتحان صالح لاستقبال الاجابات'), [], 404);
         endif;
+        return apiResponse(false,"",$exam->toArray());
 
         $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
         $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false )) && $passedExam->chance < $exam->chances  : true;
         $hasChance = $hasChance && ($exam ? $exam->dynamic : true);
-        return apiResponse(false,"",$passedExam->toArray);
         if (!$passedExam || $hasChance) :
             $exam = Exam::find($id);
             if (!$exam) :
