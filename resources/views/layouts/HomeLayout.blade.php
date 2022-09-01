@@ -19,12 +19,14 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-rtl.min.css') }}">
+    <link rel="stylesheet" href="animate.min.css">
     @include('includes.appUrl')
 
     @yield('css')
 
     <link rel="stylesheet" href="{{asset('css/nav.css')}}">
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
+
+    
 </head>
 
 <body>
@@ -245,8 +247,8 @@
 
     <!-- <script src="{{ URL::asset('js/all.min.js') }}"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script> -->
     <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
 
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
