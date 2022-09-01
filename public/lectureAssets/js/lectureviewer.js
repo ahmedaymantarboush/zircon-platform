@@ -1,6 +1,7 @@
 let examID = 0;
 let examPassedID = 0;
 let currentItemId = 0;
+let itemID =0;
 function onReadyFunExam() {
     // questions tabs
     let tabBtns = [...document.querySelectorAll('.tab-item')]
@@ -275,7 +276,6 @@ $(document).ready(function() {
     addDisabled();
 });
 //ajax
-let itemID = 0;
 let mainDiv = document.querySelector('main');
 
 function getExam(exam_id) {
