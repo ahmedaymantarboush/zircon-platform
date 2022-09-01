@@ -126,6 +126,7 @@ class SectionItemController extends Controller
                 'passedExamId' => $passedExam ? $passedExam->id : null,
                 'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where(['correct' => 1, 'chance' => $passedExam->chance])->count() : null,
 
+                'hasChance' => $hasChance,
                 'chance' => $passedExam && $hasChance ? $passedExam->chance : null,
                 'chancesCount' => $exam && $hasChance ? $exam->chances : null,
 

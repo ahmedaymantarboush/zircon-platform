@@ -18,7 +18,19 @@ class BalanceCardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $cards = BalanceCard::all();
+        $cards = BalanceCard::where('publisher_id', $user->id)->get();
+        if (request()->value && request()->value != 'all') {
+            $cards = $cards->where('value', request()->value);
+        }
+        if (request()->status && request()->status != 'all') {
+            if (request()->status == 'hanging') {
+                $cards = $cards->where('hanging', 1);
+            } elseif (request()->status == 'used') {
+                $cards = $cards->where('user_id','!=', null);
+            }elseif (request()->status == 'published') {
+                $cards = $cards->where('user_id', null)->where('hanging', 0);
+            }
+        }
         if ($user) :
             return view('Admin.allCards', ['cards' => $cards]);
         else :
