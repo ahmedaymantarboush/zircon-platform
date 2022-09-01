@@ -18,8 +18,8 @@ let toggleElement = function (ele, className) {
     window.sr = ScrollReveal();
     
     sr.reveal('.animate', {
-      duration   : 2000,
-      distance   : '120px',
+      duration   : 600,
+      distance   : '100px',
       easing     : 'ease-out',
       origin     : 'bottom',
       reset      : true,
