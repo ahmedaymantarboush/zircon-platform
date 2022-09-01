@@ -18,7 +18,19 @@
 // // Add all html elements with attribute data-triggerAlways, these elements will always be triggered
 // trigger.add('[data-triggerAlways]', { once: false })
 
-sal();
+sal(
+    {
+        rootMargin: '0% 50%',
+        threshold: 0.5, // 50%
+        animateClassName: 'sal-animate',
+        disabledClassName: 'sal-disabled',
+        selector: '[data-sal]',
+        once: true, // run only once
+        disabled: false,
+        enterEventName: 'sal:in',
+        exitEventName: 'sal:out',
+    }
+);
 
 // Now in your CSS add the following classes, this fades the [data-trigger] elements in and out
 
