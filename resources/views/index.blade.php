@@ -153,8 +153,9 @@
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
                     <a class="levelItem " data-sal="slide-up"
-  data-sal-delay="300"
-  data-sal-easing="ease" href="{{ route('lectures.index', 11) }}">
+                    data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="2000"> href="{{ route('lectures.index', 11) }}">
                         <div class="l-image ">
                             <img src="{{ URL::asset('imgs/physics2.webp') }}" class='' alt="">
                         </div>
