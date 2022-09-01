@@ -133,7 +133,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem "data-aos-anchor-placement="bottom-bottom"  data-aos="fade-up" href="{{ route('lectures.index', 10) }}">
+                    <a class="levelItem "data-aos-anchor-placement="bottom-top"  data-aos="fade-up" href="{{ route('lectures.index', 10) }}">
                         <div class="l-image  ">
                             <img src="{{ URL::asset('imgs/physics1.webp') }}" class='' alt="">
                         </div>
