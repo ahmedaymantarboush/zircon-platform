@@ -87,20 +87,20 @@ let funChangeImagesDark = function () {
     if (!document.documentElement.classList.contains("dark")) {
         paperImg1.setAttribute(
             "style",
-            "background: url("+ APP_URL + "/public/imgs/paper.png) no-repeat; background-size:cover;"
+            "background: url("+ APP_URL + "/public/imgs/paper.webp) no-repeat; background-size:cover;"
         );
         paperImg2.setAttribute(
             "style",
-            "background: url("+ APP_URL + "/public/imgs/paper2.png) no-repeat; background-size:cover;"
+            "background: url("+ APP_URL + "/public/imgs/paper2.webp) no-repeat; background-size:cover;"
         );
     } else {
         paperImg1.setAttribute(
             "style",
-            "background: url("+ APP_URL + "/public/imgs/paperdark.png) no-repeat; background-size:cover;"
+            "background: url("+ APP_URL + "/public/imgs/paperdark.webp) no-repeat; background-size:cover;"
         );
         paperImg2.setAttribute(
             "style",
-            "background: url("+ APP_URL + "/public/imgs/paper2_dark.png) no-repeat; background-size:cover;"
+            "background: url("+ APP_URL + "/public/imgs/paper2_dark.webp) no-repeat; background-size:cover;"
         );
     }
 };
