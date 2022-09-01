@@ -78,12 +78,12 @@ let funChangeImagesDark = function () {
     if (document.documentElement.classList.contains("dark")) {
         headerImage.setAttribute(
             "style",
-            "background: url(../public/imgs/lecture_banner_dark.png) no-repeat; background-size:cover;"
+            "background: url(../public/imgs/lecture_banner_dark.webp) no-repeat; background-size:cover;"
         );
     } else {
         headerImage.setAttribute(
             "style",
-            "background: url(../public/imgs/lecture_banner.png) no-repeat; background-size:cover;"
+            "background: url(../public/imgs/lecture_banner.webp) no-repeat; background-size:cover;"
         );
     }
 };
@@ -94,24 +94,24 @@ let funChangeImagesDark = function () {
 //         if (window.innerWidth <= 765) {
 //             headerImage.setAttribute(
 //                 "style",
-//                 "background: url(public/imgs/mob_banner_dark.png) no-repeat;"
+//                 "background: url(public/imgs/mob_banner_dark.webp) no-repeat;"
 //             );
 //         } else {
 //             headerImage.setAttribute(
 //                 "style",
-//                 "background: url(public/imgs/lecture_banner_dark.png) no-repeat;"
+//                 "background: url(public/imgs/lecture_banner_dark.webp) no-repeat;"
 //             );
 //         }
 //     } else {
 //         if (window.innerWidth <= 765) {
 //             headerImage.setAttribute(
 //                 "style",
-//                 "background: url(public/imgs/mob_banner.png) no-repeat;"
+//                 "background: url(public/imgs/mob_banner.webp) no-repeat;"
 //             );
 //         } else {
 //             headerImage.setAttribute(
 //                 "style",
-//                 "background: url(public/imgs/lecture_banner.png) no-repeat;"
+//                 "background: url(public/imgs/lecture_banner.webp) no-repeat;"
 //             );
 //         }
 //     }
@@ -287,7 +287,7 @@ checkInputs.forEach((ele) => {
         let paginationBtnParent = document.querySelector(".btns");
         let levelsBoxRow = document.querySelector(".levelsBox .row");
         levelsBoxRow.innerHTML = "";
-        paginationBtnParent.innerHTML = "";
+        paginationBtnParent?.innerHTML = "";
         let { lastPage, currentPage } = pagination || 0;
 
         for (let i = 1; i <= lastPage; i++) {
