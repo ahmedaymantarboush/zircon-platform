@@ -36,7 +36,7 @@ let toggleElement = function (ele, className) {
       reset      : true,
       easing     : 'ease',
       viewFactor : 0,
-    }, 0);
+    },300);
   })();
   
 /////////////////////////
