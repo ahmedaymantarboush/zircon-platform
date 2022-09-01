@@ -139,7 +139,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a data-slideinbottom class="levelItem  " data-scroll="once addHeight" data-scroll-showCallback="alert('Visible')" data-scroll-hideCallback="alert('Invisible')"   href="{{ route('lectures.index', 10) }}">
+                    <a  class="levelItem  "  href="{{ route('lectures.index', 10) }}">
                         <div class="l-image  ">
                             <img src="{{ URL::asset('imgs/physics1.webp') }}" class='' alt="">
                         </div>
