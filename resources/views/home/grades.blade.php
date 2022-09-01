@@ -26,7 +26,7 @@
             <div class="row">
                 @if ($lectures->count())
                     @foreach ($lectures as $lecture)
-                        <div class="col-lg-12 col-md-6  " data-sal="slide-down"
+                        <div class="col-lg-12 col-md-6  " data-sal="slide-left"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1800">

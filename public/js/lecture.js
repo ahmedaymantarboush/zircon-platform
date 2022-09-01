@@ -227,3 +227,17 @@ document
 
         // let objData = myResponse.data;
     });
+    sal(
+        {
+            rootMargin: '0% 50%',
+            threshold: 0.6, // 50%
+            animateClassName: 'sal-animate',
+            disabledClassName: 'sal-disabled',
+            selector: '[data-sal]',
+            once: false, // run only once
+            disabled: false,
+            enterEventName: 'sal:in',
+            exitEventName: 'sal:out',
+        }
+    );
+    
