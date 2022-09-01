@@ -17,7 +17,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-rtl.min.css') }}">
-    <!-- <link rel="stylesheet" href="{{ URL::asset('css/sal.css') }}"> -->
+    <link rel="stylesheet" href="{{ URL::asset('css/sal.css') }}">
     @include('includes.appUrl')
 
     @yield('css')
@@ -249,9 +249,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/ScrollTrigger.min.js"></script> -->
     
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('js/sal.js') }}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ URL::asset('js/sal.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.min.js"
         integrity="sha512-+VS2+Nl1Qit71a/lbncmVsWOZ0BmPDkopw5sXAS2W+OfeceCEd9OGTQWjgVgP5QaMV4ddqOIW9XLW7UVFzkMAw=="
