@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-lg-6 headerLeftSide">
                     <div class="teacherAbout">
-                        <div class="headerImage  "  data-sal="zoom-in
+                        <div class="headerImage  "  data-sal="flip-right
 "
   data-sal-delay="300"
   data-sal-easing="ease-out-back"
