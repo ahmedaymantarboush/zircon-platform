@@ -50,7 +50,10 @@
   data-sal-duration="1800">
                             <img class="ontop" src="{{ URL::asset('imgs/elbirry.webp') }}" alt="">
                         </div>
-                        <div class="headerAtom  ">
+                        <div class="headerAtom  " data-sal="slide-right"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <div class="svg-container ">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     class=' ' viewBox="50 50 300 300">
@@ -72,7 +75,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="headerContents  " data-sal="slide-right"
+                        <div class="headerContents  " data-sal="slide-left"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1800"
@@ -116,7 +119,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="headerLocation  " data-sal="slide-up"
+                        <div class="headerLocation  " data-sal="slide-right"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1800"
