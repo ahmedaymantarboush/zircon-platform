@@ -154,9 +154,7 @@ window.addEventListener("scroll", navProgFunction);
 /////////////////////////////////////
 ///// start header /////////////////
 ///////////////////////////////////
-$(document).ready(function(){
-    $('.animate').scrolla();
-});
+
 AOS.init();
 
 // [01-Atom]
