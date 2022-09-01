@@ -66,6 +66,7 @@ class Exam extends Model
                 $dynamicQuestions = $this->dynamicQuestions;
                 foreach ($dynamicQuestions as $dynamicQuestion) :
                     if ($dynamicQuestion) :
+                        return response()->json(Question::where(['level' => abs($dynamicQuestion->level - ($chance > 2 ? $chance - 2 : 0)), 'part_id' => $dynamicQuestion->part->id, 'grade_id' => $user->grade->id])->inRandomOrder()->take($dynamicQuestion->count)->get());
                         foreach (Question::where(['level' => abs($dynamicQuestion->level - ($chance > 2 ? $chance - 2 : 0)), 'part_id' => $dynamicQuestion->part->id, 'grade_id' => $user->grade->id])->inRandomOrder()->take($dynamicQuestion->count)->get() as $question) :
                             if ($question) :
                                 $user->answerdQuestions()->create([
