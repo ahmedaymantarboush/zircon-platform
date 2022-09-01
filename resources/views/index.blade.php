@@ -42,7 +42,7 @@
                 <div class="col-lg-6 headerLeftSide">
                     <div class="teacherAbout">
                         <div class="headerImage gs_reveal gs_reveal_fromLeft">
-                            <img class="ontop" src="{{ URL::asset('imgs/elbirry.png') }}" alt="">
+                            <img class="ontop" src="{{ URL::asset('imgs/elbirry.webp') }}" alt="">
                         </div>
                         <div class="headerAtom  ">
                             <div class="svg-container ">
