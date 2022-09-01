@@ -45,7 +45,7 @@
                 <div class="col-lg-6 headerLeftSide">
                     <div class="teacherAbout">
                         <div class="headerImage  " data-sal="slide-up"
-  data-sal-delay="300"
+  data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="2000">
                             <img class="ontop" src="{{ URL::asset('imgs/elbirry.webp') }}" alt="">
