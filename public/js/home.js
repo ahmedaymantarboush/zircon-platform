@@ -25,7 +25,7 @@ sal(
         animateClassName: 'sal-animate',
         disabledClassName: 'sal-disabled',
         selector: '[data-sal]',
-        once: true, // run only once
+        once: false, // run only once
         disabled: false,
         enterEventName: 'sal:in',
         exitEventName: 'sal:out',
