@@ -17,10 +17,13 @@
 // trigger.add('[data-trigger]')
 // // Add all html elements with attribute data-triggerAlways, these elements will always be triggered
 // trigger.add('[data-triggerAlways]', { once: false })
-$(document).ready(function(){
-    $('.animate').scrolla();
-  });
 
+  $('.animate').scrolla({
+    // default
+    mobile: true, // disable animation on mobiles
+    once: false, // only once animation play on scroll
+    animateCssVersion: 4 // used animate.css version (3 or 4)
+  });
 // Now in your CSS add the following classes, this fades the [data-trigger] elements in and out
 
 
