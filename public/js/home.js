@@ -12,7 +12,7 @@
 // main functions /////
 //////////////////////
 
-const scrollTrigger = new ScrollTrigger()
+var trigger = new ScrollTrigger.default()
 
 scrollTrigger.add('[data-scroll]', {
     toggle: {
