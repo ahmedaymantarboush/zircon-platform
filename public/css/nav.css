@@ -22,7 +22,7 @@
   .visible {
     opacity: 1.0;
   }
-  .invisible{
+  .visible{
     transform: translateY(-50px);
   }
 nav {
