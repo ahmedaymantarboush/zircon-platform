@@ -28,13 +28,13 @@ let toggleElement = function (ele, className) {
       afterReveal  : revealChildren,
     }, 0);
     
-      var revealChildren = sr.reveal('.card-title, .card-text', {
-      duration   : 500,
+      var revealChildren = sr.reveal('.animate-bottom, .card-text', {
+      duration   : 1100,
       scale      : 1,
-      distance   : '20px',
-      origin     : 'bottom',
+      distance   : '100px',
+      origin     : 'top',
       reset      : true,
-      easing     : 'ease-out',
+      easing     : 'ease',
       viewFactor : 1,
     }, 75);
   })();
