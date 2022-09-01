@@ -186,7 +186,10 @@
             <section class='levelsBox'>
                 <div class="row">
                     @foreach ($lectures->paginate(6) as $lecture)
-                    <div class="col-xl-4 col-md-6 levelItemParent gs_reveal">
+                    <div class="col-xl-4 col-md-6 levelItemParent " data-sal="slide-down"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                         <a href='{{ route('months.show', $lecture->slug) }}'
                             class="levelItem grade{{ $lecture->grade->id }}">
                             <span class='typeGrade'>{{ $lecture->grade->name }}</span>
