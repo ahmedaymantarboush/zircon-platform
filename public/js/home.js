@@ -206,28 +206,28 @@ window.addEventListener("scroll", navProgFunction);
 //   AOS.init();
 
 // [01-Atom]
-$(document).ready(function () {
-    var el1 = $("#electron-1");
-    var el2 = $("#electron-2");
-    var el3 = $("#electron-3");
+// $(document).ready(function () {
+//     var el1 = $("#electron-1");
+//     var el2 = $("#electron-2");
+//     var el3 = $("#electron-3");
 
-    function anim(el, dur) {
-        el.velocity({ "stroke-dashoffset": 0 }, 0).velocity(
-            { "stroke-dashoffset": 399 },
-            {
-                duration: dur,
-                easing: "linear",
-                complete: function () {
-                    anim(el, dur);
-                },
-            }
-        );
-    }
-    /* using primes here gives us a cicada series */
-    anim(el1, 1500);
-    anim(el2, 1570);
-    anim(el3, 1200);
-});
+//     function anim(el, dur) {
+//         el.velocity({ "stroke-dashoffset": 0 }, 0).velocity(
+//             { "stroke-dashoffset": 399 },
+//             {
+//                 duration: dur,
+//                 easing: "linear",
+//                 complete: function () {
+//                     anim(el, dur);
+//                 },
+//             }
+//         );
+//     }
+//     /* using primes here gives us a cicada series */
+//     anim(el1, 1500);
+//     anim(el2, 1570);
+//     anim(el3, 1200);
+// });
 
 // [02- level]
 var swiper = new Swiper(".headerGrdeSwiper", {
