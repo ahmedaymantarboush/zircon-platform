@@ -157,6 +157,7 @@ window.addEventListener("scroll", navProgFunction);
 $(document).ready(function(){
     $('.animate').scrolla();
 });
+AOS.init();
 
 // [01-Atom]
 $(document).ready(function () {
