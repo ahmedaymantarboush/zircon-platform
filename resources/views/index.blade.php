@@ -133,7 +133,7 @@
     </header>
     <div class="paper">
     </div>
-    <div data-scroll="once addHeight" data-scroll-showCallback="alert('Visible')" data-scroll-hideCallback="alert('Invisible')">alialaa</div>
+    <div data-scroll="once addHeight" data-scroll-showCallback="alert('Visible')" data-scroll-hideCallback="alert('Invisible')" data-slideinbottoms>alialaa</div>
 
     <section class="levels">
         <div class="container">
