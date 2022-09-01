@@ -16,7 +16,7 @@
 
 sal(
     {
-        rootMargin: '0% 20%',
+        rootMargin: '0% 50%',
         threshold: 0.6, // 50%
         animateClassName: 'sal-animate',
         disabledClassName: 'sal-disabled',
