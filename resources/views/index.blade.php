@@ -226,7 +226,7 @@
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1800">أخر الشهور لجميع المراحل</h2>
-                <p class="monthsText" data-sal="slide-left"
+                <p class="monthsText" data-sal="slide-up"
   data-sal-delay="0"
   data-sal-easing="ease-out-up"
   data-sal-duration="1800">جميع الأشهر الدراسية لمراحل الثانوية العامة</p>
