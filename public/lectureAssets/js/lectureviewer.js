@@ -327,7 +327,6 @@ function showTakeExam(data) {
     } else {
         examPassedID = data.data.item.passedExamId;
         //if exam finished
-        // replace 8 with correct ansers count
         let student_perc = (data.data.item.correctAnswers / data.data.item.questionsCount) * 100;
         student_perc = student_perc.toFixed(2);
         if (student_perc > 50) {
@@ -346,20 +345,43 @@ function showTakeExam(data) {
                 '                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>\n' +
                 '                        </div>';
         } else {
-            take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
-                '                            <p class="ex_red">\n' +
-                '                                <span>' + data.data.item.correctAnswers + '</span>\n' +
-                '                                سؤال صحيح من\n' +
-                '                                <span>' + data.data.item.questionsCount + '</span>\n' +
-                '                                سؤال\n' +
-                '                            </p>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
-                '                            <p class="ex_red" style="font-weight: 700;margin-top: 0;">' + student_perc + '%</p>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-12 d-flex justify-content-center">\n' +
-                '                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>\n' +
-                '                        </div>';
+            if(data.data.item.change != 0){
+
+            take_exam += `<div class="col-12 d-flex justify-content-center" dir="rtl">
+                            <p class="ex_red">
+                             <span>${data.data.item.correctAnswers}</span>
+                             سؤال غير صحيح من
+                             <span>${data.data.item.questionsCount}</span>
+                             سؤال
+                             </p>
+                        </div>
+                    <div class="col-12 d-flex justify-content-center" dir="rtl">
+                        <p class="ex_red" style="font-weight: 700;margin-top: 0;">${student_perc}%</p>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center" dir="rtl">
+                        <p class="ex_red" style="font-weight: 500;margin-top: 0;">تطبق لديك
+                         <span>${data.data.item.chance} </span>
+                         من المحاولات
+                         </p>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center"><a class="exam_btn takeExam d-flex justify-content-center" href="#">محاولة اخرى</a></div>`;
+        }else{
+                take_exam += `<div class="col-12 d-flex justify-content-center" dir="rtl">
+                            <p class="ex_red">
+                             <span>${data.data.item.correctAnswers}</span>
+                             سؤال غير صحيح من
+                             <span>${data.data.item.questionsCount}</span>
+                             سؤال
+                             </p>
+                        </div>
+                    <div class="col-12 d-flex justify-content-center" dir="rtl">
+                        <p class="ex_red" style="font-weight: 700;margin-top: 0;">${student_perc}%</p>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center" dir="rtl">
+                        <p class="ex_red" style="font-weight: 500;margin-top: 0;">لم يتطبق لك محاولات
+                         </p>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center"><a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a></div>`;}
         }
         mainDiv.innerHTML = take_exam;
     }
@@ -468,9 +490,7 @@ $(document).on('click', '.lesson_name', function() {
     xhttp.onreadystatechange = function(e) {
         if (xhttp.status == 200 && xhttp.readyState == 4) {
             data = JSON.parse(this.responseText);
-            console.log(data);
             getItem(data);
-            console.log(data);
         }
 
     }
