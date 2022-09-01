@@ -226,7 +226,7 @@
 @endsection
 
 @section('javascript')
-    {{-- <!--swiper js--> --}}    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
+    {{-- <!--swiper js--> --}}    
     <script src="{{ URL::asset('js/jquery-scrolla.min.js') }}"></script>
 
     
