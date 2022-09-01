@@ -76,7 +76,7 @@
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1500"
-  data-sal-delay="300">
+  data-sal-delay="1000">
 
                             <h3 class="contentsHeading">المحتويات</h3>
                             <div class="headingLessonsParent">
@@ -93,7 +93,7 @@
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1500"
-  data-sal-delay="500">
+  data-sal-delay="2000">
                             <div class="swiper headerTestimonialSwiper">
                                 <div class="swiper-wrapper">
                                     @foreach (\App\Models\Testimonial::orderBy('degree', 'desc')->take(4)->get() as $testimonial)
