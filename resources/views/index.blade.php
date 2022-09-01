@@ -222,8 +222,14 @@
     <section class="latestMonths">
         <div class="container">
             <div class="monthsHeading  ">
-                <h2 class="customeSquareLine">أخر الشهور لجميع المراحل</h2>
-                <p class="monthsText">جميع الأشهر الدراسية لمراحل الثانوية العامة</p>
+                <h2 class="customeSquareLine" data-sal="slide-down"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">أخر الشهور لجميع المراحل</h2>
+                <p class="monthsText" data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-up"
+  data-sal-duration="1800">جميع الأشهر الدراسية لمراحل الثانوية العامة</p>
             </div>
             <div class="row text-center" style='overflow:hidden'>
                 @php
@@ -232,7 +238,7 @@
                 @if (count($lectures))
                     @foreach ($lectures as $index => $lecture)
                         @if ($lecture)
-                            <div class="col-lg-3 col-sm-6  _from{{ $direction[$index] }}" data-sal="slide-down"
+                            <div class="col-lg-3 col-sm-6  _from{{ $direction[$index] }}" data-sal="slide-left"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1800">
