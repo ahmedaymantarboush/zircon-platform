@@ -12,9 +12,16 @@
 // main functions /////
 //////////////////////
 
-const trigger = new ScrollTrigger()
-// Add all html elements with attribute data-trigger
-trigger.add('[data-trigger]')
+const scrollTrigger = new ScrollTrigger()
+
+scrollTrigger.add('[data-scroll]', {
+    toggle: {
+        class: {
+            in: 'animateIn',
+            out: 'animateOut'
+        }
+    }
+})
 
 // Now in your CSS add the following classes, this fades the [data-trigger] elements in and out
 
