@@ -18,7 +18,13 @@
 // // Add all html elements with attribute data-triggerAlways, these elements will always be triggered
 // trigger.add('[data-triggerAlways]', { once: false })
 
-sal();
+const scrollAnimations = sal();
+
+// Provide new options
+scrollAnimations.reset({
+  selector: 'animated-element',
+  once: true,
+});
 
 // Now in your CSS add the following classes, this fades the [data-trigger] elements in and out
 
