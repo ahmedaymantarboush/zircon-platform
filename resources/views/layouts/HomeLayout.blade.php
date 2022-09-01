@@ -253,7 +253,6 @@
     <!-- <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script> -->
     
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('js/jquery.scrolla.js') }}"></script>
     <!-- <script src="{{ URL::asset('js/scrollTrigger.js') }}"></script> -->
 
     <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>

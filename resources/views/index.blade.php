@@ -139,11 +139,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a  class="levelItem animate " data-animate="fadeInUp" 
-  data-duration="1s" 
-  data-delay="0s" 
-  data-offset="50" 
-  data-iteration="1" href="{{ route('lectures.index', 10) }}">
+                    <a  class="levelItem  " href="{{ route('lectures.index', 10) }}">
                         <div class="l-image  ">
                             <img src="{{ URL::asset('imgs/physics1.webp') }}" class='' alt="">
                         </div>
