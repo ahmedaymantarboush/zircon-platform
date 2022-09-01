@@ -351,7 +351,7 @@ checkInputs.forEach((ele) => {
                                             <div class="detailItem">
                                                 <span class='detailIcon'><i class="fa-solid fa-photo-film"></i></span>
                                                 <span class='detailContent'>${
-                                                    +lectures[i].time / 60 / 60
+                                                    (+lectures[i].time / 60 / 60).toFixed(2)
                                                 } ساعة من الفيديو</span>
                                             </div>
                                             <div class="detailItem">
