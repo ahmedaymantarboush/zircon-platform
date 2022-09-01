@@ -250,6 +250,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
+    <script src="/dist/js/jquery-scrolla.min.js"></script>
+
     <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.min.js"
