@@ -19,13 +19,19 @@
                 <div class="col-lg-6 headerRightSide">
                     <div class="teacherContent ">
                         <h1 class="bigHeading  
-                         ">
+                         " data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <span class="customeSquareLine t-name">أ. محمد البري</span>
                             في
                             <span class="headingSubject">الفيزياء</span>
                         </h1>
                         <div class="swiper headerGrdeSwiper  
-                        ">
+                        " data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <div class="swiper-wrapper ">
                                 @foreach (\App\Models\Grade::all() as $grade)
                                     <div class="swiper-slide">
@@ -35,7 +41,11 @@
                             </div>
                         </div>
                         <div class="headerIcons  
-                        ">
+                        "
+                        data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <a class="facebook"><i class="fa-brands fa-facebook-f"></i></a>
                             <a class="youtube"><i class="fa-brands fa-youtube"></i></a>
                             <a class="telegram"><i class="fa-brands fa-telegram"></i></a>
