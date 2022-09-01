@@ -116,7 +116,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="headerLocation  " data-sal="slide-right"
+                        <div class="headerLocation  " data-sal="slide-up"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1800"
