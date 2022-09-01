@@ -268,6 +268,7 @@ $(document).on('click', '.anserBox', async function() {
     }
 
 });
+
 $(document).ready(function() {
     onReadyFunExam();
     flagFun();
@@ -469,6 +470,7 @@ $(document).on('click', '.lesson_name', function() {
             data = JSON.parse(this.responseText);
             console.log(data);
             getItem(data);
+            console.log(data);
         }
 
     }
