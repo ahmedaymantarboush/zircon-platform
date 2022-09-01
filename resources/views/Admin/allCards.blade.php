@@ -80,20 +80,21 @@
             <div class="row">
                 <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
-                        <label for="">المحرر</label>
+                        <label for="">القيمة</label>
                         <div class="search-select-box">
-                            <select name="" id="" data-live-search="true">
-                                <option value="">
-                                    جميع المراحل الدراسية
+                            <select name="value" id="" data-live-search="true">
+                                <option value="all">
+                                    الجميع
                                 </option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                                @foreach (array_unique($cards->pluck('value')->toArray()) as $value)
+                                    <option @selected(request()->value == $value) value="{{$value}}">{{$value}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-sm-6">
+                {{-- <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
                         <label for="">السنة</label>
                         <div class="search-select-box">
@@ -134,17 +135,18 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
                         <label for="">الحالة</label>
                         <div class="search-select-box">
-                            <select name="" id="" data-live-search="true">
-                                <option value="">
-                                    جميع المدرس
+                            <select name="status" id="" data-live-search="true">
+                                <option value="all">
+                                    الجميع
                                 </option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                                <option value="hanging">معلق</option>
+                                <option value="published">منشور</option>
+                                <option value="used">مشحون</option>
                             </select>
                         </div>
                     </div>
@@ -156,17 +158,19 @@
         </div>
         <div class="search-field">
             <div class="field search-select-box">
-                <span>اظهار</span>
-                <select name="" id="" data-live-search="true">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3333</option>
+                {{-- <span>اظهار</span>
+                <select name="count" id="" data-live-search="true">
+                    <option @selected(request()->count == 'all') value="all">الكل</option>
+                    <option @selected(request()->count == '1') value="1">1</option>
+                    <option @selected(request()->count == '25') value="25">25</option>
+                    <option @selected(request()->count == '50') value="50">50</option>
+                    <option @selected(request()->count == '100') value="100">100</option>
                 </select>
-                <span>من الحقول</span>
+                <span>من الحقول</span> --}}
             </div>
             <div class="filter-search">
                 <label for="">بحث :</label>
-                <input type="search" />
+                <input type="search" name="q" value="{{request()->q}}"/>
             </div>
         </div>
     </form>
