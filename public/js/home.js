@@ -11,33 +11,40 @@
 ////////////////////////
 // main functions /////
 //////////////////////
-let toggleElement = function (ele, className) {
-    ele.classList.toggle(className);
-};
-(function scrollReveal() {
-    window.sr = ScrollReveal();
+const trigger = new ScrollTrigger()
+// Add all html elements with attribute data-trigger
+trigger.add('[data-trigger]')
+
+// Now in your CSS add the following classes, this fades the [data-trigger] elements in and out
+
+
+// let toggleElement = function (ele, className) {
+//     ele.classList.toggle(className);
+// };
+// (function scrollReveal() {
+//     window.sr = ScrollReveal();
     
-    sr.reveal('.animate', {
-      duration   : 1100,
-      distance   : '100px',
-      easing     : 'ease',
-      origin     : 'bottom',
-      reset      : true,
-      scale      : 1,
-      viewFactor : 0,
-    }, 0);
-    sr.reveal('.animate-bottom', {
-      duration   : 1100,
-      distance   : '100px',
-      easing     : 'ease',
-      origin     : 'top',
-      reset      : true,
-      scale      : 1,
-      viewFactor : 0,
-    }, 0);
+//     sr.reveal('.animate', {
+//       duration   : 1100,
+//       distance   : '100px',
+//       easing     : 'ease',
+//       origin     : 'bottom',
+//       reset      : true,
+//       scale      : 1,
+//       viewFactor : 0,
+//     }, 0);
+//     sr.reveal('.animate-bottom', {
+//       duration   : 1100,
+//       distance   : '100px',
+//       easing     : 'ease',
+//       origin     : 'top',
+//       reset      : true,
+//       scale      : 1,
+//       viewFactor : 0,
+//     }, 0);
     
       
-  })();
+//   })();
   
 /////////////////////////
 ///// fade animation ///
