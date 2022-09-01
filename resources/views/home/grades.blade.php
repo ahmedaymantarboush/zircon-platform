@@ -26,7 +26,10 @@
             <div class="row">
                 @if ($lectures->count())
                     @foreach ($lectures as $lecture)
-                        <div class="col-lg-12 col-md-6 gs_reveal ">
+                        <div class="col-lg-12 col-md-6  " data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                             <a href='{{ route('months.show', $lecture->slug) }}'
                                 class="levelItem grade{{ $lecture->grade->id }}">
                                 <span class='typeGrade'>{{ $lecture->grade->name }}</span>
@@ -68,8 +71,14 @@
                         </div>
                     @endforeach
                 @else
-                <p class='gs_reveal no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
-                <div class='gs_reveal noLecImg'>
+                <p class=' no-lectures' data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">سيتم اضافة شهور جديدة قريبا</p>
+                <div class=' noLecImg' data-sal="slide-right"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                     <img src="{{ URL::asset('imgs/no-result-search.webp') }}" alt="">
                 </div>
                 @endif

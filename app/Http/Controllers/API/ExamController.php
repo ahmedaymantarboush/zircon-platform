@@ -124,16 +124,15 @@ class ExamController extends Controller
         endif;
 
         $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
-        return apiResponse(false,"",$passedExam->toArray());
         $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false )) && $passedExam->chance < $exam->chances  : true;
         $hasChance = $hasChance && ($exam ? $exam->dynamic : true);
         if (!$passedExam || $hasChance) :
-            $exam = Exam::find($id);
-            if (!$exam) :
-                return apiResponse(false, _('الامتحان الذي طلبته غير موجود'), [], 404);
-            endif;
-            $exam->startExam();
-            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
+            // $exam = Exam::find($id);
+            // if (!$exam) :
+                //     return apiResponse(false, _('الامتحان الذي طلبته غير موجود'), [], 404);
+                // endif;
+                $exam->startExam();
+                $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
         endif;
         if (!$passedExam) :
             return apiResponse(false, _('عفوا حدث خطأ ما لذلك لم نتمكن من انشاء الامتحان الخاص بالطالب'), [], 500);
