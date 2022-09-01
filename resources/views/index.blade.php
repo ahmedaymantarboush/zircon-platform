@@ -72,7 +72,11 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="headerContents  ">
+                        <div class="headerContents  " data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1500"
+  data-sal-delay="300">
 
                             <h3 class="contentsHeading">المحتويات</h3>
                             <div class="headingLessonsParent">
@@ -85,7 +89,11 @@
                             </div>
                         </div>
                         <div class="headerTestimonial  
-                        ">
+                        " data-sal="slide-right"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1500"
+  data-sal-delay="200">
                             <div class="swiper headerTestimonialSwiper">
                                 <div class="swiper-wrapper">
                                     @foreach (\App\Models\Testimonial::orderBy('degree', 'desc')->take(4)->get() as $testimonial)
@@ -108,7 +116,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="headerLocation  _fromUp">
+                        <div class="headerLocation  " data-sal="slide-right"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1500"
+  data-sal-delay="100">
                             <span class="h-l-icon">
                                 <i class="fa-solid fa-map-location-dot"></i>
                             </span>
