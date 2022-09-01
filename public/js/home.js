@@ -171,7 +171,7 @@ window.addEventListener("scroll", navProgFunction);
 ///// start header /////////////////
 ///////////////////////////////////
 
-//   AOS.init();
+  AOS.init();
 
 // [01-Atom]
 $(document).ready(function () {
