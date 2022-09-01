@@ -20,6 +20,7 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-rtl.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/sal.css') }}">
     <link rel="stylesheet"     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     @include('includes.appUrl')
 
@@ -253,7 +254,7 @@
     <!-- <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script> -->
     
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-    <!-- <script src="{{ URL::asset('js/scrollTrigger.js') }}"></script> -->
+    <script src="{{ URL::asset('js/sal.js') }}"></script>
 
     <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
 
