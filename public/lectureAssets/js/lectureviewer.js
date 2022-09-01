@@ -345,7 +345,8 @@ function showTakeExam(data) {
                 '                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>\n' +
                 '                        </div>';
         } else {
-            if(parseInt(data.data.item.chance) != 0 || data.data.item.chance != null){
+            console.log(data);
+            if(parseInt(data.data.item.chance) != 0 && data.data.item.chance != null){
 
             take_exam += `<div class="col-12 d-flex justify-content-center" dir="rtl">
                             <p class="ex_red">
