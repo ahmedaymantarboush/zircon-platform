@@ -14,7 +14,7 @@
 
 var trigger = new ScrollTrigger.default()
 
-scrollTrigger.add('[data-scroll]', {
+trigger.add('[data-scroll]', {
     toggle: {
         class: {
             in: 'animateIn',
