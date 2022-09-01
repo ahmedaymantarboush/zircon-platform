@@ -12,56 +12,24 @@
 // main functions /////
 //////////////////////
 
-// var trigger = new ScrollTrigger.default()
-
-// trigger.add('[data-trigger]')
-// // Add all html elements with attribute data-triggerAlways, these elements will always be triggered
-// trigger.add('[data-triggerAlways]', { once: false })
-
-sal(
-    {
-        rootMargin: '0% 0%',
-        threshold: 0.5, // 50%
-        animateClassName: 'sal-animate',
-        disabledClassName: 'sal-disabled',
-        selector: '[data-sal]',
-        once: false, // run only once
-        disabled: false,
-        enterEventName: 'sal:in',
-        exitEventName: 'sal:out',
-    }
-);
-
-// Now in your CSS add the following classes, this fades the [data-trigger] elements in and out
 
 
-// let toggleElement = function (ele, className) {
-//     ele.classList.toggle(className);
-// };
-// (function scrollReveal() {
-//     window.sr = ScrollReveal();
-    
-//     sr.reveal('.animate', {
-//       duration   : 1100,
-//       distance   : '100px',
-//       easing     : 'ease',
-//       origin     : 'bottom',
-//       reset      : true,
-//       scale      : 1,
-//       viewFactor : 0,
-//     }, 0);
-//     sr.reveal('.animate-bottom', {
-//       duration   : 1100,
-//       distance   : '100px',
-//       easing     : 'ease',
-//       origin     : 'top',
-//       reset      : true,
-//       scale      : 1,
-//       viewFactor : 0,
-//     }, 0);
-    
-      
-//   })();
+// sal(
+//     {
+//         rootMargin: '0% 0%',
+//         threshold: 0.5, // 50%
+//         animateClassName: 'sal-animate',
+//         disabledClassName: 'sal-disabled',
+//         selector: '[data-sal]',
+//         once: false, // run only once
+//         disabled: false,
+//         enterEventName: 'sal:in',
+//         exitEventName: 'sal:out',
+//     }
+// );
+
+
+
   
 /////////////////////////
 ///// fade animation ///
@@ -203,31 +171,50 @@ window.addEventListener("scroll", navProgFunction);
 ///// start header /////////////////
 ///////////////////////////////////
 
-//   AOS.init();
+  AOS.init();
+//   wow.init();
+  wow = new WOW(
+    {
+    boxClass:     'wow',      // default
+    animateClass: 'animated', // default
+    offset:       100,          // default
+    mobile:       true,       // default
+    live:         true        // default
+  }
+  )
 
-// [01-Atom]
-// $(document).ready(function () {
-//     var el1 = $("#electron-1");
-//     var el2 = $("#electron-2");
-//     var el3 = $("#electron-3");
-
-//     function anim(el, dur) {
-//         el.velocity({ "stroke-dashoffset": 0 }, 0).velocity(
-//             { "stroke-dashoffset": 399 },
-//             {
-//                 duration: dur,
-//                 easing: "linear",
-//                 complete: function () {
-//                     anim(el, dur);
-//                 },
-//             }
-//         );
-//     }
-//     /* using primes here gives us a cicada series */
-//     anim(el1, 1500);
-//     anim(el2, 1570);
-//     anim(el3, 1200);
+//   $('div.animate > .card-reveal').parent().each(function(index){
+//     var card = this;
+//     // Attach listener to all activator triggers
+//     $(card).find('.activator').on('click',function(){
+//         $(card).find('.card-reveal .wow').each(function(){
+//             wow.show(this);
+//         });
+//     });
 // });
+// [01-Atom]
+$(document).ready(function () {
+    var el1 = $("#electron-1");
+    var el2 = $("#electron-2");
+    var el3 = $("#electron-3");
+
+    function anim(el, dur) {
+        el.velocity({ "stroke-dashoffset": 0 }, 0).velocity(
+            { "stroke-dashoffset": 399 },
+            {
+                duration: dur,
+                easing: "linear",
+                complete: function () {
+                    anim(el, dur);
+                },
+            }
+        );
+    }
+    /* using primes here gives us a cicada series */
+    anim(el1, 1500);
+    anim(el2, 1570);
+    anim(el3, 1200);
+});
 
 // [02- level]
 var swiper = new Swiper(".headerGrdeSwiper", {
