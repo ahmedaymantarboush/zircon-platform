@@ -93,7 +93,7 @@
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1500"
-  data-sal-delay="200">
+  data-sal-delay="500">
                             <div class="swiper headerTestimonialSwiper">
                                 <div class="swiper-wrapper">
                                     @foreach (\App\Models\Testimonial::orderBy('degree', 'desc')->take(4)->get() as $testimonial)
@@ -120,7 +120,7 @@
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1500"
-  data-sal-delay="100">
+  data-sal-delay="800">
                             <span class="h-l-icon">
                                 <i class="fa-solid fa-map-location-dot"></i>
                             </span>
