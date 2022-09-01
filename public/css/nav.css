@@ -15,6 +15,19 @@
     --font-light: #959595;
     --shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
 }
+[data-sal|='fade'] {
+    opacity: 1;
+  }
+
+  [data-sal|='slide'],
+  [data-sal|='zoom'] {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-sal|='flip'] {
+    transform: none;
+  }
 
 nav {
     background: var(--second-bg);
