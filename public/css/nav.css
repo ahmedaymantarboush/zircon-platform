@@ -15,14 +15,7 @@
     --font-light: #959595;
     --shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
 }
-[data-sal=slide-up]{
-    transform: translateY(80%);
-}
-.sal-animate{
-    transform: none !important;
-    opacity: 1;
 
-}
 nav {
     background: var(--second-bg);
     padding: 1.5rem 3rem;
