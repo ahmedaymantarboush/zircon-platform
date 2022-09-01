@@ -67,10 +67,7 @@ class Exam extends Model
                 foreach ($dynamicQuestions as $dynamicQuestion) :
                     if ($dynamicQuestion) :
                         $level = abs($dynamicQuestion->level - ($chance - 1));
-                        if ($level == 0) :
-                            return redirect('/');
-                        endif;
-                        foreach (Question::where(['level' => $level > 1 ? 1 : $level, 'part_id' => $dynamicQuestion->part->id, 'grade_id' => $this->grade->id])->inRandomOrder()->take($dynamicQuestion->count)->get() as $question) :
+                        foreach (Question::where(['level' => $level > 1 ? $level : 1 , 'part_id' => $dynamicQuestion->part->id, 'grade_id' => $this->grade->id])->inRandomOrder()->take($dynamicQuestion->count)->get() as $question) :
                             if ($question) :
                                 $user->answerdQuestions()->create([
                                     'question_id' => $question->id,
