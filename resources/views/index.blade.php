@@ -141,15 +141,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a  class="levelItem  " data-sal="slide-left"
+                    <a  class="levelItem  " 
+ href="{{ route('lectures.index', 10) }}">
+                        <div class="l-image  " data-sal="slide-left"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
-  data-sal-duration="1500"
- href="{{ route('lectures.index', 10) }}">
-                        <div class="l-image  ">
+  data-sal-duration="1500">
                             <img src="{{ URL::asset('imgs/physics1.webp') }}" class='' alt="">
                         </div>
-                        <div class="l-content ">
+                        <div class="l-content " data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1500">
                             <h4>الصف <span class="d-redColor">الأول الثانوي</span></h4>
                         </div>
                     </a>
@@ -171,14 +174,17 @@
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 levelItemParent">
-                    <a class="levelItem  " data-sal="slide-right"
+                    <a class="levelItem  " href="{{ route('lectures.index', 12) }}">
+                        <div class="l-image "data-sal="slide-left"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
-  data-sal-duration="1500" href="{{ route('lectures.index', 12) }}">
-                        <div class="l-image ">
+  data-sal-duration="1500">
                             <img src="{{ URL::asset('imgs/physics3.webp') }}" class='' alt="">
                         </div>
-                        <div class="l-content ">
+                        <div class="l-content "data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1500">
                             <h4>الصف <span class="d-yellowColor">الثالث الثانوي</span></h4>
                         </div>
                     </a>
