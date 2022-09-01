@@ -45,8 +45,14 @@
                     </div>
                 @endforeach
                 @else
-                <p class='gs_reveal no-lectures'>لا يوجد شهور</p>
-                <div class='gs_reveal noLecImg'>
+                <p class=' no-lectures' data-sal="slide-left"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">لا يوجد شهور</p>
+                <div class=' noLecImg' data-sal="slide-right"
+  data-sal-delay="0"
+  data-sal-easing="ease-out-back"
+  data-sal-duration="1800">
                     <img src="{{ URL::asset('imgs/no-result-search.webp') }}" alt="">
                 </div>
                 @endif
