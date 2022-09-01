@@ -12,16 +12,11 @@
 // main functions /////
 //////////////////////
 
-const trigger = new ScrollTrigger({
-    trigger: {
-      once: true
-    }
-  }).default()
-  // Add all html elements with attribute data-trigger, these elements will only be triggered once
-  trigger.add('[data-trigger]')
-  // Add all html elements with attribute data-triggerAlways, these elements will always be triggered
-  trigger.add('[data-triggerAlways]', { once: false })
-  
+var trigger = new ScrollTrigger.default()
+
+trigger.add('[data-trigger]')
+// Add all html elements with attribute data-triggerAlways, these elements will always be triggered
+trigger.add('[data-triggerAlways]', { once: false })
 
 
 // Now in your CSS add the following classes, this fades the [data-trigger] elements in and out
