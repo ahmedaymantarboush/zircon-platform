@@ -172,7 +172,7 @@ window.addEventListener("scroll", navProgFunction);
 ///////////////////////////////////
 
   AOS.init();
-  wow.init();
+//   wow.init();
   wow = new WOW(
     {
     boxClass:     'wow',      // default
