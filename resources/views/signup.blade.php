@@ -88,7 +88,7 @@
 
                 </div>
                 <div class="image">
-                    <img src="{{ URL::asset('imgs/elbirryLogin.png') }}" alt="">
+                    <img src="{{ URL::asset('imgs/elbirryLogin.webp') }}" alt="">
                     <div class="imageContent">
                         <p>سجل حسابك دلوقتي و خليك
 

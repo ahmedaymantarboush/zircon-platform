@@ -40,7 +40,7 @@
             <div class="customeRow">
 
                 <div class="image">
-                    <img src="{{asset('imgs/elbirryLogin.png') }}" alt="">
+                    <img src="{{asset('imgs/elbirryLogin.webp') }}" alt="">
                     <div class="imageContent">
                         <p>سجل دخولك دلوقتي و خليك
                             مع البري</p>

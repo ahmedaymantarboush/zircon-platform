@@ -47,7 +47,7 @@
                 @else
                 <p class='gs_reveal no-lectures'>لا يوجد شهور</p>
                 <div class='gs_reveal noLecImg'>
-                    <img src="{{ URL::asset('imgs/no-result-search.png') }}" alt="">
+                    <img src="{{ URL::asset('imgs/no-result-search.webp') }}" alt="">
                 </div>
                 @endif
             </div>

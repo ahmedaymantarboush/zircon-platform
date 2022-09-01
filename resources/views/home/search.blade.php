@@ -237,7 +237,7 @@
 </div>
 @else
 <div class="errorImage">
-    <img src="{{ asset('imgs/no-result-search.png') }}" alt="">
+    <img src="{{ asset('imgs/no-result-search.webp') }}" alt="">
 </div>
 @endif
 @endsection

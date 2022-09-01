@@ -70,7 +70,7 @@
                 @else
                 <p class='gs_reveal no-lectures'>سيتم اضافة شهور جديدة قريبا</p>
                 <div class='gs_reveal noLecImg'>
-                    <img src="{{ URL::asset('imgs/no-result-search.png') }}" alt="">
+                    <img src="{{ URL::asset('imgs/no-result-search.webp') }}" alt="">
                 </div>
                 @endif
                 {{-- <div class="col-lg-12 col-md-6">
@@ -79,7 +79,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="levelImage">
-                        <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                        <img src="{{ URL::asset('imgs/thumbnail_1.webp') }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -115,7 +115,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="levelImage">
-                            <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                            <img src="{{ URL::asset('imgs/thumbnail_1.webp') }}" alt="">
                         </div>
                     </div>
                     <div class="col-lg-7">

@@ -44,7 +44,7 @@
         <div class="customeContainer">
             <div class="right">
                 <div class=" navAtom">
-                    <img src="{{ URL::asset('imgs/logoAtom.png') }}" alt="">
+                    <img src="{{ URL::asset('imgs/logoAtom.webp') }}" alt="">
 
 
                 </div>
@@ -101,7 +101,7 @@
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/apple.png') }}" alt="">
+                                    <img src="{{ URL::asset('imgs/apple.webp') }}" alt="">
                                 </span>
                                 <span class="regType">
                                     أنشئ حساب <span class='d-redColor'>جديد</span>
@@ -115,7 +115,7 @@
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
+                                    <img src="{{ URL::asset('imgs/drop.webp') }}" alt="">
                                 </span>
                                 <span class="regType">
                                     تسجيل <span class='d-blueColor'>الدخول</span>
@@ -138,7 +138,7 @@
                         </a>
                         <p>معاينة المحاضرة</p>
                     </div>
-                    <img src="{{ URL::asset('imgs/thumbnail_3.png') }}" alt="" />
+                    <img src="{{ URL::asset('imgs/thumbnail_3.webp') }}" alt="" />
                 </div>
                 <h2 class='lectureName'>مراجعة شاملة على الباب الأول (الكهربية)</h2>
                 <p class='lectureDescription'>مراجعة شاملة على باب الكهربية الأول للصف الثاني الثانوي</p>
@@ -329,7 +329,7 @@
                 <div class="col-lg-4 col-md-5 leftCard">
                     <div class="preview-card">
                         <div class="preview-card-image ontop">
-                            <img src="{{ URL::asset('imgs/thumbnail_3.png') }}" alt="" />
+                            <img src="{{ URL::asset('imgs/thumbnail_3.webp') }}" alt="" />
                             <div class="lec-image-content">
                                 <a class="play" href="#">
                                     <i class="fa-solid fa-play"></i>

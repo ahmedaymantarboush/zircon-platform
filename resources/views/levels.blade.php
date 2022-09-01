@@ -40,7 +40,7 @@
         <div class="customeContainer">
             <div class="right">
                 <div class=" navAtom">
-                    <img src="{{ URL::asset('imgs/logoAtom.png') }}" alt="">
+                    <img src="{{ URL::asset('imgs/logoAtom.webp') }}" alt="">
 
 
                 </div>
@@ -97,7 +97,7 @@
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/apple.png') }}" alt="">
+                                    <img src="{{ URL::asset('imgs/apple.webp') }}" alt="">
                                 </span>
                                 <span class="regType">
                                     أنشئ حساب <span class='d-redColor'>جديد</span>
@@ -111,7 +111,7 @@
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class="regIcon">
-                                    <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
+                                    <img src="{{ URL::asset('imgs/drop.webp') }}" alt="">
                                 </span>
                                 <span class="regType">
                                     تسجيل <span class='d-blueColor'>الدخول</span>
@@ -136,7 +136,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="levelImage">
-                                    <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                    <img src="{{ URL::asset('imgs/thumbnail_1.webp') }}" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-7">
@@ -173,7 +173,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="levelImage">
-                                    <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                    <img src="{{ URL::asset('imgs/thumbnail_1.webp') }}" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-7">
@@ -210,7 +210,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="levelImage">
-                                    <img src="{{ URL::asset('imgs/thumbnail_1.png') }}" alt="">
+                                    <img src="{{ URL::asset('imgs/thumbnail_1.webp') }}" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-7">
