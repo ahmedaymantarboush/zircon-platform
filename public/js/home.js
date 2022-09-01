@@ -14,19 +14,19 @@
 
 
 
-// sal(
-//     {
-//         rootMargin: '0% 0%',
-//         threshold: 0.5, // 50%
-//         animateClassName: 'sal-animate',
-//         disabledClassName: 'sal-disabled',
-//         selector: '[data-sal]',
-//         once: false, // run only once
-//         disabled: false,
-//         enterEventName: 'sal:in',
-//         exitEventName: 'sal:out',
-//     }
-// );
+sal(
+    {
+        rootMargin: '0% 0%',
+        threshold: 0.5, // 50%
+        animateClassName: 'sal-animate',
+        disabledClassName: 'sal-disabled',
+        selector: '[data-sal]',
+        once: false, // run only once
+        disabled: false,
+        enterEventName: 'sal:in',
+        exitEventName: 'sal:out',
+    }
+);
 
 
 
@@ -171,7 +171,7 @@ window.addEventListener("scroll", navProgFunction);
 ///// start header /////////////////
 ///////////////////////////////////
 
-  AOS.init();
+//   AOS.init();
 
 // [01-Atom]
 $(document).ready(function () {
