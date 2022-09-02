@@ -185,7 +185,7 @@ document
                         title: lessAddress.value.trim(),
                         id: dataId,
                         type: "video",
-                        url: inputURL.value,
+                        url: inputURL.value.trim(),
                         description:
                             document.querySelector(".description").innerHTML,
                         part: optionId,
