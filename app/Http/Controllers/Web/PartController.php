@@ -90,7 +90,7 @@ class PartController extends Controller
      */
     public function update(UpdatePartRequest $request)
     {
-        $data = json_decode(request()->data, true);
+        $data = json_decode($request->data,true);
         $id = $data['id'];
         $user = Auth::user();
         $part = Part::find($id);
