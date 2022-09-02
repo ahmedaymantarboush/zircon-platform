@@ -95,7 +95,12 @@ document
         form = new FormData();
         form.append("data", JSON.stringify(sendObj));
 
-        let myResponse = await editFun(`${APP_URL}/api/users/getCode`, form, e);
+        let myResponse = await editFun(
+            `${APP_URL}/api/lessons/fastEdit
+`,
+            form,
+            e
+        );
         let objData = myResponse.data;
         console.log(objData);
     });
