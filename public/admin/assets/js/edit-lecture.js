@@ -82,8 +82,8 @@ document
     .querySelector(".section-lesson-item")
     .addEventListener("click", async function (e) {
         if (!e.target.closest(".editLesssonBtn")) return;
-        if (e.target.closest(".section-lesson-item")) {
-            console.log("yes");
+        if (e.target.closest(".section-lesson-item")["data-exam"]) {
+            console.log("has Exam");
         } else {
             console.log("no");
         }
