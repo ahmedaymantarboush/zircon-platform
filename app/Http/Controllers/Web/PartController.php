@@ -88,9 +88,12 @@ class PartController extends Controller
      * @param  \App\Models\Part  $part
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePartRequest $request, Part $part)
+    public function update(UpdatePartRequest $request, i$d)
     {
+        $data = json_decode(request()->data, true);
+        $id = $data['id'];
         $user = Auth::user();
+        $part = Part::find($id);
         if ($user ? $user->role->number < 4 : false) {
             $part->name = $request->name;
             $part->description = $request->description ?? null;
@@ -109,9 +112,12 @@ class PartController extends Controller
      * @param  \App\Models\Part  $part
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Part $part)
+    public function destroy()
     {
+        $data = json_decode(request()->data, true);
+        $id = $data['id'];
         $user = Auth::user();
+        $part = Part::find($id);
         if ($user ? $user->role->number < 4 : false) {
             $part->delete();
             return redirect()->back();
