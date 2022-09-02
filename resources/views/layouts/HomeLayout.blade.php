@@ -222,9 +222,9 @@
               flex-direction: column;
              align-items: center;'>
             <div class="footerIcon">
-                <a class="facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a class="youtube"><i class="fa-brands fa-youtube"></i></a>
-                <a class="telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a class="facebook" href='https://www.facebook.com/mohamedelberry2023/'><i class="fa-brands fa-facebook-f"></i></a>
+                <a class="youtube" href='https://youtube.com/channel/UCzcG54DUDzBqiJfXaJx9ocg'><i class="fa-brands fa-youtube"></i></a>
+                <a class="telegram" href='https://t.me/mrmohamedelberry'><i class="fa-brands fa-telegram"></i></a>
             </div>
             <div class="copyRight">
                 <div class='crParent'>
