@@ -559,7 +559,7 @@
                                         <span class="type-less-name">{{ $sectionItem->item->title }}</span>
                                         <div class="someFeatures">
                                             <button><i class="fa-solid fa-trash"></i></button>
-                                            <button><i class="fa-solid fa-pen"></i></button>
+                                            <button class='editLesssonBtn'  data-bs-toggle="modal" data-bs-target="#editLesson"><i class="fa-solid fa-pen"></i></button>
                                         </div>
                                     </div>
                                 @endif
@@ -609,6 +609,156 @@
 
             </div>
         </div>
+
+
+
+        <div class="modal fade" id="editLesson" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">
+                                        تعديل درس
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <form action="{{ route('admin.lesson.store') }}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="less-item custome-item">
+                                            <label class="sec-name">عنوان الدرس</label>
+                                            <input type="text" name="lessonTitle"
+                                                class="my-input @error('lessonTitle') is-invalid @enderror"
+                                                placeholder=" ادخل عنوان الدرس" />
+                                            @error('lessonTitle')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="less-item custome-item">
+                                            <label class="sec-name">القسم</label>
+                                            <div class="search-select">
+                                                <select name="section" class="@error('section') is-invalid @enderror"
+                                                    data-live-search="true">
+                                                    <option value="">اختر القسم الذي يتبعه هذا الدرس</option>
+
+                                                    @foreach ($lecture->sections as $section)
+                                                        <option value="{{ $section->id }}">{{ $section->title }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('section')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="less-item custome-item">
+                                            <label class="sec-name">الجزئية الدراسية</label>
+                                            <div class="search-select">
+                                                <select name="lessonPart" class="@error('section') is-invalid @enderror"
+                                                    data-live-search="true">
+                                                    <option value="">اختر الجزئية الدراسية</option>
+
+                                                    @foreach ($lecture->parts as $part)
+                                                        <option value="{{ $part->id }}">{{ $part->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('section')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="less-item type-parent">
+                                            <div class="file">
+                                                <label for="formFile" class="form-label">رابط الدرس</label>
+                                                <input class="my-input @error('url') is-invalid @enderror" name="url"
+                                                    type="url" id="lessonUrl" placeholder=" ادخل رابط الدرس" />
+                                                @error('url')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="less-item">
+                                            <label class="sec-name">وصف الدرس</label>
+                                            <textarea name="description" class="text-editor1 @error('description') is-invalid @enderror"></textarea>
+                                            @error('description')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="less-item">
+                                            <label class="sec-name">هل هذا الدرس يفتح اعتمادا على درجة امتحان؟</label>
+                                            <div class="follow-check">
+                                                <input id="have-exam-check" name="dependsOnExam" type="checkbox"
+                                                    class="@error('dependsOnExam') is-invalid @enderror"
+                                                    placeholder=" ادخل اسم القسم" />
+                                                @error('dependsOnExam')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                                <label for="have-exam-check">ضع علامة اذا كان الدرس يفتح اعتمادا على درجة
+                                                    امتحان</label>
+                                                <div class="have-exam">
+                                                    <div class="search-exam-parent">
+                                                        <label for="">امتحان</label>
+                                                        <div class="search-select">
+                                                            <select name="exam"
+                                                                class="@error('exam') is-invalid @enderror"
+                                                                data-live-search="true">
+                                                                <option value="">اختر كود اواسم الامتحان</option>
+
+                                                                @foreach (\App\Models\Exam::where(['grade_id' => $lecture->grade->id, 'subject_id' => $lecture->subject->id, 'user_id' => Auth::id()])->get() as $exam)
+                                                                    <option value="{{ $exam->id }}">
+                                                                        {{ $exam->title }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('exam')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="search-exam-parent">
+                                                        <label for="">درجة الامتحان او النسبة المئوية</label>
+                                                        <input class="my-input @error('percentage') is-invalid @enderror"
+                                                            type="text" name="percentage"
+                                                            placeholder="ادخل النسبة المئوية لدرجة الامتحان (50%:100%)" />
+                                                        @error('percentage')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">
+                                            إضافة
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            الغاء
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
         {{-- <!-- the first form in the add lecture page and it is have a 5 tabs --> --}}
         @include('components.admin.lectureForm', ['lecture' => $lecture])
 
