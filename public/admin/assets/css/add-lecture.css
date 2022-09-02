@@ -612,7 +612,7 @@ textarea {
 	display: flex;
 	align-items: center;
 	background-color: #fff;
-	padding: 1.5rem 2.5rem;
+	padding: 2rem 2.5rem;
 	margin-top: 3rem;
 	box-shadow: var(--shadow);
 	border-radius: 1rem;
@@ -922,5 +922,5 @@ textarea {
     justify-content: center;
     align-items: center;
 	font-size:1.6rem;
-	margin:.5rem 0;
+	margin:.2rem 0;
 }
