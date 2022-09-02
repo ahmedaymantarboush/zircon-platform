@@ -74,28 +74,22 @@ let editFun = async function (url, myData, el = null) {
             return null;
         }
         // return null;
-        console.log(responseData)
+        console.log(responseData);
     } catch (err) {}
 };
 
 document
     .querySelector(".section-lesson-item")
-    .addEventListener("click", function (e) {
+    .addEventListener("click", async function (e) {
         if (!e.target.classList.contains("editLesssonBtn")) return;
 
-        
-    let sendObj = {
-        id: dataId,
-    };
+        let sendObj = {
+            id: dataId,
+        };
 
-    form = new FormData();
-    form.append("data", JSON.stringify(sendObj));
+        form = new FormData();
+        form.append("data", JSON.stringify(sendObj));
 
-    let myResponse = await editFun(
-        `${APP_URL}/api/users/getCode`,
-        form,
-        e
-    );
-    let objData = myResponse.data;
-    
+        let myResponse = await editFun(`${APP_URL}/api/users/getCode`, form, e);
+        let objData = myResponse.data;
     });
