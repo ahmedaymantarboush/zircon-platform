@@ -69,7 +69,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     partId.value = dataId;
 
     let sendObj = {
-        id: dataId,
+        id: +dataId,
     };
 
     form = new FormData();
