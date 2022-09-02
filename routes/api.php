@@ -82,6 +82,7 @@ Route::post('users/getCode',[UserController::class,'getCode']);
 Route::post('users/editCode',[UserController::class,'editCode']);
 Route::post('users/getStudentCardData',[UserController::class,'getStudentCardData']);
 Route::post('users/hanging',[UserController::class,'hanging']);
+Route::post('users/deleteSessions',[UserController::class,'deleteSessions']);
 
 //       COUPON ROUTES
 Route::post('checkCoupon',[CouponController::class,'checkCoupon']);
