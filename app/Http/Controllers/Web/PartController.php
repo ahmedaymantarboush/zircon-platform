@@ -119,7 +119,7 @@ class PartController extends Controller
      */
     public function destroy()
     {
-        $data = json_decode(request()->data, true);
+        $data = request()->all();
         $id = $data['id'];
         $user = Auth::user();
         $part = Part::find($id);

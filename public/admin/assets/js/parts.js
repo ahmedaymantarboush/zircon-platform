@@ -114,11 +114,9 @@ document.querySelector("table").addEventListener("click", async function (e) {
 
 
 
-// let partId = document.querySelector('#partId');
-//
-// document.querySelector('table').addEventListener('click', function (e) {
-//
-//     if(e.target.classList.contains('editCenter')){
-//     }
-//
-// })
+let trId = document.querySelector('#trId');
+document.querySelector('table').addEventListener('click', function (e) {
+    if (!e.target.classList.contains("delete-lec")) return;
+   let delLesson= document.querySelector('.del-lesson')
+    delLesson.value=e.target.closest('tr').querySelector('.question-code').getAttribute('data-bs-original-title')
+})
