@@ -79,7 +79,7 @@ let editFun = async function (url, myData, el = null) {
 };
 
 document
-    .querySelector(".section-lesson-item")
+    .querySelector(".sections-items")
     .addEventListener("click", async function (e) {
         if (!e.target.closest(".editLesssonBtn")) return;
         if (e.target.closest(".section-lesson-item").dataset.exam) {
