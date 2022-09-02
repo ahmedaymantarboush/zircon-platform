@@ -267,5 +267,5 @@
 
     {{-- <!-- main js file --> --}}
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/myLocations.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/parts.js') }}"></script>
 @endsection
