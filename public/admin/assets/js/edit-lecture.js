@@ -86,22 +86,21 @@ document
         if (e.target.closest(".section-lesson-item").dataset.exam) {
             console.log("has Exam");
         } else {
-            console.log("no");
-        }
-        let dataId = e.target.closest(".section-lesson-item").dataset.item;
-        let sendObj = {
-            id: dataId,
-        };
+            let dataId = e.target.closest(".section-lesson-item").dataset.item;
+            let sendObj = {
+                id: dataId,
+            };
 
-        form = new FormData();
-        form.append("data", JSON.stringify(sendObj));
+            form = new FormData();
+            form.append("data", JSON.stringify(sendObj));
 
-        let myResponse = await editFun(
-            `${APP_URL}/api/lessons/fastEdit
+            let myResponse = await editFun(
+                `${APP_URL}/api/lessons/fastEdit
 `,
-            form,
-            e
-        );
-        let objData = myResponse.data;
-        console.log(objData);
+                form,
+                e
+            );
+            let objData = myResponse.data;
+            console.log(objData);
+        }
     });
