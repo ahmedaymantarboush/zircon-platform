@@ -120,3 +120,9 @@ Route::post('items/delete',[SectionItemController::class,'destroy'])->name('api.
 Route::post('balancecards/hanging',[BalanceCardController::class,'hanging'])->name('api.balancecards.hanging');
 Route::post('balancecards/show',[BalanceCardController::class,'show'])->name('api.balancecards.show');
 Route::post('balancecards/delete',[BalanceCardController::class,'destroy'])->name('api.balancecards.delete');
+
+//       LESSON ROUTES
+Route::post('lessons/fastEdit',[LessonController::class,'fastEdit']);
+Route::post('lessons/update',[LessonController::class,'update']);
+Route::post('lessons/store',[LessonController::class,'store']);
+Route::post('lessons/delete',[LessonController::class,'destroy'])->name('api.lessons.delete');
