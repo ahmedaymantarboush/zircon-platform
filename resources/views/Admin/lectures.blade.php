@@ -98,13 +98,13 @@
                                     المادة
                                 </option>
                                 @foreach (\App\Models\Subject::all() as $subject)
-                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                    <option @selected(request()->subject_id == $subject->id)value="{{ $subject->id }}">{{ $subject->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
+                {{-- <div class="col-md-3 col-sm-6">
                     <div class="filter-item">
                         <label for="">الجزئية الدراسية</label>
                         <div class="search-select-box">
@@ -118,7 +118,7 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-md-3 col-sm-6">
                     <div class="filter-item">
                         <label for="">المدرس</label>
@@ -128,7 +128,7 @@
                                     جميع المدرسين
                                 </option>
                                 @foreach (\App\Models\User::where('role_num','<', 4)->get() as $teacher)
-                                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                    <option @selected(request()->user_id == $teacher->id) value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                                 @endforeach
                             </select>
                         </div>
