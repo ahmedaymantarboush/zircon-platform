@@ -155,7 +155,8 @@ document
 
             document
                 .querySelector(".modifyLessonForm")
-                .addEventListener("submit", async function () {
+                .addEventListener("submit", async function (event) {
+                    event.preventDefault();
                     let saveObjSend = {
                         id: dataId,
                     };
@@ -169,6 +170,7 @@ document
                         form,
                         e
                     );
+                    console.log(myResponse);
                 });
         }
     });
