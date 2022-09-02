@@ -135,7 +135,7 @@ document
                 "#editLesson .partParent .filter-option-inner-inner"
             );
             let description = document.querySelector(
-                "#editLesson .description"
+                "#editLesson .ck-editor__editable"
             );
             let fillSelectFunction = function (options, selectInner, data) {
                 options.forEach((ele) => {
@@ -146,6 +146,9 @@ document
                         ele.removeAttribute("selected");
                     }
                 });
+                description.ckeditorInstance.setData(objData.text);
+
             };
+
         }
     });
