@@ -554,6 +554,7 @@
                                                 class="fa-solid fa-file-{{ $sectionItem->lesson_id ? $sectionItem->item->type : 'pen' }}"></i></span>
                                         <span class="type-less">درس
                                         </span>
+                                        <p>lol</p>
                                         <span class="type-less-num">{{ $sectionItem->order }}</span>
                                         :
                                         <span class="type-less-name">{{ $sectionItem->item->title }}</span>
