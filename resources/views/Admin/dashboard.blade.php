@@ -690,14 +690,14 @@
     $enrolledStudents = (int) $currentMonthAttend;
     $absentStudents = (int) $studentsNamber - $currentMonthAttend;
 
-    $studentsLevel = []
-    $centerName = []
+    $studentsLevel = [];
+    $centersName = [];
 
     foreach (\App\Models\Center::all() as $index => $center) {
-        $answerdQuestion = \App\Models\AnswerdQuestion::whereHAs('user',function ($userQ){
-            $userQ->where('center_id',$center->id)
-        })
-        $centerName[] = $center->name;
+        $answerdQuestion = \App\Models\AnswerdQuestion::whereHAs('user',function ($userQ) use($center){
+            $userQ->where('center_id',$center->id);
+        });
+        $centersName[] = $center->name;
         $studentsLevel[] = $answerdQuestion->count() ? ($answerdQuestion->where('correct', 1)->count() / $answerdQuestion->count()) *max(\App\Models\Question::all()->pluck('level')->toArray()) : 0;
     }
 
