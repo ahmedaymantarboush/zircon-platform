@@ -161,13 +161,13 @@ document
                         title: lessAddress.value.trim(),
                     };
 
-                    form = new FormData();
-                    form.append("data", JSON.stringify(saveObjSend));
+                    newform = new FormData();
+                    newform.append("data", JSON.stringify(saveObjSend));
 
                     let myResponse = await editFun(
                         `${APP_URL}/api/lessons/update
 `,
-                        form,
+                        newform,
                         e
                     );
                     console.log(myResponse);
