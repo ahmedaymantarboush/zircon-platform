@@ -44,7 +44,7 @@ class LessonController extends Controller
             'part' => ['id'=>$lesson->part_id,'name'=>$lesson->part->name],
             'free' => $lesson->price == 0,
             'url' => $lesson->url,
-            'section' => $lesson->section->id,
+            'section' => SectionItem::where('lesson_id', $id)->first()->section->id,
         ]);
     }
 
