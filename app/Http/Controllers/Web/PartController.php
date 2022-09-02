@@ -88,7 +88,7 @@ class PartController extends Controller
      * @param  \App\Models\Part  $part
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePartRequest $request, i$d)
+    public function update(UpdatePartRequest $request)
     {
         $data = json_decode(request()->data, true);
         $id = $data['id'];
@@ -98,7 +98,7 @@ class PartController extends Controller
             $part->name = $request->name;
             $part->description = $request->description ?? null;
             $part->grade_id = $request->grade_id;
-            $part->subject_id = $request->subject_id ?? env('');
+            $part->subject_id = $request->subject_id ?? env('DEFAULT_SUBJECT_ID');
             $part->save();
             return redirect()->back();
         }else{
