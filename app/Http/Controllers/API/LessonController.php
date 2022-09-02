@@ -269,7 +269,7 @@ class LessonController extends Controller
 
         $sectionItem = SectionItem::where(['section_id' => $section->id, 'lesson_id' => $lesson->id])->first();
         $sectionItem->lesson_id = $lesson->id;
-        $sectionItem->section_id = $section->id;
+        $sectionItem->section_id = $data['section'] ?? $section->id;
 
         $sectionItem->save();
         $lesson->save();
