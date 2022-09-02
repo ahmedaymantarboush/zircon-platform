@@ -67,7 +67,6 @@ document.querySelector("table").addEventListener("click", async function (e) {
 
     let dataId = e.target.closest("tr").dataset.id;
     partId.value = dataId;
-    debugger;
 
     let sendObj = {
         id: dataId,
