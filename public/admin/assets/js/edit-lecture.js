@@ -125,6 +125,7 @@ document
             let lessAddress = document.querySelector(
                 "#editLesson .lessAddress"
             );
+            let inputURL = document.querySelector("#editLesson .inputURL");
             let sectionLessonOptions = document.querySelectorAll(
                 "#editLesson .sectionLessonParent option"
             );
@@ -152,15 +153,21 @@ document
                 });
                 description.ckeditorInstance.setData(objData.text);
             };
-
             document
-                .querySelector(".modifyLessonForm")
-                .addEventListener("submit", async function (event) {
-                    event.preventDefault();
-                    let saveObjSend = {
-                        title: lessAddress.value.trim(),
-                    };
-
+            .querySelector(".modifyLessonForm")
+            .addEventListener("submit", async function (event) {
+                event.preventDefault();
+                console.log(document.querySelector('.description').innerHTML)
+                let saveObjSend = {
+                    title: lessAddress.value.trim(),
+                    id: dataId,
+                    type: "video",
+                    url: inputURL.value,
+                    description:
+                    document.querySelector(".description").innerHTML,
+                    part: ,
+                };
+                
                     newform = new FormData();
                     newform.append("data", JSON.stringify(saveObjSend));
 
