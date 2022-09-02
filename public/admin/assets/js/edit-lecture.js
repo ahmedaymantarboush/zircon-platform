@@ -174,11 +174,11 @@ document
                             optionId = ele.value;
                         }
                     });
-                    // sectionLessonOptions.forEach((ele) => {
-                    //     if (ele.selected) {
-                    //         sectionId = ele.value;
-                    //     }
-                    // });
+                    sectionLessonOptions.forEach((ele) => {
+                        if (ele.selected) {
+                            sectionId = ele.value;
+                        }
+                    });
                     console.log(optionId);
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
