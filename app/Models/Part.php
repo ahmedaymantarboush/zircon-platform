@@ -19,6 +19,16 @@ class Part extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
     public function lectures()
     {
         return $this->belongsToMany(Lecture::class,'lecture_parts');
