@@ -124,7 +124,7 @@
                         </div>
                     </div>
                 </div> --}}
-                {{-- <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
                         <label for="">المحرر </label>
                         <div class="search-select-box">
@@ -138,7 +138,7 @@
                             </select>
                         </div>
                     </div>
-                </div> --}}
+                </div>
                 <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
                         <label for="">درجة الصعوبة </label>

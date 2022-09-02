@@ -36,7 +36,30 @@ class LectureController extends Controller
 
     public function allLectures()
     {
-        return view("Admin.lectures", ['lectures' => Lecture::all()]);
+        $user = Auth::user();
+        $lectures = Lecture::orderBy('id', 'desc')->get();
+        if ($user ? $user->role->number < 4 : false) :
+            if (isset($data['hasFilter'])) {
+                foreach ($data as $key => $value) {
+                    if ($key == 'hasFilter' || $key == 'page' || $key == 'count') {
+                        continue;
+                    }
+                    if ($value == 'all') {
+                        continue;
+                    }
+
+                    if ($key == 'q') {
+                        $lectures = $lectures->where('title', 'like', '%' . $value . '%');
+                        continue;
+                    }
+
+                    $lectures = $lectures->where($key, $value);
+                }
+            }
+            return view("Admin.allLectures", ['lectures'=>$lectures]);
+        else :
+            return abort(404);
+        endif;
     }
 
     public function search()
