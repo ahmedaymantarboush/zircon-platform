@@ -62,7 +62,7 @@ class SectionItemController extends Controller
             $lesson = $sectionItem->item;
             $exam = $lesson->exam ?? null;
 
-            $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first() : null;
+            $passedExam = $exam ? $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance', 'desc')->first() : null;
 
             $openable = !$exam || ($exam ? ($passedExam ? $passedExam->percentage >= $lesson->min_percentage : false)  : false);
             if ($openable) :
@@ -94,7 +94,7 @@ class SectionItemController extends Controller
                 'percentage' => $finished ? $passedExam->percentage : null,
                 'minPercentage' => $lesson->min_percentage,
                 'questionsCount' => $exam ? $exam->questions_count : null,
-                'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where(['correct'=> 1, 'chance'=>$passedExam->chance])->count() : null,
+                'correctAnswers' =>  $finished ? $passedExam->exam->answerdQuestions()->where(['correct' => 1, 'chance' => $passedExam->chance])->count() : null,
                 'chance' => $passedExam && $hasChance ? $passedExam->chance : null,
                 'chancesCount' => $exam && $hasChance ? $exam->chances : null,
 
@@ -106,7 +106,7 @@ class SectionItemController extends Controller
         else :
 
             $exam = $sectionItem->item;
-            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance','desc')->first();
+            $passedExam = $user->passedExams()->where('exam_id', $exam->id)->orderBy('chance', 'desc')->first();
 
             $hasChance = $passedExam ? ($passedExam->finished || ($passedExam->ended_at ? $passedExam->ended_at <= now() : false)) && $passedExam->chance < $exam->chances : true;
             $hasChance = $hasChance && ($exam ? $exam->dynamic : true);
@@ -157,6 +157,20 @@ class SectionItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = json_decode(request()->data, true);
+        $user = apiUser();
+        $id = $data['id'] ?? 0;
+        $sectionItem = SectionItem::find($id);
+        if (!$sectionItem) :
+            return apiResponse(false, _('لم يتم العثور على العنصر'), [], 404);
+        endif;
+        if (!$sectionItem->section->lecture->publisher->id == $user->id && $user->role->number >= 4) :
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض العنصر'), [], 403);
+        endif;
+        if ($sectionItem->lesson) :
+            $sectionItem->lesson->delete();
+        endif;
+        $sectionItem->delete();
+        return apiResponse(true, _('تم حذف العنصر بنجاح'), []);
     }
 }

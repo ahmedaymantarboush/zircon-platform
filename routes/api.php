@@ -114,6 +114,7 @@ Route::post('centers/delete',[CenterController::class,'destroy'])->name('api.cen
 
 //       SECTIONITEM ROUTES
 Route::post('items/getItem',[SectionItemController::class,'show']);
+Route::post('items/delete',[SectionItemController::class,'destroy'])->name('api.sectionitem.delete');
 
 //       BALANCECARD ROUTES
 Route::post('balancecards/hanging',[BalanceCardController::class,'hanging'])->name('api.balancecards.hanging');
