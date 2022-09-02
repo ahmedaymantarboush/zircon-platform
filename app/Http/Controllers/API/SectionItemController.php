@@ -157,6 +157,18 @@ class SectionItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = json_decode(request()->data, true);
+        $user = apiUser();
+        $id = $data['id'] ?? 0;
+        $sectionItem = SectionItem::find($id);
+        if (!$sectionItem) :
+            return apiResponse(false, _('لم يتم العثور على العنصر'), [], 404);
+        endif;
+        if (!$sectionItem->section->lecture->publisher->id == $user->id && $user->role->number >= 4) :
+            return apiResponse(false, _('غير مصرح لهذا المسخدم بعرض العنصر'), [], 403);
+        endif;
+        $sectionItem->item->delete();
+        $sectionItem->delete();
+        return apiResponse(true, _('تم حذف العنصر بنجاح'),[]);
     }
 }
