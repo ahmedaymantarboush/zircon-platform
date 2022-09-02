@@ -1,7 +1,7 @@
 // have exam check
-let haveExamCheck = document.getElementById("#add-less have-exam-check");
+let haveExamCheck = document.querySelector("#add-less #have-exam-check");
 let haveExamBox = document.querySelector("#add-less .have-exam");
-let editHaveExamCheck = document.getElementById("#editLesson have-exam-check");
+let editHaveExamCheck = document.querySelector("#editLesson #have-exam-check");
 let editHaveExamBox = document.querySelector("#editLesson .have-exam");
 let checking = function (inp,box) {
 	if (inp.checked) {
