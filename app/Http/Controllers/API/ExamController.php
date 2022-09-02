@@ -140,7 +140,7 @@ class ExamController extends Controller
 
         $exam = $passedExam->exam;
         $answerdQuestions = [];
-        foreach ($exam->answerdQuestions()->where('chance',$passedExam->chance)->inRandomOrder()->get() as $answerdQuestion) :
+        foreach ($exam->answerdQuestions()->where(['chance'=>$passedExam->chance,'user_id'=>$user->id])->inRandomOrder()->get() as $answerdQuestion) :
             $answerdQuestions[] = [
                 'id' => $answerdQuestion->id,
                 'flagged' => $answerdQuestion->flagged,
