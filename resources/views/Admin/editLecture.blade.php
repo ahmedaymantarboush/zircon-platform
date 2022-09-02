@@ -690,7 +690,7 @@
                                         </div>
                                         <div class="less-item">
                                             <label class="sec-name">وصف الدرس</label>
-                                            <textarea name="description" class="description text-editor1 @error('description') is-invalid @enderror"></textarea>
+                                            <textarea name="description" id='lol' class="description text-editor1 @error('description') is-invalid @enderror"></textarea>
                                             @error('description')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
