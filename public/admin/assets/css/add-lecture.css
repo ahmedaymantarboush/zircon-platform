@@ -898,5 +898,5 @@ textarea {
 	font-size: 1.6rem !important;
 }
 .modal .search-select .dropdown{
-	width: 100%;
+	width: 100%	!important;
 }
