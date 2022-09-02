@@ -176,81 +176,154 @@
                 <input type="search" name="q" />
             </div>
         </div>
-    </form>
-    <div class="lectures-table">
-        <table class="">
-            <thead>
-                <tr>
-                    <th>
-                        #
-                        <i class="fa-solid fa-sort"></i>
-                    </th>
-                    <th>الامتحان</th>
-                    <th>المرحلة الدراسية</th>
-                    <th>المادة</th>
-                    {{-- <th>الجزئية الدراسية</th> --}}
-                    <th>درجة الصعوبة</th>
-                    <th>نسبة الإجابة الصحيحة</th>
-                    <th>نسبة الإجابة الخاطئة</th>
-                    <th class="features">اجراءات</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($exams as $index => $exam)
-                    @php
-                        $i = $index + 1;
-                        $correctAnswers = count(
-                            $exam
-                                ->answerdQuestions()
-                                ->where('correct', 1)
-                                ->get(),
-                        );
-                        $wrongAnswers = count(
-                            $exam
-                                ->answerdQuestions()
-                                ->where('correct', 0)
-                                ->get(),
-                        );
-                    @endphp
-                    <tr data-id="{{ $exam->id }}"
-                        class="@if ($correctAnswers || $wrongAnswers) @if ($correctAnswers > $wrongAnswers) greenBg @elseif($correctAnswers < $wrongAnswers) redBg @elseif($correctAnswers == $wrongAnswers) blueBg @endif @endif">
+        <div class="lectures-table">
+            <table class="">
+                <thead>
+                    <tr>
+                        <th>
+                            #
+                            <i class="fa-solid fa-sort"></i>
+                        </th>
+                        <th>الامتحان</th>
+                        <th>المرحلة الدراسية</th>
+                        <th>المادة</th>
+                        {{-- <th>الجزئية الدراسية</th> --}}
+                        <th>درجة الصعوبة</th>
+                        <th>نسبة الإجابة الصحيحة</th>
+                        <th>نسبة الإجابة الخاطئة</th>
+                        <th class="features">اجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($exams as $index => $exam)
+                        @php
+                            $i = $index + 1;
+                            $correctAnswers = count(
+                                $exam
+                                    ->answerdQuestions()
+                                    ->where('correct', 1)
+                                    ->get(),
+                            );
+                            $wrongAnswers = count(
+                                $exam
+                                    ->answerdQuestions()
+                                    ->where('correct', 0)
+                                    ->get(),
+                            );
+                        @endphp
+                        <tr data-id="{{ $exam->id }}"
+                            class="@if ($correctAnswers || $wrongAnswers) @if ($correctAnswers > $wrongAnswers) greenBg @elseif($correctAnswers < $wrongAnswers) redBg @elseif($correctAnswers == $wrongAnswers) blueBg @endif @endif">
+                            <td class="number">
+                                {{ $i }}
+                                <button class="open-tr" type="button">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </td>
+                            <td data-lable="الامتحان :" class="address">
+                                <div class="custome-parent">
+                                    <div class="question-code-parent">
+                                        <span class="question-mark"><i class="fa-solid fa-question"></i></span>
+                                        <button type="button" class="btn question-code" data-toggle="tooltip"
+                                            data-placement="top" title="{{ $exam->title }}">
+                                            {{ $exam->title }}
+                                        </button>
+                                    </div>
+                                    <div class="name-teacher">
+                                        <span class="job-teacher">:المدرس</span>
+                                        <span>{{ $exam->publisher->name }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-lable="المرحلة الدراسية :" class="table-level-parent">
+                                <span class="table-level">{{ $exam->grade->name }}</span>
+                            </td>
+                            <td data-lable="المادة :" class="table-sections">
+                                <div class="custome-parent">
+                                    {{ $exam->subject->name }}
+                                </div>
+                            </td>
+                            <td data-lable="درجة الصعوبة :" class="views">
+                                {{ $exam->exam_hardness }}
+                            </td>
+                            <td data-lable="إجابة صحيحة :" class="table-stat-parent">
+                                <span class="table-stat not-active">{{ $correctAnswers }}</span>
+                            </td>
+                            <td data-lable="اجابه خاطئة :" class="table-price-parent">
+                                <span class="table-price not-free">{{ $wrongAnswers }}</span>
+                            </td>
+                            <td class="features" data-lable="اجراءات :">
+                                <div class="btn-group">
+                                    <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+
+                                    <ul class="dropdown-menu feat-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('admin.exams.students', $exam->id) }}">عرض
+                                                لائحة
+                                                الطلاب</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="dropdown-item q-modify"
+                                                href="{{ route('exams.edit', $exam->id) }}">تعديل
+                                                الامتحان</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="dropdown-item delete-lec" data-bs-toggle="modal"
+                                                data-bs-target="#delete-exam" href="#">مسح الامتحان</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    {{-- <tr class="greenBg">
                         <td class="number">
-                            {{ $i }}
+                            1
                             <button class="open-tr" type="button">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </td>
-                        <td data-lable="الامتحان :" class="address">
+                        <td data-lable="السؤال :" class="address">
                             <div class="custome-parent">
                                 <div class="question-code-parent">
                                     <span class="question-mark"><i class="fa-solid fa-question"></i></span>
                                     <button type="button" class="btn question-code" data-toggle="tooltip"
-                                        data-placement="top" title="{{ $exam->title }}">
-                                        {{ $exam->title }}
+                                        data-placement="top"
+                                        title="ماهو التيار واين يوجد التيار والي متي سوف يتم تواجد التيار">
+                                        ما هو التيار الكهربي
+                                        ما هو التيار الكهربي
+                                        ما هو التيار الكهربي
                                     </button>
                                 </div>
                                 <div class="name-teacher">
                                     <span class="job-teacher">:المدرس</span>
-                                    <span>{{ $exam->publisher->name }}</span>
+                                    <span>أ. محمد
+                                        عبدالمعبود</span>
                                 </div>
                             </div>
                         </td>
                         <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                            <span class="table-level">{{ $exam->grade->name }}</span>
+                            <span class="table-level">الصف الثالث الثانوي</span>
                         </td>
                         <td data-lable="المادة :" class="table-sections">
                             <div class="custome-parent">
-                                {{ $exam->subject->name }}
+                                الفيزياء
                             </div>
                         </td>
+                        <td data-lable="الجزئية الدراسية :" class="students">
+                            العزوم
+                        </td>
                         <td data-lable="درجة الصعوبة :" class="views">
-                            {{ $exam->exam_hardness }}
+                            5
                         </td>
                         <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                            <span class="table-stat not-active">{{ $correctAnswers }}</span>
+                            <span class="table-stat not-active">530</span>
                         </td>
                         <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                            <span class="table-price not-free">{{ $wrongAnswers }}</span>
+                            <span class="table-price not-free">1100</span>
                         </td>
                         <td class="features" data-lable="اجراءات :">
                             <div class="btn-group">
@@ -260,240 +333,167 @@
 
                                 <ul class="dropdown-menu feat-menu">
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('admin.exams.students', $exam->id) }}">عرض
-                                            لائحة
+                                        <a class="dropdown-item" href="#">عرض لائحة
                                             الطلاب</a>
                                     </li>
 
                                     <li>
-                                        <a class="dropdown-item q-modify"
-                                            href="{{ route('exams.edit', $exam->id) }}">تعديل
-                                            الامتحان</a>
+                                        <a class="dropdown-item q-modify" href="#">تعديل الامتحان
+                                        </a>
                                     </li>
 
                                     <li>
-                                        <a class="dropdown-item delete-lec" data-bs-toggle="modal"
-                                            data-bs-target="#delete-exam" href="#">مسح الامتحان</a>
+                                        <a class="dropdown-item delete-lec" href="#">مسح الامتحان</a>
                                     </li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
-                @endforeach
-                {{-- <tr class="greenBg">
-                    <td class="number">
-                        1
-                        <button class="open-tr" type="button">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    <td data-lable="السؤال :" class="address">
-                        <div class="custome-parent">
-                            <div class="question-code-parent">
-                                <span class="question-mark"><i class="fa-solid fa-question"></i></span>
-                                <button type="button" class="btn question-code" data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="ماهو التيار واين يوجد التيار والي متي سوف يتم تواجد التيار">
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
-                                </button>
-                            </div>
-                            <div class="name-teacher">
-                                <span class="job-teacher">:المدرس</span>
-                                <span>أ. محمد
-                                    عبدالمعبود</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                        <span class="table-level">الصف الثالث الثانوي</span>
-                    </td>
-                    <td data-lable="المادة :" class="table-sections">
-                        <div class="custome-parent">
-                            الفيزياء
-                        </div>
-                    </td>
-                    <td data-lable="الجزئية الدراسية :" class="students">
-                        العزوم
-                    </td>
-                    <td data-lable="درجة الصعوبة :" class="views">
-                        5
-                    </td>
-                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                        <span class="table-stat not-active">530</span>
-                    </td>
-                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                        <span class="table-price not-free">1100</span>
-                    </td>
-                    <td class="features" data-lable="اجراءات :">
-                        <div class="btn-group">
-                            <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                    <tr class="">
+                        <td class="number">
+                            1
+                            <button class="open-tr" type="button">
+                                <i class="fa-solid fa-plus"></i>
                             </button>
-
-                            <ul class="dropdown-menu feat-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#">عرض لائحة
-                                        الطلاب</a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item q-modify" href="#">تعديل الامتحان
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item delete-lec" href="#">مسح الامتحان</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="">
-                    <td class="number">
-                        1
-                        <button class="open-tr" type="button">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    <td data-lable="السؤال :" class="address">
-                        <div class="custome-parent">
-                            <div class="question-code-parent">
-                                <span class="question-mark"><i class="fa-solid fa-question"></i></span>
-                                <button type="button" class="btn question-code" data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="ماهو التيار واين يوجد التيار والي متي سوف يتم تواجد التيار">
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
+                        </td>
+                        <td data-lable="السؤال :" class="address">
+                            <div class="custome-parent">
+                                <div class="question-code-parent">
+                                    <span class="question-mark"><i class="fa-solid fa-question"></i></span>
+                                    <button type="button" class="btn question-code" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="ماهو التيار واين يوجد التيار والي متي سوف يتم تواجد التيار">
+                                        ما هو التيار الكهربي
+                                        ما هو التيار الكهربي
+                                        ما هو التيار الكهربي
+                                    </button>
+                                </div>
+                                <div class="name-teacher">
+                                    <span class="job-teacher">:المدرس</span>
+                                    <span>أ. محمد
+                                        عبدالمعبود</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-lable="المرحلة الدراسية :" class="table-level-parent">
+                            <span class="table-level">الصف الثالث الثانوي</span>
+                        </td>
+                        <td data-lable="المادة :" class="table-sections">
+                            <div class="custome-parent">
+                                الفيزياء
+                            </div>
+                        </td>
+                        <td data-lable="الجزئية الدراسية :" class="students">
+                            العزوم
+                        </td>
+                        <td data-lable="درجة الصعوبة :" class="views">
+                            5
+                        </td>
+                        <td data-lable="إجابة صحيحة :" class="table-stat-parent">
+                            <span class="table-stat not-active">530</span>
+                        </td>
+                        <td data-lable="اجابه خاطئة :" class="table-price-parent">
+                            <span class="table-price not-free">1100</span>
+                        </td>
+                        <td class="features" data-lable="اجراءات :">
+                            <div class="btn-group">
+                                <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
                                 </button>
+
+                                <ul class="dropdown-menu feat-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">عرض لائحة
+                                            الطلاب</a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item q-modify" href="#">تعديل الامتحان
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item delete-lec" href="#">مسح الامتحان</a>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="name-teacher">
-                                <span class="job-teacher">:المدرس</span>
-                                <span>أ. محمد
-                                    عبدالمعبود</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                        <span class="table-level">الصف الثالث الثانوي</span>
-                    </td>
-                    <td data-lable="المادة :" class="table-sections">
-                        <div class="custome-parent">
-                            الفيزياء
-                        </div>
-                    </td>
-                    <td data-lable="الجزئية الدراسية :" class="students">
-                        العزوم
-                    </td>
-                    <td data-lable="درجة الصعوبة :" class="views">
-                        5
-                    </td>
-                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                        <span class="table-stat not-active">530</span>
-                    </td>
-                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                        <span class="table-price not-free">1100</span>
-                    </td>
-                    <td class="features" data-lable="اجراءات :">
-                        <div class="btn-group">
-                            <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </td>
+                    </tr>
+                    <tr class="blueBg">
+                        <td class="number">
+                            1
+                            <button class="open-tr" type="button">
+                                <i class="fa-solid fa-plus"></i>
                             </button>
+                        </td>
+                        <td data-lable="السؤال :" class="address">
+                            <div class="custome-parent">
+                                <div class="question-code-parent">
+                                    <span class="question-mark"><i class="fa-solid fa-question"></i></span>
 
-                            <ul class="dropdown-menu feat-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#">عرض لائحة
-                                        الطلاب</a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item q-modify" href="#">تعديل الامتحان
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item delete-lec" href="#">مسح الامتحان</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="blueBg">
-                    <td class="number">
-                        1
-                        <button class="open-tr" type="button">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    <td data-lable="السؤال :" class="address">
-                        <div class="custome-parent">
-                            <div class="question-code-parent">
-                                <span class="question-mark"><i class="fa-solid fa-question"></i></span>
-
-                                <button type="button" class="btn question-code" data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="ماهو التيار واين يوجد التيار والي متي سوف يتم تواجد التيار">
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
-                                    ما هو التيار الكهربي
+                                    <button type="button" class="btn question-code" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="ماهو التيار واين يوجد التيار والي متي سوف يتم تواجد التيار">
+                                        ما هو التيار الكهربي
+                                        ما هو التيار الكهربي
+                                        ما هو التيار الكهربي
+                                    </button>
+                                </div>
+                                <div class="name-teacher">
+                                    <span class="job-teacher">:المدرس</span>
+                                    <span>أ. محمد
+                                        عبدالمعبود</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-lable="المرحلة الدراسية :" class="table-level-parent">
+                            <span class="table-level">الصف الثالث الثانوي</span>
+                        </td>
+                        <td data-lable="المادة :" class="table-sections">
+                            <div class="custome-parent">
+                                الفيزياء
+                            </div>
+                        </td>
+                        <td data-lable="الجزئية الدراسية :" class="students">
+                            العزوم
+                        </td>
+                        <td data-lable="درجة الصعوبة :" class="views">
+                            5
+                        </td>
+                        <td data-lable="إجابة صحيحة :" class="table-stat-parent">
+                            <span class="table-stat not-active">530</span>
+                        </td>
+                        <td data-lable="اجابه خاطئة :" class="table-price-parent">
+                            <span class="table-price not-free">1100</span>
+                        </td>
+                        <td class="features" data-lable="اجراءات :">
+                            <div class="btn-group">
+                                <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
                                 </button>
+
+                                <ul class="dropdown-menu feat-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">عرض لائحة
+                                            الطلاب</a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item q-modify" href="#">تعديل الامتحان
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item delete-lec" href="#">مسح الامتحان</a>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="name-teacher">
-                                <span class="job-teacher">:المدرس</span>
-                                <span>أ. محمد
-                                    عبدالمعبود</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                        <span class="table-level">الصف الثالث الثانوي</span>
-                    </td>
-                    <td data-lable="المادة :" class="table-sections">
-                        <div class="custome-parent">
-                            الفيزياء
-                        </div>
-                    </td>
-                    <td data-lable="الجزئية الدراسية :" class="students">
-                        العزوم
-                    </td>
-                    <td data-lable="درجة الصعوبة :" class="views">
-                        5
-                    </td>
-                    <td data-lable="إجابة صحيحة :" class="table-stat-parent">
-                        <span class="table-stat not-active">530</span>
-                    </td>
-                    <td data-lable="اجابه خاطئة :" class="table-price-parent">
-                        <span class="table-price not-free">1100</span>
-                    </td>
-                    <td class="features" data-lable="اجراءات :">
-                        <div class="btn-group">
-                            <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </button>
-
-                            <ul class="dropdown-menu feat-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#">عرض لائحة
-                                        الطلاب</a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item q-modify" href="#">تعديل الامتحان
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item delete-lec" href="#">مسح الامتحان</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr> --}}
-            </tbody>
-        </table>
-    </div>
+                        </td>
+                    </tr> --}}
+                </tbody>
+            </table>
+        </div>
+    </form>
     <div class="modal fade" id="delete-exam" tabindex="-1" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
