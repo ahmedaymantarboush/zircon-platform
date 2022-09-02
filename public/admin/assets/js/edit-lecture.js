@@ -82,7 +82,11 @@ document
     .querySelector(".section-lesson-item")
     .addEventListener("click", async function (e) {
         if (!e.target.classList.contains("editLesssonBtn")) return;
-
+        if (e.target.closest(".section-lesson-item")) {
+            console.log("yes");
+        } else {
+            console.log("no");
+        }
         let sendObj = {
             id: dataId,
         };
