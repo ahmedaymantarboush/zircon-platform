@@ -473,7 +473,7 @@
 <script>
 function card(id, code, value, startDate, endDate) {
     return `
-                @include('components.Admin.coupon-card', [
+                @include('components.admin.coupon-card', [
                         'app_name' => config('app.name'),
                         'code' => '${code}',
                         'start_date' => '${startDate}',
