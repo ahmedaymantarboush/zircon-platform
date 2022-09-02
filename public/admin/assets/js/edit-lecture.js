@@ -86,7 +86,8 @@ document
         if (e.target.closest(".section-lesson-item").dataset.exam) {
             console.log("has Exam");
         } else {
-            let dataId = e.target.closest(".section-lesson-item").dataset.item;
+            let dataId = e.target.closest(".section-lesson-item").dataset
+                .lesson;
             let sendObj = {
                 id: dataId,
             };
