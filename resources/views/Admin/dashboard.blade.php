@@ -694,7 +694,7 @@
     $centersName = [];
 
     foreach (\App\Models\Center::all() as $index => $center) {
-        $answerdQuestion = \App\Models\AnswerdQuestion::whereHAs('user',function ($userQ){
+        $answerdQuestion = \App\Models\AnswerdQuestion::whereHAs('user',function ($userQ) use($center){
             $userQ->where('center_id',$center->id);
         });
         $centersName[] = $center->name;
