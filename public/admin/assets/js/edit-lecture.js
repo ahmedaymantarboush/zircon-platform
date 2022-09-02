@@ -161,7 +161,9 @@ document
                         document.querySelector(".description").innerHTML
                     );
                     partOptions.forEach((ele) => {
-                        console.log(ele);
+                        if (ele.selected) {
+                            console.log(ele);
+                        }
                     });
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
