@@ -44,6 +44,11 @@ class Lesson extends Model
     {
         return $this->belongsTo(Lecture::class);
     }
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
     public function publisher()
     {
         return $this->belongsTo(User::class,'user_id');

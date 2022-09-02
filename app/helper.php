@@ -117,8 +117,7 @@ function getVideoId($url)
 }
 function getDuration($url)
 {
-    parse_str(parse_url($url, PHP_URL_QUERY), $data);
-    $video_id = $data['v'];
+    $video_id = getVideoId($url);
     return json_decode(getVideoInfo($video_id), true)['videoDetails']['lengthSeconds'];
 }
 function decoratedTime($time)
