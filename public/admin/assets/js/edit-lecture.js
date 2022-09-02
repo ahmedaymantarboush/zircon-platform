@@ -185,8 +185,7 @@ document
                         id: dataId,
                         type: "video",
                         url: inputURL.value.trim(),
-                        description:
-                            document.querySelector(".description").innerHTML,
+                        description: "",
                         part: optionId,
                         section: sectionId,
                     };
