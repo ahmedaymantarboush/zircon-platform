@@ -62,6 +62,8 @@ let editFun = async function (url, myData, el = null) {
 };
 // calling
 document.querySelector("table").addEventListener("click", async function (e) {
+    debugger;
+
     if (!e.target.classList.contains("editCenter")) return;
     let dataId = e.target.closest("tr").dataset.id;
     partId.value = dataId;
@@ -72,7 +74,6 @@ document.querySelector("table").addEventListener("click", async function (e) {
 
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
-    debugger;
     let myResponse = await editFun(
         `${APP_URL}/api/parts/fastEdit/`,
         form,
