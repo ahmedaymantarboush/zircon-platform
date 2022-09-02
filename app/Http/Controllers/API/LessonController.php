@@ -72,7 +72,7 @@ class LessonController extends Controller
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الدرس'), [], 403);
         endif;
 
-        $request->validate([
+        validator()->make($data,[
             'title' => ['required', 'string', 'max:50'],
             'url' => ['required', 'url', 'max:255'],
             'type' => ['string', "in:video,pdf,audio"],
@@ -210,7 +210,7 @@ class LessonController extends Controller
             return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الدرس'), [], 403);
         endif;
 
-        $request->validate([
+        validator()->make($data,[
             'title' => ['required', 'string', 'max:50'],
             'url' => ['required', 'url', 'max:255'],
             'type' => ['string', "in:video,pdf,audio"],
@@ -240,7 +240,7 @@ class LessonController extends Controller
 
             'part.required' => 'الجزئية الدراسية مطلوبة',
             'part.exists' => 'الرجاء اختيار جزئية دراسية صحيحة',
-        ]);
+        ])->validate();
 
 
         $section = $lesson->section;
