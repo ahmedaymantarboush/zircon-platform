@@ -18,8 +18,26 @@ class QuestionController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $data = request()->all();
         if ($user ? $user->role->number < 4 : false) {
             $questions = Question::all();
+            if (isset($data['hasFilter'])) {
+                foreach ($data as $key => $value) {
+                    if ($key == 'hasFilter' || $key == 'page' || $key == 'count') {
+                        continue;
+                    }
+                    if ($value == 'all') {
+                        continue;
+                    }
+
+                    if ($key == 'q') {
+                        $questions = $questions->where('title', 'like', '%' . $value . '%');
+                        continue;
+                    }
+
+                    $questions = $questions->where($key, $value);
+                }
+            }
             return view('Admin.questionBank', compact('questions'));
         } else {
             return abort(404);

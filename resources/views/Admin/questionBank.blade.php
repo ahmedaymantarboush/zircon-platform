@@ -71,7 +71,7 @@
         </div>
     </div>
     <div class="lectureTableParent">
-        <form action="{{ route('admin.questions.filter') }}" method="POST" class="lec-filter">
+        <form action="" method="POST" class="lec-filter">
             @csrf
             <h3>لائحة الأسئلة</h3>
             <div class="custome-row">
@@ -80,7 +80,7 @@
                         <div class="filter-item">
                             <label for="">المرحلة الدراسية</label>
                             <div class="search-select-box">
-                                <select name="grade" id="" data-live-search="true">
+                                <select name="grade_id" id="" data-live-search="true">
                                     <option value="">
                                         جميع المراحل الدراسية
                                     </option>
@@ -96,7 +96,7 @@
                         <div class="filter-item">
                             <label for="">المادة</label>
                             <div class="search-select-box">
-                                <select name="subject" id="" data-live-search="true">
+                                <select name="subject_id" id="" data-live-search="true">
                                     <option value="">
                                         المادة
                                     </option>
@@ -111,7 +111,7 @@
                         <div class="filter-item">
                             <label for="">الجزئية الدراسية</label>
                             <div class="search-select-box">
-                                <select name="part" id="" data-live-search="true">
+                                <select name="part_id" id="" data-live-search="true">
                                     <option value="">
                                         الجزئية الدراسية
                                     </option>
@@ -126,11 +126,11 @@
                         <div class="filter-item">
                             <label for="">المحرر </label>
                             <div class="search-select-box">
-                                <select name="teacher" id="" data-live-search="true">
+                                <select name="user_id" id="" data-live-search="true">
                                     <option value="">
                                         جميع المدرسين
                                     </option>
-                                    @foreach (\App\Models\User::where('role_id', 3) as $teacher)
+                                    @foreach (\App\Models\User::where('role_num','<', 4) as $teacher)
                                         <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                                     @endforeach
                                 </select>
@@ -145,10 +145,9 @@
                                     <option value="">
                                         ردجة الصعوبة
                                     </option>
-                                    @for ($i = 1; $i <= 4; $i++)
+                                    @for ($i = 1; $i <= 5; $i++)
                                         <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
-                                    <option value="5">للطالب الشكساوي</option>
                                 </select>
                             </div>
                         </div>
@@ -158,7 +157,7 @@
                     <input type="submit" class="filter-btn" value="فلترة" />
                 </div>
             </div>
-            <div class="search-field">
+            {{-- <div class="search-field">
                 <div class="field search-select-box">
                     <span>اظهار</span>
                     <select name="count" id="" data-live-search="true">
@@ -174,7 +173,7 @@
                     <label for="">بحث :</label>
                     <input type="search" name="q" />
                 </div>
-            </div>
+            </div> --}}
         </form>
         <div class="lectures-table">
             <table class="">

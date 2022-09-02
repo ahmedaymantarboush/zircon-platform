@@ -64,7 +64,7 @@ Route::group(['middleware' => 'not.hanging'], function () {
         Route::get('lectures', [LectureController::class, 'allLectures'])->name('admin.lectures.index');
 
         Route::get('questions', [QuestionController::class, 'index'])->name('admin.questions.index');
-        Route::post('questions/filter', [QuestionController::class, 'filter'])->name('admin.questions.filter');
+        // Route::post('questions/filter', [QuestionController::class, 'filter'])->name('admin.questions.filter');
         Route::post('questions/destroy', [QuestionController::class, 'destroy'])->name('admin.questions.destroy');
         Route::post('questions/store', [QuestionController::class, 'store'])->name('admin.questions.store');
         Route::post('questions/update', [QuestionController::class, 'update'])->name('admin.questions.update');
