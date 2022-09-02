@@ -160,6 +160,7 @@ document
                     console.log(
                         document.querySelector(".description").innerHTML
                     );
+                    console.log(partOptions);
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
                         id: dataId,
