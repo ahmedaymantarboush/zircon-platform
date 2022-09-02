@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Models\Part;
 use App\Http\Requests\StorePartRequest;
 use App\Http\Requests\UpdatePartRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PartController extends Controller
 {
@@ -15,7 +17,14 @@ class PartController extends Controller
      */
     public function index()
     {
-        //
+        $q = request()->q;
+        if ($q){
+            $parts = Part::where('name', 'LIKE', "%{$q}%")->orWhere('description', 'LIKE', "%{$q}%")->get();
+        }else{
+            $parts = Part::all();
+        }
+
+        return view('admin.parts', compact('parts'));
     }
 
     /**
@@ -36,9 +45,20 @@ class PartController extends Controller
      */
     public function store(StorePartRequest $request)
     {
-        //
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false) {
+            $part = new Part();
+            $part->name = $request->name;
+            $part->description = $request->description ?? null;
+            $part->grade_id = $request->grade_id;
+            $part->subject_id = $request->subject_id ?? env('DEFAULT_SUBJECT_ID');
+            $part->user_id = $user->id;
+            $part->save();
+            return redirect()->back();
+        }else{
+            return abort(403);
+        }
     }
-
     /**
      * Display the specified resource.
      *
@@ -70,7 +90,17 @@ class PartController extends Controller
      */
     public function update(UpdatePartRequest $request, Part $part)
     {
-        //
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false) {
+            $part->name = $request->name;
+            $part->description = $request->description ?? null;
+            $part->grade_id = $request->grade_id;
+            $part->subject_id = $request->subject_id ?? env('');
+            $part->save();
+            return redirect()->back();
+        }else{
+            return abort(403);
+        }
     }
 
     /**

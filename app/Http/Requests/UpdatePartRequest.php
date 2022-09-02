@@ -24,7 +24,10 @@ class UpdatePartRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'grade_id' => 'required|integer|exists:grades,id',
+            'subject_id' => 'required|integer|exists:subjects,id',
         ];
     }
 }

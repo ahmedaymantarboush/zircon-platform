@@ -8,7 +8,7 @@
 @section('content')
     <div class="page-heading white-box">
         <span class="page-icon"><i class="fa-solid fa-school-flag"></i></span>
-        <h2 class="page-h">الاماكن</h2>
+        <h2 class="page-h">الأجزاء الدراسية</h2>
     </div>
 
     <form action="" class="lec-filter">
@@ -38,54 +38,38 @@
                             #
                             <i class="fa-solid fa-sort"></i>
                         </th>
-                        <th>الصورة</th>
-                        <th>الأسم</th>
-                        <th>المحافظة</th>
-                        <th>عدد الطلاب</th>
-                        <th>صفحة الجزئية الدراسية</th>
+                        <th>الاسم</th>
+                        <th>المرحلة الدراسية</th>
+                        <th>المادة</th>
                         {{-- <th>مجموع الدخل</th> --}}
 
                         <th class="features">اجراءات</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($parts as $key => $center)
+                    @foreach ($parts as $key => $part)
                         @php
                             $i = $key + 1;
                         @endphp
-                        <tr class="" data-id="{{ $center->id }}">
+                        <tr class="" data-id="{{ $part->id }}">
                             <td class=" number">
                                 {{ $i }}
                                 <button class="open-tr" type="button">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
                             </td>
-                            <td class="imageLocation" data-lable="الصورة :">
-                                <div class="imageBox">
-                                    <img src="{{ $center->image }}" alt="" />
-                                </div>
-                            </td>
                             <td data-lable="الأسم :" class="address">
                                 <button type="button" class="btn name-lesson question-code" data-toggle="tooltip"
-                                    data-placement="top" title="{{ $center->name }}">
-                                    {{ $center->name }}
+                                    data-placement="top" title="{{ $part->name }}">
+                                    {{ $part->name }}
                                 </button>
                             </td>
                             <td data-lable="المحافظة :">
-                                {{ $center->governorate->name }}
+                                {{ $part->grade->name }}
                             </td>
                             <td data-lable="عدد الطلاب :" class="table-sections">
-                                {{ $center->students->count() }}
+                                {{ $part->subject->name }}
                             </td>
-                            <td data-lable="صفحة الجزئية الدراسية :" class="address">
-                                <a href="{{ $center->url }}" class="btn name-lesson question-code" data-toggle="tooltip"
-                                    data-placement="top" title="{{ $center->url }}">
-                                    صفحة الجزئية الدراسية
-                                </a>
-                            </td>
-                            {{-- <td data-lable="مجموع الدخل :">
-                                13500
-                            </td> --}}
 
                             <td class="features" data-lable="اجراءات :">
                                 <div class="btn-group">
@@ -121,7 +105,7 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.parts.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.parts.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="less-item custome-item">
@@ -139,48 +123,23 @@
                             </div>
                         </div>
                         <div class="less-item custome-item">
-                            <label class="sec-name">لينك الجزئية الدراسية</label>
-
-                            <div class="input-parent">
-                                <input type="text" name='url' value="{{ old('url') }}"
-                                    class="my-input @error('url') is-invalid @enderror" placeholder=" ادخل لينك الجزئية الدراسية"
-                                    id="address-lec" />
-                                @error('url')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="less-item custome-item">
-                            <label class="sec-name">المحافظة</label>
+                            <label class="sec-name">المرحلة الدراسية</label>
                             <div class="search-select modify-select">
-                                <select name='governorate' id=""
-                                    class="@error('governorate') is-invalid @enderror" data-live-search="true">
-                                    <option value="">اختر المحافظة</option>
-                                    @foreach (\App\Models\Governorate::all() as $governorate)
-                                        <option @selected(old('governorate') == $governorate->id) value="{{ $governorate->id }}">
-                                            {{ $governorate->name }}</option>
+                                <select name='grade_id' id=""
+                                    class="@error('grade_id') is-invalid @enderror" data-live-search="true">
+                                    <option value="">اختر المرحلة الدراسية</option>
+                                    @foreach (\App\Models\Grade::all() as $grade)
+                                        <option @selected(old('grade_id') == $grade->id) value="{{ $grade->id }}">
+                                            {{ $grade->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('governorate')
+                                @error('grade_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="file">
-                            <label for="">رفع صورة الجزئية الدراسية</label>
-                            <input type="file" name='image'
-                                class="form-control @error('image') is-invalid @enderror" />
-                            @error('image')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">
@@ -204,18 +163,17 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.parts.update') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.parts.update') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <input type="hidden" name="id" id='trId'>
                         <div class="less-item custome-item">
                             <label class="sec-name">اسم الجزئية الدراسية</label>
 
                             <div class="input-parent">
-                                <input type="text " name='newName' value="{{ old('newName') }}"
-                                    class="my-input nameOfCenter @error('newName') is-invalid @enderror"
-                                    placeholder=" ادخل اسم الجزئية الدراسية" id="address-lec" />
-                                @error('newName')
+                                <input type="text" name='name' value="{{ old('name') }}"
+                                    class="my-input @error('name') is-invalid @enderror" placeholder=" ادخل اسم الجزئية الدراسية"
+                                    id="address-lec" />
+                                @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -223,48 +181,23 @@
                             </div>
                         </div>
                         <div class="less-item custome-item">
-                            <label class="sec-name">لينك الجزئية الدراسية</label>
-
-                            <div class="input-parent">
-                                <input type="text" name='newUrl' value="{{ old('newUrl') }}"
-                                    class="my-input urlOfCenter @error('newUrl') is-invalid @enderror"
-                                    placeholder=" ادخل لينك الجزئية الدراسية" id="address-lec" />
-                                @error('newUrl')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="less-item custome-item">
-                            <label class="sec-name">المحافظة</label>
-                            <div class="search-select modify-select newGovernorateParent">
-                                <select name='newGovernorate' id=""
-                                    class="@error('newGovernorate') is-invalid @enderror" data-live-search="true">
-                                    <option value="">اختر المحافظة</option>
-                                    @foreach (\App\Models\Governorate::all() as $governorate)
-                                        <option @selected(old('newGovernorate') == $governorate->id) value="{{ $governorate->id }}">
-                                            {{ $governorate->name }}</option>
+                            <label class="sec-name">المرحلة الدراسية</label>
+                            <div class="search-select modify-select">
+                                <select name='grade_id' id=""
+                                    class="@error('grade_id') is-invalid @enderror" data-live-search="true">
+                                    <option value="">اختر المرحلة الدراسية</option>
+                                    @foreach (\App\Models\Grade::all() as $grade)
+                                        <option @selected(old('grade_id') == $grade->id) value="{{ $grade->id }}">
+                                            {{ $grade->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('newGovernorate')
+                                @error('grade_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="file">
-                            <label for="">رفع صورة الجزئية الدراسية</label>
-                            <input type="file" name='newImage'
-                                class="form-control @error('newImage') is-invalid @enderror" />
-                            @error('newImage')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">

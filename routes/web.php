@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\CenterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Web\PartController;
 use App\Http\Controllers\Web\TestimonialController;
 use App\Http\Controllers\Web\QuestionController;
 use App\Http\Controllers\Web\BalanceCardController;
@@ -82,6 +83,10 @@ Route::group(['middleware' => 'not.hanging'], function () {
         Route::get('balancecards', [BalanceCardController::class, 'index'])->name('admin.balancecards.index');
         Route::get('balancecards/create', [BalanceCardController::class, 'create'])->name('admin.balancecards.create');
         Route::post('balancecards/store', [BalanceCardController::class, 'store'])->name('admin.balancecards.store');
+
+        Route::get('parts', [PartController::class, 'index'])->name('admin.parts.index');
+        Route::get('parts/create', [PartController::class, 'store'])->name('admin.parts.store');
+        Route::get('parts/update', [PartController::class, 'update'])->name('admin.parts.update');
     });
     Route::post('lectures/{slug}/buy', [LectureController::class, 'buy'])->middleware('auth')->name('admin.lectures.buy');
 
