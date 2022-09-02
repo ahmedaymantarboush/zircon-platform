@@ -85,6 +85,11 @@ document
         if (!e.target.closest(".editLesssonBtn")) return;
         if (e.target.closest(".section-lesson-item").dataset.exam) {
             console.log("has Exam");
+            console.log(
+                e.target
+                    .closest(".section-lesson-item")
+                    .querySelector(".editLesssonBtn")
+            );
             e.target
                 .closest(".section-lesson-item")
                 .removeChild(
