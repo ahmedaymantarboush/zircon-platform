@@ -161,9 +161,8 @@ document
                 objData.section
             );
             description.innerHTML = objData.description;
-            document.querySelector(
-                "#editLesson ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred"
-            ).innerHTML = objData.description;
+            document.querySelector("#editLesson .ck-content").innerHTML =
+                objData.description;
             document
                 .querySelector(".modifyLessonForm")
                 .addEventListener("submit", async function (event) {
