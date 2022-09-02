@@ -142,7 +142,7 @@ document
                 "#editLesson .ck-editor__editable"
             );
             lessAddress.value = objData.title;
-            inputURL.value = objData.url;
+            // inputURL.value = objData.url;
             let fillSelectFunction = function (options, selectInner, data) {
                 options.forEach((ele) => {
                     if (ele.value == data) {
@@ -152,14 +152,14 @@ document
                         ele.removeAttribute("selected");
                     }
                 });
-                description.ckeditorInstance.setData(objData.text);
+                description.ckeditorInstance.setData(objData.description);
             };
             fillSelectFunction(partOptions, partInner, objData.part.id);
-            fillSelectFunction(
-                sectionLessonOptions,
-                sectionLessonInner,
-                objData.section
-            );
+            // fillSelectFunction(
+            //     sectionLessonOptions,
+            //     sectionLessonInner,
+            //     objData.section
+            // );
             document
                 .querySelector(".modifyLessonForm")
                 .addEventListener("submit", async function (event) {
@@ -167,12 +167,19 @@ document
                     console.log(
                         document.querySelector(".description").innerHTML
                     );
-                    let optionId;
+                    let optionId = 0;
+                    let sectionId = 0;
                     partOptions.forEach((ele) => {
                         if (ele.selected) {
                             optionId = ele.value;
                         }
                     });
+                    // sectionLessonOptions.forEach((ele) => {
+                    //     if (ele.selected) {
+                    //         sectionId = ele.value;
+                    //     }
+                    // });
+                    console(sectionId);
                     console.log(optionId);
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
@@ -182,7 +189,7 @@ document
                         description:
                             document.querySelector(".description").innerHTML,
                         part: optionId,
-                        section: 2,
+                        section: sectionId,
                     };
 
                     newform = new FormData();
