@@ -558,8 +558,8 @@
                                         :
                                         <span class="type-less-name">{{ $sectionItem->item->title }}</span>
                                         <div class="someFeatures">
-                                            <button>مسح</button>
-                                            <button>تعديل الدرس</button>
+                                            <button><i class="fa-solid fa-trash"></i></button>
+                                            <button><i class="fa-solid fa-pen"></i></button>
                                         </div>
                                     </div>
                                 @endif
