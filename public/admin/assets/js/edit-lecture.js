@@ -154,20 +154,22 @@ document
                 description.ckeditorInstance.setData(objData.text);
             };
             document
-            .querySelector(".modifyLessonForm")
-            .addEventListener("submit", async function (event) {
-                event.preventDefault();
-                console.log(document.querySelector('.description').innerHTML)
-                let saveObjSend = {
-                    title: lessAddress.value.trim(),
-                    id: dataId,
-                    type: "video",
-                    url: inputURL.value,
-                    description:
-                    document.querySelector(".description").innerHTML,
-                    part: ,
-                };
-                
+                .querySelector(".modifyLessonForm")
+                .addEventListener("submit", async function (event) {
+                    event.preventDefault();
+                    console.log(
+                        document.querySelector(".description").innerHTML
+                    );
+                    let saveObjSend = {
+                        title: lessAddress.value.trim(),
+                        id: dataId,
+                        type: "video",
+                        url: inputURL.value,
+                        description:
+                            document.querySelector(".description").innerHTML,
+                        part: "",
+                    };
+
                     newform = new FormData();
                     newform.append("data", JSON.stringify(saveObjSend));
 
