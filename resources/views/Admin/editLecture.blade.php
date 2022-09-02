@@ -679,7 +679,7 @@
                                         <div class="less-item type-parent">
                                             <div class="file">
                                                 <label for="formFile" class="form-label">رابط الدرس</label>
-                                                <input class="my-input @error('url') is-invalid @enderror" name="url"
+                                                <input class="inputURL my-input @error('url') is-invalid @enderror" name="url"
                                                     type="url" id="lessonUrl" placeholder=" ادخل رابط الدرس" />
                                                 @error('url')
                                                     <span class="invalid-feedback" role="alert">
