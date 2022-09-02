@@ -152,7 +152,7 @@ document
                         ele.removeAttribute("selected");
                     }
                 });
-                description.ckeditorInstance.setData(objData.text);
+                description.ckeditorInstance.setData(objData.description);
             };
             fillSelectFunction(partOptions, partInner, objData.part.id);
             fillSelectFunction(
@@ -179,12 +179,13 @@ document
                             sectionId = ele.value;
                         }
                     });
+                    console.log(sectionId);
                     console.log(optionId);
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
                         id: dataId,
                         type: "video",
-                        url: inputURL.value,
+                        url: inputURL.value.trim(),
                         description:
                             document.querySelector(".description").innerHTML,
                         part: optionId,
