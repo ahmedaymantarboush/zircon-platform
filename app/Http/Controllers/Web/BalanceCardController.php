@@ -32,7 +32,9 @@ class BalanceCardController extends Controller
             }
         }
         if (isset($data['q'])) {
-            $cards = $cards->where('code', 'like', '%' . $data['q'] . '%');
+            $cards = $cards->whereHas('user',function ($user) use($data){
+                $user->where('name', 'like', '%' . $data['q'] . '%')->orWhere('email', 'like', '%' . $data['q'] . '%')->orWhere('phone_number', 'like', '%' . $data['q'] . '%')->orWhere('code', 'like', '%' . $data['q'] . '%');
+            })->orWhere('code', 'like', '%' . $data['q'] . '%');
         }
         if ($user) :
             return view('Admin.allCards', ['cards' => $cards]);
