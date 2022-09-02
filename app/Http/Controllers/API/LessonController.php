@@ -183,7 +183,9 @@ class LessonController extends Controller
             'grade' => $lesson->grade->name,
             'part' => $lesson->part->name,
             'description' => $lesson->description,
-            'urls' => count($urls) ? $urls : $lesson->url
+            'urls' => count($urls) ? $urls : $lesson->url,
+            'exam' => $lesson->exam_id,
+            'percentage' => $lesson->min_percentage,
         ]);
     }
 
