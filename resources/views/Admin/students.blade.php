@@ -79,6 +79,7 @@
     </div>
     <div class="lectureTableParent">
         <form action="" class="lec-filter">
+        <input type="hidden" name="hasFilter" value="true">
             <h3>لائحة الطلاب</h3>
             <div class="custome-row">
                 <div class="row">
@@ -150,13 +151,13 @@
             </div>
             <div class="search-field">
                 <div class="field search-select-box">
-                    <span>اظهار</span>
+                    {{-- <span>اظهار</span>
                     <select name="" id="" data-live-search="true">
                         <option value="">1</option>
                         <option value="">2</option>
                         <option value="">3333</option>
                     </select>
-                    <span>من الحقول</span>
+                    <span>من الحقول</span> --}}
                 </div>
                 <div class="filter-search">
                     <label for="">بحث :</label>

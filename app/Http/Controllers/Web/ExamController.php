@@ -105,7 +105,23 @@ class ExamController extends Controller
         $user = Auth::user();
         $exam = Exam::find($id);
         $passedExams = $exam ? $exam->passedExams : null;
+        $data = request()->all();
         if ($passedExams && $user ? $exam->publisher->id == $user->id : false):
+            if (isset($data['hasFilter'])) {
+                foreach ($data as $key => $value) {
+                    if ($key == 'hasFilter' || $key == 'page' || $key == 'count') {
+                        continue;
+                    }
+                    if ($value == 'all') {
+                        continue;
+                    }
+                    if ($key == 'q') {
+                        $users = $users->where('name', 'like', '%' . $value . '%')->orWhere('email', 'like', '%' . $value . '%')->orWhere('phone_number', 'like', '%' . $value . '%')->orWhere('code', 'like', '%' . $value . '%');
+                        continue;
+                    }
+                    $users = $users->where($key, $value);
+                }
+            }
             return view('Admin.examStudents', ['exam'=>$exam,'passedExams' => $passedExams]);
         else:
             return abort(404);
