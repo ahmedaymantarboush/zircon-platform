@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DynamicQuestion;
 use App\Models\Exam;
 use App\Models\Part;
+use App\Models\SectionItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -62,7 +63,12 @@ class DynamicQuestionController extends Controller
             'level' => $data['level'] ?? $exam->exam_hardness,
         ]);
         $exam = $dynamicQuestion->exam;
-        $exam->questions_count += $dynamicQuestion->count;
+        $exam->questions_count += abs($dynamicQuestion->count);
+        foreach (SectionItem::where('exam_id', $exam->id)->all() as $sectionItem) :
+            $lecture = $sectionItem->section->lecture;
+            $lecture->total_questions_count += abs($dynamicQuestion->count);
+            $lecture->save();
+        endforeach;
         $exam->save();
         return apiResponse(true, _('تم اضافة السؤال بنجاح'), [
             'id'=>$dynamicQuestion->id,
@@ -123,6 +129,12 @@ class DynamicQuestionController extends Controller
 
         $exam = $dynamicQuestion->exam;
         $exam->questions_count -= abs($dynamicQuestion->count);
+        foreach (SectionItem::where('exam_id', $exam->id)->all() as $sectionItem) :
+            $lecture = $sectionItem->section->lecture;
+            $lecture->total_questions_count -= abs($dynamicQuestion->count);
+            $lecture->total_questions_count += abs($data['count']) ?? $dynamicQuestion->count;
+            $lecture->save();
+        endforeach;
         $dynamicQuestion->count = abs($data['count']) ?? $dynamicQuestion->count;
         $exam->questions_count += abs($dynamicQuestion->count);
         $exam->save();
@@ -154,6 +166,11 @@ class DynamicQuestionController extends Controller
         if ($dynamicQuestion) :
             $exam =$dynamicQuestion->exam;
             $exam->questions_count -= $dynamicQuestion->count;
+            foreach (SectionItem::where('exam_id', $exam->id)->all() as $sectionItem) :
+                $lecture = $sectionItem->section->lecture;
+                $lecture->total_questions_count -= abs($dynamicQuestion->count);
+                $lecture->save();
+            endforeach;
             $exam->save();
             $dynamicQuestion->delete();
         endif;
