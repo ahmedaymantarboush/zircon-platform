@@ -16,12 +16,12 @@
                         <h1>Zircon LMS Dashboard</h1>
                     </div>
                     <div class="side-bar-f-item active-box">
-                        <div class="box">
+                        <a href="{{route('admin.index')}}" class="box">
                             <span class="box-icon">
                                 <i class="fa-solid fa-gauge-high"></i>
                             </span>
                             <span class="box-name"> لوحة التحكم </span>
-                        </div>
+                        </a>
                     </div>
 
                     <div class="side-bar-item">
@@ -76,6 +76,11 @@
                                 <a href="{{ route('lectures.create') }}" class="child-name">إضافة محاضرة</a>
                             </div>
                         </div>
+                        <div class="elements">
+                            <div class="ele-child">
+                                <a href="{{ route('admin.parts.index') }}" class="child-name">الأجزاء الدراسية</a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="side-bar-item">
@@ -105,131 +110,6 @@
                         </div>
                     </div>
 
-                    {{-- <div class="side-bar-item"> --}}
-                    {{-- <div class="box"> --}}
-                    {{-- <span class="box-icon"> --}}
-                    {{-- <i class="fa-solid fa-gauge-high"></i> --}}
-                    {{-- </span> --}}
-                    {{-- <span class="box-name"> المحاضرات </span> --}}
-                    {{-- <span class="parent-arrow"> --}}
-                    {{-- <i class="fa-solid fa-angle-down"></i></span> --}}
-                    {{-- </div> --}}
-
-                    {{-- <div class="elements"> --}}
-                    {{-- <div class="ele-child"> --}}
-                    {{-- <a href="#" class="child-name">الطالب رقم1</a> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- <div class="elements"> --}}
-                    {{-- <div class="ele-child"> --}}
-                    {{-- <a href="#" class="child-name">الطالب رقم 2</a> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-
-                    {{--  --}}
-                    {{-- <div class="side-bar-item"> --}}
-                    {{-- <div class="box"> --}}
-                    {{-- <span class="box-icon"> --}}
-                    {{-- <i class="fa-solid fa-gauge-high"></i> --}}
-                    {{-- </span> --}}
-                    {{-- <span class="box-name"> الامتحانات </span> --}}
-                    {{-- <span class="parent-arrow"> --}}
-                    {{-- <i class="fa-solid fa-angle-down"></i></span> --}}
-                    {{-- </div> --}}
-
-                    {{-- <div class="elements"> --}}
-                    {{-- <div class="ele-child"> --}}
-                    {{-- <a href="#" class="child-name">الطالب رقم1</a> --}}
-                    {{-- <span class="child-arrow"> --}}
-                    {{-- <i class="fa-solid fa-angle-down"></i></span> --}}
-                    {{-- </div> --}}
-                    {{-- <div class="grand-child"> --}}
-                    {{-- <a href="#" class="grand-child-name">ساقط مرتفع</a> --}}
-                    {{-- <a href="#" class="grand-child-name">مقبول</a> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- <div class="elements"> --}}
-                    {{-- <div class="ele-child"> --}}
-                    {{-- <a href="#" class="child-name">الطالب رقم 2</a> --}}
-                    {{-- <span class="child-arrow"> --}}
-                    {{-- <i class="fa-solid fa-angle-down"></i></span> --}}
-                    {{-- </div> --}}
-                    {{-- <div class="grand-child"> --}}
-                    {{-- <a href="#" class="grand-child-name">ساقط مرتفع</a> --}}
-                    {{-- <a href="#" class="grand-child-name">مقبول</a> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-
-                    {{-- <div class="side-bar-item"> --}}
-                    {{-- <div class="box"> --}}
-                    {{-- <span class="box-icon"> --}}
-                    {{-- <i class="fa-solid fa-gauge-high"></i> --}}
-                    {{-- </span> --}}
-                    {{-- <span class="box-name"> الأسئلة </span> --}}
-                    {{-- <span class="parent-arrow"> --}}
-                    {{-- <i class="fa-solid fa-angle-down"></i></span> --}}
-                    {{-- </div> --}}
-
-                    {{-- <div class="elements"> --}}
-                    {{-- <div class="ele-child"> --}}
-                    {{-- <a href="#" class="child-name">الطالب رقم1</a> --}}
-                    {{-- <span class="child-arrow"> --}}
-                    {{-- <i class="fa-solid fa-angle-down"></i></span> --}}
-                    {{-- </div> --}}
-                    {{-- <div class="grand-child"> --}}
-                    {{-- <a href="#" class="grand-child-name">ساقط مرتفع</a> --}}
-                    {{-- <a href="#" class="grand-child-name">مقبول</a> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- <div class="elements"> --}}
-                    {{-- <div class="ele-child"> --}}
-                    {{-- <a href="#" class="child-name">الطالب رقم 2</a> --}}
-                    {{-- <span class="child-arrow"> --}}
-                    {{-- <i class="fa-solid fa-angle-down"></i></span> --}}
-                    {{-- </div> --}}
-                    {{-- <div class="grand-child"> --}}
-                    {{-- <a href="#" class="grand-child-name">ساقط مرتفع</a> --}}
-                    {{-- <a href="#" class="grand-child-name">مقبول</a> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{--  --}}
-                    {{-- <div class="side-bar-item"> --}}
-                    {{-- <div class="box"> --}}
-                    {{-- <span class="box-icon"> --}}
-                    {{-- <i class="fa-solid fa-gauge-high"></i> --}}
-                    {{-- </span> --}}
-                    {{-- <span class="box-name"> كروت الشحن </span> --}}
-                    {{-- <span class="parent-arrow"> --}}
-                    {{-- <i class="fa-solid fa-angle-down"></i></span> --}}
-                    {{-- </div> --}}
-
-                    {{-- <div class="elements"> --}}
-                    {{-- <div class="ele-child"> --}}
-                    {{-- <a href="#" class="child-name">الطالب رقم1</a> --}}
-                    {{-- <span class="child-arrow"> --}}
-                    {{-- <i class="fa-solid fa-angle-down"></i></span> --}}
-                    {{-- </div> --}}
-                    {{-- <div class="grand-child"> --}}
-                    {{-- <a href="#" class="grand-child-name">ساقط مرتفع</a> --}}
-                    {{-- <a href="#" class="grand-child-name">مقبول</a> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- <div class="elements"> --}}
-                    {{-- <div class="ele-child"> --}}
-                    {{-- <a href="#" class="child-name">الطالب رقم 2</a> --}}
-                    {{-- <span class="child-arrow"> --}}
-                    {{-- <i class="fa-solid fa-angle-down"></i></span> --}}
-                    {{-- </div> --}}
-                    {{-- <div class="grand-child"> --}}
-                    {{-- <a href="#" class="grand-child-name">ساقط مرتفع</a> --}}
-                    {{-- <a href="#" class="grand-child-name">مقبول</a> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{--  --}}
                     <div class="side-bar-item">
                         <div class="box">
                             <span class="box-icon">
