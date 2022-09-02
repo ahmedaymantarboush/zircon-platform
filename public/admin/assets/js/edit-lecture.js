@@ -82,7 +82,7 @@ document
     .querySelector(".section-lesson-item")
     .addEventListener("click", async function (e) {
         console.log(e.target);
-        if (!e.target.classList.contains("editLesssonBtn")) return;
+        if (!e.target.closest(".editLesssonBtn")) return;
         if (e.target.closest(".section-lesson-item")) {
             console.log("yes");
         } else {
