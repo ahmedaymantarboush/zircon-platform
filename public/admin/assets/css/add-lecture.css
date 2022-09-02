@@ -616,6 +616,7 @@ textarea {
 	margin-top: 3rem;
 	box-shadow: var(--shadow);
 	border-radius: 1rem;
+	position: relative;
 	font-size: 1.8rem;
 }
 .modal-dialog {
@@ -899,4 +900,25 @@ textarea {
 }
 .modal .search-select .dropdown{
 	width: 100%	!important;
+}
+
+
+
+.someFeatures{
+	position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translate(0, -50%);
+    display: flex;
+    flex-direction: column;
+}
+.someFeatures button{
+	background: #fff;
+    border: 1px solid var(--font-dark);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
