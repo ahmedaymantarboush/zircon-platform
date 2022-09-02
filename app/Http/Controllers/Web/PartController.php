@@ -91,7 +91,11 @@ class PartController extends Controller
     public function update(UpdatePartRequest $request)
     {
         $data = json_decode($request->data,true);
-        $id = $data['id'];
+        if (isset($data['id'])):
+            $id = $data['id'];
+        else:
+            $id=0;
+        endif;
         $user = Auth::user();
         $part = Part::find($id);
         if ($user ? $user->role->number < 4 : false) {
