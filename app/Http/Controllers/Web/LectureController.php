@@ -56,7 +56,7 @@ class LectureController extends Controller
                     $lectures = $lectures->where($key, $value);
                 }
             }
-            return view("Admin.allLectures", ['lectures'=>$lectures]);
+            return view("Admin.lectures", ['lectures'=>$lectures]);
         else :
             return abort(404);
         endif;
