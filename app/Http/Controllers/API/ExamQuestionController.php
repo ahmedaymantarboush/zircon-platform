@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\ExamQuestion;
 use App\Models\Question;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -49,6 +50,11 @@ class ExamQuestionController extends Controller
 
         $exam = $examQuestion->exam;
         $exam->questions_count += 1;
+        foreach (Section::where('exam_id', $exam->id)->all() as $sectionItem) :
+            $lecture = $sectionItem->section->lecture;
+            $lecture->total_questions_count += 1;
+            $lecture->save();
+        endforeach;
         $exam->save();
 
         return apiResponse(true, _('تم اضافة السؤال بنجاح'), [
@@ -128,6 +134,11 @@ class ExamQuestionController extends Controller
         if ($examQuestion) :
             $exam =$examQuestion->exam;
             $exam->questions_count -= 1;
+            foreach (Section::where('exam_id', $exam->id)->all() as $sectionItem) :
+                $lecture = $sectionItem->section->lecture;
+                $lecture->total_questions_count -= 1;
+                $lecture->save();
+            endforeach;
             $exam->save();
             $examQuestion->delete();
         endif;
