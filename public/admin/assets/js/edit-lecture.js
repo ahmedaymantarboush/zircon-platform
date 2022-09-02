@@ -160,11 +160,13 @@ document
                     console.log(
                         document.querySelector(".description").innerHTML
                     );
+                    let optionId;
                     partOptions.forEach((ele) => {
                         if (ele.selected) {
-                            console.log(ele);
+                            optionId = ele.value;
                         }
                     });
+                    console.log(optionId);
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
                         id: dataId,
@@ -172,7 +174,7 @@ document
                         url: inputURL.value,
                         description:
                             document.querySelector(".description").innerHTML,
-                        part: "",
+                        part: optionId,
                     };
 
                     newform = new FormData();
