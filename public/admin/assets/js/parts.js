@@ -42,7 +42,7 @@ let partId = document.querySelector('#partId');
 let editFun = async function (url, myData, el = null) {
     try {
         let postData = await fetch(url, {
-            method: "POST",
+            method: "post",
             headers: {
                 Accept: "application/json",
                 "X-CSRF-TOKEN": window.csrf_token.value,
@@ -72,7 +72,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
 
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
-
+    debugger;
     let myResponse = await editFun(
         `${APP_URL}/api/parts/fastEdit/`,
         form,
