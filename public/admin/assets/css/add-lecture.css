@@ -910,7 +910,6 @@ textarea {
     left: 20px;
     transform: translate(0, -50%);
     display: flex;
-    flex-direction: column;
 }
 .someFeatures button{
 	background: #fff;
@@ -922,5 +921,11 @@ textarea {
     justify-content: center;
     align-items: center;
 	font-size:1.6rem;
-	margin:.2rem 0;
+	margin: 0 .2rem ;
+	transition:.3s all ease;
+}
+.someFeatures button:hover{
+	background:var(--main-color);
+	color:#fff;
+	border-color:#fff;
 }
