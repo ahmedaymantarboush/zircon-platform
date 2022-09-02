@@ -76,7 +76,7 @@ document.querySelector("table").addEventListener("click", async function (e) {
     form = new FormData();
     form.append("data", JSON.stringify(sendObj));
     let myResponse = await editFun(
-        `${APP_URL}/api/parts/fastEdit/`,
+        `${APP_URL}/api/parts/fastEdit`,
         form,
         e
     );
