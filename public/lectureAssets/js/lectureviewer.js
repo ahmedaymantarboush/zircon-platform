@@ -441,7 +441,7 @@ function getItem(data) {
             } else {
                 if (parseInt(data.data.item.percentage) < parseInt(data.data.item.minPercentage)) {
                     passExam += "<div class=\"col-12 d-flex justify-content-center\">\n" +
-                        "                                <p class=\"ex_red\">لم يتبق لك أي من المحاولات</p>\n" +
+                        "                                <p class=\"ex_red\"></p>\n" +
                         "                            </div>\n" +
                         "                            <div class=\"col-12 d-flex justify-content-center\">\n" +
                         "                                <a class=\"exam_btn startExam d-flex justify-content-center\" href=\"#\">عرض</a>\n" +
