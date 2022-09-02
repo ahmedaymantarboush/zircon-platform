@@ -78,8 +78,8 @@ document.querySelector("table").addEventListener("click", async function (e) {
         form,
         e
     );
-    let objData = myResponse.data;
-    console.log(objData)
+
+    console.log(myResponse)
     // let partName=document.querySelector('.partName')
     //
     // ///// third select
