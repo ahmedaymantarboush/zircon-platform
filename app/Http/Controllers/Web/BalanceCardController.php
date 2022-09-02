@@ -31,6 +31,9 @@ class BalanceCardController extends Controller
                 $cards = $cards->where('user_id', null)->where('hanging', 0);
             }
         }
+        if (isset($data['q'])) {
+            $cards = $cards->where('code', 'like', '%' . $data['q'] . '%');
+        }
         if ($user) :
             return view('Admin.allCards', ['cards' => $cards]);
         else :
