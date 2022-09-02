@@ -85,6 +85,13 @@ document
         if (!e.target.closest(".editLesssonBtn")) return;
         if (e.target.closest(".section-lesson-item").dataset.exam) {
             console.log("has Exam");
+            e.target
+                .closest(".section-lesson-item")
+                .removeChild(
+                    e.target
+                        .closest(".section-lesson-item")
+                        .querySelector(".editLesssonBtn")
+                );
         } else {
             let dataId = e.target.closest(".section-lesson-item").dataset.item;
             let sendObj = {
