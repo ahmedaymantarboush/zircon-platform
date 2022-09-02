@@ -157,10 +157,10 @@ document
                 .querySelector(".modifyLessonForm")
                 .addEventListener("submit", async function (event) {
                     event.preventDefault();
-                    var value = CKEDITOR.instances["lol"].getData();
+                    // var value = CKEDITOR.instances.editor1.getData();
                     console.log(
-                        document.querySelector(".description").innerHTML,
-                        value
+                        document.querySelector(".description").innerHTML
+                        // value
                     );
                     let optionId;
                     partOptions.forEach((ele) => {
