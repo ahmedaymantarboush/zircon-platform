@@ -122,5 +122,30 @@ document
             );
             let objData = myResponse.data;
             console.log(objData);
+            let sectionLessonOptions = document.querySelectorAll(
+                "#editLesson .sectionLessonParent option"
+            );
+            let sectionLessonInner = document.querySelector(
+                "#editLesson .sectionLessonParent .filter-option-inner-inner"
+            );
+            let partOptions = document.querySelectorAll(
+                "#editLesson .partParent option"
+            );
+            let partInner = document.querySelector(
+                "#editLesson .partParent .filter-option-inner-inner"
+            );
+            let description = document.querySelector(
+                "#editLesson .description"
+            );
+            let fillSelectFunction = function (options, selectInner, data) {
+                options.forEach((ele) => {
+                    if (ele.value == data) {
+                        ele.setAttribute("selected", "");
+                        selectInner.textContent = ele.textContent;
+                    } else {
+                        ele.removeAttribute("selected");
+                    }
+                });
+            };
         }
     });

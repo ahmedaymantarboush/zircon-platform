@@ -640,7 +640,7 @@
 
                                         <div class="less-item custome-item">
                                             <label class="sec-name">القسم</label>
-                                            <div class="search-select">
+                                            <div class="search-select sectionLessonParent" >
                                                 <select name="section" class="@error('section') is-invalid @enderror"
                                                     data-live-search="true">
                                                     <option value="">اختر القسم الذي يتبعه هذا الدرس</option>
@@ -659,7 +659,7 @@
                                         </div>
                                         <div class="less-item custome-item">
                                             <label class="sec-name">الجزئية الدراسية</label>
-                                            <div class="search-select">
+                                            <div class="search-select partParent">
                                                 <select name="lessonPart" class="@error('section') is-invalid @enderror"
                                                     data-live-search="true">
                                                     <option value="">اختر الجزئية الدراسية</option>
@@ -690,7 +690,7 @@
                                         </div>
                                         <div class="less-item">
                                             <label class="sec-name">وصف الدرس</label>
-                                            <textarea name="description" class="text-editor1 @error('description') is-invalid @enderror"></textarea>
+                                            <textarea name="description" class="description text-editor1 @error('description') is-invalid @enderror"></textarea>
                                             @error('description')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
