@@ -102,8 +102,6 @@ Route::post('questions/zircon/UpdateInExam',[DynamicQuestionController::class,'u
 Route::post('questions/zircon/deleteFromExam',[DynamicQuestionController::class,'destroy']);
 
 
-
-
 //       TESTIMONIAL ROUTES
 Route::post('testimonials/fastEdit',[TestimonialController::class,'fastEdit']);
 Route::post('testimonials/delete',[TestimonialController::class,'destroy'])->name('api.balancecards.delete');
@@ -114,8 +112,15 @@ Route::post('centers/delete',[CenterController::class,'destroy'])->name('api.cen
 
 //       SECTIONITEM ROUTES
 Route::post('items/getItem',[SectionItemController::class,'show']);
+Route::post('items/delete',[SectionItemController::class,'destroy'])->name('api.sectionitem.delete');
 
 //       BALANCECARD ROUTES
 Route::post('balancecards/hanging',[BalanceCardController::class,'hanging'])->name('api.balancecards.hanging');
 Route::post('balancecards/show',[BalanceCardController::class,'show'])->name('api.balancecards.show');
 Route::post('balancecards/delete',[BalanceCardController::class,'destroy'])->name('api.balancecards.delete');
+
+//       LESSON ROUTES
+Route::post('lessons/fastEdit',[LessonController::class,'fastEdit']);
+Route::post('lessons/update',[LessonController::class,'update']);
+Route::post('lessons/store',[LessonController::class,'store']);
+Route::post('lessons/delete',[LessonController::class,'destroy'])->name('api.lessons.delete');

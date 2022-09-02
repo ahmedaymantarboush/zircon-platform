@@ -56,7 +56,7 @@ class AnswerdQuestionController extends Controller
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
         $id = $data['id'] ?? 0;
-        $answerdQuestion = AnswerdQuestion::where(['id'=>$id,'user_id'=>$user->id])->first();
+        $answerdQuestion = AnswerdQuestion::where(['id'=>$id,'user_id'=>$user->id])->orderBy('chance','desc')->first();
         if (!$answerdQuestion) :
             return apiResponse(false, _('لم يتم العثور على السؤال'), [], 404);
         endif;
@@ -96,9 +96,9 @@ class AnswerdQuestionController extends Controller
         }
         $answerdQuestion->save();
 
-        $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId])->count();
+        $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId,'chance'=>$passedExam->chance])->count();
 
-        $passedExam->percentage = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId])->count()) * 100, 2);
+        $passedExam->percentage = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId,'chance'=>$passedExam->chance])->count()) * 100, 2);
         $passedExam->save();
 
 
