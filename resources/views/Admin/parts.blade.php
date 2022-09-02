@@ -172,7 +172,7 @@
 
                             <div class="input-parent">
                                 <input type="text" name='name' value="{{ old('name') }}"
-                                    class="my-input @error('name') is-invalid @enderror" placeholder=" ادخل اسم الجزئية الدراسية"
+                                    class="partName my-input @error('name') is-invalid @enderror" placeholder=" ادخل اسم الجزئية الدراسية"
                                     id="address-lec" />
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -183,7 +183,7 @@
                         </div>
                         <div class="less-item custome-item">
                             <label class="sec-name">المرحلة الدراسية</label>
-                            <div class="search-select modify-select">
+                            <div class="levelParent search-select modify-select">
                                 <select name='grade_id' id=""
                                     class="@error('grade_id') is-invalid @enderror" data-live-search="true">
                                     <option value="">اختر المرحلة الدراسية</option>
