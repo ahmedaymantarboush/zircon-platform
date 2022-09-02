@@ -1,3 +1,5 @@
+let partId = document.querySelector('#partId');
+
 let editFun = async function (url, myData, el = null) {
     try {
         let postData = await fetch(url, {
