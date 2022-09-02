@@ -64,7 +64,7 @@ class AnswerdQuestionController extends Controller
             return apiResponse(false, _('غير مصرح لهذا المسخدم تسجيل اجابة السؤال'), [], 403);
         endif;
         $examId = $answerdQuestion->exam_id;
-        $passedExam = $user->passedExams()->where(['exam_id'=>$examId])->orderBy('chance','decs')->first();
+        $passedExam = $user->passedExams()->where(['exam_id'=>$examId])->orderBy('chance','desc')->first();
         if (!$passedExam){
             return apiResponse(false, _('لم يتم العثور على الامتحان'), [], 404);
         }
