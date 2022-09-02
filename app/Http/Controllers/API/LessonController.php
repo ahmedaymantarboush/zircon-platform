@@ -247,7 +247,6 @@ class LessonController extends Controller
         $lecture = $section->lecture;
         $time = getDuration($data['url']);
 
-        $lesson = new Lesson();
         $lesson->title = $data['title'];
         $lesson->url = getEmbedVideoUrl($data['url']);
         $lecture->time -= $lesson->time;
