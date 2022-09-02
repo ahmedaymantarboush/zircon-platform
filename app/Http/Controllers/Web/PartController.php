@@ -111,6 +111,12 @@ class PartController extends Controller
      */
     public function destroy(Part $part)
     {
-        //
+        $user = Auth::user();
+        if ($user ? $user->role->number < 4 : false) {
+            $part->delete();
+            return redirect()->back();
+        }else{
+            return abort(403);
+        }
     }
 }

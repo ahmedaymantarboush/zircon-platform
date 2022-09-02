@@ -87,6 +87,7 @@ Route::group(['middleware' => 'not.hanging'], function () {
         Route::get('parts', [PartController::class, 'index'])->name('admin.parts.index');
         Route::get('parts/create', [PartController::class, 'store'])->name('admin.parts.store');
         Route::get('parts/update', [PartController::class, 'update'])->name('admin.parts.update');
+        Route::get('parts/delete', [PartController::class, 'destroy'])->name('admin.parts.delete');
     });
     Route::post('lectures/{slug}/buy', [LectureController::class, 'buy'])->middleware('auth')->name('admin.lectures.buy');
 
