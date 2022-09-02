@@ -96,9 +96,9 @@ class AnswerdQuestionController extends Controller
         }
         $answerdQuestion->save();
 
-        $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId,'chance',$passedExam->chance])->count();
+        $correctAnswers = $user->answerdQuestions()->where(['correct'=>1,'exam_id'=>$examId,'chance'=>$passedExam->chance])->count();
 
-        $passedExam->percentage = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId,'chance',$passedExam->chance])->count()) * 100, 2);
+        $passedExam->percentage = number_format(($correctAnswers / $user->answerdQuestions()->where(['exam_id'=>$examId,'chance'=>$passedExam->chance])->count()) * 100, 2);
         $passedExam->save();
 
 
