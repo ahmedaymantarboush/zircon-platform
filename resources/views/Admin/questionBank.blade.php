@@ -130,7 +130,7 @@
                                     <option value="">
                                         جميع المدرسين
                                     </option>
-                                    @foreach (\App\Models\User::where('role_num','<', 4) as $teacher)
+                                    @foreach (\App\Models\User::where('role_num','<', 4)->get() as $teacher)
                                         <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                                     @endforeach
                                 </select>
