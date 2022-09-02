@@ -623,7 +623,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form action="{{ route('admin.lesson.store') }}" method="POST">
+                                <form class='modifyLessonForm' action="{{ route('admin.lesson.store') }}" method="POST">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="less-item custome-item">
