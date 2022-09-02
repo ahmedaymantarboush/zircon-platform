@@ -71,6 +71,7 @@ let editFun = async function (url, myData, el = null) {
             return responseData;
         }
         if (postData.status == 404) {
+            console.log(responseData);
             return null;
         }
         // return null;
