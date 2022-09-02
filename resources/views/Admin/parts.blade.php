@@ -166,6 +166,7 @@
                 <form action="{{ route('admin.parts.update') }}" method="POST">
                     @csrf
                     <div class="modal-body">
+                        <input type="hidden" name="id" id="partId">
                         <div class="less-item custome-item">
                             <label class="sec-name">اسم الجزئية الدراسية</label>
 
