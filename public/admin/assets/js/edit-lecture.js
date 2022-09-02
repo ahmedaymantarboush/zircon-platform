@@ -78,7 +78,13 @@ let editFun = async function (url, myData, el = null) {
         console.log(responseData);
     } catch (err) {}
 };
-
+// remove edit from exam
+let allSections = document.querySelectorAll(".section-lesson-item");
+allSections.forEach((ele) => {
+    if (ele.dataset.exam) {
+        ele.target.querySelector(".editLesssonBtn").remove();
+    }
+});
 document
     .querySelector(".sections-items")
     .addEventListener("click", async function (e) {
