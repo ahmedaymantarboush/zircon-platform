@@ -152,5 +152,23 @@ document
                 });
                 description.ckeditorInstance.setData(objData.text);
             };
+
+            document
+                .querySelector(".modifyLessonForm")
+                .addEventListener("submit", async function () {
+                    let saveObjSend = {
+                        id: dataId,
+                    };
+
+                    form = new FormData();
+                    form.append("data", JSON.stringify(saveObjSend));
+
+                    let myResponse = await editFun(
+                        `${APP_URL}/api/lessons/update
+`,
+                        form,
+                        e
+                    );
+                });
         }
     });
