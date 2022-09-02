@@ -676,7 +676,7 @@
 @endsection
 @section('javascript')
     @php
-    $studentsNamber = (int) '2150';
+    $studentsNamber = (int) User::count();
     $studentsCapacity = ($studentsNamber / 10000) * 100;
 
     $enrolledStudents = (int) '200';
