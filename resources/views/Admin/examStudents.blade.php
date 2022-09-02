@@ -84,13 +84,13 @@
         </div>
         <div class="search-field">
             <div class="field search-select-box">
-                <span>اظهار</span>
+                {{-- <span>اظهار</span>
                 <select name="" id="" data-live-search="true">
                     <option value="">1</option>
                     <option value="">2</option>
                     <option value="">3333</option>
                 </select>
-                <span>من الحقول</span>
+                <span>من الحقول</span> --}}
             </div>
             <div class="filterSearchParent">
                 {{-- <div class="addLocation">
@@ -118,6 +118,7 @@
                     <th>المرحلة الدراسية</th>
                     <th>وقت الانتهاء</th>
                     <th>تاريخ البدأ</th>
+                    <th>الفرصة</th>
                     <th>النسبة</th>
                     <th>إجابة صحيحة</th>
                     <th>إجابة خاطئة</th>
@@ -171,6 +172,9 @@
                         </td>
                         <td data-lable="تاريخ البدأ :" class="students">
                             {{ date('H:i:s d/m/Y', strtotime($passedExam->ended_at)) }}
+                        </td>
+                        <td data-lable="الغرصة :" class="students">
+                            {{ $passedExam->chance }}
                         </td>
                         <td data-lable="النسبة :" class="views">
                             {{ $passedExam->percentage }}%
