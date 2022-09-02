@@ -153,14 +153,13 @@ document
                     }
                 });
             };
-            // description.ckeditorInstance.setData(objData.description);
+            description.ckeditorInstance.setData("s");
             fillSelectFunction(partOptions, partInner, objData.part.id);
             fillSelectFunction(
                 sectionLessonOptions,
                 sectionLessonInner,
                 objData.section
             );
-            // description.innerHTML = objData.description;
             document.querySelector(
                 "#editLesson > div > div > form > div.modal-body > div:nth-child(5) > div > div.ck.ck-editor__main > div"
             ).innerHTML = objData.description;
