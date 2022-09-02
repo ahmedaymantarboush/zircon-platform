@@ -40,11 +40,13 @@ class LessonController extends Controller
         return apiResponse(true, _('تم العثور على الدرس'), [
             'title' => $lesson->title,
             'shortDescription' => $lesson->short_description,
+            'description' => $lesson->description,
+            'type' => $lesson->type,
             'grade' => $lesson->grade_id,
             'part' => ['id'=>$lesson->part_id,'name'=>$lesson->part->name],
             'free' => $lesson->price == 0,
             'url' => $lesson->url,
-            'section' => $lesson->section->id,
+            'section' => SectionItem::where('lesson_id', $id)->first()->section->id,
         ]);
     }
 
