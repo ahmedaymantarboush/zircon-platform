@@ -85,7 +85,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="headerContents  " data-sal="slide-left"
+                        <div class="headerContents  " data-sal="slide-down"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1800"
