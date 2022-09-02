@@ -201,7 +201,11 @@ document
                         newform,
                         e
                     );
-                    console.log(myResponse);
+                    if (myResponse.success) {
+                        $("#editLesson").modal("hide");
+                        e.target.querySelector(".type-less-name").innerHTML =
+                            saveObjSend.title;
+                    }
                 });
         }
     });
