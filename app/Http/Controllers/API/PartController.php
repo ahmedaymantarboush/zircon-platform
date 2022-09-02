@@ -100,12 +100,14 @@ class PartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
+        $data = json_decode(request()->data, true);
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
+        $id = $data['id'];
         $part = Part::find($id);
         if (!$part) :
             return apiResponse(false, _('لم يتم العثور على الجزء'), [], 404);
@@ -113,8 +115,8 @@ class PartController extends Controller
         return apiResponse(true, _('تم العثور على الجزء'), [
             'id' => $part->id,
             'name' => $part->name,
-            'grade' => $part->grade->name,
-            'subject' => $part->subject->name,
+            'grade' => $part->grade->id,
+            'subject' => $part->subject->id,
         ]);
     }
 

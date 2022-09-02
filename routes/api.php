@@ -89,6 +89,7 @@ Route::post('checkCoupon',[CouponController::class,'checkCoupon']);
 
 //       PART ROUTES
 Route::post('parts',[PartController::class,'index']);
+Route::post('parts/fastEdit',[PartController::class,'show']);
 
 //       QUESTION ROUTES
 Route::post('questions',[QuestionController::class,'index']);
