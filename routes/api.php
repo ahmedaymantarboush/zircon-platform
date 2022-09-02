@@ -102,8 +102,6 @@ Route::post('questions/zircon/UpdateInExam',[DynamicQuestionController::class,'u
 Route::post('questions/zircon/deleteFromExam',[DynamicQuestionController::class,'destroy']);
 
 
-
-
 //       TESTIMONIAL ROUTES
 Route::post('testimonials/fastEdit',[TestimonialController::class,'fastEdit']);
 Route::post('testimonials/delete',[TestimonialController::class,'destroy'])->name('api.balancecards.delete');
