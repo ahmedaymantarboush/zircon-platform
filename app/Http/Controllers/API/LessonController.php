@@ -41,7 +41,7 @@ class LessonController extends Controller
             'title' => $lesson->title,
             'shortDescription' => $lesson->short_description,
             'grade' => $lesson->grade_id,
-            'part' => $lesson->part,
+            'part' => ['id'=>$lesson->part_id,'name'=>$lesson->part->name],
             'free' => $lesson->price == 0,
         ]);
     }
@@ -76,7 +76,7 @@ class LessonController extends Controller
             'section' => ['required', 'exists:sections,id'],
             'part' => ['required', 'exists:parts,id'],
         ], [
-            'title.required' => 'عنوان المحاضرة مطلوب',
+            'title.required' => 'عنوان الدرس مطلوب',
             'title.string' => 'يجب أن يكون العنوان عبارة عن نص',
             'title.max' => 'أكبر عدد من الحروف هو 50 حرف',
 
@@ -90,7 +90,7 @@ class LessonController extends Controller
             'semester.string' => 'يجب أن يكون الفصل الدراسي عبارة عن نص',
             'semester.in' => 'الرجاء إختيار فصل دراسي صحيح',
 
-            'description.required' => 'وصف المحاضرة مطلوب',
+            'description.required' => 'وصف الدرس مطلوب',
             'description.string' => 'يجب أن يكون الوصف عبارة عن نص',
 
             'section.required' => 'القسم التابع له الدرس مطلوب',
@@ -214,7 +214,7 @@ class LessonController extends Controller
             'section' => ['required', 'exists:sections,id'],
             'part' => ['required', 'exists:parts,id'],
         ], [
-            'title.required' => 'عنوان المحاضرة مطلوب',
+            'title.required' => 'عنوان الدرس مطلوب',
             'title.string' => 'يجب أن يكون العنوان عبارة عن نص',
             'title.max' => 'أكبر عدد من الحروف هو 50 حرف',
 
@@ -228,7 +228,7 @@ class LessonController extends Controller
             'semester.string' => 'يجب أن يكون الفصل الدراسي عبارة عن نص',
             'semester.in' => 'الرجاء إختيار فصل دراسي صحيح',
 
-            'description.required' => 'وصف المحاضرة مطلوب',
+            'description.required' => 'وصف الدرس مطلوب',
             'description.string' => 'يجب أن يكون الوصف عبارة عن نص',
 
             'section.required' => 'القسم التابع له الدرس مطلوب',
