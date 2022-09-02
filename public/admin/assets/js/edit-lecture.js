@@ -82,7 +82,7 @@ document
     .querySelector(".section-lesson-item")
     .addEventListener("click", async function (e) {
         if (!e.target.closest(".editLesssonBtn")) return;
-        if (e.target.closest(".section-lesson-item")["data-exam"]) {
+        if (e.target.closest(".section-lesson-item").dataset.exam) {
             console.log("has Exam");
         } else {
             console.log("no");
