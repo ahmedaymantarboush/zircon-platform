@@ -82,7 +82,7 @@ let editFun = async function (url, myData, el = null) {
 let allSections = document.querySelectorAll(".section-lesson-item");
 allSections.forEach((ele) => {
     if (ele.dataset.exam) {
-        ele.target.querySelector(".editLesssonBtn").remove();
+        ele.querySelector(".editLesssonBtn").remove();
     }
 });
 document
