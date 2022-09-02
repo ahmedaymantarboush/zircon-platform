@@ -145,7 +145,7 @@
                         <div class="search-select-box">
                             <select name="exam_hardness" id="" data-live-search="true">
                                 <option value="all">
-                                    ردجة الصعوبة
+                                    درجة الصعوبة
                                 </option>
                                 @for ($i = 1; $i <= 5; $i++)
                                     <option @selected(request()->exam_hardness == $i) value="{{ $i }}">{{ $i }}</option>
@@ -161,7 +161,7 @@
         </div>
         <div class="search-field">
             <div class="field search-select-box">
-                <span>اظهار</span>
+                {{-- <span>اظهار</span>
                 <select name="count" id="" data-live-search="true">
                     <option @selected(request()->count == 'all') value="all">الكل</option>
                     <option @selected(request()->count == '1') value="1">1</option>
@@ -169,7 +169,7 @@
                     <option @selected(request()->count == '50') value="50">50</option>
                     <option @selected(request()->count == '100') value="100">100</option>
                 </select>
-                <span>من الحقول</span>
+                <span>من الحقول</span> --}}
             </div>
             <div class="filter-search">
                 <label for="">بحث :</label>

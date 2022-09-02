@@ -85,7 +85,7 @@
                         </div>
                         <div class="elements">
                             <div class="ele-child">
-                                <a href="{{route('exams.create')}}" class="child-name">اضافة امتاحان</a>
+                                <a href="{{route('exams.create')}}" class="child-name">اضافة امتحان</a>
                             </div>
                         </div>
                         <div class="elements">
