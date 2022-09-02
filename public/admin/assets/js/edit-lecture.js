@@ -158,7 +158,7 @@ document
                 .addEventListener("submit", async function (event) {
                     event.preventDefault();
                     let saveObjSend = {
-                        id: lessAddress.value,
+                        title: lessAddress.value.trim(),
                     };
 
                     form = new FormData();
