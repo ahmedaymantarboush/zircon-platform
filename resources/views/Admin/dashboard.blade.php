@@ -690,18 +690,20 @@
     $enrolledStudents = (int) $currentMonthAttend;
     $absentStudents = (int) $studentsNamber - $currentMonthAttend;
 
-    $studentsLevel = [];
-    $centersName = [];
+    $studentsLevel = "";
+    $centersName = "";
+    $studentsCount = "";
+    $Encomme
 
     foreach (\App\Models\Center::all() as $index => $center) {
-        $answerdQuestion = \App\Models\AnswerdQuestion::whereHAs('user',function ($userQ) use($center){
+        $answerdQuestion = \App\Models\AnswerdQuestion::whereHas('user',function ($userQ) use($center){
             $userQ->where('center_id',$center->id);
         });
-        $centersName[] = $center->name;
-        $studentsLevel[] = $answerdQuestion->count() ? ($answerdQuestion->where('correct', 1)->count() / $answerdQuestion->count()) *max(\App\Models\Question::all()->pluck('level')->toArray()) : 0;
+        $centersName .= "'".$center->name."',";
+        $total = $answerdQuestion->count();
+        $studentsLevel .= ((string) number_format(($answerdQuestion->where('correct', 1)->count() / $total) * max(\App\Models\Question::all()->pluck('level')->toArray()),2)).",";
+        $studentsCount .= $center->users->count().",";
     }
-
-    dd($studentsLevel);
 
     @endphp
     <script>
@@ -767,9 +769,10 @@
         };
         //جدول العواميد
         var options3 = {
-            series: [{
+            series: [
+                {
                     name: "المستوى العام",
-                    data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
+                    data: [{{$studentsLevel}}],
                 },
                 {
                     name: "الدخل",
@@ -777,7 +780,7 @@
                 },
                 {
                     name: "عدد الطلاب",
-                    data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+                    data: [{{$studentsCount}}],
                 },
             ],
             chart: {
@@ -800,17 +803,7 @@
                 colors: ["transparent"],
             },
             xaxis: {
-                categories: [
-                    "الاوائل",
-                    "نوبل",
-                    "البطل",
-                    "السنيرو",
-                    "الاوائل",
-                    "نوبل",
-                    "البطل",
-                    "السنيرو",
-                    "الاوائل",
-                ],
+                categories: [@php echo $centersName; @endphp],
             },
             yaxis: {
                 title: {

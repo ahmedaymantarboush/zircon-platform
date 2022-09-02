@@ -19,7 +19,7 @@ class Center extends Model
         return $this->belongsTo(Governorate::class,'governorate_id');
     }
 
-    public function students(){
+    public function users(){
         return $this->hasMany(User::class);
     }
 }
