@@ -90,7 +90,8 @@ class PartController extends Controller
      */
     public function update(UpdatePartRequest $request)
     {
-        $data = json_decode($request->data,true);
+
+        $data = $request->all();
         if (isset($data['id'])):
             $id = $data['id'];
         else:
