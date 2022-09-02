@@ -71,8 +71,8 @@
         </div>
     </div>
     <div class="lectureTableParent">
-        <form action="" method="POST" class="lec-filter">
-            @csrf
+        <form action="" class="lec-filter">
+            <input type="hidden" name="hasFilter" value="true">
             <h3>لائحة الأسئلة</h3>
             <div class="custome-row">
                 <div class="row">
