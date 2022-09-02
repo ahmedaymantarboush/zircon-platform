@@ -24,7 +24,7 @@ class PartController extends Controller
             $parts = Part::all();
         }
 
-        return view('admin.parts', compact('parts'));
+        return view('Admin.parts', compact('parts'));
     }
 
     /**
