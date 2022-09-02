@@ -171,7 +171,7 @@ $(document).on('click', '.question_head', async function() {
             body: form3,
         })
         let resFlagData = await resFlag.json();
-        //console.log(resFlagData);
+        console.log(resFlagData);
     } else {
         $(this).find('i').attr('flag', 0);
         $(this).find('i').removeClass('flagQuestion');
@@ -197,7 +197,7 @@ $(document).on('click', '.question_head', async function() {
             body: form3,
         })
         let resFlagData = await resFlag.json();
-        //console.log(resFlagData);
+        console.log(resFlagData);
     }
 
 });
@@ -229,7 +229,7 @@ $(document).on('click', '.anserBox', async function() {
                     body: form4,
                 })
                 let addAnserData = await addAnser.json();
-                //console.log(addAnserData);
+                console.log(addAnserData);
                 let yesId = '#yesIcon_' + queNamber;
                 let yesIcon = document.querySelector(yesId);
                 yesIcon.classList.remove("hide_icon");
@@ -261,7 +261,7 @@ $(document).on('click', '.anserBox', async function() {
             body: form4,
         })
         let addAnserData = await addAnser.json();
-        //console.log(addAnserData);
+        console.log(addAnserData);
         yesIcon.classList.remove("hide_icon");
         yesIcon.classList.add("show_icon");
         $(this).find('input').prop('checked', true);
@@ -292,7 +292,7 @@ function getExam(exam_id) {
         if (xhttp.status == 200 && xhttp.readyState == 4) {
             getExamData = JSON.parse(this.responseText);
             examPassedID = getExamData.data.id;
-            //console.log(getExamData);
+            console.log(getExamData);
             getItem(getExamData);
         }
     }
@@ -346,7 +346,7 @@ function showTakeExam(data) {
                 '                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>\n' +
                 '                        </div>';
         } else {
-            //console.log(data);
+            console.log(data);
             if(parseInt(data.data.item.chancesCount - data.data.item.chance) > 0 && data.data.item.chance != null && data.data.item.chancesCount != null){
 
             take_exam += `<div class="col-12 d-flex justify-content-center" dir="rtl">
@@ -362,7 +362,7 @@ function showTakeExam(data) {
                     </div>
                     <div class="col-12 d-flex justify-content-center" dir="rtl">
                         <p class="ex_red" style="font-weight: 500;margin-top: 0;">تطبق لديك
-                         <span>${data.data.item.chance} </span>
+                         <span>${parseInt(data.data.item.chancesCount - data.data.item.chance)} </span>
                          من المحاولات
                          </p>
                     </div>
@@ -415,7 +415,7 @@ function getItem(data) {
             loadMediaPlayerJs();
         } else {
             examID = data.data.item.exam;
-            //console.log(examID);
+            console.log(examID);
             let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
                 "                    <div class=\"row\">\n" +
                 "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
@@ -511,7 +511,7 @@ $(document).on('click', '.startExam', function() {
     xhttp.onreadystatechange = function(e) {
         if (xhttp.status == 200 && xhttp.readyState == 4) {
             data = JSON.parse(this.responseText);
-            //console.log(data);
+            console.log(data);
             showTakeExam(data);
             if(data.data.type=='lesson'){
                 examID = data.data.item.exam;
@@ -553,7 +553,7 @@ $(document).on('click', '.takeExam', async function() {
     })
     let getExamVar = await getExam.json();
     examPassedID = getExamVar.data.id;
-    //console.log(getExamVar);
+    console.log(getExamVar);
 
     //Add Tabs
     for (let i = 1; i <= getExamVar.data.questions.length; i++) {
@@ -609,7 +609,7 @@ $(document).on('click', '.takeExam', async function() {
             body: form2,
         })
         let getQuestionVar = await getQuestion.json();
-        //console.log(getQuestionVar);
+        console.log(getQuestionVar);
         let flagclass = "unflagQuestion";
         let inputclass = "uncheckflag";
         if (parseInt(getQuestionVar.data.flagged)) {
@@ -739,7 +739,7 @@ $(document).on('click', '.finishBtn', async function() {
         body: form6,
     })
     let finishExamData = await finishExam.json();
-    //console.log(finishExamData);
+    console.log(finishExamData);
     $('.closeModelBtn').click();
     form7 = new FormData()
     form7.append('data', JSON.stringify({
@@ -754,7 +754,7 @@ $(document).on('click', '.finishBtn', async function() {
         body: form7,
     })
     let showExamData = await showExam.json();
-    //console.log(showExamData);
+    console.log(showExamData);
     showTakeExam(showExamData);
 });
 // show exam
@@ -773,7 +773,7 @@ $(document).on('click', '.showExam', async function() {
         body: form10,
     })
     let getExamVar = await getExamPassed.json();
-    //console.log(getExamVar);
+    console.log(getExamVar);
     //Add Tabs
     // Ajax Functions //
     examHTML = '<div class="exam-parent">\n' +
