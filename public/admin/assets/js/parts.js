@@ -62,9 +62,10 @@ let editFun = async function (url, myData, el = null) {
 };
 // calling
 document.querySelector("table").addEventListener("click", async function (e) {
-    debugger;
 
     if (!e.target.classList.contains("editCenter")) return;
+    debugger;
+
     let dataId = e.target.closest("tr").dataset.id;
     partId.value = dataId;
 
