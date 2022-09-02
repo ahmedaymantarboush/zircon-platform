@@ -38,6 +38,7 @@ class LectureController extends Controller
     {
         $user = Auth::user();
         $lectures = Lecture::orderBy('id', 'desc')->get();
+        $data = request()->all();
         if ($user ? $user->role->number < 4 : false) :
             if (isset($data['hasFilter'])) {
                 foreach ($data as $key => $value) {
