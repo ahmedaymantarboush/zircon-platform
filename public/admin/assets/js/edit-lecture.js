@@ -152,7 +152,7 @@ document
                         ele.removeAttribute("selected");
                     }
                 });
-                description.ckeditorInstance.setData(objData.description);
+                // description.ckeditorInstance.setData(objData.description);
             };
             fillSelectFunction(partOptions, partInner, objData.part.id);
             fillSelectFunction(
