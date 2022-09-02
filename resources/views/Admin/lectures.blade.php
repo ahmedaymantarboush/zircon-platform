@@ -78,7 +78,7 @@
                         <label for="">المرحلة الدراسية</label>
                         <div class="search-select-box">
                             <select name="grade_id" id="" data-live-search="true">
-                                <option value="">
+                                <option value="all">
                                     جميع المراحل الدراسية
                                 </option>
                                 @foreach (\App\Models\Grade::all() as $grade)
@@ -94,7 +94,7 @@
                         <label for="">المادة</label>
                         <div class="search-select-box">
                             <select name="subject_id" id="" data-live-search="true">
-                                <option value="">
+                                <option value="all">
                                     المادة
                                 </option>
                                 @foreach (\App\Models\Subject::all() as $subject)
@@ -108,7 +108,7 @@
                     <div class="filter-item">
                         <label for="">الجزئية الدراسية</label>
                         <div class="search-select-box">
-                            <select name="" id="" data-live-search="true">
+                            <select name="all" id="" data-live-search="true">
                                 <option value="">
                                     الجزئية الدراسية
                                 </option>
@@ -124,7 +124,7 @@
                         <label for="">المدرس</label>
                         <div class="search-select-box">
                             <select name="user_id" id="" data-live-search="true">
-                                <option value="">
+                                <option value="all">
                                     جميع المدرسين
                                 </option>
                                 @foreach (\App\Models\User::where('role_num','<', 4)->get() as $teacher)
