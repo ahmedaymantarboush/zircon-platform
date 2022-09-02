@@ -71,6 +71,7 @@ let editFun = async function (url, myData, el = null) {
             return responseData;
         }
         if (postData.status == 404) {
+            console.log(responseData);
             return null;
         }
         // return null;
@@ -79,7 +80,7 @@ let editFun = async function (url, myData, el = null) {
 };
 
 document
-    .querySelector(".section-lesson-item")
+    .querySelector(".sections-items")
     .addEventListener("click", async function (e) {
         if (!e.target.closest(".editLesssonBtn")) return;
         if (e.target.closest(".section-lesson-item").dataset.exam) {
@@ -87,6 +88,7 @@ document
         } else {
             console.log("no");
         }
+        let dataId = e.target.closest(".section-lesson-item").dataset.item;
         let sendObj = {
             id: dataId,
         };
@@ -94,6 +96,12 @@ document
         form = new FormData();
         form.append("data", JSON.stringify(sendObj));
 
-        let myResponse = await editFun(`${APP_URL}/api/users/getCode`, form, e);
+        let myResponse = await editFun(
+            `${APP_URL}/api/lessons/fastEdit
+`,
+            form,
+            e
+        );
         let objData = myResponse.data;
+        console.log(objData);
     });
