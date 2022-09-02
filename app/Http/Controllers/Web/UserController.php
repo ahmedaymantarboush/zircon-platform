@@ -34,8 +34,24 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $data = request()->all();
         if ($user ? $user->role->number < 4 : false) {
             $users = User::where('role_num', '>=', $user->role->number)->get();
+            if (isset($data['hasFilter'])) {
+                foreach ($data as $key => $value) {
+                    if ($key == 'hasFilter' || $key == 'page' || $key == 'count') {
+                        continue;
+                    }
+                    if ($value == 'all') {
+                        continue;
+                    }
+                    if ($key == 'q') {
+                        $users = $users->where('name', 'like', '%' . $value . '%')->orWhere('email', 'like', '%' . $value . '%')->orWhere('phone_number', 'like', '%' . $value . '%')->orWhere('code', 'like', '%' . $value . '%');
+                        continue;
+                    }
+                    $users = $users->where($key, $value);
+                }
+            }
             return view('Admin.students', compact('users'));
         } else {
             return abort(404);

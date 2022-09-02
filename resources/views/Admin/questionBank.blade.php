@@ -85,7 +85,7 @@
                                         جميع المراحل الدراسية
                                     </option>
                                     @foreach (\App\Models\Grade::all() as $grade)
-                                        <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                        <option @selected(request()->grade_id == $grade->id) value="{{ $grade->id }}">{{ $grade->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -101,7 +101,7 @@
                                         المادة
                                     </option>
                                     @foreach (\App\Models\Subject::all() as $subject)
-                                        <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                        <option @selected(request()->subject_id == $subject->id) value="{{ $subject->id }}">{{ $subject->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -116,7 +116,7 @@
                                         الجزئية الدراسية
                                     </option>
                                     @foreach (\App\Models\Part::all() as $part)
-                                        <option value="{{ $part->id }}">{{ $part->name }}</option>
+                                        <option @selected(request()->part_id == $part->id) value="{{ $part->id }}">{{ $part->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -131,7 +131,7 @@
                                         جميع المدرسين
                                     </option>
                                     @foreach (\App\Models\User::where('role_num','<', 4)->get() as $teacher)
-                                        <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                        <option @selected(request()->user_id == $teacher->id) value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -146,7 +146,7 @@
                                         ردجة الصعوبة
                                     </option>
                                     @for ($i = 1; $i <= 5; $i++)
-                                        <option value="{{ $i }}">{{ $i }}</option>
+                                        <option @selected(request()->level == $i) value="{{ $i }}">{{ $i }}</option>
                                     @endfor
                                 </select>
                             </div>
