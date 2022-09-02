@@ -923,4 +923,9 @@ textarea {
     align-items: center;
 	font-size:1.6rem;
 	margin:.2rem 0;
+	transition:.3s all ease;
+}
+.someFeatures button:hover{
+	background:var(--main-color);
+	color:#fff;
 }
