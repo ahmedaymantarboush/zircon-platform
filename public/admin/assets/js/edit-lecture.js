@@ -153,7 +153,7 @@ document
                     }
                 });
             };
-            description.ckeditorInstance.setData("s");
+            description.ckeditorInstance.setData(objData.description);
             fillSelectFunction(partOptions, partInner, objData.part.id);
             fillSelectFunction(
                 sectionLessonOptions,
