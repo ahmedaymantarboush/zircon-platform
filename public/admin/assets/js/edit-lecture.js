@@ -152,21 +152,22 @@ document
                         ele.removeAttribute("selected");
                     }
                 });
-                description.ckeditorInstance.setData(objData.description);
             };
+            description.ckeditorInstance.setData(objData.description);
             fillSelectFunction(partOptions, partInner, objData.part.id);
             fillSelectFunction(
                 sectionLessonOptions,
                 sectionLessonInner,
                 objData.section
             );
+            document.querySelector(
+                "#editLesson > div > div > form > div.modal-body > div:nth-child(5) > div > div.ck.ck-editor__main > div"
+            ).innerHTML = objData.description;
             document
                 .querySelector(".modifyLessonForm")
                 .addEventListener("submit", async function (event) {
                     event.preventDefault();
-                    console.log(
-                        document.querySelector(".description").innerHTML
-                    );
+
                     let optionId = 0;
                     let sectionId = 0;
                     partOptions.forEach((ele) => {
@@ -179,15 +180,14 @@ document
                             sectionId = ele.value;
                         }
                     });
-                    console.log(sectionId);
-                    console.log(optionId);
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
                         id: dataId,
                         type: "video",
                         url: inputURL.value.trim(),
-                        description:
-                            document.querySelector(".description").innerHTML,
+                        description: document.querySelector(
+                            "#editLesson > div > div > form > div.modal-body > div:nth-child(5) > div > div.ck.ck-editor__main > div"
+                        ).innerHTML,
                         part: optionId,
                         section: sectionId,
                     };
