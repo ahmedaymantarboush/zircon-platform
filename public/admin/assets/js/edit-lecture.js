@@ -153,7 +153,7 @@ document
                     }
                 });
             };
-            // description.ckeditorInstance.setData(objData.description);
+            description.ckeditorInstance.setData(objData.description);
             fillSelectFunction(partOptions, partInner, objData.part.id);
             fillSelectFunction(
                 sectionLessonOptions,
@@ -162,7 +162,7 @@ document
             );
             description.innerHTML = objData.description;
             document.querySelector(
-                "#editLesson > div > div > form > div.modal-body > div:nth-child(5) > div > div.ck.ck-editor__main > div"
+                "#editLesson ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred"
             ).innerHTML = objData.description;
             document
                 .querySelector(".modifyLessonForm")
