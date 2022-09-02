@@ -12,38 +12,71 @@
     </div>
 
     <form action="" class="lec-filter">
+        <input type="hidden" name="hasFilter" value="true">
         <h3>لائحة الطلاب</h3>
         <div class="custome-row">
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
-                        <label for="">المكان</label>
+                        <label for="">المرحلة الدراسية</label>
                         <div class="search-select-box">
-                            <select name="" id="" data-live-search="true">
+                            <select name="grade_id" id="" data-live-search="true">
                                 <option value="">
                                     جميع المراحل الدراسية
                                 </option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                                @foreach (\App\Models\Grade::all() as $grade)
+                                    <option @selected(request()->grade_id == $grade->id) value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-2 col-sm-6">
                     <div class="filter-item">
-                        <label for="">العام الدراسي</label>
+                        <label for="">المكان</label>
                         <div class="search-select-box">
-                            <select name="" id="" data-live-search="true">
+                            <select name="center_id" id="" data-live-search="true">
                                 <option value="">
-                                    المادة
+                                    جميع الأماكن
                                 </option>
-                                <option value="">2</option>
-                                <option value="">3</option>
+                                @foreach (\App\Models\Center::all() as $centers)
+                                    <option @selected(request()->center_id == $center->id) value="{{ $centers->id }}">{{ $centers->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
+                {{-- <div class="col-lg-2 col-sm-6">
+                    <div class="filter-item">
+                        <label for="">العام الدراسي</label>
+                        <div class="search-select-box">
+                            <select name="part_id" id="" data-live-search="true">
+                                <option value="">
+                                    جميع المراحل الدراسية
+                                </option>
+                                @foreach (\App\Models\Part::all() as $part)
+                                    <option value="{{ $part->id }}">{{ $part->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div> --}}
+                {{-- <div class="col-lg-2 col-sm-6">
+                    <div class="filter-item">
+                        <label for="">المستوي العام</label>
+                        <div class="search-select-box">
+                            <select name="grade_id" id="" data-live-search="true">
+                                <option value="">
+                                    جميع المراحل الدراسية
+                                </option>
+                                @foreach (\App\Models\Grade::all() as $grade)
+                                    <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div> --}}
             </div>
             <div class="filter-btn">
                 <input type="submit" class="filter-btn" value="فلترة" />
