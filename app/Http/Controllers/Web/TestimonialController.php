@@ -19,7 +19,12 @@ class TestimonialController extends Controller
     {
         $user = Auth::user();
         if ($user ? $user->role->number < 4 : false):
-            return view('Admin.testimonials', ['testimonials' => Testimonial::all()]);
+            if(request()->q):
+                $testimonials = Testimonial::where('name', 'LIKE', '%'.request()->q.'%')->get();
+            else:
+                $testimonials = Testimonial::all();
+            endif;
+            return view('Admin.testimonials', ['testimonials' => $testimonials]);
         else:
             return abort(404);
         endif;

@@ -80,7 +80,7 @@
     <form action="" class="lec-filter">
         <h3>لائحة الشهادات</h3>
         <div class="custome-row">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="filter-item">
                         <label for="">المرحلة الدراسية</label>
@@ -127,21 +127,21 @@
             </div>
             <div class="filter-btn">
                 <input type="submit" class="filter-btn" value="فلترة" />
-            </div>
+            </div> --}}
         </div>
         <div class="search-field">
             <div class="field search-select-box">
-                <span>اظهار</span>
+                {{-- <span>اظهار</span>
                 <select name="" id="" data-live-search="true">
                     <option value="">1</option>
                     <option value="">2</option>
                     <option value="">3333</option>
                 </select>
-                <span>من الحقول</span>
+                <span>من الحقول</span> --}}
             </div>
             <div class="filter-search">
                 <label for="">بحث :</label>
-                <input type="search" />
+                <input type="search" name="q" value="{{request()-q}}"/>
             </div>
         </div>
         <div class="lectures-table">

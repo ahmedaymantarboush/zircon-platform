@@ -33,7 +33,7 @@
                 </div>
                 <div class="filter-search">
                     <label for="">بحث :</label>
-                    <input type="search" />
+                    <input type="search" name="q" value="{{request()-q}}"/>
                 </div>
             </div>
         </div>

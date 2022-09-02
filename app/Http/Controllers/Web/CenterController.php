@@ -19,7 +19,11 @@ class CenterController extends Controller
     {
         $user = Auth::user();
         if ($user ? $user->role->number < 4 : false) {
-            $centers = Center::all();
+            if(request()->q):
+                $centers = Center::where('name', 'LIKE', '%'.request()->q.'%')->get();
+            else:
+                $centers = Center::all();
+            endif;
             return view('Admin.centers', compact('centers'));
         } else {
             return abort(404);

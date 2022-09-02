@@ -156,8 +156,8 @@
                 <input type="submit" class="filter-btn" value="فلترة" />
             </div>
         </div>
-        {{-- <div class="search-field">
-            <div class="field search-select-box">
+        <div class="search-field">
+            {{-- <div class="field search-select-box">
                 <span>اظهار</span>
                 <select name="count" id="" data-live-search="true">
                     <option @selected(request()->count == 'all') value="all">الكل</option>
@@ -167,12 +167,12 @@
                     <option @selected(request()->count == '100') value="100">100</option>
                 </select>
                 <span>من الحقول</span>
-            </div>
+            </div> --}}
             <div class="filter-search">
                 <label for="">بحث :</label>
                 <input type="search" name="q" value="{{request()->q}}"/>
             </div>
-        </div> --}}
+        </div>
     </form>
     <div class="lectures-table">
         <table class="">
