@@ -1,15 +1,25 @@
 // have exam check
-let haveExamCheck = document.getElementById("have-exam-check");
-let haveExamBox = document.querySelector(".have-exam");
-let checking = function () {
-	if (haveExamCheck.checked) {
-		haveExamBox.style.display = "block";
+let haveExamCheck = document.getElementById("#add-less have-exam-check");
+let haveExamBox = document.querySelector("#add-less .have-exam");
+let editHaveExamCheck = document.getElementById("#editLesson have-exam-check");
+let editHaveExamBox = document.querySelector("#editLesson .have-exam");
+let checking = function (inp,box) {
+	if (inp.checked) {
+		box.style.display = "block";
 	} else {
-		haveExamBox.style.display = "none";
+		box.style.display = "none";
 	}
 };
-checking();
-haveExamCheck.addEventListener("click", checking);
+checking(haveExamCheck,haveExamBox);
+haveExamCheck.addEventListener("click", function(){
+    
+    checking(haveExamCheck,haveExamBox);
+});
+checking(editHaveExamCheck,editHaveExamBox);
+editHaveExamCheck.addEventListener("click", function(){
+    
+    checking(editHaveExamCheck,editHaveExamBox);
+});
 
 ////////
 ////
