@@ -186,7 +186,7 @@
             <section class='levelsBox'>
                 <div class="row">
                     @foreach ($lectures->paginate(6) as $lecture)
-                    <div class="col-xl-4 col-md-6 levelItemParent " data-sal="slide-down"
+                    <div class="col-xl-4 col-md-6 levelItemParent " data-sal="fade"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1800">
