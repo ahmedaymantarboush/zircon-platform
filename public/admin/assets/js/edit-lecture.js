@@ -185,7 +185,9 @@ document
                         id: dataId,
                         type: "video",
                         url: inputURL.value.trim(),
-                        description: "as",
+                        description: document.querySelector(
+                            "#editLesson > div > div > form > div.modal-body > div:nth-child(5) > div > div.ck.ck-editor__main > div"
+                        ).innerHTML,
                         part: optionId,
                         section: sectionId,
                     };
