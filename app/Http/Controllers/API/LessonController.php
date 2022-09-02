@@ -43,6 +43,8 @@ class LessonController extends Controller
             'grade' => $lesson->grade_id,
             'part' => ['id'=>$lesson->part_id,'name'=>$lesson->part->name],
             'free' => $lesson->price == 0,
+            'url' => $lesson->url,
+            'section' => $lesson->section->id,
         ]);
     }
 
