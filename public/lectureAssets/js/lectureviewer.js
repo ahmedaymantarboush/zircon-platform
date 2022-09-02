@@ -330,7 +330,7 @@ function showTakeExam(data) {
         //if exam finished
         let student_perc = (data.data.item.correctAnswers / data.data.item.questionsCount) * 100;
         student_perc = student_perc.toFixed(2);
-        if (student_perc > 50) {
+        if (student_perc >= 50) {
             take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
                 '                            <p class="ex_green">\n' +
                 '                                <span>' + data.data.item.correctAnswers + '</span>\n' +
@@ -439,7 +439,7 @@ function getItem(data) {
                     '                            </div>';
                 mainDiv.innerHTML = passExam;
             } else {
-                if (parseInt(data.data.item.percentage) < parseInt(data.data.item.minPercentage)) {
+                if (parseInt(data.data.item.percentage) <= parseInt(data.data.item.minPercentage)) {
                     passExam += "<div class=\"col-12 d-flex justify-content-center\">\n" +
                         "                                <p class=\"ex_red\"></p>\n" +
                         "                            </div>\n" +
