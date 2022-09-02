@@ -122,6 +122,9 @@ document
             );
             let objData = myResponse.data;
             console.log(objData);
+            let lessAddress = document.querySelector(
+                "#editLesson .lessAddress"
+            );
             let sectionLessonOptions = document.querySelectorAll(
                 "#editLesson .sectionLessonParent option"
             );
@@ -137,6 +140,7 @@ document
             let description = document.querySelector(
                 "#editLesson .ck-editor__editable"
             );
+            lessAddress.value = objData.title;
             let fillSelectFunction = function (options, selectInner, data) {
                 options.forEach((ele) => {
                     if (ele.value == data) {
@@ -147,8 +151,6 @@ document
                     }
                 });
                 description.ckeditorInstance.setData(objData.text);
-
             };
-
         }
     });
