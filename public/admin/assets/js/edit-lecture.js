@@ -201,7 +201,13 @@ document
                         newform,
                         e
                     );
-                    console.log(myResponse);
+                    if (myResponse.success) {
+                        $("#editLesson").modal("hide");
+                        e.target
+                            .closest(".section-lesson-item")
+                            .querySelector(".type-less-name").innerHTML =
+                            saveObjSend.title;
+                    }
                 });
         }
     });
