@@ -439,7 +439,7 @@ function getItem(data) {
                     '                            </div>';
                 mainDiv.innerHTML = passExam;
             } else {
-                if (parseInt(data.data.item.percentage) < parseInt(data.data.item.minPercentage)) {
+                if (parseInt(data.data.item.percentage) <= parseInt(data.data.item.minPercentage)) {
                     passExam += "<div class=\"col-12 d-flex justify-content-center\">\n" +
                         "                                <p class=\"ex_red\"></p>\n" +
                         "                            </div>\n" +
