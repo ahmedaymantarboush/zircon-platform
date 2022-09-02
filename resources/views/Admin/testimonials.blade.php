@@ -144,104 +144,104 @@
                 <input type="search" />
             </div>
         </div>
-    </form>
-    <div class="lectures-table">
-        <table class="">
-            <thead>
-                <tr>
-                    <th>
-                        #
-                        <i class="fa-solid fa-sort"></i>
-                    </th>
-                    <th>الصورة</th>
-                    <th>الاسم</th>
-                    <th>المرحلة الدراسية</th>
-                    <th>المجموع</th>
-                    {{-- <th>المادة</th> --}}
-                    <th>مجموع المادة</th>
-                    <th>التاريخ</th>
-                    <th>المحتوي</th>
+        <div class="lectures-table">
+            <table class="">
+                <thead>
+                    <tr>
+                        <th>
+                            #
+                            <i class="fa-solid fa-sort"></i>
+                        </th>
+                        <th>الصورة</th>
+                        <th>الاسم</th>
+                        <th>المرحلة الدراسية</th>
+                        <th>المجموع</th>
+                        {{-- <th>المادة</th> --}}
+                        <th>مجموع المادة</th>
+                        <th>التاريخ</th>
+                        <th>المحتوي</th>
 
-                    <th class="features">اجراءات</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($testimonials as $key => $testimonial)
-                    @php
-                        $i = $key + 1;
-                    @endphp
-                    <tr data-id="{{ $testimonial->id }}">
-                        <td class="number">
-                            {{ $i }}
-                            <button class="open-tr" type="button">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </td>
-                        <td class="imageLocation" data-lable="الصورة :">
-                            <div class="imageBox">
-                                <img src="{{ $testimonial->image }}" alt="" />
-                            </div>
-                        </td>
-                        <td data-lable="الاسم :" class="address">
-                            <div class="custome-parent">
-                                <button type="button" class="btn name-lesson" data-toggle="tooltip"
-                                    data-placement="top" title="{{ $testimonial->student_name }}">
-                                    {{ $testimonial->student_name }}
-                                </button>
-                                <div class="name-teacher">
-                                    <span class="job-teacher">:المدرس</span>
-                                    <span>{{ $testimonial->teacher->nam }}</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td data-lable="المرحلة الدراسية :" class="table-level-parent">
-                            <span class="table-level">{{ $testimonial->grade->name }}</span>
-                        </td>
-                        <td data-lable="المجموع :">{{ $testimonial->degree }}</td>
-
-                        {{-- <td data-lable="المادة :">
-                            {{$testimonial->subject->name}}
-                </td> --}}
-                        <td data-lable="مجموع المادة :">
-                            {{ $testimonial->subject_degree }}
-                        </td>
-                        <td data-lable="التاريخ :">
-                            {{ date('d/m/Y', strtotime($testimonial->created_at)) }}
-                            {{-- 22/7/2022 --}}
-                        </td>
-                        <td data-lable="المحتوى :" class="address">
-                            <div class="custome-parent">
-                                <button type="button" class="btn name-lesson" data-toggle="tooltip"
-                                    data-placement="top" title="{{ $testimonial->content }}">
-                                    {{ $testimonial->content }}
-                                </button>
-                            </div>
-                        </td>
-                        <td class="features" data-lable="اجراءات :">
-                            <div class="btn-group">
-                                <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </button>
-
-                                <ul class="dropdown-menu feat-menu">
-                                    <li>
-                                        <a data-bs-toggle="modal" data-bs-target="#editCertificateModal"
-                                            class="dropdown-item editTesti" href="#">تعديل الشهادة
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="dropdown-item delTesti" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#delete-certificate">مسح الشهادة</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
+                        <th class="features">اجراءات</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    @foreach ($testimonials as $key => $testimonial)
+                        @php
+                            $i = $key + 1;
+                        @endphp
+                        <tr data-id="{{ $testimonial->id }}">
+                            <td class="number">
+                                {{ $i }}
+                                <button class="open-tr" type="button">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </td>
+                            <td class="imageLocation" data-lable="الصورة :">
+                                <div class="imageBox">
+                                    <img src="{{ $testimonial->image }}" alt="" />
+                                </div>
+                            </td>
+                            <td data-lable="الاسم :" class="address">
+                                <div class="custome-parent">
+                                    <button type="button" class="btn name-lesson" data-toggle="tooltip"
+                                        data-placement="top" title="{{ $testimonial->student_name }}">
+                                        {{ $testimonial->student_name }}
+                                    </button>
+                                    <div class="name-teacher">
+                                        <span class="job-teacher">:المدرس</span>
+                                        <span>{{ $testimonial->teacher->nam }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-lable="المرحلة الدراسية :" class="table-level-parent">
+                                <span class="table-level">{{ $testimonial->grade->name }}</span>
+                            </td>
+                            <td data-lable="المجموع :">{{ $testimonial->degree }}</td>
+
+                            {{-- <td data-lable="المادة :">
+                                {{$testimonial->subject->name}}
+                    </td> --}}
+                            <td data-lable="مجموع المادة :">
+                                {{ $testimonial->subject_degree }}
+                            </td>
+                            <td data-lable="التاريخ :">
+                                {{ date('d/m/Y', strtotime($testimonial->created_at)) }}
+                                {{-- 22/7/2022 --}}
+                            </td>
+                            <td data-lable="المحتوى :" class="address">
+                                <div class="custome-parent">
+                                    <button type="button" class="btn name-lesson" data-toggle="tooltip"
+                                        data-placement="top" title="{{ $testimonial->content }}">
+                                        {{ $testimonial->content }}
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="features" data-lable="اجراءات :">
+                                <div class="btn-group">
+                                    <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+
+                                    <ul class="dropdown-menu feat-menu">
+                                        <li>
+                                            <a data-bs-toggle="modal" data-bs-target="#editCertificateModal"
+                                                class="dropdown-item editTesti" href="#">تعديل الشهادة
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="dropdown-item delTesti" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#delete-certificate">مسح الشهادة</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </form>
 
     <div class="modal fade" id="addCertificateModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">

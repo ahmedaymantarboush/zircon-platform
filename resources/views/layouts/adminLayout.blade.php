@@ -44,6 +44,16 @@
                                 <a href="{{route('admin.users.create')}}" class="child-name">إضافة طالب</a>
                             </div>
                         </div>
+                        <div class="elements">
+                            <div class="ele-child">
+                                <a href="{{route('admin.testimonials.index')}}" class="child-name">الآراء</a>
+                            </div>
+                        </div>
+                        <div class="elements">
+                            <div class="ele-child">
+                                <a href="{{route('admin.centers.index')}}" class="child-name">الأماكن</a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="side-bar-item">
