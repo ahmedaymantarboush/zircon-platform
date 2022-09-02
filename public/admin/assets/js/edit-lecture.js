@@ -175,6 +175,7 @@ document
                         description:
                             document.querySelector(".description").innerHTML,
                         part: optionId,
+                        section: 2,
                     };
 
                     newform = new FormData();
