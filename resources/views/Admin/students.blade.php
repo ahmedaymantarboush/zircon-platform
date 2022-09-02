@@ -91,7 +91,7 @@
                                         جميع المراحل الدراسية
                                     </option>
                                     @foreach (\App\Models\Grade::all() as $grade)
-                                        <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                        <option @selected(request()->grade_id == $grade->id) value="{{ $grade->id }}">{{ $grade->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -107,13 +107,13 @@
                                         جميع الأماكن
                                     </option>
                                     @foreach (\App\Models\Center::all() as $centers)
-                                        <option value="{{ $centers->id }}">{{ $centers->name }}</option>
+                                        <option @selected(request()->center_id == $center->id) value="{{ $centers->id }}">{{ $centers->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-sm-6">
+                    {{-- <div class="col-lg-2 col-sm-6">
                         <div class="filter-item">
                             <label for="">العام الدراسي</label>
                             <div class="search-select-box">
@@ -127,7 +127,7 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- <div class="col-lg-2 col-sm-6">
                         <div class="filter-item">
                             <label for="">المستوي العام</label>
