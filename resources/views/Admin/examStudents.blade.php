@@ -81,7 +81,7 @@
             <div class="filter-btn">
                 <input type="submit" class="filter-btn" value="فلترة" />
             </div>
-        </div> --}} 
+        </div> --}}
         <div class="search-field">
             <div class="field search-select-box">
                 {{-- <span>اظهار</span>
@@ -101,7 +101,7 @@
                 </div> --}}
                 <div class="filter-search">
                     <label for="">بحث :</label>
-                    <input type="search" />
+                    <input type="search" name="q" />
                 </div>
             </div>
         </div>

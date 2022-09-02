@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\PassedExam;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ExamController extends Controller
@@ -107,21 +108,12 @@ class ExamController extends Controller
         $passedExams = $exam ? $exam->passedExams : null;
         $data = request()->all();
         if ($passedExams && $user ? $exam->publisher->id == $user->id : false):
-            // if (isset($data['hasFilter'])) {
-            //     foreach ($data as $key => $value) {
-            //         if ($key == 'hasFilter' || $key == 'page' || $key == 'count') {
-            //             continue;
-            //         }
-            //         if ($value == 'all') {
-            //             continue;
-            //         }
-            //         if ($key == 'q') {
-            //             $users = $users->where('name', 'like', '%' . $value . '%')->orWhere('email', 'like', '%' . $value . '%')->orWhere('phone_number', 'like', '%' . $value . '%')->orWhere('code', 'like', '%' . $value . '%');
-            //             continue;
-            //         }
-            //         $users = $users->where($key, $value);
-            //     }
-            // }
+            if (isset($data['q'])):
+                $q = $data['q'];
+                $passedExams = $passedExams::whereHas('user', function ($user) use ($q) {
+                    $user->where('name', 'like', '%' . $q . '%')->orWhere('email', 'like', '%' . $q . '%')->orWhere('phone_number', 'like', '%' . $q . '%')->orWhere('code', 'like', '%' . $q . '%');
+                });
+            endif;
             return view('Admin.examStudents', ['exam'=>$exam,'passedExams' => $passedExams]);
         else:
             return abort(404);
