@@ -676,10 +676,10 @@
 @endsection --}}
 @section('javascript')
     @php
-    $studentsNamber = (int) User::count();
+    $studentsNamber = \App\Models\User::all()->count();
     $studentsCapacity = ($studentsNamber / 10000) * 100;
 
-    
+
     $currentMonth = date('Y-m', strtotime(now()));
     $currentMonthAttend = \App\Models\UserLesson::where('user_id', '!=', null)
         ->where('created_at', 'LIKE', "%$currentMonth%")
