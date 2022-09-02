@@ -690,8 +690,8 @@
     $enrolledStudents = (int) $currentMonthAttend;
     $absentStudents = (int) $studentsNamber - $currentMonthAttend;
 
-    $studentsLevel = []
-    $centersName = []
+    $studentsLevel = [];
+    $centersName = [];
 
     foreach (\App\Models\Center::all() as $index => $center) {
         $answerdQuestion = \App\Models\AnswerdQuestion::whereHAs('user',function ($userQ){
