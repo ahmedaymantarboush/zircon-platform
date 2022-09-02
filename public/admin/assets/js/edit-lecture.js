@@ -203,7 +203,9 @@ document
                     );
                     if (myResponse.success) {
                         $("#editLesson").modal("hide");
-                        e.target.querySelector(".type-less-name").innerHTML =
+                        e.target
+                            .closest(".section-lesson-item")
+                            .querySelector(".type-less-name").innerHTML =
                             saveObjSend.title;
                     }
                 });
