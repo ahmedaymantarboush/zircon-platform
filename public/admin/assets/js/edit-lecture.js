@@ -160,9 +160,10 @@ document
                 sectionLessonInner,
                 objData.section
             );
-            description.innerHTML = objData.description;
-            document.querySelector("#editLesson .ck-content").innerHTML =
-                objData.description;
+            // description.innerHTML = objData.description;
+            document.querySelector(
+                "#editLesson > div > div > form > div.modal-body > div:nth-child(5) > div > div.ck.ck-editor__main > div"
+            ).innerHTML = objData.description;
             document
                 .querySelector(".modifyLessonForm")
                 .addEventListener("submit", async function (event) {
