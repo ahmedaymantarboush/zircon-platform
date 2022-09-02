@@ -444,7 +444,7 @@ function getItem(data) {
                         "                                <p class=\"ex_red\">لم يتبق لك أي من المحاولات</p>\n" +
                         "                            </div>\n" +
                         "                            <div class=\"col-12 d-flex justify-content-center\">\n" +
-                        "                                <a class=\"exam_btn showExam d-flex justify-content-center\" href=\"#\">عرض</a>\n" +
+                        "                                <a class=\"exam_btn startExam d-flex justify-content-center\" href=\"#\">عرض</a>\n" +
                         "                            </div>";
                     mainDiv.innerHTML = passExam;
                 } else {
@@ -478,7 +478,6 @@ function getItem(data) {
     }
 }
 $(document).on('click', '.lesson_name', function() {
-    itemID = parseInt($(this).attr('id'));
     itemID = parseInt($(this).attr('id'));
     form = new FormData()
     form.append('data', JSON.stringify({
