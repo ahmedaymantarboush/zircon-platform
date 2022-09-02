@@ -179,6 +179,7 @@ document
                             sectionId = ele.value;
                         }
                     });
+                    console(sectionId);
                     console.log(optionId);
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
