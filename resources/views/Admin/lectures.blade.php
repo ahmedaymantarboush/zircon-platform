@@ -82,7 +82,7 @@
                                     جميع المراحل الدراسية
                                 </option>
                                 @foreach (\App\Models\Grade::all() as $grade)
-                                    <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                    <option @selected(request()->grade_id == $grade->id) value="{{ $grade->id }}">{{ $grade->name }}</option>
                                 @endforeach
                             </select>
                         </div>
