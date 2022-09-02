@@ -87,6 +87,7 @@ document
         } else {
             console.log("no");
         }
+        let dataId = e.target.closest(".section-lesson-item").dataset.item;
         let sendObj = {
             id: dataId,
         };
@@ -96,4 +97,5 @@ document
 
         let myResponse = await editFun(`${APP_URL}/api/users/getCode`, form, e);
         let objData = myResponse.data;
+        console.log(objData);
     });
