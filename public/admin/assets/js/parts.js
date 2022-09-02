@@ -81,22 +81,32 @@ document.querySelector("table").addEventListener("click", async function (e) {
         e
     );
 
-    console.log(myResponse)
-    // let partName=document.querySelector('.partName')
-    //
-    // ///// third select
-    // let selectLevelInner = document.querySelector(
-    //     ".levelParent .filter-option-inner-inner"
-    // );
-    // let selectLevelOptions = document.querySelectorAll(
-    //     ".levelParent option"
-    // );
-    //
-    //
+    let objData = myResponse.data;
+    let partName=document.querySelector('.partName')
+
+    ///// third select
+    let selectLevelInner = document.querySelector(
+        ".levelParent .filter-option-inner-inner"
+    );
+    let selectLevelOptions = document.querySelectorAll(
+        ".levelParent option"
+    );
+    partName.value = objData.name;
+    let fillSelectFunction = function (options, selectInner, data) {
+        options.forEach((ele) => {
+            if (ele.value == data) {
+                ele.setAttribute("selected", "");
+                selectInner.textContent = ele.textContent;
+            } else {
+                ele.removeAttribute("selected");
+            }
+        });
+    };
+
     // ////////////////////
     // //// fill data/////
     // //////////////////
-    // fillSelectFunction(selectLevelOptions, selectLevelInner, objData.part);
+    fillSelectFunction(selectLevelOptions, selectLevelInner, objData.grade);
 
 
 
