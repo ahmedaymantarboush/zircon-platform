@@ -160,7 +160,9 @@ document
                     console.log(
                         document.querySelector(".description").innerHTML
                     );
-                    console.log(partOptions);
+                    partOptions.forEach((ele) => {
+                        console.log(ele);
+                    });
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
                         id: dataId,
