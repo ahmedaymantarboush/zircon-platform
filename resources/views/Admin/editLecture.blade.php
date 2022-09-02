@@ -618,7 +618,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">
-                                        تعديل درس
+                                        تعديل الدرس
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
@@ -629,7 +629,7 @@
                                         <div class="less-item custome-item">
                                             <label class="sec-name">عنوان الدرس</label>
                                             <input type="text" name="lessonTitle"
-                                                class="my-input @error('lessonTitle') is-invalid @enderror"
+                                                class="lessAddress my-input @error('lessonTitle') is-invalid @enderror"
                                                 placeholder=" ادخل عنوان الدرس" />
                                             @error('lessonTitle')
                                                 <span class="invalid-feedback" role="alert">

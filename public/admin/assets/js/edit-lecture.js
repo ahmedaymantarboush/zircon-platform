@@ -105,7 +105,8 @@ document
             //             .querySelector(".editLesssonBtn")
             //     );
         } else {
-            let dataId = e.target.closest(".section-lesson-item").dataset.item;
+            let dataId = e.target.closest(".section-lesson-item").dataset
+                .lesson;
             let sendObj = {
                 id: dataId,
             };
