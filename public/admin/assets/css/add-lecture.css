@@ -897,3 +897,6 @@ textarea {
 .visits-content .percent {
 	font-size: 1.6rem !important;
 }
+.modal .search-select .dropdown{
+	width: 100%;
+}
