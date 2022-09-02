@@ -548,7 +548,7 @@
                         <div class="section-item-body">
                             @foreach (\App\Models\SectionItem::where('section_id', $section->id)->orderBy('order')->get() as $sectionItem)
                                 @if ($sectionItem->item)
-                                    <div class="section-lesson-item">
+                                    <div class="section-lesson-item" data-lesson="{{$sectionItem->lesson_id}}" data-exam="{{$sectionItem->exam_id}}" data-item="{{$sectionItem->id}}" >
                                         <span class="type-less-icon">
                                             <i
                                                 class="fa-solid fa-file-{{ $sectionItem->lesson_id ? $sectionItem->item->type : 'pen' }}"></i></span>
