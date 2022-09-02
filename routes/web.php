@@ -43,7 +43,7 @@ Route::group(['middleware' => 'not.hanging'], function () {
 
     //  ADMIN ROUTES
     Route::get('dashboard', [HomeController::class, 'admin'])->name('admin.index')->middleware('admin');
-    Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
+    Route::group(['middleware' => ['auth', 'teacher'], 'prefix' => 'admin'], function () {
         Route::resource('lectures', LectureController::class)->except(['show'])->names(['store' => 'admin.lectures.store', 'update' => 'admin.lectures.update']);
         Route::resource('lessons', LessonController::class)->except(['index'])->names(['store' => 'admin.lesson.store', 'update' => 'admin.lesson.update', 'show' => 'admin.lesson.show']);
         Route::resource('sections', SectionController::class)->except(['show']);
