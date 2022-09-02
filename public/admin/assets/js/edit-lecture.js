@@ -159,7 +159,7 @@ document
                     event.preventDefault();
                     var value = CKEDITOR.instances.editor1.getData();
                     console.log(
-                        document.querySelector(".description").innerHTML
+                        document.querySelector(".description").innerHTML,
                         value
                     );
                     let optionId;
