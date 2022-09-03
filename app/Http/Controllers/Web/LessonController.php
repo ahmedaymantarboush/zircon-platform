@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateLessonRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Section;
 use App\Models\SectionItem;
+use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
@@ -40,40 +41,46 @@ class LessonController extends Controller
     public function store(StoreLessonRequest $request)
     {
         $data = $request->all();
+        $user = Auth::user();
+        if ($user ? $user->role->number >= 4 : true) {
 
-        $section = Section::findOrFail($data['section']);
-        $lecture = $section->lecture;
-        $time = getDuration($data['url']);
+            $section = Section::findOrFail($data['section']);
+            $lecture = $section->lecture;
+            $time = getDuration($data['url']);
 
-        $lesson = new Lesson();
-        $lesson->title = $data['lessonTitle'];
-        $lesson->url = getEmbedVideoUrl($data['url']);
-        $lesson->time = $time;
-        $lecture->time += $time;
-        $lesson->grade_id=  $lecture->grade->id;
-        $lesson->type = 'video';
-        $lesson->semester = $lecture->semester;
-        $lesson->subject_id= $lecture->subject->id;
-        $lesson->lecture_id = $lecture->id;
-        $lesson->part_id = $data['lessonPart'];
-        $lesson->description = $data['description'];
+            $lesson = new Lesson();
+            $lesson->title = $data['lessonTitle'];
+            $lesson->url = getEmbedVideoUrl($data['url']);
+            $lesson->time = $time;
+            $lecture->time += $time;
+            $lesson->grade_id =  $lecture->grade->id;
+            $lesson->type = 'video';
+            $lesson->semester = $lecture->semester;
+            $lesson->subject_id = $lecture->subject->id;
+            $lesson->lecture_id = $lecture->id;
+            $lesson->user_id = $user->id;
+            $lesson->part_id = $data['lessonPart'];
+            $lesson->description = $data['description'];
 
-        if (array_key_exists('dependsOnExam', $data)){
-            $lesson->exam_id = $data['exam'];
-            $lesson->min_percentage =  $data['percentage'];
+            if (array_key_exists('dependsOnExam', $data)) {
+                $lesson->exam_id = $data['exam'];
+                $lesson->min_percentage =  $data['percentage'];
+            }
+
+            $lesson->save();
+            $lecture->save();
+            if ($lesson) {
+                SectionItem::create([
+                    'title' => $lesson->title,
+                    'lesson_id' => $lesson->id,
+                    'order' => count($section->items) + 1,
+                    'section_id' => $section->id,
+                ]);
+            }
+            return redirect()->back();
+        } else {
+            return abort(403);
         }
-
-        $lesson->save();
-        $lecture->save();
-        if ($lesson){
-            SectionItem::create([
-                'title' => $lesson->title,
-                'lesson_id' => $lesson->id,
-                'order' => count($section->items) + 1,
-                'section_id' => $section->id,
-            ]);
-        }
-        return redirect()->back();
     }
 
     /**

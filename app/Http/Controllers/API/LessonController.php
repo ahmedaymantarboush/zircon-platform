@@ -63,15 +63,7 @@ class LessonController extends Controller
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
-        $id = $data['id'] ?? 0;
-        $lesson = Lesson::find($id);
-        if (!$lesson) :
-            return apiResponse(false, _('لم يتم العثور على الدرس'), [], 404);
-        endif;
-        if ($lesson->publisher->id != $user->id) :
-            return apiResponse(false, _('غير مصرح لهذا المسخدم بتعديل الدرس'), [], 403);
-        endif;
-
+        
         validator()->make($data,[
             'title' => ['required', 'string', 'max:50'],
             'url' => ['required', 'url', 'max:255'],
@@ -123,6 +115,7 @@ class LessonController extends Controller
         $lesson->semester = $lecture->semester;
         $lesson->subject_id = $lecture->subject->id;
         $lesson->lecture_id = $lecture->id;
+        $lesson->user_id = $user->id;
         $lesson->part_id = $data['lessonPart'];
         $lesson->description = $data['description'];
 
