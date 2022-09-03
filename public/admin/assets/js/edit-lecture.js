@@ -141,6 +141,14 @@ document
             let description = document.querySelector(
                 "#editLesson .ck-editor__editable"
             );
+            let hasExamCheck = document.querySelector("#have-exam-check");
+            let selectExamInner = document.querySelector(
+                "#editLesson .selectExamParent .filter-option-inner-inner"
+            );
+            let selectExamOptions = document.querySelectorAll(
+                "#editLesson .selectExamParent option"
+            );
+            let percentExam = document.querySelector(".percentExam");
             lessAddress.value = objData.title;
             inputURL.value = objData.url;
             let fillSelectFunction = function (options, selectInner, data) {
@@ -163,6 +171,15 @@ document
             document.querySelector(
                 "#editLesson > div > div > form > div.modal-body > div:nth-child(5) > div > div.ck.ck-editor__main > div"
             ).innerHTML = objData.description;
+            if (objData.exam) {
+                hasExamCheck.checked = true;
+                percentExam.value = objData.percentage;
+                fillSelectFunction(
+                    selectExamOptions,
+                    selectExamInner,
+                    objData.exam
+                );
+            }
             document
                 .querySelector(".modifyLessonForm")
                 .addEventListener("submit", async function (event) {

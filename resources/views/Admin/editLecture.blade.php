@@ -714,7 +714,7 @@
                                                 <div class="have-exam">
                                                     <div class="search-exam-parent">
                                                         <label for="">امتحان</label>
-                                                        <div class="search-select">
+                                                        <div class="search-select selectExamParent" >
                                                             <select name="exam"
                                                                 class="@error('exam') is-invalid @enderror"
                                                                 data-live-search="true">
@@ -734,7 +734,7 @@
                                                     </div>
                                                     <div class="search-exam-parent">
                                                         <label for="">درجة الامتحان او النسبة المئوية</label>
-                                                        <input class="my-input @error('percentage') is-invalid @enderror"
+                                                        <input class="pecentExam my-input @error('percentage') is-invalid @enderror"
                                                             type="text" name="percentage"
                                                             placeholder="ادخل النسبة المئوية لدرجة الامتحان (50%:100%)" />
                                                         @error('percentage')
