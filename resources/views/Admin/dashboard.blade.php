@@ -851,7 +851,7 @@
         var options4 = {
             series: [{
                     name: "الدخل",
-                    data: @php echo $compareCurveValues; @endphp,
+                    data: [@php echo $compareCurveValues; @endphp],
                 },
                 {
                     name: "المستوى العام",
@@ -875,7 +875,7 @@
             },
             xaxis: {
                 type: "date",
-                categories: [[@php echo $compareCurveDates; @endphp]],
+                categories: [@php echo $compareCurveDates; @endphp],
             },
             tooltip: {
                 x: {
