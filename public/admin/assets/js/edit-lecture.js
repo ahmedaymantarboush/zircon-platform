@@ -199,6 +199,7 @@ document
     .querySelector(".sections-items")
     .addEventListener("click", function (e) {
         if (!e.target.classList.contains("delItemBtn")) return;
+        console.log("yse");
         let delLesson = document.querySelector(".del-lesson");
         delLesson.innerHTML = e.target
             .closest("section-lesson-item")
