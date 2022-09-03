@@ -215,8 +215,14 @@ document
                             examId = ele.value;
                         }
                     });
+                    let lol;
+                    if (examId && percentExam.value) {
+                        lol = true;
+                    } else {
+                        lol = false;
+                    }
                     console.log(examId);
-                    console.log(hasExamCheck.checked);
+                    console.log(lol);
                     console.log(percentExam.value);
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
@@ -230,7 +236,7 @@ document
                         section: sectionId,
                         percentage: percentExam.value || null,
                         exam: examId,
-                        dependsOnExam: hasExamCheck.checked,
+                        dependsOnExam: lol,
                     };
 
                     newform = new FormData();
