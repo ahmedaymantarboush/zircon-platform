@@ -206,13 +206,13 @@ document
             .closest(".section-lesson-item")
             .querySelector(".type-less-name")
             .innerHTML.trim();
-        trId.value = e.target.closest("section-lesson-item").dataset.item;
+        trId.value = e.target.closest(".section-lesson-item").dataset.item;
 
         console.log(delLesson);
         console.log(trId);
         console.log(
             e.target
-                .closest("section-lesson-item")
+                .closest(".section-lesson-item")
                 .querySelector(".type-less-name")
                 .innerHTML.trim()
         );
