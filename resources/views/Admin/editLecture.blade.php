@@ -558,7 +558,7 @@
                                         :
                                         <span class="type-less-name">{{ $sectionItem->item->title }}</span>
                                         <div class="someFeatures">
-                                            <button class='delItemBtn'  data-bs-toggle="modal" data-bs-target="#editLesson"><i class="fa-solid fa-trash"></i></button>
+                                            <button class='delItemBtn'  data-bs-toggle="modal" data-bs-target="#delete-less"><i class="fa-solid fa-trash"></i></button>
                                             <button class='editLesssonBtn'  data-bs-toggle="modal" data-bs-target="#editLesson"><i class="fa-solid fa-pen"></i></button>
                                         </div>
                                     </div>
