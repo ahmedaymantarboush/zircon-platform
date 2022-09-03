@@ -884,3 +884,6 @@ th {
 .dropdown-item {
     cursor: pointer;
 }
+.box:hover {
+    display: flex;
+}
