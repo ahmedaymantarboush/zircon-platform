@@ -191,31 +191,6 @@
         <div class="col-lg-8 g-praent-table">
             <div class="white-box table-parent">
                 <h2>دخل السناتر</h2>
-                {{-- <div class="display"> --}}
-                {{-- <i class="fa-solid fa-check check"></i> --}}
-                {{-- <span class="content">عرض </span> --}}
-                {{-- <button class="display-date"> --}}
-                {{-- <span class="active-date">هذا الاسبوع</span> --}}
-                {{-- <span class="display-arrow"><i class="fa-solid fa-caret-down"></i></span> --}}
-                {{-- </button> --}}
-                {{-- <ul class="display-list"> --}}
-                {{-- <li class="this-week"> --}}
-                {{-- <button class="added"> --}}
-                {{-- هذا الاسبوع --}}
-                {{-- </button> --}}
-                {{-- </li> --}}
-                {{-- <li class="this-month"> --}}
-                {{-- <button class="added"> --}}
-                {{-- هذا الشهر --}}
-                {{-- </button> --}}
-                {{-- </li> --}}
-                {{-- <li class="this-year"> --}}
-                {{-- <button class="added"> --}}
-                {{-- هذه السنة --}}
-                {{-- </button> --}}
-                {{-- </li> --}}
-                {{-- </ul> --}}
-                {{-- </div> --}}
                 <table style="width: 100%;">
                     <thead>
                         <tr>
@@ -402,6 +377,7 @@
         endif;
     endforeach;
     @endphp
+    {{$compareCurveValues}}
     <script>
         // students Capacity
         var option1 = {
