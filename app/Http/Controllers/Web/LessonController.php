@@ -42,7 +42,7 @@ class LessonController extends Controller
     {
         $data = $request->all();
         $user = Auth::user();
-        if ($user ? $user->role->number >= 4 : true) {
+        if ($user ? $user->role->number < 4 : true) {
 
             $section = Section::findOrFail($data['section']);
             $lecture = $section->lecture;
