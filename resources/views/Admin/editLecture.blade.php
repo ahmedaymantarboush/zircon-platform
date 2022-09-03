@@ -16,7 +16,7 @@
     <section class="add-lecture white-box">
         <div class="add-lec-heading">
             <h3>اضافة محاضرة</h3>
-            <a href="{{route('admin.lectures.index')}}" class="go-to-lectures">
+            <a href="{{ route('admin.lectures.index') }}" class="go-to-lectures">
                 الرجوع الي قائمة المحاضرات
                 <span><i class="fa-solid fa-arrow-left-long"></i></span></a>
         </div>
@@ -548,7 +548,8 @@
                         <div class="section-item-body">
                             @foreach (\App\Models\SectionItem::where('section_id', $section->id)->orderBy('order')->get() as $sectionItem)
                                 @if ($sectionItem->item)
-                                    <div class="section-lesson-item" data-lesson="{{$sectionItem->lesson_id}}" data-exam="{{$sectionItem->exam_id}}" data-item="{{$sectionItem->id}}" >
+                                    <div class="section-lesson-item" data-lesson="{{ $sectionItem->lesson_id }}"
+                                        data-exam="{{ $sectionItem->exam_id }}" data-item="{{ $sectionItem->id }}">
                                         <span class="type-less-icon">
                                             <i
                                                 class="fa-solid fa-file-{{ $sectionItem->lesson_id ? $sectionItem->item->type : 'pen' }}"></i></span>
@@ -558,8 +559,10 @@
                                         :
                                         <span class="type-less-name">{{ $sectionItem->item->title }}</span>
                                         <div class="someFeatures">
-                                            <button class='delItemBtn'  data-bs-toggle="modal" data-bs-target="#delete-less"><i class="fa-solid fa-trash"></i></button>
-                                            <button class='editLesssonBtn'  data-bs-toggle="modal" data-bs-target="#editLesson"><i class="fa-solid fa-pen"></i></button>
+                                            <button class='delItemBtn' data-bs-toggle="modal"
+                                                data-bs-target="#delete-less"><i class="fa-solid fa-trash"></i></button>
+                                            <button class='editLesssonBtn' data-bs-toggle="modal"
+                                                data-bs-target="#editLesson"><i class="fa-solid fa-pen"></i></button>
                                         </div>
                                     </div>
                                 @endif
@@ -612,185 +615,183 @@
 
 
 
-        <div class="modal fade" id="editLesson" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">
-                                        تعديل الدرس
-                                    </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+        <div class="modal fade" id="editLesson" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            تعديل الدرس
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form class='modifyLessonForm' action="{{ route('admin.lessons.update') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name='id' id='itemId'>
+                        <div class="modal-body">
+                            <div class="less-item custome-item">
+                                <label class="sec-name">عنوان الدرس</label>
+                                <input type="text" name="newtitle"
+                                    class="lessAddress my-input @error('newtitle') is-invalid @enderror"
+                                    placeholder=" ادخل عنوان الدرس" />
+                                @error('newtitle')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="less-item custome-item">
+                                <label class="sec-name">القسم</label>
+                                <div class="search-select sectionLessonParent">
+                                    <select name="newsection" class="@error('newsection') is-invalid @enderror"
+                                        data-live-search="true">
+                                        <option value="">اختر القسم الذي يتبعه هذا الدرس</option>
+
+                                        @foreach ($lecture->sections as $section)
+                                            <option value="{{ $section->id }}">{{ $section->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('newsection')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
-                                <form class='modifyLessonForm' action="{{route('admin.lessons.update')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name='id' id='itemId'>
-                                    <div class="modal-body">
-                                        <div class="less-item custome-item">
-                                            <label class="sec-name">عنوان الدرس</label>
-                                            <input type="text" name="title"
-                                                class="lessAddress my-input @error('title') is-invalid @enderror"
-                                                placeholder=" ادخل عنوان الدرس" />
-                                            @error('title')
+                            </div>
+                            <div class="less-item custome-item">
+                                <label class="sec-name">الجزئية الدراسية</label>
+                                <div class="search-select partParent">
+                                    <select name="newpart" class="@error('newpart') is-invalid @enderror"
+                                        data-live-search="true">
+                                        <option value="">اختر الجزئية الدراسية</option>
+
+                                        @foreach ($lecture->parts as $part)
+                                            <option value="{{ $part->id }}">{{ $part->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('newpart')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="less-item type-parent">
+                                <div class="file">
+                                    <label for="formFile" class="form-label">رابط الدرس</label>
+                                    <input class="inputURL my-input @error('newurl') is-invalid @enderror" name="newurl"
+                                        type="url" id="lessonUrl" placeholder=" ادخل رابط الدرس" />
+                                    @error('newurl')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="less-item">
+                                <label class="sec-name">وصف الدرس</label>
+                                <textarea name="newdescription" id='lol'
+                                    class="description text-editor1 @error('newdescription') is-invalid @enderror"></textarea>
+                                @error('newdescription')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="less-item">
+                                <label class="sec-name">هل هذا الدرس يفتح اعتمادا على درجة امتحان؟</label>
+                                <div class="follow-check">
+                                    <input id="have-exam-check" name="dependsOnExam" type="checkbox"
+                                        class="@error('dependsOnExam') is-invalid @enderror"
+                                        placeholder=" ادخل اسم القسم" />
+                                    @error('dependsOnExam')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                    <label for="have-exam-check">ضع علامة اذا كان الدرس يفتح اعتمادا على درجة
+                                        امتحان</label>
+                                    <div class="have-exam">
+                                        <div class="search-exam-parent">
+                                            <label for="">امتحان</label>
+                                            <div class="search-select selectExamParent">
+                                                <select name="newexam" class="@error('newexam') is-invalid @enderror"
+                                                    data-live-search="true">
+                                                    <option value="">اختر كود اواسم الامتحان</option>
+
+                                                    @foreach (\App\Models\Exam::where(['grade_id' => $lecture->grade->id, 'subject_id' => $lecture->subject->id, 'user_id' => Auth::id()])->get() as $exam)
+                                                        <option value="{{ $exam->id }}">
+                                                            {{ $exam->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('newexam')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="search-exam-parent">
+                                            <label for="">درجة الامتحان او النسبة المئوية</label>
+                                            <input class="percentExam my-input @error('newpercentage') is-invalid @enderror"
+                                                type="text" name="newpercentage"
+                                                placeholder="ادخل النسبة المئوية لدرجة الامتحان (50%:100%)" />
+                                            @error('newpercentage')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
-
-                                        <div class="less-item custome-item">
-                                            <label class="sec-name">القسم</label>
-                                            <div class="search-select sectionLessonParent" >
-                                                <select name="section" class="@error('section') is-invalid @enderror"
-                                                    data-live-search="true">
-                                                    <option value="">اختر القسم الذي يتبعه هذا الدرس</option>
-
-                                                    @foreach ($lecture->sections as $section)
-                                                        <option value="{{ $section->id }}">{{ $section->title }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                                @error('section')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="less-item custome-item">
-                                            <label class="sec-name">الجزئية الدراسية</label>
-                                            <div class="search-select partParent">
-                                                <select name="part" class="@error('section') is-invalid @enderror"
-                                                    data-live-search="true">
-                                                    <option value="">اختر الجزئية الدراسية</option>
-
-                                                    @foreach ($lecture->parts as $part)
-                                                        <option value="{{ $part->id }}">{{ $part->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                                @error('section')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="less-item type-parent">
-                                            <div class="file">
-                                                <label for="formFile" class="form-label">رابط الدرس</label>
-                                                <input class="inputURL my-input @error('url') is-invalid @enderror" name="url"
-                                                    type="url" id="lessonUrl" placeholder=" ادخل رابط الدرس" />
-                                                @error('url')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="less-item">
-                                            <label class="sec-name">وصف الدرس</label>
-                                            <textarea name="description" id='lol' class="description text-editor1 @error('description') is-invalid @enderror"></textarea>
-                                            @error('description')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="less-item">
-                                            <label class="sec-name">هل هذا الدرس يفتح اعتمادا على درجة امتحان؟</label>
-                                            <div class="follow-check">
-                                                <input id="have-exam-check" name="dependsOnExam" type="checkbox"
-                                                    class="@error('dependsOnExam') is-invalid @enderror"
-                                                    placeholder=" ادخل اسم القسم" />
-                                                @error('dependsOnExam')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                                <label for="have-exam-check">ضع علامة اذا كان الدرس يفتح اعتمادا على درجة
-                                                    امتحان</label>
-                                                <div class="have-exam">
-                                                    <div class="search-exam-parent">
-                                                        <label for="">امتحان</label>
-                                                        <div class="search-select selectExamParent" >
-                                                            <select name="exam"
-                                                                class="@error('exam') is-invalid @enderror"
-                                                                data-live-search="true">
-                                                                <option value="">اختر كود اواسم الامتحان</option>
-
-                                                                @foreach (\App\Models\Exam::where(['grade_id' => $lecture->grade->id, 'subject_id' => $lecture->subject->id, 'user_id' => Auth::id()])->get() as $exam)
-                                                                    <option value="{{ $exam->id }}">
-                                                                        {{ $exam->title }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('exam')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="search-exam-parent">
-                                                        <label for="">درجة الامتحان او النسبة المئوية</label>
-                                                        <input class="percentExam my-input @error('percentage') is-invalid @enderror"
-                                                            type="text" name="percentage"
-                                                            placeholder="ادخل النسبة المئوية لدرجة الامتحان (50%:100%)" />
-                                                        @error('percentage')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary modifyLessonBtn">
-                                            تعديل
-                                        </button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                            الغاء
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="delete-less" tabindex="-1" aria-labelledby="" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">
-                                        حذف الدرس
-                                    </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="{{ route('admin.lessons.destroy') }}" method="POST" class='delCenter'>
-                                    <input type="hidden" name="id" id='trId'>
-
-                                    @csrf
-                                    <div class="modal-body">
-                                        <p class="sure-to-del">
-                                            هل انت متأكد انك تريد مسح
-                                            <span class="del-lesson"> ....</span>
-                                        </p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-danger">
-                                            مسح
-                                        </button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                            الغاء
-                                        </button>
-                                    </div>
-                                </form>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary modifyLessonBtn">
+                                تعديل
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                الغاء
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="delete-less" tabindex="-1" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            حذف الدرس
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <form action="{{ route('admin.lessons.destroy') }}" method="POST" class='delCenter'>
+                        <input type="hidden" name="id" id='trId'>
+
+                        @csrf
+                        <div class="modal-body">
+                            <p class="sure-to-del">
+                                هل انت متأكد انك تريد مسح
+                                <span class="del-lesson"> ....</span>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">
+                                مسح
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                الغاء
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         {{-- <!-- the first form in the add lecture page and it is have a 5 tabs --> --}}
         @include('components.admin.lectureForm', ['lecture' => $lecture])
@@ -806,7 +807,9 @@
 
 
 @section('javascript')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+        integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     {{-- <!-- bootstrap 4  --> --}}
     {{-- <!-- موجود هنا والايديت  --> --}}

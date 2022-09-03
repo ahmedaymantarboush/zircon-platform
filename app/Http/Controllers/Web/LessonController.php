@@ -6,6 +6,7 @@ use App\Models\Lesson;
 use App\Http\Requests\StoreLessonRequest;
 use App\Http\Requests\UpdateLessonRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Exam;
 use App\Models\Section;
 use App\Models\SectionItem;
 use Illuminate\Support\Facades\Auth;
@@ -59,10 +60,12 @@ class LessonController extends Controller
             $lesson->subject_id = $lecture->subject->id;
             $lesson->lecture_id = $lecture->id;
             $lesson->user_id = $user->id;
-            $lesson->part_id = $data['lessonPart'];
+            $lesson->part_id = $data['part'];
             $lesson->description = $data['description'];
 
             if (array_key_exists('dependsOnExam', $data)) {
+                $lesson->exam_id = $data['exam'];
+                $lecture->total_questions_count += Exam::find($data['exam'])->questions_count;
                 $lesson->exam_id = $data['exam'];
                 $lesson->min_percentage =  $data['percentage'];
             }
@@ -130,10 +133,10 @@ class LessonController extends Controller
 
         $section = SectionItem::where(['lesson_id' => $lesson->id])->first()->section;
         $lecture = $section->lecture;
-        $time = getDuration($data['url']);
+        $time = getDuration($data['newurl']);
 
-        $lesson->title = $data['title'];
-        $lesson->url = getEmbedVideoUrl($data['url']);
+        $lesson->title = $data['newtitle'];
+        $lesson->url = getEmbedVideoUrl($data['newurl']);
         $lecture->time -= $lesson->time;
         $lesson->time = $time;
         $lecture->time += $time;
@@ -141,20 +144,23 @@ class LessonController extends Controller
         $lesson->type = 'video';
         $lesson->semester = $lecture->semester;
         $lesson->subject_id = $lecture->subject->id;
-        $lesson->part_id = $data['part'];
-        $lesson->description = $data['description'];
+        $lesson->part_id = $data['newpart'];
+        $lesson->description = $data['newdescription'];
 
         if ($request->boolean('dependsOnExam')) :
-            $lesson->exam_id = $data['exam'];
-            $lesson->min_percentage =  $data['percentage'];
+            $lecture->total_questions_count -= $lesson->exam_id ? $lesson->exam->questions_count : 0;
+            $lesson->exam_id = $data['newexam'];
+            $lecture->total_questions_count += Exam::find($data['newexam'])->questions_count;
+            $lesson->min_percentage =  $data['newpercentage'];
         else :
+            $lecture->total_questions_count -= $lesson->exam_id ? $lesson->exam->questions_count : 0;
             $lesson->exam_id = null;
             $lesson->min_percentage = null;
         endif;
 
         $sectionItem = SectionItem::where(['section_id' => $section->id, 'lesson_id' => $lesson->id])->first();
         $sectionItem->lesson_id = $lesson->id;
-        $sectionItem->section_id = $data['section'];
+        $sectionItem->section_id = $data['newsection'];
 
         $sectionItem->save();
         $lesson->save();
@@ -176,6 +182,8 @@ class LessonController extends Controller
         if ($sectionItem->lesson):
             $sectionItem->lesson->delete();
         endif;
+        $sectionItem->section->lecture->time -= $sectionItem->lesson->time;
+        $sectionItem->section->lecture->save();
         $sectionItem->delete();
         return redirect()->back();
     }

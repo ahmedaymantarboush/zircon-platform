@@ -30,7 +30,7 @@ class StoreLessonRequest extends FormRequest
             'type' => ['string',"in:video,pdf,audio"],
             'description' => ['required','string'],
             'section' => ['required','exists:sections,id'],
-            'lessonPart' => ['required','exists:parts,id'],
+            'part' => ['required','exists:parts,id'],
         ];
     }
 
@@ -56,8 +56,8 @@ class StoreLessonRequest extends FormRequest
             'section.required' => 'القسم التابع له الدرس مطلوب',
             'section.exists' => 'الرجاء إختيار قسم صحيح',
 
-            'lessonPart.required' => 'الجزئية الدراسية مطلوبة',
-            'lessonPart.exists' => 'الرجاء اختيار جزئية دراسية صحيحة',
+            'part.required' => 'الجزئية الدراسية مطلوبة',
+            'part.exists' => 'الرجاء اختيار جزئية دراسية صحيحة',
         ];
     }
 }
