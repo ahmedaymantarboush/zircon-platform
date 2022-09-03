@@ -242,7 +242,7 @@ class LessonController extends Controller
         ])->validate();
 
 
-        $section = Section::find($data['section']);
+        $section = SectionItem::where(['lesson_id' => $lesson->id])->first()->section;
         $lecture = $section->lecture;
         $time = getDuration($data['url']);
 
