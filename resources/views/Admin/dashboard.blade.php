@@ -830,7 +830,7 @@
         var options4 = {
             series: [{
                     name: "الدخل",
-                    data: [@php echo $balanceCards->pluck('value'); @endphp],
+                    data: @php echo $balanceCards->pluck('value'); @endphp,
                 },
                 {
                     name: "المستوى العام",
@@ -854,7 +854,7 @@
             },
             xaxis: {
                 type: "date",
-                categories: [@php echo $balanceCards; @endphp],
+                categories: @php echo $balanceCards->pluck('used_at'); @endphp,
             },
             tooltip: {
                 x: {
