@@ -243,7 +243,7 @@ document
                             .querySelector(".type-less-name").innerHTML =
                             saveObjSend.title;
 
-                        location.reload();
+                        // location.reload();
                     }
                 });
         }
