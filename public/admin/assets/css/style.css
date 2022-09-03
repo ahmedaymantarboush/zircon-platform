@@ -887,3 +887,6 @@ th {
 .box:hover {
     display: flex;
 }
+.del-lesson {
+    color: #dc3545;
+}
