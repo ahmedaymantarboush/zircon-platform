@@ -708,6 +708,8 @@
         $studentsLevel .= ($total ? ((string) number_format(($answerdQuestion->where('correct', 1)->count() / $total) * max(\App\Models\Question::all()->pluck('level')->toArray()),2)) : 0).",";
         $studentsCount .= $center->users->count().",";
     endforeach;
+
+    $balanceCards = \App\Models\BalanceCard::where('user_id', '!=', null)->get();
     @endphp
     <script>
         // students Capacity
@@ -828,7 +830,7 @@
         var options4 = {
             series: [{
                     name: "الدخل",
-                    data: [31, 40, 28, 51, 42, 109, 100],
+                    data: [@php echo $balanceCards->pluck('value'); @endphp],
                 },
                 {
                     name: "المستوى العام",
@@ -852,15 +854,7 @@
             },
             xaxis: {
                 type: "date",
-                categories: [
-                    "2018-02-20",
-                    "2018-03-20",
-                    "2018-04-20",
-                    "2018-05-20",
-                    "2018-06-20",
-                    "2018-07-20",
-                    "2018-08-20",
-                ],
+                categories: [@php echo $balanceCards; @endphp],
             },
             tooltip: {
                 x: {
