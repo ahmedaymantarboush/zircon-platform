@@ -198,7 +198,7 @@ let trId = document.querySelector("#trId");
 document
     .querySelector(".sections-items")
     .addEventListener("click", function (e) {
-        if (!e.target.classList.contains("delete-lec")) return;
+        if (!e.target.classList.contains("delItemBtn")) return;
         let delLesson = document.querySelector(".del-lesson");
         delLesson.innerHTML = e.target
             .closest("section-lesson-item")
