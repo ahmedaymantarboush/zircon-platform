@@ -197,7 +197,7 @@ document
 
                     let optionId = 0;
                     let sectionId = 0;
-                    let examId = 0;
+                    let examId = null;
                     partOptions.forEach((ele) => {
                         if (ele.selected) {
                             optionId = ele.value;
@@ -209,10 +209,13 @@ document
                         }
                     });
                     selectExamOptions.forEach((ele) => {
-                        if (ele.selected) {
+                        if (ele.selected && ele.value) {
                             examId = ele.value;
                         }
                     });
+                    console.log(examId);
+                    console.log(hasExamCheck.checked);
+                    console.log(percentExam.value);
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
                         id: dataId,
@@ -223,8 +226,9 @@ document
                         ).innerHTML,
                         part: optionId,
                         section: sectionId,
-                        percentage: percentExam.value,
+                        percentage: percentExam.value || null,
                         exam: examId,
+                        dependsOnExam: hasExamCheck.checked,
                     };
 
                     newform = new FormData();
