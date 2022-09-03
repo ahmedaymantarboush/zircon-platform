@@ -760,6 +760,38 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="delete-less" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">
+                                        حذف العنصر
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="{{ route('admin.parts.delete') }}" method="POST" class='delCenter'>
+                                    <input type="hidden" name="id" id='trId'>
+
+                                    @csrf
+                                    <div class="modal-body">
+                                        <p class="sure-to-del">
+                                            هل انت متأكد انك تريد مسح
+                                            <span class="del-lesson"> ....</span>
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-danger">
+                                            مسح
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            الغاء
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                              
         {{-- <!-- the first form in the add lecture page and it is have a 5 tabs --> --}}
         @include('components.admin.lectureForm', ['lecture' => $lecture])
 
