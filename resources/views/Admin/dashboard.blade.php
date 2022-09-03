@@ -728,9 +728,12 @@
     $compareCurveDates = "";
     $compareCurveValues = "";
     foreach ($balanceCards as $balanceCard) :
-    $date = date('Y-m-d', strtotime($balanceCard->created_at));
-        $compareCurveDates .= "'" . $date . "',";
-        $compareCurveValues .= $balanceCard->value . ',';
+        $date = date('Y-m-d', strtotime($balanceCard->used_at));
+        if (!in_array(explode(',', $compareCurveDates), $date)) {
+            $compareCurveDates .= "'" . $date . "',";
+            $compareCurveValues .= array_sum($balanceCards->where('used_at','LIKE',"%$date%")->pluck('value')->toArray()) . ',';
+        }
+        endif;
     endforeach;
     @endphp
     <script>
