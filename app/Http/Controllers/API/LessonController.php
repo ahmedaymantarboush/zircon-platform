@@ -258,7 +258,7 @@ class LessonController extends Controller
         $lesson->part_id = $data['part'];
         $lesson->description = $data['description'];
 
-        if (array_key_exists('dependsOnExam', $data)) :
+        if ($data['dependsOnExam']) :
             $lesson->exam_id = $data['exam'];
             $lesson->min_percentage =  $data['percentage'];
         else :
@@ -268,7 +268,7 @@ class LessonController extends Controller
 
         $sectionItem = SectionItem::where(['section_id' => $section->id, 'lesson_id' => $lesson->id])->first();
         $sectionItem->lesson_id = $lesson->id;
-        $sectionItem->section_id = $data['section'] ?? $section->id;
+        $sectionItem->section_id = $data['section'];
 
         $sectionItem->save();
         $lesson->save();
