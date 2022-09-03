@@ -371,7 +371,7 @@
     $compareCurveValues = "";
     foreach ($balanceCards as $balanceCard) :
         $date = date('Y-m-d', strtotime($balanceCard->used_at));
-        print("'$date' => ")
+        print("'$date' => ");
         print(explode(',', $compareCurveDates));
         echo "<br />";
         if (!in_array("'$date'", explode(',', $compareCurveDates))):
