@@ -68,43 +68,47 @@
             </a>
         </div>
     </div>
-    <form action="" class="lec-filter">
-        <input type="hidden" name="hasFilter" value="true">
-        <h3>لائحة المحاضرات</h3>
-        <div class="custome-row">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="filter-item">
-                        <label for="">المرحلة الدراسية</label>
-                        <div class="search-select-box">
-                            <select name="grade_id" id="" data-live-search="true">
-                                <option value="all">
-                                    جميع المراحل الدراسية
-                                </option>
-                                @foreach (\App\Models\Grade::all() as $grade)
-                                    <option @selected(request()->grade_id == $grade->id) value="{{ $grade->id }}">{{ $grade->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
+    <div class="lectureTableParent">
 
-                <div class="col-md-3 col-sm-6">
-                    <div class="filter-item">
-                        <label for="">المادة</label>
-                        <div class="search-select-box">
-                            <select name="subject_id" id="" data-live-search="true">
-                                <option value="all">
-                                    المادة
-                                </option>
-                                @foreach (\App\Models\Subject::all() as $subject)
-                                    <option @selected(request()->subject_id == $subject->id)value="{{ $subject->id }}">{{ $subject->name }}</option>
-                                @endforeach
-                            </select>
+        <form action="" class="lec-filter">
+            <input type="hidden" name="hasFilter" value="true">
+            <h3>لائحة المحاضرات</h3>
+            <div class="custome-row">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="filter-item">
+                            <label for="">المرحلة الدراسية</label>
+                            <div class="search-select-box">
+                                <select name="grade_id" id="" data-live-search="true">
+                                    <option value="all">
+                                        جميع المراحل الدراسية
+                                    </option>
+                                    @foreach (\App\Models\Grade::all() as $grade)
+                                        <option @selected(request()->grade_id == $grade->id) value="{{ $grade->id }}">{{ $grade->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                {{-- <div class="col-md-3 col-sm-6">
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="filter-item">
+                            <label for="">المادة</label>
+                            <div class="search-select-box">
+                                <select name="subject_id" id="" data-live-search="true">
+                                    <option value="all">
+                                        المادة
+                                    </option>
+                                    @foreach (\App\Models\Subject::all() as $subject)
+                                        <option @selected(request()->subject_id == $subject->id)value="{{ $subject->id }}">{{ $subject->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="col-md-3 col-sm-6">
                     <div class="filter-item">
                         <label for="">الجزئية الدراسية</label>
                         <div class="search-select-box">
@@ -119,29 +123,30 @@
                         </div>
                     </div>
                 </div> --}}
-                <div class="col-md-3 col-sm-6">
-                    <div class="filter-item">
-                        <label for="">المدرس</label>
-                        <div class="search-select-box">
-                            <select name="user_id" id="" data-live-search="true">
-                                <option value="all">
-                                    جميع المدرسين
-                                </option>
-                                @foreach (\App\Models\User::where('role_num','<', 4)->get() as $teacher)
-                                    <option @selected(request()->user_id == $teacher->id) value="{{ $teacher->id }}">{{ $teacher->name }}</option>
-                                @endforeach
-                            </select>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="filter-item">
+                            <label for="">المدرس</label>
+                            <div class="search-select-box">
+                                <select name="user_id" id="" data-live-search="true">
+                                    <option value="all">
+                                        جميع المدرسين
+                                    </option>
+                                    @foreach (\App\Models\User::where('role_num', '<', 4)->get() as $teacher)
+                                        <option @selected(request()->user_id == $teacher->id) value="{{ $teacher->id }}">
+                                            {{ $teacher->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="filter-btn">
+                    <input type="submit" class="filter-btn" value="فلترة" />
+                </div>
             </div>
-            <div class="filter-btn">
-                <input type="submit" class="filter-btn" value="فلترة" />
-            </div>
-        </div>
-        <div class="search-field">
-            <div class="field search-select-box">
-                {{-- <span>اظهار</span>
+            <div class="search-field">
+                <div class="field search-select-box">
+                    {{-- <span>اظهار</span>
                 <select name="count" id="" data-live-search="true">
                     <option value="0">الكل</option>
                     <option value="1">1</option>
@@ -150,12 +155,13 @@
                     <option value="100">100</option>
                 </select>
                 <span>من الحقول</span> --}}
+                </div>
+                <div class="filter-search">
+                    <label for="">بحث :</label>
+                    <input type="search" name="q" value="{{ request()->q }}" />
+                </div>
             </div>
-            <div class="filter-search">
-                <label for="">بحث :</label>
-                <input type="search" name="q" value="{{request()->q}}"/>
-            </div>
-        </div>
+        </form>
         <div class="lectures-table">
             <table class="">
                 <thead>
@@ -255,8 +261,8 @@
                                                 المحاضرة</a>
                                         </li>
                                         {{-- <li>
-                                            <a class="dropdown-item" href="#">الأقسام و الدروس</a>
-                                        </li> --}}
+                                        <a class="dropdown-item" href="#">الأقسام و الدروس</a>
+                                    </li> --}}
                                         <li>
                                             <form action="{{ route('admin.lectures.hanging') }}" method="post">
                                                 @csrf
@@ -277,89 +283,89 @@
                     @endforeach
 
                     {{-- <tr class="">
-                        <td class="number">
-                            1
-                            <button class="open-tr" type="button">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </td>
-                        <td data-lable="العنوان :" class="address">
-                            <div class="custome-parent">
-                                <div class="name-lesson">
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                    <td class="number">
+                        1
+                        <button class="open-tr" type="button">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </td>
+                    <td data-lable="العنوان :" class="address">
+                        <div class="custome-parent">
+                            <div class="name-lesson">
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
 
-                                    مراجعة عامة على الباب
-                                    الثاني (الكهربية)
-                                        </button>
-                                </div>
-                                <div class="name-teacher">
-                                    <span class="job-teacher">:المدرس</span>
-                                    <span>أ. محمد
-                                        عبدالمعبود</span>
-                                </div>
+                                مراجعة عامة على الباب
+                                الثاني (الكهربية)
+                                    </button>
                             </div>
-                        </td>
-                        <td data-lable="المادة الدراسية :" class="table-level-parent">
-                            <span class="table-level">الصف الثالث الثانوي</span>
-                        </td>
-                        <td data-lable="الاقسام :" class="table-sections">
-                            <div class="custome-parent">
-                                <div>مجموع الدروس 4</div>
-                                <div>مجموع الاسئلة 50</div>
+                            <div class="name-teacher">
+                                <span class="job-teacher">:المدرس</span>
+                                <span>أ. محمد
+                                    عبدالمعبود</span>
                             </div>
-                        </td>
-                        <td data-lable="الطلاب الملتحقين :" class="students">
-                            عدد الطلاب : 1024
-                        </td>
-                        <td data-lable="مشاهدة :" class="views">
-                            1530
-                        </td>
-                        <td data-lable="الحالة :" class="table-stat-parent">
-                            <span class="table-stat active">مفعل</span>
-                        </td>
-                        <td data-lable="السعر :" class="table-price-parent">
-                            <span class="table-price free">مجاني</span>
-                        </td>
-                        <td class="features" data-lable="اجراءات :">
-                            <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </button>
-                            <ul class="dropdown-menu feat-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#">عرض صفحة
-                                        المحاضرة</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">عرض صفحة تشغيل
-                                        المحاضرة</a>
-                                </li>
-                                <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#quick-modify" class="dropdown-item q-modify"
-                                        href="#">تعديل سريع
-                                    </a>
-                                </li>
+                        </div>
+                    </td>
+                    <td data-lable="المادة الدراسية :" class="table-level-parent">
+                        <span class="table-level">الصف الثالث الثانوي</span>
+                    </td>
+                    <td data-lable="الاقسام :" class="table-sections">
+                        <div class="custome-parent">
+                            <div>مجموع الدروس 4</div>
+                            <div>مجموع الاسئلة 50</div>
+                        </div>
+                    </td>
+                    <td data-lable="الطلاب الملتحقين :" class="students">
+                        عدد الطلاب : 1024
+                    </td>
+                    <td data-lable="مشاهدة :" class="views">
+                        1530
+                    </td>
+                    <td data-lable="الحالة :" class="table-stat-parent">
+                        <span class="table-stat active">مفعل</span>
+                    </td>
+                    <td data-lable="السعر :" class="table-price-parent">
+                        <span class="table-price free">مجاني</span>
+                    </td>
+                    <td class="features" data-lable="اجراءات :">
+                        <button role="button" type="button" class="btn ftu-btn" data-toggle="dropdown">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu feat-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">عرض صفحة
+                                    المحاضرة</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">عرض صفحة تشغيل
+                                    المحاضرة</a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="modal" data-bs-target="#quick-modify" class="dropdown-item q-modify"
+                                    href="#">تعديل سريع
+                                </a>
+                            </li>
 
-                                <li>
-                                    <a class="dropdown-item" href="#">تعديل المحاضرة</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">الأقسام و الدروس</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">تعليق نشر
-                                        المحاضرة</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item delete-lec" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#delete-lecture">مسح المحاضرة</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr> --}}
+                            <li>
+                                <a class="dropdown-item" href="#">تعديل المحاضرة</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">الأقسام و الدروس</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">تعليق نشر
+                                    المحاضرة</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item delete-lec" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#delete-lecture">مسح المحاضرة</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr> --}}
                 </tbody>
             </table>
         </div>
-    </form>
+    </div>
 
     <div class="modal fade" id="quick-modify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
