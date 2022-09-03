@@ -33,7 +33,7 @@
 
     <link rel="stylesheet" href="{{ asset('admin/assets/css/responsive.css') }}" />
     <title>{{ config('app.name') }}</title>
-    <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 </head>
 
 <body>
