@@ -122,7 +122,7 @@ class LessonController extends Controller
         $lesson->part_id = $data['lessonPart'];
         $lesson->description = $data['description'];
 
-        if (array_key_exists('dependsOnExam', $data)) {
+        if ($data['dependsOnExam']) {
             $lesson->exam_id = $data['exam'];
             $lesson->min_percentage =  $data['percentage'];
         }
