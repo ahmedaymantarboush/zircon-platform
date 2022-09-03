@@ -117,7 +117,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form action="{{ route('admin.lesson.store') }}" method="POST">
+                                <form action="{{ route('admin.lessons.store') }}" method="POST">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="less-item custome-item">
@@ -154,7 +154,7 @@
                                         <div class="less-item custome-item">
                                             <label class="sec-name">الجزئية الدراسية</label>
                                             <div class="search-select">
-                                                <select name="lessonPart" class="@error('section') is-invalid @enderror"
+                                                <select name="part" class="@error('part') is-invalid @enderror"
                                                     data-live-search="true">
                                                     <option value="">اختر الجزئية الدراسية</option>
 
@@ -163,7 +163,7 @@
                                                         </option>
                                                     @endforeach
                                                 </select>
-                                                @error('section')
+                                                @error('part')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -623,16 +623,16 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form class='modifyLessonForm' method="POST">
+                                <form class='modifyLessonForm' action="{{route('admin.lessons.update')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name='id' id='itemId'>
                                     <div class="modal-body">
                                         <div class="less-item custome-item">
                                             <label class="sec-name">عنوان الدرس</label>
-                                            <input type="text" name="lessonTitle"
-                                                class="lessAddress my-input @error('lessonTitle') is-invalid @enderror"
+                                            <input type="text" name="title"
+                                                class="lessAddress my-input @error('title') is-invalid @enderror"
                                                 placeholder=" ادخل عنوان الدرس" />
-                                            @error('lessonTitle')
+                                            @error('title')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -661,7 +661,7 @@
                                         <div class="less-item custome-item">
                                             <label class="sec-name">الجزئية الدراسية</label>
                                             <div class="search-select partParent">
-                                                <select name="lessonPart" class="@error('section') is-invalid @enderror"
+                                                <select name="part" class="@error('section') is-invalid @enderror"
                                                     data-live-search="true">
                                                     <option value="">اختر الجزئية الدراسية</option>
 
@@ -765,11 +765,11 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">
-                                        حذف العنصر
+                                        حذف الدرس
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="{{ route('admin.parts.delete') }}" method="POST" class='delCenter'>
+                                <form action="{{ route('admin.lessons.destroy') }}" method="POST" class='delCenter'>
                                     <input type="hidden" name="id" id='trId'>
 
                                     @csrf
@@ -791,7 +791,7 @@
                             </div>
                         </div>
                     </div>
-                              
+
         {{-- <!-- the first form in the add lecture page and it is have a 5 tabs --> --}}
         @include('components.admin.lectureForm', ['lecture' => $lecture])
 

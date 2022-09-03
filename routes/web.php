@@ -45,7 +45,6 @@ Route::group(['middleware' => 'not.hanging'], function () {
     Route::get('dashboard', [HomeController::class, 'admin'])->name('admin.index')->middleware('admin');
     Route::group(['middleware' => ['auth', 'teacher'], 'prefix' => 'admin'], function () {
         Route::resource('lectures', LectureController::class)->except(['show'])->names(['store' => 'admin.lectures.store', 'update' => 'admin.lectures.update']);
-        Route::resource('lessons', LessonController::class)->except(['index'])->names(['store' => 'admin.lesson.store', 'update' => 'admin.lesson.update', 'show' => 'admin.lesson.show']);
         Route::resource('sections', SectionController::class)->except(['show']);
         Route::resource('sectionitems', SectionItemController::class)->except(['show']);
         Route::resource('exams', ExamController::class)->except(['show'])->names(['store' => 'admin.exams.store', 'update' => 'admin.exams.update']);
@@ -54,6 +53,10 @@ Route::group(['middleware' => 'not.hanging'], function () {
         Route::post('/sort-items', [SectionItemController::class, 'sortItems'])->name('sectionitems.resort');
         Route::post('lectures/fastEdit', [LectureController::class, 'fastEdit'])->name('admin.lectures.fastEdit');
         Route::post('lectures/hanging', [LectureController::class, 'hanging'])->name('admin.lectures.hanging');
+
+        Route::post('lessons/delete', [LessonController::class, 'destroy'])->name('admin.lessons.destroy');
+        Route::post('lessons/update', [LessonController::class, 'update'])->name('admin.lessons.update');
+        Route::post('lessons/store', [LessonController::class, 'store'])->name('admin.lessons.store');
 
         Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
         Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');

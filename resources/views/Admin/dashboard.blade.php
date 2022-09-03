@@ -14,7 +14,7 @@
                     <p class="daily-p">
                         @php
                             $currentMonth = date('Y-m', strtotime(now()));
-                            $lastMonth = date('Y-m', strtotime(strtotime('first day of previous month')));
+                            $lastMonth = date('Y-m', strtotime('-1 month'));
                             $currentMonthEncome = array_sum(
                                 \App\Models\BalanceCard::where('user_id', '!=', null)
                                     ->where('used_at', 'LIKE', "%$currentMonth%")
@@ -48,7 +48,7 @@
                         @php
                             $count = 0;
                             $currentDay = date('Y-m-d', strtotime(now()));
-                            $yesterday = date('Y-m-d', strtotime(strtotime('-1 day')));
+                            $yesterday = date('Y-m-d', strtotime('-1 day'));
 
                             $currentDayAttend = \App\Models\UserLesson::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$currentDay%")
@@ -107,7 +107,7 @@
                     <p class="daily-p">
                         @php
                             $currentDay = date('Y-m-d', strtotime(now()));
-                            $lastDay = date('Y-m-d', strtotime(strtotime('-1 day')));
+                            $lastDay = date('Y-m-d', strtotime('-1 day'));
                             $currentDayEncome = array_sum(
                                 \App\Models\BalanceCard::where('user_id', '!=', null)
                                     ->where('used_at', 'LIKE', "%$currentDay%")
@@ -198,118 +198,88 @@
                             <th>المحاضرة</th>
                             <th>عدد الحضور</th>
                             <th>الايرادات</th>
-                            <th>التاريخ</th>
+                            {{-- <th>التاريخ</th> --}}
                             <th>نسبة الحضور</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">70</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach (\App\Models\Center::all() as $center)
+                            @foreach (\App\Models\Grade::all() as $grade)
+                                <tr>
+                                    <td class="center-name">
+                                        {{ $center->name }}
+                                    </td>
+                                    <td class="subject-table">
+                                        {{ $grade->name }}
+                                    </td>
+                                    <td class="member">
+                                        @php
+                                            $centerAttendance = \App\Models\UserLesson::where('user_id', '!=', null)->count() + \App\Models\PassedExam::where('user_id', '!=', null)->count();
+                                            $usersCount = \App\Models\user::where('center_id', $center->id)->count();
+                                        @endphp
+                                        {{ $centerAttendance }}
+                                    </td>
+                                    <td class="money">
+                                        {{ \App\Models\BalanceCard::where(['center_id' => $center->id, ['user_id', '!=', null]])->sum('value') }}
+                                        ج.م</td>
+                                    {{-- <td class="date">18/7/2025</td> --}}
+                                    <td class="progress-parent">
+                                        <span class="percentage-progress"><span
+                                                class="num">{{ $usersCount ? ($centerAttendance * 100) / $usersCount : 0 }}</span><span
+                                                class="per">%</span></span>
+                                        <div class="progressbar">
+                                            <span class="progress-child"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="col-lg-4">
             <div class="row add-student-parent">
-                <div class="col-lg-12 col-md-6 white-box add-student">
-                    <div class="student-icon">
-                        <i class="fa-solid fa-user-graduate"></i>
+                @foreach (\App\Models\Grade::all() as $grade)
+                    <div class="col-lg-12 col-md-6 white-box add-student">
+                        <div class="student-icon">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <p class="student-level">
+                            {{ $grade->name }}
+                        </p>
+                        <p class="total">
+                            @php
+                                $currentMonthStudents = \App\Models\user::where(['grade_id' => $grade->id, ['role_num', '>=', 4]])
+                                    ->where('created_at', 'LIKE', "%$currentMonth%")
+                                    ->count();
+                                $lastMonthStudents = \App\Models\user::where(['grade_id' => $grade->id, ['role_num', '>=', 4]])
+                                    ->where('created_at', 'LIKE', "%$currentMonth%")
+                                    ->count();
+
+                                $monthpercentage = $lastMonthStudents ? round(($currentMonthStudents / $lastMonthStudents) * 100) : 0;
+                            @endphp
+                            {{ $currentMonthStudents }}
+                            <span class="percent">{{ $monthpercentage }}</span>
+                        </p>
+                        <button class="add-btn">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
-                    <p class="student-level">
-                        الصف الأول الثانوي
-                    </p>
-                    <p class="total">
-                        1289
-                        <span class="percent">28</span>
-                    </p>
-                    <button class="add-btn">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-                <div class="col-lg-12 col-md-6 white-box add-student">
-                    <div class="student-icon">
-                        <i class="fa-solid fa-user-graduate"></i>
-                    </div>
-                    <p class="student-level">
-                        الصف الأول الثانوي
-                    </p>
-                    <p class="total">
-                        1289
-                        <span class="percent">28</span>
-                    </p>
-                    <button class="add-btn">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-                <div class="col-lg-12 col-md-6 white-box add-student">
-                    <div class="student-icon">
-                        <i class="fa-solid fa-user-graduate"></i>
-                    </div>
-                    <p class="student-level">
-                        الصف الأول الثانوي
-                    </p>
-                    <p class="total">
-                        1289
-                        <span class="percent">28</span>
-                    </p>
-                    <button class="add-btn">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-                <div class="col-lg-12 col-md-6 white-box add-student">
-                    <div class="student-icon">
-                        <i class="fa-solid fa-user-graduate"></i>
-                    </div>
-                    <p class="student-level">
-                        الصف الثاني الثانوي
-                    </p>
-                    <p class="total">
-                        1289
-                        <span class="percent">-5</span>
-                    </p>
-                    <button class="add-btn">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-                <div class="col-lg-12 col-md-6 white-box add-student">
-                    <div class="student-icon">
-                        <i class="fa-solid fa-user-graduate"></i>
-                    </div>
-                    <p class="student-level">
-                        الصف الثالث الثانوي
-                    </p>
-                    <p class="total">
-                        1289
-                        <span class="percent">63</span>
-                    </p>
-                    <button class="add-btn">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
+                @endforeach
             </div>
             <div class="white-box col-lg-12 visits-curve-parent" style="direction: ltr">
                 <div class="visits-curve" style="margin-right: 0; min-width: 100%"></div>
                 <div class="visits-content">
                     <span class="visitors-name">زيارات الموقع</span>
                     <div class="visits-total" style="direction: rtl">
-                        <span class="visits-count">56,890</span>
-                        <span class="percent">85</span>
+                        @php
+                            $currentMonthVisits = \App\Models\Visit::where('created_at','LIKE',"%$currentMonth%")->count();
+                            $lastMonthVisits = \App\Models\Visit::where('created_at','LIKE',"%$lastMonth%")->count();
+                            $monthPercentage = $lastMonthVisits ? round(($currentMonthVisits / $lastMonthVisits) * 100) : 0;
+                        @endphp
+                        <span class="visits-count">{{$currentMonthVisits}}</span>
+                        <span class="percent">{{$monthPercentage}}</span>
                     </div>
                 </div>
             </div>
@@ -366,17 +336,30 @@
     endforeach;
 
     $balanceCards = \App\Models\BalanceCard::where('user_id', '!=', null)->get();
-
-    $compareCurveDates = "";
-    $compareCurveValues = "";
-    foreach ($balanceCards as $balanceCard) :
+    $compareCurveDates = '';
+    $compareCurveValues = '';
+    $compareCurveStudentLevel = '';
+    foreach ($balanceCards as $balanceCard):
         $date = date('Y-m-d', strtotime($balanceCard->used_at));
-        print("'$date' => ")
-        print(explode(',', $compareCurveDates));
-        echo "<br />";
         if (!in_array("'$date'", explode(',', $compareCurveDates))):
             $compareCurveDates .= "'$date',";
-            $compareCurveValues .= \App\Models\BalanceCard::where('user_id', '!=', null)->where('used_at', 'LIKE', "%$date%")->sum('value') . ',';
+            $compareCurveValues .=
+                \App\Models\BalanceCard::where('user_id', '!=', null)
+                    ->where('used_at', 'LIKE', "%$date%")
+                    ->sum('value') . ',';
+        endif;
+    endforeach;
+
+    $visits = \App\Models\Visit::all();
+    $visitsCurveDates = '';
+    $visitsCurveValues = '';
+    foreach ($visits as $visit):
+        $date = date('Y-m', strtotime($visit->created_at));
+        if (!in_array("'$date'", explode(',', $visitsCurveDates))):
+            $visitsCurveDates .= "'$date',";
+            $visitsCurveValues .=
+                \App\Models\Visit::where('created_at', 'LIKE', "%$date%")
+                    ->count() . ',';
         endif;
     endforeach;
     @endphp
@@ -497,16 +480,11 @@
         // curve
         var options4 = {
             series: [{
-                    name: "الدخل",
-                    data: [@php echo $compareCurveValues; @endphp],
-                },
-                {
-                    name: "المستوى العام",
-                    data: [11, 32, 45, 32, 34, 52, 41],
-                },
-            ],
+                name: "الدخل",
+                data: [@php echo $compareCurveValues; @endphp],
+            }, ],
             fill: {
-                colors: ["#2484FF", "#344767"],
+                colors: ["#3645FA", "#344767"],
             },
             chart: {
                 height: 280,
@@ -533,7 +511,7 @@
         var options5 = {
             series: [{
                 name: "عدد الزوار",
-                data: [31, 40, 28, 51, 42, 109, 100],
+                data: [@php echo $visitsCurveValues; @endphp],
                 color: '#3645FA',
             }, ],
             fill: {
@@ -553,15 +531,7 @@
             },
             xaxis: {
                 type: "date",
-                categories: [
-                    "02-19",
-                    "03-19",
-                    "04-19",
-                    "05-19",
-                    "06-19",
-                    "07-19",
-                    "08-19",
-                ],
+                categories: [@php echo $visitsCurveDates; @endphp],
             },
             tooltip: {
                 x: {

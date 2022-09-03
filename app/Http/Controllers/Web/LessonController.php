@@ -114,7 +114,52 @@ class LessonController extends Controller
      */
     public function update(UpdateLessonRequest $request, Lesson $lesson)
     {
-        //
+        $data = $request->all();
+        $user = Auth::user();
+        if (!$user) :
+            return abort(403);
+        endif;
+        $id = $data['id'] ?? 0;
+        $lesson = Lesson::find($id);
+        if (!$lesson) :
+            return abort(404);
+        endif;
+        if ($lesson->publisher->id != $user->id) :
+            return abort(403);
+        endif;
+
+        $section = SectionItem::where(['lesson_id' => $lesson->id])->first()->section;
+        $lecture = $section->lecture;
+        $time = getDuration($data['url']);
+
+        $lesson->title = $data['title'];
+        $lesson->url = getEmbedVideoUrl($data['url']);
+        $lecture->time -= $lesson->time;
+        $lesson->time = $time;
+        $lecture->time += $time;
+        $lesson->grade_id =  $lecture->grade->id;
+        $lesson->type = 'video';
+        $lesson->semester = $lecture->semester;
+        $lesson->subject_id = $lecture->subject->id;
+        $lesson->part_id = $data['part'];
+        $lesson->description = $data['description'];
+
+        if ($request->boolean('dependsOnExam')) :
+            $lesson->exam_id = $data['exam'];
+            $lesson->min_percentage =  $data['percentage'];
+        else :
+            $lesson->exam_id = null;
+            $lesson->min_percentage = null;
+        endif;
+
+        $sectionItem = SectionItem::where(['section_id' => $section->id, 'lesson_id' => $lesson->id])->first();
+        $sectionItem->lesson_id = $lesson->id;
+        $sectionItem->section_id = $data['section'];
+
+        $sectionItem->save();
+        $lesson->save();
+        $lecture->save();
+        return redirect()->back();
     }
 
     /**
@@ -127,7 +172,11 @@ class LessonController extends Controller
     {
         $data = request()->all();
         $id = $data['id'];
-        Lesson::findOrFail($id)->delete();
+        $sectionItem = SectionItem::findOrFail($id);
+        if ($sectionItem->lesson):
+            $sectionItem->lesson->delete();
+        endif;
+        $sectionItem->delete();
         return redirect()->back();
     }
 }

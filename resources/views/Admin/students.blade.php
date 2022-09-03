@@ -107,8 +107,8 @@
                                     <option value="">
                                         جميع الأماكن
                                     </option>
-                                    @foreach (\App\Models\Center::all() as $centers)
-                                        <option @selected(request()->center_id == $center->id) value="{{ $centers->id }}">{{ $centers->name }}</option>
+                                    @foreach (\App\Models\Center::all() as $center)
+                                        <option @selected(request()->center_id == $center->id) value="{{ $center->id }}">{{ $center->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -501,6 +501,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <iframe src="#" hidden style="display: none" id="printPage" frameborder="0"></iframe>
     @endsection
     @section('javascript')
