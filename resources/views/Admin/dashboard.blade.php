@@ -373,7 +373,7 @@
         $date = date('Y-m-d', strtotime($balanceCard->used_at));
         if (!in_array($date,explode(',', $compareCurveDates))):
             $compareCurveDates .= "'" . $date . "',";
-            print($balanceCards->where('used_at','LIKE',"%$date%")->pluck('value'));
+            print($balanceCards);
             $compareCurveValues .= $balanceCards->where('used_at','LIKE',"%$date%")->pluck('value')->sum() . ',';
         endif;
     endforeach;
