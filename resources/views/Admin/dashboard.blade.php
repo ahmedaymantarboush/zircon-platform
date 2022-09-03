@@ -679,7 +679,6 @@
     $studentsNamber = \App\Models\User::all()->count();
     $studentsCapacity = ($studentsNamber / 10000) * 100;
 
-
     $currentMonth = date('Y-m', strtotime(now()));
     $currentMonthAttend = \App\Models\UserLesson::where('user_id', '!=', null)
         ->where('created_at', 'LIKE', "%$currentMonth%")
@@ -690,26 +689,49 @@
     $enrolledStudents = (int) $currentMonthAttend;
     $absentStudents = (int) $studentsNamber - $currentMonthAttend;
 
-    $studentsLevel = "";
-    $centersName = "";
-    $studentsCount = "";
-    $totalEncome = "";
-
-
+    $studentsLevel = '';
+    $centersName = '';
+    $studentsCount = '';
+    $totalEncome = '';
     foreach (\App\Models\Center::all() as $index => $center):
-        $answerdQuestion = \App\Models\AnswerdQuestion::whereHas('user',function ($userQ) use($center){
-            $userQ->where('center_id',$center->id);
+        $answerdQuestion = \App\Models\AnswerdQuestion::whereHas('user', function ($userQ) use ($center) {
+            $userQ->where('center_id', $center->id);
         });
-        $centersName .= "'".$center->name."',";
+        $centersName .= "'" . $center->name . "',";
 
-        $totalEncome .= array_sum(\App\Models\BalanceCard::where([['user_id','!=',null],'center_id'=>$center->id])->get()->pluck('value')->toArray()).",";
+        $totalEncome .=
+            array_sum(
+                \App\Models\BalanceCard::where([['user_id', '!=', null], 'center_id' => $center->id])
+                    ->get()
+                    ->pluck('value')
+                    ->toArray(),
+            ) . ',';
 
         $total = $answerdQuestion->count();
-        $studentsLevel .= ($total ? ((string) number_format(($answerdQuestion->where('correct', 1)->count() / $total) * max(\App\Models\Question::all()->pluck('level')->toArray()),2)) : 0).",";
-        $studentsCount .= $center->users->count().",";
+        $studentsLevel .=
+            ($total
+                ? ((string) number_format(
+                    ($answerdQuestion->where('correct', 1)->count() / $total) *
+                        max(
+                            \App\Models\Question::all()
+                                ->pluck('level')
+                                ->toArray(),
+                        ),
+                    2,
+                ))
+                : 0) . ',';
+        $studentsCount .= $center->users->count() . ',';
     endforeach;
 
     $balanceCards = \App\Models\BalanceCard::where('user_id', '!=', null)->get();
+
+    $compareCurveDates = "";
+    $compareCurveValues = "";
+    foreach ($balanceCards as $balanceCards) :
+    $date = date('Y-m-d', strtotime($balanceCards->created_at));
+        $compareCurveDates .= "'" . $date . "',";
+        $compareCurveValues .= $balanceCards->value . ',';
+    endforeach;
     @endphp
     <script>
         // students Capacity
@@ -774,18 +796,17 @@
         };
         //جدول العواميد
         var options3 = {
-            series: [
-                {
+            series: [{
                     name: "المستوى العام",
-                    data: [{{$studentsLevel}}],
+                    data: [{{ $studentsLevel }}],
                 },
                 {
                     name: "الدخل",
-                    data: [{{$totalEncome}}],
+                    data: [{{ $totalEncome }}],
                 },
                 {
                     name: "عدد الطلاب",
-                    data: [{{$studentsCount}}],
+                    data: [{{ $studentsCount }}],
                 },
             ],
             chart: {
@@ -830,7 +851,7 @@
         var options4 = {
             series: [{
                     name: "الدخل",
-                    data: [@php echo $balanceCards->pluck('value'); @endphp],
+                    data: [@php echo $compareCurveValues; @endphp],
                 },
                 {
                     name: "المستوى العام",
@@ -854,7 +875,7 @@
             },
             xaxis: {
                 type: "date",
-                categories: [@php echo $balanceCards; @endphp],
+                categories: [@php echo $compareCurveDates; @endphp],
             },
             tooltip: {
                 x: {
