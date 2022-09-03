@@ -734,7 +734,7 @@
                                                     </div>
                                                     <div class="search-exam-parent">
                                                         <label for="">درجة الامتحان او النسبة المئوية</label>
-                                                        <input class="pecentExam my-input @error('percentage') is-invalid @enderror"
+                                                        <input class="percentExam my-input @error('percentage') is-invalid @enderror"
                                                             type="text" name="percentage"
                                                             placeholder="ادخل النسبة المئوية لدرجة الامتحان (50%:100%)" />
                                                         @error('percentage')
