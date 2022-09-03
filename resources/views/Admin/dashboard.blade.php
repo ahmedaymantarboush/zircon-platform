@@ -367,13 +367,17 @@
 
     $balanceCards = \App\Models\BalanceCard::where('user_id', '!=', null)->get();
 
-    $compareCurveDates = "";
-    $compareCurveValues = "";
-    foreach ($balanceCards as $balanceCard) :
+    $compareCurveDates = '';
+    $compareCurveValues = '';
+    $compareCurveStudentLevel = '';
+    foreach ($balanceCards as $balanceCard):
         $date = date('Y-m-d', strtotime($balanceCard->used_at));
         if (!in_array("'$date'", explode(',', $compareCurveDates))):
             $compareCurveDates .= "'$date',";
-            $compareCurveValues .= \App\Models\BalanceCard::where('user_id', '!=', null)->where('used_at', 'LIKE', "%$date%")->sum('value') . ',';
+            $compareCurveValues .=
+                \App\Models\BalanceCard::where('user_id', '!=', null)
+                    ->where('used_at', 'LIKE', "%$date%")
+                    ->sum('value') . ',';
         endif;
     endforeach;
     @endphp
@@ -497,13 +501,9 @@
                     name: "الدخل",
                     data: [@php echo $compareCurveValues; @endphp],
                 },
-                {
-                    name: "المستوى العام",
-                    data: [11, 32, 45, 32, 34, 52, 41],
-                },
             ],
             fill: {
-                colors: ["#2484FF", "#344767"],
+                colors: ["#3645FA", "#344767"],
             },
             chart: {
                 height: 280,
