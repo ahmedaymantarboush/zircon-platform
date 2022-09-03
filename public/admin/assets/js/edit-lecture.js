@@ -209,10 +209,13 @@ document
                         }
                     });
                     selectExamOptions.forEach((ele) => {
-                        if (ele.selected) {
+                        if (ele.selected && ele.value) {
                             examId = ele.value;
                         }
                     });
+                    console.log(examId);
+                    console.log(hasExamCheck.checked);
+                    console.log(percentExam.value);
                     let saveObjSend = {
                         title: lessAddress.value.trim(),
                         id: dataId,
