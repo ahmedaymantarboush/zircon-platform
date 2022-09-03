@@ -192,71 +192,71 @@ document
                 percentExam.value = "";
                 fillSelectFunction(selectExamOptions, selectExamInner, 0);
             }
-            document
-                .querySelector(".modifyLessonForm")
-                .addEventListener("submit", async function (event) {
-                    event.preventDefault();
+            //             document
+            //                 .querySelector(".modifyLessonForm")
+            //                 .addEventListener("submit", async function (event) {
+            //                     event.preventDefault();
 
-                    let optionId = 0;
-                    let sectionId = 0;
-                    let examId = null;
-                    partOptions.forEach((ele) => {
-                        if (ele.selected) {
-                            optionId = ele.value;
-                        }
-                    });
-                    sectionLessonOptions.forEach((ele) => {
-                        if (ele.selected) {
-                            sectionId = ele.value;
-                        }
-                    });
-                    selectExamOptions.forEach((ele) => {
-                        if (ele.selected && ele.value) {
-                            examId = ele.value;
-                        }
-                    });
-                    let lol;
-                    if (examId && percentExam.value) {
-                        lol = true;
-                    } else {
-                        lol = false;
-                    }
-                    console.log(examId);
-                    console.log(lol);
-                    console.log(percentExam.value);
-                    let saveObjSend = {
-                        title: lessAddress.value.trim(),
-                        id: dataId,
-                        type: "video",
-                        url: inputURL.value.trim(),
-                        description: document.querySelector(
-                            "#editLesson > div > div > form > div.modal-body > div:nth-child(5) > div > div.ck.ck-editor__main > div"
-                        ).innerHTML,
-                        part: optionId,
-                        section: sectionId,
-                        percentage: percentExam.value || null,
-                        exam: examId,
-                        dependsOnExam: lol,
-                    };
+            //                     let optionId = 0;
+            //                     let sectionId = 0;
+            //                     let examId = null;
+            //                     partOptions.forEach((ele) => {
+            //                         if (ele.selected) {
+            //                             optionId = ele.value;
+            //                         }
+            //                     });
+            //                     sectionLessonOptions.forEach((ele) => {
+            //                         if (ele.selected) {
+            //                             sectionId = ele.value;
+            //                         }
+            //                     });
+            //                     selectExamOptions.forEach((ele) => {
+            //                         if (ele.selected && ele.value) {
+            //                             examId = ele.value;
+            //                         }
+            //                     });
+            //                     let lol;
+            //                     if (examId && percentExam.value) {
+            //                         lol = true;
+            //                     } else {
+            //                         lol = false;
+            //                     }
+            //                     console.log(examId);
+            //                     console.log(lol);
+            //                     console.log(percentExam.value);
+            //                     let saveObjSend = {
+            //                         title: lessAddress.value.trim(),
+            //                         id: dataId,
+            //                         type: "video",
+            //                         url: inputURL.value.trim(),
+            //                         description: document.querySelector(
+            //                             "#editLesson > div > div > form > div.modal-body > div:nth-child(5) > div > div.ck.ck-editor__main > div"
+            //                         ).innerHTML,
+            //                         part: optionId,
+            //                         section: sectionId,
+            //                         percentage: percentExam.value || null,
+            //                         exam: examId,
+            //                         dependsOnExam: lol,
+            //                     };
 
-                    newform = new FormData();
-                    newform.append("data", JSON.stringify(saveObjSend));
+            //                     newform = new FormData();
+            //                     newform.append("data", JSON.stringify(saveObjSend));
 
-                    let myResponse = await editFun(
-                        `${APP_URL}/api/lessons/update
-`,
-                        newform,
-                        e
-                    );
-                    if (myResponse.success) {
-                        $("#editLesson").modal("hide");
-                        e.target
-                            .closest(".section-lesson-item")
-                            .querySelector(".type-less-name").innerHTML =
-                            saveObjSend.title;
+            //                     let myResponse = await editFun(
+            //                         `${APP_URL}/api/lessons/update
+            // `,
+            //                         newform,
+            //                         e
+            //                     );
+            //                     if (myResponse.success) {
+            //                         $("#editLesson").modal("hide");
+            //                         e.target
+            //                             .closest(".section-lesson-item")
+            //                             .querySelector(".type-less-name").innerHTML =
+            //                             saveObjSend.title;
 
-                        // location.reload();
-                    }
-                });
+            //                         // location.reload();
+            //                     }
+            //                 });
         }
     });
