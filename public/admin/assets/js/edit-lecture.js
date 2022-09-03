@@ -198,22 +198,11 @@ let trId = document.querySelector("#trId");
 document
     .querySelector(".sections-items")
     .addEventListener("click", function (e) {
-        console.log("abo");
         if (!e.target.closest(".delItemBtn")) return;
-        console.log("yse");
         let delLesson = document.querySelector(".del-lesson");
         delLesson.innerHTML = e.target
             .closest(".section-lesson-item")
             .querySelector(".type-less-name")
             .innerHTML.trim();
         trId.value = e.target.closest(".section-lesson-item").dataset.item;
-
-        console.log(delLesson);
-        console.log(trId);
-        console.log(
-            e.target
-                .closest(".section-lesson-item")
-                .querySelector(".type-less-name")
-                .innerHTML.trim()
-        );
     });
