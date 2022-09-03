@@ -141,7 +141,9 @@ document
             let description = document.querySelector(
                 "#editLesson .ck-editor__editable"
             );
-            let hasExamCheck = document.querySelector("#have-exam-check");
+            let hasExamCheck = document.querySelector(
+                "#editLesson #have-exam-check"
+            );
             let selectExamInner = document.querySelector(
                 "#editLesson .selectExamParent .filter-option-inner-inner"
             );
