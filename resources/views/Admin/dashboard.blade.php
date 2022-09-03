@@ -15,23 +15,23 @@
                         @php
                             $currentMonth = date('Y-m', strtotime(now()));
                             $lastMonth = date('Y-m', strtotime(strtotime('first day of previous month')));
-                            $currentMonthEncomme = array_sum(
+                            $currentMonthEncome = array_sum(
                                 \App\Models\BalanceCard::where('user_id', '!=', null)
                                     ->where('used_at', 'LIKE', "%$currentMonth%")
                                     ->get()
                                     ->pluck('value')
                                     ->toArray(),
                             );
-                            $lastMonthEncomme = array_sum(
+                            $lastMonthEncome = array_sum(
                                 \App\Models\BalanceCard::where('user_id', '!=', null)
                                     ->where('used_at', 'LIKE', "%$lastMonth%")
                                     ->get()
                                     ->pluck('value')
                                     ->toArray(),
                             );
-                            $monthpercentage = $lastMonthEncomme ? (($currentMonthEncomme - $lastMonthEncomme) * 100) / $lastMonthEncomme : 100;
+                            $monthpercentage = $lastMonthEncome ? (($currentMonthEncome - $lastMonthEncome) * 100) / $lastMonthEncome : 100;
                         @endphp
-                        {{ $currentMonthEncomme }} ج.م
+                        {{ $currentMonthEncome }} ج.م
                         <span class="percent">{{ $monthpercentage }}</span>
                     </p>
                 </div>
@@ -108,23 +108,23 @@
                         @php
                             $currentDay = date('Y-m-d', strtotime(now()));
                             $lastDay = date('Y-m-d', strtotime(strtotime('-1 day')));
-                            $currentDayEncomme = array_sum(
+                            $currentDayEncome = array_sum(
                                 \App\Models\BalanceCard::where('user_id', '!=', null)
                                     ->where('used_at', 'LIKE', "%$currentDay%")
                                     ->get()
                                     ->pluck('value')
                                     ->toArray(),
                             );
-                            $lastDayEncomme = array_sum(
+                            $lastDayEncome = array_sum(
                                 \App\Models\BalanceCard::where('user_id', '!=', null)
                                     ->where('used_at', 'LIKE', "%$lastDay%")
                                     ->get()
                                     ->pluck('value')
                                     ->toArray(),
                             );
-                            $monthpercentage = $lastDayEncomme ? (($currentDayEncomme - $lastDayEncomme) * 100) / $lastDayEncomme : 100;
+                            $monthpercentage = $lastDayEncome ? (($currentDayEncome - $lastDayEncome) * 100) / $lastDayEncome : 100;
                         @endphp
-                        {{ $currentDayEncomme }} ج.م
+                        {{ $currentDayEncome }} ج.م
                         <span class="percent">{{ $monthpercentage }}</span>
                     </p>
                 </div>
@@ -693,7 +693,7 @@
     $studentsLevel = "";
     $centersName = "";
     $studentsCount = "";
-    $Encomme
+    $totalEncome = "";
 
 
     foreach (\App\Models\Center::all() as $index => $center):
@@ -701,10 +701,12 @@
             $userQ->where('center_id',$center->id);
         });
         $centersName .= "'".$center->name."',";
+        $totalEncome .= "'".array_sum(\App\Models\BalanceCards::where([['user_id','!=',null],'center_id'=>$center->id])->get()->pluck('value'))."',";
+
         $total = $answerdQuestion->count();
         $studentsLevel .= ((string) number_format(($answerdQuestion->where('correct', 1)->count() / $total) * max(\App\Models\Question::all()->pluck('level')->toArray()),2)).",";
         $studentsCount .= $center->users->count().",";
-    endforeach
+    endforeach;
     @endphp
     <script>
         // students Capacity
@@ -776,7 +778,7 @@
                 },
                 {
                     name: "الدخل",
-                    data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
+                    data: [{{$totalEncome}}],
                 },
                 {
                     name: "عدد الطلاب",
