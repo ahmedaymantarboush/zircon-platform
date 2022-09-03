@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('faveicon/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('faveicon/favicon-16x16.png')}}">
     <link rel="manifest" href="{{ asset('faveicon/site.webmanifest')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
@@ -17,7 +18,6 @@
         rel="stylesheet" />
     {{-- <!-- font awesome --> --}}
     {{-- <!-- موجود في كله  --> --}}
-    <script src="https://kit.fontawesome.com/f2178052c7.js" crossorigin="anonymous"></script>
 
 
     {{-- <!-- موجود في كله  --> --}}
@@ -33,7 +33,7 @@
 
     <link rel="stylesheet" href="{{ asset('admin/assets/css/responsive.css') }}" />
     <title>{{ config('app.name') }}</title>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
 </head>
 
 <body>
