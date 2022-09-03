@@ -419,7 +419,7 @@ function getItem(data) {
             let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
                 "                    <div class=\"row\">\n" +
                 "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
-                "                            <img src=\"public/lectureAssets/img/examvector.webp\" alt=\"\">\n" +
+                "                            <img src=\"public/lectureAssets/img/examvector.png\" alt=\"\">\n" +
                 "                        </div>\n" +
                 "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
                 "\n" +
