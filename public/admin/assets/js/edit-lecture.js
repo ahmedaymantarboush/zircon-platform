@@ -166,7 +166,7 @@ document
             document
                 .querySelector(".modifyLessonForm")
                 .addEventListener("submit", async function (event) {
-                    event.preventDefault();
+                    // event.preventDefault();
 
                     let optionId = 0;
                     let sectionId = 0;
