@@ -198,6 +198,7 @@ let trId = document.querySelector("#trId");
 document
     .querySelector(".sections-items")
     .addEventListener("click", function (e) {
+        console.log("abo");
         if (!e.target.classList.contains("delItemBtn")) return;
         console.log("yse");
         let delLesson = document.querySelector(".del-lesson");
