@@ -14,7 +14,7 @@
                     <p class="daily-p">
                         @php
                             $currentMonth = date('Y-m', strtotime(now()));
-                            $lastMonth = date('Y-m', strtotime(strtotime('first day of previous month')));
+                            $lastMonth = date('Y-m', strtotime('-1 month'));
                             $currentMonthEncome = array_sum(
                                 \App\Models\BalanceCard::where('user_id', '!=', null)
                                     ->where('used_at', 'LIKE', "%$currentMonth%")
@@ -48,7 +48,7 @@
                         @php
                             $count = 0;
                             $currentDay = date('Y-m-d', strtotime(now()));
-                            $yesterday = date('Y-m-d', strtotime(strtotime('-1 day')));
+                            $yesterday = date('Y-m-d', strtotime('-1 day'));
 
                             $currentDayAttend = \App\Models\UserLesson::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$currentDay%")
@@ -107,7 +107,7 @@
                     <p class="daily-p">
                         @php
                             $currentDay = date('Y-m-d', strtotime(now()));
-                            $lastDay = date('Y-m-d', strtotime(strtotime('-1 day')));
+                            $lastDay = date('Y-m-d', strtotime('-1 day'));
                             $currentDayEncome = array_sum(
                                 \App\Models\BalanceCard::where('user_id', '!=', null)
                                     ->where('used_at', 'LIKE', "%$currentDay%")
@@ -215,14 +215,17 @@
                                     <td class="member">
                                         @php
                                             $centerAttendance = \App\Models\UserLesson::where('user_id', '!=', null)->count() + \App\Models\PassedExam::where('user_id', '!=', null)->count();
-                                            $usersCount = \App\Models\user::where('center_id',$center->id)->count();
+                                            $usersCount = \App\Models\user::where('center_id', $center->id)->count();
                                         @endphp
                                         {{ $centerAttendance }}
                                     </td>
-                                    <td class="money">{{\App\Models\BalanceCard::where(['center_id'=>$center->id,['user_id','!=',null]])->sum('value')}} ج.م</td>
+                                    <td class="money">
+                                        {{ \App\Models\BalanceCard::where(['center_id' => $center->id, ['user_id', '!=', null]])->sum('value') }}
+                                        ج.م</td>
                                     {{-- <td class="date">18/7/2025</td> --}}
                                     <td class="progress-parent">
-                                        <span class="percentage-progress"><span class="num">{{ $usersCount ? ($centerAttendance * 100 / $usersCount) : 0}}</span><span
+                                        <span class="percentage-progress"><span
+                                                class="num">{{ $usersCount ? ($centerAttendance * 100) / $usersCount : 0 }}</span><span
                                                 class="per">%</span></span>
                                         <div class="progressbar">
                                             <span class="progress-child"></span>
@@ -270,8 +273,13 @@
                 <div class="visits-content">
                     <span class="visitors-name">زيارات الموقع</span>
                     <div class="visits-total" style="direction: rtl">
-                        <span class="visits-count">56,890</span>
-                        <span class="percent">85</span>
+                        @php
+                            $currentMonthVisits = \App\Models\Visit::where('created_at','LIKE',"%$currentMonth%")->count();
+                            $lastMonthVisits = \App\Models\Visit::where('created_at','LIKE',"%$lastMonth%")->count();
+                            $monthPercentage = $lastMonthVisits ? round(($currentMonthVisits / $lastMonthVisits) * 100) : 0;
+                        @endphp
+                        <span class="visits-count">{{$currentMonthVisits}}</span>
+                        <span class="percent">{{$monthPercentage}}</span>
                     </div>
                 </div>
             </div>
@@ -328,7 +336,6 @@
     endforeach;
 
     $balanceCards = \App\Models\BalanceCard::where('user_id', '!=', null)->get();
-
     $compareCurveDates = '';
     $compareCurveValues = '';
     $compareCurveStudentLevel = '';
@@ -340,6 +347,19 @@
                 \App\Models\BalanceCard::where('user_id', '!=', null)
                     ->where('used_at', 'LIKE', "%$date%")
                     ->sum('value') . ',';
+        endif;
+    endforeach;
+
+    $visits = \App\Models\Visit::all();
+    $visitsCurveDates = '';
+    $visitsCurveValues = '';
+    foreach ($visits as $visit):
+        $date = date('Y-m', strtotime($visit->created_at));
+        if (!in_array("'$date'", explode(',', $visitsCurveDates))):
+            $visitsCurveDates .= "'$date',";
+            $visitsCurveValues .=
+                \App\Models\Visit::where('created_at', 'LIKE', "%$date%")
+                    ->count() . ',';
         endif;
     endforeach;
     @endphp
@@ -491,7 +511,7 @@
         var options5 = {
             series: [{
                 name: "عدد الزوار",
-                data: [31, 40, 28, 51, 42, 109, 100],
+                data: [@php echo $visitsCurveValues; @endphp],
                 color: '#3645FA',
             }, ],
             fill: {
@@ -511,15 +531,7 @@
             },
             xaxis: {
                 type: "date",
-                categories: [
-                    "02-19",
-                    "03-19",
-                    "04-19",
-                    "05-19",
-                    "06-19",
-                    "07-19",
-                    "08-19",
-                ],
+                categories: [@php echo $visitsCurveDates; @endphp],
             },
             tooltip: {
                 x: {

@@ -57,3 +57,12 @@ $response = $kernel->handle(
 
 $kernel->terminate($request, $response);
 
+$session = \App\Models\Session::orderBy('last_activity')->first();
+\App\Models\Visit::create([
+    'session_id' => $session->id,
+    'user_id' => $session->user_id,
+    'ip_address' => $session->ip_address,
+    'user_agent' => $session->user_agent,
+    'payload' => $session->payload,
+    'last_activity' => $session->last_activity,
+]);
