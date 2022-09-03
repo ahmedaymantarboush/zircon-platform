@@ -198,110 +198,72 @@
                             <th>المحاضرة</th>
                             <th>عدد الحضور</th>
                             <th>الايرادات</th>
-                            <th>التاريخ</th>
+                            {{-- <th>التاريخ</th> --}}
                             <th>نسبة الحضور</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="center-name">
-                                الاوائل
-                            </td>
-                            <td class="subject-table">
-                                الصف الثاني الثانوي - ب
-                            </td>
-                            <td class="member">465</td>
-                            <td class="money">1698 ج.م</td>
-                            <td class="date">18/7/2025</td>
-                            <td class="progress-parent">
-                                <span class="percentage-progress"><span class="num">70</span><span
-                                        class="per">%</span></span>
-                                <div class="progressbar">
-                                    <span class="progress-child"></span>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach (\App\Models\Center::all() as $center)
+                            @foreach (\App\Models\Grade::all() as $grade)
+                                <tr>
+                                    <td class="center-name">
+                                        {{ $center->name }}
+                                    </td>
+                                    <td class="subject-table">
+                                        {{ $grade->name }}
+                                    </td>
+                                    <td class="member">
+                                        @php
+                                            $centerAttendance = \App\Models\UserLesson::where('user_id', '!=', null)->count() + \App\Models\PassedExam::where('user_id', '!=', null)->count();
+                                            $usersCount = \App\Models\user::where('center_id',$center->id)->count();
+                                        @endphp
+                                        {{ $centerAttendance }}
+                                    </td>
+                                    <td class="money">{{\App\Models\BalanceCard::where(['center_id'=>$center->id,['user_id','!=',null]])->sum('value')}} ج.م</td>
+                                    {{-- <td class="date">18/7/2025</td> --}}
+                                    <td class="progress-parent">
+                                        <span class="percentage-progress"><span class="num">{{ $usersCount ? ($centerAttendance * 100 / $usersCount) : 0}}</span><span
+                                                class="per">%</span></span>
+                                        <div class="progressbar">
+                                            <span class="progress-child"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="col-lg-4">
             <div class="row add-student-parent">
-                <div class="col-lg-12 col-md-6 white-box add-student">
-                    <div class="student-icon">
-                        <i class="fa-solid fa-user-graduate"></i>
+                @foreach (\App\Models\Grade::all() as $grade)
+                    <div class="col-lg-12 col-md-6 white-box add-student">
+                        <div class="student-icon">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <p class="student-level">
+                            {{ $grade->name }}
+                        </p>
+                        <p class="total">
+                            @php
+                                $currentMonthStudents = \App\Models\user::where(['grade_id' => $grade->id, ['role_num', '>=', 4]])
+                                    ->where('created_at', 'LIKE', "%$currentMonth%")
+                                    ->count();
+                                $lastMonthStudents = \App\Models\user::where(['grade_id' => $grade->id, ['role_num', '>=', 4]])
+                                    ->where('created_at', 'LIKE', "%$currentMonth%")
+                                    ->count();
+
+                                $monthpercentage = $lastMonthStudents ? round(($currentMonthStudents / $lastMonthStudents) * 100) : 0;
+                            @endphp
+                            {{ $currentMonthStudents }}
+                            <span class="percent">{{ $monthpercentage }}</span>
+                        </p>
+                        <button class="add-btn">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
-                    <p class="student-level">
-                        الصف الأول الثانوي
-                    </p>
-                    <p class="total">
-                        1289
-                        <span class="percent">28</span>
-                    </p>
-                    <button class="add-btn">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-                <div class="col-lg-12 col-md-6 white-box add-student">
-                    <div class="student-icon">
-                        <i class="fa-solid fa-user-graduate"></i>
-                    </div>
-                    <p class="student-level">
-                        الصف الأول الثانوي
-                    </p>
-                    <p class="total">
-                        1289
-                        <span class="percent">28</span>
-                    </p>
-                    <button class="add-btn">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-                <div class="col-lg-12 col-md-6 white-box add-student">
-                    <div class="student-icon">
-                        <i class="fa-solid fa-user-graduate"></i>
-                    </div>
-                    <p class="student-level">
-                        الصف الأول الثانوي
-                    </p>
-                    <p class="total">
-                        1289
-                        <span class="percent">28</span>
-                    </p>
-                    <button class="add-btn">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-                <div class="col-lg-12 col-md-6 white-box add-student">
-                    <div class="student-icon">
-                        <i class="fa-solid fa-user-graduate"></i>
-                    </div>
-                    <p class="student-level">
-                        الصف الثاني الثانوي
-                    </p>
-                    <p class="total">
-                        1289
-                        <span class="percent">-5</span>
-                    </p>
-                    <button class="add-btn">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-                <div class="col-lg-12 col-md-6 white-box add-student">
-                    <div class="student-icon">
-                        <i class="fa-solid fa-user-graduate"></i>
-                    </div>
-                    <p class="student-level">
-                        الصف الثالث الثانوي
-                    </p>
-                    <p class="total">
-                        1289
-                        <span class="percent">63</span>
-                    </p>
-                    <button class="add-btn">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
+                @endforeach
             </div>
             <div class="white-box col-lg-12 visits-curve-parent" style="direction: ltr">
                 <div class="visits-curve" style="margin-right: 0; min-width: 100%"></div>
@@ -498,10 +460,9 @@
         // curve
         var options4 = {
             series: [{
-                    name: "الدخل",
-                    data: [@php echo $compareCurveValues; @endphp],
-                },
-            ],
+                name: "الدخل",
+                data: [@php echo $compareCurveValues; @endphp],
+            }, ],
             fill: {
                 colors: ["#3645FA", "#344767"],
             },
