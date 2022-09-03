@@ -701,7 +701,7 @@
             $userQ->where('center_id',$center->id);
         });
         $centersName .= "'".$center->name."',";
-        $totalEncome .= "'".array_sum(\App\Models\BalanceCards::where([['user_id','!=',null],'center_id'=>$center->id])->get()->pluck('value'))."',";
+        $totalEncome .= "'".array_sum(\App\Models\BalanceCard::where([['user_id','!=',null],'center_id'=>$center->id])->get()->pluck('value'))."',";
 
         $total = $answerdQuestion->count();
         $studentsLevel .= ((string) number_format(($answerdQuestion->where('correct', 1)->count() / $total) * max(\App\Models\Question::all()->pluck('level')->toArray()),2)).",";
