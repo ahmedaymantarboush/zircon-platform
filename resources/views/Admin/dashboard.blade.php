@@ -696,8 +696,7 @@
     $Encomme
 
 
-    @endphp
-    @foreach (\App\Models\Center::all() as $index => $center)
+    foreach (\App\Models\Center::all() as $index => $center):
         $answerdQuestion = \App\Models\AnswerdQuestion::whereHas('user',function ($userQ) use($center){
             $userQ->where('center_id',$center->id);
         });
@@ -705,7 +704,8 @@
         $total = $answerdQuestion->count();
         $studentsLevel .= ((string) number_format(($answerdQuestion->where('correct', 1)->count() / $total) * max(\App\Models\Question::all()->pluck('level')->toArray()),2)).",";
         $studentsCount .= $center->users->count().",";
-    @endforeach
+    endforeach
+    @endphp
     <script>
         // students Capacity
         var option1 = {
