@@ -161,6 +161,7 @@ document
                     }
                 });
             };
+            console.log(hasExamCheck);
             description.ckeditorInstance.setData(objData.description);
             fillSelectFunction(partOptions, partInner, objData.part.id);
             fillSelectFunction(
@@ -187,6 +188,7 @@ document
 
                     let optionId = 0;
                     let sectionId = 0;
+                    let examId = 0;
                     partOptions.forEach((ele) => {
                         if (ele.selected) {
                             optionId = ele.value;
@@ -195,6 +197,11 @@ document
                     sectionLessonOptions.forEach((ele) => {
                         if (ele.selected) {
                             sectionId = ele.value;
+                        }
+                    });
+                    selectExamOptions.forEach((ele) => {
+                        if (ele.selected) {
+                            examId = ele.value;
                         }
                     });
                     let saveObjSend = {
@@ -207,6 +214,8 @@ document
                         ).innerHTML,
                         part: optionId,
                         section: sectionId,
+                        percentage: percentExam.value,
+                        exam: examId,
                     };
 
                     newform = new FormData();
