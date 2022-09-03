@@ -727,10 +727,10 @@
 
     $compareCurveDates = "";
     $compareCurveValues = "";
-    foreach ($balanceCards as $balanceCards) :
-    $date = date('Y-m-d', strtotime($balanceCards->created_at));
+    foreach ($balanceCards as $balanceCard) :
+    $date = date('Y-m-d', strtotime($balanceCard->created_at));
         $compareCurveDates .= "'" . $date . "',";
-        $compareCurveValues .= $balanceCards->value . ',';
+        $compareCurveValues .= $balanceCard->value . ',';
     endforeach;
     @endphp
     <script>
