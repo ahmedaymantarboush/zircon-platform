@@ -173,7 +173,7 @@ document
                 "#editLesson > div > div > form > div.modal-body > div:nth-child(5) > div > div.ck.ck-editor__main > div"
             ).innerHTML = objData.description;
             if (objData.exam) {
-                hasExamCheck.setAttribute("checked", true);
+                hasExamCheck.checked = true;
                 percentExam.value = objData.percentage;
                 fillSelectFunction(
                     selectExamOptions,
