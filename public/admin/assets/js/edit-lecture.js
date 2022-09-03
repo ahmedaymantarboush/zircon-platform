@@ -144,6 +144,7 @@ document
             let hasExamCheck = document.querySelector(
                 "#editLesson #have-exam-check"
             );
+            let hasExamDiv = document.querySelector("#editLesson .have-exam");
             let selectExamInner = document.querySelector(
                 "#editLesson .selectExamParent .filter-option-inner-inner"
             );
@@ -176,6 +177,7 @@ document
             ).innerHTML = objData.description;
             if (objData.exam) {
                 hasExamCheck.checked = true;
+                hasExamDiv.style.display = "block";
                 percentExam.value = objData.percentage;
                 fillSelectFunction(
                     selectExamOptions,
@@ -183,8 +185,8 @@ document
                     objData.exam
                 );
             } else {
-                // hasExamCheck.removeAttribute("checked");
-                hasExamCheck.checked = true;
+                hasExamCheck.checked = false;
+                hasExamDiv.style.display = "none";
                 percentExam.value = "";
                 fillSelectFunction(selectExamOptions, selectExamInner, 0);
             }
