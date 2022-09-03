@@ -371,8 +371,11 @@
     $compareCurveValues = "";
     foreach ($balanceCards as $balanceCard) :
         $date = date('Y-m-d', strtotime($balanceCard->used_at));
-        if (!in_array($date,explode(',', $compareCurveDates))):
-            $compareCurveDates .= "'" . $date . "',";
+        print("'$date' => ")
+        print(explode(',', $compareCurveDates));
+        echo "<br />";
+        if (!in_array("'$date'", explode(',', $compareCurveDates))):
+            $compareCurveDates .= "'$date',";
             $compareCurveValues .= \App\Models\BalanceCard::where('user_id', '!=', null)->where('used_at', 'LIKE', "%$date%")->sum('value') . ',';
         endif;
     endforeach;
