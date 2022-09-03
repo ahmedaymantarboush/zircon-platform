@@ -202,7 +202,7 @@ document
         let delLesson = document.querySelector(".del-lesson");
         delLesson.innerHTML = e.target
             .closest("section-lesson-item")
-            .querySelector("type-less-name")
+            .querySelector(".type-less-name")
             .innerHTML.trim();
         trId.value = e.target.closest("section-lesson-item").dataset.item;
     });
