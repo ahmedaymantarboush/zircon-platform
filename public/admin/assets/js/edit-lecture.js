@@ -197,7 +197,7 @@ document
 
                     let optionId = 0;
                     let sectionId = 0;
-                    let examId = 0;
+                    let examId = null;
                     partOptions.forEach((ele) => {
                         if (ele.selected) {
                             optionId = ele.value;
@@ -223,7 +223,7 @@ document
                         ).innerHTML,
                         part: optionId,
                         section: sectionId,
-                        percentage: percentExam.value,
+                        percentage: percentExam.value || null,
                         exam: examId,
                         dependsOnExam: hasExamCheck.checked,
                     };
