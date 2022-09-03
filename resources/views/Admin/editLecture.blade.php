@@ -625,6 +625,7 @@
                                 </div>
                                 <form class='modifyLessonForm' method="POST">
                                     @csrf
+                                    <input type="hidden" name='id' id='itemId'>
                                     <div class="modal-body">
                                         <div class="less-item custome-item">
                                             <label class="sec-name">عنوان الدرس</label>
