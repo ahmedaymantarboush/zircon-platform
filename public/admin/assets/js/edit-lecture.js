@@ -180,6 +180,10 @@ document
                     selectExamInner,
                     objData.exam
                 );
+            } else {
+                hasExamCheck.setAttribute("checked", false);
+                percentExam.value = "";
+                fillSelectFunction(selectExamOptions, selectExamInner, 0);
             }
             document
                 .querySelector(".modifyLessonForm")
