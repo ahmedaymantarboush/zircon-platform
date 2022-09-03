@@ -47,6 +47,9 @@ class LessonController extends Controller
             'free' => $lesson->price == 0,
             'url' => $lesson->url,
             'section' => SectionItem::where('lesson_id', $id)->first()->section->id,
+
+            'exam' => $lesson->exam_id,
+            'percentage' => $lesson->min_percentage,
         ]);
     }
 
@@ -63,7 +66,7 @@ class LessonController extends Controller
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 401);
         endif;
-        
+
         validator()->make($data,[
             'title' => ['required', 'string', 'max:50'],
             'url' => ['required', 'url', 'max:255'],
@@ -143,6 +146,7 @@ class LessonController extends Controller
             'description' => $lesson->description,
             'section' => $lesson->section->id,
             'part' => $lesson->part->id,
+
             'exam' => $lesson->exam_id,
             'percentage' => $lesson->min_percentage,
         ]);
