@@ -21,7 +21,7 @@ Bold: 700
     opacity: 0;
     visibility: hidden;
     will-change: transform, opacity;
-  }
+}
 :root {
     --d-red-color: #fa5f5c;
     --d-blue-color: #6d8dfe;
@@ -736,6 +736,7 @@ header .row {
     color: #fff;
     transform: translate(50%, -50%);
     border-radius: 50%;
+    z-index: 2;
 }
 
 /*****************************************
