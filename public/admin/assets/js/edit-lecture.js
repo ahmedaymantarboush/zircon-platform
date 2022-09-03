@@ -225,6 +225,7 @@ document
                         section: sectionId,
                         percentage: percentExam.value,
                         exam: examId,
+                        dependsOnExam: hasExamCheck.checked,
                     };
 
                     newform = new FormData();
