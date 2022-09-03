@@ -107,6 +107,8 @@ document
         } else {
             let dataId = e.target.closest(".section-lesson-item").dataset
                 .lesson;
+            let itemId = document.querySelector("#itemId");
+            itemId.value = dataId;
             let sendObj = {
                 id: dataId,
             };
