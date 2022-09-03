@@ -182,6 +182,7 @@ document
                 );
             } else {
                 // hasExamCheck.removeAttribute("checked");
+                hasExamCheck.checked = true;
                 percentExam.value = "";
                 fillSelectFunction(selectExamOptions, selectExamInner, 0);
             }
