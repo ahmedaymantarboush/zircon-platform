@@ -903,7 +903,10 @@ footer {
     font-weight: 600;
 }
 .zirconLink {
-    font-weight: 700;
+    font-weight: 900;
+}
+.zirconLink:hover {
+    text-decoration: underline;
 }
 .heartIcon {
     color: #ff4d4d;
