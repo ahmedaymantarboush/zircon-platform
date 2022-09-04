@@ -54,8 +54,6 @@ class LectureController extends Controller
                         continue;
                     }
 
-
-
                     $lectures = $lectures->where($key, $value);
                 }
             }
