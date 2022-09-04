@@ -108,7 +108,7 @@ class ExamController extends Controller
         $passedExams = $exam ? $exam->passedExams : null;
         $data = request()->all();
         if ($passedExams && $user ? $exam->publisher->id == $user->id : false):
-            if (isset($data['q'])):
+            if (isset($data['q']) ? $data['q'] != '' : false):
                 $q = $data['q'];
                 $passedExams = $passedExams::whereHas('user', function ($user) use ($q) {
                     $user->where('name', 'like', '%' . $q . '%')->orWhere('email', 'like', '%' . $q . '%')->orWhere('phone_number', 'like', '%' . $q . '%')->orWhere('code', 'like', '%' . $q . '%');

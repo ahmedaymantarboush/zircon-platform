@@ -30,7 +30,7 @@ class QuestionController extends Controller
                         continue;
                     }
 
-                    if ($key == 'q') {
+                    if ($key == 'q' && $value != '') {
                         $questions = $questions->where('title', 'like', '%' . $value . '%');
                         continue;
                     }

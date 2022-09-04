@@ -18,6 +18,7 @@ class BalanceCardController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $data = request()->all();
         $cards = BalanceCard::where('publisher_id', $user->id)->get();
         if (request()->value && request()->value != 'all') {
             $cards = $cards->where('value', request()->value);
@@ -31,7 +32,7 @@ class BalanceCardController extends Controller
                 $cards = $cards->where('user_id', null)->where('hanging', 0);
             }
         }
-        if (isset($data['q'])) {
+        if (isset($data['q']) ? $data['q'] != '' : false) {
             $cards = $cards->whereHas('user',function ($user) use($data){
                 $user->where('name', 'like', '%' . $data['q'] . '%')->orWhere('email', 'like', '%' . $data['q'] . '%')->orWhere('phone_number', 'like', '%' . $data['q'] . '%')->orWhere('code', 'like', '%' . $data['q'] . '%');
             })->orWhere('code', 'like', '%' . $data['q'] . '%');
