@@ -203,6 +203,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $totalAttendance = \App\Models\UserLesson::count() + \App\Models\PassedExam::count();
+                        @endphp
                         @foreach (\App\Models\Center::all() as $center)
                             @foreach (\App\Models\Grade::all() as $grade)
                                 <tr>
@@ -214,12 +217,13 @@
                                     </td>
                                     <td class="member">
                                         @php
-                                            $centerAttendance = \App\Models\UserLesson::whereHas('user', function ($userQ) use ($center,$grade){
-                                                $userQ->where(['center_id'=> $center->id,'grade_id'=>$grade->id]);
-                                            })->count() + \App\Models\PassedExam::whereHas('user', function ($userQ) use ($center,$grade){
-                                                $userQ->where(['center_id'=> $center->id,'grade_id'=>$grade->id]);
-                                            })->count();
-                                            $usersCount = \App\Models\UserLesson::count() + \App\Models\PassedExam::count();
+                                            $centerAttendance =
+                                                \App\Models\UserLesson::whereHas('user', function ($userQ) use ($center, $grade) {
+                                                    $userQ->where(['center_id' => $center->id, 'grade_id' => $grade->id]);
+                                                })->count() +
+                                                \App\Models\PassedExam::whereHas('user', function ($userQ) use ($center, $grade) {
+                                                    $userQ->where(['center_id' => $center->id, 'grade_id' => $grade->id]);
+                                                })->count();
                                         @endphp
                                         {{ $centerAttendance }}
                                     </td>
@@ -229,7 +233,7 @@
                                     {{-- <td class="date">18/7/2025</td> --}}
                                     <td class="progress-parent">
                                         <span class="percentage-progress"><span
-                                                class="num">{{ $usersCount ? ($centerAttendance * 100) / $usersCount : 0 }}</span><span
+                                                class="num">{{ $totalAttendance ? ($centerAttendance * 100) / $totalAttendance : 0 }}</span><span
                                                 class="per">%</span></span>
                                         <div class="progressbar">
                                             <span class="progress-child"></span>
@@ -278,12 +282,12 @@
                     <span class="visitors-name">زيارات الموقع</span>
                     <div class="visits-total" style="direction: rtl">
                         @php
-                            $currentMonthVisits = \App\Models\Visit::where('created_at','LIKE',"%$currentMonth%")->count();
-                            $lastMonthVisits = \App\Models\Visit::where('created_at','LIKE',"%$lastMonth%")->count();
+                            $currentMonthVisits = \App\Models\Visit::where('created_at', 'LIKE', "%$currentMonth%")->count();
+                            $lastMonthVisits = \App\Models\Visit::where('created_at', 'LIKE', "%$lastMonth%")->count();
                             $monthPercentage = $lastMonthVisits ? round(($currentMonthVisits / $lastMonthVisits) * 100) : 0;
                         @endphp
-                        <span class="visits-count">{{$currentMonthVisits}}</span>
-                        <span class="percent">{{$monthPercentage}}</span>
+                        <span class="visits-count">{{ $currentMonthVisits }}</span>
+                        <span class="percent">{{ $monthPercentage }}</span>
                     </div>
                 </div>
             </div>
@@ -361,9 +365,7 @@
         $date = date('Y-m', strtotime($visit->created_at));
         if (!in_array("'$date'", explode(',', $visitsCurveDates))):
             $visitsCurveDates .= "'$date',";
-            $visitsCurveValues .=
-                \App\Models\Visit::where('created_at', 'LIKE', "%$date%")
-                    ->count() . ',';
+            $visitsCurveValues .= \App\Models\Visit::where('created_at', 'LIKE', "%$date%")->count() . ',';
         endif;
     endforeach;
     @endphp
