@@ -876,6 +876,16 @@ header .row {
     display: flex;
     justify-content: space-between;
 }
+.grade1 .latestCard .details {
+    color: var(--d-red-color);
+}
+.grade2 .latestCard .details {
+    color: var(--d-blue-color);
+}
+.grade3 .latestCard .details {
+    color: var(--d-yellow-color);
+}
+
 .latestCard .detailItem {
     font-size: 1.6rem;
     display: flex;
