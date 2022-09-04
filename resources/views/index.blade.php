@@ -222,7 +222,7 @@
     <section class="latestMonths">
         <div class="container">
             <div class="monthsHeading  ">
-                <h2 class="customeSquareLine" data-sal="slide-down"
+                <h2 class="customeSquareLine" data-sal="slide-up"
   data-sal-delay="0"
   data-sal-easing="ease-out-back"
   data-sal-duration="1800">أخر الشهور لجميع المراحل</h2>
