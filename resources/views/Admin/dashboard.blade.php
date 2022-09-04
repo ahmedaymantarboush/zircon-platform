@@ -453,7 +453,7 @@
             plotOptions: {
                 bar: {
                     horizontal: false,
-                    columnWidth: "90%",
+                    columnWidth: "50%",
                     endingShape: "rounded",
                 },
             },
@@ -462,7 +462,7 @@
             },
             stroke: {
                 show: true,
-                width: 40,
+                width: 2,
                 colors: ["transparent"],
             },
             xaxis: {
