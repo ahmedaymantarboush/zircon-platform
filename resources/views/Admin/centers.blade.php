@@ -82,7 +82,7 @@
                                 {{ $center->governorate->name }}
                             </td>
                             <td data-lable="عدد الطلاب :" class="table-sections">
-                                {{ $center->students ? count($center->students) : 0 }}
+                                {{ $center->users ? count($center->users) : 0 }}
                             </td>
                             <td data-lable="صفحة المكان :" class="address">
                                 <a href="{{ $center->url }}" class="btn name-lesson question-code" data-toggle="tooltip"
