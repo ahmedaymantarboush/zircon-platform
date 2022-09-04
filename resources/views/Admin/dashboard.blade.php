@@ -225,7 +225,7 @@
                                     {{-- <td class="date">18/7/2025</td> --}}
                                     <td class="progress-parent">
                                         <span class="percentage-progress"><span
-                                                class="num">{{ $usersCount ? ($centerAttendance * 100) / $usersCount : 0 }}</span><span
+                                                class="num">{{ $usersCount ? ($centerAttendance * 50) / $usersCount : 0 }}</span><span
                                                 class="per">%</span></span>
                                         <div class="progressbar">
                                             <span class="progress-child"></span>
