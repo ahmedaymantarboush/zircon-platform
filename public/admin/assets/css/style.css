@@ -895,6 +895,7 @@ footer {
     justify-content: center;
     align-items: center;
     direction: ltr;
+    padding: 3rem 0;
 }
 .copyRight {
     font-size: 1.8rem;
@@ -903,4 +904,7 @@ footer {
 }
 .zirconLink {
     font-weight: 700;
+}
+.heartIcon {
+    color: #ff4d4d;
 }
