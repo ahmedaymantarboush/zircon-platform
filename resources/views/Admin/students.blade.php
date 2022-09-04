@@ -88,7 +88,7 @@
                             <label for="">المرحلة الدراسية</label>
                             <div class="search-select-box">
                                 <select name="grade_id" id="" data-live-search="true">
-                                    <option value="">
+                                    <option value="all">
                                         جميع المراحل الدراسية
                                     </option>
                                     @foreach (\App\Models\Grade::all() as $grade)
@@ -104,7 +104,7 @@
                             <label for="">المكان</label>
                             <div class="search-select-box">
                                 <select name="center_id" id="" data-live-search="true">
-                                    <option value="">
+                                    <option value="all">
                                         جميع الأماكن
                                     </option>
                                     @foreach (\App\Models\Center::all() as $center)
@@ -119,7 +119,7 @@
                             <label for="">العام الدراسي</label>
                             <div class="search-select-box">
                                 <select name="part_id" id="" data-live-search="true">
-                                    <option value="">
+                                    <option value="all">
                                         جميع المراحل الدراسية
                                     </option>
                                     @foreach (\App\Models\Part::all() as $part)
@@ -134,7 +134,7 @@
                             <label for="">المستوي العام</label>
                             <div class="search-select-box">
                                 <select name="grade_id" id="" data-live-search="true">
-                                    <option value="">
+                                    <option value="all">
                                         جميع المراحل الدراسية
                                     </option>
                                     @foreach (\App\Models\Grade::all() as $grade)
@@ -153,9 +153,9 @@
                 <div class="field search-select-box">
                     {{-- <span>اظهار</span>
                     <select name="" id="" data-live-search="true">
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3333</option>
+                        <option value="all">1</option>
+                        <option value="all">2</option>
+                        <option value="all">3333</option>
                     </select>
                     <span>من الحقول</span> --}}
                 </div>
