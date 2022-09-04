@@ -890,3 +890,16 @@ th {
 .del-lesson {
     color: #dc3545;
 }
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.copyRight {
+    font-size: 1.8rem;
+    color: var(--font-dark);
+    font-weight: 600;
+}
+.zirconLink {
+    font-weight: 700;
+}
