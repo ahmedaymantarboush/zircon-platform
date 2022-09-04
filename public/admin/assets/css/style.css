@@ -896,8 +896,7 @@ footer {
     align-items: center;
     direction: ltr;
     padding: 3rem 0;
-    border-top: 1px solid var(--font-dark);
-    border-bottom: 1px solid var(--font-dark);
+    border-top: 1px solid #c9c9c9;
 }
 .copyRight {
     font-size: 2rem;
