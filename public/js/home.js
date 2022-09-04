@@ -12,25 +12,28 @@
 // main functions /////
 //////////////////////
 
+let toggleElement = function (ele, className) {
+    ele.classList.toggle(className);
+};
+let removeElemment = function (ele, className) {
+    ele.classList.remove(className);
+};
+let addElement = function (ele, className) {
+    ele.classList.add(className);
+};
 
+sal({
+    rootMargin: "0% 50%",
+    threshold: 0.6, // 50%
+    animateClassName: "sal-animate",
+    disabledClassName: "sal-disabled",
+    selector: "[data-sal]",
+    once: false, // run only once
+    disabled: false,
+    enterEventName: "sal:in",
+    exitEventName: "sal:out",
+});
 
-sal(
-    {
-        rootMargin: '0% 50%',
-        threshold: 0.6, // 50%
-        animateClassName: 'sal-animate',
-        disabledClassName: 'sal-disabled',
-        selector: '[data-sal]',
-        once: false, // run only once
-        disabled: false,
-        enterEventName: 'sal:in',
-        exitEventName: 'sal:out',
-    }
-);
-
-
-
-  
 /////////////////////////
 ///// fade animation ///
 ///////////////////////
@@ -103,20 +106,28 @@ let funChangeImagesDark = function () {
     if (!document.documentElement.classList.contains("dark")) {
         paperImg1.setAttribute(
             "style",
-            "background: url("+ APP_URL + "/public/imgs/paper.webp) no-repeat; background-size:cover;"
+            "background: url(" +
+                APP_URL +
+                "/public/imgs/paper.webp) no-repeat; background-size:cover;"
         );
         paperImg2.setAttribute(
             "style",
-            "background: url("+ APP_URL + "/public/imgs/paper2.webp) no-repeat; background-size:cover;"
+            "background: url(" +
+                APP_URL +
+                "/public/imgs/paper2.webp) no-repeat; background-size:cover;"
         );
     } else {
         paperImg1.setAttribute(
             "style",
-            "background: url("+ APP_URL + "/public/imgs/paperdark.webp) no-repeat; background-size:cover;"
+            "background: url(" +
+                APP_URL +
+                "/public/imgs/paperdark.webp) no-repeat; background-size:cover;"
         );
         paperImg2.setAttribute(
             "style",
-            "background: url("+ APP_URL + "/public/imgs/paper2_dark.webp) no-repeat; background-size:cover;"
+            "background: url(" +
+                APP_URL +
+                "/public/imgs/paper2_dark.webp) no-repeat; background-size:cover;"
         );
     }
 };
