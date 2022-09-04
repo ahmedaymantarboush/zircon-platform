@@ -894,6 +894,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    direction: ltr;
 }
 .copyRight {
     font-size: 1.8rem;
