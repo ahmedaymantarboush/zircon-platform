@@ -81,7 +81,7 @@
                             <label for="">المرحلة الدراسية</label>
                             <div class="search-select-box">
                                 <select name="grade_id" id="" data-live-search="true">
-                                    <option value="">
+                                    <option value="all">
                                         جميع المراحل الدراسية
                                     </option>
                                     @foreach (\App\Models\Grade::all() as $grade)
@@ -97,7 +97,7 @@
                             <label for="">المادة</label>
                             <div class="search-select-box">
                                 <select name="subject_id" id="" data-live-search="true">
-                                    <option value="">
+                                    <option value="all">
                                         المادة
                                     </option>
                                     @foreach (\App\Models\Subject::all() as $subject)
@@ -112,7 +112,7 @@
                             <label for="">الجزئية الدراسية</label>
                             <div class="search-select-box">
                                 <select name="part_id" id="" data-live-search="true">
-                                    <option value="">
+                                    <option value="all">
                                         الجزئية الدراسية
                                     </option>
                                     @foreach (\App\Models\Part::all() as $part)
@@ -127,7 +127,7 @@
                             <label for="">المحرر </label>
                             <div class="search-select-box">
                                 <select name="user_id" id="" data-live-search="true">
-                                    <option value="">
+                                    <option value="all">
                                         جميع المدرسين
                                     </option>
                                     @foreach (\App\Models\User::where('role_num','<', 4)->get() as $teacher)
@@ -142,7 +142,7 @@
                             <label for="">درجة الصعوبة </label>
                             <div class="search-select-box">
                                 <select name="level" id="" data-live-search="true">
-                                    <option value="">
+                                    <option value="all">
                                         ردجة الصعوبة
                                     </option>
                                     @for ($i = 1; $i <= 5; $i++)
