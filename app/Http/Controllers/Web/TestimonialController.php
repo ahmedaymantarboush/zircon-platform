@@ -20,7 +20,7 @@ class TestimonialController extends Controller
         $user = Auth::user();
         if ($user ? $user->role->number < 4 : false):
             if(request()->q):
-                $testimonials = Testimonial::where('name', 'LIKE', '%'.request()->q.'%')->get();
+                $testimonials = Testimonial::where('student_name', 'LIKE', '%'.request()->q.'%')->get();
             else:
                 $testimonials = Testimonial::all();
             endif;
