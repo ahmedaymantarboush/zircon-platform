@@ -204,7 +204,8 @@
                     </thead>
                     <tbody>
                         @php
-                            $totalAttendance = \App\Models\UserLesson::count() + \App\Models\PassedExam::count();
+                            $lastWeek = date('Y-m-d', strtotime('-1 week'));
+                            $totalAttendance = \App\Models\UserLesson::where('created_at','>=',$lastWeek)->count() + \App\Models\PassedExam::where('created_at','>=',$lastWeek)->count();
                         @endphp
                         @foreach (\App\Models\Center::all() as $center)
                             @foreach (\App\Models\Grade::all() as $grade)
@@ -218,17 +219,17 @@
                                     <td class="member">
                                         @php
                                             $centerAttendance =
-                                                \App\Models\UserLesson::whereHas('user', function ($userQ) use ($center, $grade) {
+                                                \App\Models\UserLesson::where('created_at','>=',$lastWeek)->whereHas('user', function ($userQ) use ($center, $grade) {
                                                     $userQ->where(['center_id' => $center->id, 'grade_id' => $grade->id]);
                                                 })->count() +
-                                                \App\Models\PassedExam::whereHas('user', function ($userQ) use ($center, $grade) {
+                                                \App\Models\PassedExam::where('created_at','>=',$lastWeek)->whereHas('user', function ($userQ) use ($center, $grade) {
                                                     $userQ->where(['center_id' => $center->id, 'grade_id' => $grade->id]);
                                                 })->count();
                                         @endphp
                                         {{ $centerAttendance }}
                                     </td>
                                     <td class="money">
-                                        {{ \App\Models\BalanceCard::where(['center_id' => $center->id, ['user_id', '!=', null]])->sum('value') }}
+                                        {{ \App\Models\BalanceCard::where('created_at','>=',$lastWeek)->where(['center_id' => $center->id, ['user_id', '!=', null]])->sum('value') }}
                                         ج.م</td>
                                     {{-- <td class="date">18/7/2025</td> --}}
                                     <td class="progress-parent">
