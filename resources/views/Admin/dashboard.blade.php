@@ -214,9 +214,9 @@
                                     </td>
                                     <td class="member">
                                         @php
-                                            $centerAttendance = \App\Models\UserLesson::whereHas('user', function ($userQ) use ($center){
+                                            $centerAttendance = \App\Models\UserLesson::whereHas('user', function ($userQ) use ($center,$grade){
                                                 $userQ->where(['center_id'=> $center->id,'grade_id'=>$grade->id]);
-                                            })->count() + \App\Models\PassedExam::whereHas('user', function ($userQ) use ($center){
+                                            })->count() + \App\Models\PassedExam::whereHas('user', function ($userQ) use ($center,$grade){
                                                 $userQ->where(['center_id'=> $center->id,'grade_id'=>$grade->id]);
                                             })->count();
                                             $usersCount = \App\Models\user::where(['center_id'=> $center->id,'grade_id'=>$grade->id])->count();
