@@ -45,10 +45,10 @@ class UserController extends Controller
                     if ($value == 'all') {
                         continue;
                     }
-                    if ($key == 'q' && $value != '') {
-                        $users = $users->where('name', 'like', '%' . $value . '%')->orWhere('email', 'like', '%' . $value . '%')->orWhere('phone_number', 'like', '%' . $value . '%')->orWhere('code', 'like', '%' . $value . '%');
-                        continue;
-                    }
+                    // if ($key == 'q' && $value != '') {
+                    //     $users = $users->where('name', 'like', '%' . $value . '%')->orWhere('email', 'like', '%' . $value . '%')->orWhere('phone_number', 'like', '%' . $value . '%')->orWhere('code', 'like', '%' . $value . '%');
+                    //     continue;
+                    // }
                     $users = $users->where($key, $value);
                 }
             }
