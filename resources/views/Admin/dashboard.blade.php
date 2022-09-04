@@ -214,7 +214,11 @@
                                     </td>
                                     <td class="member">
                                         @php
-                                            $centerAttendance = \App\Models\UserLesson::where('user_id', '!=', null)->count() + \App\Models\PassedExam::where('user_id', '!=', null)->count();
+                                            $centerAttendance = \App\Models\UserLesson::whereHas('user', function ($userQ) use ($user){
+                                                $userQ->where('center_id', $user->center_id);
+                                            })->count() + \App\Models\PassedExam::whereHas('user', function ($userQ) use ($user){
+                                                $userQ->where('center_id', $user->center_id);
+                                            })->count();
                                             $usersCount = \App\Models\user::where('center_id', $center->id)->count();
                                         @endphp
                                         {{ $centerAttendance }}
