@@ -49,10 +49,12 @@ class LectureController extends Controller
                         continue;
                     }
 
-                    if ($key == 'q') {
+                    if ($key == 'q' && $value != '') {
                         $lectures = $lectures->where('title', 'like', '%' . $value . '%');
                         continue;
                     }
+
+
 
                     $lectures = $lectures->where($key, $value);
                 }

@@ -59,10 +59,6 @@ class DatabaseSeeder extends Seeder
                 'name' => $governorate,
             ]);
         endforeach;
-        // \App\Models\Governorate::factory()->create([
-        //     'name' => 'الشرقية',
-        // ]);
-        // \App\Models\Governorate::factory(22)->create();
 
         \App\Models\Center::factory()->create([
             'name' => 'المنصة',
@@ -134,38 +130,38 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\UserSubject::factory()->create(['user_id' => 2, 'subject_id' => 1]);
 
-        \App\Models\User::factory(50)->create();
+        // \App\Models\User::factory(50)->create();
 
-        \App\Models\Lecture::factory(50)->create(['user_id' => 2]);
+        // \App\Models\Lecture::factory(50)->create(['user_id' => 2]);
 
-        \App\Models\Part::factory(20)->create(['user_id' => 2]);
+        // \App\Models\Part::factory(20)->create(['user_id' => 2]);
 
-        \App\Models\Exam::factory(50)->create(['user_id' => 2]);
+        // \App\Models\Exam::factory(50)->create(['user_id' => 2]);
 
-        \App\Models\Question::factory(150)->create(['user_id' => 2]);
+        // \App\Models\Question::factory(150)->create(['user_id' => 2]);
 
-        \App\Models\Choice::factory(150)->create();
+        // \App\Models\Choice::factory(150)->create();
 
-        \App\Models\ExamQuestion::factory(300)->create();
+        // \App\Models\ExamQuestion::factory(300)->create();
 
-        \App\Models\PassedExam::factory(50)->create();
+        // \App\Models\PassedExam::factory(50)->create();
 
-        \App\Models\AnswerdQuestion::factory(300)->create();
+        // \App\Models\AnswerdQuestion::factory(300)->create();
 
-        \App\Models\Lesson::factory(50)->create();
+        // \App\Models\Lesson::factory(50)->create();
 
-        \App\Models\LecturePart::factory(100)->create();
+        // \App\Models\LecturePart::factory(100)->create();
 
-        \App\Models\Section::factory(100)->create();
+        // \App\Models\Section::factory(100)->create();
 
-        \App\Models\SectionItem::factory(50)->create();
+        // \App\Models\SectionItem::factory(50)->create();
 
-        \App\Models\Testimonial::factory(50)->create(['teacher_id' => 2]);
+        // \App\Models\Testimonial::factory(50)->create(['teacher_id' => 2]);
 
-        \App\Models\LectureUser::factory(25)->create();
+        // \App\Models\LectureUser::factory(25)->create();
 
-        \App\Models\DynamicQuestion::factory(500)->create();
+        // \App\Models\DynamicQuestion::factory(500)->create();
 
-        \App\Models\BalanceCard::factory(100)->create();
+        // \App\Models\BalanceCard::factory(100)->create();
     }
 }
