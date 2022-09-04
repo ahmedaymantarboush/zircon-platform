@@ -876,13 +876,13 @@ header .row {
     display: flex;
     justify-content: space-between;
 }
-.grade1 .latestCard .details {
+.grade1 .details {
     color: var(--d-red-color);
 }
-.grade2 .latestCard .details {
+.grade2 .details {
     color: var(--d-blue-color);
 }
-.grade3 .latestCard .details {
+.grade3 .details {
     color: var(--d-yellow-color);
 }
 
