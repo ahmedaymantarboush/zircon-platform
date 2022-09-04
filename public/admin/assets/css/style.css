@@ -901,10 +901,11 @@ footer {
 .copyRight {
     font-size: 1.8rem;
     color: var(--font-dark);
-    font-weight: 600;
+    font-weight: 700;
 }
 .zirconLink {
     font-weight: 900;
+    font-size: 2rem;
 }
 .zirconLink:hover {
     text-decoration: underline;
