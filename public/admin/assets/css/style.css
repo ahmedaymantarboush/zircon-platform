@@ -896,15 +896,16 @@ footer {
     align-items: center;
     direction: ltr;
     padding: 2rem 0;
-    border-top: 1px solid #c9c9c9;
+    border-top: 1px solid #c9c9c96e;
 }
 .copyRight {
     font-size: 1.8rem;
     color: var(--font-dark);
-    font-weight: 600;
+    font-weight: 700;
 }
 .zirconLink {
     font-weight: 900;
+    font-size: 2rem;
 }
 .zirconLink:hover {
     text-decoration: underline;
