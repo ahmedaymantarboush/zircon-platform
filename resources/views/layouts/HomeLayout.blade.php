@@ -13,7 +13,7 @@
     <link rel="manifest" href="{{ asset('faveicon/site.webmanifest')}}">
     <title>{{ config('app.name') }}</title>
 
-   
+
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 
     {{-- <link rel="stylesheet" href="{{ URL::asset('css/all.min.css') }}"> --}}
@@ -259,7 +259,7 @@
         integrity="sha512-+VS2+Nl1Qit71a/lbncmVsWOZ0BmPDkopw5sXAS2W+OfeceCEd9OGTQWjgVgP5QaMV4ddqOIW9XLW7UVFzkMAw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @yield('javascript')
-    {{-- <script>
+    <script>
         $(document).ready(function() {
             // $('body').bind('cut copy paste', function(e) {
             //     e.preventDefault();
@@ -285,7 +285,7 @@
                 }
             }
         })
-    </script> --}}
+    </script>
 </body>
 
 </html>
