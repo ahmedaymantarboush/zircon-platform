@@ -219,7 +219,7 @@
                                             })->count() + \App\Models\PassedExam::whereHas('user', function ($userQ) use ($center,$grade){
                                                 $userQ->where(['center_id'=> $center->id,'grade_id'=>$grade->id]);
                                             })->count();
-                                            $usersCount = \App\Models\user::where(['center_id'=> $center->id,'grade_id'=>$grade->id])->count();
+                                            $usersCount = \App\Models\UserLesson::count() + \App\Models\PassedExam::count();
                                         @endphp
                                         {{ $centerAttendance }}
                                     </td>
