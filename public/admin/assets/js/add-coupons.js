@@ -6,7 +6,7 @@ $(".search-select-box").selectpicker();
 ///////////// Print Code /////////////////////////
 /////////////////////////////////////////////////
 $(document).on('click', '.print_btn', function () {
-    var printContents = document.getElementsByClassName('cardsPrint').innerHTML;
+    var printContents = document.getElementsByClassName('cardsPrint')[0].innerHTML;
     var originalContents = document.body.innerHTML;
     document.body.innerHTML = printContents;
     window.print();
