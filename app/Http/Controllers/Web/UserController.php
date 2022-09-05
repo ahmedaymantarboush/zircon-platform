@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -57,6 +56,22 @@ class UserController extends Controller
             return abort(404);
         }
     }
+    public function lectures()
+    {
+        $user = Auth::user();
+        $data = request()->all();
+        if ($user ? $user->role->number < 4 : false) {
+            if (isset($data['code'])) :
+                $student = User::where('code', $data['code'])->first();
+            else :
+                $student = null;
+            endif;
+            return view('Admin.students', compact('student'));
+        } else {
+            return abort(404);
+        }
+    }
+
     public function edit($id)
     {
         $user = Auth::user();

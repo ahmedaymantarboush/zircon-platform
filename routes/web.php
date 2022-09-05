@@ -64,6 +64,7 @@ Route::group(['middleware' => 'not.hanging'], function () {
         Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
         Route::post('users/update', [UserController::class, 'update'])->name('admin.users.update');
         Route::get('users/{id}/profile', [UserController::class, 'profile'])->name('admin.users.profile');
+        Route::get('users/lectures', [UserController::class, 'lectures'])->name('admin.users.lectures');
 
         Route::get('lectures', [LectureController::class, 'allLectures'])->name('admin.lectures.index');
 
