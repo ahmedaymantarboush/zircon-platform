@@ -6,5 +6,5 @@ $(".search-select-box").selectpicker();
 ///////////// Print Code /////////////////////////
 /////////////////////////////////////////////////
 $(document).on('click', '.print_btn', function () {
-    $.print("#cardsDiv");
+    $("#cardsDiv").print();
 });
