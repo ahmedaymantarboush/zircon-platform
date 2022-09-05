@@ -102,20 +102,21 @@
                                 </section>
                                 <button type="button" class="sub_btn print_btn" style="margin-left: 50px;">طباعة</button>
                             </div>
-
-                            @foreach ($balanceCards as $index => $balanceCard)
-                                <div class="col-lg-4 col-sm-12" style="padding-top: 30px">
-                                    @include('components.admin.coupon-card', [
-                                        'counter' => $index + 1,
-                                        'id' => $balanceCard->id,
-                                        'start_date' => $balanceCard->created_at->format('d-m-y:H:i'),
-                                        'end_date' => $balanceCard->expiry_date->format('d-m-y:H:i'),
-                                        'value' => $balanceCard->value,
-                                        'code' => $balanceCard->code,
-                                        'app_name' => 'أ/ محمد البري',
-                                    ])
-                                </div>
-                            @endforeach
+                            <div id="cardsDiv">
+                                @foreach ($balanceCards as $index => $balanceCard)
+                                    <div class="col-lg-4 col-sm-12" style="padding-top: 30px">
+                                        @include('components.admin.coupon-card', [
+                                            'counter' => $index + 1,
+                                            'id' => $balanceCard->id,
+                                            'start_date' => $balanceCard->created_at->format('d-m-y:H:i'),
+                                            'end_date' => $balanceCard->expiry_date->format('d-m-y:H:i'),
+                                            'value' => $balanceCard->value,
+                                            'code' => $balanceCard->code,
+                                            'app_name' => 'أ/ محمد البري',
+                                        ])
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 @endisset
