@@ -174,7 +174,7 @@ class UserController extends Controller
         $user = Auth::user();
         if ($user ? $user->role->number < 4 : false) :
             return view('Admin.addStudent');
-            esle:
+        esle:
             return abort(404);
         endif;
     }
