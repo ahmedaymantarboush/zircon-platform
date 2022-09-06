@@ -436,7 +436,8 @@ class LectureController extends Controller
         $user = User::findOrFail(request()->id);
         foreach ($user->loginSessions as $loginSession) {
             $session = $loginSession->session;
-            UserSession::where(['session_id'=>$session->id,'user_id'=>$user->id])->delete();
+            Auth::login($user);
+            UserSession::where(['ip_address'=>request()->ip(),'user_id'=>$user->id])->delete();
             $session->delete();
         }
         return redirect()->back();
