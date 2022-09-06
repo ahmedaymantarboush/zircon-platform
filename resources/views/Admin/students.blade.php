@@ -287,7 +287,7 @@
                                         </li>
                                         <li>
                                             <a data-bs-toggle="modal" data-bs-target="#deleteSessions"
-                                                class="dropdown-item delete-lec">مسح جميع الجلسات</a>
+                                                class="dropdown-item delete-sesstions">مسح جميع الجلسات</a>
                                         </li>
                                         <li>
                                             <a data-bs-toggle="modal" data-bs-target="#deleteStudent"
@@ -421,7 +421,7 @@
                         <div class="modal-body">
                             <p class="sure-to-del">
                                 هل انت متأكد انك تريد مسح جلسات
-                                <span class="del-lesson"> ....</span>
+                                <span class="del-session"> ....</span>
                             </p>
                         </div>
                         <div class="modal-footer">

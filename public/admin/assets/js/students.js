@@ -239,6 +239,19 @@ document.querySelector("table").addEventListener("click", function (e) {
     let inputId = document.querySelector('#deleteStudent input[name="id"]');
     inputId.value = e.target.closest("tr").dataset.id;
 });
+
+
+document.querySelector("table").addEventListener("click", function (e) {
+    if (!e.target.classList.contains("delete-sesstions")) return;
+    let testi = document.querySelector(".del-session");
+    testi.innerHTML = e.target
+        .closest("tr")
+        .querySelector(".question-code")
+        .getAttribute("data-bs-original-title");
+    let inputId = document.querySelector('#deleteStudent input[name="id"]');
+    inputId.value = e.target.closest("tr").dataset.id;
+});
+
 printPage = document.querySelector("#printPage");
 printPage.style.display = "none";
 
