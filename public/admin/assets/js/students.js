@@ -248,7 +248,7 @@ document.querySelector("table").addEventListener("click", function (e) {
         .closest("tr")
         .querySelector(".question-code")
         .getAttribute("data-bs-original-title");
-    let inputId = document.querySelector('#deleteStudent input[name="id"]');
+    let inputId = document.querySelector('#deleteSessions input[name="id"]');
     inputId.value = e.target.closest("tr").dataset.id;
 });
 
