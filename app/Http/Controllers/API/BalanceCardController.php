@@ -58,7 +58,7 @@ class BalanceCardController extends Controller
         } else {
             $code = trim($jsonRequest['code']);
         }
-
+        return apiResponse(false, $ocde), [], 404);
         $user = apiUser();
         if (!$user) :
             return apiResponse(false, _('يجب تسجيل الدخول أولا'), [], 403);
