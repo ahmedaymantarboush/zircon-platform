@@ -19,7 +19,7 @@ class BalanceCardController extends Controller
     {
         $user = Auth::user();
         $data = request()->all();
-        $cards = BalanceCard::where('publisher_id', $user->id)->get();
+        $cards = BalanceCard::where('publisher_id', $user->id);
         if (request()->value && request()->value != 'all') {
             $cards = $cards->where('value', request()->value);
         }
@@ -38,7 +38,7 @@ class BalanceCardController extends Controller
             })->orWhere('code', 'like', '%' . $data['q'] . '%');
         }
         if ($user) :
-            return view('Admin.allCards', ['cards' => $cards]);
+            return view('Admin.allCards', ['cards' => $cards->get()]);
         else :
             return abort(404);
         endif;
