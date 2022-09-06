@@ -18,7 +18,7 @@ class SuperStudent
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        if ($user ? ($user->role->number != 5 || $user->role->number > 3) && !$user->hanging   : true ):
+        if ($user ? ($user->role->number != 5 || $user->role->number > 3) || $user->hanging : true ):
             return abort(404);
         endif;
         return $next($request);    }

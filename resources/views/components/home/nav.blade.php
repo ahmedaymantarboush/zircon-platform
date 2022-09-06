@@ -61,213 +61,196 @@
             </button>
             <div class="left ">
                 @auth
-                {{-- <div class="register">
-                    <div class="login">
-                        <a href="javascript:{}" onclick="window.logoutFrm.submit()" class="regItem">
-                            <form id="logoutFrm" action="{{ route('logout') }}" method="post">
-                @csrf
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="regIcon">
-                    <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
-                </span>
-                <span class="regType">
-                    تسجيل <span class='d-blueColor'>الخروج</span>
-                </span>
-                </form>
-                </a>
-            </div>
-        </div> --}}
-        <form class="search mainSearch" action="{{ route('search') }}">
-            <input type="search" name="q" value="{{ request()->q }}">
-            <span><i class="fa-solid fa-magnifying-glass"></i></span>
-        </form>
-        <div class="studentInfo">
-            <div class="studentBtn">
-                <button role="button" type="button" class="btn ftu-btn lineParent" data-toggle="dropdown">
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class='studentIcon'>
-                        <i class="fa-solid fa-user-graduate"></i>
-                    </span>
-                    <span class='studentName'>{{ Auth::user()->name }}</span>
-                </button>
-                <ul class="dropdown-menu navDrop">
-                    @if (Auth::user()->role->number < 4)
-                        <li>
-                            <a class="dropdown-item navDropItem lineParent" href="{{ route('admin.index') }}">
+                    <form class="search mainSearch" action="{{ route('search') }}">
+                        <input type="search" name="q" value="{{ request()->q }}">
+                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </form>
+                    <div class="studentInfo">
+                        <div class="studentBtn">
+                            <button role="button" type="button" class="btn ftu-btn lineParent" data-toggle="dropdown">
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class="line"></span>
                                 <span class="line"></span>
-                                <span class='navDropIcon'>
-                                    <i class="fa-solid fa-table-columns"></i>
+                                <span class='studentIcon'>
+                                    <i class="fa-solid fa-user-graduate"></i>
                                 </span>
-                                الصفحة الرئيسية
+                                <span class='studentName'>{{ Auth::user()->name }}</span>
+                            </button>
+                            <ul class="dropdown-menu navDrop">
+                                @if (Auth::user()->role->number < 4)
+                                    <li>
+                                        <a class="dropdown-item navDropItem lineParent" href="{{ route('admin.index') }}">
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class='navDropIcon'>
+                                                <i class="fa-solid fa-table-columns"></i>
+                                            </span>
+                                            الصفحة الرئيسية
+                                        </a>
+                                    </li>
+                                @endif
+                                <li>
+                                    <a class="dropdown-item navDropItem lineParent" href="{{ route('user.profile') }}">
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class='navDropIcon'>
+                                            <i class="fa-solid fa-house-chimney-user"></i>
+
+                                        </span>
+                                        الملف الشخصي
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item navDropItem lineParent"
+                                        href="{{ route('lectures.ownedLectures') }}">
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class='navDropIcon'>
+                                            <i class="fa-solid fa-graduation-cap"></i>
+                                        </span>
+                                        محاضراتي
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:{}" onclick="window.logoutFrm.submit()"
+                                        class="dropdown-item navDropItem lineParent">
+                                        <form id="logoutFrm" action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class='navDropIcon'>
+                                                <i class="fa-solid fa-right-from-bracket"></i>
+                                            </span>
+                                            <span class="">تسجيل الخروج</span>
+                                        </form>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mobDetails">
+                            <div class="studentImage">
+                                <a href="{{ route('user.profile') }}">
+                                    <img src="{{ Auth::user()->image }}" alt="">
+                                </a>
+                            </div>
+                            <h3 class='studentNameMob'>{{ Auth::user()->name }}</h3>
+                            <form class="search mobSearch" action="{{ route('search') }}">
+                                <input type="search" name="q" value="{{ request()->q }}">
+                                <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                            </form>
+                            <ul class=" navDrop">
+                                <li>
+                                    <a class="dropdown-item navDropItem lineParent" href="{{ route('home') }}">
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class='navDropIcon'>
+                                            <i class='fa fa-user'></i>
+                                        </span>
+                                        الصفحة الرئيسية
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item navDropItem lineParent" href="{{ route('user.profile') }}">
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class='navDropIcon'>
+                                            <i class='fa fa-user'></i>
+                                        </span>
+                                        الملف الشخصي
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item navDropItem lineParent"
+                                        href="{{ route('lectures.ownedLectures') }}">
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class="line"></span>
+                                        <span class='navDropIcon'>
+                                            <i class='fa fa-user'></i>
+                                        </span>
+                                        محاضراتي
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:{}" onclick="window.logoutFrm.submit()"
+                                        class="dropdown-item navDropItem lineParent">
+                                        <form action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class='navDropIcon'>
+                                                <i class='fa fa-user'></i>
+                                            </span>
+                                            <span class="">تسجيل الخروج</span>
+                                            </span>
+                                        </form>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @else
+                    <form class="search mainSearch" action="{{ route('search') }}">
+                        <input type="search" name="q" value="{{ request()->q }}">
+                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </form>
+                    <div class="register">
+                        <div class="signup">
+                            <a href="{{ route('register') }}" class="regItem">
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="regIcon">
+                                    <img src="{{ URL::asset('imgs/apple.png') }}" alt="">
+                                </span>
+                                <span class="regType">
+                                    أنشئ حساب <span class='d-redColor'>جديد</span>
+                                </span>
                             </a>
-                        </li>
-                    @endif
-                    <li>
-                        <a class="dropdown-item navDropItem lineParent" href="{{ route('user.profile') }}">
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class='navDropIcon'>
-                                <i class="fa-solid fa-house-chimney-user"></i>
+                        </div>
+                        <div class="login">
+                            <a href="{{ route('login') }}" class="regItem">
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="regIcon">
+                                    <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
+                                </span>
+                                <span class="regType">
+                                    تسجيل <span class='d-blueColor'>الدخول</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                @endauth
 
-                            </span>
-                            الملف الشخصي
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item navDropItem lineParent" href="{{ route('lectures.ownedLectures') }}">
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class='navDropIcon'>
-                                <i class="fa-solid fa-graduation-cap"></i>
-                            </span>
-                            محاضراتي
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:{}" onclick="window.logoutFrm.submit()"
-                            class="dropdown-item navDropItem lineParent">
-                            <form id="logoutFrm" action="{{ route('logout') }}" method="post">
-                                @csrf
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class='navDropIcon'>
-                                    <i class="fa-solid fa-right-from-bracket"></i>
-                                </span>
-                                <span class="">تسجيل الخروج</span>
-                            </form>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="mobDetails">
-                <div class="studentImage">
-                    <a href="{{ route('user.profile') }}">
-                        <img src="{{ Auth::user()->image }}" alt="">
-                    </a>
-                </div>
-                <h3 class='studentNameMob'>{{ Auth::user()->name }}</h3>
-                <form class="search mobSearch" action="{{ route('search') }}">
-                    <input type="search" name="q" value="{{ request()->q }}">
-                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
-                </form>
-                <ul class=" navDrop">
-                    <li>
-                        <a class="dropdown-item navDropItem lineParent" href="{{route('home')}}">
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class='navDropIcon'>
-                                <i class='fa fa-user'></i>
-                            </span>
-                            الصفحة الرئيسية
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item navDropItem lineParent" href="{{ route('user.profile') }}">
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class='navDropIcon'>
-                                <i class='fa fa-user'></i>
-                            </span>
-                            الملف الشخصي
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item navDropItem lineParent" href="{{route('lectures.ownedLectures')}}">
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class='navDropIcon'>
-                                <i class='fa fa-user'></i>
-                            </span>
-                            محاضراتي
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:{}" onclick="window.logoutFrm.submit()"
-                            class="dropdown-item navDropItem lineParent">
-                            <form action="{{ route('logout') }}" method="post">
-                                @csrf
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class='navDropIcon'>
-                                    <i class='fa fa-user'></i>
-                                </span>
-                                <span class="">تسجيل الخروج</span>
-                                </span>
-                            </form>
-                        </a>
-                    </li>
-                </ul>
             </div>
         </div>
-        @else
-        <form class="search mainSearch" action="{{ route('search') }}">
-            <input type="search" name="q" value="{{ request()->q }}">
-            <span><i class="fa-solid fa-magnifying-glass"></i></span>
-        </form>
-        <div class="register">
-            <div class="signup">
-                <a href="{{ route('register') }}" class="regItem">
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="regIcon">
-                        <img src="{{ URL::asset('imgs/apple.png') }}" alt="">
-                    </span>
-                    <span class="regType">
-                        أنشئ حساب <span class='d-redColor'>جديد</span>
-                    </span>
-                </a>
-            </div>
-            <div class="login">
-                <a href="{{ route('login') }}" class="regItem">
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="regIcon">
-                        <img src="{{ URL::asset('imgs/drop.png') }}" alt="">
-                    </span>
-                    <span class="regType">
-                        تسجيل <span class='d-blueColor'>الدخول</span>
-                    </span>
-                </a>
-            </div>
-        </div>
-        @endauth
-
-    </div>
-    </div>
     </div>
 </nav>
 <script>
-window.addEventListener("load", function() {
-    setTimeout(function() {
-        document.getElementsByClassName("preloader")[0].style.opacity = "0";
-        document.getElementsByClassName("preloader")[0].style.zIndex = "-1";
-    }, 1000);
-});
+    window.addEventListener("load", function() {
+        setTimeout(function() {
+            document.getElementsByClassName("preloader")[0].style.opacity = "0";
+            document.getElementsByClassName("preloader")[0].style.zIndex = "-1";
+        }, 1000);
+    });
 </script>
