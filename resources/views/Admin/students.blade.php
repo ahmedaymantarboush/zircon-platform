@@ -256,7 +256,7 @@
 
                                     <ul class="dropdown-menu feat-menu">
                                         <li>
-                                            <a class="dropdown-item" href="#">الملف الشخصي</a>
+                                            <a class="dropdown-item" href="{{roite('admin.users.profile',$user->id)}}">الملف الشخصي</a>
                                         </li>
 
                                         <li>
