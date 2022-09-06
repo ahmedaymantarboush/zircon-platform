@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\LecturePart;
 use App\Models\LectureUser;
+use App\Models\UserSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -433,8 +434,9 @@ class LectureController extends Controller
 
     public function deleteSessions(){
         $user = User::findOrFail(request()->id);
-        dd($user->loginSessions->pivot);
-        foreach ($user->sessions as $session) {
+        dd($user->loginSessions);
+        foreach ($user->loginSessions as $session) {
+            UserSession::where(['session_id'=>$session->id,'user_id'=>$user->id])->delete();
             $session->delete();
         }
     }
