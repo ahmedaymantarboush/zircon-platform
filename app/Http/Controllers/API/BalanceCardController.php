@@ -66,7 +66,7 @@ class BalanceCardController extends Controller
         $balanceCard = BalanceCard::where('code', $code)->first();
 
         if (!$balanceCard) :
-            return apiResponse(false, _("الكود الذي أدخلته غير صحيح رصيدك الحالي $user->balance ج.م"), [], 404);
+            return apiResponse(false, _("$code الكود الذي أدخلته غير صحيح رصيدك الحالي $user->balance ج.م"), [], 404);
         elseif ($balanceCard->hanging) :
             return apiResponse(false, _("هذا الكارت غير نشط"), [], 401);
         elseif ($balanceCard->used_at) :
