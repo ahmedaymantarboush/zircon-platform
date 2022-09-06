@@ -52,10 +52,12 @@ class BalanceCardController extends Controller
         $jsonRequest = json_decode($request->data, true);
         $code = $jsonRequest['code'];
 
-
-        $code = "[str_replace(':','=>',$code)]";
-        $code = json_decode($code, true)['code'];
-
+        $code = explode(':', $code);
+        if (count($code) >= 2) {
+            $code = trim(explode('value', $code[2])[1]);
+        } else {
+            $code = trim($jsonRequest['code']);
+        }
         return apiResponse(false, $code, [], 404);
         $user = apiUser();
         if (!$user) :
