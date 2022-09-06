@@ -148,7 +148,7 @@ class QuestionController extends Controller
             endif;
             $question->choices()->delete();
             for ($i = 1; $i <= $data['newChoicesCount']; $i++) :
-                if ($data['newChoice' . $i]) :
+                if ($data['newChoice' . $i] || $data['newChoice' . $i]  == 0) :
                     $question->choices()->create([
                         'text' => $data['newChoice' . $i],
                         'correct' => $i == $data['newCorrectAnswer'],
