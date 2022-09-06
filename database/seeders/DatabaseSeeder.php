@@ -120,12 +120,13 @@ class DatabaseSeeder extends Seeder
             'role_num' => 2,
             'email' => 'ahmedaymantarboush@gmail.com',
             'name' => 'Ahmed Ayman Tarboush',
-            'password' => Hash::make('123456789'),
+            'password' => Hash::make('@hmed&@yman135'),
             'center_id' => 1,
             'grade_id' => 3,
             'governorate_id' => 20,
             'phone_number' => '01069512633',
             'parent_phone_number' => '01069512633',
+            'balance' => 0,
         ]);
 
         \App\Models\UserSubject::factory()->create(['user_id' => 2, 'subject_id' => 1]);
