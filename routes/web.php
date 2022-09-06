@@ -66,6 +66,7 @@ Route::group(['middleware' => 'not.hanging'], function () {
         Route::get('users/{id}/profile', [UserController::class, 'profile'])->name('admin.users.profile');
         Route::get('users/lectures', [UserController::class, 'lectures'])->name('admin.users.lectures');
         Route::post('users/lectures/buy', [LectureController::class, 'userBuy'])->middleware('auth')->name('admin.users.buyLecture');
+        Route::post('users/deleteSessions', [LectureController::class, 'deleteSessions'])->middleware('auth')->name('admin.users.deleteSessions');
 
         Route::get('lectures', [LectureController::class, 'allLectures'])->name('admin.lectures.index');
         Route::post('lectures/directBuy', [LectureController::class, 'directBuy'])->name('admin.lectures.directBuy');

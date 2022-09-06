@@ -431,6 +431,13 @@ class LectureController extends Controller
         return redirect()->back();
     }
 
+    public function deleteSessions(){
+        $user = User::findOrFail(request()->id);
+        dd($user->sessions);
+        foreach ($user->sessions as $session) {
+            $session->delete();
+        }
+    }
 
     /**
      * Show the form for creating a new resource.
