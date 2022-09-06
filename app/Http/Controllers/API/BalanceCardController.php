@@ -54,7 +54,7 @@ class BalanceCardController extends Controller
 
         $code = explode('code', $code);
         if (count($code) >= 2) {
-            $code = trim(explode('value',$code[1])[0]);
+            $code = trim(str_replace(':','',explode('value',$code[1])[0]));
         } else {
             $code = trim($code[0]);
         }
