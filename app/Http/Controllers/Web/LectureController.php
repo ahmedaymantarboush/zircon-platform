@@ -29,7 +29,7 @@ class LectureController extends Controller
         $gradeId = $id - 9;
         $lectures = Lecture::where(['published' => true, 'grade_id' => $gradeId])->orderBy('id', 'desc')->get();
         if (Grade::find($gradeId)) :
-            return view("home.grades", ['lectures'=>$lectures,'gradeId'=>$gradeId]);
+            return view("home.grades", ['lectures' => $lectures, 'gradeId' => $gradeId]);
         else :
             return abort(404);
         endif;
@@ -58,7 +58,7 @@ class LectureController extends Controller
                     $lectures = $lectures->where($key, $value);
                 }
             }
-            return view("Admin.lectures", ['lectures'=>$lectures]);
+            return view("Admin.lectures", ['lectures' => $lectures]);
         else :
             return abort(404);
         endif;
@@ -255,16 +255,17 @@ class LectureController extends Controller
         return view("home.myCourses", compact("lectures"));
     }
 
-    public function fastEdit(){
+    public function fastEdit()
+    {
         request()->validate([
-            'title'                    =>   ['required','string'],
-            'shortDescription'         =>   ['required','string'],
-            'description'              =>   ['required','string'],
+            'title'                    =>   ['required', 'string'],
+            'shortDescription'         =>   ['required', 'string'],
+            'description'              =>   ['required', 'string'],
             'finalPrice'               =>   ['required'],
             // 'subject'                  =>   ['nullable','exists:subjects,id'],
-            'grade'                    =>   ['required','exists:grades,id'],
+            'grade'                    =>   ['required', 'exists:grades,id'],
             'parts'                     =>   ['required'],
-        ],[
+        ], [
             'title.required' => 'عنوان المحاضرة مطلوب',
             'title.string' => 'يجب أن يكون العنوان عبارة عن نص',
             'title.max' => 'أكبر عدد من الحروف هو 50 حرف',
@@ -290,7 +291,7 @@ class LectureController extends Controller
 
         $data = request()->all();
         $user = Auth::user();
-        if (!$user):
+        if (!$user) :
             return redirect('login');
         endif;
 
@@ -303,7 +304,7 @@ class LectureController extends Controller
         $lecture->title = $data['title'];
         $lecture->short_description = $data['shortDescription'];
         $lecture->description = removeCustomTags($data['description']);
-        if ($data['finalPrice'] != $lecture->final_price):
+        if ($data['finalPrice'] != $lecture->final_price) :
             $lecture->price = $data['finalPrice'];
             $lecture->final_price = $data['finalPrice'];
             $lecture->discount_expiry_date = null;
@@ -387,7 +388,8 @@ class LectureController extends Controller
         return redirect()->back()->withErrors(_("حدث خطأ أثناء الشراء يرجى المحاولة مرة أخرى"));
     }
 
-    public function directBuy(){
+    public function directBuy()
+    {
         $lecture = Lecture::findOrfail(request()->lectureId);
         $user = User::findOrfail(request()->userId);
         LectureUser::create([
@@ -397,7 +399,8 @@ class LectureController extends Controller
         return redirect()->back();
     }
 
-    public function deletePurchase(){
+    public function deletePurchase()
+    {
         $lecture = Lecture::findOrfail(request()->lectureId);
         $user = User::findOrfail(request()->userId);
         LectureUser::where([
@@ -415,13 +418,13 @@ class LectureController extends Controller
             return redirect(route('login'));
         endif;
         $slug = $data['slug'] ?? 0;
-        $lecture = Lecture::where('slug',$slug)->first();
+        $lecture = Lecture::where('slug', $slug)->first();
         if (!$lecture) :
             return abort(404);
 
         endif;
         if ($user->role->number >= 4) :
-            return abort( 403);
+            return abort(403);
         endif;
         if ($lecture->publisher->id != $user->id && $user->role->number > 1) :
             return abort(403);
@@ -432,13 +435,16 @@ class LectureController extends Controller
         return redirect()->back();
     }
 
-    public function deleteSessions(){
+    public function deleteSessions()
+    {
         $user = User::findOrFail(request()->id);
         foreach ($user->loginSessions as $loginSession) {
             $session = $loginSession->session;
             Auth::login($user);
-            UserSession::where(['ip_address'=>request()->ip(),'user_id'=>$user->id])->delete();
-            $session->delete();
+            UserSession::where(['ip_address' => request()->ip(), 'user_id' => $user->id])->delete();
+            if ($session) :
+                $session->delete();
+            endif;
         }
         return redirect()->back();
     }
@@ -486,7 +492,7 @@ class LectureController extends Controller
         $poster = $lecture ? $lecture->poster : asset('admin/assets/imgs/lecture-holder.png');
         if (array_key_exists($fileName, $data)) {
             if ($request->hasFile($fileName)) :
-                $poster = uploadFile($request, $fileName, $data['title'].Auth::id(), $lecture ? $lecture->poster : '');
+                $poster = uploadFile($request, $fileName, $data['title'] . Auth::id(), $lecture ? $lecture->poster : '');
                 if ($poster) {
                     if ($lecture) {
                         $lecture->poster = $poster;
@@ -571,7 +577,7 @@ class LectureController extends Controller
     public function edit($slug)
     {
         $user = Auth::user();
-        if(!$user):
+        if (!$user) :
             return redirect(route('login'));
         endif;
         $lecture = Lecture::where(['slug' => $slug])->first();
@@ -593,7 +599,7 @@ class LectureController extends Controller
     {
         $user = Auth::user();
         $data = $request->all();
-        if(!$user):
+        if (!$user) :
             return redirect(route('login'));
         endif;
         $lecture = Lecture::where(['slug' => $slug])->first();
