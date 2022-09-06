@@ -52,6 +52,12 @@ class BalanceCardController extends Controller
     public function recharge()
     {
         $code = request()->code;
+        $code = explode(':', $code);
+        if (count($code) >= 2) {
+            $code = explode('code', $code[1])[1];
+        } else {
+            $code = request()->code;
+        }
         $user = Auth::user();
         if ($user) :
             $balanceCard = BalanceCard::where('code', $code)->first();
