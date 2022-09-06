@@ -27,4 +27,5 @@
     // echo
 @endphp
 {{-- {{now()->addSeconds(1000)}} --}}
-<video src="test1" controls></video>
+{{-- <video src="test1" controls></video> --}}
+<iframe src="test1" style="width: 100%;"></iframe>
