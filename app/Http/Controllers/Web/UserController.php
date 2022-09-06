@@ -91,7 +91,6 @@ class UserController extends Controller
         // if ($user->role->number >= 4) :
         //     return abort(403);
         // endif;
-
         $data = $request->all();
         Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
