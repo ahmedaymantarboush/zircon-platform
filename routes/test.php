@@ -36,11 +36,53 @@ use Illuminate\Support\Facades\Route;
 //     return view('test');
 // });
 
-Route::get('/test', function (){
-    return view('TestPage',['questions'=>Question::all()]);
+Route::get('/test', function () {
+    return view('TestPage');
 });
-Route::get('/test1',function (){
-    return view('Admin.allCards');
+Route::get('/test1', function () {
+    $payload = [
+        'expire' => '1662502350',
+        'ei' => 'bnEXY4PhGouVkgbIvpTwAg',
+        'ip' => '173.201.178.226',
+        'id' => 'o-AINj9WogI0YwNxD89HcAvDcxsvbf2Frnr-_QaSiJu1vb',
+        'itag' => '18',
+        'source' => 'youtube',
+        'requiressl' => 'yes',
+        'spc' => 'lT-KhiMoYSwAmlvBV59eKeMDxJjmtKs',
+        'vprv' => '1',
+        'mime' => 'video/mp4',
+        'ns' => 'A9E_IMl7d2DOqO4B4-1-Ke8H',
+        'cnr' => '14',
+        'ratebypass' => 'yes',
+        'dur' => '4071.781',
+        'lmt' => '1657334882226369',
+        'fexp' => '24001373,24007246,24277538',
+        'beids' => '24277538',
+        'c' => 'WEB',
+        'rbqsm' => 'fr',
+        'txp' => '5319224',
+        'n' => 'Vh_t_ePWRv-LZmdn',
+        'sparams' => 'expire,ei,ip,id,itag,source,requiressl,spc,vprv,mime,ns,cnr,ratebypass,dur,lmt',
+        'sig' => 'AOq0QJ8wRAIgb3pKHD3u9GQNhS83gceUdwnlwRaFyNwDBFBLq1wg5moCIGvbjVuR1ld7dIZRGYEGL6pB00hNoZJJ0nJEfuFTcGwd',
+        'redirect_counter' => '1',
+        'rm' => 'sn-a5me7y7s',
+        'req_id' => 'b14b209164fd36e2',
+        'cms_redirect' => 'yes',
+        'cmsv' => 'e',
+        'ipbypass' => 'yes',
+        'mh' => 'eW',
+        'mip' => '196.150.21.222',
+        'mm' => '31',
+        'mn' => 'sn-8vq54voxxb-j5pee',
+        'ms' => 'au',
+        'mt' => '1662480577',
+        'mv' => 'm',
+        'mvi' => '1',
+        'pl' => '23',
+        'lsparams' => 'ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl',
+        'lsig' => 'AG3C_xAwRgIhAIWTCa1uKTJMOuhnAWioY3Sh_dL5qKyt83m6Mq-e00ZIAiEA6ut8Ac_uRYhl3WL-GICr5M0SCijFQWIWLIAuw5R-fYA=',
+    ];
+    return Http::get('https://rr3---sn-a5mekndl.googlevideo.com/videoplayback?expire=1662502350&ei=bnEXY4PhGouVkgbIvpTwAg&ip=173.201.178.226&id=o-AINj9WogI0YwNxD89HcAvDcxsvbf2Frnr-_QaSiJu1vb&itag=18&source=youtube&requiressl=yes&mh=eW&mm=31%2C26&mn=sn-a5mekndl%2Csn-p5qs7nzy&ms=au%2Conr&mv=u&mvi=3&pl=20&spc=lT-KhiMoYSwAmlvBV59eKeMDxJjmtKs&vprv=1&mime=video%2Fmp4&ns=A9E_IMl7d2DOqO4B4-1-Ke8H&cnr=14&ratebypass=yes&dur=4071.781&lmt=1657334882226369&mt=1662480092&fvip=5&fexp=24001373%2C24007246&beids=24277538&c=WEB&rbqsm=fr&txp=5319224&n=Vh_t_ePWRv-LZmdn&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRAIgb3pKHD3u9GQNhS83gceUdwnlwRaFyNwDBFBLq1wg5moCIGvbjVuR1ld7dIZRGYEGL6pB00hNoZJJ0nJEfuFTcGwd&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl&lsig=AG3C_xAwRgIhAPjuumI79uCzzGFVe3dkXbvW-rnksjfNkiwjebwoK8tzAiEA8sMgEJ_4HR5xGxg5d7tAoRoskkVLWWXKM9hDoW1Qmxw%3D');
 });
 
 // Route::get('/tt', function () {
@@ -74,9 +116,9 @@ Route::get('/pull', function () {
             $output = nl2br(shell_exec('git pull'));
             return "<h1>pull Request Is Finished</h1><br><p>$output</p><br><h1>DONE.</h1>";
         else :
-            return"<h1>You Must Be Super Admin To Get This Page</h1>";
+            return "<h1>You Must Be Super Admin To Get This Page</h1>";
         endif;
-    else:
+    else :
         return redirect(route('login'));
     endif;
 });

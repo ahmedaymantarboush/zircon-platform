@@ -24,7 +24,7 @@
 </script>
 <script src="{{ asset('js/mediaPlayer.js') }}"></script> --}}
 @php
-    // echo 
+    // echo
 @endphp
 {{-- {{now()->addSeconds(1000)}} --}}
-{{true ?:"Ffffffffff"}}
+<video src="test1" controls></video>
