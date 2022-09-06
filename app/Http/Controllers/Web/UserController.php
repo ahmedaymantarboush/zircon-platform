@@ -66,7 +66,7 @@ class UserController extends Controller
             else :
                 $student = null;
             endif;
-            return view('Admin.students', compact('student'));
+            return view('Admin.userLectures', ['user' => $student]);
         } else {
             return abort(404);
         }
@@ -174,7 +174,7 @@ class UserController extends Controller
         $user = Auth::user();
         if ($user ? $user->role->number < 4 : false) :
             return view('Admin.addStudent');
-        esle:
+            esle:
             return abort(404);
         endif;
     }

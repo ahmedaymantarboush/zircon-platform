@@ -234,7 +234,7 @@
                                 </div>
                             </td>
                             <td data-lable="الكود :" class="students">
-                                #{{ $user->code }}
+                                {{ $user->code }}
                             </td>
                             <td data-lable="المستوي العام :" class="views">
                                 {{ $correctAnswers + $wrongAnswers? number_format(($correctAnswers / ($correctAnswers + $wrongAnswers)) *max(\App\Models\Question::all()->pluck('level')->toArray()),2): 0 }}

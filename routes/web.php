@@ -65,8 +65,11 @@ Route::group(['middleware' => 'not.hanging'], function () {
         Route::post('users/update', [UserController::class, 'update'])->name('admin.users.update');
         Route::get('users/{id}/profile', [UserController::class, 'profile'])->name('admin.users.profile');
         Route::get('users/lectures', [UserController::class, 'lectures'])->name('admin.users.lectures');
+        Route::post('users/lectures/buy', [LectureController::class, 'userBuy'])->middleware('auth')->name('admin.users.buyLecture');
 
         Route::get('lectures', [LectureController::class, 'allLectures'])->name('admin.lectures.index');
+        Route::post('lectures/directBuy', [LectureController::class, 'directBuy'])->name('admin.lectures.directBuy');
+        Route::post('lectures/deletePurchase', [LectureController::class, 'deletePurchase'])->name('admin.lectures.deletePurchase');
 
         Route::get('questions', [QuestionController::class, 'index'])->name('admin.questions.index');
         // Route::post('questions/filter', [QuestionController::class, 'filter'])->name('admin.questions.filter');

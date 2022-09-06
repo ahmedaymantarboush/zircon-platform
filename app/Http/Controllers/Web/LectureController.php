@@ -358,6 +358,53 @@ class LectureController extends Controller
         endif;
         return redirect()->back()->withErrors(_("حدث خطأ أثناء الشراء يرجى المحاولة مرة أخرى"));
     }
+    public function userBuy()
+    {
+
+        $lecture = Lecture::findOrfail(request()->lectureId);
+        $user = User::findOrfail(request()->userId);
+
+        $price = getPrice($lecture);
+
+        $balance = $user->balance;
+        if ($balance < $price) :
+            return redirect()->back()->withErrors(_("الرصيد الحالي ($balance ج.م) لا يكفي لاتمام عملية الشراء"));
+
+        elseif ($balance >= $price) :
+
+            $user->balance = $balance - $price;
+            if ($user->save()) :
+                $lectureUser = LectureUser::create([
+                    'lecture_id' => $lecture->id,
+                    'user_id' => $user->id,
+                ]);
+                if ($lectureUser) :
+                    return redirect()->back();
+                endif;
+            endif;
+        endif;
+        return redirect()->back()->withErrors(_("حدث خطأ أثناء الشراء يرجى المحاولة مرة أخرى"));
+    }
+
+    public function directBuy(){
+        $lecture = Lecture::findOrfail(request()->lectureId);
+        $user = User::findOrfail(request()->userId);
+        LectureUser::create([
+            'lecture_id' => $lecture->id,
+            'user_id' => $user->id,
+        ]);
+        return redirect()->back();
+    }
+
+    public function deletePurchase(){
+        $lecture = Lecture::findOrfail(request()->lectureId);
+        $user = User::findOrfail(request()->userId);
+        LectureUser::where([
+            'lecture_id' => $lecture->id,
+            'user_id' => $user->id,
+        ])->delete();
+        return redirect()->back();
+    }
 
     public function hanging()
     {
