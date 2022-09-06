@@ -422,7 +422,7 @@
                         <div class="modal-body">
                             <p class="sure-to-del">
                                 هل انت متأكد انك تريد مسح جلسات
-                                <span class="del-session"> ....</span>
+                                <span class="del-lesson del-session"> ....</span>
                             </p>
                         </div>
                         <div class="modal-footer">
