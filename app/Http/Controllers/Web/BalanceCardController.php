@@ -41,7 +41,7 @@ class BalanceCardController extends Controller
             }
             $cards = $cards->whereHas('user',function ($user) use($data){
                 $user->where('name', 'like', '%' . $data['q'] . '%')->orWhere('email', 'like', '%' . $data['q'] . '%')->orWhere('phone_number', 'like', '%' . $data['q'] . '%')->orWhere('code', 'like', '%' . $data['q'] . '%');
-            })->orWhere('code', 'like', '%' . $code . '%');
+            })->orWhere('code', 'like', '%' . trim($code) . '%');
         }
         if ($user) :
             return view('Admin.allCards', ['cards' => $cards->get()]);
