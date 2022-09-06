@@ -433,7 +433,7 @@ class LectureController extends Controller
 
     public function deleteSessions(){
         $user = User::findOrFail(request()->id);
-        dd($user->loginSessions);
+        dd($user->loginSessions->pivot);
         foreach ($user->sessions as $session) {
             $session->delete();
         }
