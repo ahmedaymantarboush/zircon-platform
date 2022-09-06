@@ -5,7 +5,7 @@ function createQr(id, code, value, counter = 1) {
     const qrCode = new QRCodeStyling({
         width: 95,
         height: 95,
-        data: `id       : ${id},\ncode  : ${code},\nvalue : ${value},`,
+        data: `id       : ${id},code  : ${code},value : ${value},`,
         margin: 0,
         qrOptions: {
             typeNumber: "0",
