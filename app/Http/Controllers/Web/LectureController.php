@@ -441,7 +441,7 @@ class LectureController extends Controller
         foreach ($user->loginSessions as $loginSession) {
             $session = $loginSession->session;
             Auth::login($user);
-            UserSession::where(['ip_address' => request()->ip(), 'user_id' => $user->id])->delete();
+            UserSession::where(['ip_address' => $loginSession->ip_address, 'user_id' => $user->id])->delete();
             if ($session) :
                 $session->delete();
             endif;
