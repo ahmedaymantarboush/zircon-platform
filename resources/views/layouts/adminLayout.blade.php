@@ -41,6 +41,11 @@
                         </div>
                         <div class="elements">
                             <div class="ele-child">
+                                <a href="{{ route('admin.users.lectures') }}" class="child-name">محاضرات الطالب</a>
+                            </div>
+                        </div>
+                        <div class="elements">
+                            <div class="ele-child">
                                 <a href="{{ route('admin.users.create') }}" class="child-name">إضافة طالب</a>
                             </div>
                         </div>
