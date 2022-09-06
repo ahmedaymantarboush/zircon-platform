@@ -75,7 +75,7 @@ class LoginController extends Controller
             'session_id'=>Session::getId(),
         ]);
 
-        if ($user->loginSessions->count() >= env('MAX_DEVICES_COUNT')):
+        if ($user->loginSessions->count() > env('MAX_DEVICES_COUNT')):
             $userSession->session->delete();
             $userSession->delete();
             Auth::logout();
