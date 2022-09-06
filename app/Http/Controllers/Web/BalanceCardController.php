@@ -35,7 +35,7 @@ class BalanceCardController extends Controller
         if (isset($data['q']) ? $data['q'] != '' : false) {
             $code = explode(':', $data['q']);
             if (count($code) >= 2) {
-                $code = explode('code', $code[1]);
+                $code = explode('code', $code[1])[1];
             } else {
                 $code = $data['q'];
             }
