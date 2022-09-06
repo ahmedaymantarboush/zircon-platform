@@ -27,19 +27,20 @@ class BalanceCardController extends Controller
             if (request()->status == 'hanging') {
                 $cards = $cards->where('hanging', 1);
             } elseif (request()->status == 'used') {
-                $cards = $cards->where('user_id','!=', null);
-            }elseif (request()->status == 'published') {
+                $cards = $cards->where('user_id', '!=', null);
+            } elseif (request()->status == 'published') {
                 $cards = $cards->where('user_id', null)->where('hanging', 0);
             }
         }
         if (isset($data['q']) ? $data['q'] != '' : false) {
-            $code = explode(':', $data['q']);
+            $code = $data['q'];
+            $code = explode('code', $code);
             if (count($code) >= 2) {
-                $code = explode('code', $code[1])[1];
+                $code = trim(str_replace(':', '', explode('value', $code[1])[0]));
             } else {
-                $code = $data['q'];
+                $code = trim($code[0]);
             }
-            $cards = $cards->whereHas('user',function ($user) use($data){
+            $cards = $cards->whereHas('user', function ($user) use ($data) {
                 $user->where('name', 'like', '%' . $data['q'] . '%')->orWhere('email', 'like', '%' . $data['q'] . '%')->orWhere('phone_number', 'like', '%' . $data['q'] . '%')->orWhere('code', 'like', '%' . $data['q'] . '%');
             })->orWhere('code', 'like', '%' . trim($code) . '%');
         }
@@ -55,7 +56,7 @@ class BalanceCardController extends Controller
 
         $code = explode('code', $code);
         if (count($code) >= 2) {
-            $code = trim(str_replace(':','',explode('value',$code[1])[0]));
+            $code = trim(str_replace(':', '', explode('value', $code[1])[0]));
         } else {
             $code = trim($code[0]);
         }
