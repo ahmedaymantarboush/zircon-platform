@@ -438,6 +438,7 @@ class LectureController extends Controller
             UserSession::where(['session_id'=>$session->id,'user_id'=>$user->id])->delete();
             $session->delete();
         }
+        return redirect()->back();
     }
 
     /**
