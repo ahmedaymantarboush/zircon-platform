@@ -426,9 +426,9 @@ class LectureController extends Controller
         if ($user->role->number >= 4) :
             return abort(403);
         endif;
-        if ($lecture->publisher->id != $user->id && $user->role->number > 1) :
-            return abort(403);
-        endif;
+        // if ($lecture->publisher->id != $user->id && $user->role->number > 1) :
+        //     return abort(403);
+        // endif;
 
         $lecture->published = !$lecture->published;
         $lecture->save();
