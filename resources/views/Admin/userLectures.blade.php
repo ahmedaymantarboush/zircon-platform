@@ -50,7 +50,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (\App\Models\Lecture::where(['grade_id' => $user->grade_id, 'published' => true])->get() as $index => $lecture)
+                        @foreach (\App\Models\Lecture::where(['grade_id' => $user->grade_id, 'published' => false])->get() as $index => $lecture)
                             @php
                                 $i = $index + 1;
                             @endphp
