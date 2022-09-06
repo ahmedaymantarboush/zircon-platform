@@ -21,6 +21,6 @@ class UserSession extends Model
 
     public function session()
     {
-        return $this->belongsTo(Session::class);
+        return $this->belongsTo(Session::class,'ip_address','ip_address');
     }
 }
