@@ -72,7 +72,7 @@ class LoginController extends Controller
     {
         $userSession = UserSession::firstOrCreate([
             'user_id'=>$user->id,
-            'ip_address'=>$request->ip(),
+            'ip_address'=>request()->ip(),
         ]);
         if ($userSession):
             $userSession->session_id = Session::getId();
