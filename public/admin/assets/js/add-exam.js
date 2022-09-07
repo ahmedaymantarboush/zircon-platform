@@ -166,7 +166,11 @@ $(".add_question").click(function() {
                                             placeholder="ادخل عدد الأسئلة"
                                             style="font-size: 15px">
                                                     <input type="hidden" name="hardness_${finalNamber}" class="hidden_hardness" value="">
-                                                    <button class="btn btn-secondary">حفظ</button>
+                                                    <button class="btn btn-secondary sendQuestionBtn" style="width: 100%;
+    min-height: 35px;
+    font-size: 15px;
+    margin-top: 20px;
+    background: #67748e;">حفظ</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -482,63 +486,13 @@ $(document).ready(function (){
 ////////////////////////////////////////////////////////////////////////////
 //////////////////////// Dynamic Question With Ajax ///////////////////////
 //////////////////////////////////////////////////////////////////////////
-$(document).on('change','select.dynamicQuestion',async function (){
+$(document).on('click','.sendQuestionBtn',async function (){
     let examID = $("input[name='id']").attr('value');
-    let partSelect = $(this).val();
-    let question_box = $(this).parent().closest(".question-box");
-    let countValue = $(question_box).find(".countInput").val();
-    if(countValue==null){
-        return 0;
-    }
-    if(!$(this).parent().closest(".question-box").attr('data-id')){
-        //Ajax
-        form3 = new FormData()
-        form3.append('data', JSON.stringify({
-            'exam': examID,
-            'part': partSelect,
-            'count': parseInt(countValue)
-        }))
-        let addQuestion = await fetch(APP_URL + "/api/questions/zircon/addToExam", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "X-CSRF-TOKEN": window.csrf_token.value,
-            },
-            body: form3,
-        })
-        let addQuestionData = await addQuestion.json();
-        console.log(addQuestionData);
-        $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
-    }else {
-        let queID = $(this).parent().closest(".question-box").attr('data-id');
-        form3 = new FormData()
-        form3.append('data', JSON.stringify({
-            'exam': examID,
-            'part': partSelect,
-            'count': parseInt(countValue),
-            'id': queID
-        }))
-        let addQuestion = await fetch(APP_URL + "/api/questions/zircon/UpdateInExam", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "X-CSRF-TOKEN": window.csrf_token.value,
-            },
-            body: form3,
-        })
-        let addQuestionData = await addQuestion.json();
-        console.log(addQuestionData);
-    }
-    var selectedValue = $(this).find("option:selected").text();
-    $(question_box).find(".que_title").text(selectedValue);
-});
-$(document).on('change keyup paste','.countInput',async function (){
     let queID = $(this).parent().closest(".question-box").attr('data-id');
-    let examID = $("input[name='id']").attr('value');
-    let countValue = $(this).val();
     let question_box = $(this).parent().closest(".question-box");
-    let partSelect = $(question_box).find("select.dynamicQuestion").val();
-    if(!$(this).parent().closest(".question-box").attr('data-id')){
+    let partSelect = $(question_box).find('select.dynamicQuestion').val();
+    let countValue = $(question_box).find(".countInput").val();
+    if(!queID){
         //Ajax
         form3 = new FormData()
         form3.append('data', JSON.stringify({
@@ -577,6 +531,101 @@ $(document).on('change keyup paste','.countInput',async function (){
         console.log(addQuestionData);
     }
 });
+// $(document).on('change','select.dynamicQuestion',async function (){
+//     let examID = $("input[name='id']").attr('value');
+//     let partSelect = $(this).val();
+//     let question_box = $(this).parent().closest(".question-box");
+//     let countValue = $(question_box).find(".countInput").val();
+//     if(countValue==null){
+//         return 0;
+//     }
+//     if(!$(this).parent().closest(".question-box").attr('data-id')){
+//         //Ajax
+//         form3 = new FormData()
+//         form3.append('data', JSON.stringify({
+//             'exam': examID,
+//             'part': partSelect,
+//             'count': parseInt(countValue)
+//         }))
+//         let addQuestion = await fetch(APP_URL + "/api/questions/zircon/addToExam", {
+//             method: "POST",
+//             headers: {
+//                 Accept: "application/json",
+//                 "X-CSRF-TOKEN": window.csrf_token.value,
+//             },
+//             body: form3,
+//         })
+//         let addQuestionData = await addQuestion.json();
+//         console.log(addQuestionData);
+//         $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
+//     }else {
+//         let queID = $(this).parent().closest(".question-box").attr('data-id');
+//         form3 = new FormData()
+//         form3.append('data', JSON.stringify({
+//             'exam': examID,
+//             'part': partSelect,
+//             'count': parseInt(countValue),
+//             'id': queID
+//         }))
+//         let addQuestion = await fetch(APP_URL + "/api/questions/zircon/UpdateInExam", {
+//             method: "POST",
+//             headers: {
+//                 Accept: "application/json",
+//                 "X-CSRF-TOKEN": window.csrf_token.value,
+//             },
+//             body: form3,
+//         })
+//         let addQuestionData = await addQuestion.json();
+//         console.log(addQuestionData);
+//     }
+//     var selectedValue = $(this).find("option:selected").text();
+//     $(question_box).find(".que_title").text(selectedValue);
+// });
+// $(document).on('change keyup paste','.countInput',async function (){
+//     let queID = $(this).parent().closest(".question-box").attr('data-id');
+//     let examID = $("input[name='id']").attr('value');
+//     let countValue = $(this).val();
+//     let question_box = $(this).parent().closest(".question-box");
+//     let partSelect = $(question_box).find("select.dynamicQuestion").val();
+//     if(!$(this).parent().closest(".question-box").attr('data-id')){
+//         //Ajax
+//         form3 = new FormData()
+//         form3.append('data', JSON.stringify({
+//             'exam': examID,
+//             'part': partSelect,
+//             'count': parseInt(countValue)
+//         }))
+//         let addQuestion = await fetch(APP_URL + "/api/questions/zircon/addToExam", {
+//             method: "POST",
+//             headers: {
+//                 Accept: "application/json",
+//                 "X-CSRF-TOKEN": window.csrf_token.value,
+//             },
+//             body: form3,
+//         })
+//         let addQuestionData = await addQuestion.json();
+//         console.log(addQuestionData);
+//         $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
+//     }else {
+//         form3 = new FormData()
+//         form3.append('data', JSON.stringify({
+//             'exam': examID,
+//             'part': partSelect,
+//             'count': parseInt(countValue),
+//             'id': queID
+//         }))
+//         let addQuestion = await fetch(APP_URL + "/api/questions/zircon/UpdateInExam", {
+//             method: "POST",
+//             headers: {
+//                 Accept: "application/json",
+//                 "X-CSRF-TOKEN": window.csrf_token.value,
+//             },
+//             body: form3,
+//         })
+//         let addQuestionData = await addQuestion.json();
+//         console.log(addQuestionData);
+//     }
+// });
 $(document).ready(function (){
     $('select.dynamicQuestion').each(function (){
         let question_box = $(this).parent().closest(".question-box");
