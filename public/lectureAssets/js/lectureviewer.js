@@ -435,6 +435,7 @@ function showTakeExamLesson(data) {
                 '                        <div class="col-12 d-flex justify-content-center">\n' +
                 '                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>\n' +
                 '                        </div>';
+                // ظبط دنيتك هنا بقا
         } else {
             console.log(data);
             if(parseInt(data.data.item.chancesCount - data.data.item.chance) > 0 && data.data.item.chance != null && data.data.item.chancesCount != null){
