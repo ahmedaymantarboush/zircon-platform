@@ -31,7 +31,7 @@
                             </span>
                             <span class="box-name"> الطلاب </span>
                             <span class="parent-arrow">
-                                <i class="fa-solid fa-angle-down"></i></span>
+                                <i class="fa-solid fa-user-graduate"></i></span>
                         </div>
 
                         <div class="elements">
@@ -68,7 +68,7 @@
                             </span>
                             <span class="box-name"> المحاضرات </span>
                             <span class="parent-arrow">
-                                <i class="fa-solid fa-angle-down"></i></span>
+                                <i class="fa-solid fa-chalkboard-user"></i></span>
                         </div>
 
                         <div class="elements">
@@ -95,7 +95,7 @@
                             </span>
                             <span class="box-name"> الامتحانات </span>
                             <span class="parent-arrow">
-                                <i class="fa-solid fa-angle-down"></i></span>
+                                <i class="fa-solid fa-square-check"></i></span>
                         </div>
 
                         <div class="elements">
@@ -122,7 +122,7 @@
                             </span>
                             <span class="box-name"> كروت الشحن </span>
                             <span class="parent-arrow">
-                                <i class="fa-solid fa-angle-down"></i></span>
+                               <i class="fa-sharp fa-solid fa-coins"></i></span>
                         </div>
 
                         <div class="elements">
