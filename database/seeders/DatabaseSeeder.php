@@ -114,6 +114,7 @@ class DatabaseSeeder extends Seeder
             'governorate_id' => 20,
             'phone_number' => '01006436766',
             'parent_phone_number' => '01006436766',
+            'balance' => 0,
         ]);
 
         \App\Models\User::factory()->create([
