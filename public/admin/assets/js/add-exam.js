@@ -166,6 +166,7 @@ $(".add_question").click(function() {
                                             placeholder="ادخل عدد الأسئلة"
                                             style="font-size: 15px">
                                                     <input type="hidden" name="hardness_${finalNamber}" class="hidden_hardness" value="">
+                                                    <button class="btn btn-secondary">حفظ</button>
                                                 </div>
                                             </div>
                                         </div>

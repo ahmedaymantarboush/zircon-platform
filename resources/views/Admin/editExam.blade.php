@@ -134,6 +134,7 @@
                                                                         name="hardness_{{ $i }}"
                                                                         class="hidden_hardness"
                                                                         value="{{ $exam->exam_hardness }}">
+                                                                    <button class="btn btn-secondary">حفظ</button>
                                                                 </div>
                                                             </div>
                                                         </div>
