@@ -2,7 +2,7 @@ let examID = 0;
 let examPassedID = 0;
 let currentItemId = 0;
 let itemID =0;
-let minPercentage =50;
+let minPercentage = null;
 function onReadyFunExam() {
     // questions tabs
     let tabBtns = [...document.querySelectorAll('.tab-item')]
