@@ -106,7 +106,7 @@ Route::post('questions/zircon/deleteFromExam',[DynamicQuestionController::class,
 
 //       TESTIMONIAL ROUTES
 Route::post('testimonials/fastEdit',[TestimonialController::class,'fastEdit']);
-Route::post('testimonials/delete',[TestimonialController::class,'destroy'])->name('api.balancecards.delete');
+Route::post('testimonials/delete',[TestimonialController::class,'destroy'])->name('api.testimonials.delete');
 
 //       CENTER ROUTES
 Route::post('centers/fastEdit',[CenterController::class,'fastEdit']);
