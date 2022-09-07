@@ -492,8 +492,9 @@ $(document).on('click','.sendQuestionBtn',async function (){
     let question_box = $(this).parent().closest(".question-box");
     let partSelect = $(question_box).find('select.dynamicQuestion').val();
     let countValue = $(question_box).find(".countInput").val();
-    if(!queID){
+    if(!$(this).parent().closest(".question-box").attr('data-id')){
         //Ajax
+        alert('add');
         form3 = new FormData()
         form3.append('data', JSON.stringify({
             'exam': examID,
@@ -511,7 +512,9 @@ $(document).on('click','.sendQuestionBtn',async function (){
         let addQuestionData = await addQuestion.json();
         console.log(addQuestionData);
         $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
+        closeAllActive();
     }else {
+        alert('edit');
         form3 = new FormData()
         form3.append('data', JSON.stringify({
             'exam': examID,
@@ -529,6 +532,7 @@ $(document).on('click','.sendQuestionBtn',async function (){
         })
         let addQuestionData = await addQuestion.json();
         console.log(addQuestionData);
+        closeAllActive();
     }
 });
 // $(document).on('change','select.dynamicQuestion',async function (){
