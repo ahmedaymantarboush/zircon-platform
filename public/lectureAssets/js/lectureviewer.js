@@ -420,6 +420,10 @@ function showTakeExamLesson(data) {
         //if exam finished
         let student_perc = (data.data.item.correctAnswers / data.data.item.questionsCount) * 100;
         student_perc = student_perc.toFixed(2);
+        console.log(`
+        student_perc: ${student_perc}
+        minPercentage: ${minPercentage}
+        `);
         if (student_perc >= minPercentage) {
             take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
                 '                            <p class="ex_green">\n' +
