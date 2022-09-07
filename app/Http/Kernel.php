@@ -70,6 +70,6 @@ class Kernel extends HttpKernel
         'student' => \App\Http\Middleware\Student::class,
         'super.student' => \App\Http\Middleware\SuperStudent::class,
 
-        'not.hanging' => \App\Http\Middleware\NotHanging::class,
+        'not.banned' => \App\Http\Middleware\NotBanned::class,
     ];
 }

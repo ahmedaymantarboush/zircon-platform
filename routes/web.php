@@ -32,7 +32,7 @@ Route::get('grades/grade{id}', [LectureController::class, 'index'])->name('lectu
 Route::resource('months', LectureController::class)->only(['show']);
 Route::get('search', [LectureController::class, 'search'])->name('search');
 
-Route::group(['middleware' => 'not.hanging'], function () {
+Route::group(['middleware' => 'not.banned'], function () {
     Route::post('user/update', [UserController::class, 'update'])->middleware('auth')->name('user.update');
 
     Route::post('month-viewer', [LectureController::class, 'viewLecture'])->middleware('auth')->name('lectures.view');
