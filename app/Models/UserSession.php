@@ -23,6 +23,6 @@ class UserSession extends Model
 
     public function session()
     {
-        return $this->belongsTo(Session::class,'ip_address','ip_address');
+        return $this->belongsTo(Session::class,'user_agent','user_agent');
     }
 }
