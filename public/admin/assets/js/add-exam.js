@@ -496,7 +496,7 @@ $(document).on('click','.sendQuestionBtn',async function (){
     let countValue = $(question_box).find(".countInput").val();
     if(!$(this).parent().closest(".question-box").attr('data-id')){
         //Ajax
-        alert('add');
+
         form3 = new FormData()
         form3.append('data', JSON.stringify({
             'exam': examID,
@@ -512,11 +512,11 @@ $(document).on('click','.sendQuestionBtn',async function (){
             body: form3,
         })
         let addQuestionData = await addQuestion.json();
-        console.log(addQuestionData);
+
         $(this).parent().closest(".question-box").attr('data-id',addQuestionData.data.id);
         closeAllActive();
     }else {
-        alert('edit');
+
         form3 = new FormData()
         form3.append('data', JSON.stringify({
             'exam': examID,
@@ -533,7 +533,7 @@ $(document).on('click','.sendQuestionBtn',async function (){
             body: form3,
         })
         let addQuestionData = await addQuestion.json();
-        console.log(addQuestionData);
+
         closeAllActive();
     }
 });
