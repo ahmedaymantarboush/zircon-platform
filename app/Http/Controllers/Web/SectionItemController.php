@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Models\SectionItem;
 use App\Http\Requests\StoreSectionItemRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Exam;
+use App\Models\Section;
 
 class SectionItemController extends Controller
 {
@@ -17,6 +19,10 @@ class SectionItemController extends Controller
     public function store(StoreSectionItemRequest $request)
     {
         $data = $request->all();
+        $section = Section::findOrFail($data['section']);
+        $exam = Exam::findOrFail($data['exam']);
+        $section->total_questions_count += $exam->questions_count;
+        $section->save();
         SectionItem::create([
             'title' => $data['examTitle'],
             'exam_id' => $data['item'],
