@@ -52,7 +52,7 @@ class UserController extends Controller
                     $users = $users->where($key, $value);
                 }
             }
-            return view('Admin.students', ['users'=>$user->get()]);
+            return view('Admin.students', ['users'=>$users->get()]);
         } else {
             return abort(404);
         }
