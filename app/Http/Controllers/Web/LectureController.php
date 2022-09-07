@@ -435,20 +435,6 @@ class LectureController extends Controller
         return redirect()->back();
     }
 
-    public function deleteSessions()
-    {
-        $user = User::findOrFail(request()->id);
-        foreach ($user->loginSessions as $loginSession) {
-            $session = $loginSession->session;
-            Auth::login($user);
-            UserSession::where(['ip_address' => $loginSession->ip_address, 'user_id' => $user->id])->delete();
-            if ($session) :
-                $session->delete();
-            endif;
-        }
-        return redirect()->back();
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -581,7 +567,7 @@ class LectureController extends Controller
             return redirect(route('login'));
         endif;
         $lecture = Lecture::where(['slug' => $slug])->first();
-        if ($lecture ? $lecture->publisher->id == $user->id : false) :
+        if ($lecture ? $lecture->publisher->id == $user->id || $lecture->publisher->role->number == 1 : false) :
             return view("Admin.editLecture", compact('lecture'));
         else :
             return abort(404);

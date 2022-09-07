@@ -72,14 +72,16 @@ class LoginController extends Controller
     {
         $userSession = UserSession::firstOrCreate([
             'user_id'=>$user->id,
-            'ip_address'=>$request->ip(),
+            'ip_address'=>request()->ip(),
+            'user_agent'=>request()->userAgent(),
         ]);
         if ($userSession):
             $userSession->session_id = Session::getId();
+            $userSession->save();
         endif;
         if ($user->loginSessions->count() > env('MAX_DEVICES_COUNT')):
             $userSession->delete();
-            Auth::logout();
+            Auth::logout($user);
             return redirect()->back()->withInput()->withErrors([$this->username()=>['لقد وصلت للحد الأقصى من عدد تسجيلات الدخول']]);
         endif;
     }

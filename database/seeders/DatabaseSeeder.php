@@ -114,13 +114,14 @@ class DatabaseSeeder extends Seeder
             'governorate_id' => 20,
             'phone_number' => '01006436766',
             'parent_phone_number' => '01006436766',
+            'balance' => 0,
         ]);
 
         \App\Models\User::factory()->create([
             'role_num' => 2,
             'email' => 'ahmedaymantarboush@gmail.com',
-            'name' => 'Ahmed Ayman Tarboush',
-            'password' => Hash::make('@hmed&@yman135'),
+            'name' => 'م.أحمد طربوش',
+            'password' => Hash::make('123456789'),
             'center_id' => 1,
             'grade_id' => 3,
             'governorate_id' => 20,

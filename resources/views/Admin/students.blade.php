@@ -271,19 +271,18 @@
                                                 href="{{ route('admin.users.edit', $user->id) }}">تعديل الطالب</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item handStudent">{{ $user->banned ? 'الغاء' : '' }} تعليق
-                                                الطالب</a>
+                                            <form action="{{route('admin.users.hanging',$user->id)}}" method="post">
+                                                @csrf
+                                                <button class="dropdown-item handStudent">{{ $user->banned ? 'الغاء' : '' }} تعليق الطالب</button>
+                                            </form>
                                         </li>
                                         <li>
                                             <a data-bs-toggle="modal" data-bs-target="#editCharge"
-                                                class="dropdown-item editCharge">تعديل
-                                                رصيد
-                                                الطالب</a>
+                                                class="dropdown-item editCharge">تعديل رصيد الطالب</a>
                                         </li>
                                         <li>
                                             <a data-bs-toggle="modal" data-bs-target="#editCode"
-                                                class="dropdown-item editCode">تعديل كود
-                                                الطالب</a>
+                                                class="dropdown-item editCode">تعديل كود الطالب</a>
                                         </li>
                                         <li>
                                             <a data-bs-toggle="modal" data-bs-target="#deleteSessions"
@@ -291,8 +290,7 @@
                                         </li>
                                         <li>
                                             <a data-bs-toggle="modal" data-bs-target="#deleteStudent"
-                                                class="dropdown-item delete-lec">مسح
-                                                الطالب</a>
+                                                class="dropdown-item delete-lec">مسح الطالب</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -387,7 +385,8 @@
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="">
+                    <form action="{{route('admin.users.delete')}}" method="POST">
+                        @csrf
                         <input type="hidden" name='id'>
                         <div class="modal-body">
                             <p class="sure-to-del">

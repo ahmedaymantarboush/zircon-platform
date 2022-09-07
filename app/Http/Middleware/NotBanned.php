@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class NotHanging
+class NotBanned
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class NotHanging
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        if ($user ? $user->hanging : false ):
+        if ($user ? $user->banned : false ):
             return abort(403);
         endif;
         return $next($request);

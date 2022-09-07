@@ -27,12 +27,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Auth::routes(['password.request'=>false,'password.update'=>false]);
+Auth::routes(['password.request' => false, 'password.update' => false]);
 Route::get('grades/grade{id}', [LectureController::class, 'index'])->name('lectures.index');
 Route::resource('months', LectureController::class)->only(['show']);
 Route::get('search', [LectureController::class, 'search'])->name('search');
 
-Route::group(['middleware' => 'not.hanging'], function () {
+Route::group(['middleware' => 'not.banned'], function () {
     Route::post('user/update', [UserController::class, 'update'])->middleware('auth')->name('user.update');
 
     Route::post('month-viewer', [LectureController::class, 'viewLecture'])->middleware('auth')->name('lectures.view');
@@ -61,12 +61,15 @@ Route::group(['middleware' => 'not.hanging'], function () {
         Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
         Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
         Route::post('users/store', [UserController::class, 'store'])->name('admin.users.store');
+        Route::post('users/{id}/hanging', [UserController::class, 'hanging'])->name('admin.users.hanging');
         Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
         Route::post('users/update', [UserController::class, 'update'])->name('admin.users.update');
+        Route::post('users/delete', [UserController::class, 'delete'])->name('admin.users.delete');
+        Route::post('users/forceUpdate', [UserController::class, 'forceUpdate'])->name('admin.users.forceUpdate');
         Route::get('users/{id}/profile', [UserController::class, 'profile'])->name('admin.users.profile');
         Route::get('users/lectures', [UserController::class, 'lectures'])->name('admin.users.lectures');
+        Route::post('users/deleteSessions', [UserController::class, 'deleteSessions'])->middleware('auth')->name('admin.users.deleteSessions');
         Route::post('users/lectures/buy', [LectureController::class, 'userBuy'])->middleware('auth')->name('admin.users.buyLecture');
-        Route::post('users/deleteSessions', [LectureController::class, 'deleteSessions'])->middleware('auth')->name('admin.users.deleteSessions');
 
         Route::get('lectures', [LectureController::class, 'allLectures'])->name('admin.lectures.index');
         Route::post('lectures/directBuy', [LectureController::class, 'directBuy'])->name('admin.lectures.directBuy');

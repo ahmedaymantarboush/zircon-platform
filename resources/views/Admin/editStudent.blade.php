@@ -25,8 +25,9 @@
                 <div class="row">
                     <div class="col-lg-8 col-sm-12 order_2">
                         <div class="main_exam_info">
-                            <form action="{{ route('admin.users.update') }}" method="POST" class="exam-form">
+                            <form action="{{ route('admin.users.forceUpdate') }}" method="POST" class="exam-form">
                                 @csrf
+                                <input type="hidden" name="id" value="{{$user->id}}">
                                 <div class="row">
                                     <div class="col-12">
                                         <p class="main_title">بيانات الطالب </p>
@@ -166,8 +167,8 @@
 
                                     <div class="col-12">
                                         <div class="end-line"></div>
-                                        <button type="submit" class="sub_btn">اضافة</button>
-                                        <a href="#" class="a_btn">قائمة الطلاب</a>
+                                        <button type="submit" class="sub_btn">تعديل</button>
+                                        <a href="{{route('admin.users.index')}}" class="a_btn">قائمة الطلاب</a>
                                     </div>
                                 </div>
                             </form>
