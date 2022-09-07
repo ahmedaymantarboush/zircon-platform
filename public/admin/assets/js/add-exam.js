@@ -630,10 +630,10 @@ $(document).on('click','.sendQuestionBtn',async function (){
 //         console.log(addQuestionData);
 //     }
 // });
-$(document).ready(function (){
-    $('select.dynamicQuestion').each(function (){
-        let question_box = $(this).parent().closest(".question-box");
-        var selectedValue = $(this).find("option:selected").text();
-        $(question_box).find(".que_title").text(selectedValue);
-    });
-});
+// $(document).ready(function (){
+//     $('select.dynamicQuestion').each(function (){
+//         let question_box = $(this).parent().closest(".question-box");
+//         var selectedValue = $(this).find("option:selected").text();
+//         $(question_box).find(".que_title").text(selectedValue);
+//     });
+// });
