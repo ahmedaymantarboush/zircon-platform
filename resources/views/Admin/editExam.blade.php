@@ -55,14 +55,14 @@
                                         {{-- ///////////////////////////////////////////////////// Questions Loop //////////////////////////////////////////////////////////////////// --}}
                                         {{-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
                                         @if ($exam->dynamic)
-                                            @foreach ($exam->dynamicQuestions as  $index => $dynamicQuestion)
-                                            @php
-                                                $i = $index + 1;
-                                            @endphp
+                                            @foreach ($exam->dynamicQuestions as $index => $dynamicQuestion)
+                                                @php
+                                                    $i = $index + 1;
+                                                @endphp
                                                 {{-- ////////////// بدل الi ضيف counter /////////////////// --}}
                                                 <div class="col-12">
                                                     {{-- \App\Models\DynamicQuestion::where(['question_id'=>$question->id,'exam_id'=>$exam->id])->first()->id --}}
-                                                    <div class="question-box" data-id="{{$dynamicQuestion->id}}">
+                                                    <div class="question-box" data-id="{{ $dynamicQuestion->id }}">
                                                         <div class="d-flex justify-content-between">
                                                             <div class="question_title">
                                                                 <span class="que_namber">السؤال <span
@@ -109,7 +109,8 @@
                                                                             اختر الجزئية التعليمية
                                                                         </option>
                                                                         @foreach (\App\Models\Part::where(['user_id' => $exam->publisher->id, 'grade_id' => $exam->grade->id, 'subject_id' => $exam->subject->id])->get() as $part)
-                                                                            <option @selected($part->id == $dynamicQuestion->part_id) value="{{ $part->id }}">
+                                                                            <option @selected($part->id == $dynamicQuestion->part_id)
+                                                                                value="{{ $part->id }}">
                                                                                 {{ $part->name }}
                                                                             </option>
                                                                         @endforeach
@@ -134,7 +135,8 @@
                                                                         name="hardness_{{ $i }}"
                                                                         class="hidden_hardness"
                                                                         value="{{ $exam->exam_hardness }}">
-                                                                    <button class="btn btn-secondary sendQuestionBtn" style="width: 100%;
+                                                                    <button class="btn btn-secondary sendQuestionBtn"
+                                                                        style="width: 100%;
     min-height: 35px;
     font-size: 15px;
     margin-top: 20px;
@@ -151,7 +153,8 @@
                                                     $i = $index + 1;
                                                 @endphp
                                                 <div class="col-12">
-                                                    <div class="question-box" data-id="{{\App\Models\ExamQuestion::where(['question_id'=>$question->id,'exam_id'=>$exam->id])->first()->id}}">
+                                                    <div class="question-box"
+                                                        data-id="{{ \App\Models\ExamQuestion::where(['question_id' => $question->id, 'exam_id' => $exam->id])->first()->id }}">
                                                         <div class="d-flex justify-content-between">
                                                             <div class="question_title">
                                                                 <span class="que_namber">السؤال <span
