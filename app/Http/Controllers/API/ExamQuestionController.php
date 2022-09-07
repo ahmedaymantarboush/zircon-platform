@@ -50,7 +50,7 @@ class ExamQuestionController extends Controller
 
         $exam = $examQuestion->exam;
         $exam->questions_count += 1;
-        foreach (Section::where('exam_id', $exam->id)->all() as $sectionItem) :
+        foreach (Section::where('exam_id', $exam->id)->get() as $sectionItem) :
             $lecture = $sectionItem->section->lecture;
             $lecture->total_questions_count += 1;
             $lecture->save();
@@ -134,7 +134,7 @@ class ExamQuestionController extends Controller
         if ($examQuestion) :
             $exam =$examQuestion->exam;
             $exam->questions_count -= 1;
-            foreach (Section::where('exam_id', $exam->id)->all() as $sectionItem) :
+            foreach (Section::where('exam_id', $exam->id)->get() as $sectionItem) :
                 $lecture = $sectionItem->section->lecture;
                 $lecture->total_questions_count -= 1;
                 $lecture->save();
