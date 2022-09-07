@@ -420,7 +420,6 @@ function showTakeExamLesson(data) {
         //if exam finished
         let student_perc = (data.data.item.correctAnswers / data.data.item.questionsCount) * 100;
         student_perc = student_perc.toFixed(2);
-        minPercentage = minPercentage ? minPercentage : 50;
         if (student_perc >= minPercentage) {
             take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
                 '                            <p class="ex_green">\n' +
@@ -846,6 +845,7 @@ $(document).on('click', '.finishBtn', async function() {
     })
     let showExamData = await showExam.json();
     console.log(showExamData);
+    
     showTakeExam(showExamData);
 });
 // show exam
