@@ -64,6 +64,7 @@ Route::group(['middleware' => 'not.banned'], function () {
         Route::post('users/{id}/hanging', [UserController::class, 'hanging'])->name('admin.users.hanging');
         Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
         Route::post('users/update', [UserController::class, 'update'])->name('admin.users.update');
+        Route::post('users/delete', [UserController::class, 'delete'])->name('admin.users.delete');
         Route::post('users/forceUpdate', [UserController::class, 'forceUpdate'])->name('admin.users.forceUpdate');
         Route::get('users/{id}/profile', [UserController::class, 'profile'])->name('admin.users.profile');
         Route::get('users/lectures', [UserController::class, 'lectures'])->name('admin.users.lectures');

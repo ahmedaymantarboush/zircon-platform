@@ -370,4 +370,10 @@ class UserController extends Controller
         Auth::logout($user);
         return redirect()->back();
     }
+
+    public function delete($id){
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->back();
+    }
 }
