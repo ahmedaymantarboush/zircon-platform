@@ -846,6 +846,7 @@ $(document).on('click', '.finishBtn', async function() {
     let showExamData = await showExam.json();
     console.log(showExamData);
     if (minPercentage){
+        console.log(minPercentage);
         showTakeExamLesson(showExamData);
     }else{
         showTakeExam(showExamData);
