@@ -27,6 +27,7 @@
                         <div class="main_exam_info">
                             <form action="{{ route('admin.users.forceUpdate') }}" method="POST" class="exam-form">
                                 @csrf
+                                <input type="hidden" name="id" value="{{$user->id}}">
                                 <div class="row">
                                     <div class="col-12">
                                         <p class="main_title">بيانات الطالب </p>
