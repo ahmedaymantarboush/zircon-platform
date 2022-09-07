@@ -76,9 +76,9 @@ class UserController extends Controller
     public function deleteSessions()
     {
         $user = User::findOrFail(request()->id);
-        dd($user->loginSessions);
         foreach ($user->loginSessions as $loginSession) {
             $session = $loginSession->session;
+            dd($session);
             $loginSession->delete();
             if ($session) :
                 $session->delete();
