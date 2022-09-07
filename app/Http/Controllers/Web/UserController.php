@@ -36,7 +36,7 @@ class UserController extends Controller
         $user = Auth::user();
         $data = request()->all();
         if ($user ? $user->role->number < 4 : false) {
-            $users = User::where('role_num', '>=', $user->role->number)->get();
+            $users = User::where('role_num', '>=', $user->role->number);
             if (isset($data['hasFilter'])) {
                 foreach ($data as $key => $value) {
                     if ($key == 'hasFilter' || $key == 'page' || $key == 'count') {
@@ -52,7 +52,7 @@ class UserController extends Controller
                     $users = $users->where($key, $value);
                 }
             }
-            return view('Admin.students', compact('users'));
+            return view('Admin.students', ['users'=>$user->get()]);
         } else {
             return abort(404);
         }
