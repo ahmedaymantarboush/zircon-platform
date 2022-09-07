@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-sm-12 order_2">
                         <div class="main_exam_info">
-                            <form action="{{ route('admin.users.update') }}" method="POST" class="exam-form">
+                            <form action="{{ route('admin.users.forceUpdate') }}" method="POST" class="exam-form">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12">
