@@ -23,6 +23,9 @@ class SectionItemController extends Controller
         $exam = Exam::findOrFail($data['exam']);
         $section->total_questions_count += $exam->questions_count;
         $section->save();
+        $lecture = $section->lecture;
+        $lecture->total_questions_count += $exam->questions_count;
+        $lecture->save();
         SectionItem::create([
             'title' => $data['examTitle'],
             'exam_id' => $data['item'],
