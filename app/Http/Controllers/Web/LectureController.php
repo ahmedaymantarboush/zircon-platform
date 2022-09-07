@@ -567,7 +567,7 @@ class LectureController extends Controller
             return redirect(route('login'));
         endif;
         $lecture = Lecture::where(['slug' => $slug])->first();
-        if ($lecture ? $lecture->publisher->id == $user->id : false) :
+        if ($lecture ? $lecture->publisher->id == $user->id || $lecture->publisher->role->number == 1 : false) :
             return view("Admin.editLecture", compact('lecture'));
         else :
             return abort(404);
