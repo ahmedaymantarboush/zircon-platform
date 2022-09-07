@@ -166,8 +166,8 @@
 
                                     <div class="col-12">
                                         <div class="end-line"></div>
-                                        <button type="submit" class="sub_btn">اضافة</button>
-                                        <a href="#" class="a_btn">قائمة الطلاب</a>
+                                        <button type="submit" class="sub_btn">تعديل</button>
+                                        <a href="{{route('admin.users.index')}}" class="a_btn">قائمة الطلاب</a>
                                     </div>
                                 </div>
                             </form>
