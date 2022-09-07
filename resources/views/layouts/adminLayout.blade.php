@@ -118,7 +118,7 @@
                     <div class="side-bar-item">
                         <div class="box">
                             <span class="box-icon">
-                                <i class="fa-sharp fa-solid fa-coins"></i>
+                                <i class="fa-solid fa-coins"></i>
                             </span>
                             <span class="box-name"> كروت الشحن </span>
                             <span class="parent-arrow">
