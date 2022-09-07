@@ -61,7 +61,7 @@ Route::group(['middleware' => 'not.hanging'], function () {
         Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
         Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
         Route::post('users/store', [UserController::class, 'store'])->name('admin.users.store');
-        Route::post('users/hanging', [UserController::class, 'hanging'])->name('admin.users.hanging');
+        Route::post('users/{id}/hanging', [UserController::class, 'hanging'])->name('admin.users.hanging');
         Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
         Route::post('users/update', [UserController::class, 'update'])->name('admin.users.update');
         Route::post('users/forceUpdate', [UserController::class, 'forceUpdate'])->name('admin.users.forceUpdate');
