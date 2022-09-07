@@ -104,10 +104,9 @@
                 class="form-select form-select-lg @error('question_hardness') is-invalid @enderror {{-- is-valid --}}"
                 aria-label="Default select example" id="question_hardness" style="font-size: 15px;width: 90%;">
                 <option selected>ادخل درجة الصعوبة</option>
-                @for ($i = 1; $i <= 4; $i++)
+                @for ($i = 1; $i <= 5; $i++)
                     <option @selected(isset($exam) ? $exam->exam_hardness == $i : old('question_hardness') == "$i" || old('question_hardness') == "$i") value="{{ $i }}">{{$i}}</option>
                 @endfor
-                <option @selected(isset($exam) ? $exam->exam_hardness == '5' : old('question_hardness') == '5' || old('question_hardness') == '5') value="5">للطالب الشكساوي</option>
             </select>
             @error('question_hardness')
                 <div class="invalid-feedback" style="font-size: 13px;">
