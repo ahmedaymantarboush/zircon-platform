@@ -480,8 +480,9 @@ function showTakeExamLesson(data) {
 }
 function getItem(data) {
 
+    minPercentage = null;
     if (data.data.type == 'lesson') {
-
+        
         if (data.data.item.exam == null) {
             if (data.data.item.type == "video" && data.data.item.urls != null) {
                 if (typeof data.data.item.urls === 'object') {
