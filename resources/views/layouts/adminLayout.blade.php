@@ -27,11 +27,11 @@
                     <div class="side-bar-item">
                         <div class="box">
                             <span class="box-icon">
-                                <i class="fa-solid fa-gauge-high"></i>
+                                <i class="fa-solid fa-user-graduate"></i>
                             </span>
                             <span class="box-name"> الطلاب </span>
                             <span class="parent-arrow">
-                                <i class="fa-solid fa-user-graduate"></i></span>
+                                <i class="fa-solid fa-angle-down"></i></span>
                         </div>
 
                         <div class="elements">
@@ -64,11 +64,11 @@
                     <div class="side-bar-item">
                         <div class="box">
                             <span class="box-icon">
-                                <i class="fa-solid fa-gauge-high"></i>
+                                <i class="fa-solid fa-chalkboard-user"></i>
                             </span>
                             <span class="box-name"> المحاضرات </span>
                             <span class="parent-arrow">
-                                <i class="fa-solid fa-chalkboard-user"></i></span>
+                                <i class="fa-solid fa-angle-down"></i></span>
                         </div>
 
                         <div class="elements">
@@ -91,11 +91,11 @@
                     <div class="side-bar-item">
                         <div class="box">
                             <span class="box-icon">
-                                <i class="fa-solid fa-gauge-high"></i>
+                                <i class="fa-solid fa-square-check"></i>
                             </span>
                             <span class="box-name"> الامتحانات </span>
                             <span class="parent-arrow">
-                                <i class="fa-solid fa-square-check"></i></span>
+                                <i class="fa-solid fa-angle-down"></i></span>
                         </div>
 
                         <div class="elements">
@@ -118,11 +118,11 @@
                     <div class="side-bar-item">
                         <div class="box">
                             <span class="box-icon">
-                                <i class="fa-solid fa-gauge-high"></i>
+                                <i class="fa-sharp fa-solid fa-coins"></i>
                             </span>
                             <span class="box-name"> كروت الشحن </span>
                             <span class="parent-arrow">
-                               <i class="fa-sharp fa-solid fa-coins"></i></span>
+                                <i class="fa-solid fa-angle-down"></i></span>
                         </div>
 
                         <div class="elements">
