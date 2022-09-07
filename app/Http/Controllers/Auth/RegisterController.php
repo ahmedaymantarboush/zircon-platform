@@ -8,8 +8,11 @@ use App\Models\Governorate;
 use App\Models\Grade;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\UserSession;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -124,5 +127,23 @@ class RegisterController extends Controller
             'role_num'=> 4,
             'balance'=> 0,
         ]);
+    }
+
+    protected function registered($request, $user)
+    {
+        $userSession = UserSession::firstOrCreate([
+            'user_id'=>$user->id,
+            'ip_address'=>request()->ip(),
+            'user_agent'=>request()->userAgent(),
+        ]);
+        if ($userSession):
+            $userSession->session_id = Session::getId();
+            $userSession->save();
+        endif;
+        if ($user->loginSessions->count() > env('MAX_DEVICES_COUNT')):
+            $userSession->delete();
+            Auth::logout($user);
+            return redirect()->back()->withInput()->withErrors([$this->username()=>['لقد وصلت للحد الأقصى من عدد تسجيلات الدخول']]);
+        endif;
     }
 }
