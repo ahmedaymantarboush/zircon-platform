@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'role_num' => 2,
             'email' => 'ahmedaymantarboush@gmail.com',
-            'name' => 'Ahmed Ayman Tarboush',
+            'name' => 'م.أحمد طربوش',
             'password' => Hash::make('123456789'),
             'center_id' => 1,
             'grade_id' => 3,
