@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
             'role_num' => 2,
             'email' => 'ahmedaymantarboush@gmail.com',
             'name' => 'Ahmed Ayman Tarboush',
-            'password' => Hash::make('@hmed&@yman135'),
+            'password' => Hash::make('123456789'),
             'center_id' => 1,
             'grade_id' => 3,
             'governorate_id' => 20,

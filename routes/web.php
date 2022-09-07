@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Auth::routes(['password.request'=>false,'password.update'=>false]);
+Auth::routes(['password.request' => false, 'password.update' => false]);
 Route::get('grades/grade{id}', [LectureController::class, 'index'])->name('lectures.index');
 Route::resource('months', LectureController::class)->only(['show']);
 Route::get('search', [LectureController::class, 'search'])->name('search');
@@ -61,6 +61,7 @@ Route::group(['middleware' => 'not.hanging'], function () {
         Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
         Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
         Route::post('users/store', [UserController::class, 'store'])->name('admin.users.store');
+        Route::post('users/hanging', [UserController::class, 'hanging'])->name('admin.users.hanging');
         Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
         Route::post('users/update', [UserController::class, 'update'])->name('admin.users.update');
         Route::get('users/{id}/profile', [UserController::class, 'profile'])->name('admin.users.profile');

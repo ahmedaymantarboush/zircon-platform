@@ -256,4 +256,10 @@ class UserController extends Controller
         ]);
         return redirect()->back();
     }
+    public function hanging($id){
+        $user = User::findOrFail($id);
+        $user->banned = !$user->banned;
+        $user->save();
+        return redirect()->back();
+    }
 }
