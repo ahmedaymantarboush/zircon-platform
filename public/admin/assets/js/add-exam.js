@@ -170,7 +170,7 @@ $(".add_question").click(function() {
     min-height: 35px;
     font-size: 15px;
     margin-top: 20px;
-    background: #67748e;">حفظ</button>
+    background: #8b9bbd;">حفظ</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -630,10 +630,10 @@ $(document).on('click','.sendQuestionBtn',async function (){
 //         console.log(addQuestionData);
 //     }
 // });
-$(document).ready(function (){
-    $('select.dynamicQuestion').each(function (){
-        let question_box = $(this).parent().closest(".question-box");
-        var selectedValue = $(this).find("option:selected").text();
-        $(question_box).find(".que_title").text(selectedValue);
-    });
-});
+// $(document).ready(function (){
+//     $('select.dynamicQuestion').each(function (){
+//         let question_box = $(this).parent().closest(".question-box");
+//         var selectedValue = $(this).find("option:selected").text();
+//         $(question_box).find(".que_title").text(selectedValue);
+//     });
+// });
