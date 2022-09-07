@@ -332,7 +332,7 @@ function showTakeExam(data) {
         //if exam finished
         let student_perc = (data.data.item.correctAnswers / data.data.item.questionsCount) * 100;
         student_perc = student_perc.toFixed(2);
-        if (student_perc >= 50) {
+        if (student_perc >= minPercentage) {
             take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
                 '                            <p class="ex_green">\n' +
                 '                                <span>' + data.data.item.correctAnswers + '</span>\n' +
@@ -482,7 +482,7 @@ function getItem(data) {
 
     minPercentage = null;
     if (data.data.type == 'lesson') {
-        
+
         if (data.data.item.exam == null) {
             if (data.data.item.type == "video" && data.data.item.urls != null) {
                 if (typeof data.data.item.urls === 'object') {
