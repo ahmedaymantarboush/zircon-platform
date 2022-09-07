@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->enum('semester',['الفصل الدراسي الأول','الفصل الدراسي الثاني']);
-            $table->string('short_description',150);
+            $table->string('short_description');
             $table->text('description');
             $table->boolean('published')->default(0);
             $table->string('promotinal_video_url')->nullable();

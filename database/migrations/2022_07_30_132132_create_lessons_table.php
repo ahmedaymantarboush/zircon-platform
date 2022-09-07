@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
-            $table->string('title',50);
+            $table->string('title');
             $table->string('url');
             $table->integer('time');
             $table->string('poster')->default(asset('admin/assets/imgs/lecture-holder.webp'));

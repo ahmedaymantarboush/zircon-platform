@@ -28,9 +28,9 @@ class UpdateLectureRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'                     =>   ['required','string','max:50'],
+            'title'                     =>   ['required','string','max:255'],
             'semester'                  =>   ['required','string','in:الفصل الدراسي الأول,الفصل الدراسي الثاني'],
-            'short_description'         =>   ['required','string','max:50'],
+            'short_description'         =>   ['required','string','max:255'],
             'description'               =>   ['required','string'],
             'published'                 =>   ['nullable'],
             'promotinal_video_url'      =>   ['required','string','url'],
@@ -54,7 +54,7 @@ class UpdateLectureRequest extends FormRequest
         return [
             'title.required' => 'عنوان المحاضرة مطلوب',
             'title.string' => 'يجب أن يكون العنوان عبارة عن نص',
-            'title.max' => 'أكبر عدد من الحروف هو 50 حرف',
+            'title.max' => 'أكبر عدد من الحروف هو 255 حرف',
 
             'semester.required' => 'الفصل الدراسي مطلوب',
             'semester.string' => 'يجب أن يكون الفصل الدراسي عبارة عن نص',
@@ -62,7 +62,7 @@ class UpdateLectureRequest extends FormRequest
 
             'short_description.required' => 'الوصف القصير مطلوب',
             'short_description.string' => 'يجب أن يكون الوصف القصير عبارة عن نص',
-            'short_description.max' => 'أكبر عدد من الحروف هو 50 حرف',
+            'short_description.max' => 'أكبر عدد من الحروف هو 255 حرف',
 
             'description.required' => 'وصف المحاضرة مطلوب',
             'description.string' => 'يجب أن يكون الوصف عبارة عن نص',

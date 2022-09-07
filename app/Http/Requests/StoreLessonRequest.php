@@ -25,7 +25,7 @@ class StoreLessonRequest extends FormRequest
     public function rules()
     {
         return [
-            'lessonTitle' => ['required','string','max:50'],
+            'lessonTitle' => ['required','string','max:255'],
             'url' => ['required','url','max:255'],
             'type' => ['string',"in:video,pdf,audio"],
             'description' => ['required','string'],
@@ -38,7 +38,7 @@ class StoreLessonRequest extends FormRequest
         return [
             'lessonTitle.required' => 'عنوان المحاضرة مطلوب',
             'lessonTitle.string' => 'يجب أن يكون العنوان عبارة عن نص',
-            'lessonTitle.max' => 'أكبر عدد من الحروف هو 50 حرف',
+            'lessonTitle.max' => 'أكبر عدد من الحروف هو 255 حرف',
 
             'url.required' => 'الرجاء التأكد من أنك قمت باختيار ملف صالح',
             'url.url' => 'الرجاء التأكد من أنك قمت الرابط بشكل صحيح',
