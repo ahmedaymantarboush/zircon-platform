@@ -11,6 +11,8 @@ class UserSession extends Model
 
     protected $fillable = [
         'user_id',
+        'ip_address',
+        'user_agent',
         'session_id',
     ];
 

@@ -70,11 +70,10 @@ class LoginController extends Controller
 
     public function authenticated($request, $user)
     {
-        Auth::logout();
-        dd(request()->userAgent());
         $userSession = UserSession::firstOrCreate([
             'user_id'=>$user->id,
             'ip_address'=>request()->ip(),
+            'user_agent'=>request()->userAgent(),
         ]);
         if ($userSession):
             $userSession->session_id = Session::getId();
