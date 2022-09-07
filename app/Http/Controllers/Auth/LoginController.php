@@ -70,6 +70,7 @@ class LoginController extends Controller
 
     public function authenticated($request, $user)
     {
+        dd(request()->ip());
         $userSession = UserSession::firstOrCreate([
             'user_id'=>$user->id,
             'ip_address'=>request()->ip(),
