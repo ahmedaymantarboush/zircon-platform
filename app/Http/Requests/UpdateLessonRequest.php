@@ -26,7 +26,7 @@ class UpdateLessonRequest extends FormRequest
     public function rules()
     {
         return [
-            'newtitle' => ['required', 'string', 'max:50'],
+            'newtitle' => ['required', 'string', 'max:255'],
             'newurl' => ['required', 'url', 'max:255'],
             'newtype' => ['string', "in:video,pdf,audio"],
             'newdescription' => ['required', 'string'],
@@ -43,7 +43,7 @@ class UpdateLessonRequest extends FormRequest
         return  [
             'newtitle.required' => 'عنوان الدرس مطلوب',
             'newtitle.string' => 'يجب أن يكون العنوان عبارة عن نص',
-            'newtitle.max' => 'أكبر عدد من الحروف هو 50 حرف',
+            'newtitle.max' => 'أكبر عدد من الحروف هو 255 حرف',
 
             'newurl.required' => 'الرجاء التأكد من أنك قمت باختيار ملف صالح',
             'newurl.url' => 'الرجاء التأكد من أنك قمت الرابط بشكل صحيح',
