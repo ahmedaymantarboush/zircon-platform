@@ -7,6 +7,7 @@ use App\Models\Center;
 use App\Models\Governorate;
 use App\Models\Grade;
 use App\Models\User;
+use App\Models\UserSession;
 use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
@@ -70,6 +71,21 @@ class UserController extends Controller
         } else {
             return abort(404);
         }
+    }
+
+    public function deleteSessions()
+    {
+        $user = User::findOrFail(request()->id);
+        dd($user->loginSessions);
+        foreach ($user->loginSessions as $loginSession) {
+            $session = $loginSession->session;
+            $loginSession->delete();
+            if ($session) :
+                $session->delete();
+            endif;
+            Auth::logout($user);
+        }
+        return redirect()->back();
     }
 
     public function edit($id)
