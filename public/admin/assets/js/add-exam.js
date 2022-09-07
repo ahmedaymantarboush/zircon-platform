@@ -45,6 +45,13 @@ $(document).ready(function() {
     autoSelect();
     closeAllActive();
     updataCounter();
+    if($(".select_part").length > 0){
+        $(".select_part").each(function() {
+            let question_box = $(this).parent().closest(".question-box");
+            let selectedValue = $(this).find("option[selectet]").text;
+            $(question_box).find(".que_title").text(selectedValue);
+        });
+    }
 });
 
 //////////////////////////////////////////////////
