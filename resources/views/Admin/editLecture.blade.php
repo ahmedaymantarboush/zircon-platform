@@ -11,11 +11,11 @@
 @section('content')
     <div class="page-heading white-box">
         <span class="page-icon"><i class="fa-solid fa-graduation-cap"></i></span>
-        <h2 class="page-h">إضافة محاضرة جديدة</h2>
+        <h2 class="page-h">تعديل المحاضرة</h2>
     </div>
     <section class="add-lecture white-box">
         <div class="add-lec-heading">
-            <h3>اضافة محاضرة</h3>
+            <h3>تعديل المحاضرة</h3>
             <a href="{{ route('admin.lectures.index') }}" class="go-to-lectures">
                 الرجوع الي قائمة المحاضرات
                 <span><i class="fa-solid fa-arrow-left-long"></i></span></a>
