@@ -134,7 +134,7 @@
                                                                         name="hardness_{{ $i }}"
                                                                         class="hidden_hardness"
                                                                         value="{{ $exam->exam_hardness }}">
-                                                                    <button class="btn btn-secondary" style="width: 100%;
+                                                                    <button class="btn btn-secondary sendQuestionBtn" style="width: 100%;
     min-height: 35px;
     font-size: 15px;
     margin-top: 20px;
