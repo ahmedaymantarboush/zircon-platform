@@ -149,19 +149,19 @@
                             </form>
                             <ul class=" navDrop">
                                 @if (Auth::user()->role->number < 4)
-
-                                <li>
-                                    <a class="dropdown-item navDropItem lineParent" href="{{ route('admin.index') }}">
-                                        <span class="line"></span>
-                                        <span class="line"></span>
-                                        <span class="line"></span>
-                                        <span class="line"></span>
-                                        <span class='navDropIcon'>
-                                            <i class='fa fa-user'></i>
-                                        </span>
-                                        الصفحة الرئيسية
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a class="dropdown-item navDropItem lineParent"
+                                            href="{{ route('admin.index') }}">
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class="line"></span>
+                                            <span class='navDropIcon'>
+                                                <i class='fa fa-user'></i>
+                                            </span>
+                                            الصفحة الرئيسية
+                                        </a>
+                                    </li>
                                 @endif
                                 <li>
                                     <a class="dropdown-item navDropItem lineParent" href="{{ route('user.profile') }}">
