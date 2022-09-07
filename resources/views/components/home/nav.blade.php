@@ -148,8 +148,10 @@
                                 <span><i class="fa-solid fa-magnifying-glass"></i></span>
                             </form>
                             <ul class=" navDrop">
+                                @if (Auth::user()->role->number < 4)
+
                                 <li>
-                                    <a class="dropdown-item navDropItem lineParent" href="{{ route('home') }}">
+                                    <a class="dropdown-item navDropItem lineParent" href="{{ route('admin.index') }}">
                                         <span class="line"></span>
                                         <span class="line"></span>
                                         <span class="line"></span>
@@ -160,6 +162,7 @@
                                         الصفحة الرئيسية
                                     </a>
                                 </li>
+                                @endif
                                 <li>
                                     <a class="dropdown-item navDropItem lineParent" href="{{ route('user.profile') }}">
                                         <span class="line"></span>
