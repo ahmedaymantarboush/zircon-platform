@@ -78,11 +78,10 @@ class UserController extends Controller
         $user = User::findOrFail(request()->id);
         foreach ($user->loginSessions as $loginSession) {
             $session = $loginSession->session;
-            dd($session);
-            $loginSession->delete();
             if ($session) :
                 $session->delete();
             endif;
+            $loginSession->delete();
             Auth::logout($user);
         }
         return redirect()->back();
