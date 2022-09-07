@@ -62,7 +62,6 @@ class DynamicQuestionController extends Controller
             'count' => $data['count'],
             'level' => $data['level'] ?? $exam->exam_hardness,
         ]);
-        $exam = $dynamicQuestion->exam;
         $exam->questions_count += abs($dynamicQuestion->count);
         foreach (SectionItem::where('exam_id', $exam->id)->all() as $sectionItem) :
             $lecture = $sectionItem->section->lecture;
