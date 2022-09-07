@@ -189,12 +189,11 @@ class UserController extends Controller
         $data = $request->all();
         Validator::make($data, [
             'stu_name' => ['required', 'string', 'max:255'],
-            'stu_code' => ['required', 'string', 'max:255', 'unique:users,code'],
-            'stu_email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'stu_grade' => ['required', 'string', 'exists:grades,id'],
-            'stu_number' => ['required', 'string', 'unique:users,phone_number', 'max:13', 'min:11'],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'password_confirmation' => ['nullable', 'string', 'min:8'],
+            'stu_number' => ['required', 'string', $data['stu_number'] != $user->phone_number ? 'unique:users,phone_number' : '', 'max:13', 'min:11'],
             'stu_parent_number' => ['required', 'string', 'max:13', 'min:11'],
+            'stu_grade' => ['required', 'string', 'exists:grades,id'],
             'stu_gov' => ['required', 'string', 'exists:governorates,id'],
             'stu_place' => ['nullable', 'string', 'exists:centers,id'],
             'role' => ['nullable', 'string', 'exists:roles,id'],
