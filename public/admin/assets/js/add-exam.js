@@ -45,11 +45,6 @@ $(document).ready(function() {
     autoSelect();
     closeAllActive();
     updataCounter();
-    $(".select_part").each(function() {
-        let question_box = $(this).parent().closest(".question-box");
-        let selectedValue = $(this).find("option[selectet]").text;
-        $(question_box).find(".que_title").text(selectedValue);
-    });
 });
 
 //////////////////////////////////////////////////
