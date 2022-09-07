@@ -2,6 +2,7 @@ let examID = 0;
 let examPassedID = 0;
 let currentItemId = 0;
 let itemID =0;
+let minPercentage =null;
 function onReadyFunExam() {
     // questions tabs
     let tabBtns = [...document.querySelectorAll('.tab-item')]
@@ -300,6 +301,7 @@ function getExam(exam_id) {
     return getExamData;
 }
 
+
 function showTakeExam(data) {
     let take_exam = '<div class="take_exam d-flex justify-content-center">\n' +
         '                <div class="row">\n' +
@@ -349,7 +351,7 @@ function showTakeExam(data) {
             console.log(data);
             if(parseInt(data.data.item.chancesCount - data.data.item.chance) > 0 && data.data.item.chance != null && data.data.item.chancesCount != null){
 
-            take_exam += `<div class="col-12 d-flex justify-content-center" dir="rtl">
+                take_exam += `<div class="col-12 d-flex justify-content-center" dir="rtl">
                             <p class="ex_red">
                              <span>${data.data.item.correctAnswers}</span>
                              سؤال غير صحيح من
@@ -367,7 +369,7 @@ function showTakeExam(data) {
                          </p>
                     </div>
                     <div class="col-12 d-flex justify-content-center"><a class="exam_btn takeExam d-flex justify-content-center" href="#">محاولة اخرى</a></div>`;
-        }else{
+            }else{
                 take_exam += `<div class="col-12 d-flex justify-content-center" dir="rtl">
                             <p class="ex_red">
                              <span>${data.data.item.correctAnswers}</span>
@@ -388,7 +390,94 @@ function showTakeExam(data) {
         mainDiv.innerHTML = take_exam;
     }
 }
+function showTakeExamLesson(data) {
+    let take_exam = '<div class="take_exam d-flex justify-content-center">\n' +
+        '                <div class="row">\n' +
+        '                    <div class="col-12 d-flex justify-content-center">\n' +
+        '                        <i class="fa-solid fa-clipboard-question" id="clipboard-question"></i>\n' +
+        '                    </div>\n' +
+        '                    <div class="col-12 d-flex justify-content-center">\n' +
+        '                        <span class="ex_text" style="margin-top: 20px;">' + data.data.item.examName + '</span>\n' +
+        '                    </div>';
 
+    if (data.data.item.finished == false) {
+        // if exam NOT finished
+        take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
+            '                            <p class="ex_main">\n' +
+            '                                <span>' + data.data.item.questionsCount + '</span>\n' +
+            '                                سؤال\n' +
+            '                            </p>\n' +
+            '                        </div>\n' +
+            '                        <div class="col-12 d-flex justify-content-center">\n' +
+            '                            <a class="exam_btn takeExam d-flex justify-content-center" href="#"\n' +
+            '                                style="margin-top: 20px;">ابدأ</a>\n' +
+            '                        </div>';
+        mainDiv.innerHTML = take_exam;
+        examPassedID = data.data.item.passedExamId;
+    } else {
+        examPassedID = data.data.item.passedExamId;
+        itemID = data.data.item.id;
+        //if exam finished
+        let student_perc = (data.data.item.correctAnswers / data.data.item.questionsCount) * 100;
+        student_perc = student_perc.toFixed(2);
+        if (student_perc >= minPercentage) {
+            take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
+                '                            <p class="ex_green">\n' +
+                '                                <span>' + data.data.item.correctAnswers + '</span>\n' +
+                '                                سؤال صحيح من\n' +
+                '                                <span>' + data.data.item.questionsCount + '</span>\n' +
+                '                                سؤال\n' +
+                '                            </p>\n' +
+                '                        </div>\n' +
+                '                        <div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
+                '                            <p class="ex_green" style="font-weight: 700;margin-top: 0;">' + student_perc + '%</p>\n' +
+                '                        </div>\n' +
+                '                        <div class="col-12 d-flex justify-content-center">\n' +
+                '                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>\n' +
+                '                        </div>';
+        } else {
+            console.log(data);
+            if(parseInt(data.data.item.chancesCount - data.data.item.chance) > 0 && data.data.item.chance != null && data.data.item.chancesCount != null){
+
+                take_exam += `<div class="col-12 d-flex justify-content-center" dir="rtl">
+                            <p class="ex_red">
+                             <span>${data.data.item.correctAnswers}</span>
+                             سؤال غير صحيح من
+                             <span>${data.data.item.questionsCount}</span>
+                             سؤال
+                             </p>
+                        </div>
+                    <div class="col-12 d-flex justify-content-center" dir="rtl">
+                        <p class="ex_red" style="font-weight: 700;margin-top: 0;">${student_perc}%</p>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center" dir="rtl">
+                        <p class="ex_red" style="font-weight: 500;margin-top: 0;">تطبق لديك
+                         <span>${parseInt(data.data.item.chancesCount - data.data.item.chance)} </span>
+                         من المحاولات
+                         </p>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center"><a class="exam_btn takeExam d-flex justify-content-center" href="#">محاولة اخرى</a></div>`;
+            }else{
+                take_exam += `<div class="col-12 d-flex justify-content-center" dir="rtl">
+                            <p class="ex_red">
+                             <span>${data.data.item.correctAnswers}</span>
+                             سؤال غير صحيح من
+                             <span>${data.data.item.questionsCount}</span>
+                             سؤال
+                             </p>
+                        </div>
+                    <div class="col-12 d-flex justify-content-center" dir="rtl">
+                        <p class="ex_red" style="font-weight: 700;margin-top: 0;">${student_perc}%</p>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center" dir="rtl">
+                        <p class="ex_red" style="font-weight: 500;margin-top: 0;">لم يتطبق لك محاولات
+                         </p>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center"><a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a></div>`;}
+        }
+        mainDiv.innerHTML = take_exam;
+    }
+}
 function getItem(data) {
 
     if (data.data.type == 'lesson') {
@@ -415,6 +504,7 @@ function getItem(data) {
             loadMediaPlayerJs();
         } else {
             examID = data.data.item.exam;
+            minPercentage = data.data.item.minPercentage;
             console.log(examID);
             let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
                 "                    <div class=\"row\">\n" +
@@ -511,7 +601,7 @@ $(document).on('click', '.startExam', function() {
         if (xhttp.status == 200 && xhttp.readyState == 4) {
             data = JSON.parse(this.responseText);
             console.log(data);
-            showTakeExam(data);
+            showTakeExamLesson(data);
             if(data.data.type=='lesson'){
                 examID = data.data.item.exam;
                 if(data.data.item.examPassedId!=null){
