@@ -76,6 +76,7 @@ class LoginController extends Controller
         ]);
         if ($userSession):
             $userSession->session_id = Session::getId();
+            $userSession->save();
         endif;
         if ($user->loginSessions->count() > env('MAX_DEVICES_COUNT')):
             $userSession->delete();
