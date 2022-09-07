@@ -260,6 +260,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->banned = !$user->banned;
         $user->save();
+        Auth::logout($user);
         return redirect()->back();
     }
 }
