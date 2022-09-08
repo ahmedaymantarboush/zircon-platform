@@ -312,7 +312,7 @@
         ->where('created_at', 'LIKE', "%$currentMonth%")
         ->count();
     $enrolledStudents = (int) $currentMonthAttend;
-    $absentStudents = (int) ($studentsNamber * 2) - $currentMonthAttend;
+    $absentStudents = (int) $studentsNamber - $currentMonthAttend;
 
     $studentsLevel = '';
     $centersName = '';
