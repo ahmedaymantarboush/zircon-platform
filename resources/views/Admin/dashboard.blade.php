@@ -56,7 +56,6 @@
                             $currentDayAttend += \App\Models\PassedExam::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$currentDay%")
                                 ->count();
-                            $currentDayAttend = $currentDayAttend / 2;
 
                             $yesterdayAttend = \App\Models\UserLesson::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$yesterday%")
@@ -64,7 +63,6 @@
                             $yesterdayAttend += \App\Models\PassedExam::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$yesterday%")
                                 ->count();
-                            $yesterdayAttend = $yesterdayAttend / 2;
 
                             $AttentPercentage = $yesterdayAttend ? (($currentDayAttend - $yesterdayAttend) * 100) / $yesterdayAttend : 100;
                         @endphp
