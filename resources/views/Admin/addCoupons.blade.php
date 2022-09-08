@@ -82,7 +82,7 @@
                             <div class="col-12">
                                 <div class="end-line"></div>
                                 <button type="submit" class="sub_btn">انشاء الأكواد</button>
-                                <a href="#" class="a_btn">سجل كروت الشحن</a>
+                                <a href="{{route('admin.balancecards.index')}}" class="a_btn">سجل كروت الشحن</a>
                             </div>
                         </div>
                     </form>
