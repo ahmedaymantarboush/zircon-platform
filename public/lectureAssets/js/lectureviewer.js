@@ -331,7 +331,7 @@ function showTakeExam(data) {
         itemID = data.data.item.id;
         //if exam finished
         let student_perc = (data.data.item.correctAnswers / data.data.item.questionsCount) * 100;
-        student_perc = student_perc.toFixed(2);
+        student_perc = parseFloat(student_perc.toFixed(2));
         if (student_perc >= minPercentage) {
             take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
                 '                            <p class="ex_green">\n' +
@@ -510,7 +510,7 @@ function getItem(data) {
         } else {
             examID = data.data.item.exam;
             minPercentage = data.data.item.minPercentage;
-            minPercentage = parseFloat(minPercentage).toFixed(2);
+            minPercentage = parseFloat(parseFloat(minPercentage).toFixed(2));
             console.log(examID);
             let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
                 "                    <div class=\"row\">\n" +
