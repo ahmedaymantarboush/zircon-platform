@@ -172,7 +172,6 @@ $(document).on('click', '.question_head', async function() {
             body: form3,
         })
         let resFlagData = await resFlag.json();
-        console.log(resFlagData);
     } else {
         $(this).find('i').attr('flag', 0);
         $(this).find('i').removeClass('flagQuestion');
@@ -198,7 +197,6 @@ $(document).on('click', '.question_head', async function() {
             body: form3,
         })
         let resFlagData = await resFlag.json();
-        console.log(resFlagData);
     }
 
 });
@@ -230,7 +228,6 @@ $(document).on('click', '.anserBox', async function() {
                     body: form4,
                 })
                 let addAnserData = await addAnser.json();
-                console.log(addAnserData);
                 let yesId = '#yesIcon_' + queNamber;
                 let yesIcon = document.querySelector(yesId);
                 yesIcon.classList.remove("hide_icon");
@@ -262,7 +259,6 @@ $(document).on('click', '.anserBox', async function() {
             body: form4,
         })
         let addAnserData = await addAnser.json();
-        console.log(addAnserData);
         yesIcon.classList.remove("hide_icon");
         yesIcon.classList.add("show_icon");
         $(this).find('input').prop('checked', true);
@@ -293,7 +289,6 @@ function getExam(exam_id) {
         if (xhttp.status == 200 && xhttp.readyState == 4) {
             getExamData = JSON.parse(this.responseText);
             examPassedID = getExamData.data.id;
-            console.log(getExamData);
             getItem(getExamData);
         }
     }
@@ -348,7 +343,6 @@ function showTakeExam(data) {
                 '                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>\n' +
                 '                        </div>';
         } else {
-            console.log(data);
             if(parseInt(data.data.item.chancesCount - data.data.item.chance) > 0 && data.data.item.chance != null && data.data.item.chancesCount != null){
 
                 take_exam += `<div class="col-12 d-flex justify-content-center" dir="rtl">
@@ -420,10 +414,6 @@ function showTakeExamLesson(data) {
         //if exam finished
         let student_perc = (data.data.item.correctAnswers / data.data.item.questionsCount) * 100;
         student_perc = student_perc.toFixed(2);
-        console.log(`
-        student_perc: ${student_perc}
-        minPercentage: ${minPercentage}
-        `);
         if (student_perc >= minPercentage) {
             take_exam += '<div class="col-12 d-flex justify-content-center" dir="rtl">\n' +
                 '                            <p class="ex_green">\n' +
@@ -440,7 +430,6 @@ function showTakeExamLesson(data) {
                 '                            <a class="exam_btn showExam d-flex justify-content-center" href="#">عرض</a>\n' +
                 '                        </div>';
         } else {
-            console.log(data);
             if(parseInt(data.data.item.chancesCount - data.data.item.chance) > 0 && data.data.item.chance != null && data.data.item.chancesCount != null){
 
                 take_exam += `<div class="col-12 d-flex justify-content-center" dir="rtl">
@@ -511,7 +500,6 @@ function getItem(data) {
             examID = data.data.item.exam;
             minPercentage = data.data.item.minPercentage;
             minPercentage = parseFloat(parseFloat(minPercentage).toFixed(2));
-            console.log(examID);
             let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
                 "                    <div class=\"row\">\n" +
                 "                        <div class=\"col-12 d-flex justify-content-center\">\n" +
@@ -606,7 +594,6 @@ $(document).on('click', '.startExam', function() {
     xhttp.onreadystatechange = function(e) {
         if (xhttp.status == 200 && xhttp.readyState == 4) {
             data = JSON.parse(this.responseText);
-            console.log(data);
             showTakeExamLesson(data);
             if(data.data.type=='lesson'){
                 examID = data.data.item.exam;
@@ -648,7 +635,6 @@ $(document).on('click', '.takeExam', async function() {
     })
     let getExamVar = await getExam.json();
     examPassedID = getExamVar.data.id;
-    console.log(getExamVar);
 
     //Add Tabs
     for (let i = 1; i <= getExamVar.data.questions.length; i++) {
@@ -704,7 +690,6 @@ $(document).on('click', '.takeExam', async function() {
             body: form2,
         })
         let getQuestionVar = await getQuestion.json();
-        console.log(getQuestionVar);
         let flagclass = "unflagQuestion";
         let inputclass = "uncheckflag";
         if (parseInt(getQuestionVar.data.flagged)) {
@@ -834,7 +819,6 @@ $(document).on('click', '.finishBtn', async function() {
         body: form6,
     })
     let finishExamData = await finishExam.json();
-    console.log(finishExamData);
     $('.closeModelBtn').click();
     form7 = new FormData()
     form7.append('data', JSON.stringify({
@@ -849,9 +833,7 @@ $(document).on('click', '.finishBtn', async function() {
         body: form7,
     })
     let showExamData = await showExam.json();
-    console.log(showExamData);
     if (minPercentage){
-        console.log(minPercentage);
         showTakeExamLesson(showExamData);
     }else{
         showTakeExam(showExamData);
@@ -873,7 +855,6 @@ $(document).on('click', '.showExam', async function() {
         body: form10,
     })
     let getExamVar = await getExamPassed.json();
-    console.log(getExamVar);
     //Add Tabs
     // Ajax Functions //
     examHTML = '<div class="exam-parent">\n' +
