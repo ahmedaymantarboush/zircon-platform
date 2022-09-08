@@ -510,7 +510,7 @@ function getItem(data) {
         } else {
             examID = data.data.item.exam;
             minPercentage = data.data.item.minPercentage;
-            minPercentage = minPercentage.toFixed(2);
+            minPercentage = parseFloat(minPercentage).toFixed(2);
             console.log(examID);
             let passExam = "<div class=\"take_exam d-flex justify-content-center\">\n" +
                 "                    <div class=\"row\">\n" +
