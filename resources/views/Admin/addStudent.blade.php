@@ -152,10 +152,10 @@
                                     <div class="col-12">
                                         <label for="formGroupExampleInput" class="form-label input_label"
                                             style="margin-top: 40px">كود الطالب :</label>
-                                            @php
-                                                $code = Str::random(16);
-                                            @endphp
-                                        <input value="{{$code}}" name="stu_code" type="text"
+                                        @php
+                                            $code = Str::random(16);
+                                        @endphp
+                                        <input value="{{ $code }}" name="stu_code" type="text"
                                             class="@error('stu_code') is-invalid @enderror form-control-lg form-control"
                                             id="formGroupExampleInput" placeholder="ادخل كود الطالب"
                                             style="font-size: 15px;width: 95%;">
@@ -220,7 +220,7 @@
                                     </div>
                                     <div class='barcodeBox'>
                                         <svg class="barcode" id='profileBarCode'></svg>
-                                        <span class='barcodeText stu_code'>{{$code}}</span>
+                                        <span class='barcodeText stu_code'>{{ $code }}</span>
                                     </div>
                                 </div>
 
@@ -237,13 +237,12 @@
 
 
 @section('javascript')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
-    integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
+        integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{-- <!-- barcode  --> --}}
     {{-- <!-- هنا بس  --> --}}
     <script src="{{ asset('js/jsBarCode.all.min.js') }}"></script>
