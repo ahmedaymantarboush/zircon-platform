@@ -56,6 +56,7 @@
                             $currentDayAttend += \App\Models\PassedExam::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$currentDay%")
                                 ->count();
+                            $currentDayAttend = $currentDayAttend / 2;
 
                             $yesterdayAttend = \App\Models\UserLesson::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$yesterday%")
@@ -63,6 +64,7 @@
                             $yesterdayAttend += \App\Models\PassedExam::where('user_id', '!=', null)
                                 ->where('created_at', 'LIKE', "%$yesterday%")
                                 ->count();
+                            $yesterdayAttend = $yesterdayAttend / 2;
 
                             $AttentPercentage = $yesterdayAttend ? (($currentDayAttend - $yesterdayAttend) * 100) / $yesterdayAttend : 100;
                         @endphp
@@ -205,7 +207,7 @@
                     <tbody>
                         @php
                             $lastWeek = date('Y-m-d', strtotime('-1 week'));
-                            $totalAttendance = \App\Models\UserLesson::where('created_at','>=',$lastWeek)->count() + \App\Models\PassedExam::where('created_at','>=',$lastWeek)->count();
+                            $totalAttendance = \App\Models\UserLesson::where('created_at', '>=', $lastWeek)->count() + \App\Models\PassedExam::where('created_at', '>=', $lastWeek)->count();
                         @endphp
                         @foreach (\App\Models\Center::all() as $center)
                             @foreach (\App\Models\Grade::all() as $grade)
@@ -219,17 +221,21 @@
                                     <td class="member">
                                         @php
                                             $centerAttendance =
-                                                \App\Models\UserLesson::where('created_at','>=',$lastWeek)->whereHas('user', function ($userQ) use ($center, $grade) {
-                                                    $userQ->where(['center_id' => $center->id, 'grade_id' => $grade->id]);
-                                                })->count() +
-                                                \App\Models\PassedExam::where('created_at','>=',$lastWeek)->whereHas('user', function ($userQ) use ($center, $grade) {
-                                                    $userQ->where(['center_id' => $center->id, 'grade_id' => $grade->id]);
-                                                })->count();
+                                                \App\Models\UserLesson::where('created_at', '>=', $lastWeek)
+                                                    ->whereHas('user', function ($userQ) use ($center, $grade) {
+                                                        $userQ->where(['center_id' => $center->id, 'grade_id' => $grade->id]);
+                                                    })
+                                                    ->count() +
+                                                \App\Models\PassedExam::where('created_at', '>=', $lastWeek)
+                                                    ->whereHas('user', function ($userQ) use ($center, $grade) {
+                                                        $userQ->where(['center_id' => $center->id, 'grade_id' => $grade->id]);
+                                                    })
+                                                    ->count();
                                         @endphp
                                         {{ $centerAttendance }}
                                     </td>
                                     <td class="money">
-                                        {{ \App\Models\BalanceCard::where('created_at','>=',$lastWeek)->where(['center_id' => $center->id, ['user_id', '!=', null]])->sum('value') }}
+                                        {{ \App\Models\BalanceCard::where('created_at', '>=', $lastWeek)->where(['center_id' => $center->id, ['user_id', '!=', null]])->sum('value') }}
                                         ج.م</td>
                                     {{-- <td class="date">18/7/2025</td> --}}
                                     <td class="progress-parent">
