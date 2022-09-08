@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{ URL::asset('css/home-responsive.css') }} " class="rel">
 @endsection
 @section('content')
-<script>alert('BOO')</script>
     <header class="">
         <div class="container">
             <div class="row">
