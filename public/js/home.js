@@ -24,7 +24,7 @@ let addElement = function (ele, className) {
 
 sal({
     rootMargin: "0% 50%",
-    threshold: 1, // 50%
+    threshold: 0, // 50%
     animateClassName: "sal-animate",
     disabledClassName: "sal-disabled",
     selector: "[data-sal]",
