@@ -311,8 +311,8 @@
     $currentMonthAttend += \App\Models\PassedExam::where('user_id', '!=', null)
         ->where('created_at', 'LIKE', "%$currentMonth%")
         ->count();
-    $enrolledStudents = (int) ( $currentMonthAttend / 2);
-    $absentStudents = (int) $studentsNamber - $currentMonthAttend;
+    $enrolledStudents = (int) $currentMonthAttend;
+    $absentStudents = (int) ($studentsNamber * 2) - $currentMonthAttend;
 
     $studentsLevel = '';
     $centersName = '';
