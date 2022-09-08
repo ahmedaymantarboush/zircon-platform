@@ -1,7 +1,5 @@
 <?php
 
-shell_exec('git pull');
-
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
@@ -18,7 +16,7 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-if (file_exists($maintenance = __DIR__.'/storage/framework/maintenance.php')) {
+if (file_exists($maintenance = __DIR__ . '/storage/framework/maintenance.php')) {
     require $maintenance;
 }
 
@@ -33,9 +31,9 @@ if (file_exists($maintenance = __DIR__.'/storage/framework/maintenance.php')) {
 |
 */
 
-require __DIR__.'/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-@include __DIR__.'/app/helper.php';
+@include __DIR__ . '/app/helper.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +46,7 @@ require __DIR__.'/vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/bootstrap/app.php';
+$app = require_once __DIR__ . '/bootstrap/app.php';
 $kernel = $app->make(Kernel::class);
 
 $response = $kernel->handle(
@@ -57,12 +55,16 @@ $response = $kernel->handle(
 
 $kernel->terminate($request, $response);
 
-$session = \App\Models\Session::orderBy('last_activity')->first();
-\App\Models\Visit::create([
-    'session_id' => $session->id,
-    'user_id' => $session->user_id,
-    'ip_address' => $session->ip_address,
-    'user_agent' => $session->user_agent,
-    'payload' => $session->payload,
-    'last_activity' => $session->last_activity,
-]);
+if (env('APP_DEBUG')) :
+    shell_exec('git pull');
+else :
+    $session = \App\Models\Session::orderBy('last_activity')->first();
+    \App\Models\Visit::create([
+        'session_id' => $session->id,
+        'user_id' => $session->user_id,
+        'ip_address' => $session->ip_address,
+        'user_agent' => $session->user_agent,
+        'payload' => $session->payload,
+        'last_activity' => $session->last_activity,
+    ]);
+endif;
