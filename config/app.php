@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Facade;
-
+$user = Auth::user();
+$alwaysDebug = $user ? $user->role->number == 1 : false;
 return [
 
     /*
