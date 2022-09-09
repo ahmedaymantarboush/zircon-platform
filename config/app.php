@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Facade;
-
+$user = Auth::user();
+$alwaysDebug = $user ? $user->role->number == 1 : false;
 return [
 
     /*
@@ -40,8 +42,7 @@ return [
     | application. If disabled, a simple generic error page is shown.
     |
     */
-
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => $alwaysDebug ?? (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
