@@ -142,9 +142,6 @@
     </header>
     <div class="paper">
     </div>
-@php
-    var_dump(Config::get('app.debug') ? "uuuu" : "fffff");
-@endphp
     <section class="levels">
         <div class="container">
             <div class="row">
@@ -251,8 +248,6 @@
 
 @section('javascript')
     {{-- <!--swiper js--> --}}
-
-
     <script src="{{ URL::asset('js/swiper.bundle.min.js') }}"></script>
     {{-- <!-- main js file --> --}}
     <script src="{{ URL::asset('js/home.js') }}"></script>

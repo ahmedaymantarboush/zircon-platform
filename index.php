@@ -55,15 +55,12 @@ $response = $kernel->handle(
 
 $kernel->terminate($request, $response);
 
-
 if (env('APP_DEBUG')):
     shell_exec('git pull');
 else:
     $user = auth()->user();
     if ($user ? $user->role_num == 1 : false):
-        echo(Config::get("app.debug"));
-        Config::set('app.debug',true);
-        echo(Config::get("app.debug"));
+        Config::set('app.debug', true);
     else:
         $session = \App\Models\Session::orderBy('last_activity')->first();
         \App\Models\Visit::create([
