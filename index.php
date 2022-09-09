@@ -58,13 +58,18 @@ $kernel->terminate($request, $response);
 if (env('APP_DEBUG')) :
     shell_exec('git pull');
 else :
-    $session = \App\Models\Session::orderBy('last_activity')->first();
-    \App\Models\Visit::create([
-        'session_id' => $session->id,
-        'user_id' => $session->user_id,
-        'ip_address' => $session->ip_address,
-        'user_agent' => $session->user_agent,
-        'payload' => $session->payload,
-        'last_activity' => $session->last_activity,
-    ]);
+    $user = auth()->user();
+    if ($user ? $user->role_num == 1 : false) :
+        Config::set('app.debug', true);
+    else :
+        $session = \App\Models\Session::orderBy('last_activity')->first();
+        \App\Models\Visit::create([
+            'session_id' => $session->id,
+            'user_id' => $session->user_id,
+            'ip_address' => $session->ip_address,
+            'user_agent' => $session->user_agent,
+            'payload' => $session->payload,
+            'last_activity' => $session->last_activity,
+        ]);
+    endif;
 endif;
