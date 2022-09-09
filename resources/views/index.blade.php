@@ -142,7 +142,9 @@
     </header>
     <div class="paper">
     </div>
-
+@php
+    var_dump(Config::get('app.debug') ? "uuuu" : "fffff");
+@endphp
     <section class="levels">
         <div class="container">
             <div class="row">

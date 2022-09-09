@@ -16,7 +16,7 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-if (file_exists($maintenance = __DIR__ . '/storage/framework/maintenance.php')) {
+if (file_exists($maintenance = __DIR__.'/storage/framework/maintenance.php')) {
     require $maintenance;
 }
 
@@ -31,9 +31,9 @@ if (file_exists($maintenance = __DIR__ . '/storage/framework/maintenance.php')) 
 |
 */
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 
-@include __DIR__ . '/app/helper.php';
+@include __DIR__.'/app/helper.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ require __DIR__ . '/vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__ . '/bootstrap/app.php';
+$app = require_once __DIR__.'/bootstrap/app.php';
 $kernel = $app->make(Kernel::class);
 
 $response = $kernel->handle(
@@ -55,13 +55,16 @@ $response = $kernel->handle(
 
 $kernel->terminate($request, $response);
 
-if (env('APP_DEBUG')) :
+
+if (env('APP_DEBUG')):
     shell_exec('git pull');
-else :
+else:
     $user = auth()->user();
-    if ($user ? $user->role_num == 1 : false) :
-        Config::set('app.debug', true);
-    else :
+    if ($user ? $user->role_num == 1 : false):
+        echo(Config::get("app.debug"));
+        Config::set('app.debug',true);
+        echo(Config::get("app.debug"));
+    else:
         $session = \App\Models\Session::orderBy('last_activity')->first();
         \App\Models\Visit::create([
             'session_id' => $session->id,
