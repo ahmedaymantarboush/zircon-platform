@@ -93,7 +93,7 @@
                             data-sal-easing="ease-out-back" data-sal-duration="1800">
                             <div class="swiper headerTestimonialSwiper">
                                 <div class="swiper-wrapper">
-                                    @foreach (\App\Models\Testimonial::orderBy('degree', 'desc')->take(4)->get() as $testimonial)
+                                    @foreach (\App\Models\Testimonial::orderBy('degree', 'desc')->take(5)->get() as $testimonial)
                                         <div class="h-t-item swiper-slide">
                                             <div class="h-t-content">
                                                 <h3 class="h-t-heading">
