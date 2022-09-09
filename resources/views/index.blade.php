@@ -142,6 +142,7 @@
     </header>
     <div class="paper">
     </div>
+    {{Config::get('app.debug') ? "Ddddddd" : "ffffffffff"}}
     <section class="levels">
         <div class="container">
             <div class="row">

@@ -53,14 +53,12 @@ $response = $kernel->handle(
     $request = Request::capture()
 )->send();
 
-$kernel->terminate($request, $response);
-
 if (env('APP_DEBUG')):
     shell_exec('git pull');
 else:
     $user = auth()->user();
     if ($user ? $user->role_num == 1 : false):
-        Config::set('app.debug', true);
+        Conf::set('app.debug', true);
     else:
         $session = \App\Models\Session::orderBy('last_activity')->first();
         \App\Models\Visit::create([
@@ -73,3 +71,5 @@ else:
         ]);
     endif;
 endif;
+
+$kernel->terminate($request, $response);
